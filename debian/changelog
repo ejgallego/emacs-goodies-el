@@ -1,4 +1,4 @@
-emacs-goodies-el (24.8-2) unstable; urgency=low
+emacs-goodies-el (24.9-1) unstable; urgency=low
 
   * emacs-goodies-el:
     - todoo.el: outline-regexp improperly made buffer-local,
