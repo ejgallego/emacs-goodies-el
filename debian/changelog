@@ -1,3 +1,12 @@
+emacs-goodies-el (24.3-2) unstable; urgency=low
+
+  * dpkg-dev-el:
+    - debian-control-mode.el: Apply patch from Jhair Tocancipa Triana
+    <jhair_tocancipa@gmx.net> to fix an after-change-functions race
+    (Closes: #226770, #236506).
+
+ --
+
 emacs-goodies-el (24.3-1) unstable; urgency=low
 
   * debian-el: 

@@ -5,8 +5,8 @@
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Colin Walters <walters@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.6
-;; X-RCS: $Id: debian-control-mode.el,v 1.5 2003/11/28 02:13:29 psg Exp $
+;; Version: 0.7
+;; X-RCS: $Id: debian-control-mode.el,v 1.6 2004/03/27 20:00:43 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -30,6 +30,11 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V0.7 (2004-03-27)  Peter S Galbraith <psg@debian.org>
+;;
+;; * Apply patch from Jhair Tocancipa Triana <jhair_tocancipa@gmx.net>
+;;   in http://bugs.debian.org/226770.  Fixes an after-change-functions race.
 
 ;; V0.6 (2003-11-27)  Peter S Galbraith <psg@debian.org>
 ;;
@@ -209,7 +214,8 @@
 (defun debian-control-mode-after-change-function (beg end len)
   (save-excursion
     (let ((modified (buffer-modified-p))
-	  (buffer-read-only nil))
+	  (buffer-read-only nil)
+          (data (match-data)))
       (unwind-protect
 	  (progn
 	    (goto-char beg)
@@ -237,7 +243,8 @@
 			keymap ,debian-control-mode-package-name-keymap)))
 		    (t nil))
 	      (forward-line 1)))
-	(set-buffer-modified-p modified)))))
+	 (set-match-data data)
+         (set-buffer-modified-p modified)))))
 
 (easy-menu-define
  debian-control-mode-menu debian-control-mode-map "Debian Control Mode Menu"
