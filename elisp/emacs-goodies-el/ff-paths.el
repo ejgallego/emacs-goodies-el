@@ -4,7 +4,7 @@
  
 ;; Author:    Peter S. Galbraith <psg@debian.org>
 ;; Created:   16 Sep 1994
-;; Version:   3.21 (Aug 14 2003)
+;; Version:   3.22 (Nov 21 2003)
 ;; Keywords:  find-file, ffap, paths, search
 
 ;;; This file is not part of GNU Emacs.
@@ -215,8 +215,15 @@
 ;;   - Add ff-paths-install defcustom to enable package.
 ;; V3.21  Aug 14 2003 PSG
 ;;   - ff-paths-list-env: code cleanup.
+;; V3.22 Nov 21 2003 PSG
+;;   - Add defcustoms `ff-paths-locate-ignore-filenames-default',
+;;     `ff-paths-locate-ignore-filenames' and `ff-paths-locate-ignore-regexps' 
+;;     and support infracstructure to skip using locate for certain
+;;     (common) filenames.
 ;; ----------------------------------------------------------------------------
 ;;; Code:
+
+(eval-when-compile (require 'cl))
 
 (defgroup ff-paths nil
   "Find file using paths."
@@ -322,6 +329,17 @@ searching twice for a non-existing file the user actually wants to create")
 (defvar number)
 (defvar filename)
 
+(defvar ff-paths-use-locate)
+(defvar ff-paths-display-non-existent-filename)
+(defvar ff-paths-require-match)
+(defvar ff-paths-locate-max-matches)
+(defvar ff-paths-gzipped)
+(defvar ff-paths-using-ms-windows)
+(defvar ff-paths-locate-ignore-filenames-compiled)
+(defvar ff-paths-locate-ignore-filenames-default)
+(defvar ff-paths-locate-ignore-filenames)
+(defvar ff-paths-locate-ignore-regexps)
+
 (defun find-file-using-paths-hook ()
   "Search for file not found in path specified by the variable `ff-paths-list'."
   ;; This is called by find-file after it fails.
@@ -331,11 +349,13 @@ searching twice for a non-existing file the user actually wants to create")
       nil
     (let* ((the-name (file-name-nondirectory buffer-file-name))
            (matches
-            (or (if (equal ff-paths-use-locate '1)
+            (or (if (and (equal ff-paths-use-locate '1)
+                         (ff-paths-locate-filename-p the-name))
                     (ff-paths-locate the-name))
                 (psg-filename-in-directory-list
                  the-name (ff-paths-from-list the-name))
-                (if (equal ff-paths-use-locate 't)
+                (if (and (equal ff-paths-use-locate 't)
+                         (ff-paths-locate-filename-p the-name))
                     (ff-paths-locate the-name))))
            (bufname (buffer-name buf)) ; compute before uniquify hits!
            newbuf)
@@ -794,6 +814,19 @@ Return a string if a single match, or a list if many matches."
       (kill-buffer ff-buffer)
       matches)))
 
+(defun ff-paths-locate-filename-p (filename)
+  "Return t if ff-paths should try to find FILENAME using locate command.
+Checks FILENAME against `ff-paths-locate-ignore-filenames',
+`ff-paths-locate-ignore-filenames-default' and
+`ff-paths-locate-ignore-regexps'."
+  (cond
+   ((string-match ff-paths-locate-ignore-filenames-compiled filename)
+    nil)
+   (t  
+    (not (car (memq t
+                    (mapcar (lambda (x) (not (null (string-match x filename))))
+                            ff-paths-locate-ignore-regexps)))))))
+
 (defun ff-paths-have-locate ()
   "Determine if the `locate' command exists on this system."
   (if (not (condition-case nil
@@ -880,6 +913,92 @@ with confirmation prompt when a single match is found for a non-existent file
 and edit that single matched file immediately."
   :group 'ff-paths
   :type 'boolean)
+
+(defvar ff-paths-locate-ignore-filenames-compiled nil
+  "*Regexp matching files not searched for using locate.
+Do not alter this variable directly. Instead, customize
+`ff-paths-locate-ignore-filenames-default' checking off filenames normally
+not searched that you would like searched, and add extra filenames to
+not search for in `ff-paths-locate-ignore-filenames'.")
+
+(defun ff-paths-locate-ignore-filenames-compile ()
+  "Make or remake the variable `ff-paths-locate-ignore-filenames-compiled'.
+Done using `ff-paths-locate-ignore-filenames' and
+`ff-paths-locate-ignore-filenames-default' as input."
+  (let ((list (cond
+               ((and (boundp 'ff-paths-locate-ignore-filenames)
+                     ff-paths-locate-ignore-filenames
+                     (boundp 'ff-paths-locate-ignore-filenames-default)
+                     ff-paths-locate-ignore-filenames-default)
+                (append ff-paths-locate-ignore-filenames
+                        ff-paths-locate-ignore-filenames-default))
+               ((and (boundp 'ff-paths-locate-ignore-filenames)
+                     ff-paths-locate-ignore-filenames)
+                ff-paths-locate-ignore-filenames)
+               ((and (boundp 'ff-paths-locate-ignore-filenames-default)
+                     ff-paths-locate-ignore-filenames-default)
+                ff-paths-locate-ignore-filenames-default))))
+    (if list
+        (setq ff-paths-locate-ignore-filenames-compiled
+              (concat
+               "^"
+               ;; workaround for insufficient default
+               (let ((max-specpdl-size 1000))
+                 (regexp-opt list t))
+               "$"))
+      (setq ff-paths-locate-ignore-filenames-compiled nil))))
+
+(defcustom ff-paths-locate-ignore-filenames-default
+  '("ChangeLog"
+    "changelog"
+    "changelog.gz"
+    "changelog.Debian.gz"
+    "copyright"
+    "README"
+    "README.Debian"
+    "README.Debian.gz")
+  "A customizable list of filenames to not search for using locate.
+Usually a list of very common filenames.
+
+See also `ff-paths-locate-ignore-filenames' and
+`ff-paths-locate-ignore-regexps'"
+  :type '(set 
+          (const "ChangeLog")
+          (const "changelog")
+          (const "changelog.gz")
+          (const "changelog.Debian.gz")
+          (const "copyright")
+          (const "README")
+          (const "README.Debian")
+          (const "README.Debian.gz"))
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (ff-paths-locate-ignore-filenames-compile))
+  :group 'ff-paths)
+
+(defcustom ff-paths-locate-ignore-filenames nil
+  "*Additional filenames to not search for using locate.
+Filenames that you would like the locate search to skip that aren't listed in
+`ff-paths-locate-ignore-filenames-default' can be added to this option with the
+caveat that regular expressions are not allowed.
+
+See also `ff-paths-locate-ignore-regexps'"
+  :type '(repeat (string :tag "Filename:"))
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (ff-paths-locate-ignore-filenames-compile))
+  :group 'ff-paths)
+
+(defcustom ff-paths-locate-ignore-regexps nil
+  "*Additional regexps matching filenames to not search for using locate.
+Add regular expressions matching filenames that are not to be
+searched suing the system locate command here (because the names
+are too common to be useful).
+
+See also `ff-paths-locate-ignore-filenames-default' and
+`ff-paths-locate-ignore-filenames'."
+  :type '(repeat (regexp :tag "Regular expression:"))
+  :group 'ff-paths)
 
 (defcustom ff-paths-require-match nil
   "*Whether user has to choose one of the listed files.
