@@ -6,12 +6,14 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
     - gnus-eyecandy.el, enhance the group buffer by adding icons.
     - gnus-filterhist.el, add a buffer which display the message filtering
       history.
+    Debian setup:
+    - Add autoloads for gnus-pers.el, gnus-eyecandy.el and gnus-filterhist.el.
   * emacs-goodies-el:
     Patches:
     - 51_newsticker_autoloads: Add autoloads for initial commands.
-  * Junichi Uekawa:
-  - devscripts-el: implement 'debdiff'
-  - devscripts-el.README.Debian: update to reflect latest changes.
+  * devscripts-el: (Prepared by Junichi Uekawa)
+    - implement 'debdiff'
+    - devscripts-el.README.Debian: update to reflect latest changes.
 
  -- Junichi Uekawa <dancer@debian.org>  Sat, 18 Oct 2003 17:42:49 +0900
 
