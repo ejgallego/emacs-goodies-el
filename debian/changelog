@@ -33,8 +33,9 @@ emacs-goodies-el (22.0-1) UNRELEASED; urgency=low
   - 7_devscripts-debuild-uc-us.dpatch devscripts incorporated upstream.
   - 9_missing_provide.dpatch remove part about devscripts.
   - devscripts-el: Depend on elserv.
+  * debian-el: Add deb-view.el, soon replacing package `debview'.
 
- -- Peter S Galbraith <psg@debian.org>  Sat,  4 Oct 2003 14:14:27 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat,  4 Oct 2003 22:08:40 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 

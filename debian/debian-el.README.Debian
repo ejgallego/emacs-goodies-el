@@ -39,9 +39,12 @@ M-x apt-utils-show-package RET emacs21 RET
 debian-bug.el provides M-x debian-bug (and variants), to submit bugs
 to the Debian bug tracking system.
 
+deb-view.el presents the contents of debian package archive files for
+viewing (similar to tar-mode).
+
 gnus-BTS.el makes bug numbers clickable in messages viewed in Gnus.
 It expects to see bug references in the form of (for example):
 "#48273", "closes: 238742" or similar.  To use, add the following to
 your .gnus: "(require 'gnus-BTS)".
 
- -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:52 2003
+ -- Peter S Galbraith <psg@debian.org>, Sat Oct  4 22:04:39 2003

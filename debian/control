@@ -112,7 +112,7 @@ Depends: emacs21 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
   devscripts.el: wrappers around the debuild, debc and debi commands;
-  pbuilder-log-view.el: wrappers around viewing pbuilder logs
+  pbuilder-log-view.el: wrappers around viewing pbuilder logs;
   pbuilder.el: wrappers around pbuilder
  .
  See /usr/share/doc/devscripts-el/README.Debian.gz for a short
@@ -131,8 +131,8 @@ Description: Transitional package.  Can be removed.
 
 Package: debian-el
 Architecture: all
-Depends: emacs21 | emacsen, reportbug (>= 1.41.1)
-Recommends: wget, dlocate
+Depends: emacs21 | emacsen, reportbug (>= 1.41.1), gzip, binutils
+Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el
 Provides: debbugs-el
@@ -142,7 +142,8 @@ Description: Emacs helpers specific to Debian users
  .
   apt-sources.el: major mode for editing Debian sources.list files;
   apt-utils.el: interface to APT (Debian package management);
-  debian-bug.el: an Emacs command to submit a bug report.
+  debian-bug.el: an Emacs command to submit a bug report;
+  deb-view.el: view contents of Debian package, similarly to tar-mode;
   gnus-BTS.el: provides buttons for bug numbers seen in Gnus messages.
  .
  See /usr/share/doc/debian-el/README.Debian.gz for a short
@@ -161,7 +162,7 @@ Description: Emacs helpers specific to Debian development
   debian-bts-control.el: builds control@bugs.debian.org email messages;
   debian-changelog-mode.el: a helper mode for Debian changelogs;
   debian-control-mode.el: a helper mode for debian/control files;
-  debian-copyright.el: major mode for Debian package copyright files.
+  debian-copyright.el: major mode for Debian package copyright files;
   readme-debian.el: major mode for editing README.Debian files.
  .
  See /usr/share/doc/dpkg-dev-el/README.Debian.gz for a short

@@ -61,6 +61,17 @@ Author/copyright info for debian-bug.el:
 `----
 
 
+Author/copyright info for deb-view.el
+,----
+| ;; Author:  Rick Macdonald (rickm@vsl.com)
+| 
+| ;; deb-view is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
 Author/copyright info for gnus-BTS.el:
 ,----
 | ;; Copyright (C) 2001 Andreas Fuchs <asf@acm.org>
