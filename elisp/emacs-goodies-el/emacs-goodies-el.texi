@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.21 2003/09/20 22:51:30 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.22 2003/09/20 23:01:08 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -39,12 +39,14 @@ override standard Emacs commands, modes, or settings.
 
 Some extra package installation and setup is done if you customize the
 variable @code{emacs-goodies-el-defaults} to t (its aggressive state).
-These will override standard Emacs defaults.  The affected package is
-currently only: @ref{ff-paths}.  Packages which require activation in
-order to function include: @ref{bar-cursor}, @ref{diminish} and @ref{df}.
+These will override standard Emacs defaults, but in a good
+(uncontroversial) way.  The affected packages are currently only:
+@ref{ff-paths} and @ref{home-end}.  Packages which require activation
+in order to function include: @ref{bar-cursor}, @ref{diminish},
+@ref{df} and @ref{filladapt}.
 
-To customize setup of these aggressive packages on a finer-grain basis,
-do:
+To customize setup of all customizable packages on a finer-grain
+basis, do:
 @example
 @kbd{M-x} customize-group @key{RET} emacs-goodies-el @key{RET}
 @end example
@@ -57,9 +59,8 @@ mean to use the Emacs custom interface, such as in:
 When we speak of customizing a group, it's as the example above for the
 group @code{emacs-goodies-el}.
 
-The following files are documented so far.  This is a recently started
-work-in-progress, so don't despair about the low percentage of
-documented files just yet.
+The following files are documented so far.  Eventually, all files will
+be documented.
 
 @menu
 * align-string::                Align string components over several lines.
@@ -86,9 +87,10 @@ documented files just yet.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
-in /usr/share/emacs/site-lisp/emacs-goodies-el/.  This text is also
-licensed under the GPL V2 (See /usr/share/common-licenses/GPL-2) and
-is edited by Peter S. Galbraith @email{psg@@debian.org}.
+in /usr/share/emacs/site-lisp/emacs-goodies-el/.  As a derived work
+from GPL'ed works, this text is also licensed under the GPL V2 (See
+/usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
+@email{psg@@debian.org}.
 
 @node align-string, all, Top, Top
 @chapter align-string - align string components over several lines.
