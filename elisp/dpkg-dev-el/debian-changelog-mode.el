@@ -287,6 +287,9 @@
 ;; V1.77 19Feb2004 Peter S Galbraith <psg@debian.org>
 ;;  - Add file NEWS.Debian to auto-mode-alist.  Thanks to Chris Lawrence
 ;;    for suggesting it.  (Closes: #233310)
+;; V1.78 14Apr2004 Peter S Galbraith <psg@debian.org>
+;;  - debian-changelog-setdistribution: Dismiss warning window when setting
+;;    distribution to security.  Thanks to Martin Schulze (Closes: #234730)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -510,9 +513,10 @@ mail instead.
 Upload to " val  " anyway?"))
           (debian-changelog-setheadervalue ") \\(.*\\)\\;" val)))
      (t
-      (with-output-to-temp-buffer "*Help*"
-        (princ (concat
-                "Warning, although the {oldstable,stable,testing}-security
+      (let ((window-config (current-window-configuration)))
+        (with-output-to-temp-buffer "*Help*"
+          (princ (concat
+                  "Warning, although the {oldstable,stable,testing}-security
 distribution exists it should not be used unless you are a
 member of the security team.  Please don't upload to it if you
 are not 150% sure that your package is suitable.  In case of
@@ -520,8 +524,9 @@ doubt, please send the files to team@security.debian.org via
 mail instead.
 
 Upload to " val  " anyway?")))
-      (if (y-or-n-p (format "Upload to %s anyway? " val))
-          (debian-changelog-setheadervalue ") \\(.*\\)\\;" val))))))
+        (if (y-or-n-p (format "Upload to %s anyway? " val))
+            (debian-changelog-setheadervalue ") \\(.*\\)\\;" val))
+        (set-window-configuration window-config))))))
 
 ;;
 ;; keymap table definition
