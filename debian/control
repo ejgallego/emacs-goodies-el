@@ -99,7 +99,7 @@ Description: Transitional package that can be removed
 
 Package: gnus-bonus-el
 Architecture: all
-Depends: emacs21 | emacsen, gnus | emacs21 | emacs20 | xemacs21
+Depends: emacs21 | emacsen, gnus | emacs21 | xemacs21
 Section: news
 Description: Miscellaneous add-ons for Gnus
  This package contains a few Emacs-Lisp files, obtained from various
