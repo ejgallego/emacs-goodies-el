@@ -1,0 +1,14 @@
+This package was first debianized by Roland Mas <lolando@debian.org>
+It is currently maintained by Peter S Galbraith <psg@debian.org>
+
+  The text of the GNU GPL can be found in /usr/share/common-licenses.
+
+Copyright info for files in devscripts-el
+-----------------------------------------
+
+Author/copyright info for devscripts.el:
+,----
+| ;; copyright 2002 Junichi Uekawa.
+| [...]
+| Copyright GPL.
+`----
