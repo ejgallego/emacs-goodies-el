@@ -251,9 +251,16 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :link '(emacs-commentary-link "session.el")
   :link '(url-link "http://emacs-session.sourceforge.net/")
   :prefix "session-"
-;;:link '(custom-manual "(emacs-goodies-el)session")
+  :link '(custom-manual "(emacs-goodies-el)session")
   :load 'session
 ;;:require 'session
+  :group 'emacs-goodies-el)
+
+;; setnu
+(defgroup setnu nil
+  "vi-style line number mode for Emacs."
+  :link '(custom-manual "(emacs-goodies-el)setnu")
+  :load 'setnu
   :group 'emacs-goodies-el)
 
 ;; table
@@ -266,7 +273,7 @@ See `table-insert' for examples about how to use."
   :group 'wp
   :group 'paragraphs
   :group 'fill
-;;:link '(custom-manual "(emacs-goodies-el)table")
+  :link '(custom-manual "(emacs-goodies-el)table")
   :load 'table
 ;;:require 'table
   :group 'emacs-goodies-el)
@@ -276,7 +283,7 @@ See `table-insert' for examples about how to use."
   "Tail files or commands into Emacs buffers."
   :prefix "tail-"
   :group 'environment
-;;:link '(custom-manual "(emacs-goodies-el)tail")
+  :link '(custom-manual "(emacs-goodies-el)tail")
   :load 'tail
 ;;:require 'tail
   :group 'emacs-goodies-el)
@@ -293,7 +300,7 @@ See `table-insert' for examples about how to use."
   "Insert text in a think bubble."
   :group  'editing
   :prefix "thinks-"
-;;:link '(custom-manual "(emacs-goodies-el)thinks")
+  :link '(custom-manual "(emacs-goodies-el)thinks")
   :load 'thinks
 ;;:require 'thinks
   :group 'emacs-goodies-el)
@@ -302,7 +309,7 @@ See `table-insert' for examples about how to use."
 (defgroup todoo nil
   "Maintain a list of todo items."
   :group 'calendar
-;;:link '(custom-manual "(emacs-goodies-el)todoo")
+  :link '(custom-manual "(emacs-goodies-el)todoo")
   :load 'todoo
 ;;:require 'todoo
   :group 'emacs-goodies-el)
@@ -329,7 +336,7 @@ See `table-insert' for examples about how to use."
 (defgroup toggle-option nil
   "Convenience library for toggling commonly toggled variables/functions."
   :group 'convenience
-;;:link '(custom-manual "(emacs-goodies-el)toggle-option")
+  :link '(custom-manual "(emacs-goodies-el)toggle-option")
   :load 'toggle-option
 ;;:require 'toggle-option
   :group 'emacs-goodies-el)
@@ -337,8 +344,8 @@ See `table-insert' for examples about how to use."
 ;; wdired
 (defgroup wdired nil
   "Mode to rename files by editing their names in dired buffers."
-:group 'dired
-;;:link '(custom-manual "(emacs-goodies-el)wdired")
+  :group 'dired
+  :link '(custom-manual "(emacs-goodies-el)wdired")
   :load 'wdired
 ;;:require 'wdired
   :group 'emacs-goodies-el)
@@ -347,7 +354,7 @@ See `table-insert' for examples about how to use."
 (defgroup xrdb nil
   "Support for editing X resource database files"
   :group 'languages
-;;:link '(custom-manual "(emacs-goodies-el)xrdb-mode")
+  :link '(custom-manual "(emacs-goodies-el)xrdb-mode")
   :load 'xrdb-mode
 ;;:require 'xrdb-mode
   :group 'emacs-goodies-el)
