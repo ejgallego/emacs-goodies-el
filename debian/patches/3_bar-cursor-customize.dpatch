@@ -1,5 +1,5 @@
 #!/bin/sh -e
-## 3_bar-cursor-customize.dpatch.dpatch by Peter S Galbraith <psg@debian.org>
+## 3_bar-cursor-customize.dpatch by Peter S Galbraith <psg@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: No description.
@@ -24,8 +24,8 @@ exit 0
 
 @DPATCH@
 diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el	2003-04-04 15:15:55.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el	2003-06-19 20:22:16.000000000 -0400
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el	2003-10-05 15:12:44.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el	2003-10-05 15:14:54.000000000 -0400
 @@ -3,7 +3,7 @@
  
  ;; This file is not part of Emacs
@@ -160,14 +160,13 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  
  FRAME is optional frame to set the cursor for; current frame is used
  if not passed in."
-@@ -177,6 +186,22 @@
+@@ -177,6 +186,23 @@
  	  (bar-cursor-set-cursor-type 'bar frame)
  	(bar-cursor-set-cursor-type 'block frame)))
  
 +;;; --------------------------------------------------------------------------
 +(defgroup bar-cursor nil
 +  "switch block cursor to a bar."
-+  :link '(custom-manual "(emacs-goodies-el)bar-cursor")
 +  :group 'convenience)
 +
 +(defcustom bar-cursor-mode nil
@@ -176,6 +175,8 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 +This is a quasi-minor mode, meaning that it can be turned on & off easily
 +though only globally (hence the quasi-)"
 +  :type 'boolean
++  :group 'bar-cursor
++  :require 'bar-cursor
 +  :set (lambda (symbol value)
 +         (set-default symbol value)
 +         (bar-cursor-change)))
