@@ -40,15 +40,6 @@ all.el provides M-x all, a way to see all lines matching a regexp
 pattern in a special buffer.  Editing these lines in that buffer
 propagates the changes back to the original buffer.
 
-apt-sources.el provides apt-sources-mode, a major mode to help the
-edition of /etc/apt/sources.list (and suchlike) files.  To use it,
-either open a file named sources.list and it will be autoloaded, or
-add a local variables section to the end of your file to specify the
-mode to be "apt-sources".
-
-apt-utils.el provides an interface to APT. Start things off using e.g.:
-M-x apt-utils-show-package RET emacs21 RET
-
 auto-fill-inhibit.el provides a finer grained control over
 auto-fill-mode activation.  Tu use it, simply load the file.  For
 instance, adding (load-library "auto-fill-inhibit") to your .emacs
@@ -254,4 +245,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 20:35:58 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:16:52 2003

@@ -2,15 +2,15 @@
 ;;
 ;; Emacs startup file for the Debian GNU/Linux devscripts-el package
 
-(if (not (file-exists-p "/usr/share/emacs/site-lisp/debbugs-el"))
-    (message "Package debbugs-el removed but not purged.  Skipping setup.")
+(if (not (file-exists-p "/usr/share/emacs/site-lisp/debian-el"))
+    (message "Package debian-el removed but not purged.  Skipping setup.")
   (debian-pkg-add-load-path-item
-   (concat "/usr/share/" (symbol-name flavor) "/site-lisp/debbugs-el"))
+   (concat "/usr/share/" (symbol-name flavor) "/site-lisp/debian-el"))
   
   ;; Make sure that the uncompiled files are also in the load-path, near the
   ;; end.  This is for moving point to the code when view help.
   (setq load-path (nconc load-path 
-                         (list "/usr/share/emacs/site-lisp/debbugs-el")))
+                         (list "/usr/share/emacs/site-lisp/debian-el")))
 
   ;; autoloads for debian-bug.el
   (autoload 'debian-bug "debian-bug" "Submit a Debian bug report." t)

@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# /usr/lib/emacsen-common/packages/remove/debbugs-el
+# /usr/lib/emacsen-common/packages/remove/debian-el
 
 FLAVOR=$1
-PACKAGE=debbugs-el
+PACKAGE=debian-el

@@ -11,7 +11,7 @@
 FLAVOR=$1
 PACKAGE=dpkg-dev-el
 
-APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/debbugs-el/\")"
+APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/debian-el/\")"
 
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""

@@ -10,7 +10,7 @@ binary packages:
  emacs-goodies-extra-el:
                    Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debbugs-el:       Access the Debian BTS from within Emacs
+ debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
 
@@ -26,8 +26,17 @@ obtained from this source package.  It does not intend to replace reading
 the documentation that is made available in the files themselves (or not
 available at all, except insofar as code is self-documenting).
 
-Introduction to files in debbugs-el
------------------------------------
+Introduction to files in debian-el
+----------------------------------
+
+apt-sources.el provides apt-sources-mode, a major mode to help the
+edition of /etc/apt/sources.list (and suchlike) files.  To use it,
+either open a file named sources.list and it will be autoloaded, or
+add a local variables section to the end of your file to specify the
+mode to be "apt-sources".
+
+apt-utils.el provides an interface to APT. Start things off using e.g.:
+M-x apt-utils-show-package RET emacs21 RET
 
 debian-bug.el provides M-x debian-bug (and variants), to submit bugs
 to the Debian bug tracking system.
@@ -37,4 +46,4 @@ It expects to see bug references in the form of (for example):
 "#48273", "closes: 238742" or similar.  To use, add the following to
 your .gnus: "(require 'gnus-BTS)".
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:13:20 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:16:57 2003

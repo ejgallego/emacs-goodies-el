@@ -10,7 +10,7 @@ binary packages:
  emacs-goodies-extra-el:
                    Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debbugs-el:       Access the Debian BTS from within Emacs
+ debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
 
@@ -61,4 +61,4 @@ spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
 spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
 add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:11:17 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:13:45 2003

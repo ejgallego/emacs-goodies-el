@@ -1,2 +1,4 @@
-elisp/debbugs-el/debian-bug.el /usr/share/emacs/site-lisp/debbugs-el/
-elisp/debbugs-el/gnus-BTS.el /usr/share/emacs/site-lisp/debbugs-el/
+elisp/debian-el/apt-sources.el /usr/share/emacs/site-lisp/debian-el/
+elisp/debian-el/apt-utils.el /usr/share/emacs/site-lisp/debian-el/
+elisp/debian-el/debian-bug.el /usr/share/emacs/site-lisp/debian-el/
+elisp/debian-el/gnus-BTS.el /usr/share/emacs/site-lisp/debian-el/

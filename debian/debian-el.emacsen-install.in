@@ -1,5 +1,5 @@
 #! /bin/bash -e
-# /usr/lib/emacsen-common/packages/install/debbugs-el
+# /usr/lib/emacsen-common/packages/install/debian-el
 
 # Written by Jim Van Zandt <jrv@vanzandt.mv.com>, borrowing heavily
 # from the install scripts for gettext by Santiago Vila
@@ -9,7 +9,7 @@
 # of flavor-dependently included/excluded files
 
 FLAVOR=$1
-PACKAGE=debbugs-el
+PACKAGE=debian-el
 
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""

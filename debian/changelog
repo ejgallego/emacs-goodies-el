@@ -2,6 +2,8 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
 
   * Remove package `emacs-goodies-extra-el' and merge its files into
     `emacs-goodies-el'.  
+  * Rename package `debbugs-el' to `debian-el' and move apt-sources.el and
+    apt-utils.el into it.
   * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
     to package Recommends.

@@ -10,7 +10,7 @@ binary packages:
  emacs-goodies-extra-el:
                    Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debbugs-el:       Access the Debian BTS from within Emacs
+ debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
 
@@ -32,4 +32,4 @@ Introduction to files in devscripts-el
 devscripts.el provides M-x debuild, M-x debc and M-x debi, three
 commands to call the corresponding utilities from within Emacs.
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:12:09 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:14:01 2003

@@ -21,8 +21,6 @@ Description: Miscellaneous add-ons for Emacs
  This package contains:
   align-string.el: align string components over several lines;
   all.el: edit all lines matching a given regexp;
-  apt-sources.el: major mode for editing Debian sources.list files;
-  apt-utils.el: interface to APT (Debian package management);
   auto-fill-inhibit.el: finer grained control over auto-fill-mode;
   bar-cursor.el: change your cursor to a bar instead of a block;
   boxquote.el: quote texts in nice boxes;
@@ -118,25 +116,29 @@ Description: Emacs wrappers for the commands in devscripts
  See /usr/share/doc/devscripts-el/README.Debian.gz for a short
  description of all files.
 
-Package: debbugs-el
+Package: debian-el
 Architecture: all
 Depends: emacs21 | emacsen, reportbug (>= 1.41.1)
 Recommends: wget, dlocate
 Suggests: gnus
+Conflicts: debbugs-el
+Replaces: debbugs-el
+Provides: debbugs-el
 Section: utils
 Description: Access the Debian BTS from within Emacs
  This package contains:
  .
-   * debian-bug.el, an Emacs command to submit a bug report.
-   * gnus-BTS.el, an enhancement to Gnus to provide buttons on bug
-     numbers seen in Debian-related messages.
+  apt-sources.el: major mode for editing Debian sources.list files;
+  apt-utils.el: interface to APT (Debian package management);
+  debian-bug.el: an Emacs command to submit a bug report.
+  gnus-BTS.el: provides buttons for bug numbers seen in Gnus messages.
  .
- See /usr/share/doc/debbugs-el/README.Debian.gz for a short
+ See /usr/share/doc/debian-el/README.Debian.gz for a short
  description of all files.
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs21 | emacsen, debbugs-el (>= 21.7-1)
+Depends: emacs21 | emacsen, debian-el (>= 22.0-1)
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)
