@@ -13,8 +13,13 @@ emacs-goodies-el (24.1-1) UNRELEASED; urgency=low
   * devscripts-el: (Prepared by Junichi Uekawa)
     - debdiff-current: Run debdiff against the previous version found in
       the changelog.
+  * gnus-bonus-el:
+    - gnus-pers.el bug fix: "Uses message-functionp instead of functionp",
+      thanks to Brian T. Sniffen (Closes: #223493).
+    - gnus-pers.el bug fix: "There is no 'replace-in-string' as called by
+      gnus-pers.el", thanks to Brian T. Sniffen (Closes: #223494).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 22 Dec 2003 20:45:08 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon, 22 Dec 2003 20:56:29 -0500
 
 emacs-goodies-el (24.0-1) unstable; urgency=low
 
