@@ -5,6 +5,9 @@ emacs-goodies-el (24.7-2) UNRELEASED; urgency=low
       dependence on jka-compr (Closes: #278929) and addressed the issue of
       memory usage (Closes: #252481).
   * emacs-goodies-el:
+    - todoo.el: changes to outline-regexp should be buffer-local
+      (Closes: #267637).  Thanks to Daniel Skarda <0rfelyus@hobitin.ucw.cz>
+      for pointing it out.
     - folding.el: Updated to latest CVS version to fix bug: "folding.el:
       support for BibTeX-mode is b0rken", thanks to Juhapekka Tolvanen
       (Closes: #282388).
