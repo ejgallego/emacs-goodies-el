@@ -1,6 +1,6 @@
 ;;; under.el --- Underline with the ^ character
 
-;;;  $Id: under.el,v 1.2 2003/10/10 17:25:37 psg Exp $
+;;;  $Id: under.el,v 1.3 2003/10/10 17:28:59 psg Exp $
 
 ;; Copyright (C) 1998 by Benjamin Drieu
 ;; Author:	 Benjamin Drieu <bdrieu@april.org>
@@ -10,7 +10,7 @@
 ;; LCD Archive Entry:
 ;; under|Benjamin Drieu|bdrieu@april.org|
 ;; Underline portions of a buffer with "^"|
-;; 1998|$Revision: 1.2 $|~/misc/under.el|
+;; 1998|$Revision: 1.3 $|~/misc/under.el|
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -33,8 +33,8 @@
 ;;  Add the following in your .emacs, and do a C-c C-u everywhere to
 ;;  underline the region with "^"
 ;;
-;;  (autoload 'underline-region "under" "Underline the region" t)
-;;  (global-set-key "\C-c\C-u" 'underline-region)
+;;  (autoload 'underline-hat "under" "Underline the region" t)
+;;  (global-set-key "\C-c\C-u" 'underline-hat)
 
 ;; Bugs: currently only works on a single line.  The region can't span
 ;;       multiple lines.
