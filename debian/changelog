@@ -1,10 +1,13 @@
-emacs-goodies-el (24.2-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.2-1) unstable; urgency=low
 
   * debian-el: 
     - apt-utils.el: Updated to v1.78 (2004/01/04). Allow for multiple
       buffers in apt-utils-mode that are independent of one another.
       Also fix bug: "debian-el: apt-utils-show-package scrolling", thanks to
       Kevin Ryde for reporting it (Closes: #225610).
+    - deb-view.el: Resize top (control) window to fit number of lines since
+      it doesn't really need to be 1/2 the screen. Thanks to Dan Jacobson
+      for suggesting this change (Closes: #224950).
   * emacs-goodes-el:  
     - browse-kill-ring.el: cannot setup `*Kill Ring*' buffer with items
       propertized read-only", many thanks to INOUE Hiroyuki for reporting it
@@ -14,7 +17,7 @@ emacs-goodies-el (24.2-1) UNRELEASED; urgency=low
       clear it's a joke package in the Info docs. Thanks to Daniel de
       Angelis Cordeiro for reporting (Closes: #225152).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 15 Jan 2004 16:50:58 -0500
+ -- Peter S Galbraith <psg@debian.org>  Fri, 16 Jan 2004 15:32:06 -0500
 
 emacs-goodies-el (24.1-1) unstable; urgency=low
 
