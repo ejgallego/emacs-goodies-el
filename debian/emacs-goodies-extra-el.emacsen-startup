@@ -16,6 +16,19 @@
         (nconc load-path 
                (list "/usr/share/emacs/site-lisp/emacs-goodies-extra-el")))
 
+  (defgroup emacs-goodies-extra-el nil
+    "Debian emacs-goodies-extra-el package customization."
+    :group 'convenience)
+
+  ;; dict
+  (defgroup Dict nil
+    "Browse DICT dictionaries."
+    :prefix "dict-"
+    :link '(custom-manual "(emacs-goodies-extra-el)dict")
+    :load 'dict
+    :group 'external
+    :group 'emacs-goodies-extra-el)
+
   ;; autoloads for dict.el
   (autoload 'dict "dict" "Lookup a word in the dictionary" t)
   (autoload 'dict-region "dict" "Lookup a region in the dictionary" t))

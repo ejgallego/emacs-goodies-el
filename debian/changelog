@@ -8,8 +8,10 @@ emacs-goodies-el (21.13-1) unstable; urgency=low
     50emacs-goodies-el.el.  Also for ibuffer: a customization variable
     (ibuffer-enable) was created to bind it to \C-x\C-b, and its
     documentation was added to the emacs-goodies-el Info.
+  * emacs-goodies-extra-el: Add `emacs-goodies-extra-el' customization
+    group and Info node.
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 23 Sep 2003 21:15:48 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 23 Sep 2003 22:08:46 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 
