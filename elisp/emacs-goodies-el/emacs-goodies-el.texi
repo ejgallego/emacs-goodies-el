@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.40 2003/10/10 01:50:36 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.41 2003/10/10 02:40:18 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -102,6 +102,7 @@ be documented.
 * sys-apropos::                 Interface for the *nix apropos command.
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
+* thinks::                      Insert text in a think bubble.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -123,8 +124,6 @@ vi-style line number mode for Emacs
 generate bozotic mail headers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
 cite text with proper filling
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/thinks.el
-Insert text in a think bubble.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tld.el
 TLD lookup tool.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/todoo.el
@@ -2483,7 +2482,7 @@ functions.
 
 And many other individuals who reported bugs and suggestions.
 
-@node tail,  , table, Top
+@node tail, thinks, table, Top
 @chapter tail - Tail files within Emacs
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -2500,3 +2499,73 @@ Tails FILE specified with argument FILE inside a new buffer.
 @item tail-command
 Tails COMMAND with arguments ARGS inside a new buffer.
 @end table
+
+@node thinks,  , tail, Top
+@chapter thinks - Insert text in a think bubble.
+
+@noindent Author Dave Pearson <davep@@davep.org>
+
+thinks.el is a little bit of silliness inspired by the think bubbles you
+see in cartoons. It allows you to
+
+@verbatim
+. o O ( insert text that looks like this )
+@end verbatim
+
+into a buffer. This could possibly be handy for use in email and usenet
+postings.
+
+@noindent The commands are:
+
+@table @samp
+@item thinks
+Insert TEXT wrapped in a think bubble.
+@item thinks-region
+Bubble wrap region bounding START and END.
+@item thinks-yank
+Do a `yank' and bubble wrap the yanked text.
+@item thinks-maybe-region
+If region is active, bubble wrap region bounding START and END.
+@end table
+
+@noindent Note that the code can handle multiple lines
+
+@verbatim
+. o O ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )
+@end verbatim
+
+@noindent You can also control how the bubble looks with
+@code{thinks-from}. The above had it set to @code{top}. You can have
+@code{middle}:
+
+@verbatim
+      ( like this. That is, a body of text where the number of characters )
+. o O ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )
+@end verbatim
+
+@noindent @code{bottom}:
+
+@verbatim
+      ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+. o O ( line length (he says, waffling on to fill a couple of lines).     )
+@end verbatim
+
+@noindent and @code{bottom-diagonal}:
+
+@verbatim
+      ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )
+    O
+  o
+.
+@end verbatim
+
+By default all of the thinking functions will fill (word wrap) the text
+taking into account the value of @code{fill-column} minus the space required
+for the bubble. Prefix a call to any of the functions with @key{C-u} to turn
+off this behaviour.
