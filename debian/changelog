@@ -5,8 +5,11 @@ emacs-goodies-el (21.12-1) unstable; urgency=low
   * emacs-goodies-el's highligh-beyond-fill-column.el: upstream approved
     code cleanup.  Created `highligh-beyond-fill-column' to activate it.
     Added to Info docs.
+  * emacs-goodies-el's home-end.el: Bug fix: "home-end-enable shouldn't
+    unset end and home!", thanks to Jorgen Schäfer <forcer@debian.org>
+    (Closes: #211859).
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 20 Sep 2003 14:29:22 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 20 Sep 2003 16:53:04 -0400
 
 emacs-goodies-el (21.11-1) unstable; urgency=low
 
