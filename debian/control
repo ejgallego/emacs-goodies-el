@@ -177,7 +177,7 @@ Description: Transitional package.  Can be removed.
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs21 | emacsen, debian-el (>= 22.0-1)
+Depends: emacs21 | emacsen, debian-el (>= 24.0-1)
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)

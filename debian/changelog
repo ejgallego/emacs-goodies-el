@@ -50,6 +50,8 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
       Add menu entry for "Archived Bugs for This Package", for
       "Developer Page for This Package", "Developer Page for This Maintainer".
     - debian-control-mode.el: highlight only known fields (Closes: #213779).
+    - debian/control: dpkg-dev-el depends on debian-el (>= 24.0-1) for
+      debian-changelog-mode using debian-bug-web-developer-page.
   * debian-el
     - apt-utils.el: Updated to v1.72 (2003/11/25). More robust finding of
       ChangeLog and README files, and new commands to find NEWS and
@@ -65,8 +67,8 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
       (Closes: #222391).
   * make-orig.sh bug fix: "cvs .# files in source package", thanks to
     Kevin Ryde for reporting it (Closes: #221940).
-  
- -- Peter S Galbraith <psg@debian.org>  Thu, 27 Nov 2003 21:12:10 -0500
+
+ --
 
 emacs-goodies-el (23.1-1) unstable; urgency=low
 
