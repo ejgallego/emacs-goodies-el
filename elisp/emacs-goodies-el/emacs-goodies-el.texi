@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.27 2003/10/01 03:11:43 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.28 2003/10/02 14:41:01 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -91,6 +91,7 @@ be documented.
 * mutt-alias::                  Lookup/insert mutt mail aliases.
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
 * newsticker::                  A Newsticker for Emacs
+* obfusurl::                    Obfuscate URLs so they aren't spoilers
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -104,8 +105,6 @@ Files not yet documented here:
 @table @samp
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
 code to split customizations into different files
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/obfusurl.el
-Obfuscate URLs so they aren't spoilers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/perldoc.el
 Show help for Perl functions, builtins, and modules.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
@@ -1187,7 +1186,7 @@ Type @key{C-h m} for all key bindings.
 Multiline commands are not properly handled and can lead to unexpected
 result.
 
-@node newsticker,  , muttrc-mode, Top
+@node newsticker, obfusurl, muttrc-mode, Top
 @chapter newsticker - A Newsticker for Emacs.
 
 @noindent Copyright (C) 2003 by Ulf Jasper
@@ -1249,3 +1248,24 @@ PS: This newsticker is designed do its job silently in the
     background without disturbing you.  However, it is probably
     impossible to prevent such a tool from slightly attenuating your
     Editor's responsiveness every once in a while.
+
+@node obfusurl,  , newsticker, Top
+@chapter obfusurl - Obfuscate URLs so they aren't spoilers
+
+@noindent Author: Dave Pearson <davep@@davep.org>
+
+obfusurl.el provides @command{obfuscate-url}, a command that will obfuscate an
+URL under the cursor. This might be useful if you are writing out an URL
+for someone but the URL itself might spoil the surprise.
+
+@noindent For example, this:
+
+@example
+<URL:http://www.davep.org/emacs/>
+@end example
+
+is turned into this:
+
+@example
+<URL:http://www.davep.org/%65%6d%61%63%73/>
+@end example
