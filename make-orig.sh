@@ -8,6 +8,7 @@ rm -f `find . -name "*~"`
 rm -f `find . -name "*#"`
 rm -f `find . -name "*.#"`
 rm -fR elisp/emacs-goodies-el/info
+rm -fR elisp/debian-el/info
 
 SOURCE=$(dpkg-parsechangelog | awk '/^Source:/ { print $2 }')
 FULLVERSION=$(dpkg-parsechangelog | awk '/^Version:/ { print $2 }')
