@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.53 2003/11/26 01:50:10 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.54 2003/11/27 02:28:07 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -116,7 +116,8 @@ be documented.
 * services::                    Services database access functions
 * session::                     Session Management for Emacs
 * setnu::                       vi-style line number mode for Emacs
-* shell-command::               enables tab-completion for `shell-command'
+* shell-command::               Enables tab-completion for `shell-command'
+* silly-mail::                  Generate bozotic mail headers
 * sys-apropos::                 Interface for the *nix apropos command
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
@@ -177,15 +178,13 @@ from GPL'ed works, this text is also licensed under the GPL V2 (See
 /usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
 @email{psg@@debian.org}.
 
-The following files are not yet documented.  Read their commentary
-section for usage, but be advised that I haven't documented them
-because I intend to change them.
+The following file is not yet documented.  Read its commentary
+section for usage, but be advised that I haven't documented it
+because I intend to change it.
 
 @table @samp
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
 code to split customizations into different files
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
-generate bozotic mail headers
 @end table
 
 @node align-string, all, Top, Top
@@ -3000,7 +2999,7 @@ to automatically turn on line numbering when enterting text-mode."
 You may customize the group @code{setnu} and customize the face
 @code{setnu-line-number-face} to change the appearance of the line numbers.
 
-@node shell-command, sys-apropos, setnu, Top
+@node shell-command, silly-mail, setnu, Top
 @chapter shell-command - enables tab-completion for `shell-command'
 
 @noindent Author: TSUCHIYA Masatoshi <tsuchiya@@namazu.org>
@@ -3026,9 +3025,52 @@ Note that the @code{require} is not needed in the Debian package
 @code{emacs-goodies-el}.
 
 Or alternatively, customize the group @code{shell-command} and then the
-variable @code{shell-command-enable-completions} and save the the
+variable @code{shell-command-enable-completions} and save the
 setting for future sessions.
-@node sys-apropos, table, shell-command, Top
+
+@node silly-mail, sys-apropos, shell-command, Top
+@chapter silly-mail - generate bozotic mail headers
+
+@noindent Maintainer: Noah Friedman <friedman@@splode.com>
+
+This package generates bozotic mail headers.
+
+To use this, invoke @command{M-x sm-add-random-header} from a mail composition
+buffer to insert a random header.  You may call the command again to
+substitute the inserted header by another.
+
+Use @command{M-x sm-delete-last-header} to remove it.
+
+If you wish all mail messages to have a randomly chosen header, put the
+following in your @file{.emacs}:
+@verbatim
+   (autoload 'sm-add-random-header "silly-mail" nil t)
+   (add-hook 'mail-setup-hook 'sm-add-random-header)
+   (add-hook 'mh-letter-mode-hook 'sm-add-random-header)
+@end verbatim
+
+ or alternatively customize the variable @command{sm-add-ramdom-header-to-mail}.
+
+@noindent To setup menu-bar entries in sendmail and MH-E menus, customize the
+variable @code{sm-add-menu-bar-entries}.  This has the disadvantage of
+loading this library at Emacs startup, so might not be a good choice
+if you rarely use silly-mail.
+
+You may customize silly-mail using @command{M-x customize-group [RET]
+silly-mail}.  The following are customizable:
+
+@itemize @bullet
+@item
+The list of header types used in the random selection by
+@command{sm-add-random-header}
+@item
+Individual quotes may be disabled from the pool if some are offensive
+to you.
+@item
+Whether all headers use an "X-" prefix or not
+@end itemize
+
+@node sys-apropos, table, silly-mail, Top
 @chapter sys-apropos - Interface for the *nix apropos command.
 
 @noindent Author: Henrik Enberg <henrik@@enberg.org>

@@ -362,6 +362,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :load 'shell-command
   :group 'emacs-goodies-el)
 
+(defgroup silly-mail nil
+  "Generate bozotic mail headers."
+  :group 'mail
+  :group 'mh
+  :group 'sendmail
+  :link '(custom-manual "(emacs-goodies-el)silly-mail")
+  :load 'silly-mail
+  :group 'emacs-goodies-el)
+
 ;; table
 (defgroup table nil
   "Text based table manipulation utilities.
