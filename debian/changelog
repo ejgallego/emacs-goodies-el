@@ -1,3 +1,11 @@
+emacs-goodies-el (24.5-2) UNRELEASED; urgency=low
+
+  * Bug fix: "gnus-bonus-el: Missing file: nnmaildir.el", thanks to
+    Christian Joergensen for reporting this.  The file is actually in the
+    gnus package so I won't mention it anymore. (Closes: #256260).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 13 Jul 2004 21:32:14 -0400
+
 emacs-goodies-el (24.5-1) unstable; urgency=low
 
   * debian/control: Added Jérôme Marant <jerome@debian.org> to uploaders.

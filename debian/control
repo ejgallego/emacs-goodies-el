@@ -114,7 +114,6 @@ Description: Miscellaneous add-ons for Gnus
   gnus-pers - an alternative to gnus-posting-styles.
   message-x - customizable completion in message headers;
   nnir - searchable mail backend;
-  nnmaildir - maildir mail backend;
   nnnil - empty, read-only backend;
   nntodo - manage to-do items;
   spam-stat - spam-detector based on statistics.

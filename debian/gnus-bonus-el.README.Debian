@@ -58,9 +58,6 @@ message-x.el provides customizable completion in message headers.  Add
 nnir.el provides the nnir backend, to search mail with various search
 engines.  Add (require 'nnir) to your .gnus.
 
-nnmaildir.el provides the nnmaildir backend.  Add (require 'nnmaildir)
-to your .gnus.
-
 nnnil.el provides an empty, read-only backend for Gnus.  This backend
 is suitable for use as the primary server when real servers are to be
 secondary or foreign.  Add (require 'nnnil) to your .gnus.
@@ -75,4 +72,4 @@ spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
 spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
 add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
 
- -- Jerome Marant <jerome@debian.org>, Fri Oct 17 21:59:36 2003
+ -- Peter S Galbraith <psg@debian.org>, Tue Jul 13 21:25:29 2004
