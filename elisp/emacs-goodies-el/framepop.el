@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 19:32:25 $
-;; Version: $Revision: 1.8 $
-;; RCS-Id: $Id: framepop.el,v 1.8 2003/10/02 19:32:25 psg Exp $
+;; Modified: $Date: 2003/10/05 00:47:01 $
+;; Version: $Revision: 1.9 $
+;; RCS-Id: $Id: framepop.el,v 1.9 2003/10/05 00:47:01 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,11 +177,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.8 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.9 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.8 2003/10/02 19:32:25 psg Exp $")
+$Id: framepop.el,v 1.9 2003/10/05 00:47:01 psg Exp $")
 
 ;;; Customizable variables at end
 
@@ -189,11 +189,13 @@ $Id: framepop.el,v 1.8 2003/10/02 19:32:25 psg Exp $")
   "Display temporary buffers in a dedicated frame."
   :group 'frames)
 
+;;;###autoload
 (defun framepop-disable nil
   "Disable automatic pop-up temporary windows."
   (interactive)
   (setq temp-buffer-show-function nil))
 
+;;;###autoload
 (defun framepop-enable nil
   "Enable automatic pop-up temporary windows."
   (interactive)
@@ -529,6 +531,7 @@ When called interactively, LINES is the numeric prefix argument"
   (if framepop-auto-resize nil
     (framepop-resize-frame)))
 
+;;;###autoload
 (defun framepop-display-buffer (buf)
   ;; Note: the fifth line of this docstring should begin general help:
   ;; see framepop-display-help
