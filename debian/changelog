@@ -9,6 +9,9 @@ emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
        to install into write-file-hooks.
     - protbuf.el: Add custom interface support and make interactive
        commands true toggles.
+    Info manual:
+    - documented nuke-trailing-whitespace, protbuf, protocols, services,
+      sys-apropos.
 
  -- Peter S Galbraith <psg@debian.org>  Wed,  8 Oct 2003 10:59:20 -0400
 
