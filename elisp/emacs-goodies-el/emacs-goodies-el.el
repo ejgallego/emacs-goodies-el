@@ -147,8 +147,8 @@ It's not good for C mode because C's comments are multiline."
            (global-set-key [end]  'home-end-end)
            (global-set-key [home] 'home-end-home))
           (t
-           (global-set-key [end] 'end-of-line
-           (global-set-key [home] beginning-of-line)))))
+           (global-set-key [end] 'end-of-line)
+           (global-set-key [home] 'beginning-of-line))))
   :load 'home-end
   :group 'emacs-goodies-el)
 
