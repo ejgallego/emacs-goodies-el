@@ -146,7 +146,7 @@ selectable views (limits)."
   :version "21.2"
   :group 'games
   :group 'keyboard
-;;:link '(custom-manual "(emacs-goodies-el)keywiz")
+  :link '(custom-manual "(emacs-goodies-el)keywiz")
   :load 'keywiz
 ;;:require 'keywiz
   :group 'emacs-goodies-el)
@@ -156,7 +156,7 @@ selectable views (limits)."
   "Lookup mutt mail aliases."
   :group  'mail
   :prefix "mutt-alias-"
-;;:link '(custom-manual "(emacs-goodies-el)mutt-alias")
+  :link '(custom-manual "(emacs-goodies-el)mutt-alias")
   :load 'mutt-alias
 ;;:require 'mutt-alias
   :group 'emacs-goodies-el)
@@ -166,7 +166,7 @@ selectable views (limits)."
   "Muttrc editing commands for Emacs."
   :group 'files
   :prefix "muttrc-"
-;;:link '(custom-manual "(emacs-goodies-el)muttrc-mode")
+  :link '(custom-manual "(emacs-goodies-el)muttrc-mode")
   :load 'muttrc-mode
 ;;:require 'muttrc-mode
   :group 'emacs-goodies-el)

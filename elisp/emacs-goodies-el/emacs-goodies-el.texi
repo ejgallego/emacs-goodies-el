@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.26 2003/09/30 03:18:45 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.27 2003/10/01 03:11:43 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -63,12 +63,12 @@ The following files are documented so far.  Eventually, all files will
 be documented.
 
 @menu
-* align-string::                Align string components over several lines.
-* all::                         Edit all lines matching a given regexp.
+* align-string::                Align string components over several lines
+* all::                         Edit all lines matching a given regexp
 * auto-fill-mode-inhibit::      auto-fill-mode (de)activation
 * bar-cursor::                  Switch block cursor to a bar
-* boxquote::                    Quote text with a semi-box.
-* browse-kill-ring::            Interactively insert items from kill-ring.
+* boxquote::                    Quote text with a semi-box
+* browse-kill-ring::            Interactively insert items from kill-ring
 * coffee::                      Submit BREW request to RFC2324-compliant device
 * clipper::                     Save strings of data for further use
 * cyclebuffer::                 Select buffer by cycling through
@@ -85,7 +85,12 @@ be documented.
 * home-end::                    Alternative Home and End key commands
 * htmlize::                     HTML-ize font-lock buffers
 * ibuffer::                     Operate on buffers like dired
-* newsticker::                  A Newsticker for Emacs.
+* keydef::                      A simpler way to define keys, with kbd syntax
+* keywiz::                      Emacs key sequence quiz
+* map-lines::                   Map a command over many lines
+* mutt-alias::                  Lookup/insert mutt mail aliases.
+* muttrc-mode::                 Major mode to edit muttrc under Emacs
+* newsticker::                  A Newsticker for Emacs
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -93,6 +98,59 @@ in /usr/share/emacs/site-lisp/emacs-goodies-el/.  As a derived work
 from GPL'ed works, this text is also licensed under the GPL V2 (See
 /usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
 @email{psg@@debian.org}.
+
+Files not yet documented here:
+
+@table @samp
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
+code to split customizations into different files
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/obfusurl.el
+Obfuscate URLs so they aren't spoilers
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/perldoc.el
+Show help for Perl functions, builtins, and modules.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
+Project-based buffer name management
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/protbuf.el
+protect buffers from accidental killing
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/protocols.el
+Protocol database access functions.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/services.el
+Services database access functions.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/setnu.el
+vi-style line number mode for Emacs
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
+generate bozotic mail headers
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/sys-apropos.el
+Interface for the *nix apropos command.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/table.el
+create and edit WYSIWYG text based embedded tables
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/tail.el
+Tail files within Emacs
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
+cite text with proper filling
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/thinks.el
+Insert text in a think bubble.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/tld.el
+TLD lookup tool.
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/todoo.el
+Major mode for editing TODO files
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-buffer.el
+flips back and forth between two buffers
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-case.el
+toggles case at point
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-option.el
+easily toggle frequently toggled options
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/twiddle.el
+mode-line display hack
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/under.el
+Underline a region
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/wdired.el
+Rename files editing their names in dired buffers
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/whitespace.el
+strip trailing whitespace from buffers
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/xrdb-mode.el
+mode for editing X resource database files
+@end table
 
 @node align-string, all, Top, Top
 @chapter align-string - align string components over several lines.
@@ -772,7 +830,7 @@ For any of this to work, you need to run Emacs under a window-system
 
        http://fly.srk.fer.hr/~hniksic/emacs/htmlize.html
 
-@node ibuffer, newsticker, htmlize, Top
+@node ibuffer, keydef, htmlize, Top
 @chapter ibuffer - operate on buffers like dired
 
 ibuffer.el is an advanced replacement for the `buffer-menu' which
@@ -801,7 +859,335 @@ In emacs-goodies-el, you can use the customize interface to bind
 @code{ibuffer} to @key{\C-x\C-b} by customizing the variable
 @code{ibuffer-enable}.
 
-@node newsticker,  , ibuffer, Top
+@node keydef, keywiz, ibuffer, Top
+@chapter keydef - a simpler way to define keys, with kbd syntax
+
+@noindent Author: Michael John Downes <mjd@@ams.org>
+
+The macro keydef provides a simplified interface to define-key that
+smoothly handles a number of common complications.
+
+The global-set-key command isn't ideal for novices because of its
+relatively complex syntax. And I always found it a little
+inconvenient to have to quote the name of the command---that is, I
+tend to forget the quote every once in a while and then have to go
+back and fix it after getting a load error.
+
+One of the best features is that you can give an Emacs lisp form (or
+even a series of forms) as the key definition argument, instead of a
+command name, and the keydef macro will automatically add an
+interactive lambda wrapper. I use this to get, for example, a more
+emphatic kill-buffer command (no confirmation query) by writing
+
+@verbatim
+  (keydef "<S-f11>" (kill-buffer nil))
+@end verbatim
+
+For keydef the key sequence is expected to be given uniformly in the
+form of a string for the 'kbd' macro, with one or two refinements
+that are intended to conceal from users certain points of confusion,
+such as (for those whose keyboards lack a Meta key) the whole
+Meta/ESC/escape muddle.
+
+I have had some trouble in the past regarding the distinction
+between ESC and [escape] (in a certain combination of circumstances
+using the latter form caused definitions made with the other form to
+be masked---most puzzling when I wasn't expecting it). Therefore the
+ESC form is actually preprocessed a bit to ensure that the binding
+goes into esc-map.
+
+There is one other special feature of the key sequence syntax
+expected by the keydef macro: You can designate a key definition for
+a particular mode-map by giving the name of the mode together with
+the key sequence string in list form, for example
+
+@verbatim
+  (keydef (latex "C-c %") comment-region)
+@end verbatim
+
+This means that the key will be defined in latex-mode-map. [The
+point of using this particular example will be made clear below.] I
+arranged for the mode name to be given in symbol form just because I
+didn't want to have to type extra quotes if I could get away with
+it. For the same reason this kind of first arg is not written in
+dotted pair form.
+
+If the given mode-map is not defined, keydef "does the right thing"
+using eval-after-load. In order to determine what library the
+mode-map will be loaded from, it uses the following algorithm:
+
+First check if foo-mode has autoload information. If not, check
+whether "foo-mode" is the name of a library that can be found
+somewhere in the load-path (using locate-library); otherwise check
+whether "foo" is the name of a locatable library. Failing that, give
+up and return nil.
+
+There is a fall-back mechanism, however, to handle exceptional
+cases. If foo-mode-map is undefined but the list mode-map-alist
+contains an entry of the form (foo-mode-map foo-other-name-map),
+then foo-other-name-map is used as the name of the
+keymap.
+
+If the mode-map is not loaded yet AND the command being bound to a
+key is undefined at the time of the keydef assignment, it presents
+further problems. The simplest solution is to assume that after the
+package is loaded that defines the mode-map, the given command will
+be defined and satisfy commandp. With some extra effort it should be
+possible to determine more accurately whether the command will be
+defined or not, but I'm not sure I want to go to that extreme, since
+as far as I can see it would require opening the package file and
+searching through it for a matching defun/defalias/fset statement.
+
+If the mode name matches the mode map name, but foo-mode is not
+autoloaded, then some autoload information may need to be provided.
+For example, the following line allows definitions to be made for
+debugger-mode-map even before debug.el is loaded.
+
+@verbatim
+ (autoload 'debugger-mode "debug" "Autoloaded." 'interactive)
+@end verbatim
+
+Although there is no easy way provided by keydef for
+gnus-summary-limit-map to be accessed directly, because
+its name does not include "mode", you can get a binding into
+such a map by writing
+
+@verbatim
+  (keydef (gnus-summary "/ z") gnus-summary-limit-to-zapped)
+@end verbatim
+
+which binds /z in gnus-summary-mode-map, which is equivalent to
+binding z in gnus-summary-limit-map.
+
+You might need to add an autoload statement for gnus-summary-mode
+in order for this to work, so that keydef knows that it should use
+eval-after-load and that the file the mode function will be loaded
+from is called "gnus-sum" rather than "gnus-summary-mode". (If it
+were the latter, keydef would be able to resolve everything
+automatically.)
+
+We COULD HAVE just put the definitions into the mode hook in the
+standard way, instead of using eval-after-load, but that would mean
+the key definitions get executed repetitiously every time the mode
+function gets called, which seems better to avoid, if only for
+esthetic reasons (if it can be done without too much trouble).
+
+The following examples show some typical keydef lines followed by the
+results of the macro expansion.
+
+@noindent Simplest kind of definition:
+
+@verbatim
+(keydef "C-x m" gnus-group-mail)
+
+  -->(define-key global-map (kbd "C-x m") (quote gnus-group-mail))
+@end verbatim
+
+@noindent What if the command name is misspelled?
+
+@verbatim
+(keydef "C-x m" gnus-gruop-mail)
+
+  -->(message "keydef: gnus-gruop-mail unknown \
+               \(perhaps misspelled, or not loaded yet\)")
+@end verbatim
+
+@noindent A leading ESC gets special handling to go through esc-map.
+
+@verbatim
+(keydef "ESC &" query-replace-regexp)
+
+  -->(define-key esc-map (kbd "&") (quote query-replace-regexp))
+@end verbatim
+
+@noindent Undefine a key:
+
+@verbatim
+(keydef "ESC `")
+
+  -->(define-key esc-map (kbd "`") nil)
+@end verbatim
+
+@noindent If the second arg is a string, keydef defines the given key sequence
+as a keyboard macro. The following macro puts in TeX-style double
+quotes and then moves the cursor backward to leave it in the middle:
+
+@verbatim
+(keydef "\"" "``''\C-b\C-b")
+
+  -->(define-key global-map (kbd "\"") "``''\002\002")
+@end verbatim
+
+@noindent Reset a key to self-insert
+
+@verbatim
+(keydef "\"" "\"")
+
+  -->(define-key global-map (kbd "\"") (quote self-insert-command))
+@end verbatim
+
+@noindent If the second arg is a list, wrap it in an interactive lambda form.
+
+@verbatim
+(keydef "C-z"
+  (message "Control-Z key disabled---redefine it if desired."))
+
+  -->(define-key global-map
+      (kbd "C-z")
+      (lambda (arg)
+        "anonymous keydef function"
+        (interactive "p")
+        (message "Control-Z key disabled---redefine it if desired.")))
+@end verbatim
+
+Note that the interactive lambda wrapper added by keydef, when the
+CMD does not satisfy commandp, always takes a single prefix argument
+named "arg", which is read in the usual way with (interactive "p");
+so this could be used in the body of the function if need be.
+
+@noindent This shows the notation for F-keys.
+
+@verbatim
+(keydef "<C-f17>" (kill-buffer nil))
+
+  -->(define-key global-map
+      (kbd "<C-f17>")
+      (lambda (arg)
+        "*Anonymous function created by keydef."
+        (interactive "p")
+        (kill-buffer nil)))
+@end verbatim
+
+Because of the confusing Meta/Escape complications, I recommend to
+the users that I support that they use the ESC notation
+consistently if that is what they type from their keyboard, even
+for F-key definitions that might normally be written with <M-...>
+notation.
+
+@verbatim
+(keydef "ESC <f3>" find-file-read-only)
+
+  -->(define-key esc-map (kbd "<f3>") (quote find-file-read-only))
+@end verbatim
+
+@noindent The next two definitions go together. The second one shows how to
+write a mode-specific definition.
+
+@verbatim
+(keydef "<f5>" isearch-forward)
+
+  -->(define-key global-map (kbd "<f5>") (quote isearch-forward))
+
+(keydef (isearch "<f5>") isearch-repeat-forward)
+
+  -->(define-key isearch-mode-map (kbd "<f5>")
+                                  (quote isearch-repeat-forward))
+@end verbatim
+
+@noindent Making a definition for a mode-map that is not loaded yet.
+
+@verbatim
+(keydef (latex "C-c %") comment-region)
+
+  -->(eval-after-load "tex-mode"
+       (quote
+        (define-key latex-mode-map
+          (kbd "C-c %")
+          (quote comment-region))))
+@end verbatim
+
+@node keywiz, map-lines, keydef, Top
+@chapter keywiz - Emacs key sequence quiz
+
+@noindent Author: Jesper Harder <harder@@ifa.au.dk>
+
+keywiz.el drills you about Emacs key-bindings.  You're presented
+with the name of a command and the docstring, and then prompted for
+the correct key sequence.  You'll earn one point for each correct
+answer during the time limit.
+
+Invoke with @command{M-x keywiz}.  A prefix argument will force keywiz
+to rescan the key-binding -- this is useful if you want to include
+bindings from a different mode.
+
+Are you a true Emacs key-binding wizard or just a poor vi looser?
+Get your foot-pedals in position and see how many key-bindings you
+can remember in two minutes.
+
+Forget about your Nethack high-score -- surely, knowing how to
+wield the powers of the One True Editor at your fingertips will
+earn you more bragging rights than ascending bare-footed in some
+silly game with vi-keybindings :-)
+
+@node map-lines, mutt-alias, keywiz, Top
+@chapter map-lines - Map a command over many lines
+
+@noindent Author: Andreas Fuchs <asf@@void.at>
+
+This module allows you to map a command over a set of lines
+matching a regex. The trick: You can then go ahead and insert these
+lines in one clean yank.  It's good for kill a bunch of lines in one
+go, or collecting a bunch of lines in the kill-ring ready to paste.
+
+@verbatim
+<flamebait>Emacs can now be called ED, THE STANDARD TEXT EDITOR
+</flamebait>
+@end verbatim
+
+Invoke it with @command{M-x map-lines}.
+
+@node mutt-alias, muttrc-mode, map-lines, Top
+@chapter mutt-alias - Lookup/insert mutt mail aliases.
+
+@noindent Author: Dave Pearson <davep@@davep.org>
+
+mutt-alias allows you to lookup and insert the expansion of mutt mail
+aliases. This is only handy if you use mutt @url{http://www.mutt.org/}.
+
+The following commands are available:
+
+@table @samp
+@item mutt-alias-insert
+Insert the expansion for ALIAS into the current buffer.
+@item mutt-alias-lookup
+Lookup and display the expansion for ALIAS.
+@end table
+
+@node muttrc-mode, newsticker, mutt-alias, Top
+@chapter muttrc-mode - Major mode to edit muttrc under Emacs
+
+@noindent Author: Laurent Pelecq <laurent.pelecq@@soleil.org>
+
+This mode first goal is to provide syntax highlighting with
+font-lock. The basic fontification appears on strings, comments,
+command names and variables. Additional fontification for commands
+arguments can be enabled through the customization buffer.
+
+To customize it, execute @command{M-x configure-group RET muttrc RET}
+
+By default, help on command/variable is displayed automatically
+while executing a command to modify them. Disable this feature if
+you have problems with.
+
+The main commands are:
+
+@table @samp
+@item C-x c
+muttrc-insert-command
+@item C-x s
+muttrc-set-variable
+@item C-x S
+muttrc-unset-variable
+@end table
+
+Type @key{C-h m} for all key bindings.
+
+@noindent BUGS:
+
+Multiline commands are not properly handled and can lead to unexpected
+result.
+
+@node newsticker,  , muttrc-mode, Top
 @chapter newsticker - A Newsticker for Emacs.
 
 @noindent Copyright (C) 2003 by Ulf Jasper
