@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/05 00:55:33 $
-;; Version: $Revision: 1.10 $
-;; RCS-Id: $Id: framepop.el,v 1.10 2003/10/05 00:55:33 psg Exp $
+;; Modified: $Date: 2003/10/15 14:16:54 $
+;; Version: $Revision: 1.11 $
+;; RCS-Id: $Id: framepop.el,v 1.11 2003/10/15 14:16:54 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -54,7 +54,13 @@
 ;; byte-compile it *before* loading it (or do M-x ad-deactivate-all
 ;; first), and add the following line to your .emacs:
 ;;
-;;   (cond (window-system (require 'framepop)))
+;; (when window-system
+;;   (require 'framepop)
+;;   (framepop-enable))
+;;
+;;  or, alternatively, load the file once, customize the variable
+;;  `framepop-enable' and save the setting.  The file will then be loaded
+;;  automatically and enabled on startup.
 
 ;; Several user functions are defined and stored in framepop-map. You
 ;; will probably want to bind these to keys. See `M-x customize-variable RET
@@ -177,11 +183,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.10 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.11 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.10 2003/10/05 00:55:33 psg Exp $")
+$Id: framepop.el,v 1.11 2003/10/15 14:16:54 psg Exp $")
 
 ;;; Customizable variables at end
 
@@ -211,7 +217,7 @@ $Id: framepop.el,v 1.10 2003/10/05 00:55:33 psg Exp $")
   :require 'framepop
   :set (lambda (symbol value)
          (set-default symbol value)
-         (if value
+         (if (and value window-system)
              (framepop-enable)
            (framepop-disable))))
 
