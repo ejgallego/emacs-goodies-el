@@ -20,9 +20,15 @@ in `debian-bts-control-modes-to-reuse'." t nil)
 
 ;;;***
 
-;;;### (autoloads (debian-changelog-mode) "debian-changelog-mode"
-;;;;;;  "debian-changelog-mode.el" (16295 50283))
+;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
+;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (16328
+;;;;;;  65415))
 ;;; Generated autoloads from debian-changelog-mode.el
+
+(autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\
+Add a new change entry to a debian-style changelog.
+If called from buffer other than a debian/changelog, this will search
+for the debian/changelog file to add the entry to." t nil)
 
 (autoload (quote debian-changelog-mode) "debian-changelog-mode" "\
 Major mode for editing Debian-style change logs.
@@ -35,7 +41,7 @@ Key bindings:
 If you want to use your debian.org email address for debian/changelog
 entries without using it for the rest of your email, use the `customize`
 interface to set it, or simply set the variable
-debian-changelog-mailing-address in your ~/.emacs file, e.g.
+`debian-changelog-mailing-address' in your ~/.emacs file, e.g.
 
  (setq debian-changelog-mailing-address \"myname@debian.org\"))" t nil)
 (add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
@@ -46,7 +52,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
 ;;;***
 
 ;;;### (autoloads (debian-control-mode) "debian-control-mode" "debian-control-mode.el"
-;;;;;;  (16295 49413))
+;;;;;;  (16326 44873))
 ;;; Generated autoloads from debian-control-mode.el
 
 (autoload (quote debian-control-mode) "debian-control-mode" "\

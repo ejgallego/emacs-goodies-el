@@ -656,6 +656,7 @@ Upload to " val  " anyway?")))
 ;; interactive function to add a new line to the changelog
 ;;
 
+;;;###autoload
 (defun debian-changelog-add-entry ()
   "Add a new change entry to a debian-style changelog.
 If called from buffer other than a debian/changelog, this will search
