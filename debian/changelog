@@ -6,10 +6,15 @@ emacs-goodies-el (24.1-1) UNRELEASED; urgency=low
   * dpkg-dev-el:
     - debian-changelog-mode.el: Bug fix: "error setting distribution
       to *-security", thanks to Yann Dirson for reporting (Closes: #224187).
+  * emacs-goodies-el:
+    - browse-kill-ring.el bug fix: "can't delete entries with `read-only'
+      text property (on emacs21.1)", thanks to INOUE Hiroyuki for the report
+      and the patch (Closes: #224751).
   * devscripts-el: (Prepared by Junichi Uekawa)
-    - debdiff-current: Run debdiff against the previous version found in the changelog.
+    - debdiff-current: Run debdiff against the previous version found in
+      the changelog.
 
- -- Junichi Uekawa <dancer@debian.org>  Sat, 20 Dec 2003 14:03:57 +0900
+ -- Peter S Galbraith <psg@debian.org>  Mon, 22 Dec 2003 20:45:08 -0500
 
 emacs-goodies-el (24.0-1) unstable; urgency=low
 
