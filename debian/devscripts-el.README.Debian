@@ -7,8 +7,6 @@ functions to Emacs and/or Gnus.  The source package creates the following
 binary packages:
 
  emacs-goodies-el: Miscellaneous add-ons for Emacs
- emacs-goodies-extra-el:
-                   Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
@@ -32,4 +30,4 @@ Introduction to files in devscripts-el
 devscripts.el provides M-x debuild, M-x debc and M-x debi, three
 commands to call the corresponding utilities from within Emacs.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:14:01 2003
+ -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:47 2003

@@ -7,8 +7,6 @@ functions to Emacs and/or Gnus.  The source package creates the following
 binary packages:
 
  emacs-goodies-el: Miscellaneous add-ons for Emacs
- emacs-goodies-extra-el:
-                   Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
@@ -46,4 +44,4 @@ It expects to see bug references in the form of (for example):
 "#48273", "closes: 238742" or similar.  To use, add the following to
 your .gnus: "(require 'gnus-BTS)".
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:16:57 2003
+ -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:52 2003

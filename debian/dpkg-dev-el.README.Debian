@@ -7,8 +7,6 @@ functions to Emacs and/or Gnus.  The source package creates the following
 binary packages:
 
  emacs-goodies-el: Miscellaneous add-ons for Emacs
- emacs-goodies-extra-el:
-                   Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
@@ -51,4 +49,4 @@ to "C-c C-a" by default), and viewing bugs (bound to "C-c C-b").
 readme-debian.el provides readme-debian-mode, a major mode to
 highlight README.Debian files.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:13:51 2003
+ -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:42 2003

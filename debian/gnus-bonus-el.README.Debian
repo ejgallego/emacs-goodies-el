@@ -7,8 +7,6 @@ functions to Emacs and/or Gnus.  The source package creates the following
 binary packages:
 
  emacs-goodies-el: Miscellaneous add-ons for Emacs
- emacs-goodies-extra-el:
-                   Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
@@ -61,4 +59,4 @@ spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
 spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
 add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:13:45 2003
+ -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:35 2003
