@@ -24,7 +24,7 @@
 ;; Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ;; 02111-1307, USA.
 
-;;  $Id: tail.el,v 1.2 2003/10/10 01:25:14 psg Exp $
+;;  $Id: tail.el,v 1.3 2003/10/10 01:46:49 psg Exp $
 
 ;;; Commentary:
 
@@ -161,14 +161,16 @@ the lowest side of the frame."
             (select-window lowest-window)
             (setq window-search nil)))))))
 
+;;;###autoload
 (defun tail-file (file)
-  "Tails FILE specified with argument ``file'' inside a new buffer.
-``file'' *cannot* be a remote file specified with ange-ftp syntaxm
-because it is passed to the Unix tail command."
+  "Tails FILE specified with argument FILE inside a new buffer.
+FILE *cannot* be a remote file specified with ange-ftp syntax because it is
+passed to the Unix tail command."
   (interactive "Ftail file: ")
   ;; TODO: what if file is remote (i.e. via ange-ftp)
   (tail-command "tail" "-f" file))
 
+;;;###autoload
 (defun tail-command (command &rest args)
   "Tails COMMAND with arguments ARGS inside a new buffer.
 It is also called by `tail-file'"
