@@ -1,4 +1,4 @@
-emacs-goodies-el (24.1-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.1-1) unstable; urgency=low
 
   * debian-el:
     - apt-sources.el: Remove problematic requirement on autoinsert.el
@@ -19,7 +19,7 @@ emacs-goodies-el (24.1-1) UNRELEASED; urgency=low
     - gnus-pers.el bug fix: "There is no 'replace-in-string' as called by
       gnus-pers.el", thanks to Brian T. Sniffen (Closes: #223494).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 22 Dec 2003 20:56:29 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon, 22 Dec 2003 21:00:30 -0500
 
 emacs-goodies-el (24.0-1) unstable; urgency=low
 
