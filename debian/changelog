@@ -10,12 +10,16 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
     - Add autoloads for gnus-pers.el, gnus-eyecandy.el and gnus-filterhist.el.
   * emacs-goodies-el:
     Patches:
-    - 51_newsticker_autoloads: Add autoloads for initial commands.
+    - 50_newsticker_non-fatal_xml: Add autoloads for initial commands and add
+      autoload for xml functions instead of requiring xml, which doesn't
+      exists on woody XEmacs. Fixes Bug "M-x newsticker-start crashes",
+      reported by Volker Linke and fixed thanks to advice from Matt Hodges
+      (Closes: #216233).
   * devscripts-el: (Prepared by Junichi Uekawa)
     - implement 'debdiff'
     - devscripts-el.README.Debian: update to reflect latest changes.
 
- -- Junichi Uekawa <dancer@debian.org>  Sat, 18 Oct 2003 17:42:49 +0900
+ -- Peter S Galbraith <psg@debian.org>  Fri, 24 Oct 2003 10:51:38 -0400
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
