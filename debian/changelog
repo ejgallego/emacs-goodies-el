@@ -36,10 +36,12 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - 50_todoo_bug220718: Fix XEmacs keybindings for XEmacs.
       Thanks to Gianluca Della Vedova (Closes: #220718).
     - 50_joc-toggle-buffer: Add prefix joc- where missing; Fix startup bug.
+    - 50_joc-toggle-case: Add prefix joc- where missing.
     - 50_silly-mail: Add custom support.
     Info manual:
     - filladapt.el: Document how to use with C, thanks to Kevin Ryde for the
       patch (Closes: #221942).
+    - Document joc-toggle-buffer, joc-toggle-case, silly-mail.
   * dpkg-dev-el:
     - debian-changelog-mode.el: Make `debian-changelog-add-entry' works
       from files in unpacked sources.  Thanks to Junichi Uekawa for
