@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.36 2003/10/08 01:37:28 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.37 2003/10/08 01:52:25 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -96,6 +96,8 @@ be documented.
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
 * perldoc::                     Show help for Perl functions and modules.
 * protbuf::                     Protect buffers from accidental killing
+* protocols::                   Protocol database access functions.
+* services::                    Services database access functions.
 * session::                     Session Management for Emacs
 @end menu
 
@@ -112,10 +114,6 @@ Files not yet documented here:
 code to split customizations into different files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
 Project-based buffer name management
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/protocols.el
-Protocol database access functions.
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/services.el
-Services database access functions.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/setnu.el
 vi-style line number mode for Emacs
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
@@ -1555,7 +1553,7 @@ the key @key{F1} to show point for the item under point in
 
 The code handles functions, builtins, and third party modules.
 
-@node protbuf, session, perldoc, Top
+@node protbuf, protocols, perldoc, Top
 @chapter protbuf - Protect buffers from accidental killing
 
 @noindent Author: Noah Friedman <friedman@@splode.com>
@@ -1576,8 +1574,32 @@ Toggle @code{kill-buffer} protection on current buffer with active process.
 useful of the two, making it harder to accidentally kill shell buffers
 without terminating the process in them first.
 
+@node protocols, services, protbuf, Top
+@chapter protocols - Protocol database access functions.
 
-@node session,  , protbuf, Top
+@noindent Author: Dave Pearson <davep@@davep.org>
+
+This package (protocols.el) provides a set of functions for accessing
+the protocol details list.
+
+@noindent Commands:
+
+@table @samp
+@item protocols-lookup
+Find a protocol and display its details.
+@item protocols-clear-cache
+Clear the protocols \"cache\".
+@end table
+
+@node services, session, protocols, Top
+@chapter services - Services database access functions.
+
+@noindent Author: Dave Pearson <davep@@davep.org>
+
+This package (services.el) provides a set of functions for accessing
+the services details list.
+
+@node session,  , services, Top
 @chapter session - Session Management for Emacs
 
 When you start Emacs, package Session restores various variables (e.g.,
