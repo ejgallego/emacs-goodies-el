@@ -1,11 +1,11 @@
 ;; trivial-cite -- cite text with proper filling
 ;; 
-;; TrivialCite v0.12.3
-;; This is my desperate attempt at making a sensible citer.  
+;; TrivialCite v0.13.3
+;; This is my attempt at making a sensible citer.  
 ;;
 ;; This program is copyright (c) 1998 Lars R. Clausen
 ;;
-;; Time-stamp: <2002-04-16 12:47:33 lrclause>
+;; Time-stamp: <2003-05-14 16:21:59 lrclause>
 ;; 
 ;; Author: Lars R. Clausen <lrclause@cs.uiuc.edu>
 ;; Created: March 1998
@@ -69,7 +69,7 @@
 
 (defconst tc-maintainer "lrclause@cs.uiuc.edu")
 
-(defconst tc-version "0.12.3")
+(defconst tc-version "0.13.3")
 
 (defvar tc-debug-level 0
   "How much debugging output trivial-cite should give.")
@@ -88,14 +88,17 @@ not be removed."
   :type 'regexp
   :group 'tc)
 
-(defcustom tc-fill-long-lines t
-  "Non-nil means attempt to fill paragraphs with long lines.
+(defcustom tc-fill-column t
+  "If t means attempt to fill paragraphs with long lines.
 Trivial-cite attempts to guess citation marks and fill the cited
-paragraphs accordingly, when there are lines of more than 80
+paragraphs accordingly, when there are lines of more than `fill-column'
 characters including citation marks.  If you wish to undo the
 filling, each paragraph filling can be undone with 
-\\[tc-unfill-paragraph]."
-  :type 'boolean
+\\[tc-unfill-paragraph].
+An integer argument means wrap at that column instead of at `fill-column'"
+  :type '(radio (const :tag "Fill at `fill-column'" t)
+		(integer :tag "Fill at this column")
+		(const :tag "Don't fill" nil))
   :group 'tc)
 
 (defcustom tc-mouse-overlays nil
@@ -136,10 +139,17 @@ trivial-cite and yourself by adding them here."
   "The function used to generate a attribution for a citation.
 `tc-simple-attribution' is primitive, but easy to use.
 `tc-tiny-attribution' is a minimal attribution.
-`kai-tc-simple-attibution' uses the real name if found.
+`kai-tc-simple-attribution' uses the real name if found.
 `tc-fancy-attribution' can be used to personalize the attribution."
   :type 'function
   :options '(tc-simple-attribution tc-tiny-attribution kai-tc-simple-attribution `tc-fancy-attribution)
+  :group 'tc)
+
+(defcustom tc-time-format "%e %b %Y"
+  "The time format used for the date part in the attribution.
+The date is taken from the header fields.  The format is passed to
+`format-time-string', see that function for more information."
+  :type 'string
   :group 'tc)
 
 (defcustom tc-guess-cite-marks 'ask
@@ -170,6 +180,16 @@ but got a report from <Kai.Grossjohann@CS.Uni-Dortmund.DE> about it),
 and this hack removes the line.  It may conceivably do damage to other lines,
 too, so I'm looking for a better solution."
   :type 'boolean
+  :group 'tc)
+
+(defcustom tc-pre-hook nil
+  "*Hook called in the very beginning of `trivial-cite'."
+  :type 'hook
+  :group 'tc)
+
+(defcustom tc-post-hook nil
+  "*Hook called in the very end of `trivial-cite'."
+  :type 'hook
   :group 'tc)
 
 ;;; ************************************************************
@@ -258,19 +278,11 @@ functions defined in tc-header-funs on the respective fields."
 ;;; Functions to parse individual headers into appropriate structures here
 
 (defun tc-parse-date (str)
-"tc-parse-date is a simple function to grab the date (without the time of day)
-from a date field and insert it into tc-strings-list."
-  (if (> tc-debug-level 0)
-      (message "%s" (concat "Parsing date string '" str "'")))
-  (if (string-match "[0-20-9]:" str)
-      (progn
-	(setq str (substring str 0 (1- (match-beginning 0))))
-	(if (string-match " *$" str)
-	    (setq str (substring str 0 (match-beginning 0)))
-	  )
-	)
-    )
-  (setq tc-strings-list (cons (cons "date" str) tc-strings-list))
+  "tc-parse-date uses tc-time-format to parse the date for use in attributions.
+The resulting string is inserted into tc-strings-list."
+  (let* ((time (date-to-time str))
+	 (date (format-time-string tc-time-format time)))
+    (setq tc-strings-list (cons (cons "date" date) tc-strings-list)))
   )
 
 ;; Parse a From:-style field from str into tc-strings-list under key
@@ -428,12 +440,13 @@ of the citemarks of your choice, e.g. \">>>> \"."
       (while (< (point) (marker-position end-marker))
 	(if (looking-at " ")
 	    (delete-char 1)
-	  (if (looking-at tc-guess-marks-regexp)
+	  (if (looking-at (concat "[" tc-cite-marks "]"))
 	      (progn	 
 		(insert tc-citation-string)
 		(delete-char 1))
 	    (progn
-	      (if (not (eq (preceding-char) ?\ ))
+	      (if (and (not (eq (preceding-char) ?\ ))
+		       (not (looking-at "$")))
 		  (insert " "))
 	      (forward-line 1))))
 	)
@@ -444,13 +457,14 @@ of the citemarks of your choice, e.g. \">>>> \"."
 (defun tc-indent-citation ()
   "tc-indent-citation indents the current region with tc-citation-string.
 It inserts an extra space before text that is not already cited (with
-tc-cite-marks)."
+tc-cite-marks), except on empty lines (to avoid dangling space)."
   (while (< (point) (mark t))
-    (if (re-search-forward (concat "[" tc-cite-marks "]") (1+ (point)) t)
-	(progn
-	  (forward-char -1)
-	  (insert tc-citation-string))
-      (insert tc-citation-string " "))
+    (cond ((re-search-forward (concat "[" tc-cite-marks "]") (1+ (point)) t)
+	   (forward-char -1)
+	   (insert tc-citation-string))
+	  ((looking-at "^$")
+	   (insert tc-citation-string))
+	  (t (insert tc-citation-string " ")))
     (forward-line 1)
     )
   )
@@ -544,7 +558,7 @@ Doesn't cut the signature either."
     (if tc-normalize-cite-marks
 	(tc-cleanup-cite-marks start end))
     ;; Fill paragraphs
-    (if tc-fill-long-lines
+    (if tc-fill-column
 	(tc-fill-cited-text start end))
     (setq tc-cite-marks nil)
     ))
@@ -570,8 +584,9 @@ mails with long attachments).
 Usage:  (auto-load 'trivial-cite \"tc\" t t)
         (add-hook 'mail-citation-hook 'trivial-cite)
 Bugs:  Not very intelligent about old citation marks other than '>'.
-Customization:  See variables tc-fill-long-lines, tc-remove-signature,
+Customization:  See variables tc-fill-column, tc-remove-signature,
 tc-citation-string, tc-make-attribution and tc-header-funs."
+  (run-hooks 'tc-pre-hook)
   (save-excursion
     (if (< (mark t) (point)) (exchange-point-and-mark))
     (let ((start (point)))
@@ -616,18 +631,28 @@ tc-citation-string, tc-make-attribution and tc-header-funs."
       (setq tc-cite-marks (escape-char-range tc-cite-marks))
       ;; Do the actual citation
       (tc-indent-citation)
+      ;; Normalize cite marks if so wanted
+      (if tc-normalize-cite-marks
+	  (tc-cleanup-cite-marks start (mark-marker)))
       ;; Fill paragraphs
-      (if tc-fill-long-lines
+      (if tc-fill-column
 	  (tc-fill-cited-text start (mark-marker)))
       (setq tc-cite-marks nil)
       (tc-fix-signature-undo)
       )
     )
+  (run-hooks 'tc-post-hook)
   )
 
 ;;; ************************************************************
 ;;; Reformatting cited text
 ;;; ************************************************************
+
+(defun tc-fill-column ()
+  "Returns the fill column that tc uses (explicit, `fill-column' or nil)."
+  (cond ((integerp tc-fill-column) tc-fill-column)
+	(tc-fill-column fill-column)
+	(t nil)))
 
 (defun tc-fill-cited-paragraphs (cite-len)
   "Fill cited paragraphs, keeping cite-marks in their correct places.  Used
@@ -639,21 +664,20 @@ paragraph."
       (save-restriction
 	(beginning-of-line)
 	(let ((cite-marks (buffer-substring (point) (+ (point) cite-len)))
-	      (fill-line (point))
-	      (old-fill-column fill-column))
+	      (fill-line (point)))
 	  (if (>= tc-debug-level 1)
 	      (message (concat "Citing marked with " 
 			       cite-marks ", extra marks are " tc-cite-marks)))
 	  (let ((cite-regexp (concat "^" cite-marks
 				     " *[^\n" tc-cite-marks " ]")))
-	    (setq fill-column (- fill-column cite-len))
 	    ;; Look backward while properly cited
 	    (while (and (not (bobp)) (looking-at cite-regexp))
 	      (forward-line -1)
 	      )
 	    (if (not (looking-at cite-regexp))
 		(forward-line 1))
-	    (let ((cite-start (point)))
+	    (let ((cite-start (point))
+		  (fill-column (- (tc-fill-column) cite-len)))
 	      (goto-char fill-line)
 	      (while (and (not (eobp)) (looking-at cite-regexp))
 		(forward-line 1))
@@ -689,7 +713,6 @@ paragraph."
 		)
 	      )
 	    )
-	    (setq fill-column old-fill-column)
 	  )
 	)
       )
@@ -766,11 +789,11 @@ Uses a seperate undo-mechanism (with overlays) to allow partial undo."
     (while (< (point) end)
       (beginning-of-line)
       (end-of-line)
-      (if (> (current-column) fill-column)
+      (if (> (current-column) (tc-fill-column))
 	  (progn
 	    (let ((cite-len (find-cite-len (point))))
 	      (if (> cite-len 0)
-		  (if  (< cite-len fill-column)
+		  (if  (< cite-len (tc-fill-column))
 		      (goto-char (tc-fill-cited-paragraphs cite-len))
 		    (message (concat "Very long cite mark (" 
 				     (int-to-string cite-len) " chars)"))
@@ -945,7 +968,7 @@ to fill the paragraph better."
 
 (defun tc-citemarks-need-guessing ()
   (save-excursion
-    (let ((max-line-len (- fill-column (length tc-citation-string) 1))
+    (let ((max-line-len (- (tc-fill-column) (length tc-citation-string) 1))
 	  needed)
       (beginning-of-line)
       (while (and (not needed)
@@ -1124,6 +1147,8 @@ Some example attribution functions (attributors) are:
 ;; Colin Rafferty <colin@xemacs.org>
 ;; Juergen Kreileder <jk@blackdown.de>
 ;; Daniel Pittman <daniel@rimspace.net>
+;; Vasily Korytov <deskpot@myrealbox.com>
+;; Benjamin Lewis <bclewis@cs.sfu.ca>
 
 ;; My apologies to any I may have forgotten
 
@@ -1174,4 +1199,12 @@ Some example attribution functions (attributors) are:
 ;;; 0.12.1: Small fixes in tc-fancy-attributor after trying it out:)
 ;;; 0.12.2: Fixes of two compilation problems, thanks to Steve Evans
 ;;; 0.12.3: Updated license text
+;;; 0.12.4: Typo fixed.  Made date parsing use date-to-time and 
+;;;         format-time-string, allowing easier customization.
+;;; 0.13:   Stuff from Vasily Korytov <deskpot@myrealbox.com>:  Before
+;;;         and after hooks, no spurious extra trailing spaces,
+;;;         tc-fill-long-lines morphed into tc-fill-column.
+;;; 0.13.1: Use guessed marks in normalizing citation marks.
+;;; 0.13.2: Use a local let instead of setting fill-column.
+;;; 0.13.3: Moving a parenthesis fixed a missing space problem.
 ;; end of tc.el
