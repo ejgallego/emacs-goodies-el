@@ -6,6 +6,12 @@
 8_whitespace_rename
 9_whitespace_enable_custom
 9_missing_provide
+50_apache-mode
+50_ctypes
+50_dedicated
+50_edit-env_autoload
+50_lcomp
+50_marker-visit_autoloads
 50_newsticker_non-fatal_xml
 50_session_enable_custom
 51_session_autoload

@@ -1,0 +1,156 @@
+#!/bin/sh -e
+## 50_lcomp.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Do not enable simply by loading.
+
+if [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+       -patch) patch $patch_opts -p1 < $0;;
+       -unpatch) patch $patch_opts -p1 -R < $0;;
+        *)
+                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+                exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el
+--- /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el	2003-11-17 13:31:50.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el	2003-11-17 13:23:44.000000000 -0500
+@@ -20,6 +20,49 @@
+ ;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ ;; Boston, MA 02111-1307, USA.
+ 
++;;; Commentary:
++
++;; This package adds keybindings to the completions buffer:
++;;
++;;    "\C-i"      -> next-completion
++;;    "\M-\C-i"   -> previous-completion
++;;    "f"         -> next-completion
++;;    "b"         -> previous-completion
++;;    "n"         -> next-line
++;;    "p"         -> previous-line
++;;    " "         -> scroll-up
++;;    [del]       -> scroll-down
++;;    [backspace] -> scroll-down
++;;    "q"         -> delete-completion-window
++;;
++;; and a global keybinding:
++;;
++;;    "\M-v"      -> lcomp-select-completion-window-or-scroll-down
++;;
++;; You may also enable advice to other Emacs functions to make the
++;; completions buffer window disappear after use.  The completions buffer
++;; is usually only dismissed after completion when it is created from
++;; minibuffer completion, but this advice makes it get dismissed correctly
++;; from any buffer (e.g. shell, or by calling
++;; `comint-dynamic-complete-filename').  To enable this advice, put these
++;; lines into your ~/.emacs.
++;;
++;;     (require 'lcomp)
++;;     (lcomp-activate-advices t)
++;;
++;; Or alternatively, customize the variable `lcomp-enable' and save the
++;; setting for future sessions.
++
++;;; History:
++;; 
++;;  2003-11-11 Peter S Galbraith <psgdebian.org>
++;;   - Create `lcomp-activate-advices' to activate the advice instead of
++;;     doing it by default.  This complies with Elisp Coding conventions
++;;     that state that loading a file shouldn't install anything.  Perhaps
++;;     the same should be done with all the key definitions?
++;;   - Create defcustom `lcomp-enable' as an alternate and user-frienfly
++;;     method to enable the advice.
++
+ ;;; Code:
+ 
+ (defvar lcomp-before-completion-winconf nil)
+@@ -40,7 +83,7 @@
+ (define-key completion-list-mode-map "q" 'delete-completion-window)
+ (define-key global-map "\M-v" 'lcomp-select-completion-window-or-scroll-down)
+ 
+-(defadvice try-completion (around lcomp-ad activate)
++(defadvice try-completion (around lcomp-ad disable)
+   (let ((ret ad-do-it))
+     (setq lcomp-completion-halfway-p (stringp ret))
+     ret))
+@@ -54,10 +97,11 @@
+ 
+ (add-hook 'completion-setup-hook 'lcomp-setup-completion)
+ 
++(defvar err)
+ (defun lcomp-resume-before-completion-winconf-1 ()
+   (condition-case nil
+       (set-window-configuration lcomp-before-completion-winconf)
+-    (error 
++    (error
+      (message "%s occured. bat ignore." (error-message-string err))))
+   (setq lcomp-before-completion-winconf nil)
+   (setq lcomp-completion-buffer nil))
+@@ -80,11 +124,11 @@
+ 
+ (add-hook 'post-command-hook 'lcomp-resume-before-completion-winconf)
+ 
+-(defadvice choose-completion (after lcomp-ad activate)
++(defadvice choose-completion (after lcomp-ad disable)
+   (when lcomp-before-completion-winconf
+     (lcomp-resume-before-completion-winconf-1)))
+ 
+-(defadvice delete-completion-window (around lcomp-ad activate)
++(defadvice delete-completion-window (around lcomp-ad disable)
+   (if lcomp-before-completion-winconf
+       (lcomp-resume-before-completion-winconf)
+     ad-do-it))
+@@ -99,6 +143,39 @@
+       (lcomp-select-completion-window)
+     (scroll-down arg)))
+ 
++;;;###autoload
++(defun lcomp-activate-advices (on)
++  "Activate lcomp advices if ON is non-nil, disable otherwise."
++  (interactive "p")
++  (cond
++   (on
++    (message "Enabling lcomp")
++    (ad-enable-advice 'try-completion 'around 'lcomp-ad)
++    (ad-enable-advice 'choose-completion 'after 'lcomp-ad)
++    (ad-enable-advice 'delete-completion-window 'around 'lcomp-ad))
++   (t
++    (message "Disabling lcomp")
++    (ad-disable-advice 'try-completion 'around 'lcomp-ad)
++    (ad-disable-advice 'choose-completion 'after 'lcomp-ad)
++    (ad-disable-advice 'delete-completion-window 'around 'lcomp-ad)))
++  (ad-activate 'try-completion)
++  (ad-activate 'choose-completion)
++  (ad-activate 'delete-completion-window))
++
++(defgroup lcomp nil
++  "list-completion hacks."
++  :group 'completion)
++
++(defcustom lcomp-enable nil
++  "*Enable advice in lcomp to make completion buffer disappear after use."
++  :type 'boolean
++  :set (lambda (symbol value)
++	 (set-default symbol value)
++	 (if (featurep 'lcomp)
++	     (lcomp-activate-advices t)))
++  :require 'lcomp
++  :group 'lcomp)
++
+ (provide 'lcomp)
+ 
+-;;; lcomp.el ends here
+\ No newline at end of file
++;;; lcomp.el ends here
