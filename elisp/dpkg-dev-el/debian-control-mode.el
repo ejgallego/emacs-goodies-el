@@ -1,13 +1,12 @@
 ;;; debian-control-mode.el --- major mode for Debian control files
 
-;; Copyright (C) 2001 Free Software Foundation, Inc.
+;; Copyright (C) 2001, 2003 Free Software Foundation, Inc.
 
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Colin Walters <walters@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.5
-;; X-RCS: $Id: debian-control-mode.el,v 1.4 2003/11/04 02:07:56 psg Exp $
-;; URL: http://cvs.verbum.org/debian/debian-control-mode
+;; Version: 0.6
+;; X-RCS: $Id: debian-control-mode.el,v 1.5 2003/11/28 02:13:29 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -32,13 +31,20 @@
 
 ;;; Change Log:
 
-;; Changes from 0.4 to 0.5:  Peter S Galbraith <psg@debian.org>
+;; V0.6 (2003-11-27)  Peter S Galbraith <psg@debian.org>
+;;
+;; * Only fontify known fields (to better catch misspellings) (Closes: #213779)
+;; * Add "Uploaders" field; Add "Section" and "Priority" also to binary fields.
+;; * Call `goto-address' in major-mode to clickify URLs.
+;; * http://cvs.verbum.org/debian/debian-control-mode link removed.
 
+;; V0.5 (2003/10/16)  Peter S Galbraith <psg@debian.org>
+;;
 ;; * Add "View upgrading-checklist" to control menu.
 ;; * Added debian-control-find-file to make this work on XEmacs.
 
 ;; Changes from 0.3 to 0.4:
-
+;;
 ;; * Don't depend on face properties to find names of packages.
 ;; * Use an after-change-function to put special text properties on,
 ;;   instead of using font-lock to do it.  That way they'll be added
@@ -46,7 +52,7 @@
 ;; * Fix up portable definition of `with-auto-compression-mode'.
 
 ;; Changes from 0.2 to 0.3:
-
+;;
 ;; * Fix bug in filling description lines.
 ;; * Clicking on a source or binary package name shows bugs for that
 ;;   package.
@@ -63,7 +69,7 @@
 ;; * Use the term "field" instead of "header".
 
 ;; Changes from 0.1 to 0.2:
-
+;;
 ;; * Tighten up regexps; whitespace before and after a field value is
 ;;   insignificant.  Also, package names may contain '+' and '.'.
 ;; * Add more comments for compliance with Emacs Lisp coding standards.
@@ -83,7 +89,7 @@
 (eval-when-compile
   (require 'cl))
 
-;; XEmacs compatibility 
+;; XEmacs compatibility
 (eval-and-compile
   (unless (fboundp 'line-beginning-position)
     (defun line-beginning-position ()
@@ -99,7 +105,6 @@
     (defalias 'match-string-no-properties 'match-string)))
 
 (defgroup debian-control nil "Debian control file maintenance"
-  :link '(url-link "http://cvs.verbum.org/debian/debian-control-mode")
   :group 'tools)
 
 (defcustom debian-control-source-package-face 'font-lock-type-face
@@ -120,6 +125,33 @@
 
 (defvar debian-control-mode-package-name-keymap (make-sparse-keymap))
 
+(defvar debian-control-source-fields
+  '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
+    "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders")
+  "Valid source package field names, collected from several policy sections.")
+
+(defvar debian-control-binary-fields
+  '("Section" "Priority" "Architecture" "Depends" "Conflicts" "Pre-Depends"
+    "Essential" "Provides" "Recommends" "Suggests" "Replaces" "Enhances"
+    "Description")
+  "Valid binary package field names, collected from several policy sections.")
+
+(defvar debian-control-source-fields-regexp
+  (concat
+   "^\\("
+   (let ((max-specpdl-size 1000))
+     (regexp-opt debian-control-source-fields t))
+   "\\):")
+  "font-lock regexp matching known fields in the source section.")
+
+(defvar debian-control-binary-fields-regexp
+  (concat
+   "^\\("
+   (let ((max-specpdl-size 1000))
+     (regexp-opt debian-control-binary-fields t))
+   "\\):")
+  "font-lock regexp matching known fields in the binary section.")
+
 (defvar debian-control-font-lock-keywords
   `((,(concat "^\\(Source:\\)\\s-*"
 	      debian-control-package-name-regexp
@@ -133,24 +165,16 @@
     (,(concat "^\\(Package:\\)\\s-*"
 	      debian-control-package-name-regexp
 	      "\\s-*$")
-     (1 font-lock-keyword-face)
+     (1 font-lock-function-name-face)
      ,(list 2
 	    (if (featurep 'xemacs)
 		'(symbol-value 'debian-control-binary-package-face)
 	      '(list 'face debian-control-binary-package-face))
 	    nil nil))
-    (,debian-control-field-regexp
-     (1 font-lock-keyword-face))))
-
-(defvar debian-control-source-fields
-  '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
-    "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version")
-  "Valid source package field names, collected from several policy sections.")
-
-(defvar debian-control-binary-fields
-  '("Architecture" "Depends" "Conflicts" "Pre-Depends" "Essential"
-    "Provides" "Recommends" "Suggests" "Replaces" "Enhances" "Description")
-  "Valid binary package field names, collected from several policy sections.")
+    (,debian-control-source-fields-regexp
+     (1 font-lock-keyword-face))
+    (,debian-control-binary-fields-regexp
+     (1 font-lock-function-name-face))))
 
 (defvar debian-control-mode-menu nil)
 
@@ -168,7 +192,7 @@
       (push 'debian-control-mode-after-change-function after-change-functions)
       (set (make-local-variable 'imenu-generic-expression)
         '((nil "^\\(Package\\|Source\\):\\s-*\\([-a-zA-Z0-9+.]+?\\)\\s-*$" 2)))
-      
+
       (define-key debian-control-mode-map (kbd "C-c C-b") 'debian-control-view-package-bugs)
       (define-key debian-control-mode-map (kbd "C-c C-p") 'debian-control-visit-policy)
       (define-key debian-control-mode-map (kbd "C-c C-a") 'debian-control-mode-add-field)
@@ -177,6 +201,8 @@
 							    [(mouse-2)])
 	'debian-control-mode-bugs-mouse-click)
       (easy-menu-add debian-control-mode-menu)
+      (if (and (featurep 'goto-addr) goto-address-highlight-p)
+        (goto-address))
       (let ((after-change-functions nil))
 	(debian-control-mode-after-change-function (point-min) (point-max) 0)))))
 
@@ -213,7 +239,7 @@
 	      (forward-line 1)))
 	(set-buffer-modified-p modified)))))
 
-(easy-menu-define 
+(easy-menu-define
  debian-control-mode-menu debian-control-mode-map "Debian Control Mode Menu"
  '("Control"
    ["Add field at point" debian-control-mode-add-field t]
@@ -229,7 +255,7 @@
    ["Bugs for package" debian-control-view-package-bugs t]
    ["Specific bug number" (debian-changelog-web-bug) nil]
 ;;   ["Package list (all archives)" (debian-changelog-web-packages) t]
-;;  ("Package web pages..." 
+;;  ("Package web pages..."
 ;;   ["stable" (debian-changelog-web-package "stable") t]
 ;;   ["testing" (debian-changelog-web-package "testing") t]
 ;;   ["unstable" (debian-changelog-web-package "unstable") t])
@@ -282,7 +308,7 @@
 		      (error "Couldn't find Package or Source field")))
 	  (fields (if binary-p
 		      debian-control-binary-fields
-		    debian-control-source-fields)))   
+		    debian-control-source-fields)))
      (list
       binary-p
       (capitalize
