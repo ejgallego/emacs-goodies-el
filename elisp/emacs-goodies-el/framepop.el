@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 18:24:19 $
-;; Version: $Revision: 1.5 $
-;; RCS-Id: $Id: framepop.el,v 1.5 2003/10/02 18:24:19 psg Exp $
+;; Modified: $Date: 2003/10/02 19:12:26 $
+;; Version: $Revision: 1.6 $
+;; RCS-Id: $Id: framepop.el,v 1.6 2003/10/02 19:12:26 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,28 +177,43 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.5 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.6 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.5 2003/10/02 18:24:19 psg Exp $")
+$Id: framepop.el,v 1.6 2003/10/02 19:12:26 psg Exp $")
 
-;;; Customizable variables
+;;; Customizable variables at end
 
 (defgroup framepop nil
   "Display temporary buffers in a dedicated frame."
   :group 'frames)
-  
+
+(defun framepop-disable nil
+  "Disable automatic pop-up temporary windows."
+  (interactive)
+  (setq temp-buffer-show-function nil))
+
+(defun framepop-enable nil
+  "Enable automatic pop-up temporary windows."
+  (interactive)
+  (if (and temp-buffer-show-function
+	   (not (eq temp-buffer-show-function 'framepop-display-buffer)))
+      (message "Warning: framepop.el has redefined temp-buffer-show-function"))
+  (setq temp-buffer-show-function 'framepop-display-buffer))
+
 (defcustom framepop-enable nil
   "Whether to enable and use FramePop for temporary buffers."
   :group 'framepop
   :type 'boolean
+  :require 'framepop
   :set (lambda (symbol value)
          (set-default symbol value)
          (if value
              (framepop-enable)
-           (setq temp-buffer-show-function nil))))
+           (framepop-disable))))
 
+(defvar framepop-map nil)
 (defcustom framepop-enable-keybinding nil
   "Global key binding for FramePop keymap.
 The key F2 is suggested."
@@ -209,7 +224,7 @@ The key F2 is suggested."
   :set (lambda (symbol value)
          (set-default symbol value)
          (if value
-             (define-key global-map (edmacro-parse-keys value) framepop-map))))
+             (eval `(define-key global-map (kbd ,value) framepop-map)))))
 
 (defcustom framepop-use-advice 'automatic
   "Whether to use `advice' to extend Framepop functionality"
@@ -326,7 +341,6 @@ BUF.  If nil is returned, BUF is not displayed in the framepop frame.")
 (defvar framepop-last-displayed-buffer ""
   "Name of last buffer displayed in temp frame.")
 
-(defvar framepop-map nil)
 (if framepop-map nil
   (setq framepop-map (make-sparse-keymap))
   (define-key framepop-map "?" 'framepop-display-help)
@@ -781,19 +795,6 @@ after the package has been loaded.  See advice.el for details."
    'around
    'last)
   (ad-activate function))
-
-(defun framepop-enable nil
-  "Enable automatic pop-up temporary windows."
-  (interactive)
-  (if (and temp-buffer-show-function
-	   (not (eq temp-buffer-show-function 'framepop-display-buffer)))
-      (message "Warning: framepop.el has redefined temp-buffer-show-function"))
-  (setq temp-buffer-show-function 'framepop-display-buffer))
-
-(defun framepop-disable nil
-  "Disable automatic pop-up temporary windows."
-  (interactive)
-  (setq temp-buffer-show-function nil))
 
 (defun framepop-submit-feedback ()
   "Sumbit feedback on the FramePop package by electronic mail."
