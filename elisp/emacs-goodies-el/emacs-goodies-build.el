@@ -19,7 +19,7 @@
 ;; ----------------------------------------------------------------------------
 
 ;;; Commentary:
-;; 
+;;
 ;; A few very rough functions to help with the maintenance of the
 ;; emacs-goodies-el pacakge.  None of this is meant for everyday use.
 ;;
@@ -34,10 +34,14 @@
 ;; make the file `emacs-goodies-custom.el' which loads a modified version
 ;; of all `defgroup' declarations from all files.  Go into dired for this
 ;; directory and run `insert-defgroup-dired' from the line before the first
-;; listed file.  It will generate a buffer with `emacs-goodies-custom.el' from all files.
+;; listed file.  It will generate a buffer with `emacs-goodies-custom.el'
+;; from all files.
+;;
+;; `document-tagged-autoloads' extracts a texinfo table from autoload
+;; tagged commands.  I should probably make sure they are interactive.
 
 ;;; History:
-;; 
+;;
 
 ;;; Code:
 (defun insert-missing-autoloads ()
@@ -133,6 +137,25 @@ Add a :group 'emacs-goodies-el"
   (insert ";;; Code:\n\n")
   (goto-char (point-max))
   (insert "(provide 'emacs-goodies-custom)\n"))
+
+(defun document-tagged-autoloads ()
+  "Scan for autoloads and extract texinfo doc string."
+  (interactive)
+  (let ((entries "")(function)(string))
+    (while (re-search-forward "^;;;###autoload" nil t)
+      (forward-line 1)
+      (when (looking-at "^(defun \\(.+\\) (")
+        (setq function (match-string-no-properties 1))
+        (forward-line 1)
+        (if (or (looking-at "  \"\\(.*\\)\"$")
+                (looking-at "  \"\\(.*\\)$"))
+            (setq string (match-string-no-properties 1))
+          (setq string ""))
+        (setq entries (concat entries "@item " function "\n" string "\n"))))
+    (setq entries (concat "@noindent Commands:\n\n@table @samp\n"
+                          entries "@end table\n"))
+    (with-output-to-temp-buffer "*Help*"
+      (princ entries))))
 
 (provide 'emacs-goodies-build)
 
