@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.55 2004/01/15 21:52:16 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.56 2004/03/27 20:26:43 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -66,7 +66,7 @@ be documented.
 * align-string::                Align string components over several lines
 * all::                         Edit all lines matching a given regexp
 * apache-mode::                 Major mode for Apache configuration files
-* auto-fill-mode-inhibit::      auto-fill-mode (de)activation
+* auto-fill-inhibit::           auto-fill-mode (de)activation
 * ascii::                       ASCII code display for character under point
 * bar-cursor::                  Switch block cursor to a bar
 * boxquote::                    Quote text with a semi-box
@@ -107,7 +107,7 @@ be documented.
 * newsticker::                  A Newsticker for Emacs
 * nuke-trailing-whitespace::    Strip trailing whitespace from buffers
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
-* pack-window::                 Resize windows to display maximal information
+* pack-windows::                Resize windows to display maximal information
 * perldoc::                     Show help for Perl functions and modules
 * projects::                    Project-based buffer name management
 * protbuf::                     Protect buffers from accidental killing
@@ -215,7 +215,7 @@ It works mostly like @code{occur} except that changes to the
 
 Type @kbd{M-x all} to try it out.
 
-@node apache-mode, auto-fill-mode-inhibit, all, Top
+@node apache-mode, auto-fill-inhibit, all, Top
 @chapter apache-mode - major mode for editing Apache configuration files
 
 @noindent Authors: Jonathan Marten  <jonathan.marten@@uk.sun.com>,
@@ -228,8 +228,8 @@ Apache 1.3; there may be some errors or omissions.
 There are currently no local keybindings defined, but the hooks are
 there in the event that anyone gets around to adding any.
 
-@node auto-fill-mode-inhibit, ascii, apache-mode, Top
-@chapter auto-fill-mode-inhibit - auto-fill-mode (de)activation
+@node auto-fill-inhibit, ascii, apache-mode, Top
+@chapter auto-fill-inhibit - auto-fill-mode (de)activation
 
 The purpose of this library is to allow the use of @command{auto-fill-mode}
 using, e.g.
@@ -244,7 +244,7 @@ You may disable @command{auto-fill-mode} on buffers with names that
 match one of a list of regular expressions by customizing the variable
 @code{auto-fill-inhibit-list}.
 
-@node ascii, bar-cursor, auto-fill-mode-inhibit, Top
+@node ascii, bar-cursor, auto-fill-inhibit, Top
 @chapter ascii - ASCII code display.
 
 @noindent Author: Vinicius Jose Latorre <vinicius@@cpqd.com.br>
@@ -2659,7 +2659,7 @@ customizing the variable @code{nuke-trailing-whitespace-p}.
 
 @noindent See also: whitespace.el packaged in Emacs-21
 
-@node obfusurl, pack-window, nuke-trailing-whitespace, Top
+@node obfusurl, pack-windows, nuke-trailing-whitespace, Top
 @chapter obfusurl - Obfuscate URLs so they aren't spoilers
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -2680,7 +2680,7 @@ is turned into this:
 <URL:http://www.davep.org/%65%6d%61%63%73/>
 @end example
 
-@node pack-window, perldoc, obfusurl, Top
+@node pack-windows, perldoc, obfusurl, Top
 @chapter pack-windows - resize all windows to display as much info as possible.
 
 @noindent Author: Michel Schinz <Michel.Schinz@@epfl.ch>
@@ -2705,7 +2705,7 @@ really performed will be displayed in the echo area if
 @code{pack-windows-verbose} is non-nil.  These two variables can be
 customized with @command{M-x customize-group pack-windows}.
 
-@node perldoc, projects, pack-window, Top
+@node perldoc, projects, pack-windows, Top
 @chapter perldoc - Show help for Perl functions, builtins, and modules.
 
 @noindent Author: Steve Kemp <skx@@tardis.ed.ac.uk>

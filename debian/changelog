@@ -10,6 +10,9 @@ emacs-goodies-el (24.3-2) unstable; urgency=low
       Kevin Ryde for reporting it (Closes: #234972).
     - joc-toggle-buffer.el: Provide joc-toggle-buffer instead of older name
       toggle-buffer. Thanks to Kevin Ryde for reporting it (Closes: #234971).
+    - emacs-goodies-el.texi: Rename node auto-fill-mode-inhibit to
+      auto-fill-inhibit and pack-window to pack-windows.  Thanks to
+      Kevin Ryde <user42@zip.com.au> for reporting it (Closes: #234651).
 
  --
 
