@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.49 2003/10/30 01:57:53 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.50 2003/11/03 01:44:38 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -2606,8 +2606,27 @@ Tails COMMAND with arguments ARGS inside a new buffer.
 
 @noindent Author: Lars R. Clausen <lrclause@@cs.uiuc.edu>
 
-This package makes gnus and MH-E produce nicely nested citations of
-replied-to messages.
+Trivial-Cite has the same purpose as Supercite: Cite text for mail and
+posting, but with different objectives.  Trivial-Cite tries hard to do
+the following correctly:
+
+@enumerate
+@item
+   Fill paragraphs of previously cited text correctly, even when encountering strange citing marks.
+@item
+   Parse the cited headers to allow attribution in a configurable way.
+@item
+   Allow the user to undo formatting.
+@item
+   Remove the signature as the last undoable action.
+@item
+   Allow the user to cite and fill cited text in other contexts.
+@item
+   Fix odd-looking citemarks to look nice (optional with @code{tc-normalize-cite-marks}). 
+@end enumerate
+
+Furthermore, it follows the suggestions of Son-of-RFC1036 and cites
+with a >, and sensibly so.
 
 No, I will not make it quote with name abbreviations like SuperCite does.
 That style is annoying and unreadable, goes against the RFC's (or rather,
@@ -2615,7 +2634,7 @@ the sons of them:), and have generally been the most problematic thing to
 deal with.  Trivial-cite can handle them, but is better at 'normal'
 citation marking.
 
-To use, add the following to your .emacs:
+@noindent To use, add the following to your .emacs:
 
 @verbatim
 ;; For Gnus:
