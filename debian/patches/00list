@@ -11,3 +11,4 @@
 50_perl-doc-pager-bug144963
 51_perl-doc-rewrite
 50_protbuf_custom_and_toggle
+50_table-add-to-text-mode-hook
