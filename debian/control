@@ -9,7 +9,7 @@ Standards-Version: 3.6.1
 Package: emacs-goodies-el
 Architecture: all
 Depends: emacs21 | emacsen, bash (>= 2.05a)
-Recommends: bash (>= 2.05a), dict, wget, perl-doc
+Recommends: dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
 Description: Miscellaneous add-ons for Emacs
