@@ -4,8 +4,24 @@
 
 (provide 'dpkg-dev-el-loaddefs)
 
+;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
+;;;;;;  (16295 49412))
+;;; Generated autoloads from debian-bts-control.el
+
+(autoload (quote debian-bts-control) "debian-bts-control" "\
+Contruct a message with initial ACTION command for control@bugs.debian.org.
+Contructs a new control command line if called from within the message
+being constructed.
+
+If prefix arg is provided, use the current buffer instead instead of
+creating a new outgoing email message buffer.
+The current buffer is also used if the current major mode matches one listed
+in `debian-bts-control-modes-to-reuse'." t nil)
+
+;;;***
+
 ;;;### (autoloads (debian-changelog-mode) "debian-changelog-mode"
-;;;;;;  "debian-changelog-mode.el" (16295 2343))
+;;;;;;  "debian-changelog-mode.el" (16295 50283))
 ;;; Generated autoloads from debian-changelog-mode.el
 
 (autoload (quote debian-changelog-mode) "debian-changelog-mode" "\
@@ -22,7 +38,7 @@ interface to set it, or simply set the variable
 debian-changelog-mailing-address in your ~/.emacs file, e.g.
 
  (setq debian-changelog-mailing-address \"myname@debian.org\"))" t nil)
-(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode)
+(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
@@ -30,7 +46,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
 ;;;***
 
 ;;;### (autoloads (debian-control-mode) "debian-control-mode" "debian-control-mode.el"
-;;;;;;  (16295 1906))
+;;;;;;  (16295 49413))
 ;;; Generated autoloads from debian-control-mode.el
 
 (autoload (quote debian-control-mode) "debian-control-mode" "\
@@ -40,7 +56,7 @@ A major mode for editing Debian control files (i.e. debian/control)." t nil)
 ;;;***
 
 ;;;### (autoloads (debian-copyright-mode) "debian-copyright" "debian-copyright.el"
-;;;;;;  (16295 2381))
+;;;;;;  (16295 49413))
 ;;; Generated autoloads from debian-copyright.el
 
 (autoload (quote debian-copyright-mode) "debian-copyright" "\
@@ -52,7 +68,7 @@ Mode to edit and read debian/copyright.
 ;;;***
 
 ;;;### (autoloads (readme-debian-mode) "readme-debian" "readme-debian.el"
-;;;;;;  (16295 2114))
+;;;;;;  (16295 49413))
 ;;; Generated autoloads from readme-debian.el
 
 (autoload (quote readme-debian-mode) "readme-debian" "\
