@@ -169,7 +169,7 @@ Architecture: all
 Depends: debian-el (>= 22.0-1)
 Section: oldlibs
 Priority: extra
-Description: Transitional package.  Can be removed.
+Description: Transitional package that can be removed
  The content of the package debview has been moved to the package debian-el.
  .
  This package ensures that debian-el is installed during upgrades and
