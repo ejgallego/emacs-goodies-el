@@ -209,6 +209,20 @@ selectable views (limits)."
 ;;:require 'initsplit
   :group 'emacs-goodies-el)
 
+(defgroup joc-toggle-buffer nil
+  "toggle-buffer package customization"
+  :group 'tools
+  :link '(custom-manual "(emacs-goodies-el)joc-toggle-buffer")
+  :load 'joc-toggle-buffer
+  :group 'emacs-goodies-el)
+
+(defgroup joc-toggle-case nil
+  "joc-toggle-case package customization"
+  :group 'tools
+  :link '(custom-manual "(emacs-goodies-el)joc-toggle-case")
+  :load 'joc-toggle-case
+  :group 'emacs-goodies-el)
+
 ;; keywiz
 (defgroup keywiz nil
   "Emacs key sequence quiz."

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.51 2003/11/17 19:41:40 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.52 2003/11/26 01:25:32 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -94,6 +94,8 @@ be documented.
 * home-end::                    Alternative Home and End key commands
 * htmlize::                     HTML-ize font-lock buffers
 * ibuffer::                     Operate on buffers like dired
+* joc-toggle-buffer::           Flips back and forth between two buffers
+* joc-toggle-case::             Toggles case at point like ~ in vi
 * keydef::                      A simpler way to define keys, with kbd syntax
 * keywiz::                      Emacs key sequence quiz
 * lcomp::                       list-completion hacks
@@ -175,19 +177,15 @@ from GPL'ed works, this text is also licensed under the GPL V2 (See
 /usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
 @email{psg@@debian.org}.
 
-The following are the files not yet documented.  Read these commentary
+The following files are not yet documented.  Read their commentary
 section for usage, but be advised that I haven't documented them
-because I intend to change their enabling interface soon.
+because I intend to change them.
 
 @table @samp
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
 code to split customizations into different files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
 generate bozotic mail headers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-buffer.el
-flips back and forth between two buffers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-case.el
-toggles case at point
 @end table
 
 @node align-string, all, Top, Top
@@ -1009,7 +1007,6 @@ buffer.
 Filladapt works well with any language that uses comments that
 start with some character sequence and terminate at end of line.
 So it is good for Postscript, Lisp, Perl, C++ and shell modes.
-It's not good for C mode because C's comments are multiline.
 
 Use
 @example
@@ -1018,11 +1015,17 @@ Use
 to have Filladapt always enabled in Text mode, or customize the
 variable @code{filladapt-turn-on-mode-hooks}.
 
-Use
+In C mode, @code{c-setup-filladapt} arranges for filling of block
+style comments (@pxref{Text Filling and Line Breaking,,, cc-mode, CC
+Mode}).
+
 @example
-    (add-hook 'c-mode-hook 'turn-off-filladapt-mode)
+    (add-hook 'c-mode-hook 'c-setup-filladapt)
 @end example
-to have Filladapt always disabled in C mode.
+
+Old versions of CC Mode (eg.@: the version with Emacs 20) don't have
+@code{c-setup-filladapt} and you may instead want to use
+@code{turn-off-filladapt-mode} there instead.
 
 In many cases, you can extend Filladapt by adding appropriate entries
 to the following three custiomizable variables.  See
@@ -1941,7 +1944,7 @@ others.
 User quotes: "You sir, are a sick, sick, _sick_ person. :)"
                  -- Bill Perry, author of Emacs/W3
 @end verbatim
-@node ibuffer, keydef, htmlize, Top
+@node ibuffer, joc-toggle-buffer, htmlize, Top
 @chapter ibuffer - operate on buffers like dired
 
 ibuffer.el is an advanced replacement for the `buffer-menu' which
@@ -1970,7 +1973,152 @@ In emacs-goodies-el, you can use the customize interface to bind
 @code{ibuffer} to @key{\C-x\C-b} by customizing the variable
 @code{ibuffer-enable}.
 
-@node keydef, keywiz, ibuffer, Top
+@node joc-toggle-buffer, joc-toggle-case, ibuffer, Top
+@chapter joc-toggle-buffer - flips back and forth between two buffers
+
+@noindent Author: Joe Casadonte <emacs@@northbound-train.com>
+
+This package provides a way to toggle back and forth between the last
+two active buffers, without any extra keystrokes (like accepting the
+default argument to @command{switch-to-buffer}).
+
+@noindent Usage:
+
+@noindent Commands:
+
+@table @samp
+@item joc-toggle-buffer
+   Switched to the previous active buffer (when @command{switch-to-buffer} was
+   called).  If there is no previous buffer, or if the buffer no longer
+   exists, a message will be displayed in the minibuffer.
+@end table
+
+@noindent Nut & Bolts:
+
+This package works by advising @command{switch-to-buffer}, so if your
+favorite buffer switching command does not ultimately call
+@command{switch-to-buffer}, this won't work.  Packages that alter the
+current buffer *before* @command{switch-to-buffer} is called will also not
+work properly.  Both of these situations may be salvagable with
+the addition of more advice.  In the first case, just write a bit
+of advice which essentially duplicates what I'm doing here with
+@command{switch-to-buffer}.
+
+I've provided a hack (and a "hook") to help with the second
+situation.  The hack is to define a second variable (the "hook")
+before the list is altered.  Once @command{switch-to-buffer} is called,
+the advice provided in this package will first look for this
+hook/hack variable and use its value; if that's not found, it will
+use the value returned by @code{buffer-name}.
+
+An example of this is the @code{swbuff} package, which changes the
+current buffer before switching to the next one (though I'm not
+sure why it does this).  Since I use swbuff, I've included its
+hack along with this package.  You can customize whether or not
+this hack is loaded (see Customization below).
+
+
+@noindent Customization:
+
+@command{M-x customize-group joc-toggle-buffer} to customize all
+package options.
+
+The following variable can be customized:
+
+@table @samp
+@item joc-toggle-buffer-swbuff-advice
+   A hack to be compatable with the swbuff package.
+
+   Valid values are:
+@itemize @bullet
+@item Never Advise - never advise the swbuff functions [nil]
+@item Advise if Provided - only advise if swbuff already provided [P]
+@item Always Advise - always define & activate the swbuff advise [A]
+@end itemize
+
+   If you don't use the swbuff package, you can safely choose
+   Never Advise or Advise if Provided.  If you do use swbuff, you
+   may use Advise if Provided (in which case swbuff must be
+   `provide'd already) or Always Advise."
+@end table
+
+@node joc-toggle-case, keydef, joc-toggle-buffer, Top
+@chapter joc-toggle-case - toggles case at point like ~ in vi
+
+This packages provides a sophisticated (over-engineered?) set of
+functions to toggle the case of the character under point, with which
+you can emulate vi's ~ function, which I found useful and miss.
+Basically, the vi command (and my version of it) toggles the case of
+the current character and then advances to the next character,
+allowing successive invocations to progress down the line.
+
+@noindent Commands:
+
+@table @samp
+@item joc-toggle-case
+Toggles the case of the character under point.  If called with
+a prefix argument, it toggles that many characters (see
+@code{joc-toggle-case-stop-at-eol}).  If the prefix is negative, the
+case of the character before point is toggled, and if called
+with a prefix argument, N characters before point will have
+their case toggled (see also @code{joc-toggle-case-backwards}).
+@item joc-toggle-case-backwards
+Convenience function to toggle case of character preceeding
+point.  This is the same as calling @command{joc-toggle-case} with a
+negative prefix (and is in fact implemented that way).
+@item joc-toggle-case-by-word
+Similar to @command{joc-toggle-case} except that the count (supplied by
+the prefix argument) is of the number of words, not letters, to
+be toggled.  It will start from point and move to the end of
+the first word at a minimum, and then take whole words from
+there.  If called with a negative prefix, then from point to
+beginning of current word will have their case toggled, going
+backwards for N words (see also
+@code{joc-toggle-case-by-word-backwards}).  Note that the
+joc-toggle-case-stop-at-eol setting will be honored.
+@item joc-toggle-case-by-word-backwards
+Convenience function to toggle case by word, backwards.  This
+is the same as calling @command{joc-toggle-case-by-word} with a
+negative prefix (and is in fact implemented that way).
+@item joc-toggle-case-by-region
+Toggles the case of all characters in the current region.
+@end table
+
+@noindent Customization:
+
+Use @command{M-x customize-group joc-toggle-case} to customize all
+package options.
+
+The following variable can be customized:
+
+@table @samp
+@item joc-toggle-case-stop-at-eol
+       Boolean used to determine whether or not the toggle
+       advancement stops at the end of a line.  Set to `t' it will
+       stop at the end of the line, set to `nil' it will not (it
+       will continue on to the next line).  If direction of toggle
+       is reversed, the semantics of this are reveresed as well
+       (i.e. does it stop at the beginning of the line).
+@end table
+
+@noindent Keybinding examples:
+
+This is what I have -- use it or not as you like.
+
+@verbatim
+     (global-set-key [(control \`)] 'joc-toggle-case)
+     (global-set-key [(control ~)] 'joc-toggle-case-backwards)
+
+     (global-set-key [(control meta \`)] 'joc-toggle-case-by-word)
+     (global-set-key [(control meta ~)] 'joc-toggle-case-by-word-backwards)
+
+     (define-key joc-F3-keymap [(\`)] 'joc-toggle-case-by-region)
+@end verbatim
+
+I have a special @key{F3} keymap which this last one is bound to.
+Email me if you'd like more details.
+
+@node keydef, keywiz, joc-toggle-case, Top
 @chapter keydef - a simpler way to define keys, with kbd syntax
 
 @noindent Author: Michael John Downes <mjd@@ams.org>
