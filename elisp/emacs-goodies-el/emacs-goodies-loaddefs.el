@@ -2,7 +2,7 @@
 ;;
 ;;; Code:
 
-;;;### (autoloads (all) "all" "all.el" (16059 54755))
+;;;### (autoloads (all) "all" "all.el" (16259 18879))
 ;;; Generated autoloads from all.el
 
 (autoload (quote all) "all" "\
@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16255 32932))
+;;;;;;  "bar-cursor.el" (16259 26441))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -43,7 +43,7 @@ Enable or disable advice based on value of variable `bar-cursor-mode'." nil nil)
 ;;;;;;  boxquote-describe-variable boxquote-describe-function boxquote-boxquote
 ;;;;;;  boxquote-paragraph boxquote-defun boxquote-yank boxquote-kill-ring-save
 ;;;;;;  boxquote-insert-file boxquote-buffer boxquote-region boxquote-title)
-;;;;;;  "boxquote" "boxquote.el" (16107 56175))
+;;;;;;  "boxquote" "boxquote.el" (16259 18879))
 ;;; Generated autoloads from boxquote.el
 
 (autoload (quote boxquote-title) "boxquote" "\
@@ -122,7 +122,7 @@ Remove the boxquote that contains `point'." t nil)
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (16107 56175))
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (16259 18879))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -136,7 +136,7 @@ Display items in the `kill-ring' in another buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (coffee) "coffee" "coffee.el" (16222 36565))
+;;;### (autoloads (coffee) "coffee" "coffee.el" (16259 18879))
 ;;; Generated autoloads from coffee.el
 
 (autoload (quote coffee) "coffee" "\
@@ -144,7 +144,7 @@ Submit a BREW request to an RFC2324-compliant coffee device" t nil)
 
 ;;;***
 
-;;;### (autoloads (df) "df" "df.el" (16111 43155))
+;;;### (autoloads (df) "df" "df.el" (16259 18879))
 ;;; Generated autoloads from df.el
 
 (autoload (quote df) "df" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16255 32932))
+;;;;;;  "diminish.el" (16259 26441))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -201,7 +201,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;### (autoloads (egocentric-update-regexp-list egocentric-mode-off
 ;;;;;;  egocentric-mode-on egocentric-mode) "egocentric" "egocentric.el"
-;;;;;;  (16107 56176))
+;;;;;;  (16259 18879))
 ;;; Generated autoloads from egocentric.el
 
 (autoload (quote egocentric-mode) "egocentric" "\
@@ -219,8 +219,8 @@ Update ``egocentric-regexp-list'' from $USER and $NAME variables." t nil)
 
 ;;;***
 
-;;;### (autoloads (ff-paths-install) "ff-paths" "ff-paths.el" (16188
-;;;;;;  18180))
+;;;### (autoloads (ff-paths-install) "ff-paths" "ff-paths.el" (16259
+;;;;;;  18880))
 ;;; Generated autoloads from ff-paths.el
 
 (autoload (quote ff-paths-install) "ff-paths" "\
@@ -228,7 +228,7 @@ Install ff-paths as a `find-file-not-found-hooks' and to ffap package." nil nil)
 
 ;;;***
 
-;;;### (autoloads (floatbg-mode) "floatbg" "floatbg.el" (16107 56176))
+;;;### (autoloads (floatbg-mode) "floatbg" "floatbg.el" (16259 18880))
 ;;; Generated autoloads from floatbg.el
 
 (autoload (quote floatbg-mode) "floatbg" "\
@@ -237,7 +237,7 @@ Toggle floatbg mode" t nil)
 ;;;***
 
 ;;;### (autoloads (framepop-display-buffer framepop-enable framepop-disable)
-;;;;;;  "framepop" "framepop.el" (16255 27653))
+;;;;;;  "framepop" "framepop.el" (16259 18880))
 ;;; Generated autoloads from framepop.el
 
 (autoload (quote framepop-disable) "framepop" "\
@@ -262,7 +262,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16255 32932))
+;;;;;;  "highlight-beyond-fill-column.el" (16259 26441))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -271,7 +271,7 @@ Setup this buffer to highlight beyond the `fill-column'." t nil)
 ;;;***
 
 ;;;### (autoloads (highlight-current-line-minor-mode) "highlight-current-line"
-;;;;;;  "highlight-current-line.el" (16235 37445))
+;;;;;;  "highlight-current-line.el" (16259 18881))
 ;;; Generated autoloads from highlight-current-line.el
 
 (autoload (quote highlight-current-line-minor-mode) "highlight-current-line" "\
@@ -283,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16255 32932))
+;;;;;;  (16259 26441))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -300,7 +300,7 @@ of window, third in a row goes to end of buffer." t nil)
 
 ;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
 ;;;;;;  htmlize-region htmlize-buffer htmlize-buffer-noninteractive)
-;;;;;;  "htmlize" "htmlize.el" (16107 56177))
+;;;;;;  "htmlize" "htmlize.el" (16259 18881))
 ;;; Generated autoloads from htmlize.el
 
 (autoload (quote htmlize-buffer-noninteractive) "htmlize" "\
@@ -333,7 +333,7 @@ HTMLize dired-marked files." t nil)
 
 ;;;***
 
-;;;### (autoloads (ibuffer) "ibuffer" "ibuffer.el" (16107 56177))
+;;;### (autoloads (ibuffer) "ibuffer" "ibuffer.el" (16259 18881))
 ;;; Generated autoloads from ibuffer.el
 
 (defsubst ibuffer-and-update (&optional other-window-p) "\
@@ -355,7 +355,7 @@ to use; see `ibuffer-limiting-qualifiers'." t nil)
 
 ;;;***
 
-;;;### (autoloads (keydef) "keydef" "keydef.el" (16107 56178))
+;;;### (autoloads (keydef) "keydef" "keydef.el" (16259 18882))
 ;;; Generated autoloads from keydef.el
 
 (autoload (quote keydef) "keydef" "\
@@ -382,8 +382,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16255
-;;;;;;  32932))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16259
+;;;;;;  26441))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -396,23 +396,23 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16255 32932))
+;;;;;;  "nuke-trailing-whitespace.el" (16259 26441))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
 Nuke all trailing whitespace in the buffer.
 Whitespace in this case is just spaces or tabs.
-This is a useful function to put on write-file-hooks.
+This is a useful function to put on `write-file-hooks'.
 
 Unless called interactively, this function uses
 `nuke-trailing-whitespace-p' to determine how to behave.
-However, even if this variable is `t', this function will query for
+However, even if this variable is t, this function will query for
 replacement if the buffer is read-only." t nil)
 
 ;;;***
 
-;;;### (autoloads (obfuscate-url) "obfusurl" "obfusurl.el" (16107
-;;;;;;  56178))
+;;;### (autoloads (obfuscate-url) "obfusurl" "obfusurl.el" (16259
+;;;;;;  18882))
 ;;; Generated autoloads from obfusurl.el
 
 (autoload (quote obfuscate-url) "obfusurl" "\
@@ -425,7 +425,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16255 32932))
+;;;;;;  "perldoc.el" (16259 26441))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -442,15 +442,15 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16107 56178))
+;;;;;;  "protbuf" "protbuf.el" (16259 26441))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
-*If non-`nil', then prevent buffer from being accidentally killed.
+*If non-nil, then prevent buffer from being accidentally killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-mode nil "\
-*If non-`nil', then protect buffer with live process from being killed.
+*If non-nil, then protect buffer with live process from being killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-preserve-function nil "\
@@ -464,17 +464,20 @@ object is using this buffer as a process buffer.
 This variable is buffer-local when set.")
 
 (autoload (quote protect-buffer-from-kill-mode) "protbuf" "\
-Protect buffer from being killed.
-To remove this protection, call this command with a negative prefix argument." t nil)
+Toggle `kill-buffer' protection on current buffer.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER." t nil)
 
 (autoload (quote protect-process-buffer-from-kill-mode) "protbuf" "\
-Protect buffer from being killed as long as it has an active process.
-To remove this protection, call this command with a negative prefix argument." t nil)
+Toggle `kill-buffer' protection on current buffer with active process.
+Protection only applies as long as the buffer has an active process.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER." t nil)
 
 ;;;***
 
 ;;;### (autoloads (protocols-clear-cache protocols-lookup) "protocols"
-;;;;;;  "protocols.el" (16107 56178))
+;;;;;;  "protocols.el" (16259 18882))
 ;;; Generated autoloads from protocols.el
 
 (autoload (quote protocols-lookup) "protocols" "\
@@ -486,7 +489,7 @@ Clear the protocols \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (services-clear-cache services-lookup) "services"
-;;;;;;  "services.el" (16107 56178))
+;;;;;;  "services.el" (16259 18882))
 ;;; Generated autoloads from services.el
 
 (autoload (quote services-lookup) "services" "\
@@ -497,7 +500,7 @@ Clear the services \"cache\"." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "session" "session.el" (16255 32821))
+;;;### (autoloads nil "session" "session.el" (16259 26441))
 ;;; Generated autoloads from session.el
 
 ;; General Emacs/XEmacs-compatibility compile-time macros
@@ -566,12 +569,13 @@ Clear the services \"cache\"." t nil)
 			       `(lambda ,arglist ,docstring
 				  ,@(cond-emacs-xemacs-macfn definition))
 			     'ignore)))))))))))
+
 (defunx session-initialize (&rest dummies) "Initialize package session and read previous session file.\nSetup hooks and load `session-save-file', see `session-initialize'.  At\nbest, this function is called at the end of the Emacs startup, i.e., add\nthis function to `after-init-hook'." (interactive) (setq session-use-package t) (when (or (eq session-initialize t) (memq (quote de-saveplace) session-initialize)) (when (functionp (quote eval-after-load)) (eval-after-load "saveplace" (quote (progn (remove-hook (quote find-file-hooks) (quote save-place-find-file-hook)) (remove-hook (quote kill-emacs-hook) (quote save-place-kill-emacs-hook)) (remove-hook (quote kill-buffer-hook) (quote save-place-to-alist))))))) (when (or (eq session-initialize t) (memq (quote places) session-initialize)) (add-hook (quote find-file-hooks) (quote session-find-file-hook) t) (add-hook (quote find-file-not-found-hooks) (quote session-find-file-not-found-hook) t) (add-hook (quote kill-buffer-hook) (quote session-kill-buffer-hook))) (when (or (eq session-initialize t) (memq (quote keys) session-initialize)) (condition-case nil (progn (define-key ctl-x-map [(undo)] (quote session-jump-to-last-change)) (define-key ctl-x-map [(control 47)] (quote session-jump-to-last-change)) (define-key minibuffer-local-map [(meta 63)] (quote session-minibuffer-history-help)) :XEMACS (define-key global-map [(control button3)] (quote session-popup-yank-menu)) :EMACS (define-key minibuffer-local-completion-map [(meta 63)] (quote session-minibuffer-history-help)) (define-key minibuffer-local-must-match-map [(meta 63)] (quote session-minibuffer-history-help)) (define-key minibuffer-local-ns-map [(meta 63)] (quote session-minibuffer-history-help))) (error nil))) (when (or (eq session-initialize t) (memq (quote menus) session-initialize)) (add-hook (quote find-file-hooks) (quote session-set-file-name-history)) (session-add-submenu (quote ("Open...recently visited" :included file-name-history :filter session-file-opened-menu-filter))) (session-add-submenu (quote ("Open...recently changed" :included session-file-alist :filter session-file-changed-menu-filter ["%_* Toggle Permanent Flag of Current Buffer" session-toggle-permanent-flag :keys (session-toggle-permanent-flag nil t) :active buffer-file-name] "---"))) :XEMACS (and (featurep (quote menubar)) (find-menu-item default-menubar (quote ("Edit"))) (let ((current-menubar default-menubar)) (add-submenu (quote ("Edit")) (quote ("Select and Paste" :included kill-ring :filter session-yank-menu-filter)) (cond ((find-menu-item default-menubar (quote ("Edit" "Delete"))) "Delete") ((find-menu-item default-menubar (quote ("Edit" "Paste"))) "Paste") ((find-menu-item default-menubar (quote ("Edit" "Undo"))) "Undo")))))) (when (or (eq session-initialize t) (memq (quote session) session-initialize)) (add-hook (quote kill-emacs-hook) (quote session-save-session)) (or session-successful-p (setq session-successful-p (and session-save-file (condition-case nil (progn (load session-save-file t nil t) (run-hooks (quote session-after-load-save-file-hook)) t) (error nil)))))))
 
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (16107 56178))
+;;;;;;  "silly-mail.el" (16259 18883))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -584,8 +588,8 @@ The choice of available headers is taken from sm-mail-header-table." t nil)
 
 ;;;***
 
-;;;### (autoloads (sys-apropos) "sys-apropos" "sys-apropos.el" (16107
-;;;;;;  56178))
+;;;### (autoloads (sys-apropos) "sys-apropos" "sys-apropos.el" (16259
+;;;;;;  18883))
 ;;; Generated autoloads from sys-apropos.el
 
 (autoload (quote sys-apropos) "sys-apropos" "\
@@ -605,7 +609,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16107 56180))
+;;;;;;  "table" "table.el" (16259 18884))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -672,7 +676,7 @@ width information to `table-insert'.
 
 Cell width(s): 14 6 32
 
-instead of
+instead of 
 
 Cell width(s): 5
 
@@ -946,7 +950,7 @@ LaTeX:
         http://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/Tables.html
 
 TEI (Text Encoding Initiative XML/SGML DTD):
-        http://www.hcu.ox.ac.uk/TEI/Guidelines/ (general)
+        http://www.hcu.ox.ac.uk/TEI/Guidelines/ (general) 
         http://www.hcu.ox.ac.uk/TEI/Guidelines/FT.htm#FTTAB (tables)
 
 CALS (DocBook DTD):
@@ -1125,7 +1129,7 @@ Show version number of table package." t nil)
 
 ;;;***
 
-;;;### (autoloads (trivial-cite) "tc" "tc.el" (16107 56180))
+;;;### (autoloads (trivial-cite) "tc" "tc.el" (16259 18884))
 ;;; Generated autoloads from tc.el
 
 (autoload (quote trivial-cite) "tc" "\
@@ -1138,13 +1142,13 @@ mails with long attachments).
 Usage:  (auto-load 'trivial-cite \"tc\" t t)
         (add-hook 'mail-citation-hook 'trivial-cite)
 Bugs:  Not very intelligent about old citation marks other than '>'.
-Customization:  See variables tc-fill-long-lines, tc-remove-signature,
+Customization:  See variables tc-fill-column, tc-remove-signature,
 tc-citation-string, tc-make-attribution and tc-header-funs." nil nil)
 
 ;;;***
 
 ;;;### (autoloads (thinks-maybe-region thinks-yank thinks-region
-;;;;;;  thinks) "thinks" "thinks.el" (16107 56180))
+;;;;;;  thinks) "thinks" "thinks.el" (16259 18884))
 ;;; Generated autoloads from thinks.el
 
 (autoload (quote thinks) "thinks" "\
@@ -1171,7 +1175,7 @@ If not, query for text to insert in bubble." t nil)
 
 ;;;***
 
-;;;### (autoloads (tld) "tld" "tld.el" (16107 56180))
+;;;### (autoloads (tld) "tld" "tld.el" (16259 18884))
 ;;; Generated autoloads from tld.el
 
 (autoload (quote tld) "tld" "\
@@ -1180,7 +1184,7 @@ Search the TLD list." t nil)
 ;;;***
 
 ;;;### (autoloads (twiddle-compile twiddle-start) "twiddle" "twiddle.el"
-;;;;;;  (16107 56180))
+;;;;;;  (16259 18885))
 ;;; Generated autoloads from twiddle.el
 
 (autoload (quote twiddle-start) "twiddle" "\
@@ -1197,19 +1201,19 @@ If called with a prefix argument, prompt for a specific hack to run." t nil)
 ;;;***
 
 ;;;### (autoloads (wdired-change-to-wdired-mode) "wdired" "wdired.el"
-;;;;;;  (16107 56180))
+;;;;;;  (16259 18885))
 ;;; Generated autoloads from wdired.el
 
 (autoload (quote wdired-change-to-wdired-mode) "wdired" "\
 Put a dired buffer in a mode in which filenames are editable.
-In this mode the names of the files can be changed, and after
+In this mode the names of the files can be changed, and after 
 typing C-c C-c the files and directories in disk are renamed.
 
 See `wdired-mode'." t nil)
 
 ;;;***
 
-;;;### (autoloads (xrdb-mode) "xrdb-mode" "xrdb-mode.el" (16107 56181))
+;;;### (autoloads (xrdb-mode) "xrdb-mode" "xrdb-mode.el" (16259 18885))
 ;;; Generated autoloads from xrdb-mode.el
 
 (autoload (quote xrdb-mode) "xrdb-mode" "\
