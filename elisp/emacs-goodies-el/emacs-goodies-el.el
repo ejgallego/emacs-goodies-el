@@ -152,6 +152,25 @@ It's not good for C mode because C's comments are multiline."
   :load 'home-end
   :group 'emacs-goodies-el)
 
+;; ibuffer
+(defvar ibuffer-enable-done nil
+  "Whether `ibuffer-enable' was activated.
+Stores the value of the prior keybinding in case we need to restore it.")
+
+(defcustom ibuffer-enable emacs-goodies-el-defaults
+  "*Defines \\C-x\\C-b as 'ibuffer, a dired-like buffer manager."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (cond
+          (value
+           (setq ibuffer-enable-done (lookup-key ctl-x-map "\C-b"))
+           (define-key ctl-x-map "\C-b" 'ibuffer))
+          (ibuffer-enable-done
+           (define-key ctl-x-map "\C-b" ibuffer-enable-done))))
+  :load 'ibuffer
+  :group 'emacs-goodies-el)
+
 ;; keydef.el
 (autoload 'keydef "keydef"
   "Define the key sequence SEQ, written in kbd form, to run CMD."

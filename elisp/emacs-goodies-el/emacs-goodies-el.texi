@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.23 2003/09/21 00:22:38 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.24 2003/09/24 01:16:58 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -41,9 +41,9 @@ Some extra package installation and setup is done if you customize the
 variable @code{emacs-goodies-el-defaults} to t (its aggressive state).
 These will override standard Emacs defaults, but in a good
 (uncontroversial) way.  The affected packages are currently only:
-@ref{ff-paths} and @ref{home-end}.  Packages which require activation
-in order to function include: @ref{bar-cursor}, @ref{diminish},
-@ref{df} and @ref{filladapt}.
+@ref{ff-paths}, @ref{home-end} and @ref{ibuffer}.  Packages which
+require activation in order to function also include:
+@ref{bar-cursor}, @ref{diminish}, @ref{df} and @ref{filladapt}.
 
 To customize setup of all customizable packages on a finer-grain
 basis, do:
@@ -85,6 +85,7 @@ be documented.
 * highlight-current-line::      highlight line where the cursor is
 * home-end::                    Alternative Home and End key commands
 * htmlize::                     HTML-ize font-lock buffers
+* ibuffer::                     Operate on buffers like dired
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -765,7 +766,7 @@ Some useful bindings for Home and End keys:
 
 To enable it, customize the variable @code{home-end-enable}.
 
-@node htmlize,  , home-end, Top
+@node htmlize, ibuffer, home-end, Top
 @chapter htmlize - HTML-ize font-lock buffers
 
 This package analyses the text properties of the buffer and
@@ -797,3 +798,32 @@ For any of this to work, you need to run Emacs under a window-system
 @file{htmlize.el}) at:
 
        http://fly.srk.fer.hr/~hniksic/emacs/htmlize.html
+
+@node ibuffer,  , htmlize, Top
+@chapter ibuffer - operate on buffers like dired
+
+ibuffer.el is an advanced replacement for the `buffer-menu' which
+is normally distributed with Emacs.  Its interface is intended to
+be analogous to that of Dired.
+
+Use @code{M-x ibuffer} to get started.  @key{h} will give a brief usage
+description.
+
+Just for fun, here is the author's favorite `ibuffer-formats'
+configuration:
+
+@verbatim
+(setq ibuffer-formats '((mark modified read-only " " (name 16 16) " "
+                        (size 6 -1 :right) " " (mode 16 16 :center)
+                         " " (process 8 -1) " " filename)
+                    	   (mark " " (name 16 -1) " " filename))
+      ibuffer-elide-long-columns t
+      ibuffer-eliding-string "&")
+@end verbatim
+
+Remember, you can switch between formats using
+@code{ibuffer-switch-format}, bound to @key{`} by default.
+
+In emacs-goodies-el, you can use the customize interface to bind
+@code{ibuffer} to @key{\C-x\C-b} by customizing the variable
+@code{ibuffer-enable}.
