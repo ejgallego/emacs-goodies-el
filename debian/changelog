@@ -25,8 +25,11 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - marker-visit.el, navigate through a buffer's marks in order.
     - pack-windows.el, resize all windows to display as much info as possible.
     - ascii.el, ASCII code display for character under point.
-  
- -- Peter S Galbraith <psg@debian.org>  Fri, 14 Nov 2003 16:05:02 -0500
+    Patches:
+    - 50_todoo_bug220718: Fix XEmacs keybindings for XEmacs.
+      Thanks to Gianluca Della Vedova (Closes: #220718).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 17 Nov 2003 15:55:32 -0500
 
 emacs-goodies-el (23.1-1) unstable; urgency=low
 
