@@ -49,6 +49,7 @@ binary-arch: build install
 	dh_testroot
 	dh_installdocs
 	dh_installemacsen
+	(cd debian/debian-el/etc/emacs/site-start.d; mv 50debian-el.el 51debian-el.el)
 	dh_installinfo -p emacs-goodies-el info/emacs-goodies-el*
 	dh_installinfo -p debian-el info/debian-el
 	dh_installchangelogs

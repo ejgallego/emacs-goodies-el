@@ -24,8 +24,14 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
     - devscripts-el.README.Debian: update to reflect latest changes.
   * debian-el:
     - apt-sources.el: new upstream version 0.9.8.
+    - 50debian-el.el renamed to 51debian-el.el to make sure it runs
+      _after_ old version of 50debview.el.
+  * debview:
+    - Bug fix: Re-introduce an harmless 50debview.el file since old one
+      not removed in dist-upgrade and autoloaded debview from wrong place.
+      Thanks to Neil Roeth (Closes: #218094).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 26 Oct 2003 20:43:32 -0500
+ -- Peter S Galbraith <psg@debian.org>  Tue, 28 Oct 2003 22:32:02 -0500
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
