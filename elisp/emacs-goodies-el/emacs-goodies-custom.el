@@ -144,7 +144,8 @@ selectable views (limits)."
 (defgroup keywiz nil
   "Emacs key sequence quiz."
   :version "21.2"
-  :group 'keywiz
+  :group 'games
+  :group 'keyboard
 ;;:link '(custom-manual "(emacs-goodies-el)keywiz")
   :load 'keywiz
 ;;:require 'keywiz
