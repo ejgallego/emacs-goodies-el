@@ -1,11 +1,15 @@
 emacs-goodies-el (24.7-2) UNRELEASED; urgency=low
 
+  * debian-el:
+    - apt-utils.el: Updated to latest version from Matt, in which he fixed
+      dependence on jka-compr (Closes: #278929) and addressed the issue of
+      memory usage (Closes: #252481).
   * emacs-goodies-el:
     - folding.el: Updated to latest CVS version to fix bug: "folding.el:
       support for BibTeX-mode is b0rken", thanks to Juhapekka Tolvanen
       (Closes: #282388).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 25 Nov 2004 15:33:55 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 25 Nov 2004 21:48:21 -0500
 
 emacs-goodies-el (24.7-1) unstable; urgency=low
 
