@@ -17,6 +17,8 @@
   (autoload 'debc "devscripts" "Run debc in the current directory." t)
   (autoload 'debit "devscripts" "Run debit in the current directory." t)
   (autoload 'debdiff "devscripts" "Compare contents of CHANGES-FILE-1 and CHANGES-FILE-2." t)
+  (autoload 'debdiff-current "devscripts"   "Compare the contents of .changes file of current version with previous version; 
+requires access to debian/changelog, and being in debian/ dir." t)
   (autoload 'debclean "devscripts" "Run debclean in the current directory." t)
   (autoload 'pdebuild "pbuilder-mode" "Run pdebuild in the current directory." t)
   (autoload 'pdebuild-user-mode-linux "pbuilder-mode" "Run pdebuild-user-mode-linux in the current directory." t)

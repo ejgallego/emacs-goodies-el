@@ -27,7 +27,7 @@
 (defcustom debuild-option-list '("-i" "-uc" "-us") "*Options to give to debuild."
   :type '(repeat string)
   :group 'devscripts)
-(defconst devscripts-mode-version "$Id: devscripts.el,v 1.3 2003/10/18 08:40:56 dancer Exp $" "Version of devscripts mode.")
+(defconst devscripts-mode-version "$Id: devscripts.el,v 1.4 2003/12/20 05:05:19 dancer Exp $" "Version of devscripts mode.")
 
 (defun devscripts-internal-get-debian-package-name ()
   "Find the directory with debian/ dir, and get the dir name."
@@ -98,6 +98,40 @@
 	 (debdiff-process (concat "debdiff-process-" default-directory)))
     (switch-to-buffer debdiff-buffer)
     (kill-region (point-min) (point-max))
+    (start-process debdiff-process debdiff-buffer "/usr/bin/debdiff" 
+		   (expand-file-name changes-file-1)
+		   (expand-file-name changes-file-2))))
+
+(defun debdiff-current ()
+  "Compare the contents of .changes file of current version with previous version; 
+requires access to debian/changelog, and being in debian/ dir."
+  (interactive)
+  (let* ((debdiff-buffer (concat "*debdiff*" default-directory))
+	 (debdiff-process (concat "debdiff-process-" default-directory))
+	 (debug-on-error t)
+	 newversion oldversion pkgname changes-file-1 changes-file-2)
+    (find-file "changelog")
+    (save-excursion 
+      (goto-char (point-min))
+      (re-search-forward "^\\(\\S-+\\) +(\\([^:)]*:\\)?\\([^)]*\\))" nil t)
+      (setq newversion (match-string 3))
+      (setq pkgname (match-string 1))
+      (re-search-forward "^\\(\\S-+\\) +(\\([^:)]*:\\)?\\([^)]*\\))" nil t)
+      (setq oldversion (match-string 3)))
+    (setq changes-file-1
+	  (car (file-expand-wildcards (concat default-directory "../../" pkgname "_" oldversion "_*.changes"))))
+    (setq changes-file-2
+	  (car (file-expand-wildcards (concat default-directory "../../" pkgname "_" newversion "_*.changes"))))
+    (princ pkgname)
+    (princ oldversion)
+    (princ changes-file-1)
+    (princ changes-file-2)
+    (switch-to-buffer debdiff-buffer)
+    (kill-region (point-min) (point-max))
+    (insert (concat 
+	     "Comparing " 
+	     (file-name-nondirectory changes-file-1) " and " 
+	     (file-name-nondirectory changes-file-2)  "\n"))
     (start-process debdiff-process debdiff-buffer "/usr/bin/debdiff" 
 		   (expand-file-name changes-file-1)
 		   (expand-file-name changes-file-2))))
