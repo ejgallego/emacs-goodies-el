@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.41 2003/10/10 02:40:18 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.42 2003/10/10 02:48:47 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -103,6 +103,7 @@ be documented.
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
 * thinks::                      Insert text in a think bubble.
+* tld::                         TLD (Top Level Domain) lookup tool.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -124,8 +125,6 @@ vi-style line number mode for Emacs
 generate bozotic mail headers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
 cite text with proper filling
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/tld.el
-TLD lookup tool.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/todoo.el
 Major mode for editing TODO files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-buffer.el
@@ -2500,7 +2499,7 @@ Tails FILE specified with argument FILE inside a new buffer.
 Tails COMMAND with arguments ARGS inside a new buffer.
 @end table
 
-@node thinks,  , tail, Top
+@node thinks, tld, tail, Top
 @chapter thinks - Insert text in a think bubble.
 
 @noindent Author Dave Pearson <davep@@davep.org>
@@ -2569,3 +2568,19 @@ By default all of the thinking functions will fill (word wrap) the text
 taking into account the value of @code{fill-column} minus the space required
 for the bubble. Prefix a call to any of the functions with @key{C-u} to turn
 off this behaviour.
+
+@node tld,  , thinks, Top
+@chapter tld - TLD (Top Level Domain) lookup tool.
+
+@noindent Author: Dave Pearson <davep@@davep.org>
+
+tld.el provides a command for looking up TLDs (Top Level Domain),
+either by searching for a specific TLD or by searching country
+names.
+
+@noindent One command is provided:
+
+@table @samp
+@item tld
+Search the TLD list.
+@end table
