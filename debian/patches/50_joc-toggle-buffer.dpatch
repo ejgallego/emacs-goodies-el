@@ -73,7 +73,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 @@ -162,7 +167,7 @@
  ;;; **************************************************************************
  (defconst joc-toggle-buffer-version
-   "$Revision: 1.2 $"
+   "$Revision: 1.3 $"
 -  "Version number for toggle-buffer package.")
 +  "Version number for `joc-toggle-buffer' package.")
  
