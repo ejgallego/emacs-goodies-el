@@ -11,7 +11,7 @@ emacs-goodies-el (24.6-1) UNRELEASED; urgency=low
     - apt-utils.el: new upstream version from Matt, adds "m" key and menu
       entry to read man page.  Addresses bug report "apt-utils.el: not
       friendly" fromDan Jacobson (Closes: #249061).
-  * Bug fix: "debian-el: debian-bug-wnpp: support RFH tag", (Closes: #262985).
+    - debian-bug.el: debian-bug-wnpp now supports RFH tag (Closes: #262985).
 
  -- Peter S Galbraith <psg@debian.org>  Tue,  3 Aug 2004 15:51:36 -0400
 
