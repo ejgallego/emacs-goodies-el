@@ -19,8 +19,9 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - shell-command.el, enables tab-completion for shell-command.
       Thanks to Ole Laursen for suggesting it abd to its author TSUCHIYA
       Masatoshi for accepting suggestions for changes (Closes: #219766).
-     Thanks to Marcus Crafter for suggesting files below (Closes: #161159):
     - browse-huge-tar.el, browse tar files without reading them memory.
+      Thanks to Marcus Crafter for suggesting it (Closes: #161159):
+     Thanks to John Wiegley for suggesting files below (Closes: #137910):
     - edit-env.el, view and edit environment variables.
     - dedicated.el, dedicate a window to a single buffer.
     - rfcview.el, view IETF RFCs with readability-improved formatting.
