@@ -42,7 +42,7 @@
   :load 'dict
 ;;:require 'dict
   :group 'external
-  :group 'emacs-goodies-extra-el)
+  :group 'emacs-goodies-el)
 
 ;; egocentric
 (defgroup egocentric nil
@@ -179,7 +179,7 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :link '(custom-manual "(emacs-goodies-el)newsticker")
   :load 'newsticker
 ;;:require 'newsticker
-  :group 'emacs-goodies-extra-el)
+  :group 'emacs-goodies-el)
 
 ;; perldoc
 (defgroup perldoc nil
@@ -188,7 +188,7 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :link '(custom-manual "(emacs-goodies-el)perldoc")
   :load 'perldoc
 ;;:require 'perldoc
-  :group 'emacs-goodies-extra-el)
+  :group 'emacs-goodies-el)
 
 ;; table
 (defgroup table nil
