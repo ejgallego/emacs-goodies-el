@@ -17,6 +17,8 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
       (Closes: #216233).
     - 50_projects: Make projects.el less intrusive by default.  Rename
       commands to have `project-' prefix.
+    Info manual:
+    - documented projects.el.
   * devscripts-el: (Prepared by Junichi Uekawa)
     - implement 'debdiff'
     - devscripts-el.README.Debian: update to reflect latest changes.
