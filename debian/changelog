@@ -1,4 +1,4 @@
-emacs-goodies-el (24.7-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.7-1) unstable; urgency=low
 
   * debian-el:
     - apt-utils.el: new upstream version from Matt.
@@ -8,7 +8,7 @@ emacs-goodies-el (24.7-1) UNRELEASED; urgency=low
   * emacs-goodies-el:
     - newsticker.el: New upstream release (1.6).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 11 Nov 2004 13:56:39 -0500
+ -- Peter S Galbraith <psg@debian.org>  Fri, 12 Nov 2004 15:41:48 -0500
 
 emacs-goodies-el (24.6-2) unstable; urgency=low
 
