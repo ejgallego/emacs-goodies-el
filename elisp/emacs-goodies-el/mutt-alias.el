@@ -1,6 +1,6 @@
 ;;; mutt-alias.el --- Lookup/insert mutt mail aliases.
-;; Copyright 1999,2000 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.1 $
+;; Copyright 1999,2000,2003 by Dave Pearson <davep@davep.org>
+;; $Revision: 1.2 $
 
 ;; mutt-alias is free software distributed under the terms of the GNU
 ;; General Public Licence, version 2. For details see the file COPYING.
@@ -36,7 +36,7 @@
   :group  'mail
   :prefix "mutt-alias-")
 
-(defcustom mutt-alias-file-list '("~/.mutt_mail_aliases")
+(defcustom mutt-alias-file-list '("~/.mutt/aliases")
   "*List of files that contain your mutt aliases."
   :type  '(repeat (file :must-exist t))
   :group 'mutt-alias)
@@ -57,9 +57,10 @@
 (defun mutt-alias-load-aliases ()
   "Load aliases from files defined in `mutt-alias-file-list'.
 
-The resulting list is an assoc list where the car is a string representation
-of the alias and the cdr is the expansion of the alias. Note that no attempt
-is made to handle aliases-in-expansions or continued lines."
+The resulting list is an `assoc' list where the `car' is a string
+representation of the alias and the `cdr' is the expansion of the alias.
+Note that no attempt is made to handle aliases-in-expansions or continued
+lines."
   (unless (and mutt-alias-aliases mutt-alias-cache)
     (with-temp-buffer
       (loop for file in mutt-alias-file-list do (insert-file-contents file))
@@ -70,8 +71,10 @@ is made to handle aliases-in-expansions or continued lines."
   mutt-alias-aliases)
 
 (defun mutt-alias-grab-alias ()
-  "Convert an alias line into a cons where the car is the alias and the cdr
-is the expansion. Note that no attempt is made to handle continued lines."
+  "Convert an alias line into a cons.
+
+The resulting `cons' has a `car' that is the alias and the `cdr' is the
+expansion. Note that no attempt is made to handle continued lines."
   (let ((old-point (point))
         (end-point)
         (alias)
@@ -95,10 +98,12 @@ is the expansion. Note that no attempt is made to handle continued lines."
 (put 'mutt-alias-interactive 'lisp-indent-function 3)
 
 (defmacro mutt-alias-interactive (name alias expansion doc &rest body)
-  "Generate a function that asks for an alias (placed into variable named by
-ALIAS) and gets the expansion (placed into variable named by EXPANSION).  If
-there is an expansion BODY will be evaluated otherwise an error is
-reported. The function will be given a doc string of DOC."
+  "Generate a function that asks for an alias.
+
+The alias is placed into variable named by ALIAS and places it into the
+variable named by EXPANSION. If there is an expansion BODY will be evaluated
+otherwise an error is reported. The function will be given a doc string of
+DOC."
   `(defun ,name (,alias) ,doc
      (interactive (list (completing-read "Alias: " (mutt-alias-load-aliases))))
      (let ((,expansion (mutt-alias-expand ,alias)))

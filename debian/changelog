@@ -1,4 +1,4 @@
-emacs-goodies-el (22.0-1) unstable; urgency=low
+sshemacs-goodies-el (22.0-1) unstable; urgency=low
 
   * Remove package `emacs-goodies-extra-el' and merge its files into
     `emacs-goodies-el'.  
@@ -15,6 +15,8 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     documentation was added to the emacs-goodies-el Info.
   * emacs-goodies-el: dict.el new upstream version, merges in Debian patch.
   * emacs-goodies-el: keywiz.el new upstream version 1.4.
+  * emacs-goodies-el: mutt-alis.el new upstream version 1.4. Almost
+    checkdoc clean.
 
  -- Peter S Galbraith <psg@debian.org>  Tue, 30 Sep 2003 22:24:47 -0400
 
