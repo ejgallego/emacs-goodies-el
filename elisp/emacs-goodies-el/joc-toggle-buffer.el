@@ -1,5 +1,4 @@
 ;;; @(#) toggle-buffer.el --- flips back and forth between two buffers
-;;; @(#) $Idx: toggle-buffer.el,v 1.1 2001/01/27 03:38:14 joe Exp $
 
 ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
 
@@ -161,7 +160,7 @@ may use Advise if Provided (in which case swbuff must be
 ;;; ***** version related routines
 ;;; **************************************************************************
 (defconst joc-toggle-buffer-version
-  "$Revision: 1.1 $"
+  "$Revision: 1.2 $"
   "Version number for toggle-buffer package.")
 
 ;; ---------------------------------------------------------------------------
