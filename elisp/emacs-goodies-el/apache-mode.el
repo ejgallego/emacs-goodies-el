@@ -1,10 +1,13 @@
 ;;; apache-mode.el --- major mode for editing Apache configuration files
 
+;; Copyright (c) 2004, 2005 Karl Chen <quarl@nospam.quarl.org>
+;; Copyright (c) 1999 Jonathan Marten  <jonathan.marten@uk.sun.com>
+
 ;; Author: Karl Chen <quarl@nospam.quarl.org>
 
 ;; Keywords: languages, faces
 ;; Last edit: 2005-01-06
-;; Version: 2.0 $Id: apache-mode.el,v 1.2 2005/01/06 14:40:09 psg Exp $
+;; Version: 2.0 $Id: apache-mode.el,v 1.3 2005/01/07 00:16:53 psg Exp $
 
 ;; apache-mode.el is free software; you can redistribute it and/or modify it
 ;; under the terms of the GNU General Public License as published by the Free
