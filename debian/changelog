@@ -1,4 +1,4 @@
-emacs-goodies-el (22.0-1) UNRELEASED; urgency=low
+emacs-goodies-el (22.0-1) unstable; urgency=low
 
   * Package `emacs-goodies-extra-el' now a transitional package.  Its
     contents are merged into `emacs-goodies-el'.
@@ -32,6 +32,8 @@ emacs-goodies-el (22.0-1) UNRELEASED; urgency=low
     contributing the fix (Closes: #144963).
   * emacs-goodies-el: perldoc.el rewrite to get Perl function name on the
     fly from the perlfunc.pod file.
+  * debian-bug.el and debian-bts-control.el: Add `sarge-ignore' and
+    `fixed-upstream' tags.
   * Junichi Uekawa
   - devscripts-el: integrate upstream release (Closes: #208974).
     pbuilder-log-view.el
@@ -41,7 +43,7 @@ emacs-goodies-el (22.0-1) UNRELEASED; urgency=low
   - 9_missing_provide.dpatch remove part about devscripts.
   - devscripts-el: Depend on elserv.
 
- -- Peter S Galbraith <psg@debian.org>  Sat,  4 Oct 2003 22:40:05 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon,  6 Oct 2003 20:16:42 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 
