@@ -73,12 +73,8 @@ Description: Miscellaneous add-ons for Emacs
   wdired.el: rename files editing their names in dired buffers;
   xrdb-mode.el: mode for editing X resource database files.
  .
- Other files are available in the emacs-goodies-extra-el package.
- They have not been included in emacs-goodies-el because they have
- extra dependencies.
- .
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
- description of all files.
+ description of all files, or the Info node `emacs-goodies-el' for details.
 
 Package: gnus-bonus-el
 Architecture: all
