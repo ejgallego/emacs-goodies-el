@@ -154,23 +154,24 @@ It's not good for C mode because C's comments are multiline."
   :group 'emacs-goodies-el)
 
 ;; ibuffer
-(defvar ibuffer-enable-done nil
-  "Whether `ibuffer-enable' was activated.
+(when (not (featurep 'xemacs))
+  (defvar ibuffer-enable-done nil
+    "Whether `ibuffer-enable' was activated.
 Stores the value of the prior keybinding in case we need to restore it.")
 
-(defcustom ibuffer-enable emacs-goodies-el-defaults
-  "*Defines \\C-x\\C-b as 'ibuffer, a dired-like buffer manager."
-  :type 'boolean
-  :set (lambda (symbol value)
-         (set-default symbol value)
-         (cond
-          (value
-           (setq ibuffer-enable-done (lookup-key ctl-x-map "\C-b"))
-           (define-key ctl-x-map "\C-b" 'ibuffer))
-          (ibuffer-enable-done
-           (define-key ctl-x-map "\C-b" ibuffer-enable-done))))
-  :load 'ibuffer
-  :group 'emacs-goodies-el)
+  (defcustom ibuffer-enable emacs-goodies-el-defaults
+    "*Defines \\C-x\\C-b as 'ibuffer, a dired-like buffer manager."
+    :type 'boolean
+    :set (lambda (symbol value)
+           (set-default symbol value)
+           (cond
+            (value
+             (setq ibuffer-enable-done (lookup-key ctl-x-map "\C-b"))
+             (define-key ctl-x-map "\C-b" 'ibuffer))
+            (ibuffer-enable-done
+             (define-key ctl-x-map "\C-b" ibuffer-enable-done))))
+    :load 'ibuffer
+    :group 'emacs-goodies-el))
 
 ;; keydef.el
 (autoload 'keydef "keydef"
@@ -219,14 +220,15 @@ this function to `after-init-hook'."
   nil)
 
 ;; todoo.el
-(autoload 'todoo "todoo"
-  "TODO Mode."
-  t)
-(autoload 'todoo-mode "todoo"
-  "TODO Mode"
-  t)
-(add-to-list 'auto-mode-alist '("TODO$" . todoo-mode))
-
+(when (not (featurep 'xemacs))
+  (autoload 'todoo "todoo"
+    "TODO Mode."
+    t)
+  (autoload 'todoo-mode "todoo"
+    "TODO Mode"
+    t)
+  (add-to-list 'auto-mode-alist '("TODO$" . todoo-mode)))
+  
 ;; toggle-option.el
 (autoload 'toggle-option "toggle-option"
   "Easily toggle frequently toggled options."

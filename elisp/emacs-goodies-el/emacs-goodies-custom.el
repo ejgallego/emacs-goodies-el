@@ -187,18 +187,19 @@
   :group 'emacs-goodies-el)
 
 ;; ibuffer
-(defgroup ibuffer nil
-  "An advanced replacement for `buffer-menu'.
+(when (not (featurep 'xemacs))
+  (defgroup ibuffer nil
+    "An advanced replacement for `buffer-menu'.
 
 Ibuffer allows you to operate on buffers in a manner much like Dired.
 Operations include sorting, marking by regular expression, and
 selectable views (limits)."
-  :link '(url-link "http://web.verbum.org/~walters")
-  :group 'convenience
-  :link '(custom-manual "(emacs-goodies-el)ibuffer")
-  :load 'ibuffer
-;;:require 'ibuffer
-  :group 'emacs-goodies-el)
+    :link '(url-link "http://web.verbum.org/~walters")
+    :group 'convenience
+    :link '(custom-manual "(emacs-goodies-el)ibuffer")
+    :load 'ibuffer
+  ;;:require 'ibuffer
+    :group 'emacs-goodies-el))
 
 ;; initsplit
 (defgroup initsplit nil
@@ -414,13 +415,14 @@ See `table-insert' for examples about how to use."
   :group 'emacs-goodies-el)
 
 ;; todoo
-(defgroup todoo nil
-  "Maintain a list of todo items."
-  :group 'calendar
-  :link '(custom-manual "(emacs-goodies-el)todoo")
-  :load 'todoo
-;;:require 'todoo
-  :group 'emacs-goodies-el)
+(when (not (featurep 'xemacs))
+  (defgroup todoo nil
+    "Maintain a list of todo items."
+    :group 'calendar
+    :link '(custom-manual "(emacs-goodies-el)todoo")
+    :load 'todoo
+  ;;:require 'todoo
+    :group 'emacs-goodies-el))
 
 ;; toggle-option
 (defgroup toggle-option nil

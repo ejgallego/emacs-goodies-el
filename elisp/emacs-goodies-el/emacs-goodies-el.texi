@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.56 2004/03/27 20:26:43 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.57 2004/08/04 00:23:41 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -1958,6 +1958,8 @@ User quotes: "You sir, are a sick, sick, _sick_ person. :)"
 @end verbatim
 @node ibuffer, joc-toggle-buffer, htmlize, Top
 @chapter ibuffer - operate on buffers like dired
+
+@noindent ibuffer does not work under XEmacs.
 
 ibuffer.el is an advanced replacement for the `buffer-menu' which
 is normally distributed with Emacs.  Its interface is intended to
@@ -3968,6 +3970,8 @@ Search the TLD list.
 @chapter todoo - Major mode for editing TODO files
 
 @noindent Author: Daniel Lundin <daniel@@codefactory.se>
+
+@noindent todoo does not work under XEmacs.
 
 todoo.el is a mode for editing @emph{TODO} files in an outline-mode fashion. 
 It has similarities to Oliver Seidel's todo-mode.el , but todoo.el
