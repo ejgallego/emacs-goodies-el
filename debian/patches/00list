@@ -6,7 +6,6 @@
 8_whitespace_rename
 9_whitespace_enable_custom
 9_missing_provide
-50_apache-mode
 50_browse-kill-ring_bug224751
 50_browse-kill-ring_bug225082
 50_ctypes

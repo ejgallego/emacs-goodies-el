@@ -44,13 +44,13 @@ Author/copyright info for all.el:
 
 
 Author/copyright info for apache-mode.el
+from http://www.emacswiki.org/elisp/apache-mode.el
 ,----
 | ;;; apache-mode.el --- major mode for editing Apache configuration files
 |
-| ;; Author:    Jonathan Marten  <jonathan.marten@uk.sun.com> or
-| ;; Author:    Kevin A. Burton  <burton@openprivacy.org>
+| ;; Author:    Jonathan Marten  <jonathan.marten@uk.sun.com>
+| ;; Author:    Karl Chen <quarl@nospam.quarl.org>
 | [...]
-| ;; This file is an add-on for XEmacs or GNU Emacs (not tested with the latter).
 | ;;
 | ;; It is free software; you can redistribute it and/or modify it
 | ;; under the terms of the GNU General Public License as published by
@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.8 $
+| ;; $Revision: 1.9 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -859,7 +859,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.8 $
+| ;; $Revision: 1.9 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

@@ -1,212 +1,604 @@
 ;;; apache-mode.el --- major mode for editing Apache configuration files
 
-;; Author:    Jonathan Marten  <jonathan.marten@uk.sun.com> or
-;; Author:    Kevin A. Burton  <burton@openprivacy.org>
-;; Keywords:    languages, faces
-;; Last edit: 
-;; Version: 1.0.1 
+;; Author: Karl Chen <quarl@nospam.quarl.org>
 
-;; This file is an add-on for XEmacs or GNU Emacs (not tested with the latter).
+;; Keywords: languages, faces
+;; Last edit: 2005-01-06
+;; Version: 2.0 $Id: apache-mode.el,v 1.2 2005/01/06 14:40:09 psg Exp $
+
+;; apache-mode.el is free software; you can redistribute it and/or modify it
+;; under the terms of the GNU General Public License as published by the Free
+;; Software Foundation; either version 2, or (at your option) any later
+;; version.
 ;;
-;; It is free software; you can redistribute it and/or modify it
-;; under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 2, or (at your option)
-;; any later version.
+;; It is distributed in the hope that it will be useful, but WITHOUT ANY
+;; WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+;; FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+;; details.
 ;;
-;; It is distributed in the hope that it will be useful, but
-;; WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-;; General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with your copy of Emacs; see the file COPYING.  If not, write
-;; to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;; Boston, MA 02111-1307, USA.
+;; You should have received a copy of the GNU General Public License along
+;; with your copy of Emacs; see the file COPYING.  If not, write to the Free
+;; Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+;; 02111-1307, USA.
 
 ;;; Commentary:
 ;;
-;; There isn't really much to say.  The list of keywords was derived from
-;; the documentation for Apache 1.3; there may be some errors or omissions.
-;;
-;; There are currently no local keybindings defined, but the hooks are
-;; there in the event that anyone gets around to adding any.
-;;
-;; To enable automatic selection of this mode when appropriate files are
-;; visited, add the following to your favourite site or personal Emacs
-;; configuration file:
-;;
-;;   (autoload 'apache-mode "apache-mode" "autoloaded" t)
-;;   (add-to-list 'auto-mode-alist '("\\.htaccess$"   . apache-mode))
-;;   (add-to-list 'auto-mode-alist '("httpd\\.conf$"  . apache-mode))
-;;   (add-to-list 'auto-mode-alist '("srm\\.conf$"    . apache-mode))
-;;   (add-to-list 'auto-mode-alist '("access\\.conf$" . apache-mode))
+;;   (autoload 'apache-mode "apache-mode" nil t)
+;;   (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+;;   (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+;;   (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+;;   (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+;;   (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 ;;
 
 ;;; History:
 
-;; Fri Mar  2 17:53:40 2001 (burton@relativity.yi.org): added NameVirtualHost
-;; keyword.  
+;; 1999-10 Jonathan Marten <jonathan.marten@uk.sun.com>
+;;   initial version
 
-;; Thu Mar  1 20:16:02 2001 (burton@relativity.yi.org): added Order and Allow
-;; keywords. 
-
-;; Thu Mar  1 20:07:37 2001 (burton@relativity.yi.org): tested under GNU Emacs
-;; 20.x and fixed font-lock support.
-
-;; Thu Mar  1 20:04:50 2001 (burton@relativity.yi.org): added AddCharset
-
-;; Version 1.0, October 1999    First public release
+;; 2004-09-12 Karl Chen <quarl@nospam.quarl.org>
+;;   rewrote pretty much everything using define-derived-mode; added support
+;;   for Apache 2.x; fixed highlighting in GNU Emacs; created indentation
+;;   function
 
 ;;; Code:
 
 ;; Requires
 (require 'regexp-opt)
 
+(defvar apache-indent-level 4
+  "*Number of spaces to indent per level")
 
-;; Variables
-(defvar apache-mode-map nil
-  "Keymap used in Apache config mode buffers")
+(defvar apache-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?_   "_"    table)
+    (modify-syntax-entry ?-   "_"    table)
+    (modify-syntax-entry ?(   "()"   table)
+    (modify-syntax-entry ?)   ")("   table)
+    (modify-syntax-entry ?<   "(>"   table)
+    (modify-syntax-entry ?>   ")<"   table)
+    (modify-syntax-entry ?\"   "\""  table)
+    (modify-syntax-entry ?,   "."    table)
+    table))
 
-(defvar apache-mode-syntax-table nil
-  "Apache config mode syntax table")
+;;;###autoload
+(define-derived-mode apache-mode fundamental-mode "Apache"
+  "Major mode for editing Apache configuration files."
 
-(defvar apache-mode-hook nil
-  "*List of hook functions run by `apache-mode' (see `run-hooks')")
+  (set (make-local-variable 'comment-start) "# ")
+  (set (make-local-variable 'comment-start-skip) "#\\W*")
+  (set (make-local-variable 'comment-column) 48)
 
+  (set (make-local-variable 'indent-line-function) 'apache-indent-line)
+
+  (set (make-local-variable 'font-lock-defaults)
+       '(apache-font-lock-keywords nil t
+                                   ((?_ . "w")
+                                    (?- . "w"))
+                                   beginning-of-line)))
 
 ;; Font lock
 (defconst apache-font-lock-keywords
   (purecopy
    (list
-    (list "^\\s-*#.*$" 0 'font-lock-comment-face t)
-    
-    (list (concat                                       ; sections
-           "^\\s-*</?\\("
-           (regexp-opt '("Directory" "Files" "IfModule"
-                         "Limit" "Location" "VirtualHost"))
-           "\\)\\(>\\|\\s-\\)")
-          1 'font-lock-function-name-face)
-    
-    (list (concat                                       ; keywords
-           "^\\s-*\\("
-           (regexp-opt '("AccessConfig" "AccessFileName" "Action"
-                         "AddAlt" "AddAltByEncoding" "AddAltByType"
-                         "AddCharset" "AddDescription" "AddEncoding"
-                         "AddHandler" "AddIcon" "AddIconByEncoding"
-                         "AddIconByType" "AddLanguage" "AddModule" "AddType"
-                         "AgentLog"
-                         "Alias" "allow" "Allow" "AllowOverride" "Anonymous"
-                         "Anonymous_Authoritative" "Anonymous_LogEmail"
-                         "Anonymous_MustGiveEmail" "Anonymous_NoUserID"
-                         "Anonymous_VerifyEmail" "AuthAuthoritative"
-                         "AuthDBAuthoritative" "AuthDBGroupFile"
-                         "AuthDBMAuthoritative" "AuthDBMGroupFile"
-                         "AuthDBMGroupFile" "AuthDBMUserFile"
-                         "AuthDBUserFile" "AuthDigestFile" "AuthGroupFile"
-                         "AuthName" "AuthType" "AuthUserFile" "BindAddress"
-                         "BrowserMatch" "BrowserMatchNoCase" "CacheDefaultExpire"
-                         "CacheDirLength" "CacheDirLevels" "CacheForceCompletion"
-                         "CacheGcInterval" "CacheLastModifiedFactor"
-                         "CacheMaxExpire" "CacheNegotiatedDocs" "CacheRoot"
-                         "CacheSize" "CheckSpelling" "ClearModuleList"
-                         "CookieExpires" "CookieLog" "CookieTracking" "CustomLog"
-                         "DefaultIcon" "DefaultType" "deny" "DirectoryIndex"
-                         "DocumentRoot" "ErrorDocument" "ErrorLog" "Example"
-                         "ExpiresActive" "ExpiresByType" "ExpiresDefault"
-                         "FancyIndexing" "ForceType" "Group" "Header" "HeaderName"
-                         "HostNameLookups" "IdentityCheck" "ImapBase" "ImapDefault"
-                         "ImapMenu" "IndexIgnore" "IndexOptions" "KeepAlive"
-                         "KeepAliveTimeout" "LanguagePriority" "Listen" "LoadFile"
-                         "LoadModule" "LockFile" "LogFormat" "LogLevel" "MaxClients"
-                         "MaxKeepAliveRequests" "MaxRequestsPerChild" "MaxSpareServers"
-                         "MetaDir" "MetaSuffix" "MimeMagicFile"
-                         "MinSpareServers" "NameVirtualHost"
-                         "NoCache" "order" "Order" "Options" "PassEnv" "PidFile" "Port"
-                         "ProxyBlock" "ProxyDomain" "ProxyPass" "ProxyRemote"
-                         "ProxyRequests" "RLimitCPU" "RLimitMEM" "RLimitNPROC"
-                         "ReadmeName" "Redirect" "RedirectPermanent" "RedirectTemp"
-                         "RefererIgnore" "RefererLog" "require" "ResourceConfig"
-                         "RewriteBase" "RewriteCond" "RewriteEngine" "RewriteLog"
-                         "RewriteLogLevel" "RewriteMap" "RewriteOptions"
-                         "RewriteRule" "Satisfy" "ScoreBoardFile" "Script"
-                         "ScriptAlias" "ScriptLog" "ScriptLogBuffer" "ScriptLogLength"
-                         "SendBufferSize" "ServerAdmin" "ServerAlias" "ServerName"
-                         "ServerPath" "ServerRoot" "ServerSignature" "ServerTokens"
-                         "ServerType" "SetEnv" "SetHandler" "StartServers" "TimeOut"
-                         "TransferLog" "TypesConfig" "UnsetEnv" "UseCanonicalName"
-                         "User" "UserDir" "XBitHack"
-                         "DefaultMode" "HTTPLogFile" "HTMLDir" "PrivateDir"
-                         "TopSites" "TopURLs" "LastURLs" "HeadPrefix" "HeadSuffix"
-                         "DocTitle" "DocTrailer" "HideURL" "HideSys"))
-           "\\)\\s-")
-      1 'font-lock-keyword-face)
+    (list "^[ \t]*#.*" 0 'font-lock-comment-face t)
 
-    (list (concat                                       ; values
-       "\\(?:^\\|\\W\\)\\("
-           (regexp-opt '("allow" "deny" "on" "valid-user" "inetd" "standalone"
-                         "off" "user" "group" "any" "env" "mutual-failure" "full"
-                         "email" "force-response-1.0" "downgrade-1.0" "nokeepalive"
-                         "permanent" "temporary" "seeother" "gone" "All" "Options"
-                         "FileInfo" "AuthConfig" "Limit" "from" "None" "Basic"
-                         "Digest" "FancyIndexing" "IconsAreLinks" "ScanHTMLTitles"
-                         "SuppressLastModified" "SuppressSize" "SuppressDescription"
-                         "Minimal" "OS" "Full" "set" "append" "add" "unset" "none"
-                         "formatted" "semi-formatted" "unformatted" "error" "nocontent"
-                         "map" "referer" "URL" "inherit" "double" "GET" "PUT" "POST"
-                         "DELETE" "CONNECT" "OPTIONS" "Options" "Indexes" "Includes"
-                         "ExecCGI" "FollowSymLinks" "MultiViews" "IncludesNOEXEC"
-                         "SymLinksIfOwnerMatch"))
-           "\\)\\W")
-      1 'font-lock-type-face)))
+    (list (concat                       ; sections
+           "^[ \t]*</?"
+           (regexp-opt '(
+
+                         "Directory"
+                         "DirectoryMatch"
+                         "Files"
+                         "FilesMatch"
+                         "IfDefine"
+                         "IfModule"
+                         "Limit"
+                         "LimitExcept"
+                         "Location"
+                         "LocationMatch"
+                         "Proxy"
+                         "ProxyMatch"
+                         "VirtualHost"
+
+                         ) 'words)
+           ".*?>")
+          1 'font-lock-function-name-face)
+
+    (list (concat                       ; directives
+           "^[ \t]*"
+           (regexp-opt '
+            (
+
+             "AcceptMutex"
+             "AcceptPathInfo"
+             "AccessConfig"
+             "AccessFileName"
+             "Action"
+             "AddAlt"
+             "AddAltByEncoding"
+             "AddAltByType"
+             "AddCharset"
+             "AddDefaultCharset"
+             "AddDescription"
+             "AddEncoding"
+             "AddHandler"
+             "AddIcon"
+             "AddIconByEncoding"
+             "AddIconByType"
+             "AddInputFilter"
+             "AddLanguage"
+             "AddModule"
+             "AddModuleInfo"
+             "AddOutputFilter"
+             "AddOutputFilterByType"
+             "AddType"
+             "AgentLog"
+             "Alias"
+             "AliasMatch"
+             "Allow from"
+             "Allow"
+             "AllowCONNECT"
+             "AllowEncodedSlashes"
+             "AllowOverride"
+             "Anonymous"
+             "Anonymous_Authoritative"
+             "Anonymous_LogEmail"
+             "Anonymous_MustGiveEmail"
+             "Anonymous_NoUserID"
+             "Anonymous_VerifyEmail"
+             "AssignUserID"
+             "AuthAuthoritative"
+             "AuthDBAuthoritative"
+             "AuthDBGroupFile"
+             "AuthDBMAuthoritative"
+             "AuthDBMGroupFile"
+             "AuthDBMType"
+             "AuthDBMUserFile"
+             "AuthDBUserFile"
+             "AuthDigestAlgorithm"
+             "AuthDigestDomain"
+             "AuthDigestFile"
+             "AuthDigestGroupFile"
+             "AuthDigestNcCheck"
+             "AuthDigestNonceFormat"
+             "AuthDigestNonceLifetime"
+             "AuthDigestQop"
+             "AuthDigestShmemSize"
+             "AuthGroupFile"
+             "AuthLDAPAuthoritative"
+             "AuthLDAPBindDN"
+             "AuthLDAPBindPassword"
+             "AuthLDAPCharsetConfig"
+             "AuthLDAPCompareDNOnServer"
+             "AuthLDAPDereferenceAliases"
+             "AuthLDAPEnabled"
+             "AuthLDAPFrontPageHack"
+             "AuthLDAPGroupAttribute"
+             "AuthLDAPGroupAttributeIsDN"
+             "AuthLDAPRemoteUserIsDN"
+             "AuthLDAPUrl"
+             "AuthName"
+             "AuthType"
+             "AuthUserFile"
+             "BS2000Account"
+             "BindAddress"
+             "BrowserMatch"
+             "BrowserMatchNoCase"
+             "CGIMapExtension"
+             "CacheDefaultExpire"
+             "CacheDirLength"
+             "CacheDirLevels"
+             "CacheDisable"
+             "CacheEnable"
+             "CacheExpiryCheck"
+             "CacheFile"
+             "CacheForceCompletion"
+             "CacheGcClean"
+             "CacheGcDaily"
+             "CacheGcInterval"
+             "CacheGcMemUsage"
+             "CacheGcUnused"
+             "CacheIgnoreCacheControl"
+             "CacheIgnoreNoLastMod"
+             "CacheLastModifiedFactor"
+             "CacheMaxExpire"
+             "CacheMaxFileSize"
+             "CacheMinFileSize"
+             "CacheNegotiatedDocs"
+             "CacheRoot"
+             "CacheSize"
+             "CacheTimeMargin"
+             "CharsetDefault"
+             "CharsetOptions"
+             "CharsetSourceEnc"
+             "CheckSpelling"
+             "ChildPerUserID"
+             "ClearModuleList"
+             "ContentDigest"
+             "CookieDomain"
+             "CookieExpires"
+             "CookieLog"
+             "CookieName"
+             "CookieStyle"
+             "CookieTracking"
+             "CoreDumpDirectory"
+             "CustomLog"
+             "Dav"
+             "DavDepthInfinity"
+             "DavLockDB"
+             "DavMinTimeout"
+             "DefaultIcon"
+             "DefaultLanguage"
+             "DefaultMode"
+             "DefaultType"
+             "DeflateBufferSize"
+             "DeflateCompressionLevel"
+             "DeflateFilterNote"
+             "DeflateMemLevel"
+             "DeflateWindowSize"
+             "Deny"
+             "DirectoryIndex"
+             "DirectorySlash"
+             "DocTitle"
+             "DocTrailer"
+             "DocumentRoot"
+             "EnableExceptionHook"
+             "EnableMMAP"
+             "EnableSendfile"
+             "ErrorDocument"
+             "ErrorLog"
+             "Example"
+             "ExpiresActive"
+             "ExpiresByType"
+             "ExpiresDefault"
+             "ExtFilterDefine"
+             "ExtFilterOptions"
+             "ExtendedStatus"
+             "FancyIndexing"
+             "FileETag"
+             "ForceLanguagePriority"
+             "ForceType"
+             "ForensicLog"
+             "Group"
+             "HTMLDir"
+             "HTTPLogFile"
+             "HeadPrefix"
+             "HeadSuffix"
+             "Header"
+             "HeaderName"
+             "HideSys"
+             "HideURL"
+             "HostNameLookups"
+             "HostnameLookups"
+             "ISAPIAppendLogToErrors"
+             "ISAPIAppendLogToQuery"
+             "ISAPICacheFile"
+             "ISAPIFakeAsync"
+             "ISAPILogNotSupported"
+             "ISAPIReadAheadBuffer"
+             "IdentityCheck"
+             "ImapBase"
+             "ImapDefault"
+             "ImapMenu"
+             "Include"
+             "IndexIgnore"
+             "IndexOptions"
+             "IndexOrderDefault"
+             "KeepAlive"
+             "KeepAliveTimeout"
+             "LDAPCacheEntries"
+             "LDAPCacheTTL"
+             "LDAPOpCacheEntries"
+             "LDAPOpCacheTTL"
+             "LDAPSharedCacheFile"
+             "LDAPSharedCacheSize"
+             "LDAPTrustedCA"
+             "LDAPTrustedCAType"
+             "LanguagePriority"
+             "LastURLs"
+             "LimitInternalRecursion"
+             "LimitRequestBody"
+             "LimitRequestFields"
+             "LimitRequestFieldsize"
+             "LimitRequestLine"
+             "LimitXMLRequestBody"
+             "Listen"
+             "ListenBacklog"
+             "LoadFile"
+             "LoadModule"
+             "LockFile"
+             "LogFormat"
+             "LogLevel"
+             "MCacheMaxObjectCount"
+             "MCacheMaxObjectSize"
+             "MCacheMaxStreamingBuffer"
+             "MCacheMinObjectSize"
+             "MCacheRemovalAlgorithm"
+             "MCacheSize"
+             "MMapFile"
+             "MaxClients"
+             "MaxKeepAliveRequests"
+             "MaxMemFree"
+             "MaxRequestsPerChild"
+             "MaxRequestsPerThread"
+             "MaxSpareServers"
+             "MaxSpareThreads"
+             "MaxThreads"
+             "MaxThreadsPerChild"
+             "MetaDir"
+             "MetaFiles"
+             "MetaSuffix"
+             "MimeMagicFile"
+             "MinSpareServers"
+             "MinSpareThreads"
+             "ModMimeUsePathInfo"
+             "MultiviewsMatch"
+             "NWSSLTrustedCerts"
+             "NWSSLUpgradeable"
+             "NameVirtualHost"
+             "NoCache"
+             "NoProxy"
+             "NumServers"
+             "Options"
+             "Order"
+             "PassEnv"
+             "PidFile"
+             "Port"
+             "PrivateDir"
+             "ProtocolEcho"
+             "ProxyBadHeader"
+             "ProxyBlock"
+             "ProxyDomain"
+             "ProxyErrorOverride"
+             "ProxyIOBufferSize"
+             "ProxyMaxForwards"
+             "ProxyPass"
+             "ProxyPassReverse"
+             "ProxyPreserveHost"
+             "ProxyReceiveBufferSize"
+             "ProxyRemote"
+             "ProxyRemoteMatch"
+             "ProxyRequests"
+             "ProxyTimeout"
+             "ProxyVia"
+             "RLimitCPU"
+             "RLimitMEM"
+             "RLimitNPROC"
+             "ReadmeName"
+             "Redirect"
+             "RedirectMatch"
+             "RedirectPermanent"
+             "RedirectTemp"
+             "RefererIgnore"
+             "RefererLog"
+             "RemoveCharset"
+             "RemoveEncoding"
+             "RemoveHandler"
+             "RemoveInputFilter"
+             "RemoveLanguage"
+             "RemoveOutputFilter"
+             "RemoveType"
+             "RequestHeader"
+             "Require"
+             "ResourceConfig"
+             "RewriteBase"
+             "RewriteCond"
+             "RewriteEngine"
+             "RewriteLock"
+             "RewriteLog"
+             "RewriteLogLevel"
+             "RewriteMap"
+             "RewriteOptions"
+             "RewriteRule"
+             "SSIEndTag"
+             "SSIErrorMsg"
+             "SSIStartTag"
+             "SSITimeFormat"
+             "SSIUndefinedEcho"
+             "SSLCACertificateFile"
+             "SSLCACertificatePath"
+             "SSLCARevocationFile"
+             "SSLCARevocationPath"
+             "SSLCertificateChainFile"
+             "SSLCertificateFile"
+             "SSLCertificateKeyFile"
+             "SSLCipherSuite"
+             "SSLEngine"
+             "SSLMutex"
+             "SSLOptions"
+             "SSLPassPhraseDialog"
+             "SSLProtocol"
+             "SSLProxyCACertificateFile"
+             "SSLProxyCACertificatePath"
+             "SSLProxyCARevocationFile"
+             "SSLProxyCARevocationPath"
+             "SSLProxyCipherSuite"
+             "SSLProxyEngine"
+             "SSLProxyMachineCertificateFile"
+             "SSLProxyMachineCertificatePath"
+             "SSLProxyProtocol"
+             "SSLProxyVerify"
+             "SSLProxyVerifyDepth"
+             "SSLRandomSeed"
+             "SSLRequire"
+             "SSLRequireSSL"
+             "SSLSessionCache"
+             "SSLSessionCacheTimeout"
+             "SSLVerifyClient"
+             "SSLVerifyDepth"
+             "Satisfy"
+             "ScoreBoardFile"
+             "Script"
+             "ScriptAlias"
+             "ScriptAliasMatch"
+             "ScriptInterpreterSource"
+             "ScriptLog"
+             "ScriptLogBuffer"
+             "ScriptLogLength"
+             "ScriptSock"
+             "SecureListen"
+             "SendBufferSize"
+             "ServerAdmin"
+             "ServerAlias"
+             "ServerLimit"
+             "ServerName"
+             "ServerPath"
+             "ServerRoot"
+             "ServerSignature"
+             "ServerTokens"
+             "ServerType"
+             "SetEnv"
+             "SetEnvIf"
+             "SetEnvIfNoCase"
+             "SetHandler"
+             "SetInputFilter"
+             "SetOutputFilter"
+             "StartServers"
+             "StartThreads"
+             "SuexecUserGroup"
+             "ThreadLimit"
+             "ThreadStackSize"
+             "ThreadsPerChild"
+             "TimeOut"
+             "TopSites"
+             "TopURLs"
+             "TransferLog"
+             "TypesConfig"
+             "UnsetEnv"
+             "UseCanonicalName"
+             "User"
+             "UserDir"
+             "VirtualDocumentRoot"
+             "VirtualDocumentRootIP"
+             "VirtualScriptAlias"
+             "VirtualScriptAliasIP"
+             "Win32DisableAcceptEx"
+             "XBitHack"
+             "deny"
+             "order"
+             "require"
+
+             )
+            'words))
+          1 'font-lock-keyword-face)
+
+    (list                               ; values
+     (regexp-opt '
+      (
+       "All"
+       "AuthConfig"
+       "Basic"
+       "CONNECT"
+       "DELETE"
+       "Digest"
+       "ExecCGI"
+       "FancyIndexing"
+       "FileInfo"
+       "FollowSymLinks"
+       "Full"
+       "GET"
+       "IconsAreLinks"
+       "Includes"
+       "IncludesNOEXEC"
+       "Indexes"
+       "Limit"
+       "Minimal"
+       "MultiViews"
+       "None"
+       "OPTIONS"
+       "OS"
+       "Options"
+       "Options"
+       "POST"
+       "PUT"
+       "ScanHTMLTitles"
+       "SuppressDescription"
+       "SuppressLastModified"
+       "SuppressSize"
+       "SymLinksIfOwnerMatch"
+       "URL"
+       "add"
+       "allow"
+       "any"
+       "append"
+       "deny"
+       "double"
+       "downgrade-1.0"
+       "email"
+       "env"
+       "error"
+       "force-response-1.0"
+       "formatted"
+       "from"
+       "full"
+       "gone"
+       "group"
+       "inetd"
+       "inherit"
+       "map"
+       "mutual-failure"
+       "nocontent"
+       "nokeepalive"
+       "none"
+       "off"
+       "on"
+       "permanent"
+       "referer"
+       "seeother"
+       "semi-formatted"
+       "set"
+       "standalone"
+       "temporary"
+       "unformatted"
+       "unset"
+       "user"
+       "valid-user"
+       ) 'words)
+     1 'font-lock-type-face)))
   "Expressions to highlight in Apache config buffers.")
 
-(put 'apache-mode 'font-lock-defaults '(apache-font-lock-keywords nil t
-                                                                  ((?_ . "w")
-                                                                   (?- . "w"))))
-;; Syntax table
-(if apache-mode-syntax-table
-    nil
-  (setq apache-mode-syntax-table (copy-syntax-table nil))
-  (modify-syntax-entry ?_   "_"     apache-mode-syntax-table)
-  (modify-syntax-entry ?-   "_"     apache-mode-syntax-table)
-  (modify-syntax-entry ?\(  "(\)"   apache-mode-syntax-table)
-  (modify-syntax-entry ?\)  ")\("   apache-mode-syntax-table)
-  (modify-syntax-entry ?\<  "(\>"   apache-mode-syntax-table)
-  (modify-syntax-entry ?\>  ")\<"   apache-mode-syntax-table)
-  (modify-syntax-entry ?\"   "\""   apache-mode-syntax-table))
+(defun apache-indent-line ()
+   "Indent current line of Apache code."
+   (interactive)
+   (let ((savep (> (current-column) (current-indentation)))
+	 (indent (max (apache-calculate-indentation) 0)))
+     (if savep
+	 (save-excursion (indent-line-to indent))
+       (indent-line-to indent))))
 
 
-;;;###autoload
-(defun apache-mode ()
-  "Major mode for editing Apache configuration files.
+(defun apache-previous-indentation ()
+  ;; Return the previous (non-empty/comment) indentation.  Doesn't save
+  ;; position.
+  (let (indent)
+    (while (and (null indent)
+                (zerop (forward-line -1)))
+      (unless (looking-at "[ \t]*\\(#\\|$\\)")
+        (setq indent (current-indentation))))
+    (or indent 0)))
 
-\\{apache-mode-map}
+(defun apache-calculate-indentation ()
+  ;; Return the amount the current line should be indented.
+  (save-excursion
+    (forward-line 0)
+    (if (bobp)
+        0
+      (let ((ends-section-p (looking-at "[ \t]*</"))
+            (indent (apache-previous-indentation)) ; moves point!
+            (previous-starts-section-p (looking-at "[ \t]*<[^/]")))
+        (if ends-section-p
+            (setq indent (- indent apache-indent-level)))
+        (if previous-starts-section-p
+            (setq indent (+ indent apache-indent-level)))
+        indent))))
 
-\\[apache-mode] runs the hook `apache-mode-hook'."
-  (interactive)
-  (kill-all-local-variables)
-  (use-local-map apache-mode-map)
-  (set-syntax-table apache-mode-syntax-table)
+;;;###autoload(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
-  (make-local-variable 'comment-start)
-  (setq comment-start "# ")
-  (make-local-variable 'comment-start-skip)
-  (setq comment-start-skip "#\\W*")
-  (make-local-variable 'comment-column)
-  (setq comment-column 48)
-
-  ;;font-lock stuff (may not be initially necessary for XEmacs)
-  (font-lock-mode 1)
-  (setq font-lock-keywords apache-font-lock-keywords)
-  (font-lock-fontify-buffer)
-  
-  (setq mode-name "Apache")
-  (setq major-mode 'apache-mode)
-
-  (run-hooks 'apache-mode-hook))
-
-
-;; Provides
 (provide 'apache-mode)
 
 ;;; apache-mode.el ends here
