@@ -3,7 +3,7 @@
 ;; Copyright (C) 1996 Ian Jackson
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
-;; Copyright (C) 2000, 2001, 2002, 2003 Peter S Galbraith
+;; Copyright (C) 2000, 2001, 2002, 2003, 2004 Peter S Galbraith
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -284,6 +284,9 @@
 ;; V1.76 17Dec2003 Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-setdistribution: Use `should-use-dialog-box-p' on XEmacs
 ;;    (Closes: #224187)
+;; V1.77 19Feb2004 Peter S Galbraith <psg@debian.org>
+;;  - Add file NEWS.Debian to auto-mode-alist.  Thanks to Chris Lawrence
+;;    for suggesting it.  (Closes: #233310)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1598,6 +1601,8 @@ Also set keymap."
 ;;; Setup auto-mode-alist
 ;; (in case /etc/emacs/site-start.d/50dpkg-dev.el not used)
 
+(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
+(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist
              '("/debian/changelog\\'" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
@@ -1605,6 +1610,8 @@ Also set keymap."
   ;; For debchange
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
+;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
@@ -1613,4 +1620,3 @@ Also set keymap."
 (provide 'debian-changelog-mode)
 
 ;;; debian-changelog-mode.el ends here
-

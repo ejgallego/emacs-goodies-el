@@ -2,12 +2,15 @@ emacs-goodies-el (24.3-1) unstable; urgency=low
 
   * debian-el: 
     - apt-utils.el: Updated to v1.82 (2004/02/17). Bug fix: "debian-el:
-    (args-out-of-range 922 922)", thanks to Johannes Rohr for reporting it
-    (Closes: #232367).  Also adds automatic rebuilding of its APT package
-    list; See `apt-utils-automatic-update'.
+      (args-out-of-range 922 922)", thanks to Johannes Rohr for reporting it
+      (Closes: #232367).  Also adds automatic rebuilding of its APT package
+      list; See `apt-utils-automatic-update'.
   * gnus-bonus-el:
     - Bug fix: No longer depend on emacs20 since it was removed from
-    testing, thanks to Martin Michlmayr for reporting it (Closes: #232760).
+      testing, thanks to Martin Michlmayr for reporting it (Closes: #232760).
+  * dpkg-dev-el:
+    - debian-changelog-mode.el: Add file NEWS.Debian to auto-mode-alist.
+      Thanks to Chris Lawrence for suggesting it (Closes: #233310).
 
  -- Peter S Galbraith <psg@debian.org>  Thu, 19 Feb 2004 21:28:32 -0500
 
