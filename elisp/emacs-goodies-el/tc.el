@@ -1,7 +1,7 @@
-;; trivial-cite -- cite text with proper filling
+;;; trivial-cite -- cite text with proper filling
 ;; 
-;; TrivialCite v0.13.3
-;; This is my attempt at making a sensible citer.  
+;; TrivialCite v0.13.4
+;; This is my attempt at making a sensible citer.
 ;;
 ;; This program is copyright (c) 1998 Lars R. Clausen
 ;;
@@ -27,6 +27,43 @@
 ;; Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 ;; Boston, MA 02111-1307, USA.
 
+;;; Commentary:
+;; 
+;; Trivial-Cite is an Emacs package with the same purpose as Supercite:
+;; Cite text for mail and posting, but with different
+;; objectives.  Trivial-Cite tries hard to do the following correctly:
+;; 
+;;    1. Fill paragraphs of previously cited text correctly, even when
+;;       encountering strange citing marks.
+;;    2. Parse the cited headers to allow attribution in a configurable way.
+;;    3. Allow the user to undo formatting.
+;;    4. Remove the signature as the last undoable action.
+;;    5. Allow the user to cite and fill cited text in other contexts.
+;;    6. Fix odd-looking citemarks to look nice (optional with
+;;       `tc-normalize-cite-marks').
+;; 
+;; Furthermore, it follows the suggestions of Son-of-RFC1036 and cites with
+;; a >, and sensibly so.
+;; 
+;; No, I will not make it quote with name abbreviations like SuperCite does.
+;; That style is annoying and unreadable, goes against the RFC's (or rather,
+;; the sons of them:), and have generally been the most problematic thing to
+;; deal with.  Trivial-cite can handle them, but is better at 'normal'
+;; citation marking.
+;;
+;; To use, add the following to your .emacs:
+;;
+;; (autoload 'trivial-cite "tc" t t)
+;;
+;; ;; For Gnus:
+;;
+;; (setq message-cite-function 'trivial-cite)
+;;
+;; ;; For MH-E
+;; (add-hook 'mail-citation-hook 'trivial-cite)
+;; (setq mh-yank-from-start-of-msg t)
+;; ;; -> then use `C-cC-y' in your draft.
+
 ;; TODO: Good way to undo fillings without mouse.
 ;;       More funny functions:)
 ;;       Add space after cite-marks if old citing doesn't have it?
@@ -37,23 +74,11 @@
 ;;         SuperCite, better comments, how is the filling different
 ;;         from standard Emacs filling.
 
-;; No, I will not make it quote with name abbreviations like SuperCite does.
-;; That style is annoying and unreadable, goes against the RFC's (or rather,
-;; the sons of them:), and have generally been the most problematic thing to
-;; deal with.  Trivial-cite can handle them, but is better at 'normal'
-;; citation marking.
-
 ;; Reminder:
 ;; When mail-citation-hook is run, the cite is in current-buffer, (point) at
 ;; start and (mark t) at end.
 
-;; To use, add the following to your .emacs:
-;;
-;; (autoload 'trivial-cite "tc" t t)
-;;
-;; ;; For Gnus:
-;;
-;; (setq message-cite-function 'trivial-cite)
+;;; Code:
 
 ;;; ************************************************************
 ;;; External requirements here
@@ -72,7 +97,7 @@
 (defconst tc-version "0.13.3")
 
 (defvar tc-debug-level 0
-  "How much debugging output trivial-cite should give.")
+  "How much debugging output `trivial-cite' should give.")
 
 ;;; ************************************************************
 ;;; Normal user-settable parameters here
@@ -93,7 +118,7 @@ not be removed."
 Trivial-cite attempts to guess citation marks and fill the cited
 paragraphs accordingly, when there are lines of more than `fill-column'
 characters including citation marks.  If you wish to undo the
-filling, each paragraph filling can be undone with 
+filling, each paragraph filling can be undone with
 \\[tc-unfill-paragraph].
 An integer argument means wrap at that column instead of at `fill-column'"
   :type '(radio (const :tag "Fill at `fill-column'" t)
@@ -103,7 +128,7 @@ An integer argument means wrap at that column instead of at `fill-column'"
 
 (defcustom tc-mouse-overlays nil
   "Non-nil means mark filled paragraphs with a mouse overlay.
-Right-clicking such an overlay toggles filling of that paragraph, 
+Right-clicking such an overlay toggles filling of that paragraph,
 like with \\[tc-unfill-paragraph]."
   :type 'boolean
   :group 'tc)
@@ -111,19 +136,33 @@ like with \\[tc-unfill-paragraph]."
 ; Not ready yet
 ; (defcustom tc-cleanup-cited-marks nil
 ;   "Non-nil means uniform citation marks are substituted in cited text.
-; Thus any sequence of cite-marks such as \"> |: }\" will be replace with a 
+; Thus any sequence of cite-marks such as \"> |: }\" will be replace with a
 ; uniform string of the citemarks of your choice, e.g. \">>>> \"."
 ;   :type 'boolean
 ;   :group 'tc)
 
-(defcustom tc-citation-string ">"
-  "The string that trivial-cite inserts to make a citation.
-The standard string (as noted in son-of-RFC1036) is '>'.  You should
-not change this, as that makes it more difficult for citers (even
-trivial-cite) to identify citings correctly.  An extra space is
-inserted after the string, if the cited text does not seem to be cited
-already.  See `tc-normal-citemarks' and `tc-guess-marks-regexp' for
-how cite marks are found."
+(defcustom tc-make-attribution 'tc-simple-attribution
+  "The function used to generate a attribution for a citation.
+`tc-simple-attribution' is primitive, but easy to use.
+`tc-tiny-attribution' is a minimal attribution.
+`tc-simple-attribution-kai' uses the real name if found.
+`tc-fancy-attribution' can be used to personalize the attribution."
+  :type '(radio
+          (const :tag "On 3 Sep 2003, email wrote:" tc-simple-attribution)
+          (const :tag "Real Name wrote:"   tc-tiny-attribution)
+          (const :tag "Real Name <email> wrote:"
+                 tc-attribution-name-and-email-wrote)
+          (const :tag "On 3 Sep 2003, Real Name wrote:"
+                 tc-simple-attribution-kai)
+          (const :tag "On 3 Sep 2003, Real Name spake thusly:"
+                 tc-fancy-attribution)
+          (function :tag "Other custom function"))
+  :group 'tc)
+
+(defcustom tc-time-format "%e %b %Y"
+  "The time format used for the date part in the attribution.
+The date is taken from the header fields.  The format is passed to
+`format-time-string', see that function for more information."
   :type 'string
   :group 'tc)
 
@@ -131,24 +170,7 @@ how cite marks are found."
   "The characters that should always be considered citation marks.
 This would normally just be '>', but if you often cite text with other
 regular characters used for citing, you can ease the life for both
-trivial-cite and yourself by adding them here."
-  :type 'string
-  :group 'tc)
-
-(defcustom tc-make-attribution 'tc-simple-attribution
-  "The function used to generate a attribution for a citation.
-`tc-simple-attribution' is primitive, but easy to use.
-`tc-tiny-attribution' is a minimal attribution.
-`kai-tc-simple-attribution' uses the real name if found.
-`tc-fancy-attribution' can be used to personalize the attribution."
-  :type 'function
-  :options '(tc-simple-attribution tc-tiny-attribution kai-tc-simple-attribution `tc-fancy-attribution)
-  :group 'tc)
-
-(defcustom tc-time-format "%e %b %Y"
-  "The time format used for the date part in the attribution.
-The date is taken from the header fields.  The format is passed to
-`format-time-string', see that function for more information."
+`trivial-cite' and yourself by adding them here."
   :type 'string
   :group 'tc)
 
@@ -171,6 +193,17 @@ distribution.")
 (defcustom tc-normalize-cite-marks t
   "Non-nil means normalize other peoples citation marks to match yours."
   :type 'boolean
+  :group 'tc)
+
+(defcustom tc-citation-string ">"
+  "The string that `trivial-cite' inserts to make a citation.
+The standard string (as noted in son-of-RFC1036) is '>'.  You should
+not change this, as that makes it more difficult for citers (even
+`trivial-cite') to identify citings correctly.  An extra space is
+inserted after the string, if the cited text does not seem to be cited
+already.  See `tc-normal-citemarks' and `tc-guess-marks-regexp' for
+how cite marks are found."
+  :type 'string
   :group 'tc)
 
 (defcustom tc-gnus-nntp-header-hack nil
@@ -197,33 +230,32 @@ too, so I'm looking for a better solution."
 ;;; ************************************************************
 
 (defvar tc-strings-list ()
-  "tc-strings-list is an association list containing the parsed headers.
+  "An association list containing the parsed headers.
 Typical entries are (\"subject\".\"Re: tc bug\"), (\"real-name\".\"John Doe\"),
-(\"email-addr\".\"elascurn@daimi.aau.dk\") etc., but there is no fixed format."
-; " fix up highlighting (*sigh*)  
-  )
+\(\"email-addr\".\"elascurn@daimi.aau.dk\") etc., but there is no fixed
+format.")
 
 (defvar tc-header-funs
   (list
    (cons "From" 'tc-parse-from)
    ;; The Subject: field - just put text into tc-strings-list
-   (cons "Subject" '(lambda (x) 
-		      (setq tc-strings-list 
+   (cons "Subject" '(lambda (x)
+		      (setq tc-strings-list
 			    (cons (cons "subject" x) tc-strings-list))))
    (cons "Date" 'tc-parse-date)
-   (cons "Newsgroups" 'tc-parse-groups)
-   )
-  "tc-header-funs is an association list used by trivial-cite containing the
-various functions for decoding headers.  The function gets a string as
-argument, which is the contents of that header (possibly including newlines,
-but excluding starting spaces).  Any return value is ignored.
-tc-strings-list is an association list destined to hold the parsed data."
-  )
+   (cons "Newsgroups" 'tc-parse-groups))
+  "An association list used by `trivial-cite'.
+It contains the various functions for decoding headers.  The function gets
+a string as argument, which is the contents of that header (possibly
+including newlines, but excluding starting spaces).  Any return value is
+ignored.  `tc-strings-list' is an association list destined to hold the
+parsed data."  )
 
 ;; parse the headers in the quote, calling funcs
 (defun tc-parse-headers ()
-  "tc-parse-headers parses the headers of a mail message and calls the
-functions defined in tc-header-funs on the respective fields."
+  "Parse the headers of a mail message.
+Also calls the functions defined in `tc-header-funs' on the respective
+fields."
   ;; Still a header here?
   (let ((header-start (point)))
     (if tc-gnus-nntp-header-hack
@@ -249,13 +281,11 @@ functions defined in tc-header-funs on the respective fields."
 	      (setq field-contents (concat field-contents
 					   (buffer-substring-no-properties
 					    beg (point))))
-	      (forward-line 1)
-	      )
-	    )
+	      (forward-line 1)))
 
           (if (string-match "[^ \011].*$" field-contents)
               (setq field-contents
-                    (substring field-contents 
+                    (substring field-contents
                                (match-beginning 0)))
 	    (setq field-contents ""))
 	  
@@ -264,31 +294,23 @@ functions defined in tc-header-funs on the respective fields."
 	    (if field-func
 		(progn
 		  (setq field-func (cdr field-func))
-		  (funcall field-func field-contents))
-	      )
-	    )
-	  )
-	)
-      )
+		  (funcall field-func field-contents)))))))
+
     (forward-line 1);; Skip past one blank line seperating headers and body
-    (delete-region header-start (point))
-    )
-  )
+    (delete-region header-start (point))))
 
 ;;; Functions to parse individual headers into appropriate structures here
 
 (defun tc-parse-date (str)
-  "tc-parse-date uses tc-time-format to parse the date for use in attributions.
-The resulting string is inserted into tc-strings-list."
+  "Use `tc-time-format' to parse the date STR for use in attributions.
+The resulting string is inserted into `tc-strings-list'."
   (let* ((time (date-to-time str))
 	 (date (format-time-string tc-time-format time)))
-    (setq tc-strings-list (cons (cons "date" date) tc-strings-list)))
-  )
+    (setq tc-strings-list (cons (cons "date" date) tc-strings-list))))
 
 ;; Parse a From:-style field from str into tc-strings-list under key
 (defun tc-parse-from (str)
-  "tc-parse-from uses mail-extr to get email-addr and real-name into
-tc-strings-list."
+  "Use mail-extr to get email-addr and real-name into `tc-strings-list' from STR."
   (if (> tc-debug-level 0)
       (message "%s" (concat "Parsing from string '" str "'")))
   (let ((names (mail-extract-address-components str)))
@@ -299,11 +321,7 @@ tc-strings-list."
 					  tc-strings-list)))
 	  (if (car (cdr names))
 	      (setq tc-strings-list (cons (cons "email-addr" (car (cdr names)))
-					  tc-strings-list)))
-	  )
-      )
-    )
-  )
+					  tc-strings-list)))))))
 
 (defun tc-parse-groups (str)
   (if (> tc-debug-level 0)
@@ -314,31 +332,38 @@ tc-strings-list."
       (setq groups (cons (substring str pos (1- (match-end 0))) groups))
       (setq pos (match-end 0)))
     (setq tc-strings-list
-	  (cons (cons "newsgroups" 
+	  (cons (cons "newsgroups"
 		      (nreverse (cons (substring str pos (length str))
 				      groups)))
-		tc-strings-list)))
-  )
+		tc-strings-list))))
 
 ;;; Functions to make various default attributions here
 ;; My simple (but nice:) attribution function
 (defun tc-simple-attribution ()
-  "tc-simple-attribution makes an attribution from email address and date."
+  "Make an attribution from email address and date."
   (let ((date (assoc "date" tc-strings-list))
 	(name (assoc "email-addr" tc-strings-list)))
     (if (null name)
 	"An unnamed person wrote:\n\n"
       (if (null date)
 	  (concat (cdr name) " wrote:\n\n")
-	(concat "On " (cdr date) ", " (cdr name) " wrote:\n\n")
-	)
-      )
-    )
-  )
+	(concat "On " (cdr date) ", " (cdr name) " wrote:\n\n")))))
+
+(defun tc-attribution-name-and-email-wrote ()
+  "Produce attribution string, using the real name and email address."
+  (let ((email (assoc "email-addr" tc-strings-list))
+        (realname (assoc "real-name" tc-strings-list)))
+    (cond
+     ((and (null realname)(null email))
+      "An unnamed person wrote:\n\n")
+     ((null realname)
+      (format "%s wrote:\n\n" (cdr email)))
+     (t
+      (format "%s <%s> wrote:\n\n" (cdr realname) (cdr email))))))
 
 ;; A simple attribution by Kai Groﬂjohann <Kai.Grossjohann@CS.Uni-Dortmund.DE>
-(defun kai-tc-simple-attribution ()
-	      "Produce the standard attribution string, using the real name."
+(defun tc-simple-attribution-kai ()
+  "Produce the standard attribution string, using the real name."
   (let ((date (assoc "date" tc-strings-list))
 	(email (assoc "email-addr" tc-strings-list))
         (name (assoc "real-name" tc-strings-list)))
@@ -367,7 +392,7 @@ tc-strings-list."
   "Marks the place where the signature was removed from the last mailing.")
 
 (defun tc-do-remove-sig ()
-  "Attempt to remove the signature from already quoted text.  
+  "Attempt to remove the signature from already quoted text.
 Warns if it is longer than 4 lines (5 including signature mark '-- ')."
   (save-excursion
     (setq tc-removed-sig nil)
@@ -382,13 +407,7 @@ Warns if it is longer than 4 lines (5 including signature mark '-- ')."
 	    (setq tc-removed-sig-marker (point-marker))
 	    (if (> lines 5);; Remember to include the '-- ' mark
 		(message (concat "Signature was very large ("
-				 (int-to-string (- lines 1)) " lines)."))
-	      )
-	    )
-	)
-      )
-    )
-  )
+				 (int-to-string (- lines 1)) " lines)."))))))))
 
 (defun tc-fix-signature-undo ()
   "Make the signature be after filling in undo list, and quoted."
@@ -404,34 +423,28 @@ Warns if it is longer than 4 lines (5 including signature mark '-- ')."
 	      (forward-line 1)))
 	  (undo-boundary)
 	  (delete-region (marker-position tc-removed-sig-marker)
-			 (point))
-	  )
-	)
-    )
-  )	      
+			 (point))))))
 
 ;; Simple nested indentation, as defined in son-of-rfc1036 (plus one space
 ;; after > before non-cited text for readability).
 
 (defvar tc-cite-marks nil
-  "The cite-marks that are recognised by trivial-cites functions.
+  "Cite-marks that are recognised by trivial-cites functions.
 These are deleted after each citing.")
 
 ;; Give some extra characters that have been used for indention, so we know
 ;; to handle them.
 (defun tc-extra-cite-marks (str)
-  "Specify extra cite-marks apart from '>' that have been used for citing.
+  "Specify extra cite-marks STR (apart from '>') that are used for citing.
 They remain valid for one citing only."
   (interactive "sExtra cite-marks: ")
   (if (not (equal str ""))
-      (setq tc-cite-marks str)
-    )
-  )
+      (setq tc-cite-marks str)))
 
 ;; Thanks to Matthias Wiehl for this function
 (defun tc-cleanup-cite-marks (start end)
-  "Substitute uniform citation marks in the current region, replacing
-any sequence of cite-marks such as \"> |: }\" with a uniform string
+  "Substitute uniform citation marks in the region between START and END.
+Replaces any sequence of cite-marks such as \"> |: }\" with a uniform string
 of the citemarks of your choice, e.g. \">>>> \"."
   (interactive "r")
   (save-excursion
@@ -441,23 +454,19 @@ of the citemarks of your choice, e.g. \">>>> \"."
 	(if (looking-at " ")
 	    (delete-char 1)
 	  (if (looking-at (concat "[" tc-cite-marks "]"))
-	      (progn	 
+	      (progn
 		(insert tc-citation-string)
 		(delete-char 1))
 	    (progn
 	      (if (and (not (eq (preceding-char) ?\ ))
 		       (not (looking-at "$")))
 		  (insert " "))
-	      (forward-line 1))))
-	)
-      )
-    )
-  )
+	      (forward-line 1))))))))
 
 (defun tc-indent-citation ()
-  "tc-indent-citation indents the current region with tc-citation-string.
+  "Indent the current region with `tc-citation-string'.
 It inserts an extra space before text that is not already cited (with
-tc-cite-marks), except on empty lines (to avoid dangling space)."
+`tc-cite-marks'), except on empty lines (to avoid dangling space)."
   (while (< (point) (mark t))
     (cond ((re-search-forward (concat "[" tc-cite-marks "]") (1+ (point)) t)
 	   (forward-char -1)
@@ -465,11 +474,10 @@ tc-cite-marks), except on empty lines (to avoid dangling space)."
 	  ((looking-at "^$")
 	   (insert tc-citation-string))
 	  (t (insert tc-citation-string " ")))
-    (forward-line 1)
-    )
-  )
+    (forward-line 1)))
 
 (defun tc-remove-trailing-whitespace ()
+  "Remove trailing whitespace."
   ;; First remove trailing empty lines
   (save-excursion
     (if (< (point) (mark t))
@@ -481,7 +489,7 @@ tc-cite-marks), except on empty lines (to avoid dangling space)."
 
 (defun tc-combine-cite-marks (cm1 cm2)
   "Combine two sets of cite-marks so that there are no duplicates.
-In fact, it checks if cm2 is contained in cm1, and if not, makes it so."
+In fact, it checks if CM1 contains CM2, and if not, makes it so."
   (if (not (string-match (regexp-quote cm1) cm2))
       (concat cm1 cm2)
     cm1))
@@ -489,7 +497,7 @@ In fact, it checks if cm2 is contained in cm1, and if not, makes it so."
 (defvar tc-old-yank nil)
 
 (defvar tc-prefix-max-lines t
-  "If t, message-yank-original takes a prefix max number of lines")
+  "If t, `message-yank-original' takes a prefix max number of lines.")
 
 ; (defun tc-message-yank-original (&optional lines)
 ;   "Insert the message being replied to, if any.
@@ -501,7 +509,7 @@ In fact, it checks if cm2 is contained in cm1, and if not, makes it so."
 ; "
 ;   (interactive "P")
 ;   (message (concat "Prefix is '" lines "'"))
-;   (if lines 
+;   (if lines
 ;       (setq tc-max-lines lines)
 ;     (setq tc-max-lines nil))
 ;   (tc-old-yank))
@@ -515,25 +523,25 @@ In fact, it checks if cm2 is contained in cm1, and if not, makes it so."
       "A numeric prefix is the maximal number of (body) lines to cite.
 "
       (interactive "P")
-      (if lines 
+      (if lines
 	  (setq tc-max-lines lines)
 	(setq tc-max-lines nil))
       (setq lines nil) ; Make message-yank-original happy
-))
+      ))
 
 (defvar tc-max-lines nil
-  "*Maximum number of lines that should be quoted by trivial-cite.
-If tc-max-lines-reset is non-nil (the default), tc-max-lines is set to nil
-(meaning no limit) after each cite.")
+  "*Maximum number of lines that should be quoted by `trivial-cite'.
+If `tc-max-lines-reset' is non-nil (the default), `tc-max-lines' is set to nil
+\(meaning no limit) after each cite.")
 
 (defvar tc-max-lines-reset t
-  "*Whether tc-max-lines should be reset after use.
-Normally, tc-max-lines is set to limit the citation of very long mails (e.g.
+  "*Whether `tc-max-lines' should be reset after use.
+Normally, `tc-max-lines' is set to limit the citation of very long mails (e.g.
 citations).")
 
 (defun tc-indent-region (start end)
-  "*Cite the region like trivial-cite, but without parsing headers.
-Doesn't cut the signature either."
+  "*Cite the region like `trivial-cite', but without parsing headers.
+Doesn't cut the signature either.  Region is between START and END."
   (interactive "r")
   (save-excursion
     (if (> start end)
@@ -551,7 +559,7 @@ Doesn't cut the signature either."
 			       tc-normal-citemarks (tc-guess-cite-marks)))
 	(setq tc-cite-marks tc-normal-citemarks)))
     ;; Escape any cite-marks that would cause problems in a regexp
-    (setq tc-cite-marks (escape-char-range tc-cite-marks))
+    (setq tc-cite-marks (tc-escape-char-range tc-cite-marks))
     ;; Do the actual citation
     (tc-indent-citation)
     ;; Normalize cite marks if so wanted
@@ -560,11 +568,10 @@ Doesn't cut the signature either."
     ;; Fill paragraphs
     (if tc-fill-column
 	(tc-fill-cited-text start end))
-    (setq tc-cite-marks nil)
-    ))
+    (setq tc-cite-marks nil)))
 
 (defun tc-fix-final-newline ()
-  "Adds a newline if there is not one at the end of the cited text."
+  "Add a newline if there is not one at the end of the cited text."
   (save-excursion
     (exchange-point-and-mark)
     (if (not (bolp))
@@ -575,10 +582,10 @@ Doesn't cut the signature either."
 ;;; ************************************************************
 ;;;###autoload
 (defun trivial-cite ()
-  "trivial-cite is a simple citation function for use in news/mailreaders.
-It parses the headers via the functions defined in tc-header-funs, then
-makes a attribution for the citation using tc-make-attribution and indents
-the inserted text with tc-indent-citation.
+  "A simple citation function for use in news/mailreaders.
+It parses the headers via the functions defined in `tc-header-funs', then
+makes a attribution for the citation using `tc-make-attribution' and indents
+the inserted text with `tc-indent-citation'.
 Numeric prefix arguments is how many lines of body to cite (useful for citing
 mails with long attachments).
 Usage:  (auto-load 'trivial-cite \"tc\" t t)
@@ -603,8 +610,7 @@ tc-citation-string, tc-make-attribution and tc-header-funs."
 		(fill-prefix))
 	    (insert (funcall tc-make-attribution))
 	    (fill-region (marker-position start-marker) (point))
-	    (setq start (point))
-	    ))
+	    (setq start (point))))
       (tc-remove-trailing-whitespace)
       ;; Remove signature (if so wanted)
       (if tc-remove-signature
@@ -628,7 +634,7 @@ tc-citation-string, tc-make-attribution and tc-header-funs."
 				 tc-normal-citemarks (tc-guess-cite-marks)))
 	  (setq tc-cite-marks tc-normal-citemarks)))
       ;; Escape any cite-marks that would cause problems in a regexp
-      (setq tc-cite-marks (escape-char-range tc-cite-marks))
+      (setq tc-cite-marks (tc-escape-char-range tc-cite-marks))
       ;; Do the actual citation
       (tc-indent-citation)
       ;; Normalize cite marks if so wanted
@@ -638,25 +644,22 @@ tc-citation-string, tc-make-attribution and tc-header-funs."
       (if tc-fill-column
 	  (tc-fill-cited-text start (mark-marker)))
       (setq tc-cite-marks nil)
-      (tc-fix-signature-undo)
-      )
-    )
-  (run-hooks 'tc-post-hook)
-  )
+      (tc-fix-signature-undo)))
+  (run-hooks 'tc-post-hook))
 
 ;;; ************************************************************
 ;;; Reformatting cited text
 ;;; ************************************************************
 
 (defun tc-fill-column ()
-  "Returns the fill column that tc uses (explicit, `fill-column' or nil)."
+  "Return the fill column that tc uses (explicit, `fill-column' or nil)."
   (cond ((integerp tc-fill-column) tc-fill-column)
 	(tc-fill-column fill-column)
 	(t nil)))
 
 (defun tc-fill-cited-paragraphs (cite-len)
-  "Fill cited paragraphs, keeping cite-marks in their correct places.  Used
-internally in tc-fill-cited-text.  Returns the end of the last filled
+  "Fill cited paragraphs, keeping cite-marks in their correct places.
+Used internally in tc-fill-cited-text.  Returns the end of the last filled
 paragraph."
   (interactive "nLength of citation marks: ")
   (let (fill-end)
@@ -666,14 +669,13 @@ paragraph."
 	(let ((cite-marks (buffer-substring (point) (+ (point) cite-len)))
 	      (fill-line (point)))
 	  (if (>= tc-debug-level 1)
-	      (message (concat "Citing marked with " 
+	      (message (concat "Citing marked with "
 			       cite-marks ", extra marks are " tc-cite-marks)))
 	  (let ((cite-regexp (concat "^" cite-marks
 				     " *[^\n" tc-cite-marks " ]")))
 	    ;; Look backward while properly cited
 	    (while (and (not (bobp)) (looking-at cite-regexp))
-	      (forward-line -1)
-	      )
+	      (forward-line -1))
 	    (if (not (looking-at cite-regexp))
 		(forward-line 1))
 	    (let ((cite-start (point))
@@ -695,8 +697,7 @@ paragraph."
 		(goto-char cite-start)
 		(while (not (eobp))
 		  (insert cite-marks)
-		  (forward-line 1)
-		  )
+		  (forward-line 1))
 		(setq fill-end (point))
 		(let ((reformat-overlay
 		       (make-overlay (point-min) (point-max))))
@@ -708,67 +709,54 @@ paragraph."
 		      (progn
 			(overlay-put reformat-overlay
 				     'mouse-face 'secondary-selection)
-			(local-set-key [(shift button2)] 'tc-unfill-paragraph-mouse)
-		    )))
-		)
-	      )
-	    )
-	  )
-	)
-      )
-    fill-end
-    )
-  )
+			(local-set-key [(shift button2)]
+                                       'tc-unfill-paragraph-mouse))))))))))
+    fill-end))
 
-(defun escape-char-range (str)
-  "Escape any characters that would cause problems in a regexp char range.
-This, is not the same as regexp-quote, as we need to treat ^ and ] very
+(defun tc-escape-char-range (str)
+  "Escape any characters in STR that cause problems in a regexp char range.
+This, is not the same as `regexp-quote', as we need to treat ^ and ] very
 specially."
   (if (string-match "\\(-.*]\\|].*-\\)" str)
       ;; - and ] in a string -- got to seperate them
       (message "Can't have both - and ] in a regular expression (yet).")
-    (if (string-match "-" str)
-	;; Move a "-" to start of the string
-	(progn
-	  (while (string-match "-" str)
-	    (setq str (replace-match "" nil nil str)))
-	  (setq str (concat "-" str))
-	  ))
-    (if (string-match "]" str)
-	;; Move a "]" to the start of the string
-	(progn
-	  (while (string-match "]" str)
-	    (setq str (replace-match "" nil nil str)))
-	  (setq str (concat "]" str))
-	  ))
-    (if (string-match "^\\^" str)
-	;; Move the "^" to not be at the start of the string
-	(progn
-	  (replace-match "" nil nil str)
-	  (setq str (concat str "^")))))
-  str
-  )
+    (when (string-match "-" str)
+      ;; Move a "-" to start of the string
+      (while (string-match "-" str)
+        (setq str (replace-match "" nil nil str)))
+      (setq str (concat "-" str)))
+    (when (string-match "]" str)
+      ;; Move a "]" to the start of the string
+      (while (string-match "]" str)
+        (setq str (replace-match "" nil nil str)))
+      (setq str (concat "]" str)))
+    (when (string-match "^\\^" str)
+      ;; Move the "^" to not be at the start of the string
+      (replace-match "" nil nil str)
+      (setq str (concat str "^"))))
+  str)
 
-(defun find-cite-len (p)
-  "Find the length of the citation marking so we can fix it when filling.
-Used internally in tc-fill-cited-text."
+(defun tc-find-cite-len (p)
+  "Find the length of the citation marking at point P.
+This is so we can fix it when filling.
+Used internally in `tc-fill-cited-text'."
   (save-excursion
     (goto-char p)
     (forward-line 1)
-    (let ((forward-prefix-length (line-common-prefix-length p (point))))
+    (let ((forward-prefix-length (tc-line-common-prefix-length p (point))))
       (forward-line -2)
-      (let ((backward-prefix-length (line-common-prefix-length p (point))))
+      (let ((backward-prefix-length (tc-line-common-prefix-length p (point))))
 	(goto-char p)
 	(beginning-of-line)
-	(let ((prefix-length 
+	(let ((prefix-length
 	       (max forward-prefix-length backward-prefix-length))
 	      (line-start (point)))
 	  (end-of-line)
 	  (let ((line-end (point)))
 	    (beginning-of-line)
 	    ;; Check if this is a one-line cite with good cite-marks
-	    (if (and (re-search-forward 
-		      (concat "^[" tc-cite-marks " ]*["	tc-cite-marks "][" 
+	    (if (and (re-search-forward
+		      (concat "^[" tc-cite-marks " ]*["	tc-cite-marks "]["
 			      tc-cite-marks " ]*") line-end t)
 		     (> (- (match-end 0) (match-beginning 0)) prefix-length))
 		(- (match-end 0) (match-beginning 0))
@@ -782,6 +770,7 @@ Used internally in tc-fill-cited-text."
 ;; Find all lines that are too long and fill them
 (defun tc-fill-cited-text (start end)
   "Fill all lines in region that are too long, keeping track of cite-marks.
+Done on region between START and END.
 Uses a seperate undo-mechanism (with overlays) to allow partial undo."
   (interactive "r")
   (save-excursion
@@ -791,38 +780,36 @@ Uses a seperate undo-mechanism (with overlays) to allow partial undo."
       (end-of-line)
       (if (> (current-column) (tc-fill-column))
 	  (progn
-	    (let ((cite-len (find-cite-len (point))))
+	    (let ((cite-len (tc-find-cite-len (point))))
 	      (if (> cite-len 0)
 		  (if  (< cite-len (tc-fill-column))
 		      (goto-char (tc-fill-cited-paragraphs cite-len))
-		    (message (concat "Very long cite mark (" 
+		    (message (concat "Very long cite mark ("
 				     (int-to-string cite-len) " chars)"))
 		    (forward-line 1))
 		(message (concat "Mysterious zero cite-len at "
 				 (int-to-string (point))))
 		(forward-line 1))))
-	(forward-line 1))
-      )
-    )
-  )
+	(forward-line 1)))))
 
 ;; A couple utility functions.
 
-(defun line-common-prefix-length (p1 p2)
-  "Returns the number of characters the two lines have as common prefix."
+(defun tc-line-common-prefix-length (p1 p2)
+  "Return the number of characters the two lines have as common prefix.
+The two lines are at point P1 and P2."
   (save-excursion
-    (let ((line1 (progn (goto-char p1) (beginning-of-line) 
+    (let ((line1 (progn (goto-char p1) (beginning-of-line)
 			(let ((line-start (point)))
 			  (end-of-line)
 			  (buffer-substring line-start (point)))))
-	  (line2 (progn (goto-char p2) (beginning-of-line) 
+	  (line2 (progn (goto-char p2) (beginning-of-line)
 			(let ((line-start (point)))
 			  (end-of-line)
 			  (buffer-substring line-start (point))))))
-      (string-common-prefix-length line1 line2))))
+      (tc-string-common-prefix-length line1 line2))))
 
-(defun string-common-prefix-length (s1 s2)
-  "Returns how many characters in s1 and s2 are equal."
+(defun tc-string-common-prefix-length (s1 s2)
+  "Return how many characters in S1 and S2 are equal."
   (let ((len (min (length s1) (length s2)))
 	(x 0))
     (while (and (< x len)
@@ -832,43 +819,39 @@ Uses a seperate undo-mechanism (with overlays) to allow partial undo."
 
 (defun tc-fill-cited-region (start end)
   "Fill all lines in the region, but keep the overall citation intact.
+The region is between START and END.
 This function assumes that all lines in the region have the same citation
 marks, as it regards the shortest common prefix of the lines as citation
 marks."
   (interactive "r")
-;  (save-excursion
-    (goto-char start)
-    (beginning-of-line)
-    (let ((line-start (point)))
-      (end-of-line)
-      (let ((cite-marks (buffer-substring line-start (point))))
-	(forward-line 1)
-	(while (< (point) end)
-	  (let ((other-line 
-		 (buffer-substring (point) (+ (length cite-marks) (point)))))
-	    (if (not (string-equal cite-marks other-line))
-		(setq cite-marks
-		      (substring cite-marks 0 
-				 (string-common-prefix-length
-				  cite-marks other-line)))))
-	  (forward-line 1)
-	)
-	(goto-char start)
-	(save-restriction
-	  (narrow-to-region start end)
-	  (tc-fill-cited-paragraphs (length cite-marks))
-	  )
-	)
-      )
-					;   )
-  )
+;;(save-excursion
+  (goto-char start)
+  (beginning-of-line)
+  (let ((line-start (point)))
+    (end-of-line)
+    (let ((cite-marks (buffer-substring line-start (point))))
+      (forward-line 1)
+      (while (< (point) end)
+        (let ((other-line
+               (buffer-substring (point) (+ (length cite-marks) (point)))))
+          (if (not (string-equal cite-marks other-line))
+              (setq cite-marks
+                    (substring cite-marks 0
+                               (tc-string-common-prefix-length
+                                cite-marks other-line)))))
+        (forward-line 1))
+      (goto-char start)
+      (save-restriction
+        (narrow-to-region start end)
+        (tc-fill-cited-paragraphs (length cite-marks))))))
 
 (defun tc-fill-cited-region-uniformly (start end)
   "Fill all lines in the region, making the overall citation uniform.
+The region is between START and END.
 This function finds the longest possible citemark and wraps all lines as
 if they had that amount of citemarks."
   (interactive "r")
-;  (save-excursion
+;;(save-excursion
   (goto-char end)
   (let ((end-mark (point-marker))
 	(cite-marks ""))
@@ -893,12 +876,10 @@ if they had that amount of citemarks."
     (goto-char start)
     (save-restriction
       (narrow-to-region start (marker-position end-mark))
-      (tc-fill-cited-paragraphs (length cite-marks))
-      )
-    ))
-					;   )
+      (tc-fill-cited-paragraphs (length cite-marks)))))
 
 (defun tc-unfill-paragraph-mouse (e)
+  "Unfill the paragraph at mouse event E."
   (interactive "e")
   (if (eventp e)
       ;; Why do you have to disagree?  Grr.  Arg.
@@ -909,9 +890,9 @@ if they had that amount of citemarks."
   )
 
 (defun tc-unfill-paragraph (at)
-  "Undo filling of cited text in the paragraph containing point.
+  "Undo filling of cited text in the paragraph containing point AT.
 Calling the function several times will toggle the paragrap between
-the filled and the unfilled version.  tc-fill-cited-region may be able
+the filled and the unfilled version.  `tc-fill-cited-region' may be able
 to fill the paragraph better."
   (interactive "d")
   (let ((reformatted (get-char-property at 'tc-reformat)))
@@ -931,7 +912,7 @@ to fill the paragraph better."
 ;;; Guessing at the right set of citation marks
 ;;; ************************************************************
 (defun tc-trim-best-prefix (prefix)
-  "Remove from the prefix newlines, known marks and duplicates."
+  "Remove from the PREFIX newlines, known marks and duplicates."
   (let ((known-marks (concat "\n " tc-normal-citemarks))
 	(i 0))
     (while (< i (length prefix))
@@ -960,8 +941,8 @@ to fill the paragraph better."
 	       (not (equal "" guessed-marks)))
 	  (let ((marks-overlay (make-overlay (1+ marks-begin) marks-end)))
 	    (overlay-put marks-overlay 'face 'highlight)
-	    (setq guessed-marks 
-		  (read-from-minibuffer 
+	    (setq guessed-marks
+		  (read-from-minibuffer
 		   "Guessed these citemarks: " guessed-marks))
 	    (delete-overlay marks-overlay)))
       guessed-marks)))
@@ -977,16 +958,14 @@ to fill the paragraph better."
 	(if (> (current-column) max-line-len)
 	      (setq needed t))
 	(forward-line 1))
-      needed)
-    )
-  )
+      needed)))
 
 ;;; ************************************************************
 ;;; More fancy attribution generation functions
 ;;; ************************************************************
 
 ;; Doesn't work yet.  *sniff*
-(defun reply-to-citee-p (email)
+(defun tc-reply-to-citee-p (email)
   "Whether the mail being composed is for the person being cited."
   (save-excursion
     (beginning-of-buffer)
@@ -994,73 +973,7 @@ to fill the paragraph better."
 	(if (equal email (buffer-substring (match-beginning 1) (match-end 1)))
 	    t
 	  nil)
-      nil)
-    )
-  )
-
-(defun tc-fancy-attribution ()
-  "tc-fancy-attribution makes a personalized attribution.
-The Newsgroups: field is examined to find appropriate sayings, and the real
-name is used when available.  If you use this, you probably want to change
-`tc-groups-functions' to reflect your favorite newsgroups."
-  (let ((date (cdr-safe (assoc "date" tc-strings-list)))
-	(email (cdr-safe (assoc "email-addr" tc-strings-list)))
-	(name (cdr-safe (assoc "real-name" tc-strings-list)))
-	(groups (cdr-safe (assoc "newsgroups" tc-strings-list))))
-    (let ((date-part (if date date "an unknown date"))
-	  (name-part (if nil ;(reply-to-citee-p email)
-			 "you"
-		       (if name
-			   name
-			 (if email
-			     email
-			   "somebody@somewhere")))))
-      (concat
-       (if groups ;; This is sent to a newsgroup, not a person
-	   (tc-group-attribution groups date-part name-part)
-	 (let ((default-function (find-with-predicate 
-				  '(lambda (group) (null (car group)))
-				  tc-groups-functions)))
-	   (if default-function
-	       (apply (cdr default-function) date-part name-part '())
-	     (tc-generic-attribution date-part name-part)))) "\n\n"))))
-
-;; General function to find an element satisfying pred in list
-(defun find-with-predicate (pred list)
-  (let ((found nil))
-    (while (and list (not found))
-      (if (apply pred (car list) ())
-	  (setq found (car list))
-	(setq list (cdr list))))
-    found))
-
-(defun tc-group-attribution (groups date name)
-  (let ((group-function 
-	 (find-with-predicate 
-	  '(lambda (group)
-	     (let ((group-name (car group)))
-	       (if (or (not group-name) (= 0 (length group-name)))
-		   t
-		 (find-with-predicate 
-		  (if (= (char-syntax (string-to-char group-name)) ?w)
-		      '(lambda (cited-group)
-			 (if (>= tc-debug-level 1) 
-			     (message (concat "Checking " cited-group 
-					      " vs " group-name)))
-			 (eq t (compare-strings
-			       group-name 0 (length group-name)
-			       cited-group 0 (length group-name))))
-		    '(lambda (cited-group)
-		       (if (>= tc-debug-level 1) 
-			   (message (concat "Regexp checking " cited-group 
-					    " vs " group-name)))
-		       (string-match group-name cited-group)))
-		     groups))))
-	       tc-groups-functions)))
-    (message name)
-    (if group-function
-	(apply (cdr group-function) date name ())
-      (tc-generic-attribution date name))))
+      nil)))
 
 (defvar tc-groups-functions
     '( ( "" . tc-simple-attributor ) )
@@ -1078,12 +991,12 @@ without newlines.  It will be reformatted.
 Some example attribution functions (attributors) are:
 `tc-simple-attributor', `tc-random-attributor',
 `tc-rhod-group-attributor', `tc-java-group-attributor', and
-`tc-local-group-attributor'.  "
-)
+`tc-local-group-attributor'.")
 
 ;; This function due to Kai Groﬂjohann
 (defun tc-simple-attributor (date name)
-  "A simple attribution function suitable as default for tc-groups-functions."
+  "A simple attribution function suitable as default for `tc-groups-functions'.
+Uses DATE and NAME arguments."
   (concat "On " date ", " name " wrote:"))
 
 ;;; ************************************************************
@@ -1093,7 +1006,8 @@ Some example attribution functions (attributors) are:
 ;;; ************************************************************
 
 (defun tc-random-attributor (date name)
-  "Generate a random attribution suitable for any context."
+  "Generate a random attribution suitable for any context.
+Uses DATE and NAME arguments."
   (let ((style (random 7)))
     (cond ((= style 0)
 	   (concat "On " date ", " name " stated:"))
@@ -1110,8 +1024,7 @@ Some example attribution functions (attributors) are:
 	  ((= style 6)
 	   (concat "On " date ", " name " told this:"))
 	  (t
-	   (concat "On " date ", " name " wrote:")))
-    ))
+	   (concat "On " date ", " name " wrote:")))))
 
 (defalias 'tc-generic-attribution 'tc-random-attributor)
 
@@ -1132,16 +1045,78 @@ Some example attribution functions (attributors) are:
 (defun tc-local-group-attributor (date name)
   (concat name " wrote this:"))
 
-(provide 'tc)
+(defun tc-fancy-attribution ()
+  "Make a personalized attribution.
+The Newsgroups: field is examined to find appropriate sayings, and the real
+name is used when available.  If you use this, you probably want to change
+`tc-groups-functions' to reflect your favorite newsgroups."
+  (let ((date (cdr-safe (assoc "date" tc-strings-list)))
+	(email (cdr-safe (assoc "email-addr" tc-strings-list)))
+	(name (cdr-safe (assoc "real-name" tc-strings-list)))
+	(groups (cdr-safe (assoc "newsgroups" tc-strings-list))))
+    (let ((date-part (if date date "an unknown date"))
+	  (name-part (if nil ;(tc-reply-to-citee-p email)
+			 "you"
+		       (if name
+			   name
+			 (if email
+			     email
+			   "somebody@somewhere")))))
+      (concat
+       (if groups ;; This is sent to a newsgroup, not a person
+	   (tc-group-attribution groups date-part name-part)
+	 (let ((default-function (tc-find-with-predicate
+				  '(lambda (group) (null (car group)))
+				  tc-groups-functions)))
+	   (if default-function
+	       (apply (cdr default-function) date-part name-part '())
+	     (tc-generic-attribution date-part name-part)))) "\n\n"))))
+
+;; General function to find an element satisfying pred in list
+(defun tc-find-with-predicate (pred list)
+  (let ((found nil))
+    (while (and list (not found))
+      (if (apply pred (car list) ())
+	  (setq found (car list))
+	(setq list (cdr list))))
+    found))
+
+(defun tc-group-attribution (groups date name)
+  (let ((group-function
+	 (tc-find-with-predicate
+	  '(lambda (group)
+	     (let ((group-name (car group)))
+	       (if (or (not group-name) (= 0 (length group-name)))
+		   t
+		 (tc-find-with-predicate
+		  (if (= (char-syntax (string-to-char group-name)) ?w)
+		      '(lambda (cited-group)
+			 (if (>= tc-debug-level 1)
+			     (message (concat "Checking " cited-group
+					      " vs " group-name)))
+			 (eq t (compare-strings
+			       group-name 0 (length group-name)
+			       cited-group 0 (length group-name))))
+		    '(lambda (cited-group)
+		       (if (>= tc-debug-level 1)
+			   (message (concat "Regexp checking " cited-group
+					    " vs " group-name)))
+		       (string-match group-name cited-group)))
+		     groups))))
+	       tc-groups-functions)))
+    (message name)
+    (if group-function
+	(apply (cdr group-function) date name ())
+      (tc-generic-attribution date name))))
 
 ;; Acknowledgements
-;; Patches and bug reports have been sent by the following people.  
+;; Patches and bug reports have been sent by the following people.
 ;; My thanks to all of them for helping me improve trivial-cite
 ;; Klaus Berndl <Klaus.Berndl@sdm.de>
 ;; Colin Walters <walters+n@cis.ohio-state.edu>
 ;; Christoph Rohland <cr@sap.com>
 ;; Matthias Wiehl <mwiehl@gmx.de>
-;; Kai Groﬂjohann <Kai.Grossjohann@CS.Uni-Dortmund.DE> 
+;; Kai Groﬂjohann <Kai.Grossjohann@CS.Uni-Dortmund.DE>
 ;; Knut Anders Hatlen <kahatlen@online.no>
 ;; Tommi Vainikainen <thv@iki.fi>
 ;; Colin Rafferty <colin@xemacs.org>
@@ -1199,7 +1174,7 @@ Some example attribution functions (attributors) are:
 ;;; 0.12.1: Small fixes in tc-fancy-attributor after trying it out:)
 ;;; 0.12.2: Fixes of two compilation problems, thanks to Steve Evans
 ;;; 0.12.3: Updated license text
-;;; 0.12.4: Typo fixed.  Made date parsing use date-to-time and 
+;;; 0.12.4: Typo fixed.  Made date parsing use date-to-time and
 ;;;         format-time-string, allowing easier customization.
 ;;; 0.13:   Stuff from Vasily Korytov <deskpot@myrealbox.com>:  Before
 ;;;         and after hooks, no spurious extra trailing spaces,
@@ -1207,4 +1182,15 @@ Some example attribution functions (attributors) are:
 ;;; 0.13.1: Use guessed marks in normalizing citation marks.
 ;;; 0.13.2: Use a local let instead of setting fill-column.
 ;;; 0.13.3: Moving a parenthesis fixed a missing space problem.
+;;; 0.13.4: Peter S. Galbraith <psg@debian.org>
+;;;          Checkdoc edits.
+;;;          New tc-make-attribution defcustom.
+;;;          Reorder functions for cleaner byte-compilation.
+;;;          Added tc-attribution-name-and-email-wrote.
+;;;          Changed end bracket style with Lars' okay.
+;;;          Renamed functions note prefixed with tc-.
 ;; end of tc.el
+
+(provide 'tc)
+
+;;; tc.el ends here
