@@ -181,6 +181,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'newsticker
   :group 'emacs-goodies-extra-el)
 
+;; perldoc
+(defgroup perldoc nil
+  "Show help for Perl functions, builtins, and modules."
+  :group  'help
+  :link '(custom-manual "(emacs-goodies-el)perldoc")
+  :load 'perldoc
+;;:require 'perldoc
+  :group 'emacs-goodies-extra-el)
+
 ;; table
 (defgroup table nil
   "Text based table manipulation utilities.
