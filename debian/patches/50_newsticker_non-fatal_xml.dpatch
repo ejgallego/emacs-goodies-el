@@ -24,13 +24,39 @@ exit 0
 
 @DPATCH@
 diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el
---- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Fri Sep 26 20:32:28 2003
-+++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Mon Oct  6 13:35:08 2003
-@@ -177,7 +177,9 @@
+--- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Fri Oct 24 11:34:35 2003
++++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Fri Oct 24 13:03:24 2003
+@@ -177,7 +177,16 @@
  
  (require 'derived)
  (require 'outline)
 -(require 'xml)
-+;; Woody XEmacs doesn't have xml.el, so load non-fatally.
++;; Debian modification:
++;;  Woody XEmacs doesn't have xml.el, so conditionnaly require it.
++;;  `newsticker' still won't work on woody XEmacs, but it won't make all of
++;;  the emacs-goodies-el package uninstallable.
 +;; (require 'xml)
-+(load "xml" t t)
++(eval-when-compile
++  (require 'cl))
++(eval-when (compile load eval)
++  (ignore-errors
++    (require 'xml)))
+ 
+ ;; ======================================================================
+ ;;; Customizables
+@@ -561,6 +570,7 @@
+ ;; ======================================================================
+ ;;; User fun
+ ;; ======================================================================
++;;;###autoload
+ (defun newsticker-start (&optional do-not-complain-if-running)
+   "Start the newsticker.
+ Start the timers for display and retrieval.  If the newsticker, i.e. the
+@@ -626,6 +636,7 @@
+ 
+ 
+ ;; the functions we need for retrieval and display
++;;;###autoload
+ (defun newsticker-show-news ()
+   "Switch to newsticker buffer.  You may want to bind this to a key."
+   (interactive)
