@@ -27,7 +27,30 @@ available at all, except insofar as code is self-documenting).
 Introduction to files in devscripts-el
 --------------------------------------
 
-devscripts.el provides M-x debuild, M-x debc and M-x debi, three
+devscripts.el provides
+
+ M-x debuild
+ M-x debc
+ M-x debi
+ M-x debclean
+ M-x debdiff
+
 commands to call the corresponding utilities from within Emacs.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:47 2003
+pbuilder-mode.el provides
+
+ M-x pdebuild
+ M-x pdebuild-user-mode-linux
+ M-x pbuilder-build
+ M-x pbuilder-user-mode-linux-build
+ M-x debuild-pbuilder
+
+commands to call the corresponding utilities from within Emacs.
+
+pbuilder-log-view-mode.el provides
+
+ M-x pbuilder-log-view-elserv
+
+command to view pbuilder and debuild logs from Mozilla through elserv web server.
+
+ -- Junichi Uekawa <dancer@debian.org>, Sat Oct 18 17:42:21 2003

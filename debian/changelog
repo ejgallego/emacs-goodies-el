@@ -1,4 +1,4 @@
-emacs-goodies-el (23.0-1) unstable; urgency=low
+emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
 
   * gnus-bonus-el: (Prepared by Jérôme Marant)
     New files:
@@ -9,8 +9,11 @@ emacs-goodies-el (23.0-1) unstable; urgency=low
   * emacs-goodies-el:
     Patches:
     - 51_newsticker_autoloads: Add autoloads for initial commands.
+  * Junichi Uekawa:
+  - devscripts-el: implement 'debdiff'
+  - devscripts-el.README.Debian: update to reflect latest changes.
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 17 Oct 2003 20:43:59 -0400
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 18 Oct 2003 17:42:49 +0900
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 

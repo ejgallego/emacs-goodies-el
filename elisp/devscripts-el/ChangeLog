@@ -1,3 +1,7 @@
+2003-10-18  Junichi Uekawa  <dancer@debian.org>
+
+	* devscripts.el (debdiff): add new function, debdiff
+
 2003-10-05  Junichi Uekawa  <dancer@debian.org>
 
 	* Moved all files to alioth.

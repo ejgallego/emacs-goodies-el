@@ -27,7 +27,7 @@
 (defcustom debuild-option-list '("-i" "-uc" "-us") "*Options to give to debuild."
   :type '(repeat string)
   :group 'devscripts)
-(defconst devscripts-mode-version "$Id: devscripts.el,v 1.2 2003/10/04 16:16:08 dancer Exp $" "Version of devscripts mode.")
+(defconst devscripts-mode-version "$Id: devscripts.el,v 1.3 2003/10/18 08:40:56 dancer Exp $" "Version of devscripts mode.")
 
 (defun devscripts-internal-get-debian-package-name ()
   "Find the directory with debian/ dir, and get the dir name."
@@ -91,6 +91,16 @@
     (compilation-mode)
     (start-process debclean-process debclean-buffer "/usr/bin/debclean")))
 
+(defun debdiff (changes-file-1 changes-file-2)
+  "Compare contents of CHANGES-FILE-1 and CHANGES-FILE-2."
+  (interactive "fFirst Changes file: \nfSecond Changes File: ")
+  (let* ((debdiff-buffer (concat "*debdiff*" default-directory))
+	 (debdiff-process (concat "debdiff-process-" default-directory)))
+    (switch-to-buffer debdiff-buffer)
+    (kill-region (point-min) (point-max))
+    (start-process debdiff-process debdiff-buffer "/usr/bin/debdiff" 
+		   (expand-file-name changes-file-1)
+		   (expand-file-name changes-file-2))))
 
 (defun devscripts-debc-mode ()
   "Mode to view debc output.
