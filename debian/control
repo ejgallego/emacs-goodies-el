@@ -131,7 +131,7 @@ Description: Emacs wrappers for the commands in devscripts
 Package: debbugs-el
 Architecture: all
 Depends: emacs21 | emacsen, reportbug (>= 1.41.1)
-Recommends: wget
+Recommends: wget, dlocate
 Suggests: gnus
 Section: utils
 Description: Access the Debian BTS from within Emacs
