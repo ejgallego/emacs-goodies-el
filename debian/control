@@ -121,7 +121,7 @@ Description: Emacs wrappers for the commands in devscripts
 
 Package: debian-el
 Architecture: all
-Depends: emacs21 | emacsen, reportbug (>= 1.41.1), gzip, binutils
+Depends: emacs21 | emacsen, reportbug (>= 1.41.1), binutils
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el, debview
