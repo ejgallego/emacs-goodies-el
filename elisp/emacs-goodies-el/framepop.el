@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 18:19:46 $
-;; Version: $Revision: 1.4 $
-;; RCS-Id: $Id: framepop.el,v 1.4 2003/10/02 18:19:46 psg Exp $
+;; Modified: $Date: 2003/10/02 18:24:19 $
+;; Version: $Revision: 1.5 $
+;; RCS-Id: $Id: framepop.el,v 1.5 2003/10/02 18:24:19 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,11 +177,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.4 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.5 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.4 2003/10/02 18:19:46 psg Exp $")
+$Id: framepop.el,v 1.5 2003/10/02 18:24:19 psg Exp $")
 
 ;;; Customizable variables
 
@@ -788,7 +788,7 @@ after the package has been loaded.  See advice.el for details."
   (if (and temp-buffer-show-function
 	   (not (eq temp-buffer-show-function 'framepop-display-buffer)))
       (message "Warning: framepop.el has redefined temp-buffer-show-function"))
-  (set-default temp-buffer-show-function 'framepop-display-buffer))
+  (setq temp-buffer-show-function 'framepop-display-buffer))
 
 (defun framepop-disable nil
   "Disable automatic pop-up temporary windows."
