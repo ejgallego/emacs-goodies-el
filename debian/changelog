@@ -1,4 +1,4 @@
-emacs-goodies-el (24.3-2) unstable; urgency=low
+emacs-goodies-el (24.4-1) unstable; urgency=low
 
   * dpkg-dev-el:
     - debian-control-mode.el: Apply patch from Jhair Tocancipa Triana
@@ -14,7 +14,7 @@ emacs-goodies-el (24.3-2) unstable; urgency=low
       auto-fill-inhibit and pack-window to pack-windows.  Thanks to
       Kevin Ryde <user42@zip.com.au> for reporting it (Closes: #234651).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Sat, 27 Mar 2004 19:59:41 -0500
 
 emacs-goodies-el (24.3-1) unstable; urgency=low
 
