@@ -5,7 +5,7 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
   * Rename package `debbugs-el' to `debian-el' and move apt-sources.el and
     apt-utils.el into it.
   * New file in emacs-goodies-el: newsticker.el, a news ticker for Emacs.  
-  * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
+  * Bug fix: "debian-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
     to package Recommends.
   * emacs-goodies-el: Since XEmacs has it's own version of ibuffer, make
