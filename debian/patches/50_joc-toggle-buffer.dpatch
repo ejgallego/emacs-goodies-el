@@ -2,7 +2,7 @@
 ## 50_joc-toggle-buffer.dpatch by Peter S Galbraith <psg@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: Add joc- prefix.  $Revision: 1.4 $
+## DP: Add joc- prefix.  $Revision: 1.5 $
 
 if [ $# -ne 1 ]; then
     echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
@@ -23,16 +23,16 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-01-15 16:48:11.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-03-27 15:10:07.000000000 -0500
+diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el
+--- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-04-20 14:44:06.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-04-20 14:46:48.000000000 -0400
 @@ -1,4 +1,4 @@
 -;;; @(#) toggle-buffer.el --- flips back and forth between two buffers
 +;;; @(#) joc-toggle-buffer.el --- flips back and forth between two buffers
- ;;; @(#) $Idx: toggle-buffer.el,v 1.1 2001/01/27 03:38:14 joe Exp $
  
  ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
-@@ -63,7 +63,7 @@
+ 
+@@ -62,7 +62,7 @@
  ;;  Put this file on your Emacs-Lisp load path and add the following to your
  ;;  ~/.emacs startup file
  ;;
@@ -41,7 +41,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  
  ;;; Usage:
  ;;
-@@ -100,13 +100,18 @@
+@@ -99,13 +99,18 @@
  ;;  Any comments, suggestions, bug reports or upgrade requests are welcome.
  ;;  Please send them to Joe Casadonte (emacs@northbound-train.com).
  ;;
@@ -61,7 +61,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  
  ;;; **************************************************************************
  ;;; **************************************************************************
-@@ -152,7 +157,7 @@
+@@ -151,7 +156,7 @@
    :group 'joc-toggle-buffer)
  
  ;; ---------------------------------------------------------------------------
@@ -70,16 +70,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
    "Hook to run when package is loaded."
    :type 'hook
    :group 'joc-toggle-buffer)
-@@ -162,7 +167,7 @@
- ;;; **************************************************************************
- (defconst joc-toggle-buffer-version
-   "$Revision: 1.4 $"
--  "Version number for toggle-buffer package.")
-+  "Version number for `joc-toggle-buffer' package.")
- 
- ;; ---------------------------------------------------------------------------
- (defun joc-toggle-buffer-version-number ()
-@@ -182,10 +187,12 @@
+@@ -181,10 +186,12 @@
  (defvar joc-toggle-buffer-last-buffer nil
    "Contains the name of the previous buffer.")
  
@@ -93,7 +84,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  	  (error "No previous buffer to switch to (yet)"))
    (let ((buff (get-buffer joc-toggle-buffer-last-buffer)))
  	(if (not buff)
-@@ -232,9 +239,8 @@
+@@ -231,9 +238,8 @@
  ;;; **************************************************************************
  ;;; ***** we're done
  ;;; **************************************************************************
