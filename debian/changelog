@@ -1,5 +1,7 @@
 emacs-goodies-el (22.0-1) unstable; urgency=low
 
+  * Remove package `emacs-goodies-extra-el' and merge its files into
+    `emacs-goodies-el'.  
   * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
     to package Recommends.
@@ -8,11 +10,9 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     50emacs-goodies-el.el.  Also for ibuffer: a customization variable
     (ibuffer-enable) was created to bind it to \C-x\C-b, and its
     documentation was added to the emacs-goodies-el Info.
-  * emacs-goodies-extra-el: Add `emacs-goodies-extra-el' customization
-    group and Info node.
-  * emacs-goodies-extra-el: Add newsticker.el, a news ticker for Emacs.
+  * emacs-goodies-el: Add newsticker.el, a news ticker for Emacs.
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 26 Sep 2003 20:29:59 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 29 Sep 2003 20:47:58 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 

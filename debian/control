@@ -9,7 +9,10 @@ Standards-Version: 3.6.1
 Package: emacs-goodies-el
 Architecture: all
 Depends: emacs21 | emacsen, bash (>= 2.05a)
-Suggests: emacs-goodies-extra-el
+Recommends: bash (>= 2.05a), dict, wget
+Replaces: emacs-goodies-extra-el
+Conflicts: emacs-goodies-extra-elD
+Provides: emacs-goodies-extra-el
 Description: Miscellaneous add-ons for Emacs
  This package contains a number of Emacs-Lisp files, obtained from
  various sources, including the gnu.emacs.sources newsgroup and a few
@@ -28,6 +31,7 @@ Description: Miscellaneous add-ons for Emacs
   coffee.el: now Emacs can even brew coffee;
   cyclebuffer.el: select buffer by cycling through;
   df.el: display in the mode line space left on devices;
+  dict.el: wrapper around the 'dict' command. (Depends on bash and dict)
   diminish.el: shorten or erase modeline presence of minor modes;
   dirvars.el: provides directory-wide local variables;
   egocentric.el: highlight your name inside emacs buffers;
@@ -46,6 +50,7 @@ Description: Miscellaneous add-ons for Emacs
   map-lines.el: map a command over lines matching a regexp;
   mutt-alias.el: lookup and insert the expansion of mutt mail aliases;
   muttrc-mode.el: major mode for editing Mutt config files;
+  newsticker.el: a newsticker for Emacs. (Depends on wget)
   nuke-trailing-whitespace.el: kill the trailing blanks at end of lines;
   obfusurl.el: obfuscate an URL;
   perldoc.el: show help for Perl functions, builtins, and modules;
@@ -98,22 +103,6 @@ Description: Miscellaneous add-ons for Gnus
  .
  See /usr/share/doc/gnus-bonus-el/README.Debian.gz for a short
  description of all files.
-
-Package: emacs-goodies-extra-el
-Architecture: all
-Depends: emacs21 | emacsen, bash (>= 2.05a), dict, wget
-Description: Miscellaneous add-ons for Emacs -- extra
- This package contains a number of Emacs-Lisp files, obtained from
- various sources, including the gnu.emacs.sources newsgroup and a few
- websites, that provide various functions to Emacs.  The files in this
- package depend on external packages.
- .
- This package contains:
-  dict.el: wrapper around the 'dict' command.
-  newsticker.el: a newsticker for Emacs.
- .
- See /usr/share/doc/emacs-goodies-extra-el/README.Debian.gz for a short
- description of the file.
 
 Package: devscripts-el
 Architecture: all

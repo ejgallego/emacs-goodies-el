@@ -7,10 +7,8 @@ functions to Emacs and/or Gnus.  The source package creates the following
 binary packages:
 
  emacs-goodies-el: Miscellaneous add-ons for Emacs
- emacs-goodies-extra-el:
-                   Miscellaneous add-ons for Emacs with extra dependencies 
  gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debbugs-el:       Access the Debian BTS from within Emacs
+ debian-el:        Debian-specific tools (Access the Debian BTS, etc)
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
 
@@ -79,6 +77,12 @@ bind these commands to your favourite keys.
 
 df.el provides M-x df, to display in the mode line space left on
 devices.
+
+dict.el is an Emacs wrapper around `dict' command to provide access to
+a dictd server from within Emacs.  The package provides several
+(customisable) key bindings, here are two of the default ones: `C-c d
+d' runs dict on the word at point.  `C-c d r' runs dict on region as a
+single word.
 
 diminish.el provides M-x diminish, M-x diminish-undo and M-x
 diminished-modes.  Diminished modes are minor modes with a shorter or
@@ -158,6 +162,12 @@ muttrc-mode.el provides muttrc-mode, a major mode to help the edition
 of Mutt configuration files.  To use it, either open a file named
 muttrc, or add a local variables section to the end of your file to
 specify the mode to be "muttrc".
+
+newsticker.el is a newsticker for Emacs.  A newsticker is a thing that
+asynchronously retrieves a list of headlines (which are contained in RDF
+Site Summary (RSS) files) from a list of news sites, displays these
+headlines, and allows for loading the corresponding articles in a web
+browser.
 
 obfusurl.el provides M-x obfuscate-url, a command that will obfuscate
 an URL under the cursor.
@@ -244,4 +254,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:27:15 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 20:35:58 2003

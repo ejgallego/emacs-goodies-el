@@ -118,7 +118,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.1 $
+| ;; $Revision: 1.2 $
 | 
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -201,6 +201,20 @@ Author/copyright info for df.el:
 | ;; them and/or modify them under the terms of the GNU General Public
 | ;; License as published by the Free Software Foundation; either
 | ;; version 2, or (at your option) any later version.
+`----
+
+
+Author/copyright info for dict.el:
+,----
+| ;; dict.el - Emacs interface to dict client
+| ;;
+| 
+| ;; Copyright (c) 2002 Max Vasin
+| ;;
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License
+| ;; as published by the Free Software Foundation; either version 2
+| ;; of the License, or (at your option) any later version.
 `----
 
 
@@ -462,6 +476,20 @@ Author/copyright info for muttrc-mode.el:
 `----
 
 
+Author/copyright info for newsticker.el
+,----
+| ;;; newsticker.el --- A Newsticker for Emacs.
+| ;;
+| ;;  Copyright (C) 2003 by Ulf Jasper
+| ;;
+| ;;
+| ;;  This program is free software; you can redistribute it and/or
+| ;;  modify it under the terms of the GNU General Public License as
+| ;;  published by the Free Software Foundation; either version 2 of the
+| ;;  License, or (at your option) any later version.
+`----
+
+
 Author/copyright info for obfusurl.el:
 ,----
 | ;;; obfusurl.el --- Obfuscate URLs so they aren't spoilers
@@ -619,7 +647,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.1 $
+| ;; $Revision: 1.2 $
 | 
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
