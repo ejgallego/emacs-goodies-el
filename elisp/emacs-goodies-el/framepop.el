@@ -1,17 +1,16 @@
 ;;; framepop.el --- display temporary buffers in a dedicated frame
 
 ;; Copyright (C) 1993, 1995 Free Software Foundation, Inc.
+;; Copyright (C) 2003 Peter S Galbraith
 
 ;; Author: David Smith <D.M.Smith@lancaster.ac.uk>
-;; Maintainer: David Smith <D.M.Smith@lancaster.ac.uk>
-;; Created: 8 Oct 1993
-;; Modified: $Date: 2003/10/02 14:42:11 $
-;; Version: $Revision: 1.1 $
-;; RCS-Id: $Id: framepop.el,v 1.1 2003/10/02 14:42:11 psg Exp $
-;; Keywords: help
-;; LCD-Archive-Entry: framepop|Dave M. Smith|D.M.Smith@lancaster.ac.uk|
-;;       Display temporary buffers in a dedicated frame|21-Feb-1994|2.15|
-;;       ~/misc/framepop.el|
+;; Maintainer: Peter S Galbraith <psg@debian.org>
+;;             (I'll assign copyright to the FSF if requested. Send patches
+;;             only if you are willing to do the same.)
+;; Created: 8 Oct 1993 by David Smith
+;; Modified: $Date: 2003/10/02 15:02:23 $
+;; Version: $Revision: 1.2 $
+;; RCS-Id: $Id: framepop.el,v 1.2 2003/10/02 15:02:23 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -43,10 +42,10 @@
 ;; for copying the displayed buffer. You need never lose that handy
 ;; *Help* buffer again!
 ;;
-;; Framepop is orthogonal to the Emacs 19.23 special-display-buffers
-;; feature; you can use both at the same time if you so desire.  You
-;; can make special-display buffers appear in the FramePop frame as
-;; well, if you wish; see below.
+;; Framepop is orthogonal to the Emacs' special-display-buffers feature;
+;; you can use both at the same time if you so desire.  You can make
+;; special-display buffers appear in the FramePop frame as well, if you
+;; wish; see below.
 
 ;; 2. INSTALLATION
 
@@ -88,7 +87,7 @@
 ;;        (top . 30)                       ;    away from my main frame
 ;;        (width . 71)                     ; narrower, so it fits nicely
 ;;        (background-color . "orchid4")   ; I like purple. So sue me.
-;;        (foreground-color . "cornsilk")  
+;;        (foreground-color . "cornsilk")
 ;;        (font . "-*-courier-bold-o-*-*-12-*-*-*-m-*-*-*")))
 
 ;; By default, only temporary buffers (which call
@@ -102,7 +101,7 @@
 ;;
 ;; Here's a suggestion for some buffers to use this feature on:
 ;; 
-;; (setq special-display-buffer-names '("*Shell Command Output*" 
+;; (setq special-display-buffer-names '("*Shell Command Output*"
 ;;   "*grep*" "*compilation*"))
 
 ;; Alternatively (if you want to keep the special-display feature
@@ -155,18 +154,7 @@
 ;;
 ;; The default value of framepop-lines is framepop-default-lines
 
-;; 5. AVAILABILITY
-;;
-;; The latest version of framepop.el is available from (in decreasing
-;; order of likelihood):
-;;
-;; By WWW:
-;;    http://www.maths.lancs.ac.uk:2080/~maa036/elisp/dir.html 
-;; By anonymous FTP:
-;;    /anonymous@wingra.stat.wisc.edu:pub/src/emacs-lisp/framepop.el.gz
-;; Or from the Emacs-Lisp archive.
-
-;; 6. BUGS: 
+;; BUGS:
 ;;
 ;; 1. Completion in comint buffers doesn't work very well unless
 ;;    comint-dynamic-show-completions is given a lobotomy.  NB: this
@@ -176,41 +164,43 @@
 ;;    framepop-frame, and then restores the window configuration. But
 ;;    the job of framepop-wrap is better done by
 ;;    special-display-buffer-names, so I shan't bother.
-;; 3. There is no section 4 in the introductory comments.
-;;
-;; Report bugs, fixes, suggestions, praise etc., to be kept informed
-;; of new versions, or just to say you like this package, send mail
-;; to the author with M-x framepop-submit-feedback. Go on, do it now!
-;; --- I just like getting mail, actually.
+
+;;; History:
+;; 
+;;  October 2003 - Peter S Galbraith
+;;   Since David Smith no longer uses Emacs, I have decided to do a bit of
+;;   work to update the file before packaging it for Debian.  This involved
+;;   mostly switching to the customize interface.  It's still very much
+;;   David's work.
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.1 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.2 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.1 2003/10/02 14:42:11 psg Exp $")
+$Id: framepop.el,v 1.2 2003/10/02 15:02:23 psg Exp $")
 
 ;;; Customizable variables
 
 (defvar framepop-max-frame-size 35
-  "*Maximum height of the FramePop frame")
+  "*Maximum height of the FramePop frame.")
 
 (defvar framepop-min-frame-size 5
-  "*Minimum height of the FramePop frame")
+  "*Minimum height of the FramePop frame.")
 
 (defvar framepop-auto-resize nil
-  "*If non-nil, the FramePop frame will dynamically resize for changing buffers")
+  "*If non-nil, the FramePop frame will dynamically resize for changing buffers.")
 
 (defvar framepop-resize-increment 4
   "*When auto-resizing, frame height is forced to a multiple of this value.
 This prevents excessive frame recreations on slow displays.")
 
-(defvar framepop-buffer-names-that-grow 
+(defvar framepop-buffer-names-that-grow
   "^\\\\*grep\\\\*$\\|\\\\*[Cc]ompilation\\\\*$"
   "Regexp matching buffer names that are likely to grow from empty.
-When framepop-auto-resize is nil, buffers with names matching this regexp
-are given a framepop frame of maximal size, to accomodate the data which 
+When `framepop-auto-resize' is nil, buffers with names matching this regexp
+are given a framepop frame of maximal size, to accomodate the data which
 is soon to appear.")
 
 ;; If you want the title of the FramePop frame to be *Help* or
@@ -223,7 +213,7 @@ is soon to appear.")
 ;; Colours and positions are also good things to set here. There
 ;; should be no "height" parameter.
 
-(defvar framepop-frame-parameters '((name . "FRAMEPOP") 
+(defvar framepop-frame-parameters '((name . "FRAMEPOP")
 				    (unsplittable . t) ; always include this
 				    (width . 80) ; this parameter is needed
 				    ;; (auto-raise . t)
@@ -232,31 +222,32 @@ is soon to appear.")
 				    ;; The following is needed for some WM's
 				    ;; (user-position . t)
 				    (menu-bar-lines . 0)
+                                    (tool-bar-lines . 0)
 				    (minibuffer . nil))
-  "Default parameters used in with the FramePop frame")
+  "Default parameters used in with the FramePop frame.")
 
-(defvar framepop-lines 
+(defvar framepop-lines
   'framepop-lines-default
-  "Lambda expression of one argument BUF, returning the number of lines
-the framepop frame should have to display BUF. If nil is returned, BUF is
-not displayed in the framepop frame.")
+  "Lambda expression of one argument BUF.
+It returns the number of lines the framepop frame should have to display
+BUF.  If nil is returned, BUF is not displayed in the framepop frame.")
 
 (defvar framepop-do-not-display-list '("*Buffer List*")
   "List of buffer names which will not appear in the FramePop frame.
-This behaviour is implemented by the function framepop-lines-default")
+This behaviour is implemented by the function `framepop-lines-default'")
 
 ;;; Variables controlling gross hacks
 
 (defvar framepop-hack-help-buffer-title t
-  "Try and produce sensible names for copied help buffers")
+  "Try and produce sensible names for copied help buffers.")
 
 ;;; System variables
 
 (defvar framepop-in-wrap nil
-  "Flag set to t during the execution of commands wrapped with framepop-wrap")
+  "Flag set to t during the execution of commands wrapped with `framepop-wrap'.")
 
 (defvar framepop-last-displayed-buffer ""
-  "Name of last buffer displayed in temp frame")
+  "Name of last buffer displayed in temp frame.")
 
 (defvar framepop-map nil)
 (if framepop-map nil
@@ -288,7 +279,7 @@ This behaviour is implemented by the function framepop-lines-default")
 
 ;;; Shut up the byte compiler
 
-(eval-when-compile 
+(eval-when-compile
   (require 'compile)
   (require 'advice)
   (require 'reporter))
@@ -296,16 +287,17 @@ This behaviour is implemented by the function framepop-lines-default")
 ;;; System functions
 
 (defun framepop-frame-height (buf)
-  "Return the desired height of a FramePop frame showing buffer BUF
-Enforces the limits set by framepop-max-frame-size and framepop-min-frame-size"
+  "Return the desired height of a FramePop frame showing buffer BUF.
+Enforces the limits set by `framepop-max-frame-size' and
+`framepop-min-frame-size'"
   (let ((lines (funcall framepop-lines buf)))
     (if lines
-	(max (min framepop-max-frame-size 
+	(max (min framepop-max-frame-size
 		  (funcall framepop-lines buf))
 	     framepop-min-frame-size))))
 
 (defun framepop-buffer nil
-  ;; Return the buffer the framepop window is showing, or nil
+  "Return the buffer the framepop window is showing, or nil."
   (if (frame-live-p framepop-frame)
       (window-buffer (frame-root-window framepop-frame))))
 
@@ -318,18 +310,17 @@ Enforces the limits set by framepop-max-frame-size and framepop-min-frame-size"
     (point)))
 
 (defun framepop-count-visual-lines (buf &optional max frame)
-  "Return the number of visual lines in BUF
-as opposed to the actual lines. The maximum size of a visual line is
-determined by the width of frame FRAME (defaults to
-framepop-frame). If MAX is supplied, counting stops after MAX
-lines. MAX defaults to framepop-max-frame-size."
+  "Return the number of visual lines in BUF as opposed to the actual lines.
+If MAX is supplied, counting stops after MAX lines.  MAX defaults to
+`framepop-max-frame-size'.  The maximum size of a visual line is determined
+by the width of frame FRAME \(defaults to `framepop-frame')."
   (if framepop-xemacs-p
       ;; This is inaccurate by one line, if a line that has 79 characters
-      ;; generates 2 visual lines. 
+      ;; generates 2 visual lines.
       (let* ((count 0)
 	     (max (or max framepop-max-frame-size))
 	     (frame (or frame framepop-frame))
-	     (width  (- (or (frame-width framepop-frame) 
+	     (width  (- (or (frame-width framepop-frame)
 			    (cdr (assq 'width framepop-frame-parameters))
 			    (frame-width (selected-frame))) 1))
 	     col)
@@ -357,7 +348,7 @@ lines. MAX defaults to framepop-max-frame-size."
     ;; FSF GNU Emacs has a nice function for doing this :)
     (save-excursion
       (set-buffer buf)
-      (1+ (nth 2 
+      (1+ (nth 2
 	       (compute-motion
 		1			; FROM
 		'(0 . 0)		; FROMPOS
@@ -372,15 +363,15 @@ lines. MAX defaults to framepop-max-frame-size."
     ))
 		    
 (defun framepop-lines-default (buf)
-  "The default value for framepop-lines.
+  "The default value for `framepop-lines'.
 Ensures that the FramePop frame will be big enough to display all of BUF.
-However, returns nil for buffers in framepop-do-not-display-list."
+However, returns nil for buffers in `framepop-do-not-display-list'."
   (save-excursion
     (set-buffer buf)
     (if (member (buffer-name) framepop-do-not-display-list) nil
-      (+ 
+      (+
        (if (and (not framepop-auto-resize)
-		(or 
+		(or
 		 ;; likely to grow
 		 (eq (buffer-size) 0)
 		 (string-match framepop-buffer-names-that-grow (buffer-name))))
@@ -394,19 +385,18 @@ However, returns nil for buffers in framepop-do-not-display-list."
 ;;; User commands
 
 (defun framepop-resize-frame (&optional buf height)
-  "Resize the framepop frame to accomodate buffer BUF
+  "Resize the framepop frame to accomodate buffer BUF.
 BUF defaults to the buffer displayed in the framepop frame
 If HEIGHT is non-nil, BUF is ignored and the frame is given height."
-  (interactive) 
+  (interactive)
   (let* ((win (frame-root-window framepop-frame))
 	 (buf (or buf (window-buffer win))))
-    (modify-frame-parameters framepop-frame 
-			     (list (cons 'height 
+    (modify-frame-parameters framepop-frame
+			     (list (cons 'height
 					 (or height (framepop-frame-height buf)))))))
 
 (defun framepop-pull-down nil
-  "If the last line of the framepop buffer is visible, try to place it
-on the last window line"
+  "If last line of framepop buffer is visible, place it on last window line."
   (interactive)
   (let* ((win (frame-root-window framepop-frame))
 	 (buf (window-buffer win))
@@ -422,17 +412,17 @@ on the last window line"
 	  (select-window oldwin)))))
 
 (defun framepop-grow (lines)
-  "Increase the height of the framepop frame by LINES lines
+  "Increase the height of the framepop frame by LINES lines.
 When called interactively, LINES is the numeric prefix argument"
   (interactive "p")
-  (modify-frame-parameters 
+  (modify-frame-parameters
    framepop-frame
    (list (cons 'height
 	       (max 2 (+ lines
-			 (cdr (assoc 'height 
+			 (cdr (assoc 'height
 				     (frame-parameters framepop-frame)))))))))
 (defun framepop-display-help nil
-  "Display help for the framepop commands"
+  "Display help for the framepop commands."
   (interactive)
   (describe-function 'framepop-display-buffer)
   (save-excursion
@@ -452,7 +442,7 @@ When called interactively, LINES is the numeric prefix argument"
 (defun framepop-display-buffer (buf)
   ;; Note: the fifth line of this docstring should begin general help:
   ;; see framepop-display-help
-  "Display-buffer for FramePop
+  "Display-buffer for FramePop.
 Displays BUF in a separate frame -- the FramePop frame.
 BUF bay be a buffer or a buffer name.
  
@@ -490,7 +480,7 @@ You can send mail to the author of the FramePop package by typing
 	(display-buffer buf)
       (if (frame-live-p framepop-frame) nil
 	;; No existing framepop frame
-	(setq framepop-frame 
+	(setq framepop-frame
 	      (make-frame (cons (cons 'height lines)
 				framepop-frame-parameters))))
       ;; For XEmacs, kill toolbars
@@ -521,7 +511,7 @@ You can send mail to the author of the FramePop package by typing
       (if (minibuffer-window-active-p (minibuffer-window)) nil
 	;; Replace the default message with something more suitable
 	(let ((message-log-max nil))	; don't log this message
-	  (message (substitute-command-keys 
+	  (message (substitute-command-keys
 		    "Type \\[framepop-scroll-frame] to scroll, \\[framepop-iconify-frame] to iconify"))))
 
       ;; PSG - Let minibuffer [TAB] scroll *completions* buffer
@@ -538,11 +528,11 @@ You can send mail to the author of the FramePop package by typing
 	(redirect-frame-focus framepop-frame oframe)))))
 
 (defun framepop-resizer (beg end pre-change-length)
-  "Bound to after-change-function to automatically resize the framepop frame"
+  "Bound to after-change-function to automatically resize the framepop frame."
   ;; If a after-change-buffer has somehow escaped being reset, do it now
   (if (and framepop-auto-resize (eq (framepop-buffer) (current-buffer)))
       (let ((bufheight (framepop-frame-height (current-buffer))))
-	(framepop-resize-frame nil 
+	(framepop-resize-frame nil
 	      ;; round up to framepop-resize-increment
 	      (if (zerop (mod bufheight framepop-resize-increment)) bufheight
 		(* (1+ (/ bufheight framepop-resize-increment))
@@ -551,23 +541,23 @@ You can send mail to the author of the FramePop package by typing
     (remove-hook 'after-change-functions 'framepop-resizer)))
 
 (defun framepop-iconify-frame nil
-  "Iconify the FramePop frame"
+  "Iconify the FramePop frame."
   (interactive)
   (if (frame-live-p framepop-frame)
       (iconify-frame framepop-frame)
     (message "FramePop frame deleted")))
 
 (defun framepop-make-invisible-frame nil
-  "Make the FramePop frame invisible"
+  "Make the FramePop frame invisible."
   (interactive)
   (if (frame-live-p framepop-frame)
       (make-frame-invisible framepop-frame)
     (message "FramePop frame deleted")))
 
 (defun framepop-show-frame nil
-  "Force the FramePop frame to be visible"
+  "Force the FramePop frame to be visible."
   (interactive)
-  (if (frame-live-p framepop-frame) 
+  (if (frame-live-p framepop-frame)
       (raise-frame framepop-frame)
     (let ((buf (or
 		(get-buffer framepop-last-displayed-buffer)
@@ -588,7 +578,7 @@ You can send mail to the author of the FramePop package by typing
   (delete-frame framepop-frame))
 
 (defun framepop-toggle-frame nil
-  "Iconify or deiconify the FramePop frame"
+  "Iconify or deiconify the FramePop frame."
   (interactive)
   (if (frame-live-p framepop-frame)
       (let ((oframe (selected-frame)))
@@ -605,7 +595,8 @@ You can send mail to the author of the FramePop package by typing
     (message "No active FramePop frame")))
       
 (defun framepop-scroll-frame (n)
-  "Like scroll-other-window, but scrolls the window in the FramePop frame"
+  "Like `scroll-other-window', but scrolls the window in the FramePop frame.
+Scroll-up N lines."
   (interactive "P")
   (framepop-show-frame)
   (save-window-excursion
@@ -638,14 +629,14 @@ Useful for buffers (e.g. compilations) which grow"
   (framepop-pull-down))
 
 (defun framepop-lower-frame nil
-  "Lower the FramePop frame"
+  "Lower the FramePop frame."
   (interactive)
   (if (frame-live-p framepop-frame)
       (lower-frame framepop-frame)
     (message "No active FramePop frame")))
 
 (defun framepop-raise-frame nil
-  "Raise the FramePop frame"
+  "Raise the FramePop frame."
   (interactive)
   (if (frame-live-p framepop-frame)
       (raise-frame framepop-frame)
@@ -654,18 +645,18 @@ Useful for buffers (e.g. compilations) which grow"
 (defun framepop-copy-frame (copy-buffer)
   "Duplicate the FramePop frame, and maybe the displayed buffer as well.
 With a prefix arg (COPY-BUFFER), the buffer is also copied and given a
-unique name. This is useful for *Help*, *Completions* etc."
+unique name.  This is useful for *Help*, *Completions* etc."
   (interactive "P")
   (let ((oframe (selected-frame))
 	new-frame
 	buf
 	contents
-	pos) 
+	pos)
     (select-frame framepop-frame)
     (setq pos (point))
     (setq new-frame (make-frame (frame-parameters framepop-frame)))
     (modify-frame-parameters new-frame '((name . nil)))
-    (if copy-buffer 
+    (if copy-buffer
 	(progn
 	  (let ((helpobj))
 	    (setq buf (if (and framepop-hack-help-buffer-title
@@ -679,8 +670,8 @@ unique name. This is useful for *Help*, *Completions* etc."
 							     (end-of-line)
 							     (point))
 							    (+ (point-min) 50)))
-				       (setq helpobj (buffer-substring 
-						      (point-min) 
+				       (setq helpobj (buffer-substring
+						      (point-min)
 						      (match-beginning 0))))
 				   (error nil))
 				 ;; (intern-soft helpobj)
@@ -697,30 +688,30 @@ unique name. This is useful for *Help*, *Completions* etc."
     (select-frame oframe)))
 
 (defun framepop-wrap (function buffer)
-  "Define a wrapper on FUNCTION so that BUFFER will appear in a FramePop frame
+  "Define a wrapper on FUNCTION so that BUFFER will appear in a FramePop frame.
 BUFFER may be a buffer, a buffer name, or a sexp evaluating to a buffer or
-buffer name. The function is advised with around advice named
+buffer name.  The function is advised with around advice named
 framepop-display-buffer-in-framepop-frame.
 
 WARNING: this will not work on autoloaded functions unless forward
-advice has been enabled. You must use ad-activate to activate the advice
-after the package has been loaded. See advice.el for details."
+advice has been enabled.  You must use `ad-activate' to activate the advice
+after the package has been loaded.  See advice.el for details."
   (require 'advice)
   (require 'backquote)
   (ad-add-advice
-   function 
+   function
    (ad-make-advice
     'framepop-display-buffer-in-framepop-frame
     t
     t
     (` (advice lambda nil
 	       ;; docstring:
-	       (, (format "Displays %s buffer in a FramePop frame" 
+	       (, (format "Displays %s buffer in a FramePop frame"
 			  (if (stringp buffer) buffer "output")))
 	       ;; body
 	       (let ((framepop-in-wrap t))
 		 ad-do-it
-		 (let* ((arg (, buffer)) 
+		 (let* ((arg (, buffer))
 			(buf (if (stringp arg) (get-buffer arg) arg)))
 		   (cond ((bufferp buf)
 			  (delete-windows-on buf)
@@ -731,24 +722,24 @@ after the package has been loaded. See advice.el for details."
   (ad-activate function))
 
 (defun framepop-enable nil
-  "Enable automatic pop-up temporary windows"
+  "Enable automatic pop-up temporary windows."
   (interactive)
-  (if (and temp-buffer-show-function 
+  (if (and temp-buffer-show-function
 	   (not (eq temp-buffer-show-function 'framepop-display-buffer)))
       (message "Warning: framepop.el has redefined temp-buffer-show-function"))
   (setq temp-buffer-show-function 'framepop-display-buffer))
 
 (defun framepop-disable nil
-  "Disable automatic pop-up temporary windows"
+  "Disable automatic pop-up temporary windows."
   (interactive)
   (setq temp-buffer-show-function nil))
 
 (defun framepop-submit-feedback ()
-  "Sumbit feedback on the FramePop package by electronic mail"
+  "Sumbit feedback on the FramePop package by electronic mail."
   (interactive)
   (require 'reporter)
   (reporter-submit-bug-report
-   "David M. Smith <D.M.Smith@lancaster.ac.uk>"
+   "Peter S Galbraith <psg@debian.org>"
    (concat "framepop.el; version " framepop-version)
    '(framepop-lines framepop-auto-resize framepop-frame-parameters)))
 
@@ -757,9 +748,9 @@ after the package has been loaded. See advice.el for details."
 
 (defun framepop-special-display (buffer &optional args)
   "Display BUF in the FramePop frame.
+Pass it BUFFER as first arg, and (cdr ARGS) gives the rest of the args.
 If ARGS is a list whose car is a symbol, use (car ARGS) as a function
-to do the work.  Pass it BUFFER as first arg, and (cdr ARGS) gives the
-rest of the args.
+to do the work.
 Otherwise, ARGS is ignored."
   (if (and args (symbolp (car args)))
       (apply (car args) buffer (cdr args))
@@ -830,7 +821,7 @@ Otherwise, ARGS is ignored."
       (defun framepop-completions-buffer-p nil
 	;; Return non-nil if the framepop buffer is a completions buffer
 	(let ((buf (framepop-buffer)))
-	  (and buf 
+	  (and buf
 	       (string-match "[cC]ompletions" (buffer-name buf)))))
 
       (defvar framepop-go-away-function 'framepop-iconify-frame
