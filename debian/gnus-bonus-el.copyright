@@ -15,6 +15,35 @@ matter.
 Copyright info for files in gnus-bonus-el
 -----------------------------------------
 
+Author/copyright info for gnus-eyecandy.el:
+,----
+| ;;; gnus-eyecandy.el --- add some eyecandy to Gnus
+| 
+| ;; Copyright (C) 1999 BrYan P. Johnson
+| 
+| ;; Modified 2003-10-15 to work with GNU Emacs
+| ;; by Johan Bockgård <bojohan@dd.chalmers.se>
+| [...]
+| ;; gnus-eyecandy.el is free software; you can redistribute it and/or modify it
+| ;; under the terms of the GNU General Public License as published by the Free
+| ;; Software Foundation; either version 2, or (at your option) any later
+| ;; version.
+`----
+
+
+Author/copyright info for gnus-filterhist.el:
+,----
+| ;;; gnus-filterhist.el --- Gnus Filter Histories -- parse nnmail-split-history to provide reports of mail splits.
+| 
+| ;; Copyright (C) 1999 BrYan P. Johnson
+| [...]
+| ;; gnus-filterhist.el is free software; you can redistribute it and/or modify it
+| ;; under the terms of the GNU General Public License as published by the Free
+| ;; Software Foundation; either version 2, or (at your option) any later
+| ;; version.
+`----
+
+
 Author/copyright info for gnus-junk.el:
 ,----
 | ;;; gnus-junk.el --- a response to junk e-mails
@@ -44,6 +73,21 @@ Author/copyright info for gnus-outlook-deuglify.el:
 | ;; it under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
+`----
+
+
+Author/copyright info for gnus-pers.el:
+,----
+| ;;; gnus-pers.el --- an alternative to gnus-posting-styles
+| 
+| ;; Copyright (C) 1999 BrYan P. Johnson
+| 
+| ;; Author: BrYan P. Johnson <bilko@onebabyzebra.com>
+| [...]
+| ;; gnus-pers.el is free software; you can redistribute it and/or modify it
+| ;; under the terms of the GNU General Public License as published by the Free
+| ;; Software Foundation; either version 2, or (at your option) any later
+| ;; version.
 `----
 
 
@@ -112,48 +156,4 @@ Author/copyright info for spam-stat.el:
 | ;; under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
-`----
-
-
-Author/copyright info for gnus-pers.el:
-,----
-| ;;; gnus-pers.el --- an alternative to gnus-posting-styles
-| 
-| ;; Copyright (C) 1999 BrYan P. Johnson
-| 
-| ;; Author: BrYan P. Johnson <bilko@onebabyzebra.com>
-| [...]
-| ;; gnus-pers.el is free software; you can redistribute it and/or modify it
-| ;; under the terms of the GNU General Public License as published by the Free
-| ;; Software Foundation; either version 2, or (at your option) any later
-| ;; version.
-`----
-
-
-Author/copyright info for gnus-eyecandy.el:
-,----
-| ;;; gnus-eyecandy.el --- add some eyecandy to Gnus
-| 
-| ;; Copyright (C) 1999 BrYan P. Johnson
-| 
-| ;; Modified 2003-10-15 to work with GNU Emacs
-| ;; by Johan Bockgård <bojohan@dd.chalmers.se>
-| [...]
-| ;; gnus-eyecandy.el is free software; you can redistribute it and/or modify it
-| ;; under the terms of the GNU General Public License as published by the Free
-| ;; Software Foundation; either version 2, or (at your option) any later
-| ;; version.
-`----
-
-
-Author/copyright info for gnus-filterhist.el:
-,----
-| ;;; gnus-filterhist.el --- Gnus Filter Histories -- parse nnmail-split-history to provide reports of mail splits.
-| 
-| ;; Copyright (C) 1999 BrYan P. Johnson
-| [...]
-| ;; gnus-filterhist.el is free software; you can redistribute it and/or modify it
-| ;; under the terms of the GNU General Public License as published by the Free
-| ;; Software Foundation; either version 2, or (at your option) any later
-| ;; version.
 `----
