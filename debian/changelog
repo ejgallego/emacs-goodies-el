@@ -3,8 +3,10 @@ emacs-goodies-el (24.5-1) UNRELEASED; urgency=low
   * dpkg-dev-el:
     - debian-changelog-mode.el: "dpkg-dev-el: Warning message for security
       uploads should be dismissed".  Thanks to Martin Schulze (Closes: #234730)
+    - debian-changelog-mode.el: "Should mark line beginning with a tab as
+      invalid". Thanks to Michel Daenzer (Closes: #235310).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 14 Apr 2004 21:38:55 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 14 Apr 2004 21:50:40 -0400
 
 emacs-goodies-el (24.4-1) unstable; urgency=low
 

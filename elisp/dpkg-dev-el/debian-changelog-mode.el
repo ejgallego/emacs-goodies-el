@@ -290,6 +290,8 @@
 ;; V1.78 14Apr2004 Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-setdistribution: Dismiss warning window when setting
 ;;    distribution to security.  Thanks to Martin Schulze (Closes: #234730)
+;;  - Should mark line beginning with a tab as invalid. Fontified in warning
+;;    face.  Thanks to Michel Daenzer (Closes: #235310).
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1290,6 +1292,7 @@ interface to set it, or simply set the variable
      "\\(closes:\\)[ \t\n]*\\(\\(bug\\)?#? *[0-9]+\\(,[ \t\n]*\\(bug\\)?#? *[0-9]+\\)*\\)"
      (1 font-lock-keyword-face)
      (2 debian-changelog-warning-face))
+   '("^\t.*$" . debian-changelog-warning-face)
    ;; maintainer line (enforce 2 space exactly between email and date)
    '("^ -- \\(.+\\) <\\(.+@.+\\)>  \\([^ ].+\\)$"
      (1 font-lock-variable-name-face)
