@@ -235,6 +235,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'perldoc
   :group 'emacs-goodies-el)
 
+;; projects
+(defgroup projects nil
+  "Project-based buffer name management."
+  :group 'convenience
+  :link '(custom-manual "(emacs-goodies-el)projects")
+  :load 'projects
+;;:require 'projects
+  :group 'emacs-goodies-el)
+
 ;; protbuf
 (defgroup protect-buffer nil
   "Protect buffers from accidental killing."
