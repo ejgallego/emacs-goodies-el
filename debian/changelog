@@ -5,6 +5,9 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
       customization.
     - debian-bug.el: "Should send minor severty bugs to maintonly, not
       submit", thanks to Tollef Fog Heen (Closes: #214242).
+  * emacs-goodies-extra-el:
+    - Re-introduce an harmless 50emacs-goodies-extra-el.el file since old one
+      not removed in dist-upgrade.
 
  -- Peter S Galbraith <psg@debian.org>  Fri, 31 Oct 2003 09:29:25 -0500
 

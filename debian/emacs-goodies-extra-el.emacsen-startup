@@ -1,0 +1,5 @@
+;; This file may be safely deleted.
+;;
+;; Its only purpose was to remove the old version of this file that existed
+;; prior to the contents of the `emacs-goodies-extra-el' package moving into
+;; the package `emacs-goodies-el'.
