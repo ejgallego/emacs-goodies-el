@@ -1192,7 +1192,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
 match 1 -> package name
       2 -> native vsn number
       3 -> non-native vsn number
-      4 -> non-native NMU vns number"
+      4 -> non-native NMU vsn number"
   (when (re-search-forward
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
