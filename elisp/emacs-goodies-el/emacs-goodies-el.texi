@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.35 2003/10/07 15:24:27 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.36 2003/10/08 01:37:28 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -95,6 +95,7 @@ be documented.
 * nuke-trailing-whitespace::    Strip trailing whitespace from buffers
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
 * perldoc::                     Show help for Perl functions and modules.
+* protbuf::                     Protect buffers from accidental killing
 * session::                     Session Management for Emacs
 @end menu
 
@@ -111,8 +112,6 @@ Files not yet documented here:
 code to split customizations into different files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
 Project-based buffer name management
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/protbuf.el
-protect buffers from accidental killing
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/protocols.el
 Protocol database access functions.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/services.el
@@ -1542,7 +1541,7 @@ is turned into this:
 <URL:http://www.davep.org/%65%6d%61%63%73/>
 @end example
 
-@node perldoc, session, obfusurl, Top
+@node perldoc, protbuf, obfusurl, Top
 @chapter perldoc - Show help for Perl functions, builtins, and modules.
 
 @noindent Author: Steve Kemp <skx@@tardis.ed.ac.uk>
@@ -1556,7 +1555,29 @@ the key @key{F1} to show point for the item under point in
 
 The code handles functions, builtins, and third party modules.
 
-@node session,  , perldoc, Top
+@node protbuf, session, perldoc, Top
+@chapter protbuf - Protect buffers from accidental killing
+
+@noindent Author: Noah Friedman <friedman@@splode.com>
+
+This package allows you to make it harder to kill buffers accidentally,
+e.g. by being too trigger happy selecting items in the buffer menu.
+
+@noindent The commands are:
+
+@table @samp
+@item protect-buffer-from-kill-mode
+Toggle @code{kill-buffer} protection on current buffer.
+@item protect-process-buffer-from-kill-mode
+Toggle @code{kill-buffer} protection on current buffer with active process.
+@end table
+
+@command{protect-process-buffer-from-kill-mode} is perhaps the more
+useful of the two, making it harder to accidentally kill shell buffers
+without terminating the process in them first.
+
+
+@node session,  , protbuf, Top
 @chapter session - Session Management for Emacs
 
 When you start Emacs, package Session restores various variables (e.g.,
@@ -1613,9 +1634,9 @@ interesting anymore.
 Details of Package Session
 
 @menu
-* Session Menus and Key-Bindings::
-* Saving Session Variables::
-* Storing Buffer Places::
+* Session Menus and Key-Bindings::  
+* Saving Session Variables::    
+* Storing Buffer Places::       
 @end menu
 
 @node Session Menus and Key-Bindings, Saving Session Variables, session, session

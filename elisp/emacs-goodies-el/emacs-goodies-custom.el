@@ -235,6 +235,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'perldoc
   :group 'emacs-goodies-el)
 
+;; protbuf
+(defgroup protect-buffer nil
+  "Protect buffers from accidental killing."
+  :group 'killing
+  :link '(custom-manual "(emacs-goodies-el)protbuf")
+  :load 'protbuf
+;;:require 'protbuf
+  :group 'emacs-goodies-el)
+
 ;; session
 (defgroup session nil
   "Use variables, registers and buffer places across sessions."
