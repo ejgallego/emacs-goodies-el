@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.32 2003/10/05 00:31:05 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.33 2003/10/07 00:15:38 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -94,6 +94,7 @@ be documented.
 * newsticker::                  A Newsticker for Emacs
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
 * perldoc::                     Show help for Perl functions and modules.
+* session::                     Session Management for Emacs
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -1512,7 +1513,7 @@ is turned into this:
 <URL:http://www.davep.org/%65%6d%61%63%73/>
 @end example
 
-@node perldoc,  , obfusurl, Top
+@node perldoc, session, obfusurl, Top
 @chapter perldoc - Show help for Perl functions, builtins, and modules.
 
 @noindent Author: Steve Kemp <skx@@tardis.ed.ac.uk>
@@ -1525,3 +1526,157 @@ the key @key{F1} to show point for the item under point in
 @code{cperl-mode} and @code{perl-mode}.
 
 The code handles functions, builtins, and third party modules.
+
+@node session,  , perldoc, Top
+@chapter session - Session Management for Emacs
+
+When you start Emacs, package Session restores various variables (e.g.,
+input histories) from your last session. It also provides a menu containing
+recently changed/visited files and restores the places (e.g., point) of
+such a file when you revisit it.
+
+To enable this package, customize the group @code{session} and within
+it the variable @code{session-initialize} and save the settings.
+
+To restore the variables, this package writes a session file (~/.session)
+when you exit Emacs. The file includes the values of variables which are
+automatically updated by Emacs during some editing operations:
+
+@itemize @bullet
+@item Histories of user input. For example, strings used in a find/replace
+command, names of files you have visited, etc.
+
+@item Contents of registers, whether they are texts or buffer/file
+positions. Buffer positions are automatically converted to file positions.
+
+@item List of recently copied/cut text blocks to paste, global markers to
+jump to, and other so-called rings.
+
+@item List of recently changed files with their places and some buffer-local
+variables.
+@end itemize
+
+To restore the places of a recently changed/visited file when you revisit
+it, this packages stores the places of a buffer in a special variable (the
+list mentioned above) when you kill that buffer (this includes exiting
+Emacs). Places are:
+
+@itemize @bullet
+@item Point (the cursor position) and mark (e.g., the opposite position
+when a region is highlighted). These places will be restored, but a region
+won't be made active.
+
+@item The position of the last change. A new command (bound to @key{C-x
+C-/}) can be used to jump to that position.
+
+@item The boundaries if only a part of a buffer was visible. Reopening the
+file will again restrict/narrow the editing operations to that region.
+
+@item Values of buffer-local variables. Useful for variables which control some
+temporary editing behavior, e.g., overwrite-mode.
+@end itemize
+
+As opposed to desktop.el and other packages, Session does not automatically
+revisits all files from your last session, most of which are not
+interesting anymore.
+
+
+Details of Package Session
+
+@menu
+* Session Menus and Key-Bindings::  
+* Saving Session Variables::    
+* Storing Buffer Places::       
+@end menu
+
+@node Session Menus and Key-Bindings, Saving Session Variables, session, session
+@section Session - Menus and Key-Bindings
+
+For Emacs-21.1+ and XEmacs, this package defines the following menu entries
+and key-bindings:
+
+@itemize @bullet
+@item
+At the beginning of menu File, there are two new submenus:
+@code{Open...recently changed} and @code{Open...recently visited}.
+
+@item
+In menu Edit, there is a new submenu: @code{Select and Paste}, it already
+exists in Emacs-21+. With XEmacs, using the right mouse button @key{C-button3}
+also pops up this submenu.
+
+@item
+Enter @key{C-x C-/} or @key{C-x Undo} to jump to the position of the last
+change (use repeatedly or with prefix argument for earlier positions).
+
+@item
+In the minibuffer, enter @key{M-?} to display a completion list with all
+strings in the history for the current minibuffer input. From that list,
+you can use @key{button2} to select an entry.
+
+@end itemize
+
+@node Saving Session Variables, Storing Buffer Places, Session Menus and Key-Bindings, session
+@section Session - Saving Session Variables
+
+There are various ways to control which lists/variables are saved in the
+session file and which elements in a list are included in the saved value:
+
+@itemize @bullet
+@item The variables to store can be specified by a regular expression
+matching their names, and by an include/exclude list.
+
+@item
+Variables containing empty lists are not stored. You do not want to clutter
+up your session file...
+
+@item
+Long lists can be truncated. A maximum length can be specified globally and
+individually for single variables.
+
+@item
+If there are equal elements in the list, only the first is saved. Long
+strings in a list can be excluded by specifying a maximal string length.
+
+@item
+Elements in a list which have no readable representation (e.g., events in
+the command history) are automatically dropped.
+
+@item
+To exit Emacs without writing a session file, use prefix argument 0: enter
+@key{C-u 0 C-x C-c}.
+
+@end itemize
+
+Technical detail: documentation of command session-save-session.
+
+Note: you cannot share the same session file between Emacs and XEmacs
+(different coding systems, different types for the same variables, ?).
+
+@node Storing Buffer Places,  , Saving Session Variables, session
+@section Session - Storing Buffer Places
+
+Since not all buffers/files are of permanent interest, there are various
+conditions and means to control for which buffers to store some places:
+
+@itemize @bullet
+@item
+The buffer must visit a readable file. There are variables to exclude or
+include buffers due to their major mode or buffer file name.
+
+@item
+By default, the contents must have been changed. You still have the places
+from previous Emacs sessions, but that information is older and thus more
+likely to be truncated from the list of saved buffer places (see above).
+
+@item
+Individual control by providing a prefix argument to command @command{M-x
+kill-this-buffer} (@key{C-u 2} or higher: store places, @key{C-u 0} or
+lower: don't store places).
+
+@item
+A file/buffer can be marked as permanent, i.e., its places will always be
+stored. Use @command{M-x session-toggle-permanent-flag} or select the
+corresponding menu item in the new submenu @code{Open...recently changed}.
+
+@end itemize
