@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.30 2003/10/03 01:52:59 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.31 2003/10/03 16:59:14 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -107,6 +107,8 @@ Files not yet documented here:
 @table @samp
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
 code to split customizations into different files
+@item /usr/share/emacs/site-lisp/emacs-goodies-el/nuke-trailing-whitespace.el
+strip trailing whitespace from buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
 Project-based buffer name management
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/protbuf.el
@@ -145,8 +147,6 @@ mode-line display hack
 Underline a region
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/wdired.el
 Rename files editing their names in dired buffers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/whitespace.el
-strip trailing whitespace from buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/xrdb-mode.el
 mode for editing X resource database files
 @end table
