@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.34 2003/10/07 02:32:00 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.35 2003/10/07 15:24:27 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -372,7 +372,7 @@ This package is an Emacs wrapper around the shell @file{dict} command
 and provides an easy and comfortable (from my point of view) access to
 the dictd server from Emacs.
 
-The package provides several key bindings, which are customisation variables, 
+The package provides several key bindings, which are customisation variables,
 so you can change them easily:
 
 @itemize @bullet
@@ -399,7 +399,7 @@ so manually with @code{M-x dict}.  Thereafter the keybindings will
 work.  If someone requests it, a customization variable could be added
 to enable them automatically.
 
-Descriptions of all customisation variables are given below in their 
+Descriptions of all customisation variables are given below in their
 definitions, and of cause you can find them in the customization of
 the grou @code{Dict}.
 
@@ -677,12 +677,12 @@ appear in a separate frame which is easily dismissed when no longer
 needed.
 
 @menu
-* announcement::                Announcement on gnu-emacs-sources      
+* announcement::                Announcement on gnu-emacs-sources
 * Purpose::                     What's it's for
 * Quick Setup::                 Get going within a minute
 * Customization::               Extra settings
 * For elisp hackers::           More extra seetings for teh adventurous
-* Bugs::                        Or limitations      
+* Bugs::                        Or limitations
 @end menu
 
 @node announcement, Purpose, framepop, framepop
@@ -779,7 +779,7 @@ string that represents a key you'd prefer.
 You may then optionally extend Framepop's functionality by allowing it
 to use the @code{advice} library to advise other functions.  Select
 this option by customizing the variable @code{framepop-use-advice} to
-@code{on}. 
+@code{on}.
 
 Save all these settings and you are ready to go.
 
@@ -886,7 +886,7 @@ displayed in the FramePop frame at all):
   	     (set-buffer buf)
   	     (+ (count-lines (point-min) (point-max)) 1)))))
 @end verbatim
-        
+
 This will cause empty buffers to have the minimum height, because
 the maximum and minimum frame sizes (as specified in
 @code{framepop-max-frame-size} and @code{framepop-min-frame-size}) are enforced
@@ -963,7 +963,7 @@ highlighted text would disappear.  The effects of various keys:
 
  @item @key{?}: open up a window showing possible completions.
 
- @item @key{RET}: open the named file (so 'g' followed by RET would open 
+ @item @key{RET}: open the named file (so 'g' followed by RET would open
       'grunge.tex').
 
  @item @key{C-g}: delete the highlighted text and stop this modified
@@ -977,7 +977,7 @@ highlighted text would disappear.  The effects of various keys:
       move the point forward.  if inconsistent, insert the
       character and delete the highlighted text, stopping this
       completion process.
-@end itemize 
+@end itemize
 
 @noindent Turn on highlight completion by either: running
 @example
@@ -1500,7 +1500,8 @@ This package strips trailing whitespace from buffers.  It can be used
 manually on a buffer by calling @code{M-x nuke-trailing-whitespace} when
 editing a buffer, or automatically when you save a file.
 
-For automatic stripping, either add the following in your .emacs:
+For automatic stripping of files as you save them (or email messages as
+you send them), either add the following in your .emacs:
 
 @verbatim
     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
@@ -1509,7 +1510,7 @@ For automatic stripping, either add the following in your .emacs:
 @end verbatim
 
 or better yet accomplish the same effect by customizing the variable
-@code{nuke-trailing-whitespace-install-as-hook} and saving the result for
+@code{nuke-trailing-whitespace-in-hooks} and saving the result for
 future sessions.
 
 By default, buffers that have a major-mode listed in the customizable
@@ -1517,6 +1518,8 @@ list @code{nuke-trailing-whitespace-always-major-modes} are stripped, those
 listed in the list @code{nuke-trailing-whitespace-never-major-modes} are not,
 and others are prompted for.  You can change this default behaviour by
 customizing the variable @code{nuke-trailing-whitespace-p}.
+
+@noindent See also: whitespace.el packaged in Emacs-21
 
 @node obfusurl, perldoc, nuke-trailing-whitespace, Top
 @chapter obfusurl - Obfuscate URLs so they aren't spoilers
@@ -1548,7 +1551,7 @@ This package allows the user to view the Perl help for the word(s) at
 the point.
 
 Customize the variable @code{perldoc-define-F1} to @code{on} to bind
-the key @key{F1} to show point for the item under point in 
+the key @key{F1} to show point for the item under point in
 @code{cperl-mode} and @code{perl-mode}.
 
 The code handles functions, builtins, and third party modules.
@@ -1610,9 +1613,9 @@ interesting anymore.
 Details of Package Session
 
 @menu
-* Session Menus and Key-Bindings::  
-* Saving Session Variables::    
-* Storing Buffer Places::       
+* Session Menus and Key-Bindings::
+* Saving Session Variables::
+* Storing Buffer Places::
 @end menu
 
 @node Session Menus and Key-Bindings, Saving Session Variables, session, session

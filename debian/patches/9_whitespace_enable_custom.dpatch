@@ -1,8 +1,8 @@
 #!/bin/sh -e
-## 9_whitespace_enable_custom.dpatch by Peter S Galbraith <psg@debian.org>
+## 9_whitespace_enable_custom.dpatch.dpatch by Peter S Galbraith <psg@debian.org>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: Support for custom interface
+## DP: nuke-trailing-whitespace.el custom support
 
 if [ $# -ne 1 ]; then
     echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
@@ -23,9 +23,9 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-10-06 22:18:14.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-10-06 22:18:34.000000000 -0400
+diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el
+--- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	Tue Oct  7 11:15:59 2003
++++ emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	Tue Oct  7 11:16:59 2003
 @@ -1,11 +1,12 @@
  ;;; nuke-trailing-whitespace.el --- strip trailing whitespace from buffers
  
@@ -38,71 +38,89 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 -;; Status: Works in Emacs 19 and XEmacs.
 +;; Status: Works in Emacs 20 and 21 and XEmacs.
  
- ;; $Id: 9_whitespace_enable_custom.dpatch,v 1.1 2003/10/07 02:23:53 psg Exp $
+ ;; $Id: 9_whitespace_enable_custom.dpatch,v 1.2 2003/10/07 15:24:27 psg Exp $
  
-@@ -25,34 +26,78 @@
+@@ -25,34 +26,92 @@
  ;; Inc.; 59 Temple Place, Suite 330; Boston, MA 02111-1307, USA.
  
  ;;; Commentary:
+-
+-;; This file was modified from Noah Friedman's whitespace.el by Cristian
+-;; Ionescu-Idbohrn because emacs21 also provides a whitespace.el.  This
+-;; file, and its functions, were renamed to nuke-trailing-whitespace to
+-;; avoid the namespace collision.
+-
+-;; You may wish to do the following in your .emacs:
 +;;
 +;; This package strips trailing whitespace from buffers.  It can be used
 +;; manually on a buffer by calling `M-x nuke-trailing-whitespace' when
 +;; editing a buffer, or automatically when you save a file.
 +;;
-+;; For automatic stripping, either add the following in your .emacs:
-+;;
-+;;     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
-+;;     (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
-+;;     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
++;; For automatic stripping of files as you save them (or email messages as
++;; you send them), either add the following in your .emacs:
+ ;;
+ ;;     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
+ ;;     (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
+ ;;     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
 +;;
 +;; or better yet accomplish the same effect by customizing the variable
-+;; `nuke-trailing-whitespace-install-as-hook' and saving the result for
-+;; future sessions.
++;; `nuke-trailing-whitespace-in-hooks' and saving the result for future
++;; sessions.
 +;;
 +;; By default, buffers that have a major-mode listed in the customizable
 +;; list `nuke-trailing-whitespace-always-major-modes' are stripped, those
 +;; listed in the list `nuke-trailing-whitespace-never-major-modes' are not,
 +;; and others are prompted for.  You can change this default behaviour by
 +;; customizing the variable `nuke-trailing-whitespace-p'.
- 
++
++;; See also: whitespace.el packaged in Emacs-21
++
 +;;; History:
 +;;
- ;; This file was modified from Noah Friedman's whitespace.el by Cristian
- ;; Ionescu-Idbohrn because emacs21 also provides a whitespace.el.  This
- ;; file, and its functions, were renamed to nuke-trailing-whitespace to
--;; avoid the namespace collision.
--
--;; You may wish to do the following in your .emacs:
-+;; avoid the name-space collision.
- ;;
--;;     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
--;;     (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
--;;     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-+;; 2003-10-06 - Support for custom interface added by Peter S Galbraith
-+;; <psg@debian.org>
++;; 2003-05-01 Cristian Ionescu-Idbohrn <cristian.ionescu-idbohrn@axis.com>
++;;  Emacs21 also provides a whitespace.el.  This file, and its functions,
++;;  were renamed to nuke-trailing-whitespace to avoid the name-space
++;;  collision.
++;;
++;; 2003-10-06 - Peter S Galbraith <psg@debian.org>
++;;  - Support for custom interface.  Allows enabling of package via custom.
++;;  - nuke-trailing-whitespace-in-hooks: New defcustom to select hooks
++;;
  
  ;;; Code:
  
 -(defvar nuke-trailing-whitespace-p 'nuke-trailing-whitespace-check-mode
++(require 'cl)
++
 +(defgroup nuke-trailing-whitespace nil
 +  "Strip trailing whitespace from buffers."
-+  :group 'editing)
++  :group 'editing
++  :group 'convenience)
 +
 +(defcustom nuke-trailing-whitespace-p 'nuke-trailing-whitespace-check-mode
    "*Specify when stripping whitespace should be done.
  This variable affects how the function `nuke-trailing-whitespace' behaves.
 -If `t', unreservedly strip trailing whitespace, including excess newlines.
 -If `nil', do nothing.
+-If a symbol \(not bound to a function\), query for each instance.
 +If t, unreservedly strip trailing whitespace, including excess newlines.
 +If nil, do nothing.
- If a symbol \(not bound to a function\), query for each instance.
++If the symbol 'query, then query for each instance.
  
- If a function or name of a function, call it to decide what to do.
+-If a function or name of a function, call it to decide what to do.
 -This function is called once and should return `t', `nil', or the symbol
-+This function is called once and should return t, nil, or the symbol
- `query' to decide what to do.
+-`query' to decide what to do.
++The default setting, the function `nuke-trailing-whitespace-check-mode',
++says to strip buffers with major modes listed in
++`nuke-trailing-whitespace-always-major-modes', skip those listed in the
++list `nuke-trailing-whitespace-never-major-modes' and query the user for
++others.
  
 -This variable is made buffer-local when set in any fashion.")
++You may set another custom-made function which will be called instead.
++This function should return t, nil, or the symbol `query' to decide what to
++do.
++
 +This variable is made buffer-local when set in any fashion."
 +  :group 'nuke-trailing-whitespace
 +  :type '(radio (const :tag "Never" nil)
@@ -114,8 +132,8 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 +                (function :tag "Other function")))
  (make-variable-buffer-local 'nuke-trailing-whitespace-p)
  
-+(defcustom nuke-trailing-whitespace-install-as-hook nil
-+  "List of hooks to install `nuke-trailing-whitespace into.
++(defcustom nuke-trailing-whitespace-in-hooks nil
++  "List of hooks to install `nuke-trailing-whitespace' into.
 +Unsetting values does not remove hooks from the current session."
 +  :type 'hook                           ;Not really, but gives us :options
 +  :options '(write-file-hooks mail-send-hook)
@@ -130,7 +148,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  ;; The regexp "\\s-+$" is too general, since form feeds (\n), carriage
  ;; returns (\r), and form feeds/page breaks (C-l) count as whitespace in
  ;; some syntaxes even though they serve a functional purpose in the file.
-@@ -64,7 +109,7 @@
+@@ -64,7 +123,7 @@
  (defconst nuke-trailing-whitespace-eob-newline-regexp "\n\n+\\'"
    "Regular expression which matches newlines at the end of the buffer.")
  
@@ -139,7 +157,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
    '(ada-mode
      c++-mode
      c-mode
-@@ -85,30 +130,34 @@
+@@ -85,30 +144,34 @@
      slitex-mode
      sml-mode
      texinfo-mode)
@@ -181,7 +199,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  replacement if the buffer is read-only."
    (interactive)
    (cond ((interactive-p)
-@@ -126,6 +175,7 @@
+@@ -126,6 +189,7 @@
    nil)
  
  (defun nuke-trailing-whitespace-do-nuke-whitespace (&optional flag)
@@ -189,7 +207,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
    (interactive)
    (let ((buffer-orig-read-only buffer-read-only)
          (buffer-read-only nil))
-@@ -138,20 +188,27 @@
+@@ -138,20 +202,27 @@
             ((or (and (eq flag t)
                       (not buffer-orig-read-only))
                  (interactive-p))
@@ -220,7 +238,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
    (or mode (setq mode major-mode))
    (cond ((memq mode nuke-trailing-whitespace-always-major-modes) t)
          ((memq mode nuke-trailing-whitespace-never-major-modes) nil)
-@@ -163,4 +220,4 @@
+@@ -163,4 +234,4 @@
  
  (provide 'nuke-trailing-whitespace)
  
