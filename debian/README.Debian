@@ -29,7 +29,9 @@ replace reading the documentation that is made available in the files
 themselves (or not available at all, except insofar as code is
 self-documenting).
 
-See also the Info node `emacs-goodies-el' (still work-in-progress).
+The package `emacs-goodies-el' comes with Info node `emacs-goodies-el'
+(still a work-in-progress) that will document each included files when
+it's finished.
 
 
 Introduction to files in emacs-goodies-el
@@ -303,9 +305,6 @@ Introduction to files in devscripts-el
 devscripts.el provides M-x debuild, M-x debc and M-x debi, three
 commands to call the corresponding utilities from within Emacs.
 
-readme-debian.el provides readme-debian-mode, a major mode to
-highlight README.Debian files.
-
 
 Introduction to files in debbugs-el
 -----------------------------------
@@ -341,4 +340,7 @@ files.  This mode adds a bit of colouring, a working filling function
 (bound to "M-q" by default), tab-completion for adding fields (bound
 to "C-c C-a" by default), and viewing bugs (bound to "C-c C-b").
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 09:15:26 2003
+readme-debian.el provides readme-debian-mode, a major mode to
+highlight README.Debian files.
+
+ -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 18:34:20 2003
