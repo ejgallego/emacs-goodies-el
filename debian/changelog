@@ -1,5 +1,8 @@
 emacs-goodies-el (24.5-1) UNRELEASED; urgency=low
 
+  * debian/emacsen-install.template: since dashes are not allowed in
+    flavour names within shell varaibles, replace them with underline
+    characters. (Jérôme Marant).
   * dpkg-dev-el:
     - debian-changelog-mode.el: "dpkg-dev-el: Warning message for security
       uploads should be dismissed".  Thanks to Martin Schulze (Closes: #234730)

@@ -1,6 +1,6 @@
 
-eval included_here=\$$(echo INCLUDED_$FLAVOR)
-eval excluded_here=\$$(echo EXCLUDED_$FLAVOR)
+eval included_here=\$$(echo INCLUDED_$FLAVOR | tr - _)
+eval excluded_here=\$$(echo EXCLUDED_$FLAVOR | tr - _)
 
 included_all=$(for i in ${!INCLUDED_*} ; do
     eval echo \$$i
@@ -80,7 +80,7 @@ EOF
 fi
 
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
-${FLAVOR} ${FLAGS} ${FILES} >> ${LOG} &> ${LOG}
+"${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} &> ${LOG}
 rm -f *.el path.el
 
 exit 0
