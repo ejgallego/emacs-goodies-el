@@ -7,9 +7,9 @@ emacs-goodies-el (21.12-1) unstable; urgency=low
     Added to Info docs.
   * emacs-goodies-el's home-end.el: Bug fix: "home-end-enable shouldn't
     unset end and home!", thanks to Jorgen Schäfer <forcer@debian.org>
-    (Closes: #211859).
+    (Closes: #211859).  Add to Info docs.
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 20 Sep 2003 16:53:04 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 20 Sep 2003 18:50:50 -0400
 
 emacs-goodies-el (21.11-1) unstable; urgency=low
 

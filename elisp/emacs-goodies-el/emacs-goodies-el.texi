@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.20 2003/09/20 22:43:06 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.21 2003/09/20 22:51:30 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -82,7 +82,7 @@ documented files just yet.
 * highlight-beyond-fill-column::  Fontify beyond the fill-column.
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
-
+* home-end::                    Alternative Home and End key commands
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -724,7 +724,7 @@ of the entries in "Highlight completion list".
 
 These functions can be used anywhere, not just in the minibuffer.
 
-@node highlight-current-line,  , highlight-completion, Top
+@node highlight-current-line, home-end, highlight-completion, Top
 @chapter highlight-current-line.el - highlight line where the cursor is
 
 This is a minor mode to highlight the line the cursor is in. You can
@@ -750,4 +750,14 @@ extend or redefine this regexp. This works together with the default ignore
 function @code{highlight-current-line-ignore-function}. You can redefine this
 function to implement your own criterias.
 
+@node home-end,  , highlight-current-line, Top
+@chapter home-end - Alternative Home and End key commands
 
+Some useful bindings for Home and End keys:
+@itemize @bullet
+@item Hit the key once to go to the beginning/end of a line,
+@item hit it twice in a row to go to the beginning/end of the window,
+@item three times in a row goes to the beiginning/end of the buffer.
+@end itemize
+
+To enable it, customize the variable @code{home-end-enable}.
