@@ -80,7 +80,7 @@ EOF
 fi
 
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
-"${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} &> ${LOG}
+"${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} 2>&1
 rm -f *.el path.el
 
 exit 0
