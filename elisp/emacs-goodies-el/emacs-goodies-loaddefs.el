@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16253 43285))
+;;;;;;  "bar-cursor.el" (16255 27155))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16253 43285))
+;;;;;;  "diminish.el" (16255 27155))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -236,8 +236,33 @@ Toggle floatbg mode" t nil)
 
 ;;;***
 
+;;;### (autoloads (framepop-display-buffer framepop-enable framepop-disable)
+;;;;;;  "framepop" "framepop.el" (16255 27141))
+;;; Generated autoloads from framepop.el
+
+(autoload (quote framepop-disable) "framepop" "\
+Disable automatic pop-up temporary windows." t nil)
+
+(autoload (quote framepop-enable) "framepop" "\
+Enable automatic pop-up temporary windows." t nil)
+
+(autoload (quote framepop-display-buffer) "framepop" "\
+Display-buffer for FramePop.
+Displays BUF in a separate frame -- the FramePop frame.
+BUF bay be a buffer or a buffer name.
+
+You can display a buffer in the FramePop frame with \\[framepop-display-buffer].
+
+Several commands are available for manipulating the FramePop frame after
+typing the keymap prefix (default F2).
+
+\\{framepop-map}
+" t nil)
+
+;;;***
+
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16253 43285))
+;;;;;;  "highlight-beyond-fill-column.el" (16255 27155))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -258,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16253 43285))
+;;;;;;  (16255 27155))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -357,8 +382,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16253
-;;;;;;  43285))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16255
+;;;;;;  27155))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -371,7 +396,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16253 43286))
+;;;;;;  "nuke-trailing-whitespace.el" (16255 27155))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -400,7 +425,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16253 43285))
+;;;;;;  "perldoc.el" (16255 27155))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
