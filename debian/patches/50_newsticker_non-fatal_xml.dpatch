@@ -23,13 +23,13 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el
---- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Fri Oct 24 11:34:35 2003
-+++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	Fri Oct 24 13:03:24 2003
-@@ -177,7 +177,16 @@
+diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	2004-11-11 13:57:34.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	2004-11-12 16:08:36.000000000 -0500
+@@ -278,7 +278,16 @@
+ ;;; Code:
  
  (require 'derived)
- (require 'outline)
 -(require 'xml)
 +;; Debian modification:
 +;;  Woody XEmacs doesn't have xml.el, so conditionnaly require it.
@@ -44,15 +44,15 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  ;; ======================================================================
  ;;; Customizables
-@@ -561,6 +570,7 @@
- ;; ======================================================================
+@@ -1137,6 +1146,7 @@
  ;;; User fun
  ;; ======================================================================
+ 
 +;;;###autoload
  (defun newsticker-start (&optional do-not-complain-if-running)
    "Start the newsticker.
  Start the timers for display and retrieval.  If the newsticker, i.e. the
-@@ -626,6 +636,7 @@
+@@ -1218,6 +1228,7 @@
  
  
  ;; the functions we need for retrieval and display
