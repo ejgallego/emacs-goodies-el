@@ -1,0 +1,8 @@
+The content of the package emacs-goodies-extra-el has been moved to the
+package emacs-goodies-el.
+
+This package ensures that emacs-goodies-el is installed during upgrades
+and should thereafter be removed.
+
+The contents are in the public domain.
+Peter S Galbraith <psg@debian.org>
