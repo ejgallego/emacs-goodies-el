@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.43 2003/10/10 17:34:46 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.44 2003/10/10 17:59:39 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -108,6 +108,8 @@ be documented.
 * toggle-option::               Easily toggle frequently toggled options
 * twiddle::                     Cute mode-line display hack.
 * under::                       Underline with the ^ character
+* wdired::                      Rename files by editing in dired buffers.
+* xrdb-mode::                   Mode for editing X resource database files.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -135,10 +137,6 @@ cite text with proper filling
 flips back and forth between two buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-case.el
 toggles case at point
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/wdired.el
-Rename files editing their names in dired buffers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/xrdb-mode.el
-mode for editing X resource database files
 @end table
 
 @node align-string, all, Top, Top
@@ -2654,7 +2652,7 @@ characters of an option.
 Inspired by a similar hack by Jim Blandy <jimb@@cyclic.com>.
 
 There are two user commands of interest: @command{twiddle-start} and
-@comamnd{twiddle-compile}:
+@command{twiddle-compile}:
 
 @table @samp
 @item twiddle-start
@@ -2668,7 +2666,7 @@ Like \\[compile], but run a twiddle hack during compilation.
 If you write new twiddles, try to minimize or avoid consing, since those
 functions are called constantly.
 
-@node under,  , twiddle, Top
+@node under, wdired, twiddle, Top
 @chapter under - Underline with the ^ character
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -2683,3 +2681,77 @@ Suggested key-binding to put in ~/.emacs:
 
 @emph{Bugs:} currently only works on a single line.  The region can't
 span multiple lines.
+
+@node wdired, xrdb-mode, under, Top
+@chapter wdired - Rename files editing their names in dired buffers
+
+@noindent Author: Juan León Lahoz García <juan-leon.lahoz@@tecsidel.es>
+
+wdired.el (the "w" is for writable) provides an alternative way of
+renaming files.
+
+Have you ever wished to use @key{C-x r t} (string-rectangle), @key{M-%}
+(query-replace), @key{M-c} (capitalize-word), etc. to change the name of
+the files in a @code{dired} buffer? Now you can do this. All the power
+of emacs commands are available to renaming files!
+
+This package provides a function that makes the filenames of a a
+dired buffer editable, by changing the buffer mode (which inhibits
+all of the commands of dired mode). Here you can edit the names of
+one or more files and directories, and when you press @key{C-c C-c}, the
+renaming takes effect and you are back to dired mode.
+
+@noindent Other things you can do with wdired:
+
+@itemize @bullet
+@item
+To move files to another directory (by typing their path,
+absolute or relative, as a part of the new filename).
+
+@item
+To change the target of symbolic links.
+
+@item
+To change the permission bits of the filenames (in systems with a
+  working unix-alike @code{dired-chmod-program}). See and customize the
+  variable @code{wdired-allow-to-change-permissions}. To change a single
+  char (toggling between its two more usual values) you can press
+  the space bar over it or left-click the mouse. To set any char to
+  an specific value (this includes the SUID, SGID and STI bits) you
+  can use the key labeled as the letter you want. Please note that
+  permissions of the links cannot be changed in that way, because
+  the change would affect to their targets, and this would not be
+  WYSIWYG :-).
+
+@item
+To mark files for deletion, by deleting their whole filename.
+@end itemize
+
+Use @command{M-x customize-group RET wdired} if you want make changes to
+the default behavior.
+
+@noindent Usage:
+
+The key @key{r} in dired-mode is defined to
+@command{wdired-change-to-wdired-mode}.
+
+You can start editing the names of the files by typing @key{r} (or
+@command{M-x wdired-change-to-wdired-mode}) in dired-mode.  Use
+@key{C-c C-c} when finished or @key{C-c C-k} to abort. You can use
+also the menu options: in dired mode, @code{Edit File Names} under
+@code{Immediate}.  While editing the names, a new submenu
+@code{WDired} is available at top level. You can customize the
+behavior of this package from this menu.
+
+@node xrdb-mode,  , wdired, Top
+@chapter xrdb-mode - Mode for editing X resource database files
+
+@noindent Author: Barry A. Warsaw <barry@@python.org>
+
+This file provides a major mode for editing X resource database files
+(e.g. .Xdefaults, .Xenvironment, .Xresources).  It includes font-lock
+definitions and commands for controlling indentation, re-indenting by
+subdivisions, and loading and merging into the the resource database.
+
+The mode should load automatically for appropriate files, or invoke it
+using @command{xrdb-mode}.
