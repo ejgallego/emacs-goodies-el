@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16272 36100))
+;;;;;;  "bar-cursor.el" (16285 50831))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16272 36100))
+;;;;;;  "diminish.el" (16285 50831))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -262,7 +262,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16272 36100))
+;;;;;;  "highlight-beyond-fill-column.el" (16285 50831))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -283,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16272 36100))
+;;;;;;  (16285 50831))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -299,30 +299,53 @@ of window, third in a row goes to end of buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
-;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (16266
-;;;;;;  62773))
+;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (16279
+;;;;;;  6500))
 ;;; Generated autoloads from htmlize.el
 
 (autoload (quote htmlize-buffer) "htmlize" "\
-Convert buffer to HTML, preserving the font-lock colorization.
+Convert BUFFER to HTML, preserving colors and decorations.
+
 The generated HTML is available in a new buffer, which is returned.
-When invoked interactively, the new buffer is selected in the
-current window." t nil)
+When invoked interactively, the new buffer is selected in the current
+window.  The title of the generated document will be set to the buffer's
+file name or, if that's not available, to the buffer's name.
+
+Note that htmlize doesn't fontify your buffers, it only uses the
+decorations that are already present.  If you don't set up font-lock or
+something else to fontify your buffers, the resulting HTML will be
+plain.  Likewise, if you don't like the choice of colors, fix the mode
+that created them, or simply alter the faces it uses." t nil)
 
 (autoload (quote htmlize-region) "htmlize" "\
-Convert the region to HTML, preserving the font-lock colorization.
-The generated HTML is available in a new buffer, which is returned.
-When invoked interactively, the new buffer is selected in the
-current window." t nil)
+Convert the region to HTML, preserving colors and decorations.
+See `htmlize-buffer' for details." t nil)
 
 (autoload (quote htmlize-file) "htmlize" "\
-HTML-ize FILE, and save the result to an `.html' file.
-The file name of the HTML file is determined with `html-make-file-name'.
-If TARGET-DIRECTORY is non-nil, the resulting HTML file will be saved
-to that directory, instead of to FILE's directory." t nil)
+Load FILE, fontify it, convert it to HTML, and save the result.
+
+Contents of FILE are inserted into a temporary buffer, whose major mode
+is set with `normal-mode' as appropriate for the file type.  The buffer
+is subsequently fontified with `font-lock' and converted to HTML.  Note
+that, unlike `htmlize-buffer', this function explicitly turns on
+font-lock.  If a form of highlighting other than font-lock is desired,
+please use `htmlize-buffer' directly on buffers so highlighted.
+
+Buffers currently visiting FILE are unaffected by this function.  The
+function does not change current buffer or move the point.
+
+If TARGET is specified and names a directory, the resulting file will be
+saved there instead of to FILE's directory.  If TARGET is specified and
+does not name a directory, it will be used as output file name." t nil)
 
 (autoload (quote htmlize-many-files) "htmlize" "\
-HTML-ize files specified by FILES, and save them to `.html' files.
+Convert FILES to HTML and save the corresponding HTML versions.
+
+FILES should be a list of file names to convert.  This function calls
+`htmlize-file' on each file; see that function for details.  When
+invoked interactively, you are prompted for a list of files to convert,
+terminated with RET.
+
 If TARGET-DIRECTORY is specified, the HTML files will be saved to that
 directory.  Normally, each HTML file is saved to the directory of the
 corresponding source file." t nil)
@@ -381,8 +404,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16272
-;;;;;;  36100))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16285
+;;;;;;  50831))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -395,7 +418,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (newsticker-show-news newsticker-start) "newsticker"
-;;;;;;  "newsticker.el" (16272 36100))
+;;;;;;  "newsticker.el" (16285 50832))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -410,7 +433,7 @@ Switch to newsticker buffer.  You may want to bind this to a key." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16272 36100))
+;;;;;;  "nuke-trailing-whitespace.el" (16285 50831))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -439,7 +462,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16272 36100))
+;;;;;;  "perldoc.el" (16285 50832))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -456,7 +479,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16272 36100))
+;;;;;;  "protbuf" "protbuf.el" (16285 50832))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -515,7 +538,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (16272 36100))
+;;;;;;  (16285 50832))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -568,7 +591,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16272 36100))
+;;;;;;  "table" "table.el" (16285 50832))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
