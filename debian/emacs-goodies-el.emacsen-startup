@@ -6,7 +6,9 @@
     (message
      "Package emacs-goodies-el removed but not purged.  Skipping setup.")
   (debian-pkg-add-load-path-item
-   (concat "/usr/share/" (symbol-name flavor) "/site-lisp/emacs-goodies-el"))
+   (concat "/usr/share/"
+           (symbol-name debian-emacs-flavor)
+           "/site-lisp/emacs-goodies-el"))
   
   ;; Make sure that the uncompiled files are also in the load-path, near the
   ;; end.  This is for moving point to the code when view help.
