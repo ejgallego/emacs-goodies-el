@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.46 2003/10/16 01:21:20 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.47 2003/10/27 02:00:20 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -1028,36 +1028,78 @@ To enable it, customize the variable @code{home-end-enable}.
 @node htmlize, ibuffer, home-end, Top
 @chapter htmlize - HTML-ize font-lock buffers
 
-This package analyses the text properties of the buffer and
-converts them, along with the text, to HTML.  Mail to
-<hniksic@@xemacs.org> to discuss features and additions.  All
-suggestions are more than welcome.
+@noindent Author: Hrvoje Niksic <hniksic@@xemacs.org>
 
-To use, just switch to a buffer you want HTML-ized, and type @code{M-x
-htmlize-buffer}.  After that, you should find yourself in an HTML
-buffer, which you can save.  Alternatively, @code{M-x htmlize-file} will
-find a file, font-lockify the buffer, and save the HTML version,
-all before you blink.  Furthermore, @code{M-x htmlize-many-files} will
-prompt you for a slew of files to undergo the same treatment.  @code{M-x
-htmlize-many-files-dired} will do the same for the files marked by
-dired.
+@noindent Commands:
 
-The code attempts to generate compliant HTML, but I can't make any
-guarantees; I haven't yet bothered to run the generated markup
-through a validator.
+@table @samp
+@item htmlize-buffer
+Convert BUFFER to HTML, preserving colors and decorations.
+@item htmlize-region
+Convert the region to HTML, preserving colors and decorations.
+@item htmlize-file
+Load FILE, fontify it, convert it to HTML, and save the result.
+@item htmlize-many-files
+Convert FILES to HTML and save the corresponding HTML versions.
+@item htmlize-many-files-dired
+HTMLize dired-marked files.
+@end table
 
-For any of this to work, you need to run Emacs under a window-system
--- anything else will almost certainly fail.
+This package converts the buffer text and the associated
+decorations to HTML.  Mail to <hniksic@@xemacs.org> to discuss
+features and additions.  All suggestions are more than welcome.
+
+To use this, just switch to the buffer you want HTML-ized and type
+@code{M-x htmlize-buffer}.  You will be switched to a new buffer that
+contains the resulting HTML code.  You can edit and inspect this
+buffer, or you can just save it with @key{C-x C-w}.  @code{M-x htmlize-file}
+will find a file, fontify it, and save the HTML version in
+FILE.html, without any additional intervention.  @code{M-x
+htmlize-many-files} allows you to htmlize any number of files in
+the same manner.  @code{M-x htmlize-many-files-dired} does the same for
+files marked in a dired buffer.
+
+htmlize supports two types of HTML output, selected by setting
+@code{htmlize-output-type}: @code{css} and @code{font}.  In @code{css} mode, htmlize
+uses cascading style sheets to specify colors; it generates classes
+that correspond to Emacs faces and uses <span class=FACE>...</span>
+to color parts of text.  In this mode, the produced HTML is valid
+under the 4.01 strict DTD, as confirmed by the W3C validator.  In
+@code{font} mode, htmlize uses <font color="...">...</font> to colorize
+HTML, which is not standard-compliant, but works better in older
+browsers.  @code{css} mode is the default.
+
+You can also use htmlize from your Emacs Lisp code.  When called
+non-interactively, @code{htmlize-buffer} and @code{htmlize-region} will
+return the resulting HTML buffer, but will not change current
+buffer or move the point.
+
+I tried to make the package elisp-compatible with multiple Emacsen,
+specifically aiming for XEmacs 19.14+ and GNU Emacs 19.34+.  Please
+let me know if it doesn't work on some of those, and I'll try to
+fix it.  I relied heavily on the presence of CL extensions,
+especially for cross-emacs compatibility; please don't try to
+remove that particular dependency.  When byte-compiling under GNU
+Emacs, you're likely to get lots of warnings; just ignore them.
 
 @noindent The latest version should be available at:
 
        http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el
 
-@noindent You can find the sample htmlize output (run on an older version of
-@file{htmlize.el}) at:
+@noindent You can find a sample of htmlize's output (possibly generated with
+an older version) at:
 
-       http://fly.srk.fer.hr/~hniksic/emacs/htmlize.html
+       http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el.html
 
+Thanks go to the multitudes of people who have sent reports and
+contributed comments, suggestions, and fixes.  They include Ron
+Gut, Bob Weiner, Toni Drabik, Peter Breton, Thomas Vogels and many
+others.
+
+@verbatim
+User quotes: "You sir, are a sick, sick, _sick_ person. :)"
+                 -- Bill Perry, author of Emacs/W3
+@end verbatim
 @node ibuffer, keydef, htmlize, Top
 @chapter ibuffer - operate on buffers like dired
 

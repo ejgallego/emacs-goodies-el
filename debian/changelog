@@ -9,6 +9,7 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
     Debian setup:
     - Add autoloads for gnus-pers.el, gnus-eyecandy.el and gnus-filterhist.el.
   * emacs-goodies-el:
+    - htmlize.el: new upstream version 1.16 with many enhancements.
     Patches:
     - 50_newsticker_non-fatal_xml: Don't bail out requiring xml which doesn't
       exists on woody XEmacs. Fixes Bug "M-x newsticker-start crashes",
