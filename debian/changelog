@@ -1,4 +1,4 @@
-emacs-goodies-el (24.2-1) unstable; urgency=low
+emacs-goodies-el (24.2-1) UNRELEASED; urgency=low
 
   * debian-el: 
     - apt-utils.el: Updated to v1.78 (2004/01/04). Allow for multiple
@@ -9,8 +9,12 @@ emacs-goodies-el (24.2-1) unstable; urgency=low
     - browse-kill-ring.el: cannot setup `*Kill Ring*' buffer with items
       propertized read-only", many thanks to INOUE Hiroyuki for reporting it
       along with a working fix (Closes: #225082).
+    - coffee.el: Since `M-x coffee' doesn't work for real, I've removed
+      its autoload so users can't trip on it accidentally, and I've made it
+      clear it's a joke package in the Info docs. Thanks to Daniel de
+      Angelis Cordeiro for reporting (Closes: #225152).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 15 Jan 2004 15:04:43 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 15 Jan 2004 16:50:58 -0500
 
 emacs-goodies-el (24.1-1) unstable; urgency=low
 

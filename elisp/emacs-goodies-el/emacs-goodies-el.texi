@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.54 2003/11/27 02:28:07 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.55 2004/01/15 21:52:16 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -408,6 +408,18 @@ Reference: <URL:ftp://ftp.isi.edu/in-notes/rfc2324.txt>
 You can probably guess how coffee.el came about ...yadda yadda
 everything but make coffee ...yadda yadda ...
 @end quotation
+
+To do anything at all on emacs21, coffee requires the Debian packages
+@file{w3-el} and @file{w3-url-e21} to be installed.  Then it will
+prompt for coffee and sweetener type.  Then @code{url-retrieve} will
+fail since it doesn't really support the coffee URL type.  So...
+this package is really an elaborate joke.  Because of this, it's
+longer autoloaded in Debian.  To try, do:
+
+@example
+M-x load-library coffee
+M-x coffee 
+@end example
 
 @node clipper, ctypes, coffee, Top
 @chapter clipper.el - Save strings of data for further use.
