@@ -58,7 +58,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 -			       (regexp-quote todoo-item-marker-assigned) 
 -			       " \\|[ ]*" (regexp-quote todoo-sub-item-marker)
 -			       " \\)"))
-+  (setq (make-local-variable 'outline-regexp)
++  (set (make-local-variable 'outline-regexp)
 +        (concat "^\\(" (regexp-quote todoo-item-marker) " \\|"
 +                (regexp-quote todoo-item-marker-assigned) 
 +                " \\|[ ]*" (regexp-quote todoo-sub-item-marker)
