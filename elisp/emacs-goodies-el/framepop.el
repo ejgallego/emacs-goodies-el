@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/05 00:47:01 $
-;; Version: $Revision: 1.9 $
-;; RCS-Id: $Id: framepop.el,v 1.9 2003/10/05 00:47:01 psg Exp $
+;; Modified: $Date: 2003/10/05 00:55:33 $
+;; Version: $Revision: 1.10 $
+;; RCS-Id: $Id: framepop.el,v 1.10 2003/10/05 00:55:33 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,11 +177,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.9 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.10 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.9 2003/10/05 00:47:01 psg Exp $")
+$Id: framepop.el,v 1.10 2003/10/05 00:55:33 psg Exp $")
 
 ;;; Customizable variables at end
 
@@ -297,7 +297,7 @@ is soon to appear."
 ;; Colours and positions are also good things to set here. There
 ;; should be no "height" parameter.
 
-(defcustom framepop-frame-parameters2
+(defcustom framepop-frame-parameters
   '((name . "FRAMEPOP")
     (unsplittable . t) ; always include this
     (width . 80) ; this parameter is needed
@@ -338,7 +338,8 @@ is soon to appear."
 
 (defcustom framepop-do-not-display-list '("*Buffer List*")
   "List of buffer names which will not appear in the FramePop frame.
-This behaviour is implemented by the function `framepop-lines-default'"
+This behaviour is implemented by the function `framepop-lines-default
+'"
   :group 'framepop
   :type '(repeat (string :tag "Buffer name")))
 
