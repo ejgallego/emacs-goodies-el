@@ -23,7 +23,7 @@
 ;; Cambridge, MA 02139, USA.
 
 ;;; Commentary:
-;; 
+;;
 ;;  Use `M-x debian-bts-control' to create an initial message, and
 ;;  `M-x debian-bts-control' again (or `C-c c') to insert new directives.
 
@@ -45,28 +45,34 @@
 ;;  - Add `package', `owner' and `noowner'.
 ;; V1.06 05Oct2003 Peter S Galbraith <psg@debian.org>
 ;;  - Add tags "sarge-ignore" and "fixed-uptsream".
+;; V1.06 03Nov2003 Peter S Galbraith <psg@debian.org>
+;;  - Created defgroup debian-bts-control.
 
 ;;; Code:
 
 (require 'debian-bug)
 
+(defgroup debian-bts-control nil
+  "Create messages for Debian BTS control interface"
+  :group 'debian-bug)
+
 (defcustom debian-bts-control-verbose-prompts-flag t
   "Non-nil means to be very verbose for `debian-bts-control' prompts."
-  :group 'debian-bug
+  :group 'debian-bts-control
   :type 'boolean
   :set (lambda (symbol value)
          (if (<= 21 emacs-major-version)
              (set-default symbol value)
            (message
             "debian-bts-control-verbose-prompts-flag overridden for Emacs20")
-           (set-default symbol nil))))            
+           (set-default symbol nil))))
 
 (defcustom debian-bts-control-modes-to-reuse
   '(mh-letter-mode mail-mode message-mode)
   "List of modes in which calling `debian-bts-control' will reuse the buffer.
 No new draft will be created.  Instead control@bugs.debian.org will be
 added to the Cc: field and the comamnds added at t6he top of the message."
-  :group 'debian-bug
+  :group 'debian-bts-control
   :type '(repeat symbol))
 
 (defvar debian-bts-control-minor-mode nil)
@@ -257,8 +263,8 @@ in `debian-bts-control-modes-to-reuse'."
                      current-prefix-arg))
   (let ((number-default))
     (cond
-     ((or arg 
-          (and (car (memq t (mapcar '(lambda (item) (eq item major-mode)) 
+     ((or arg
+          (and (car (memq t (mapcar '(lambda (item) (eq item major-mode))
                                     debian-bts-control-modes-to-reuse)))
                (not debian-bts-control-minor-mode)))
       (debian-bug--set-CC "control@bugs.debian.org" "cc:")
@@ -570,7 +576,7 @@ in `debian-bts-control-modes-to-reuse'."
 
 (defun debian-bts-help-control ()
   (with-output-to-temp-buffer "*Help*"
-    (princ 
+    (princ
      "reassign bugnumber package
 
     Records that bug #bugnumber is a bug in package. This can be used to
@@ -665,7 +671,7 @@ clone bugnumber [ new IDs ]
         reassign -2 foo
         retitle -2 foo: foo sucks
         merge -1 -2
-  
+
 
 merge bugnumber bugnumber ...
 
@@ -752,7 +758,7 @@ package [ packagename ... ]
 
         package
         severity 234567 wishlist
-  
+
 owner bugnumber address | !
 
     Sets address to be the \"owner\" of #bugnumber. The owner of a bug
