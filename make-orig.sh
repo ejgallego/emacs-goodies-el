@@ -5,8 +5,8 @@ set -e
 dh_testdir
 dh_clean
 rm -f `find . -name "*~"`
-rm -f `find . -name "*#"`
-rm -f `find . -name "*.#"`
+rm -f `find . -name "#*"`
+rm -f `find . -name ".#*"`
 rm -fR elisp/emacs-goodies-el/info
 rm -fR elisp/debian-el/info
 
