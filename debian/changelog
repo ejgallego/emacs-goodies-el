@@ -5,8 +5,10 @@ emacs-goodies-el (24.7-1) UNRELEASED; urgency=low
     - debian-bug.el: Bug fix: "debbugs-el: M x debian-bug fails due to new
       reportbug syntax; Add "--list-cc=none" to call to reportbug".
       Thanks to Camm Maguire for the patch (Closes: #280780).
+  * emacs-goodies-el:
+    - newsticker.el: New upstream release (1.6).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 11 Nov 2004 13:46:03 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 11 Nov 2004 13:56:39 -0500
 
 emacs-goodies-el (24.6-2) unstable; urgency=low
 
