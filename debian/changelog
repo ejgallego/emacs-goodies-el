@@ -3,8 +3,10 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
   * debian-el:
     - deb-view.el: I'm now maintaining this file. New version supports
       customization.
-    - debian-bug.el: "Should send minor severty bugs to maintonly, not
-      submit", thanks to Tollef Fog Heen (Closes: #214242).
+    - debian-bug.el bug fix: "Should send minor severty bugs to maintonly,
+      not submit", thanks to Tollef Fog Heen (Closes: #214242).
+    - debian-bug.el bug fix: "M-x debian-bug prompt doesn't work correctly
+      in XEmacs21", thanks to Kenshi Muto for reporting (Closes: #219811).
   * emacs-goodies-extra-el:
     - Re-introduce a harmless 50emacs-goodies-extra-el.el file since old one
       not removed in dist-upgrade.
@@ -15,7 +17,7 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
     - Create `dpkg-dev-el.el' and `dpkg-dev-el-loaddefs.el' startup files
       and use them in Emacs startup.
 
- -- Peter S Galbraith <psg@debian.org>  Mon,  3 Nov 2003 21:11:48 -0500
+ -- Peter S Galbraith <psg@debian.org>  Sun,  9 Nov 2003 18:56:56 -0500
 
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
