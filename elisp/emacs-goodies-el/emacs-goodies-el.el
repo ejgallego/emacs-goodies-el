@@ -198,17 +198,6 @@ Stores the value of the prior keybinding in case we need to restore it.")
 ;; muttrc-mode.el
 (add-to-list 'auto-mode-alist '("muttrc" . muttrc-mode))
 
-;; projects.el
-(autoload 'add-project "projects"
-  "Add the project named NAME with root directory DIRECTORY."
-  t)
-(autoload 'remove-project "projects"
-  "Remove the project named NAME."
-  t)
-(autoload 'list-projects "projects"
-  "List all projects sorted by project name."
-  t)
-
 ;; session.el
 (autoload 'session-initialize "session"
   "Initialize package session and read previous session file.
