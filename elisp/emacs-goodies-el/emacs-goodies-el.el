@@ -209,6 +209,14 @@ Stores the value of the prior keybinding in case we need to restore it.")
   "List all projects sorted by project name."
   t)
 
+;; session.el
+(autoload 'session-initialize "session"
+  "Initialize package session and read previous session file.
+Setup hooks and load `session-save-file', see `session-initialize'.  At
+best, this function is called at the end of the Emacs startup, i.e., add
+this function to `after-init-hook'."
+  t)
+
 ;; setnu.el
 (autoload 'setnu-mode "setnu"
   "Toggle setnu-mode."
