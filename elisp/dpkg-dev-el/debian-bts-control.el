@@ -43,6 +43,8 @@
 ;;  - debian-bts-help-control: was missing!
 ;; V1.05 18Sep2003  Peter S Galbraith <psg@debian.org>
 ;;  - Add `package', `owner' and `noowner'.
+;; V1.06 05Oct2003 Peter S Galbraith <psg@debian.org>
+;;  - Add tags "sarge-ignore" and "fixed-uptsream".
 
 ;;; Code:
 
@@ -185,7 +187,7 @@ added to the Cc: field and the comamnds added at t6he top of the message."
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
      (4 font-lock-warning-face))
-    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed\\|upstream\\|potato\\|woody\\|sarge\\|sid\\)"
+    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed\\|upstream\\|fixed-upstream\\|potato\\|woody\\|sarge\\|sarge-ignore\\|sid\\)"
      (1 font-lock-function-name-face)
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
@@ -530,7 +532,8 @@ in `debian-bts-control-modes-to-reuse'."
  afresh. The default action is adding.
 
  Tags are patch, wontfix, moreinfo, unreproducible, help, pending, fixed,
- security, upstream, potato, woody, sarge, sid and experimental.
+ security, upstream, fixed-upstream, potato, woody, sarge, sarge-ignore,
+ sid and experimental.
 
  For their meanings, consult the Control->Help->Tags menu.
 
@@ -714,11 +717,10 @@ tags bugnumber [ + | - | = ] tag
     them afresh. The default action is adding.
 
     Available tags currently include patch, wontfix, moreinfo,
-    unreproducible, help, pending, fixed, security, upstream, potato,
-    woody, sarge, sid and experimental.
+    unreproducible, help, pending, fixed, security, upstream, fixed-upstream,
+    potato, woody, sarge, sarge-ignore, sid and experimental.
 
-    For their meanings please consult the general developers' documentation
-    for the bug system.
+    For their meanings, consult the Control->Help->Tags menu.
 
 close bugnumber
 
