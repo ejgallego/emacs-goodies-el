@@ -1490,7 +1490,7 @@ Also set keymap."
   ;; For debchange
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
-;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode)
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
