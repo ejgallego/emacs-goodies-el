@@ -119,24 +119,13 @@ Description: Emacs wrappers for the commands in devscripts
  See /usr/share/doc/devscripts-el/README.Debian.gz for a short
  description.
 
-Package: debbugs-el
-Architecture: all
-Depends: debian-el (>= 22.0-1)
-Section: oldlibs
-Priority: extra
-Description: Transitional package.  Can be removed.
- The package debbugs-el has been renamed debian-el.
- .
- This package ensures that debian-el is installed during upgrades and
- should thereafter be removed.
-
 Package: debian-el
 Architecture: all
 Depends: emacs21 | emacsen, reportbug (>= 1.41.1), gzip, binutils
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
-Replaces: debbugs-el
-Provides: debbugs-el
+Replaces: debbugs-el, debview
+Provides: debbugs-el, debview
 Section: utils
 Description: Emacs helpers specific to Debian users
  This package contains:
@@ -149,6 +138,28 @@ Description: Emacs helpers specific to Debian users
  .
  See /usr/share/doc/debian-el/README.Debian.gz for a short
  description of all files, or the Info node `debian-el' for details.
+
+Package: debbugs-el
+Architecture: all
+Depends: debian-el (>= 22.0-1)
+Section: oldlibs
+Priority: extra
+Description: Transitional package.  Can be removed.
+ The package debbugs-el has been renamed debian-el.
+ .
+ This package ensures that debian-el is installed during upgrades and
+ should thereafter be removed.
+
+Package: debview
+Architecture: all
+Depends: debian-el (>= 22.0-1)
+Section: oldlibs
+Priority: extra
+Description: Transitional package.  Can be removed.
+ The content of the package debview has been moved to the package debian-el.
+ .
+ This package ensures that debian-el is installed during upgrades and
+ should thereafter be removed.
 
 Package: dpkg-dev-el
 Architecture: all
