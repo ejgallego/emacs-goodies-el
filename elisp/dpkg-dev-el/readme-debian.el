@@ -75,6 +75,7 @@
   (modify-syntax-entry ?' "w   " readme-debian-mode-syntax-table))
 
 (defvar font-lock-defaults)             ;For XEmacs byte-compilation
+;;;###autoload
 (defun readme-debian-mode ()
   "Mode for reading and editing README.Debian files.
 Upon saving the visited README.Debian file, the timestamp at the bottom
@@ -101,6 +102,13 @@ will be updated.
   (add-hook 'write-contents-hooks 'readme-debian-update-timestamp
 	       nil t)
   (run-hooks 'readme-debian-mode-hook))
+
+(add-to-list 'auto-mode-alist
+             '("debian/.*README.Debian$" . readme-debian-mode))
+(add-to-list 'auto-mode-alist
+             '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("debian/.*README.Debian$" . readme-debian-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
 
 (run-hooks 'readme-debian-mode-load-hook)
 

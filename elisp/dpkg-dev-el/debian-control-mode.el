@@ -6,7 +6,7 @@
 ;; Maintainer: Colin Walters <walters@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 0.5
-;; X-RCS: $Id: debian-control-mode.el,v 1.3 2003/10/16 17:43:00 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.4 2003/11/04 02:07:56 psg Exp $
 ;; URL: http://cvs.verbum.org/debian/debian-control-mode
 ;; Keywords: convenience
 
@@ -154,6 +154,7 @@
 
 (defvar debian-control-mode-menu nil)
 
+;;;###autoload
 (define-derived-mode debian-control-mode fundamental-mode "Debian Control"
   "A major mode for editing Debian control files (i.e. debian/control)."
   (if (< emacs-major-version 21)
@@ -417,6 +418,9 @@ text file."
 			     (debian-control-mode-bug-package-names))
 		     nil t)))
   (browse-url (concat "http://bugs.debian.org/" package)))
+
+(add-to-list 'auto-mode-alist '("/debian/control\\'" . debian-control-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/control\\'" . debian-control-mode))
 
 (provide 'debian-control-mode)
 

@@ -249,6 +249,7 @@ a negative prefix argument turns it off.
                        nil nil default-number)
         (read-string (format "%s: " prompt))))))
 
+;;;###autoload
 (defun debian-bts-control (action &optional arg)
   "Contruct a message with initial ACTION command for control@bugs.debian.org.
 Contructs a new control command line if called from within the message

@@ -39,7 +39,7 @@
   :type 'hook
   :options '(turn-on-auto-fill flyspell-mode))
 
-(defconst debian-copyright-mode-version "$Id: debian-copyright.el,v 1.3 2003/06/24 18:54:33 psg Exp $" "Version of debian copyright mode.")
+(defconst debian-copyright-mode-version "$Id: debian-copyright.el,v 1.4 2003/11/04 02:07:56 psg Exp $" "Version of debian copyright mode.")
 
 (defvar debian-copyright-mode-map nil
   "Keymap for debian/copyright mode.")
@@ -56,6 +56,7 @@
        (modify-syntax-entry ?\\ ".   " debian-copyright-mode-syntax-table)
        (modify-syntax-entry ?' "w   " debian-copyright-mode-syntax-table))
 
+;;;###autoload
 (defun debian-copyright-mode ()
   "Mode to edit and read debian/copyright.
 \\{debian-copyright-mode-map}"
@@ -82,6 +83,12 @@
           ()		;syntax-alist
           ))
   (run-hooks 'debian-copyright-mode-hook))
+
+(add-to-list 'auto-mode-alist '("debian/.*copyright$" . debian-copyright-mode))
+(add-to-list 'auto-mode-alist
+             '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("debian/.*copyright$" . debian-copyright-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
 
 (run-hooks 'debian-copyright-mode-load-hook)
 

@@ -1,7 +1,5 @@
 ;;; debian-changelog-mode.el --- change log maintenance for Debian changelogs
 
-;; Keywords: maint
-
 ;; Copyright (C) 1996 Ian Jackson
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
@@ -21,10 +19,7 @@
 ;; along with your Debian installation, in /usr/share/common-licenses/GPL
 ;; If not, write to the Free Software Foundation, 675 Mass Ave,
 ;; Cambridge, MA 02139, USA.
-;;
-;; New versions of the file may be found at 
-;;   http://people.debian.org/~psg/debian-changelog-mode.el
-;; ----------------------------------------------------------------------------
+
 ;;; Change log:
 ;;
 ;; V1.00 30aug00  Peter S Galbraith <psg@debian.org>
@@ -33,28 +28,28 @@
 ;;     better menus, font-lock support).
 ;; V1.01 30aug00  Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-finalise-last-version: Use XEmacs' (user-mail-address)
-;;    function if variable user-mail-address is undefined. 
+;;    function if variable user-mail-address is undefined.
 ;;    Thanks to Robert Bihlmeyer <robbe@orcus.priv.at>, closes Bug#61524
 ;;  - debian-changelog-finalise-last-version: Takes account of some env vars
 ;;    Thanks to Rafael Laboissiere <rafael@icp.inpg.fr>, closes Bug#61226
 ;;  - debian-changelog-close-bug:  new command.
 ;; V1.02 23Feb01  Peter S Galbraith <psg@debian.org>
-;;  - Added `debian-changelog-suggest-version', a mechanisn for guessing 
+;;  - Added `debian-changelog-suggest-version', a mechanisn for guessing
 ;;    what the new version number should be.
 ;;    Closes half of Bug#85412
 ;; V1.03 23Feb01  Peter S Galbraith <psg@debian.org>
-;;  - Fixed `fill-paragraph' by tweaks to paragraph-start and 
+;;  - Fixed `fill-paragraph' by tweaks to paragraph-start and
 ;;    paragraph-separate variables.
 ;;    Closes second half of Bug#85412
 ;; V1.04 23Feb01  Peter S Galbraith <psg@debian.org>
 ;;  - Added `debian-changelog-web-bugs' `debian-changelog-web-packages'
 ;;    `debian-changelog-web-package'
 ;; V1.05 23Feb01  Peter S Galbraith <psg@debian.org>
-;;  - made `debian-changelog-suggest-package-name' more picky about finding 
+;;  - made `debian-changelog-suggest-package-name' more picky about finding
 ;;    an acceptable name.
 ;; V1.06 28Feb01  Peter S Galbraith <psg@debian.org>
-;;  - Create customizable variables debian-changelog-full-name and 
-;;    debian-changelog-mailing-address.  
+;;  - Create customizable variables debian-changelog-full-name and
+;;    debian-changelog-mailing-address.
 ;;  - Make debian-changelog-finalise-last-version use them.
 ;; V1.07 28Feb01  Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-suggest-version: Handle epochs!
@@ -66,16 +61,16 @@
 ;;    debian-changelog-suggest-version: better regexps for version numbers
 ;;    Created debian-changelog-increment-version
 ;; V1.10 10Mar01  Peter S Galbraith <psg@debian.org>
-;;    tweaks docs for debian-changelog-mode function concerning 
+;;    tweaks docs for debian-changelog-mode function concerning
 ;;    add-log-mailing-address (now obsolete).
 ;; V1.11 24Apr01  Peter S Galbraith <psg@debian.org>
-;;    Add stuff to try to trim out obsolete "Local Variables:" block from 
+;;    Add stuff to try to trim out obsolete "Local Variables:" block from
 ;;    changelog files.
 ;; V1.12 24Apr01  Peter S Galbraith <psg@debian.org>
 ;;    Modify font-lock code. closes: #93243
 ;; V1.13 27Apr01  Peter S Galbraith <psg@debian.org>
 ;;    Move code concerning local variables near beginning of file such that
-;;    `hack-local-variables' doesn't complain. 
+;;    `hack-local-variables' doesn't complain.
 ;; V1.14 30Apr01  Peter S Galbraith <psg@debian.org>
 ;;    Add `critical' bug severity (see http://bugs.debian.org/94475)
 ;; V1.15 30Apr01  Peter S Galbraith <psg@debian.org>
@@ -108,10 +103,10 @@
 ;;    http://cgi.debian.org/cgi-bin -> http://packages.debian.org/cgi-bin
 ;; V1.27 04May01  Peter S Galbraith <psg@debian.org>
 ;;    Set new version to `experimental' when last one was set to that.
-;;    closes: #96260: Default to the same distribution as the previous release 
+;;    closes: #96260: Default to the same distribution as the previous release
 ;; V1.28 04May01  Peter S Galbraith <psg@debian.org>
-;;    Make `set-distribution' and `set-urgency' unavailable when changelog 
-;;    is finalised (error at command line and menu grayed-out). 
+;;    Make `set-distribution' and `set-urgency' unavailable when changelog
+;;    is finalised (error at command line and menu grayed-out).
 ;; V1.29 04May01  Peter S Galbraith <psg@debian.org>
 ;;    Add-to auto-mode-alist in case not using dpkg-dev-el package.
 ;; V1.30 09May01  Peter S Galbraith <psg@debian.org>
@@ -121,17 +116,17 @@
 ;;    Add a message display after each call to browse-url.
 ;; V1.32 28May01  Peter S Galbraith <psg@debian.org>
 ;;  - XEmacs21's easy-menu-define doesn't like :active.
-;;  - XEmacs21 need easy-menu-add call in mode setup.  
+;;  - XEmacs21 need easy-menu-add call in mode setup.
 ;;  - debian-changelog-setheadervalue: check at this lower level if finalised.
 ;; V1.33 29May01  Peter S Galbraith <psg@debian.org>
-;;    Fix History IMenu for XEmacs21 (it doesn't autoload 
+;;    Fix History IMenu for XEmacs21 (it doesn't autoload
 ;;    match-string-no-properties).
 ;; V1.34 29May01  Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-fontify-version: allow version numbers with many hyphens
 ;;  - debian-changelog-suggest-version: heavy changes to deal with many hyphens
 ;; V1.35 06Jun01 Peter S Galbraith <psg@debian.org>
-;;  - patch from Brian Warner <warner@lothar.com> to make 
-;;    debian-changelog-local-variables-maybe-remove-done really buffer-local. 
+;;  - patch from Brian Warner <warner@lothar.com> to make
+;;    debian-changelog-local-variables-maybe-remove-done really buffer-local.
 ;;  - Change another occurrence of make-local-variable.
 ;; V1.36 11Jun01 Peter S Galbraith <psg@debian.org>
 ;;    changed urgency "critical" to "emergency".
@@ -191,14 +186,14 @@
 ;; V1.56 25July02 Peter S Galbraith <psg@debian.org>
 ;;    debian-changelog-mode: Remove call to hack-local-variables added in V1.53
 ;;    since a "mode: debian-changelog" setting created an infinite loop.
-;;    The bug I attemped to fix in V1.53 occurred when debian-changelog-mode 
-;;    was invoked using the debian-changelog-find-file-hook mecanism in 
+;;    The bug I attemped to fix in V1.53 occurred when debian-changelog-mode
+;;    was invoked using the debian-changelog-find-file-hook mecanism in
 ;;    50dpkg-dev-el.el.  This invoked debian-changelog-mode which called
 ;;    kill-all-local-variables, deleting our settings.  To get around this, I
 ;;    no longer call 'text-mode' and copied whatever setting we need from it
 ;;    (because it also kill-all-local-variables).
 ;;    closes: #153982.
-;; V1.57 29July02 Peter S Galbraith <psg@debian.org> 
+;; V1.57 29July02 Peter S Galbraith <psg@debian.org>
 ;;    debian-changelog-mode: Reinsert kill-all-local-variables removed in
 ;;    last version.  It's used by font-lock-mode to turn on font-lock-mode
 ;;    when global-font-lock-mode is used.  Since this kills the Local
@@ -212,7 +207,7 @@
 ;;    fix bug #113964.
 ;; V1.59 02Aug2002 Peter S Galbraith <psg@debian.org>
 ;;    Remove a bunch of code duplicated in debian-bug.el and load that file
-;;    instead. 
+;;    instead.
 ;;     debian-changelog-web-bugs -> debian-bug-web-bugs
 ;;     debian-changelog-web-bug  -> debian-bug-web-bug
 ;;     debian-changelog-web-packages -> debian-bug-web-packages
@@ -222,8 +217,8 @@
 ;;    Update list of possible distributions to upload to from list given
 ;;    from http://bugs.debian.org/150466  (Closes: #156762)
 ;; V1.61 20Aug2002 Peter S Galbraith <psg@debian.org>
-;;    Prompt for confirmation and give *big* warning if user wants to set 
-;;    the upload distribution to a -security one.  See discussion on 
+;;    Prompt for confirmation and give *big* warning if user wants to set
+;;    the upload distribution to a -security one.  See discussion on
 ;;    http://bugs.debian.org/150466
 ;; V1.62 20Aug2002 Peter S Galbraith <psg@debian.org>
 ;; V1.63 05Sep2002 Peter S Galbraith <psg@debian.org>
@@ -235,7 +230,7 @@
 ;;  - Stupid bug fix.  s/debian-bug-bug-alist/debian-bug-alist/.
 ;;  - Bug closing regexp enhancement from Roland Mas.
 ;; V1.66 24Oct2002 Peter S Galbraith <psg@debian.org>
-;;  - Add UNRELEASED distribution, patch from Junichi Uekawa 
+;;  - Add UNRELEASED distribution, patch from Junichi Uekawa
 ;;    <dancer@netfort.gr.jp> with additional menu entry (Closes: #166163).
 ;;    See bug #164470 for relevance and usage of UNRELEASED distribution.
 ;; V1.67 14Apr2003 Peter S Galbraith <psg@debian.org>
@@ -253,11 +248,10 @@
 ;;    downloaded from the web.
 ;; V1.72 17Sep2003 Peter S Galbraith <psg@debian.org>
 ;;  - Added browse-url link to `Best Practices for debian/changelog' in menu.
-;; ----------------------------------------------------------------------------
-;; TO DO List:
-;;  - Menu to close bugs with each bug having a menu entry.
-;;  - Insert bug description when inserting closes: statement.
-;; ----------------------------------------------------------------------------
+;; V1.73 04Nov2003 Peter S Galbraith <psg@debian.org>
+;;  - checkdoc fixed (not complete!)
+;;  - Add autoload tag.
+
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
 ;;   James LewisMoss <dres@ioa.com>
@@ -265,6 +259,7 @@
 ;;   Brian Warner <warner@lothar.com>
 ;;   Yann Dirson <dirson@debian.org>
 
+;;; Code:
 (defgroup debian-changelog nil "Debian changelog maintenance"
   :group 'tools
   :prefix "debian-changelog-")
@@ -278,11 +273,11 @@
                                           (user-full-name))
   "*Full name of user, for inclusion in Debian changelog headers.
 This defaults to the contents of environment variable DEBFULLNAME
-or else to the value returned by the `user-full-name' function."
+or else to the value returned by the function `user-full-name'."
   :group 'debian-changelog
   :type 'string)
 
-(defcustom debian-changelog-mailing-address 
+(defcustom debian-changelog-mailing-address
   (or (getenv "DEBEMAIL")
       (getenv "EMAIL")
       (and (boundp 'user-mail-address) user-mail-address)
@@ -297,8 +292,8 @@ This defaults to the value of (in order of precedence):
   :type 'string)
 
 (defcustom debian-changelog-local-variables-maybe-remove t
-  "*Ask to remove obsolete \"Local Variables:\" block from changelog
-under certain conditions."
+  "*Ask to remove obsolete \"Local Variables:\" block from changelog.
+This is done only under certain conditions."
   :group 'debian-changelog
   :type 'boolean)
 
@@ -307,7 +302,7 @@ under certain conditions."
   :group 'debian-changelog
   :type 'boolean)
 
-(defcustom debian-changelog-use-imenu (fboundp 'imenu-add-to-menubar) 
+(defcustom debian-changelog-use-imenu (fboundp 'imenu-add-to-menubar)
   "*Use imenu package for debian-changelog-mode?
 If you do not wish this behaviour, reset it in your .emacs file like so:
 
@@ -331,6 +326,7 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
 (autoload 'debian-bug-bug-menu-init "debian-bug")
 (autoload 'debian-bug-web-this-bug-under-mouse "debian-bug")
 (defvar debian-bug-open-alist)
+
 
 (require 'add-log)
 (require 'easymenu)
@@ -369,7 +365,7 @@ STRING should be given if the last search was by `string-match' on STRING."
 ;;  occurrences of this string before the last 3000 characters of the file,
 ;;  where `hack-local-variables' starts looking:
 
-;; First, I made the add-log-mailing-address variable obsolete but still 
+;; First, I made the add-log-mailing-address variable obsolete but still
 ;; left the "mode:" line in the variable block for Debian native packages
 ;; because it was impossible to tell what they were from the installed
 ;; changelog.gz name.  In bug #105889, I came up with code to stick in
@@ -385,7 +381,7 @@ STRING should be given if the last search was by `string-match' on STRING."
     (if (debian-changelog-local-variables-exists-p)
 	(save-excursion
 	  (goto-char (point-max)) ; local vars are always at end
-	  (if (yes-or-no-p 
+	  (if (yes-or-no-p
 	       "Remove obsolete \"local variables:\" from changelog? ")
 	      (debian-changelog-local-variables-remove))))))
 
@@ -399,7 +395,7 @@ STRING should be given if the last search was by `string-match' on STRING."
                (re-search-forward "mode: debian-changelog" nil t))))))
 
 (defun debian-changelog-local-variables-remove ()
-  "Remove add-log-mailing-address entry from local variables block."
+  "Remove `add-log-mailing-address' entry from local variables block."
   (save-excursion
     (let ((case-fold-search t))
       (goto-char (point-max))
@@ -456,7 +452,7 @@ STRING should be given if the last search was by `string-match' on STRING."
   (debian-changelog-getheadervalue ") \\(.*\\)\\;"))
 (defvar last-nonmenu-event)
 (defun debian-changelog-setdistribution (val)
-  (if (not (string-match "^.*security" val))    
+  (if (not (string-match "^.*security" val))
       (debian-changelog-setheadervalue ") \\(.*\\)\\;" val)
     (cond
      ((and window-system
@@ -496,19 +492,19 @@ Upload to " val  " anyway?")))
 (if debian-changelog-mode-map
     nil
   (setq debian-changelog-mode-map (make-sparse-keymap))
-  (define-key debian-changelog-mode-map "\C-c\C-a" 
+  (define-key debian-changelog-mode-map "\C-c\C-a"
     'debian-changelog-add-entry)
   (define-key debian-changelog-mode-map "\C-c\C-b"
     'debian-changelog-close-bug)
   (define-key debian-changelog-mode-map "\C-c\C-f"
     'debian-changelog-finalise-last-version)
-  (define-key debian-changelog-mode-map "\C-c\C-c" 
+  (define-key debian-changelog-mode-map "\C-c\C-c"
     'debian-changelog-finalise-and-save)
-  (define-key debian-changelog-mode-map "\C-c\C-v" 
+  (define-key debian-changelog-mode-map "\C-c\C-v"
     'debian-changelog-add-version)
-  (define-key debian-changelog-mode-map "\C-c\C-d" 
+  (define-key debian-changelog-mode-map "\C-c\C-d"
     'debian-changelog-distribution)
-  (define-key debian-changelog-mode-map "\C-c\C-u" 
+  (define-key debian-changelog-mode-map "\C-c\C-u"
     'debian-changelog-urgency)
   (define-key debian-changelog-mode-map "\C-c\C-e"
     'debian-changelog-unfinalise-last-version))
@@ -518,7 +514,7 @@ Upload to " val  " anyway?")))
 ;;
 
 (defvar debian-changelog-is-XEmacs
-  (and 
+  (and
    (not (null (save-match-data (string-match "XEmacs\\|Lucid" emacs-version))))
    (= 21 emacs-major-version)))
 
@@ -551,7 +547,7 @@ Upload to " val  " anyway?")))
     ["high" (debian-changelog-seturgency "high") t]
     ["critical" (debian-changelog-seturgency "critical") t])
    "--"
-   ["Unfinalise" debian-changelog-unfinalise-last-version 
+   ["Unfinalise" debian-changelog-unfinalise-last-version
     (debian-changelog-finalised-p)]
    ["Finalise" debian-changelog-finalise-last-version
     (not (debian-changelog-finalised-p))]
@@ -562,14 +558,14 @@ Upload to " val  " anyway?")))
    ["Bugs for this package" (debian-bug-web-bugs) t]
    ["Specific bug number" (debian-bug-web-bug) t]
    ["Package list (all archives)" (debian-bug-web-packages) t]
-   ("Package web pages..." 
+   ("Package web pages..."
     ["stable" (debian-bug-web-package "stable") t]
     ["testing" (debian-bug-web-package "testing") t]
     ["unstable" (debian-bug-web-package "unstable") t])
    "--"
    ["Customize" (customize-group "debian-changelog") (fboundp 'customize-group)])))
  (t
-(easy-menu-define 
+(easy-menu-define
  debian-changelog-menu debian-changelog-mode-map "Debian Changelog Mode Menu"
  '("Changelog"
    ["New Version" debian-changelog-add-version (debian-changelog-finalised-p)]
@@ -596,7 +592,7 @@ Upload to " val  " anyway?")))
     ["high" (debian-changelog-seturgency "high") t]
     ["critical" (debian-changelog-seturgency "critical") t])
    "--"
-   ["Unfinalise" debian-changelog-unfinalise-last-version 
+   ["Unfinalise" debian-changelog-unfinalise-last-version
     (debian-changelog-finalised-p)]
    ["Finalise" debian-changelog-finalise-last-version
     (not (debian-changelog-finalised-p))]
@@ -608,7 +604,7 @@ Upload to " val  " anyway?")))
    ["Bugs for this package" (debian-bug-web-bugs) t]
    ["Specific bug number" (debian-bug-web-bug) t]
    ["Package list (all archives)" (debian-bug-web-packages) t]
-   ("Package web pages..." 
+   ("Package web pages..."
     ["stable" (debian-bug-web-package "stable") t]
     ["testing" (debian-bug-web-package "testing") t]
     ["unstable" (debian-bug-web-package "unstable") t])
@@ -638,18 +634,18 @@ Upload to " val  " anyway?")))
 ;;
 
 (defvar debian-changelog-close-bug-takes-arg t
-  "A compatibility flag for debian-bug.el")
+  "A compatibility flag for debian-bug.el.")
 
 (defun debian-changelog-close-bug (bug-number)
-  "Add a new change entry to close a bug number."
+  "Add a new change entry to close a BUG-NUMBER."
   (interactive
     (progn
       (if (eq (debian-changelog-finalised-p) t)
           (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
-      (list (completing-read "Bug number to close: " 
+      (list (completing-read "Bug number to close: "
                              debian-bug-open-alist nil nil))))
   (if (not (string-match "^[0-9]+$" bug-number))
-      (error "The bug number should consists of only digits."))
+      (error "The bug number should consists of only digits"))
   (debian-changelog-add-entry)
   (cond
    ((and debian-bug-open-alist
@@ -669,14 +665,14 @@ Upload to " val  " anyway?")))
   (interactive "P")
   (if (eq (debian-changelog-finalised-p) t)
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
-  (let ((str (completing-read 
+  (let ((str (completing-read
               "Select distribution: "
               '(("unstable" 1)
                 ("testing" 2)
                 ("testing-security" 3)
-                ("stable" 4) 
-                ("stable-security" 5) 
-                ("oldstable-security" 6) 
+                ("stable" 4)
+                ("stable-security" 5)
+                ("oldstable-security" 6)
                 ("experimental" 7)
                 ("UNRELEASED" 8))
               nil t nil)))
@@ -688,7 +684,7 @@ Upload to " val  " anyway?")))
   (interactive "P")
   (if (eq (debian-changelog-finalised-p) t)
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
-  (let ((str (completing-read 
+  (let ((str (completing-read
               "Select urgency: "
               '(("low" 1) ("medium" 2) ("high" 3) ("critical" 4))
               nil t nil)))
@@ -703,9 +699,8 @@ Upload to " val  " anyway?")))
 ;; regexp tweaked by psg, Tue Jul 10 15:29:54 EDT 2001
 
 (defun debian-changelog-finalised-p ()
-  "Check whether the most recent debian-style changelog entry is
-finalised yet (ie, has a maintainer name and email address and a
-release date."
+  "Check whether the most recent debian-style changelog entry is finalised yet.
+\(ie, has a maintainer name and email address and a release date."
   (save-excursion
     (goto-char (point-min))
     (or (re-search-forward "\n\\S-" (point-max) t)
@@ -717,7 +712,7 @@ release date."
       ;;(backward-char 2)
       )
     (cond
-     ((looking-at 
+     ((looking-at
        "[ \n]+\\S-[^\n\t]+\\S- <[^ \t\n<>]+> +\\S-[^\t\n]+\\S-[ \t]*\n")
       t)
      ((looking-at "[ \t]*\n")
@@ -737,7 +732,7 @@ If file is empty, create initial entry."
   (if (not (= (point-min)(point-max)))
       (let ((f (debian-changelog-finalised-p)))
         (and (stringp f) (error f))
-        (or f (error "previous version not yet finalised"))))
+        (or f (error "Previous version not yet finalised"))))
   (goto-char (point-min))
   (let ((pkg-name (or (debian-changelog-suggest-package-name)
                       (read-string "Package name: ")))
@@ -760,22 +755,22 @@ If file is empty, create initial entry."
 
 (defun debian-changelog-suggest-package-name ()
 ;; Peter S Galbraith, 23 Feb 2001
-  "Return package name from first line of the changelog, or nil"
+  "Return package name from first line of the changelog, or nil."
   (save-excursion
     (goto-char (point-min))
-    (if (looking-at 
+    (if (looking-at
          "\\(\\S-+\\) +(\\([^()\n\t-]+\\)\\(-\\([^()]+\\)\\)?\\() +[^\n]*\\)")
         (match-string-no-properties 1))))
 
 (defun debian-changelog-greater-than (vsn1 vsn2)
   "Return t if VSN1 is greater than VSN2."
   (save-excursion
-    (let ((tmp-buffer (get-buffer-create 
+    (let ((tmp-buffer (get-buffer-create
                        " *debian-changelog-mode-temp-buffer*")))
       (set-buffer tmp-buffer)
       (unwind-protect
           (progn
-            (let ((mesg (call-process "dpkg" nil '(t nil) nil 
+            (let ((mesg (call-process "dpkg" nil '(t nil) nil
                                       "--compare-versions" vsn1 "gt" vsn2)))
               (if (equal mesg 0)
                   t
@@ -784,12 +779,12 @@ If file is empty, create initial entry."
 
 (defun debian-changelog-suggest-version ()
 ;; Peter S Galbraith, 23 Feb 2001
-  "Return a suggested new version number to use for this changelog, or nil"
+  "Return a suggested new version number to use for this changelog, or nil."
   (save-excursion
     (goto-char (point-min))
     (let ((findmatch t))
       (cond
-       ((looking-at 
+       ((looking-at
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
 ;;; I'm also assuming it begins with a digit, which is not enforced
@@ -799,7 +794,7 @@ If file is empty, create initial entry."
      ;; Check again for multiple hyphens, and adjust match-data if found
      ;; to leave only the bit past the last hyphen as the debian version
      ;; number.
-       ((looking-at 
+       ((looking-at
          "\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:]*\\)\\(-\\([0-9a-zA-Z.+]+\\)\\)*\\() +[^\n]*\\)")
         ;; We have a hit.  Adjust match-data...
         (goto-char (match-end 5))
@@ -834,20 +829,20 @@ If file is empty, create initial entry."
           ;;debug (message "name: %s  epoch: %s  version: %s  debian: %s" pkg-name epoch upstream-vsn debian-vsn))))
           
           (cond
-           ;; Debian vsn exists + Old upstream version matches current one.  
+           ;; Debian vsn exists + Old upstream version matches current one.
            ;; -> Increment Debian version...
            ((and debian-vsn
                  (string-match
                   (regexp-quote (concat "/" pkg-name "-" upstream-vsn "/debian/changelog"))
                   buffer-file-name))
-            (concat epoch upstream-vsn "-" 
+            (concat epoch upstream-vsn "-"
                     (debian-changelog-increment-version debian-vsn)))
            
-           ;; Same as above, but more general in case directory name doesn't 
+           ;; Same as above, but more general in case directory name doesn't
            ;; match package name.  -> Increment Debian version...
            ((and debian-vsn
-                 (string-match 
-                  (concat "-" (regexp-quote upstream-vsn) "/debian/changelog") 
+                 (string-match
+                  (concat "-" (regexp-quote upstream-vsn) "/debian/changelog")
                   buffer-file-name))
             (concat epoch upstream-vsn "-"
                     (debian-changelog-increment-version debian-vsn)))
@@ -857,20 +852,20 @@ If file is empty, create initial entry."
 ;;;FIXME: I should perhaps check that the directory name version is higher
 ;;;than that currently in changelog.
            ((and debian-vsn
-                 (string-match (concat 
-                                "/" 
+                 (string-match (concat
+                                "/"
                                 (regexp-quote pkg-name)
                                 "-\\([0-9][0-9a-zA-Z.+-]+\\)/debian/changelog")
                                buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
            
-           ;; Same as above, but more general in case directory name doesn't 
+           ;; Same as above, but more general in case directory name doesn't
            ;; match package name.
            ;; -> Use new upstream version with "-1" debian version.
            ((and debian-vsn
-                 (string-match 
-                  (concat "-\\([0-9][0-9a-zA-Z.+-]+\\)/debian/changelog") 
+                 (string-match
+                  (concat "-\\([0-9][0-9a-zA-Z.+-]+\\)/debian/changelog")
                   buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
@@ -887,10 +882,10 @@ If file is empty, create initial entry."
            ;; already greater than from directory name.
            ((and (not debian-vsn)
                  (not (string-match
-                       (concat "/" (regexp-quote pkg-name) "-" 
+                       (concat "/" (regexp-quote pkg-name) "-"
                                (regexp-quote upstream-vsn) "/debian/changelog")
                        buffer-file-name))
-                 (string-match (concat "/" (regexp-quote pkg-name) 
+                 (string-match (concat "/" (regexp-quote pkg-name)
                                        "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
                                buffer-file-name)
                  (debian-changelog-greater-than
@@ -901,8 +896,8 @@ If file is empty, create initial entry."
            ;; version matches new one (e.g. 'dpk-source -x package' without
            ;; then bumping up the version in the directory name.
            ((and (not debian-vsn)
-                 (string-match (concat "/" (regexp-quote pkg-name) "-" 
-                                       (regexp-quote upstream-vsn) 
+                 (string-match (concat "/" (regexp-quote pkg-name) "-"
+                                       (regexp-quote upstream-vsn)
                                        "/debian/changelog")
                                buffer-file-name)
                  (concat epoch
@@ -912,18 +907,18 @@ If file is empty, create initial entry."
            ;; less than from directory name.
            ((and (not debian-vsn)
                  (not (string-match
-                       (concat "/" (regexp-quote pkg-name) "-" 
+                       (concat "/" (regexp-quote pkg-name) "-"
                                (regexp-quote upstream-vsn) "/debian/changelog")
                        buffer-file-name))
-                 (string-match (concat 
-                                "/" (regexp-quote pkg-name) 
+                 (string-match (concat
+                                "/" (regexp-quote pkg-name)
                                 "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
                                buffer-file-name)
                  (debian-changelog-greater-than
                   (match-string 1 buffer-file-name) upstream-vsn))
             (concat epoch (match-string 1 buffer-file-name)))
            
-           ((string-match (concat "/" (regexp-quote pkg-name) 
+           ((string-match (concat "/" (regexp-quote pkg-name)
                                   "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
                           buffer-file-name)
             ;;Hmmm.. return version number from directory if we get this far
@@ -936,12 +931,12 @@ If file is empty, create initial entry."
            
            ;; Directory name has no version -> increment what we have.
            (t
-            (concat epoch 
+            (concat epoch
                     (debian-changelog-increment-version upstream-vsn)))))))))
     
 (defun debian-changelog-increment-version (version)
 ;; Peter S Galbraith, 09 Mar 2001
-  "Increment the last numeric portion of a version number
+  "Increment the last numeric portion of a VERSION number.
 1        -> 2
 0potato1 -> 0potato2
 1.01     -> 1.02"
@@ -949,13 +944,13 @@ If file is empty, create initial entry."
    ((string-match "[1-9][0-9]*$" version)
     (let ((first-part (substring version 0 (match-beginning 0)))
 	  (snd-part (match-string 0 version)))
-      (concat 
+      (concat
        first-part (number-to-string (+ 1 (string-to-number snd-part))))))
    ((string-match "[0-9]*$" version)
     ;; 3.5.4.0 -> 3.5.4.1
     (let ((first-part (substring version 0 (match-beginning 0)))
 	  (snd-part (match-string 0 version)))
-      (concat 
+      (concat
        first-part (number-to-string (+ 1 (string-to-number snd-part))))))
    (t
     ;; Safety net only - first condition should catch all
@@ -974,7 +969,7 @@ If file is empty, create initial entry."
 ;;
 
 (defun debian-changelog-date-string ()
-  "Return RFC-822 format date string"
+  "Return RFC-822 format date string."
   (let* ((dp "822-date")
 	 (cp (point))
 	 (ret (call-process "822-date" nil t))
@@ -1011,8 +1006,8 @@ If file is empty, create initial entry."
     (goto-char (point-min))
     (re-search-forward "\n --\\([ \t]*\\)")
     (delete-region (match-beginning 1) (match-end 1))
-    (insert " " debian-changelog-full-name 
-            " <" debian-changelog-mailing-address ">  " 
+    (insert " " debian-changelog-full-name
+            " <" debian-changelog-mailing-address ">  "
 	    (debian-changelog-date-string))))
 
 ;;
@@ -1020,11 +1015,12 @@ If file is empty, create initial entry."
 ;;
 
 (defun debian-changelog-unfinalise-last-version ()
-  "Remove the `finalisation' information (maintainer's name and email
-address and release date) so that new entries can be made."
+  "Remove the `finalisation' information.
+Removes maintainer's name, email address and release date so that new entries
+can be made."
   (interactive)
   (if (debian-changelog-finalised-p) nil
-    (error "most recent version is not finalised"))
+    (error "Most recent version is not finalised"))
   (save-excursion
     (goto-char (point-min))
     (re-search-forward "\n --")
@@ -1037,6 +1033,7 @@ address and release date) so that new entries can be made."
 ;;
 
 (defvar imenu-create-index-function)
+;;;###autoload
 (defun debian-changelog-mode ()
   "Major mode for editing Debian-style change logs.
 Runs `debian-changelog-mode-hook' if it exists.
@@ -1050,8 +1047,7 @@ entries without using it for the rest of your email, use the `customize`
 interface to set it, or simply set the variable
 debian-changelog-mailing-address in your ~/.emacs file, e.g.
 
- (setq debian-changelog-mailing-address \"myname@debian.org\"))
-"
+ (setq debian-changelog-mailing-address \"myname@debian.org\"))"
 
   (interactive)
   (kill-all-local-variables)
@@ -1060,7 +1056,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
         left-margin 2
 	fill-prefix "  "
 	fill-column 74)
-  ;;(hack-local-variables) 
+  ;;(hack-local-variables)
   ;;  Can't hack-local-varibles because a "mode: " creates an infinite loop.
   ;;  It doesn't matter anyway.  The Local Variable block is parsed after
   ;;  the mode is run when visited by find-file.  That's the only time it's
@@ -1078,7 +1074,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
   (set (make-local-variable 'page-delimiter) "^\\<")
   (set (make-local-variable 'version-control) 'never)
   (set (make-local-variable 'adaptive-fill-regexp) "\\s *")
-  (set (make-local-variable 'font-lock-defaults) 
+  (set (make-local-variable 'font-lock-defaults)
        '((debian-changelog-font-lock-keywords
           debian-changelog-font-lock-keywords-1
           debian-changelog-font-lock-keywords-2) t t))
@@ -1136,11 +1132,11 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
                        "red" 'global nil 'append)))
 
 ;;
-;; font-lock definition by Chris Waters, 
+;; font-lock definition by Chris Waters,
 ;;           revisited by Peter Galbraith (Apr 2001)
 
 ;; Available faces:
-;; keyword-face, type-face, string-face, comment-face, 
+;; keyword-face, type-face, string-face, comment-face,
 ;; variable-name-face, function-name-face
 ;; in emacs only:  builtin-face, constant-face, warning-face
 ;; in xemacs only: reference-face, doc-string-face, preprocessor-face
@@ -1162,7 +1158,7 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
    '(debian-changelog-fontify-experimental . debian-changelog-warning-face)
    '(debian-changelog-fontify-unreleased . debian-changelog-warning-face)
    '(debian-changelog-fontify-urgency-crit . debian-changelog-warning-face)
-   '(debian-changelog-fontify-urgency-high . debian-changelog-warning-face) 
+   '(debian-changelog-fontify-urgency-high . debian-changelog-warning-face)
    '(debian-changelog-fontify-urgency-med . font-lock-type-face)
    '(debian-changelog-fontify-urgency-low . font-lock-string-face)
    ;; bug closers
@@ -1176,28 +1172,28 @@ debian-changelog-mailing-address in your ~/.emacs file, e.g.
      (1 font-lock-variable-name-face)
      (2 font-lock-variable-name-face)
      (3 font-lock-string-face)))
-  "first level highlighting for debian-changelog-mode.")
+  "First level highlighting for `debian-changelog-mode'.")
 
 (defvar debian-changelog-font-lock-keywords-2
-  (append 
+  (append
    debian-changelog-font-lock-keywords-1
    ;; bullet lines
    '(("^  +\\(\\*\\)" 1 font-lock-comment-face)))
-  "high level highlighting for debian-changelog-mode.")
+  "High level highlighting for `debian-changelog-mode'.")
 
-(defvar debian-changelog-font-lock-keywords 
+(defvar debian-changelog-font-lock-keywords
   debian-changelog-font-lock-keywords-1
-  "Default expressions to highlight in debian-changelog-mode.")
+  "Default expressions to highlight in `debian-changelog-mode'.")
 
 ;; Fontifier function by Peter Galbraith, Apr 24 2001
 
 (defun debian-changelog-fontify-version (limit)
-  "return matches for package name and version number
+  "Return match for package name and version number up to LIMIT.
 match 1 -> package name
-      2 -> native vsn number 
+      2 -> native vsn number
       3 -> non-native vsn number
-      4 -> non-native NMU vns number" 
-  (when (re-search-forward 
+      4 -> non-native NMU vns number"
+  (when (re-search-forward
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
 ;;; I'm assuming it begins with a digit, which is not enforced
@@ -1216,7 +1212,7 @@ match 1 -> package name
     (cond
      ((not (match-string 4))
       ;; No Debian version number -> Debian native package
-      (store-match-data 
+      (store-match-data
        (list (match-beginning 1)(match-end 3)
              (match-beginning 1)(match-end 1)
              (match-beginning 3)(match-end 3)
@@ -1228,14 +1224,14 @@ match 1 -> package name
              (is-NMU (save-match-data (string-match "\\." deb-vsn))))
         (cond
          (is-NMU
-          (store-match-data 
+          (store-match-data
            (list (match-beginning 1)(match-end 5)
                  (match-beginning 1)(match-end 1)
                  nil nil
                  nil nil
                  (match-beginning 3)(match-end 5))))
          (t
-          (store-match-data 
+          (store-match-data
            (list (match-beginning 1)(match-end 5)
                  (match-beginning 1)(match-end 1)
                  nil nil
@@ -1245,55 +1241,55 @@ match 1 -> package name
 
 (defun debian-changelog-fontify-urgency-crit (limit)
   (when (re-search-forward "^\\sw.* (.+).*; \\(urgency=critical\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-urgency-high (limit)
   (when (re-search-forward "^\\sw.* (.+).*; \\(urgency=high\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-urgency-med (limit)
   (when (re-search-forward "^\\sw.* (.+).*; \\(urgency=medium\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-urgency-low (limit)
   (when (re-search-forward "^\\sw.* (.+).*; \\(urgency=low\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-stable (limit)
   (when (re-search-forward "^\\sw.* (.+).* \\(\\(old\\)?stable\\(-security\\)?\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-frozen (limit)
   (when (re-search-forward "^\\sw.* (.+).* \\(testing\\(-security\\)?\\|frozen\\|woody-proposed-updates\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-unstable (limit)
   (when (re-search-forward "^\\sw.* (.+).* \\(unstable\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-experimental (limit)
   (when (re-search-forward "^\\sw.* (.+).* \\(experimental\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
 (defun debian-changelog-fontify-unreleased (limit)
   (when (re-search-forward "^\\sw.* (.+).* \\(UNRELEASED\\)" limit t)
-    (store-match-data 
+    (store-match-data
      (list (match-beginning 1)(match-end 1)))
     t))
 
@@ -1305,7 +1301,7 @@ match 1 -> package name
   (not (null (save-match-data (string-match "XEmacs\\|Lucid" emacs-version)))))
 
 (defvar debian-changelog-mouse-keymap nil
-  "keymap for mouse commands")
+  "Keymap for mouse commands.")
 
 (defun debian-changelog-setup-highlight-mouse-keymap ()
   (setq debian-changelog-mouse-keymap
@@ -1329,14 +1325,14 @@ match 1 -> package name
               'debian-bug-web-this-bug-under-mouse)))
           m)))
 
-(defvar debian-changelog-ext-list nil 
-  "xemacs buffer-local list of debian-changelog-cite extents.")
+(defvar debian-changelog-ext-list nil
+  "XEmacs buffer-local list of debian-changelog-cite extents.")
 (make-variable-buffer-local 'debian-changelog-ext-list)
 (put 'debian-changelog-ext-list 'permanent-local t)
 
 (defun debian-changelog-highlight-mouse ()
-  "Make that nice green highlight when the mouse is over a bug number
-and set keymap."
+  "Make that nice green highlight when the mouse is over a bug number.
+Also set keymap."
   (interactive)
   (save-excursion
     (let ((s)(e)(extent)(local-extent-list debian-changelog-ext-list)
@@ -1351,7 +1347,7 @@ and set keymap."
  		    (and (<= (point-min)(extent-start-position extent))
  			 (>= (point-max)(extent-end-position extent))))
 		(delete-extent extent)
-	      (setq debian-changelog-ext-list 
+	      (setq debian-changelog-ext-list
                     (cons extent debian-changelog-ext-list)))
             (setq local-extent-list (cdr local-extent-list)))
         ;; Remove properties for regular emacs
@@ -1360,20 +1356,20 @@ and set keymap."
           (remove-text-properties (point-min) (point-max)
                                   '(mouse-face t local-map t))))
       (goto-char (point-min))
-      ;; FIXME: Ideally, I want to hightlight _only_ the digit parts 
+      ;; FIXME: Ideally, I want to hightlight _only_ the digit parts
       ;; (skipping the coma, and the word "bug".
-      (while 
-          (re-search-forward 
+      (while
+          (re-search-forward
 ;;;        "\\(closes:\\) *\\(\\(bug\\)?#? *[0-9]+\\(, *\\(bug\\)?#? *[0-9]+\\)*\\)"
            ;; Same deal as for font-lock - patch from Fred Bothamy.
            "\\(closes:\\)[ \t\n]*\\(\\(bug\\)?#? *[0-9]+\\(,[ \t\n]*\\(bug\\)?#? *[0-9]+\\)*\\)"
            nil t)
         (setq s (match-beginning 2))
         (setq e (match-end 2))
-        (cond 
+        (cond
          ((string-match "XEmacs\\|Lucid" emacs-version)
           (setq extent (make-extent s e))
-          (setq debian-changelog-ext-list 
+          (setq debian-changelog-ext-list
                 (cons extent debian-changelog-ext-list))
           (set-extent-property extent 'highlight t)
           (set-extent-property extent 'start-open t)
@@ -1382,7 +1378,7 @@ and set keymap."
           (set-extent-property extent 'keymap debian-changelog-mouse-keymap))
          (t
           (let ((before-change-functions) (after-change-functions))
-            (put-text-property s e 'local-map 
+            (put-text-property s e 'local-map
                                debian-changelog-mouse-keymap)
             (put-text-property s e 'mouse-face 'highlight)))))
       (set-buffer-modified-p modified))))
@@ -1396,19 +1392,19 @@ and set keymap."
     (eval-when-compile
       (require 'imenu)))
 
-(defvar debian-changelog-imenu-doing-closebug nil 
-  "Internal flag set when imenu is processing many bug closings")
+(defvar debian-changelog-imenu-doing-closebug nil
+  "Internal flag set when imenu is processing many bug closings.")
 (make-variable-buffer-local 'debian-changelog-imenu-doing-closebug)
 
 (defun debian-changelog-imenu-prev-index-position-function ()
   (cond
    (debian-changelog-imenu-doing-closebug
-    (if (not (posix-search-backward 
+    (if (not (posix-search-backward
               "\\(closes:\\)\\|[^0-9]\\([0-9]+\\)" nil t))
         nil                             ; No match
       ;; match 1 -> "closes:"
       ;; match 2 -> a bug number
-      (cond 
+      (cond
        ((match-string 1)
         (setq debian-changelog-imenu-doing-closebug nil)
         (debian-changelog-imenu-prev-index-position-function))
@@ -1416,7 +1412,7 @@ and set keymap."
         ;; Return the bug number match
         t))))
    (t
-    (if (not (re-search-backward 
+    (if (not (re-search-backward
               "\\(closes: *\\(bug\\)?#? *[0-9]+\\)\\|\\(^\\sw.* (\\(.+\\))\\)"
               nil t))
         nil                             ; No match
@@ -1435,8 +1431,8 @@ and set keymap."
         ;; Return the version number match
         t))))))
 
-(defvar debian-changelog-imenu-counter nil 
-  "debian-changelog-mode internal variable for imenu support")
+(defvar debian-changelog-imenu-counter nil
+  "Debian-changelog-mode internal variable for imenu support.")
 
 (defun imenu--create-debian-changelog-index ()
     (save-match-data
@@ -1468,11 +1464,11 @@ and set keymap."
           (cond
            (index-bug-alist
             (push (cons "Closed Bugs (chrono)"
-                        index-bug-alist) 
+                        index-bug-alist)
                   index-alist)
             (setq index-bugsorted-alist (copy-alist index-bug-alist))
             (push (cons "Closed Bugs (sorted)"
-                        (sort index-bugsorted-alist 
+                        (sort index-bugsorted-alist
                               'debian-changelog-imenu-sort))
                   index-alist)))
           index-alist))))
@@ -1484,20 +1480,21 @@ and set keymap."
 ;;; end of imenu stuff
 ;;;-------------
 
-;;; Setup auto-mode-alist 
+;;; Setup auto-mode-alist
 ;; (in case /etc/emacs/site-start.d/50dpkg-dev.el not used)
 
-(if (not (assoc '"/debian/changelog\\'" auto-mode-alist))
-    (setq auto-mode-alist
-          (cons '("/debian/changelog\\'" . debian-changelog-mode)
-                auto-mode-alist)))
-(if (not (assoc '"changelog.Debian" auto-mode-alist))
-    (setq auto-mode-alist
-          (cons '("changelog.Debian" . debian-changelog-mode)
-                auto-mode-alist)))
-(if (not (assoc '"changelog.Debian.gz" auto-mode-alist))
-    (setq auto-mode-alist
-          (cons '("changelog.Debian.gz" . debian-changelog-mode)
-                auto-mode-alist)))
+(add-to-list 'auto-mode-alist
+             '("/debian/changelog\\'" . debian-changelog-mode))
+(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
+(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
+  ;; For debchange
+(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
+
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode)
+;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
 (provide 'debian-changelog-mode)
+
+;;; debian-changelog-mode.el ends here

@@ -9,61 +9,10 @@
 
   ;; Make sure that the uncompiled files are also in the load-path, near the
   ;; end.  This is for moving point to the code when view help.
-  (setq load-path (nconc load-path 
-                         (list "/usr/share/emacs/site-lisp/dpkg-dev-el")))
+  (setq load-path
+        (nconc load-path (list "/usr/share/emacs/site-lisp/dpkg-dev-el")))
 
-  ;; autoloads for debian-bts-control.el
-  (autoload 'debian-bts-control "debian-bts-control"
-    "Contruct a message with initial ACTION command for control@bugs.debian.org.
-Contructs a new control command line if called from within the message
-being constructed."
-    t)
-
-  ;; autoloads and automode for debian-changelog-mode.el
-  (autoload 'debian-changelog-mode "debian-changelog-mode"
-    "Major mode for editing Debian-style change logs." t)
-    
-  (autoload 'debian-changelog-web-bug "debian-changelog-mode"
-    "Browse the BTS for a bug report number via browse-url." t)
-  (autoload 'debian-changelog-web-bugs "debian-changelog-mode"
-    "Browse the BTS for this package via browse-url." t)
-  (autoload 'debian-changelog-web-package "debian-changelog-mode"
-    "Search Debian web page in ARCHIVE for this package via browse-url." t)
-  (autoload 'debian-changelog-web-packages "debian-changelog-mode"
-    "Search Debian web page for this package via browse-url." t)
-  (autoload 'debian-changelog-web-this-bug "debian-changelog-mode"
-    "Browse the BTS via browse-url for the bug report number under point." t)
-    
-  (add-to-list 'auto-mode-alist
-               '("/debian/changelog\\'" . debian-changelog-mode))
-  (add-to-list 'auto-mode-alist
-               '("changelog.Debian" . debian-changelog-mode))
-  (add-to-list 'auto-mode-alist
-               '("changelog.Debian.gz" . debian-changelog-mode))
-  ;; For debchange
-  (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
-
-  ;; autoloads and automode for debian-control-mode.el
-  (autoload 'debian-control-mode "debian-control-mode"
-    "Major mode for editing Debian control files (i.e. debian/control)." t)
-  (add-to-list 'auto-mode-alist
-               '("/debian/control\\'" . debian-control-mode))
-  
-  ;; autoloads and automode for debian-copyright.el
-  (autoload 'debian-copyright-mode "debian-copyright"
-    "Mode to edit and read debian/copyright." t)
-  (add-to-list 'auto-mode-alist
-               '("debian/.*copyright$" . debian-copyright-mode))
-  (add-to-list 'auto-mode-alist
-               '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
-  
-  ;; autoloads and automode for readme-debian.el
-  (autoload 'readme-debian-mode "readme-debian" "Mode to edit README.Debian."
-    t)
-  (add-to-list 'auto-mode-alist
-               '("debian/.*README.Debian$" . readme-debian-mode))
-  (add-to-list 'auto-mode-alist
-               '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
+  (require 'dpkg-dev-el)
 
   ;; other useful automode
   (add-to-list 'auto-mode-alist
