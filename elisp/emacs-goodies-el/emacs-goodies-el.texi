@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.31 2003/10/03 16:59:14 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.32 2003/10/05 00:31:05 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -393,7 +393,7 @@ customisation variables described below.
 @key{C-c d w} for running wordinspect GUI dict client.
 @end itemize
 
-The Debian emacs-goodies-extra-el package doesn't setup these keys by
+The Debian emacs-goodies-el package doesn't setup these keys by
 default.  The first time you use @code{dict} in a session you must do
 so manually with @code{M-x dict}.  Thereafter the keybindings will
 work.  If someone requests it, a customization variable could be added
