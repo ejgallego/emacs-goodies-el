@@ -11,7 +11,7 @@ Architecture: all
 Depends: emacs21 | emacsen, bash (>= 2.05a)
 Recommends: bash (>= 2.05a), dict, wget
 Replaces: emacs-goodies-extra-el
-Conflicts: emacs-goodies-extra-elD
+Conflicts: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
 Description: Miscellaneous add-ons for Emacs
  This package contains a number of Emacs-Lisp files, obtained from
