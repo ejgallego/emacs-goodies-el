@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.28 2003/10/02 14:41:01 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.29 2003/10/03 01:47:06 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -79,6 +79,7 @@ be documented.
 * ff-paths::                    Searches certain paths to find files
 * filladapt::                   Adaptively set fill-prefix
 * floatbg::                     Slowly modify background color
+* framepop::                    Display temporary buffers in a dedicated frame
 * highlight-beyond-fill-column::  Fontify beyond the fill-column
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
@@ -659,7 +660,7 @@ what needs to be done.
     filladapt-token-conversion-table
 @end example
 
-@node floatbg, highlight-beyond-fill-column, filladapt, Top
+@node floatbg, framepop, filladapt, Top
 @chapter floatbg - slowly modify background color
 
 Floatbg slowly modifies the backgound color through an hsv color
@@ -669,7 +670,249 @@ To enable it, customize the variable @code{floatbg-mode}.
 There are other tweaks to set in the customization group
 @code{floatbg}.
 
-@node highlight-beyond-fill-column, highlight-completion, floatbg, Top
+@node framepop, highlight-beyond-fill-column, floatbg, Top
+@chapter framepop - display temporary buffers in a dedicated frame
+
+Framepop makes temporary buffers such as *Help* or *Completions*
+appear in a separate frame which is easily dismissed when no longer
+needed.
+
+@menu
+* announcement::                Announcement on gnu-emacs-sources      
+* Purpose::                     What's it's for
+* Quick Setup::                 Get going within a minute
+* Customization::               Extra settings
+* For elisp hackers::           More extra seetings for teh adventurous
+* Bugs::                        Or limitations      
+@end menu
+
+@node announcement, Purpose, framepop, framepop
+@section announcement on gnu-emacs-sources
+
+@noindent FROM: David M Smith
+@noindent DATE: 08/14/1996 10:01:29
+@noindent SUBJECT:  Framepop 2.19
+
+@noindent Get that *Completions* buffer outta my face!!!"
+
+Are you tired of hearing this plaintive cry echoing around your
+office? Are you sick of having two-line *Help* messages taking up half
+of your Emacs frame? Are you endlessly frustrated by having that
+useful mode description in *Help* being overwritten by some useless
+output from @key{C-h k}? Well, have WE got the package for YOU!
+
+Yes, it`s FramePop -- the NEW and IMPROVED successor to that old Emacs
+18 favourite, popper.el. As if by MAGIC, the ``progeny of popper``
+takes care of temporary buffers like *Help* and *Completions* by
+making them appear in their own, separate shrink-wrapped FramePop
+frame, to be read at your leisure without destroying your
+painstakingly created window configuration. The framepop frame is
+automatically sized to your taste, taking up as little of your
+precious VDU screen real estate as possible. And, what`s more, it
+comes in *your choice* of colours and font. How much would you expect
+to pay for this INCREDIBLY USEFUL feature? Well, DON`T ANSWER! Because
+you also get the amazing FramePop Frame ToolKit KeyMap, providing
+every command you would ever need to manipulate the amazing FramePop
+Frame. You can scroll it, you can resize it, you can even iconify it
+completely. A complete suite of manipulation commands, yours as our
+gift even if you decide to return the FramePop package.
+
+A package like this could cost hundreds of pesetas in the stores, but
+how much would @strong{you} expect to pay? Well, DON`T ANSWER! Because you
+also get the incredible FramePop Frame Duplicator! Got a temporary
+frame you want to keep around as a reference? Just hit those keys, and
+in just microseconds you can have a copy of your own -- in yet another
+shrink-wrapped Emacs frame -- to keep as your own for as long as you
+wish. But what if it`s a *Help* buffer, I hear you ask? Won`t it be
+overwritten next time a *Help* buffer is created? That`s no problem
+for the FramePop Frame Duplicator! Just give it a prefix argument, and
+it not only copies the frame but it copies the buffer AS WELL! It even
+gives it a stylishly chosen NEW NAME!
+
+That`s right, you get the FramePop frame in your choice of colours and
+font, the FramePop Frame ToolKit KeyMap and the amazing FramePop Frame
+Duplicator, @strong{plus} the no-money-back GPL "NO WARRANTY" guarantee, for
+the incredible, never-to-be-repeated price of ABSOLUTELY NOTHING!
+Remember, FramePop is not available in stores.  Eval now! Send no
+money -- we won`t bill you. Eval now!
+
+SPECIAL OFFER: If you install FramePop in the next 48 hours you`ll
+receive FramePop: the Deluxe Limited Edition 2.19! All the features of
+the original FramePop 2.17 plus extra bugfixes, leaner code (which
+doesn`t require advice) and better interaction with completion and the
+minibuffer. Extra value at no extra cost if you act now!
+
+@node Purpose, Quick Setup, announcement, framepop
+@section Purpose
+
+Defines temp-buffer-show-function to display buffers in a dedicated
+temporary frame (and so requires a display which can accomodate
+separate frames). The frame is automatically shrink-wrapped to just
+contain the buffer (restricted to a maximum and minimum
+size). Buffers thus affected include *Help*, completion buffers and
+buffer listings.
+
+Commands are provided for manipulating the FramePop frame:
+scrolling, resizing, window manager functions, and also a facility
+for copying the displayed buffer. You need never lose that handy
+*Help* buffer again!
+
+Framepop is orthogonal to the Emacs' special-display-buffers feature;
+you can use both at the same time if you so desire.  You can make
+special-display buffers appear in the FramePop frame as well, if you
+wish; see below.
+
+@node Quick Setup, Customization, Purpose, framepop
+@section Quick Setup
+
+Since framepop is already installed and byte-compiled in this packaged
+form, this setup can all be done using the custom interface with
+@command{M-x customize-group framepop}.
+
+To use framepop, you must first enable it.  Customize the variable
+@code{framepop-enable} to @code{on}.
+
+Then you'll need to enable a keybing to the @code{framepop-map}
+keymap.  We suggest using @key{F2}.  Customize the variable
+@code{framepop-enable-keybinding} and select @key{F2} or some other
+string that represents a key you'd prefer.
+
+You may then optionally extend Framepop's functionality by allowing it
+to use the @code{advice} library to advise other functions.  Select
+this option by customizing the variable @code{framepop-use-advice} to
+@code{on}. 
+
+Save all these settings and you are ready to go.
+
+Type @command{M-x framepop-display-help} (bound to @key{?} in
+framepop-map) for more information about the available commands
+to control the new frame.  For example, @key{F2} iconizes the Framepop
+frame, so if you used the suggested binding of @key{F2} above for the
+Framepop keymap pressing @key{F2} twice will dismiss the frame.
+
+@node Customization, For elisp hackers, Quick Setup, framepop
+@section Customization
+
+More detailed customization is available via @code{M-x customize-group
+RET framepop'}.  This sections discusses some of them.
+
+The maximum and minimum height of the framepop buffer are
+determined by the user options @code{framepop-max-frame-size} and
+@code{framepop-min-frame-size}.
+
+The variable @code{framepop-frame-parameters} holds the Framepop frame
+parameters. You can define colours, fonts and positions for the
+Framepop frame here. For example:
+
+@verbatim
+  (setq framepop-frame-parameters
+     '((name . nil)                     ; use buffer name
+       (unsplittable . t)               ; always include this
+       (menu-bar-lines . 0)             ; no menu bar
+       (minibuffer . nil)               ;    or minubuffer
+       (left . -1)                      ; top left corner of screen,
+       (top . 30)                       ;    away from my main frame
+       (width . 71)                     ; narrower, so it fits nicely
+       (background-color . "orchid4")   ; I like purple. So sue me.
+       (foreground-color . "cornsilk")
+       (font . "-*-courier-bold-o-*-*-12-*-*-*-m-*-*-*")))
+@end verbatim
+
+But you may use the customize interface to edit
+@code{framepop-frame-parameters}.
+
+By default, only temporary buffers (which call
+@code{temp-buffer-show-function}) are displayed in the FramePop frame.
+To make other buffers also appear in the selected frame, the easiest
+thing to do is make buffers listed in special-display-buffer-names or
+special-display-regexps appear in the framepop frame by adding the
+following to your @file{~/.emacs} file:
+
+@example
+(setq special-display-function 'framepop-special-display)
+@end example
+
+@noindent Here's a suggestion for some buffers to use this feature on:
+
+@example
+(setq special-display-buffer-names
+ '("*Shell Command Output*"  "*grep*" "*compilation*"))
+@end example
+
+Alternatively (if you want to keep the special-display feature
+separate from framepop) you can use the function @code{framepop-wrap}.
+
+There are lots of nifty things that can be done with the advice
+package to make FramePop work that much better. Many such things
+will be done for you automatically if you
+
+@example
+  (require 'advice)
+@end example
+
+before loading the framepop package (or customize the variable
+@code{framepop-use-advice}.
+
+Buffer names listed in the variable @code{framepop-do-not-display-list}
+will not be displayed in the framepop-frame by default.
+
+You may set the variable @code{framepop-auto-resize} to @code{on} to
+have the FramePop frame automatically resize to accomodate buffers
+which change size. If you do not, initially empty buffers (which are
+likely to grow) get a FramePop frame of full size.
+
+@node For elisp hackers, Bugs, Customization, framepop
+@section For elisp hackers
+
+Alternatively, for greater control over the behaviour of the
+framepop frame, you can redefine the variable `framepop-lines' to a
+lambda expression which will return the desired height of a buffer
+to be displayed in the framepop frame. It may also return nil,
+meaning that the buffer should not be displayed in the FramePop
+frame, but in an ordinary window instead. The default value of this
+lambda expression is the number of lines in the buffer, except that
+empty buffers and compilation buffers (both of which are likely to
+grow) get full size. You may wish to disable this feature, or
+perhaps make other constraints based on buffer mode, etc. For
+example, placing the following in your .emacs will force the
+framepop frame to have as many lines as the buffer being displayed
+provided it is not the *Completions* buffer (which will not be
+displayed in the FramePop frame at all):
+
+@verbatim
+  (setq framepop-lines
+    '(lambda (buf)
+  	 (if (string= (buffer-name buf) "*Completions*") nil
+  	   (save-excursion
+  	     (set-buffer buf)
+  	     (+ (count-lines (point-min) (point-max)) 1)))))
+@end verbatim
+        
+This will cause empty buffers to have the minimum height, because
+the maximum and minimum frame sizes (as specified in
+@code{framepop-max-frame-size} and @code{framepop-min-frame-size}) are enforced
+independently of @code{framepop-lines}. To get around this, define advice
+around the function @code{framepop-frame-height}.
+
+The default value of @code{framepop-lines} is framepop-default-lines.
+
+@node Bugs,  , For elisp hackers, framepop
+@section Bugs
+
+@enumerate
+@item
+Completion in comint buffers doesn't work very well unless
+comint-dynamic-show-completions is given a lobotomy.  NB: this happens
+by default if @code{framepop-use-advice} is customized to @code{on}.
+@item
+I'd like to redefine framepop-wrap so that it saves the window
+configuration, displays the requested buffer in the
+framepop-frame, and then restores the window configuration. But
+the job of framepop-wrap is better done by
+special-display-buffer-names, so I shan't bother.
+@end enumerate
+
+@node highlight-beyond-fill-column, highlight-completion, framepop, Top
 @chapter  highlight-beyond-fill-column - fontify beyond the fill-column.
 
 This defines a function that can be used by @code{font-lock-add-keyword}' to
