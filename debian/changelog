@@ -1,3 +1,12 @@
+emacs-goodies-el (24.10-1) UNRELEASED; urgency=low
+
+  * debian-el:
+    - debian-bug.el: Patch from Kevin Ryde <user42@zip.com.au> adds gnus
+      support to debian-bug-get-bug-as-email, bringing the bug
+      messages up in a gnus group. (Closes: #288469)
+
+ -- Peter S Galbraith <psg@debian.org>  Wed,  5 Jan 2005 21:24:40 -0500
+
 emacs-goodies-el (24.9-2) unstable; urgency=low
 
   * Use debian-emacs-flavor instead of flavor in startup files and replace
