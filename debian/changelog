@@ -14,7 +14,7 @@ emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
        commands true toggles.
     Info manual:
     - documented nuke-trailing-whitespace, protbuf, protocols, services,
-      sys-apropos, table.
+      sys-apropos, table, tail.
   * debian-el:
     New upstream versions:
     - debian-bug.el: decode ISO strings in Debian BTS for properly

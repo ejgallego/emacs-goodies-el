@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.39 2003/10/09 00:01:32 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.40 2003/10/10 01:50:36 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -101,6 +101,7 @@ be documented.
 * session::                     Session Management for Emacs
 * sys-apropos::                 Interface for the *nix apropos command.
 * table::                       Create and edit WYSIWYG embedded tables
+* tail::                        Tail files within Emacs
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -120,8 +121,6 @@ Project-based buffer name management
 vi-style line number mode for Emacs
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
 generate bozotic mail headers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/tail.el
-Tail files within Emacs
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
 cite text with proper filling
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/thinks.el
@@ -1654,9 +1653,9 @@ interesting anymore.
 Details of Package Session
 
 @menu
-* Session Menus and Key-Bindings::
-* Saving Session Variables::
-* Storing Buffer Places::
+* Session Menus and Key-Bindings::  
+* Saving Session Variables::    
+* Storing Buffer Places::       
 @end menu
 
 @node Session Menus and Key-Bindings, Saving Session Variables, session, session
@@ -1767,7 +1766,7 @@ Do @command{M-x sys-apropos} and you're off.  In the *System Apropos*
 buffer, @key{RET} shows the manual page for the program on that line and
 @key{q} or @key{C-c C-c} quits the whole shebang.
 
-@node table,  , sys-apropos, Top
+@node table, tail, sys-apropos, Top
 @chapter table - Create and edit WYSIWYG text based embedded tables
 
 @noindent Author: Takaaki Ota <Takaaki.Ota@@am.sony.com>
@@ -1779,16 +1778,16 @@ are embedded inside a text document, the feature similar to the
 ones seen in modern WYSIWYG word processors.
 
 @menu
-* table introduction::
-* table background::
-* table getting started::
-* table keymap::
-* table menu::
-* table function advising::
-* Definition of tables and cells::
-* Cell contents formatting::
-* Cell Justification::
-* Acknowledgments::
+* table introduction::          
+* table background::            
+* table getting started::       
+* table keymap::                
+* table menu::                  
+* table function advising::     
+* Definition of tables and cells::  
+* Cell contents formatting::    
+* Cell Justification::          
+* Acknowledgments::             
 @end menu
 
 @node table introduction, table background, table, table
@@ -2483,3 +2482,21 @@ DTD) table source generation into @code{table-generate-source} group
 functions.
 
 And many other individuals who reported bugs and suggestions.
+
+@node tail,  , table, Top
+@chapter tail - Tail files within Emacs
+
+@noindent Author: Benjamin Drieu <bdrieu@@april.org>
+
+This program displays @emph{tailed} contents of files inside transients
+windows of Emacs.  It is primarily meant to keep an eye on logs within
+Emacs instead of using additional terminals.
+
+@noindent Commands:
+
+@table @samp
+@item tail-file
+Tails FILE specified with argument FILE inside a new buffer.
+@item tail-command
+Tails COMMAND with arguments ARGS inside a new buffer.
+@end table
