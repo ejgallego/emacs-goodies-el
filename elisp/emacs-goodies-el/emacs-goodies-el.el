@@ -217,14 +217,6 @@ Stores the value of the prior keybinding in case we need to restore it.")
   "Turn on setnu-mode."
   nil)
 
-;; tail.el
-(autoload 'tail-file "tail"
-  "Tails file specified with argument ``file'' inside a new buffer."
-  t)
-(autoload 'tail-command "tail"
-  "Tails command specified with argument ``command'' inside a new buffer."
-  t)
-
 ;; todoo.el
 (autoload 'todoo "todoo"
   "TODO Mode."
@@ -263,11 +255,6 @@ Stores the value of the prior keybinding in case we need to restore it.")
 ;; toggle-option.el
 (autoload 'toggle-option "toggle-option"
   "Easily toggle frequently toggled options."
-  t)
-
-;; under.el
-(autoload 'underline-region "under"
-  "Underline the region."
   t)
 
 ;; xrdb-mode.el
