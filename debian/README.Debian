@@ -163,6 +163,10 @@ Site Summary (RSS) files) from a list of news sites, displays these
 headlines, and allows for loading the corresponding articles in a web
 browser.
 
+nuke-trailing-whitespace.el (renamed from whitespace.el) provides M-x
+nuke-trailing-whitespace, a command that deletes trailing whitespaces in
+buffers.
+
 obfusurl.el provides M-x obfuscate-url, a command that will obfuscate
 an URL under the cursor.
 
@@ -240,12 +244,8 @@ wdired.el provides M-x wdired-change-to-wdired-mode (when in a dired
 buffer) and allows you to edit the filenames and permission bits
 easily.
 
-nuke-trailing-whitespace.el (renamed from whitespace.el) provides M-x
-nuke-trailing-whitespace, a command that deletes trailing whitespaces in
-buffers.
-
 xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Thu Oct  2 22:21:10 2003
+ -- Peter S Galbraith <psg@debian.org>, Fri Oct  3 13:16:19 2003
