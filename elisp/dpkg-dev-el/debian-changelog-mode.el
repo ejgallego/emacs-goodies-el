@@ -1,4 +1,4 @@
-;;; debian-changelog-mode.el --- change log maintenance for Debian changelogs
+;;; debian-changelog-mode.el --- major mode for Debian changelog files.
 
 ;; Copyright (C) 1996 Ian Jackson
 ;; Copyright (C) 1997 Klee Dienes
@@ -20,11 +20,32 @@
 ;; If not, write to the Free Software Foundation, 675 Mass Ave,
 ;; Cambridge, MA 02139, USA.
 
-;;; Change log:
+;;; Commentary:
+;; 
+;; This is a major mode for Debian changelog files.  The main features
+;; are:
+;; 
+;;  - fontification (varies with upload urgency, etc).
+;;  - create a entry for a new version (guessing the version number).
+;;  - finalize a version with proper timestamp and syntax.
+;;  - add an entry from another file in the source package.
+;;  - interface with `debian-bug' to fetch list of bugs from the web,
+;;    read a bug report via browse-url or as email, close a bug with
+;;    thanks.
+;;  - closed bugs are fontified and clickable to view them via browse-url.
+;; 
+;; The mode is entered automatically when editing a debian/changelog file.
+;; See the menus "Bugs" and "Changelog" for commands or do `C-h m' to get
+;; the list of keybindings.
+;; 
+;; From other files in unpacked sources, do `M-x debian-changelog-add-entry'
+;; to add an entry for that file in the changelog file.
+
+;;; History
 ;;
 ;; V1.00 30aug00  Peter S Galbraith <psg@debian.org>
 ;;  -  Prior version had no changelogs; starting one now.
-;;     This is the potato version plus extensions by Chris Waters (easymenu; 
+;;     This is the potato version plus extensions by Chris Waters (easymenu;
 ;;     better menus, font-lock support).
 ;; V1.01 30aug00  Peter S Galbraith <psg@debian.org>
 ;;  - debian-changelog-finalise-last-version: Use XEmacs' (user-mail-address)
@@ -251,6 +272,9 @@
 ;; V1.73 04Nov2003 Peter S Galbraith <psg@debian.org>
 ;;  - checkdoc fixed (not complete!)
 ;;  - Add autoload tag.
+;; V1.74 22Nov2003 Peter S Galbraith <psg@debian.org>
+;;  - Make `debian-changelog-add-entry' works from files in unpacked sources.
+;;    Thanks to Junichi Uekawa for suggesting it (Closes: #220641)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -260,6 +284,7 @@
 ;;   Yann Dirson <dirson@debian.org>
 
 ;;; Code:
+
 (defgroup debian-changelog nil "Debian changelog maintenance"
   :group 'tools
   :prefix "debian-changelog-")
@@ -616,8 +641,16 @@ Upload to " val  " anyway?")))
 ;;
 
 (defun debian-changelog-add-entry ()
-  "Add a new change entry to a debian-style changelog."
+  "Add a new change entry to a debian-style changelog.
+If called from buffer other than a debian/changelog, this will search
+for the debian/changelog file to add the entry to."
   (interactive)
+  (if (string-match ".*/debian/changelog" (buffer-file-name))
+      (debian-changelog-add-entry-plain)
+    (debian-changelog-add-entry-file)))
+
+(defun debian-changelog-add-entry-plain ()
+  "Add a new change entry to a debian-style changelog."
   (if (eq (debian-changelog-finalised-p) t)
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
   (goto-char (point-min))
@@ -628,6 +661,44 @@ Upload to " val  " anyway?")))
     (insert "\n"))
   (insert "  * ")
   (save-excursion (insert "\n")))
+
+(defun debian-changelog-add-entry-file ()
+  "Add an entry for current file in debian/changelog."
+  (let* ((this-file (buffer-file-name))
+         (directory (if (not this-file)
+                        (error "This buffer has no file associated to it")
+                      (directory-file-name (file-name-directory this-file))))
+         (filename (file-name-nondirectory this-file))
+         (success))
+    (while directory
+      (let ((changelog (expand-file-name "debian/changelog" directory)))
+        (cond
+         ((file-readable-p changelog)
+          (debian-changelog-add-entry-file-specified changelog filename)
+          (setq directory nil
+                success t))
+         (t
+          (if (not (string-match "\\(.*\\)/\\([^/]+\\)$" directory))
+              (setq directory nil)
+            (setq filename (concat (match-string 2 directory) "/" filename)
+                  directory (match-string 1 directory)))))))
+    (if (not success)
+        (error "debian directory not found"))))
+
+(defun debian-changelog-add-entry-file-specified (changelog filename)
+  "Insert an entry in debian CHANGELOG file for FILENAME."
+  (interactive)
+  (find-file changelog)
+  (if (eq (debian-changelog-finalised-p) t)
+      (let ((action (capitalize
+                     (read-string
+                      "Most recent version is finalised, [u]nfinalize or [a]dd new version? "))))
+        (if (not (string-match "^[uU]" action))
+            (debian-changelog-add-version)
+          (debian-changelog-unfinalise-last-version)
+          (debian-changelog-add-entry-plain)))
+    (debian-changelog-add-entry-plain))
+  (insert filename ": "))
 
 ;;
 ;; interactive function to close bugs by number. (Peter Galbraith)
@@ -660,9 +731,9 @@ Upload to " val  " anyway?")))
 ;; interactive functions to set urgency and distribution
 ;;
 
-(defun debian-changelog-distribution (arg)
+(defun debian-changelog-distribution ()
   "Delete the current distribution and prompt for a new one."
-  (interactive "P")
+  (interactive)
   (if (eq (debian-changelog-finalised-p) t)
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
   (let ((str (completing-read
@@ -679,9 +750,9 @@ Upload to " val  " anyway?")))
     (if (not (equal str ""))
 	(debian-changelog-setdistribution str))))
 
-(defun debian-changelog-urgency (arg)
+(defun debian-changelog-urgency ()
   "Delete the current urgency and prompt for a new one."
-  (interactive "P")
+  (interactive)
   (if (eq (debian-changelog-finalised-p) t)
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
   (let ((str (completing-read
@@ -813,7 +884,7 @@ If file is empty, create initial entry."
        (t
         (setq findmatch nil)))
 
-            
+
 ;;; match 1: package name
 ;;; match 2: epoch, if it exists
 ;;; match 3: upstream version number
@@ -827,7 +898,7 @@ If file is empty, create initial entry."
               (upstream-vsn (match-string-no-properties 3))
               (debian-vsn (match-string-no-properties 5)))
           ;;debug (message "name: %s  epoch: %s  version: %s  debian: %s" pkg-name epoch upstream-vsn debian-vsn))))
-          
+
           (cond
            ;; Debian vsn exists + Old upstream version matches current one.
            ;; -> Increment Debian version...
@@ -837,7 +908,7 @@ If file is empty, create initial entry."
                   buffer-file-name))
             (concat epoch upstream-vsn "-"
                     (debian-changelog-increment-version debian-vsn)))
-           
+
            ;; Same as above, but more general in case directory name doesn't
            ;; match package name.  -> Increment Debian version...
            ((and debian-vsn
@@ -846,7 +917,7 @@ If file is empty, create initial entry."
                   buffer-file-name))
             (concat epoch upstream-vsn "-"
                     (debian-changelog-increment-version debian-vsn)))
-           
+
            ;; Debian vsn exists but old upstream version doesn't match new one.
            ;; -> Use new upstream version with "-1" debian version.
 ;;;FIXME: I should perhaps check that the directory name version is higher
@@ -859,7 +930,7 @@ If file is empty, create initial entry."
                                buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
-           
+
            ;; Same as above, but more general in case directory name doesn't
            ;; match package name.
            ;; -> Use new upstream version with "-1" debian version.
@@ -869,15 +940,15 @@ If file is empty, create initial entry."
                   buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
-           
+
            ;; Debian vsn exists, but directory name has no version
            ;; -> increment Debian vsn (no better guess)
            (debian-vsn
             (concat epoch upstream-vsn "-"
                     (debian-changelog-increment-version debian-vsn)))
-           
+
          ;;; No Debian version number...
-           
+
            ;; No debian version number and version number from changelog
            ;; already greater than from directory name.
            ((and (not debian-vsn)
@@ -891,7 +962,7 @@ If file is empty, create initial entry."
                  (debian-changelog-greater-than
                   upstream-vsn (match-string 1 buffer-file-name)))
             (concat epoch (debian-changelog-increment-version upstream-vsn)))
-           
+
            ;; No debian version number (Debian native) and old upstream
            ;; version matches new one (e.g. 'dpk-source -x package' without
            ;; then bumping up the version in the directory name.
@@ -902,7 +973,7 @@ If file is empty, create initial entry."
                                buffer-file-name)
                  (concat epoch
                          (debian-changelog-increment-version upstream-vsn))))
-           
+
            ;; No debian version number and version number from changelog
            ;; less than from directory name.
            ((and (not debian-vsn)
@@ -917,7 +988,7 @@ If file is empty, create initial entry."
                  (debian-changelog-greater-than
                   (match-string 1 buffer-file-name) upstream-vsn))
             (concat epoch (match-string 1 buffer-file-name)))
-           
+
            ((string-match (concat "/" (regexp-quote pkg-name)
                                   "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
                           buffer-file-name)
@@ -928,12 +999,12 @@ If file is empty, create initial entry."
              buffer-file-name)
             ;;Hmmm.. return version number from directory if we get this far
             (concat epoch (match-string 1 buffer-file-name)))
-           
+
            ;; Directory name has no version -> increment what we have.
            (t
             (concat epoch
                     (debian-changelog-increment-version upstream-vsn)))))))))
-    
+
 (defun debian-changelog-increment-version (version)
 ;; Peter S Galbraith, 09 Mar 2001
   "Increment the last numeric portion of a VERSION number.
@@ -1045,7 +1116,7 @@ Key bindings:
 If you want to use your debian.org email address for debian/changelog
 entries without using it for the rest of your email, use the `customize`
 interface to set it, or simply set the variable
-debian-changelog-mailing-address in your ~/.emacs file, e.g.
+`debian-changelog-mailing-address' in your ~/.emacs file, e.g.
 
  (setq debian-changelog-mailing-address \"myname@debian.org\"))"
 
@@ -1307,7 +1378,7 @@ match 1 -> package name
   (setq debian-changelog-mouse-keymap
    ;;; First, copy the local keymap so we don't have `disappearing' menus
    ;;; when the mouse is moved over a bug number.
-        
+
    ;;; FIXME: Check out (mouse-major-mode-menu) to see how it grabs the local
    ;;;        menus to display.
         (let ((m (copy-keymap (current-local-map))))
