@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-extra-el.texi,v 1.1 2003/09/24 02:14:30 psg Exp $
+@c $Id: emacs-goodies-extra-el.texi,v 1.2 2003/09/24 02:32:32 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-extra-el
 @settitle Emacs-Goodies-extra-el
@@ -9,7 +9,8 @@
 
 @dircategory Emacs
 @direntry
-* Emacs-Goodies-extra-el: (emacs-goodies-extrael). Misc add-ons for Emacs
+* Emacs-Goodies-extra:
+  (emacs-goodies-extra-el). Misc add-ons for Emacs
 @end direntry
 
 @c Version variables.
@@ -28,7 +29,7 @@ This is Edition @value{EDITION}, last updated @value{UPDATED}, of
 @end titlepage
 
 @node Top, dict, (dir), (dir)
-@top The Emacs-Goodies-el Package Setup
+@top The Emacs-Goodies-extra-el Package Setup
 
 This manual describes the Emacs-Goodies-extra-el package and its
 setup.  A quick descriptions of elisp files contained in this package
