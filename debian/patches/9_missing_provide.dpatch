@@ -23,15 +23,6 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/devscripts-el/devscripts.el emacs-goodies-el/elisp/devscripts-el/devscripts.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/devscripts-el/devscripts.el	2003-06-14 21:30:49.000000000 -0400
-+++ emacs-goodies-el/elisp/devscripts-el/devscripts.el	2003-06-15 21:16:11.000000000 -0400
-@@ -65,3 +65,5 @@
-        (modify-syntax-entry ?\" ".   " text-mode-syntax-table)
-        (modify-syntax-entry ?\\ ".   " text-mode-syntax-table)
-        (modify-syntax-entry ?' "w   " text-mode-syntax-table))
-+
-+(provide 'devscripts)
 diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/align-string.el emacs-goodies-el/elisp/emacs-goodies-el/align-string.el
 --- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/align-string.el	2003-06-14 22:35:26.000000000 -0400
 +++ emacs-goodies-el/elisp/emacs-goodies-el/align-string.el	2003-06-15 21:15:50.000000000 -0400
