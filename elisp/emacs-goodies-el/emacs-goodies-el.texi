@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.42 2003/10/10 02:48:47 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.43 2003/10/10 17:34:46 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -104,6 +104,10 @@ be documented.
 * tail::                        Tail files within Emacs
 * thinks::                      Insert text in a think bubble.
 * tld::                         TLD (Top Level Domain) lookup tool.
+* todoo::                       Major mode for editing TODO files.
+* toggle-option::               Easily toggle frequently toggled options
+* twiddle::                     Cute mode-line display hack.
+* under::                       Underline with the ^ character
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -112,7 +116,9 @@ from GPL'ed works, this text is also licensed under the GPL V2 (See
 /usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
 @email{psg@@debian.org}.
 
-Files not yet documented here:
+The following are the files not yet documented.  Read these commentary
+section for usage, but be advised that I haven't documented them
+because I intend to change their enabling interface soon.
 
 @table @samp
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/initsplit.el
@@ -125,18 +131,10 @@ vi-style line number mode for Emacs
 generate bozotic mail headers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
 cite text with proper filling
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/todoo.el
-Major mode for editing TODO files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-buffer.el
 flips back and forth between two buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-case.el
 toggles case at point
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-option.el
-easily toggle frequently toggled options
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/twiddle.el
-mode-line display hack
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/under.el
-Underline a region
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/wdired.el
 Rename files editing their names in dired buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/xrdb-mode.el
@@ -2569,7 +2567,7 @@ taking into account the value of @code{fill-column} minus the space required
 for the bubble. Prefix a call to any of the functions with @key{C-u} to turn
 off this behaviour.
 
-@node tld,  , thinks, Top
+@node tld, todoo, thinks, Top
 @chapter tld - TLD (Top Level Domain) lookup tool.
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -2584,3 +2582,104 @@ names.
 @item tld
 Search the TLD list.
 @end table
+
+@node todoo, toggle-option, tld, Top
+@chapter todoo - Major mode for editing TODO files
+
+@noindent Author: Daniel Lundin <daniel@@codefactory.se>
+
+todoo.el is a mode for editing @emph{TODO} files in an outline-mode fashion. 
+It has similarities to Oliver Seidel's todo-mode.el , but todoo.el
+has  been significantly simplified to better adhere to mine and
+other users' needs at the time. 
+
+@noindent To show your personal todo-list:
+@example
+@command{M-x todoo}
+@end example
+
+@noindent To be prompted a filename, supply any prefix to 'todoo':
+@example
+@command{C-u M-x todoo}
+@end example
+
+@noindent For information on keybindings:
+@example
+@command{C-h f todoo-mode RET}
+@end example
+
+Customize your todoo with:
+@example
+@command{M-x customize-group RET todoo RET}
+@end example
+
+@node toggle-option, twiddle, todoo, Top
+@chapter toggle-option - Easily toggle frequently toggled options
+
+@noindent Author: Cyprian Laskowski <swagbelly@@yahoo.com>
+
+I find myself toggling the same Emacs features very often, and I
+always set up key bindings for these features.  The problem is that
+the list is getting rather big, and it's a nuisance to sacrifice
+individual bindings to such a simple operation as the toggling of a
+variable.  So the idea here is: set up a customizable list of
+options and how they are to be toggled (whether the buffer-local or
+global value is toggled, or whether a function is called), and
+assign ONE command (@command{toggle-option}) to @emph{ONE} key, from which all
+those options can be easily toggled (using completion).  For
+individual variables, you can set values to toggle to override the
+default of nil and t.
+
+To enable it, customize the group @code{toggle-option} and then the
+variable @code{toggle-option-list}. 
+See the documentation for @code{toggle-option-list} for details.
+
+I also highly recommend that you bind @command{toggle-option} to a
+key, by putting something like the following in your .emacs file as
+well:
+
+@example
+(global-set-key "\M-o" 'toggle-option)
+@end example
+
+Now you can toggle options by typing @key{M-o} (remember that
+completion can be used on your list) and supplying the first few
+characters of an option.
+
+@node twiddle, under, toggle-option, Top
+@chapter twiddle - Cute mode-line display hack.
+
+@noindent Author: Noah Friedman <friedman@@splode.com>
+
+Inspired by a similar hack by Jim Blandy <jimb@@cyclic.com>.
+
+There are two user commands of interest: @command{twiddle-start} and
+@comamnd{twiddle-compile}:
+
+@table @samp
+@item twiddle-start
+Start a mode line display hack.
+If called interactively with a prefix argument, prompt for the name of
+a hack to run.
+@item twiddle-compile
+Like \\[compile], but run a twiddle hack during compilation.
+@end table
+
+If you write new twiddles, try to minimize or avoid consing, since those
+functions are called constantly.
+
+@node under,  , twiddle, Top
+@chapter under - Underline with the ^ character
+
+@noindent Author: Benjamin Drieu <bdrieu@@april.org>
+
+This provide the command @command{underhat-region} to underline part
+of a line with the @code{^} character.
+
+Suggested key-binding to put in ~/.emacs:
+@example
+  (global-set-key "\C-c\C-u" 'underline-region)
+@end example
+
+@emph{Bugs:} currently only works on a single line.  The region can't
+span multiple lines.
