@@ -1,3 +1,10 @@
+emacs-goodies-el (24.7-1) UNRELEASED; urgency=low
+
+  * debian-el:
+    - apt-utils.el: new upstream version from Matt.
+  
+ -- Peter S Galbraith <psg@debian.org>  Thu, 26 Aug 2004 15:13:56 -0400
+
 emacs-goodies-el (24.6-2) unstable; urgency=low
 
   * gnus-bonus-el
