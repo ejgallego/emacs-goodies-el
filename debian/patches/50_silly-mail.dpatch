@@ -33,7 +33,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 -;; To use this, put the following in your .emacs:
 +;; To use this, invoke `M-x sm-add-random-header' from a mail composition
 +;; buffer to insert a random header.  You may call the command again to
-+;; substitute the header that was inserted by another.
++;; substitute the inserted header by another.
 +;;
 +;; Use 'M-x sm-delete-last-header' to remove it.
 +;;
