@@ -41,7 +41,6 @@ install: build
 	dh_clean -k
 	dh_installdirs
 	dh_install
-	(cd debian/emacs-goodies-el/usr/share/emacs/site-lisp/emacs-goodies-el; mv whitespace.el nuke-trailing-whitespace.el)
 
 binary-indep: build install
 
