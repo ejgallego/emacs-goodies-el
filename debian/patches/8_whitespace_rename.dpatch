@@ -19,8 +19,8 @@ esac
 exit 0
 				    
 diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
---- 8.tmp/elisp/emacs-goodies-el/whitespace.el	2003-05-05 22:20:30.000000000 -0400
-+++ 8/elisp/emacs-goodies-el/whitespace.el	2003-05-05 22:56:27.000000000 -0400
+--- 8.tmp/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-05-05 22:20:30.000000000 -0400
++++ 8/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-05-05 22:56:27.000000000 -0400
 @@ -1,4 +1,4 @@
 -;;; whitespace.el --- strip trailing whitespace from buffers
 +;;; nuke-trailing-whitespace.el --- strip trailing whitespace from buffers

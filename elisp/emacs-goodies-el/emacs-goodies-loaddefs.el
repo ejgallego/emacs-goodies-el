@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16251 29973))
+;;;;;;  "bar-cursor.el" (16253 43285))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16251 29973))
+;;;;;;  "diminish.el" (16253 43285))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -237,7 +237,7 @@ Toggle floatbg mode" t nil)
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16251 29973))
+;;;;;;  "highlight-beyond-fill-column.el" (16253 43285))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -258,7 +258,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16251 29973))
+;;;;;;  (16253 43285))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -357,8 +357,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16251
-;;;;;;  29973))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16253
+;;;;;;  43285))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -367,6 +367,22 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 
 \\{muttrc-mode-map}
 " t nil)
+
+;;;***
+
+;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
+;;;;;;  "nuke-trailing-whitespace.el" (16253 43286))
+;;; Generated autoloads from nuke-trailing-whitespace.el
+
+(autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
+Nuke all trailing whitespace in the buffer.
+Whitespace in this case is just spaces or tabs.
+This is a useful function to put on write-file-hooks.
+
+Unless called interactively, this function uses
+`nuke-trailing-whitespace-p' to determine how to behave.
+However, even if this variable is `t', this function will query for
+replacement if the buffer is read-only." t nil)
 
 ;;;***
 
@@ -384,7 +400,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16251 29973))
+;;;;;;  "perldoc.el" (16253 43285))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -1092,22 +1108,6 @@ In this mode the names of the files can be changed, and after
 typing C-c C-c the files and directories in disk are renamed.
 
 See `wdired-mode'." t nil)
-
-;;;***
-
-;;;### (autoloads (nuke-trailing-whitespace) "whitespace" "whitespace.el"
-;;;;;;  (16251 29973))
-;;; Generated autoloads from whitespace.el
-
-(autoload (quote nuke-trailing-whitespace) "whitespace" "\
-Nuke all trailing whitespace in the buffer.
-Whitespace in this case is just spaces or tabs.
-This is a useful function to put on write-file-hooks.
-
-Unless called interactively, this function uses
-`nuke-trailing-whitespace-p' to determine how to behave.
-However, even if this variable is `t', this function will query for
-replacement if the buffer is read-only." t nil)
 
 ;;;***
 
