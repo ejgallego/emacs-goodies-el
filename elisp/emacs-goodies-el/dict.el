@@ -1,6 +1,6 @@
 ;;; dict.el --- Emacs interface to dict client
 ;;
-;; $Id: dict.el,v 1.3 2003/09/30 16:23:16 psg Exp $
+;; $Id: dict.el,v 1.4 2003/10/06 14:01:21 psg Exp $
 ;;
 
 ;; Copyright (c) 2002, 2003 Max Vasin
@@ -45,8 +45,12 @@
 ;;; History:
 ;;
 ;;    $Log: dict.el,v $
-;;    Revision 1.3  2003/09/30 16:23:16  psg
-;;    emacs-goodies-el: dict.el new upstream version, merges in Debian patch.
+;;    Revision 1.4  2003/10/06 14:01:21  psg
+;;    New upstream version, fixes initial enabling via defcustom.
+;;
+;;    Revision 1.33  2003/10/06 09:32:14  max
+;;    `:require 'dict' have been added to all defcustoms that have `:set' commands.
+;;    (Thanks to Peter S. Galbraith for bug report.)
 ;;
 ;;    Revision 1.32  2003/09/30 15:52:40  max
 ;;    dict-generate-options: added "--pager -" option to
@@ -302,19 +306,22 @@ than one million are silently changed to something more reasonable."
   "Enables key bindings for dict.el commands."
   :type 'boolean
   :group 'Dict
-  :set 'dict-set-enable-key-bindings)
+  :set 'dict-set-enable-key-bindings
+  :require 'dict)
 
 (defcustom dict-key-binding "\\C-cdd"
   "Specifies a key binding to run dict and display the results in the Emacs buffer."
   :type 'string
   :group 'Dict
-  :set 'dict-set-key-binding)
+  :set 'dict-set-key-binding
+  :require 'dict)
 
 (defcustom dict-region-key-binding "\\C-cdr"
   "Specifies a key binding to run dict on the region and display the results in the Emacs buffer."
   :type 'string
   :group 'Dict
-  :set 'dict-set-key-binding)
+  :set 'dict-set-key-binding
+  :require 'dict)
 
 (defcustom dict-multiple-key-binding "\\C-cdm"
   "Run dict on region.
@@ -322,7 +329,8 @@ Specifies a key binding to run dict on every word from the region
 and display the results in the Emacs buffer."
   :type 'string
   :group 'Dict
-  :set 'dict-set-key-binding)
+  :set 'dict-set-key-binding
+  :require 'dict)
 
 (defcustom dict-on-server-key-binding "\\C-cds"
   "Run dict on server.
@@ -330,7 +338,8 @@ Specifies a key binding to run dict to search word on the given
 server and display the results in the Emacs buffer."
   :type 'string
   :group 'Dict
-  :set 'dict-set-key-binding)
+  :set 'dict-set-key-binding
+  :require 'dict)
 
 (defgroup Dict-Mode nil
   "DICT-mode key bindings"
@@ -343,14 +352,16 @@ server and display the results in the Emacs buffer."
   :tag "DICT"
   :type 'string
   :group 'Dict-Mode
-  :set 'dict-mode-set-key-binding)
+  :set 'dict-mode-set-key-binding
+  :require 'dict)
 
 (defcustom dict-mode-region-key-binding "r"
   "Specifies a key binding to run dict on the region and display the results in the Emacs buffer."
   :tag "DICT region"
   :type 'string
   :group 'Dict-Mode
-  :set 'dict-mode-set-key-binding)
+  :set 'dict-mode-set-key-binding
+  :require 'dict)
 
 (defcustom dict-multiple-key-binding "m"
   "Run dict on every word in region.
@@ -359,14 +370,16 @@ display the results in the Emacs buffer."
   :tag "DICT multiple"
   :type 'string
   :group 'Dict-Mode
-  :set 'dict-mode-set-key-binding)
+  :set 'dict-mode-set-key-binding
+  :require 'dict)
 
 (defcustom dict-on-server-key-binding "s"
   "Specifies a key binding to run dict to search word on the given server and display the results in the Emacs buffer."
   :tag "DICT on server"
   :type 'string
   :group 'Dict-Mode
-  :set 'dict-mode-set-key-binding)
+  :set 'dict-mode-set-key-binding
+  :require 'dict)
 
 (defcustom dict-buffer-coding-system nil
   "Specifies coding system to use in dict buffer."
@@ -618,7 +631,7 @@ This guess is based on the text surrounding the cursor."
   (shell-command "dict --version"))
 
 (defconst dict-version
-  "$Revision: 1.3 $"
+  "$Revision: 1.4 $"
   "Version number for 'dict' package.")
 
 (defun dict-version-number ()
@@ -633,8 +646,6 @@ This guess is based on the text surrounding the cursor."
 
 (dict-update-key-bindings)
 (dict-mode-update-key-bindings)
-
-(provide 'dict)
 
 ; LocalWords:  dict dictd wordinspect appolo ru
 
