@@ -5,6 +5,7 @@
 6_diminish-defcustom
 8_whitespace_rename
 9_missing_provide
+50_newsticker_non-fatal_xml
 50_session_enable_custom
 50_perl-doc-pager-bug144963
 51_perl-doc-rewrite
