@@ -112,7 +112,7 @@
   "Highlight line where the cursor is."
   :load 'highlight-current-line
   :group 'faces
-;;:link '(custom-manual "(emacs-goodies-el)highlight-current-line")
+  :link '(custom-manual "(emacs-goodies-el)highlight-current-line")
   :load 'highlight-current-line
 ;;:require 'highlight-current-line
   :group 'emacs-goodies-el)
@@ -121,7 +121,7 @@
 (defgroup htmlize nil
   "HTMLize font-locked buffers."
   :group 'hypermedia
-;;:link '(custom-manual "(emacs-goodies-el)htmlize")
+  :link '(custom-manual "(emacs-goodies-el)htmlize")
   :load 'htmlize
 ;;:require 'htmlize
   :group 'emacs-goodies-el)
@@ -135,7 +135,7 @@ Operations include sorting, marking by regular expression, and
 selectable views (limits)."
   :link '(url-link "http://web.verbum.org/~walters")
   :group 'convenience
-;;:link '(custom-manual "(emacs-goodies-el)ibuffer")
+  :link '(custom-manual "(emacs-goodies-el)ibuffer")
   :load 'ibuffer
 ;;:require 'ibuffer
   :group 'emacs-goodies-el)
