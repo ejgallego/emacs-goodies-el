@@ -36,6 +36,7 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - 50_todoo_bug220718: Fix XEmacs keybindings for XEmacs.
       Thanks to Gianluca Della Vedova (Closes: #220718).
     - 50_joc-toggle-buffer: Add prefix joc- where missing; Fix startup bug.
+    - 50_silly-mail: Add custom support.
     Info manual:
     - filladapt.el: Document how to use with C, thanks to Kevin Ryde for the
       patch (Closes: #221942).
