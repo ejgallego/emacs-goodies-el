@@ -14,61 +14,61 @@ Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
 Description: Miscellaneous add-ons for Emacs
  This package contains:
-  align-string.el: align string components over several lines;
-  all.el: edit all lines matching a given regexp;
-  auto-fill-inhibit.el: finer grained control over auto-fill-mode;
-  bar-cursor.el: change your cursor to a bar instead of a block;
-  boxquote.el: quote texts in nice boxes;
-  browse-kill-ring.el: browse, search, modify the kill ring;
-  clipper.el: save strings of data for further use;
-  coffee.el: now Emacs can even brew coffee;
-  cyclebuffer.el: select buffer by cycling through;
-  df.el: display in the mode line space left on devices;
-  dict.el: wrapper around the 'dict' command. (Depends on bash and dict)
-  diminish.el: shorten or erase modeline presence of minor modes;
-  dirvars.el: provides directory-wide local variables;
-  egocentric.el: highlight your name inside emacs buffers;
-  ff-paths.el: $PATH-like searching in C-x C-f;
-  filladapt.el: enhances Emacs's built-in adaptive fill;
-  floatbg.el: slowly modify background color;
-  framepop.el: display temporary buffers in a dedicated frame;
+  align-string - align string components over several lines;
+  all - edit all lines matching a given regexp;
+  auto-fill-inhibit - finer grained control over auto-fill-mode;
+  bar-cursor - change your cursor to a bar instead of a block;
+  boxquote - quote texts in nice boxes;
+  browse-kill-ring - browse, search, modify the kill ring;
+  clipper - save strings of data for further use;
+  coffee - now Emacs can even brew coffee;
+  cyclebuffer - select buffer by cycling through;
+  df - display in the mode line space left on devices;
+  dict - wrapper around the 'dict' command. (Depends on bash and dict)
+  diminish - shorten or erase modeline presence of minor modes;
+  dirvars - provides directory-wide local variables;
+  egocentric - highlight your name inside emacs buffers;
+  ff-paths - $PATH-like searching in C-x C-f;
+  filladapt - enhances Emacs's built-in adaptive fill;
+  floatbg - slowly modify background color;
+  framepop - display temporary buffers in a dedicated frame;
   highlight-beyond-fill-column: highlight lines that are too long;
-  highlight-completion.el: highlight completions in the minibuffer;
-  highlight-current-line.el: highlight line where the cursor is;
-  home-end.el: alternative Home and End commands;
-  htmlize.el: HTML-ize font-lock buffers;
-  ibuffer.el: advanced replacement for the `buffer-menu';
-  initsplit.el: split customizations into different files;
-  keydef.el: a simpler way to define key mappings;
-  keywiz.el: Emacs key sequence quiz;
-  map-lines.el: map a command over lines matching a regexp;
-  mutt-alias.el: lookup and insert the expansion of mutt mail aliases;
-  muttrc-mode.el: major mode for editing Mutt config files;
-  newsticker.el: a newsticker for Emacs. (Depends on wget)
-  nuke-trailing-whitespace.el: kill the trailing blanks at end of lines;
-  obfusurl.el: obfuscate an URL;
-  perldoc.el: show help for Perl functions and modules. (Depends on perl-doc)
-  projects.el: create project-based meaningful buffer names;
-  prot-buf.el: protect buffers from accidental killing;
-  protocols.el: perform lookups in /etc/protocols;
-  services.el: perform lookups in /etc/services;
-  session.el: menu to restore files visited in previous editing session.
-  setnu.el: setnu-mode, a vi-style line number mode;
-  silly-mail.el: generate bozotic mail headers;
-  sys-apropos.el: interface for the *nix apropos command;
-  table.el: create and edit WYSIWYG text based embedded tables;
-  tail.el: "tail -f" a file or a command form within Emacs;
-  tc.el: cite text with proper filling;
-  thinks.el: quote texts in cartoon-like think bubbles;
-  tld.el: explain top-level domain names;
-  todoo.el: major mode for editing TODO files;
-  toggle-buffer.el: fast switching between two buffers;
-  toggle-case.el: a set of functions to toggle the case of characters;
-  toggle-option.el: easily toggle frequently toggled options;
-  twiddle.el: mode line hacks to keep you awake;
-  under.el: underline a region with ^ characters;
-  wdired.el: rename files editing their names in dired buffers;
-  xrdb-mode.el: mode for editing X resource database files.
+  highlight-completion - highlight completions in the minibuffer;
+  highlight-current-line - highlight line where the cursor is;
+  home-end - alternative Home and End commands;
+  htmlize - HTML-ize font-lock buffers;
+  ibuffer - advanced replacement for the `buffer-menu';
+  initsplit - split customizations into different files;
+  keydef - a simpler way to define key mappings;
+  keywiz - Emacs key sequence quiz;
+  map-lines - map a command over lines matching a regexp;
+  mutt-alias - lookup and insert the expansion of mutt mail aliases;
+  muttrc-mode - major mode for editing Mutt config files;
+  newsticker - a newsticker for Emacs. (Depends on wget)
+  nuke-trailing-whitespace - kill the trailing blanks at end of lines;
+  obfusurl - obfuscate an URL;
+  perldoc - show help for Perl functions and modules. (Depends on perl-doc)
+  projects - create project-based meaningful buffer names;
+  prot-buf - protect buffers from accidental killing;
+  protocols - perform lookups in /etc/protocols;
+  services - perform lookups in /etc/services;
+  session - menu to restore files visited in previous editing session.
+  setnu - setnu-mode, a vi-style line number mode;
+  silly-mail - generate bozotic mail headers;
+  sys-apropos - interface for the *nix apropos command;
+  table - create and edit WYSIWYG text based embedded tables;
+  tail - "tail -f" a file or a command form within Emacs;
+  tc - cite text with proper filling;
+  thinks - quote texts in cartoon-like think bubbles;
+  tld - explain top-level domain names;
+  todoo - major mode for editing TODO files;
+  toggle-buffer - fast switching between two buffers;
+  toggle-case - a set of functions to toggle the case of characters;
+  toggle-option - easily toggle frequently toggled options;
+  twiddle - mode line hacks to keep you awake;
+  under - underline a region with ^ characters;
+  wdired - rename files editing their names in dired buffers;
+  xrdb-mode - mode for editing X resource database files.
  .
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
  description of all files, or the Info node `emacs-goodies-el' for details.
@@ -96,13 +96,16 @@ Description: Miscellaneous add-ons for Gnus
  news reader.
  .
  This package contains:
-  gnus-junk.el: semi-automatic replies to junk e-mails;
-  message-x.el: customizable completion in message headers;
-  nnir.el: searchable mail backend;
-  nnmaildir.el: maildir mail backend;
-  nnnil.el: empty, read-only backend;
-  nntodo.el: manage to-do items;
-  spam-stat.el: spam-detector based on statistics.
+  gnus-eyecandy - enhance the group buffer by adding icons.
+  gnus-filterhist - add a buffer which display the message filtering
+  gnus-junk - semi-automatic replies to junk e-mails;
+  gnus-pers - an alternative to gnus-posting-styles.
+  message-x - customizable completion in message headers;
+  nnir - searchable mail backend;
+  nnmaildir - maildir mail backend;
+  nnnil - empty, read-only backend;
+  nntodo - manage to-do items;
+  spam-stat - spam-detector based on statistics.
  .
  See /usr/share/doc/gnus-bonus-el/README.Debian for a short description
  of all files.
@@ -112,9 +115,9 @@ Architecture: all
 Depends: emacs21 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
-  devscripts.el: wrappers around the debuild, debc and debi commands;
-  pbuilder-log-view.el: wrappers around viewing pbuilder logs;
-  pbuilder.el: wrappers around pbuilder
+  devscripts - wrappers around the debuild, debc and debi commands;
+  pbuilder-log-view - wrappers around viewing pbuilder logs;
+  pbuilder - wrappers around pbuilder
  .
  See /usr/share/doc/devscripts-el/README.Debian for a short description.
 
@@ -129,11 +132,11 @@ Section: utils
 Description: Emacs helpers specific to Debian users
  This package contains:
  .
-  apt-sources.el: major mode for editing Debian sources.list files;
-  apt-utils.el: interface to APT (Debian package management);
-  debian-bug.el: an Emacs command to submit a bug report;
-  deb-view.el: view contents of Debian package, similarly to tar-mode;
-  gnus-BTS.el: provides buttons for bug numbers seen in Gnus messages.
+  apt-sources - major mode for editing Debian sources.list files;
+  apt-utils - interface to APT (Debian package management);
+  debian-bug - an Emacs command to submit a bug report;
+  deb-view - view contents of Debian package, similarly to tar-mode;
+  gnus-BTS - provides buttons for bug numbers seen in Gnus messages.
  .
  See /usr/share/doc/debian-el/README.Debian for a short description of
  all files, or the Info node `debian-el' for details.
@@ -170,11 +173,11 @@ Section: utils
 Description: Emacs helpers specific to Debian development
  This package contains:
  .
-  debian-bts-control.el: builds control@bugs.debian.org email messages;
-  debian-changelog-mode.el: a helper mode for Debian changelogs;
-  debian-control-mode.el: a helper mode for debian/control files;
-  debian-copyright.el: major mode for Debian package copyright files;
-  readme-debian.el: major mode for editing README.Debian files.
+  debian-bts-control - builds control@bugs.debian.org email messages;
+  debian-changelog-mode - a helper mode for Debian changelogs;
+  debian-control-mode - a helper mode for debian/control files;
+  debian-copyright - major mode for Debian package copyright files;
+  readme-debian - major mode for editing README.Debian files.
  .
  See /usr/share/doc/dpkg-dev-el/README.Debian for a short description of
  all files.
