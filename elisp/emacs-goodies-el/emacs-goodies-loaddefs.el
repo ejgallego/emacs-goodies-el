@@ -20,32 +20,6 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (apt-sources-mode) "apt-sources" "apt-sources.el"
-;;;;;;  (16107 56175))
-;;; Generated autoloads from apt-sources.el
-
-(autoload (quote apt-sources-mode) "apt-sources" "\
-Major mode for editing apt's sources.list file.
-Sets up command `font-lock-mode'.
-
-\\{apt-sources-mode-map}" t nil)
-
-;;;***
-
-;;;### (autoloads (apt-utils-search apt-utils-show-package) "apt-utils"
-;;;;;;  "apt-utils.el" (16120 61272))
-;;; Generated autoloads from apt-utils.el
-
-(autoload (quote apt-utils-show-package) "apt-utils" "\
-Write APT package information to buffer.
-With ARG, choose that package, otherwise prompt for one." t nil)
-
-(autoload (quote apt-utils-search) "apt-utils" "\
-Search Debian packages for regular expression.
-To search for multiple patterns use a string like \"foo&&bar\"." t nil)
-
-;;;***
-
 ;;;### (autoloads (bar-cursor-mode) "bar-cursor" "bar-cursor.el"
 ;;;;;;  (16114 26305))
 ;;; Generated autoloads from bar-cursor.el
@@ -160,7 +134,7 @@ Display items in the `kill-ring' in another buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (coffee) "coffee" "coffee.el" (16222 36415))
+;;;### (autoloads (coffee) "coffee" "coffee.el" (16222 36565))
 ;;; Generated autoloads from coffee.el
 
 (autoload (quote coffee) "coffee" "\
@@ -255,7 +229,7 @@ Toggle floatbg mode" t nil)
 ;;;***
 
 ;;;### (autoloads (highlight-current-line-minor-mode) "highlight-current-line"
-;;;;;;  "highlight-current-line.el" (16225 6398))
+;;;;;;  "highlight-current-line.el" (16235 37445))
 ;;; Generated autoloads from highlight-current-line.el
 
 (autoload (quote highlight-current-line-minor-mode) "highlight-current-line" "\

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.25 2003/09/30 00:55:55 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.26 2003/09/30 03:18:45 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -65,8 +65,6 @@ be documented.
 @menu
 * align-string::                Align string components over several lines.
 * all::                         Edit all lines matching a given regexp.
-* apt-sources::                 Mode for editing apt source.list file.  
-* apt-utils::                   Emacs interface to APT.
 * auto-fill-mode-inhibit::      auto-fill-mode (de)activation
 * bar-cursor::                  Switch block cursor to a bar
 * boxquote::                    Quote text with a semi-box.
@@ -115,7 +113,7 @@ the second occurence of each line with each other, and so on.
 @end itemize
 
 
-@node all, apt-sources, align-string, Top
+@node all, auto-fill-mode-inhibit, align-string, Top
 @chapter all - Edit all lines matching a given regexp.
 
 This is an implementation of the xedit @code{all} command for GNU Emacs.
@@ -125,76 +123,7 @@ It works mostly like @code{occur} except that changes to the
 
 Type @kbd{M-x all} to try it out.
 
-@node apt-sources, apt-utils, all, Top
-@chapter apt-sources - Mode for editing apt source.list file.
-
-This mode is for editing @file{/etc/apt/sources.list}, the APT
-(Advanced Package Tool) configuration file found on Debian systems.
-
-APT is a package retrieval tool for Debian; for example you could
-install Emacs with the command:
-
-@example
-  apt-get install emacs21
-@end example
-
-and APT will then retrieve the package and install it for you. The
-sources.list file tells APT where to look for packages. Mine looks
-like this:
-
-@example
-  deb http://http.us.debian.org/debian unstable main contrib
-  deb http://non-us.debian.org/debian-non-US unstable/non-US main
-
-  deb ftp://ftp.de.debian.org/debian ../project/experimental main
-@end example
-
-This mode font-locks the file and add some things including new
-source lines and modifying existing source lines.
-
-This mode can be customized in diferent parts. You can (interactively)
-change if you want blank lines around a new source line and comment
-with @code{apt-sources-around-lines}. Also you can change the way that
-this mode names each source line with the variable
-@code{apt-sources-source-name}; if no name is entered, no comment name
-will be inserted.
-
-You can modify existing parts of the source line; check the mode
-documentation for more details. Another thing that this mode can do is
-to replicate an existing line (@kbd{C-c C-r}) that will be changed to
-the 'deb' or 'deb-src' corresponding line. If it replicates a 'deb'
-line, an identical 'deb-src' source line will be created.
-
-@node apt-utils, auto-fill-mode-inhibit, apt-sources, Top
-@chapter apt-utils - Emacs interface to APT
-
-Start things off using e.g.:
-@example
-@kbd{M-x} apt-utils-show-package @key{RET} emacs21 @key{RET}
-@end example
-
-Other packages (dependencies, conflicts etc) can be navigated using
-@command{apt-utils-next-package} (@key{TAB}),
-@command{apt-utils-prev-package} (@key{M-TAB}),
-@command{apt-utils-choose-package-link} (@key{>}) or
-@command{apt-utils-follow-link} (@key{RET}). Return to the previous
-package with @command{apt-utils-view-previous-package} (@key{<}).
-
-ChangeLog and README files for the current package can easily be
-accessed with, for example, @command{apt-utils-view-changelog} (@key{C}).
-
-For normal (i.e., not virtual) packages, the information can be toggled
-between `package' and `showpkg' displays using
-@command{apt-utils-toggle-package-info} (@key{t}); the latter is useful
-for the "Reverse Depends".
-
-View the key bindings with describe-mode (bound to ? by default)
-or use the menu.
-
-You may alter various settings of @code{apt-utils} bu customizing the
-group @code{apt-utils}.
-
-@node auto-fill-mode-inhibit, bar-cursor, apt-utils, Top
+@node auto-fill-mode-inhibit, bar-cursor, all, Top
 @chapter auto-fill-mode-inhibit - auto-fill-mode (de)activation
 
 The purpose of this library is to allow the use of @command{auto-fill-mode}

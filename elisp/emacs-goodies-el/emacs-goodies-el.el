@@ -37,9 +37,6 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
   "Align all occurrences of REGEXP in each line of region."
   t)
 
-;; apt-sources
-(add-to-list 'auto-mode-alist '("sources.list$" . apt-sources-mode))
-
 ;; auto-fill-inhibit.el
 (defgroup auto-fill-inhibit '((auto-fill-inhibit-list custom-variable))
   "Finer grained control over auto-fill-mode (de)activation."

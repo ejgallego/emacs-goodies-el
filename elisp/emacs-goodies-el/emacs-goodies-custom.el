@@ -5,25 +5,6 @@
 ;;
 ;;; Code:
 
-;; apt-sources
-(defgroup apt-sources nil "Mode for editing apt source.list file"
-  :group 'tools
-  :prefix "apt-sources-"
-  :link '(custom-manual "(emacs-goodies-el)apt-sources")
-  :load 'apt-sources
-;;:require 'apt-sources
-  :group 'emacs-goodies-el)
-
-;; apt-utils
-(defgroup apt-utils nil
-  "Emacs interface to APT (Debian package management)"
-  :group 'tools
-  :link '(url-link "http://www.tc.bham.ac.uk/~matt/AptUtilsEl.html")
-  :link '(custom-manual "(emacs-goodies-el)apt-utils")
-  :load 'apt-utils
-;;:require 'apt-utils
-  :group 'emacs-goodies-el)
-
 ;; boxquote
 (defgroup boxquote nil
   "Mark regions of text with a half-box."

@@ -12,6 +12,44 @@
   (setq load-path (nconc load-path 
                          (list "/usr/share/emacs/site-lisp/debian-el")))
 
+  ;; apt-sources
+  (defgroup apt-sources nil "Mode for editing apt source.list file"
+    :group 'tools
+    :prefix "apt-sources-"
+    :link '(custom-manual "(debian-el)apt-sources")
+    :load 'apt-sources
+  ;;:require 'apt-sources
+    :group 'debian-el)
+  
+  ;; apt-utils
+  (defgroup apt-utils nil
+    "Emacs interface to APT (Debian package management)"
+    :group 'tools
+    :link '(url-link "http://www.tc.bham.ac.uk/~matt/AptUtilsEl.html")
+    :link '(custom-manual "(debian-el)apt-utils")
+    :load 'apt-utils
+  ;;:require 'apt-utils
+    :group 'debian-el)
+
+
+  ;; apt-sources
+  (add-to-list 'auto-mode-alist '("sources.list$" . apt-sources-mode))
+  ;; Generated autoloads from apt-sources.el
+  (autoload (quote apt-sources-mode) "apt-sources" "\
+Major mode for editing apt's sources.list file.
+Sets up command `font-lock-mode'.
+
+\\{apt-sources-mode-map}" t nil)
+  
+  ;; Generated autoloads from apt-utils.el
+  (autoload (quote apt-utils-show-package) "apt-utils" "\
+Write APT package information to buffer.
+With ARG, choose that package, otherwise prompt for one." t nil)
+  
+  (autoload (quote apt-utils-search) "apt-utils" "\
+Search Debian packages for regular expression.
+To search for multiple patterns use a string like \"foo&&bar\"." t nil)
+  
   ;; autoloads for debian-bug.el
   (autoload 'debian-bug "debian-bug" "Submit a Debian bug report." t)
   (autoload 'debian-bug-web-bug "debian-bug"
