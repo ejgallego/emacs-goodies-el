@@ -1,4 +1,4 @@
-emacs-goodies-el (24.10-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.10-1) unstable; urgency=low
 
   * debian-el:
     - debian-bug.el: Patch from Kevin Ryde <user42@zip.com.au> adds gnus
@@ -9,8 +9,12 @@ emacs-goodies-el (24.10-1) UNRELEASED; urgency=low
       not work with closing tags like </Virtualhost>", thanks to Cyril
       Bouthors for reporting this (Closes: #283840).  The bug is fixed by
       switching to a new version now maintained by Karl Chen.
+  * dpkg-dev-el:
+    - debian-control-mode.el: Bug fix: "mouse-pasting fails and starts
+      Mozilla in Debian control mode", thanks to Antti-Juhani Kaijanaho
+      (Closes: #293629).  I changed the binding from mouse-2 to C-mouse-2.
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  6 Jan 2005 09:29:23 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon,  7 Feb 2005 21:27:58 -0500
 
 emacs-goodies-el (24.9-2) unstable; urgency=low
 

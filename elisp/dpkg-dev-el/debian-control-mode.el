@@ -1,12 +1,13 @@
 ;;; debian-control-mode.el --- major mode for Debian control files
 
 ;; Copyright (C) 2001, 2003 Free Software Foundation, Inc.
+;; Copyright (C) 2003, 2004 Peter S Galbraith <psg@debian.org>
 
 ;; Author: Colin Walters <walters@debian.org>
-;; Maintainer: Colin Walters <walters@debian.org>
+;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.7
-;; X-RCS: $Id: debian-control-mode.el,v 1.6 2004/03/27 20:00:43 psg Exp $
+;; Version: 0.8
+;; X-RCS: $Id: debian-control-mode.el,v 1.7 2005/02/08 02:45:13 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -30,6 +31,11 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V0.8 (2005-02-07)  Peter S Galbraith <psg@debian.org>
+;; - Change mouse-2 binding to C-mouse-2 (Closes: #293629)
+;; - Fix debian-control-mode-bugs-mouse-click to create correct
+;;   text-properties of package names.
 
 ;; V0.7 (2004-03-27)  Peter S Galbraith <psg@debian.org>
 ;;
@@ -202,8 +208,8 @@
       (define-key debian-control-mode-map (kbd "C-c C-p") 'debian-control-visit-policy)
       (define-key debian-control-mode-map (kbd "C-c C-a") 'debian-control-mode-add-field)
       (define-key debian-control-mode-package-name-keymap (if (featurep 'xemacs)
-							      [down-mouse-2]
-							    [(mouse-2)])
+							      [(control down-mouse-2)]
+							    [(C-mouse-2)])
 	'debian-control-mode-bugs-mouse-click)
       (easy-menu-add debian-control-mode-menu)
       (if (and (featurep 'goto-addr) goto-address-highlight-p)
@@ -228,8 +234,8 @@
 		      (match-beginning 2) (match-end 2)
 		      `(mouse-face
 			highlight
-			debian-control-mode-package ,(match-string 0)
-			help-echo "View bugs for this source package"
+			debian-control-mode-package ,(match-string 2)
+			help-echo "C-mouse-2: View bugs for this source package"
 			keymap ,debian-control-mode-package-name-keymap)))
 		    ((looking-at (concat "^\\(Package:\\)\\s-*"
 					 debian-control-package-name-regexp
@@ -238,8 +244,8 @@
 		      (match-beginning 2) (match-end 2)
 		      `(mouse-face
 			highlight
-			debian-control-mode-package ,(match-string 0)
-			help-echo "View bugs for this binary package"
+			debian-control-mode-package ,(match-string 2)
+			help-echo "C-mouse-2: View bugs for this binary package"
 			keymap ,debian-control-mode-package-name-keymap)))
 		    (t nil))
 	      (forward-line 1)))
