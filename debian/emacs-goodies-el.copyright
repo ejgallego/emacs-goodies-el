@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.7 $
+| ;; $Revision: 1.8 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -356,9 +356,10 @@ Author/copyright info for floatbg.el:
 
 
 Author/copyright info for folding.el
+ http://cvs.sourceforge.net/viewcvs.py/tiny-tools/tiny-tools/lisp/other/
 ,----
 | ;;; folding.el --- A folding-editor-like minor mode.
-| ;; Copyright (C) 1994-2003
+| ;; Copyright (C) 1994-2004
 | ;;           Jari Aalto, Anders Lindgren, All rights reserved.
 | ;; Copyright (C) 1992, 1993
 | ;;           Jamie Lokier, All rights reserved.
@@ -858,7 +859,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.7 $
+| ;; $Revision: 1.8 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
