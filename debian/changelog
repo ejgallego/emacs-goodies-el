@@ -1,4 +1,4 @@
-emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
+emacs-goodies-el (23.0-1) unstable; urgency=low
 
   * gnus-bonus-el: (Prepared by Jérôme Marant)
     New files:
@@ -36,7 +36,7 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
       not removed in dist-upgrade and autoloaded debview from wrong place.
       Thanks to Neil Roeth (Closes: #218094).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 30 Oct 2003 19:57:50 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Oct 2003 19:58:16 -0500
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
