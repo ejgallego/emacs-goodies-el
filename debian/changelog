@@ -3,8 +3,11 @@ emacs-goodies-el (21.13-1) unstable; urgency=low
   * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
     to package Recommends.
+  * emacs-goodies-el: Since XEmacs has it's own version of ibuffer, make
+    sure we don't shadow it.  Added its directory to load-path in
+    50emacs-goodies-el.el.
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 20 Sep 2003 21:18:54 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 22 Sep 2003 21:25:03 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 
