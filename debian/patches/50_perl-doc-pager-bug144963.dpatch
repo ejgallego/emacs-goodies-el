@@ -1,0 +1,126 @@
+#!/bin/sh -e
+## 50_perl-doc-pager-bug144963.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Make perl-doc run a benign pager (Closes: #144963)
+
+if [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+       -patch) patch $patch_opts -p1 < $0;;
+       -unpatch) patch $patch_opts -p1 -R < $0;;
+        *)
+                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+                exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el	2003-04-04 15:16:09.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el	2003-10-01 20:23:37.000000000 -0400
+@@ -41,7 +41,9 @@
+ ;;  1.1 - Show error message when no help is found.
+ ;;      - Fix name.
+ ;;      - Include GPL + URL.
+-;;
++;;  1.2 - Alan Shutko <ats@acm.org>
++;;        perldoc runs a pager, so run a benign one.  See Debian bug
++;;        http://bugs.debian.org/144963
+ 
+ ;;; Source
+ ;;
+@@ -54,6 +56,8 @@
+ 
+ (require 'thingatpt)
+ 
++(autoload 'Man-fontify-manpage "man")
++
+ (defvar perldoc-functions 
+   (list
+    "-X"
+@@ -287,35 +291,39 @@
+ 	(perldoc-module string)))
+ )
+ 
++(defun perldoc-start-process (&rest args)
++  "Call perldoc with ARGS.
++Sets up process sentinals and needed environment to call perldoc."
++  (let* ((pager (if (member system-type '(ms-dos windows-nt))
++		    "type"
++		  "cat"))
++	 (perldoc-process)
++	 (process-environment 
++	  (cons (concat "PERLDOC_PAGER=" pager)
++	  process-environment)))
++    ;; Can't convince perldoc not to run a pager, so we run a 
++    ;; benign one
++    (set-buffer (get-buffer-create "*Perldoc*"))
++    (kill-all-local-variables)
++    (erase-buffer)
++    (text-mode)
++    (message "Loading documentation ..")
++    (setq perldoc-process (apply 'start-process args))
++    (set-process-filter perldoc-process 'perldoc-process-filter)
++    (set-process-sentinel perldoc-process 'perldoc-sentinel)
++    (process-kill-without-query perldoc-process)))
++    
++
+ (defun perldoc-function( function )
+  "Show the help text for the given Perl function / builtin."
+  (interactive "sPerl function / builtin / module : ")
+- (let ((perldoc-process nil))
+-   (set-buffer (get-buffer-create "*Perldoc*"))
+-   (kill-all-local-variables)
+-   (erase-buffer)
+-   (text-mode)
+-   (message "Loading documentation ..")
+-   (setq perldoc-process (start-process "perldol" nil "perldoc" "-f" function))
+-   (set-process-filter perldoc-process 'perldoc-process-filter)
+-   (set-process-sentinel perldoc-process 'perldoc-sentinel)
+-   (process-kill-without-query perldoc-process)
+-   ))
++   (perldoc-start-process "perldol" nil "perldoc" "-f" function))
+ 
+ (defun perldoc-module( module )
+  "Show the help text for the given Perl module."
+  (interactive "sPerl module : ")
+- (let ((perldoc-process nil))
+-   (set-buffer (get-buffer-create "*Perldoc*"))
+-   (kill-all-local-variables)
+-   (erase-buffer)
+-   (text-mode)
+-   (message "Loading documentation ..")
+-   (setq perldoc-process (start-process "perldol" nil "perldoc" module))
+-   (set-process-filter perldoc-process 'perldoc-process-filter)
+-   (set-process-sentinel perldoc-process 'perldoc-sentinel)
+-   (process-kill-without-query perldoc-process)
+-   ))
++   (perldoc-start-process "perldol" nil "perldoc" module))
++
+ 
+ (defun perldoc-process-filter (proc string)
+   "Process the results from the catdoc process."
+@@ -329,11 +337,12 @@
+ 	 (set-buffer "*Perldoc*")
+ 	 (if (< (count-lines (point-min) (point-max)) 2)
+ 	     (progn
+-	       (message "No perdoc help found.")
++	       (message "No perldoc help found.")
+ 	       (kill-buffer (get-buffer "*Perldoc*")))
+ 	   (pop-to-buffer "*Perldoc*")
+-	   (goto-char (point-min)))
+-	 )))
++	   (goto-char (point-min))
++	   (let ((Man-args "perldoc"))
++	     (Man-fontify-manpage))))))
+ 
+ 
+ (defun perldoc-cperl-hook ()

@@ -9,7 +9,7 @@ Standards-Version: 3.6.1
 Package: emacs-goodies-el
 Architecture: all
 Depends: emacs21 | emacsen, bash (>= 2.05a)
-Recommends: bash (>= 2.05a), dict, wget
+Recommends: bash (>= 2.05a), dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Conflicts: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
@@ -51,7 +51,7 @@ Description: Miscellaneous add-ons for Emacs
   newsticker.el: a newsticker for Emacs. (Depends on wget)
   nuke-trailing-whitespace.el: kill the trailing blanks at end of lines;
   obfusurl.el: obfuscate an URL;
-  perldoc.el: show help for Perl functions, builtins, and modules;
+  perldoc.el: show help for Perl functions and modules. (Depends on perl-doc)
   projects.el: create project-based meaningful buffer names;
   prot-buf.el: protect buffers from accidental killing;
   protocols.el: perform lookups in /etc/protocols;
