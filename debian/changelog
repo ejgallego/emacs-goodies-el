@@ -1,12 +1,16 @@
 emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
 
-  * emacs-goodies-el's nuke-trailing-whitespace.el: Add custom interface
-    support with ability to install into write-file-hooks.
-  * emacs-goodies-el's tc.el:  Updated to upstream version 0.13.3.
-  * emacs-goodies-el's protbuf.el: Patched for custom support and to make
-    interactive commands true toggles.
+  * emacs-goodies-el:
+    New upstream versions:
+    - tc.el:  Version 0.13.3.
+    - table.el:  Version 1.5.54.  Wow! This is a very cool package!
+    Patches:
+    - nuke-trailing-whitespace.el: Add custom interface support with ability
+       to install into write-file-hooks.
+    - protbuf.el: Add custom interface support and make interactive
+       commands true toggles.
 
- -- Peter S Galbraith <psg@debian.org>  Tue,  7 Oct 2003 21:26:06 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed,  8 Oct 2003 10:59:20 -0400
 
 emacs-goodies-el (22.0-1) unstable; urgency=low
 
@@ -18,7 +22,7 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
   * New transitional package `debview' to replace old `debview' source
     package since package debian-el now holds deb-view.el.  ftp-masters,
     please see bug #214311.
-  * New file in emacs-goodies-el: newsticker.el, a news ticker for Emacs.  
+  * New file in emacs-goodies-el: newsticker.el, a news ticker for Emacs.
   * New file in emacs-goodies-el: framepop.el, display temporary buffers
     in a dedicated frame.
   * New file in emacs-goodies-el: session.el, a menu to restore files
@@ -519,7 +523,7 @@ emacs-goodies-el (10-3) unstable; urgency=low
 emacs-goodies-el (10-2) unstable; urgency=low
 
   * Fixed README.Debian to mention the problem with Emacs 21 and
-    whitespace.el. 
+    whitespace.el.
 
  -- Roland Mas <lolando@debian.org>  Mon, 18 Feb 2002 13:12:38 +0100
 
@@ -655,9 +659,9 @@ emacs-goodies-el (1.0-1) unstable; urgency=low
   * Contents: boxquote.el (1.6) and thinks.el (1.6).
 
  -- Roland Mas <lolando@debian.org>  Tue, 21 Aug 2001 22:09:45 +0200
-  
+
 gnus-bonus-el (4-merged-gnus-bonus-el) unstable; urgency=low
-  
+
   * This is the version that never happened.  The gnus-bonus-el source
     package was merged into emacs-goodies version 17.  They still generate
     different binary packages, though.  The following changelog entries
@@ -708,7 +712,7 @@ gnus-bonus-el (1-1) unstable; urgency=low
  -- Roland Mas <lolando@debian.org>  Tue,  4 Dec 2001 14:17:50 +0100
 
 debbugs-el (8-merged-debbugs-el) unstable; urgency=low
-  
+
   * This is the version that never happened.  The debbugs-el source
     package was merged into emacs-goodies-el version 18.  They still
     generate different binary packages, though.  The following changelog
@@ -859,7 +863,7 @@ debbugs-el (7.1-1) unstable; urgency=low
  -- Roland Mas <lolando@debian.org>  Wed, 15 Aug 2001 18:56:01 +0200
 
 debbugs-el (7.0-1) unstable; urgency=low
-  
+
   * Changed numbering scheme: major will change when adding or removing
     files to this package; minor will change when these files have a new
     upstream release; Debian revision is for packaging only.
@@ -868,7 +872,7 @@ debbugs-el (7.0-1) unstable; urgency=low
   * Added autoloads for debian-bug.el.
 
  -- Roland Mas <lolando@debian.org>  Wed, 15 Aug 2001 09:41:50 +0200
-  
+
 debbugs-el (6) unstable; urgency=low
 
   * gnus-BTS.el: made the regexps that recognise a Debian group a bit more
@@ -913,7 +917,7 @@ debbugs-el (1) unstable; urgency=low
  -- Roland Mas <lolando@debian.org>  Tue, 27 Feb 2001 20:57:06 +0100
 
 dpkg-dev-el (3-merged-dpkg-dev-el) unstable; urgency=low
-  
+
   * This is the version that never happened.  The dpkg-dev-el source
     package was merged into emacs-goodies-el version 18.  They still
     generate different binary packages, though.  The following changelog
