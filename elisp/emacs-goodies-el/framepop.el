@@ -5,12 +5,13 @@
 
 ;; Author: David Smith <D.M.Smith@lancaster.ac.uk>
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
-;;             (I'll assign copyright to the FSF if requested. Send patches
-;;             only if you are willing to do the same.)
+;;  (I'll assign copyright to the FSF if requested. Send patches only if
+;;  you are willing to do the same.  Contact me if you want to *actively*
+;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 15:02:23 $
-;; Version: $Revision: 1.2 $
-;; RCS-Id: $Id: framepop.el,v 1.2 2003/10/02 15:02:23 psg Exp $
+;; Modified: $Date: 2003/10/02 15:11:25 $
+;; Version: $Revision: 1.3 $
+;; RCS-Id: $Id: framepop.el,v 1.3 2003/10/02 15:11:25 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -175,11 +176,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.2 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.3 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.2 2003/10/02 15:02:23 psg Exp $")
+$Id: framepop.el,v 1.3 2003/10/02 15:11:25 psg Exp $")
 
 ;;; Customizable variables
 
@@ -320,7 +321,7 @@ by the width of frame FRAME \(defaults to `framepop-frame')."
       (let* ((count 0)
 	     (max (or max framepop-max-frame-size))
 	     (frame (or frame framepop-frame))
-	     (width  (- (or (frame-width framepop-frame)
+	     (width  (- (or (frame-width frame)
 			    (cdr (assq 'width framepop-frame-parameters))
 			    (frame-width (selected-frame))) 1))
 	     col)
@@ -472,7 +473,7 @@ You can send mail to the author of the FramePop package by typing
   (interactive "bDisplay buffer: ")
   (and (stringp buf) (setq buf (get-buffer buf)))
   (let ((oframe (selected-frame))
-	(omouse (mouse-position))
+      ;;(omouse (mouse-position))
 	(lines (framepop-frame-height buf)))
     (if (not lines)
 	;; framepop-lines should return nil for buffers which
