@@ -9,8 +9,10 @@
 # of flavor-dependently included/excluded files
 
 FLAVOR=$1
+STAMPFILE=devscripts.elc
+# We need elserv, flim, apel, etc.  So use full Debian setup of packages
+FLAGS="-q -batch -l path.el -f batch-byte-compile"
 PACKAGE=devscripts-el
-APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/dpkg-dev-el/\")"
 
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""

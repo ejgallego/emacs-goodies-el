@@ -9,6 +9,7 @@
 # of flavor-dependently included/excluded files
 
 FLAVOR=$1
+STAMPFILE=emacs-goodies-el.elc
 PACKAGE=emacs-goodies-el
 
 # INCLUDED_emacs20=""

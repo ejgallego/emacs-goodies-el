@@ -104,8 +104,8 @@ Description: Miscellaneous add-ons for Gnus
   nntodo.el: manage to-do items;
   spam-stat.el: spam-detector based on statistics.
  .
- See /usr/share/doc/gnus-bonus-el/README.Debian.gz for a short
- description of all files.
+ See /usr/share/doc/gnus-bonus-el/README.Debian for a short description
+ of all files.
 
 Package: devscripts-el
 Architecture: all
@@ -116,8 +116,7 @@ Description: Emacs wrappers for the commands in devscripts
   pbuilder-log-view.el: wrappers around viewing pbuilder logs;
   pbuilder.el: wrappers around pbuilder
  .
- See /usr/share/doc/devscripts-el/README.Debian.gz for a short
- description.
+ See /usr/share/doc/devscripts-el/README.Debian for a short description.
 
 Package: debian-el
 Architecture: all
@@ -136,8 +135,8 @@ Description: Emacs helpers specific to Debian users
   deb-view.el: view contents of Debian package, similarly to tar-mode;
   gnus-BTS.el: provides buttons for bug numbers seen in Gnus messages.
  .
- See /usr/share/doc/debian-el/README.Debian.gz for a short
- description of all files, or the Info node `debian-el' for details.
+ See /usr/share/doc/debian-el/README.Debian for a short description of
+ all files, or the Info node `debian-el' for details.
 
 Package: debbugs-el
 Architecture: all
@@ -177,5 +176,5 @@ Description: Emacs helpers specific to Debian development
   debian-copyright.el: major mode for Debian package copyright files;
   readme-debian.el: major mode for editing README.Debian files.
  .
- See /usr/share/doc/dpkg-dev-el/README.Debian.gz for a short
- description of all files.
+ See /usr/share/doc/dpkg-dev-el/README.Debian for a short description of
+ all files.

@@ -9,6 +9,7 @@
 # of flavor-dependently included/excluded files
 
 FLAVOR=$1
+STAMPFILE=debian-changelog-mode.elc
 PACKAGE=dpkg-dev-el
 
 APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/debian-el/\")"

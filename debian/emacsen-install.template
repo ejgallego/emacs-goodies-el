@@ -12,18 +12,24 @@ excluded_all=$(for i in ${!EXCLUDED_*} ; do
 
 if [ ${FLAVOR} = emacs ]; then exit 0; fi
 
-LOG=`tempfile -pelc_ -s.log -m644`
-echo install/${PACKAGE}: Handling emacsen flavor ${FLAVOR}, logged in ${LOG}
-
-FLAGS="-q -no-site-file --no-site-file -batch -l path.el -f batch-byte-compile"
-ELDIR=/usr/share/emacs/site-lisp/${PACKAGE}
-ELCDIR=/usr/share/${FLAVOR}/site-lisp/${PACKAGE}
-
 # Install-info-altdir does not actually exist. 
 # Maybe somebody will write it.
 if test -x /usr/sbin/install-info-altdir; then
     echo install/${PACKAGE}: install Info links for ${FLAVOR}
     install-info-altdir --quiet --section "" "" --dirname=${FLAVOR} /usr/info/${PACKAGE}.info.gz
+fi
+
+LOG=`tempfile -pelc_ -s.log -m644`
+ELDIR=/usr/share/emacs/site-lisp/${PACKAGE}
+ELCDIR=/usr/share/${FLAVOR}/site-lisp/${PACKAGE}
+if test -e "${ELCDIR}/${STAMPFILE}"; then
+    echo "${PACKAGE} files already compiled in ${ELCDIR}."
+    exit
+fi
+echo install/${PACKAGE}: Handling ${FLAVOR}, logged in ${LOG}
+
+if [ -z "$FLAGS" ] ; then
+    FLAGS="-q -no-site-file --no-site-file -batch -l path.el -f batch-byte-compile"
 fi
 
 install -m 755 -d ${ELCDIR}

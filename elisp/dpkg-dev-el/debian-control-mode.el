@@ -5,8 +5,8 @@
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Colin Walters <walters@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.4
-;; X-RCS: $Id: debian-control-mode.el,v 1.2 2003/05/27 02:07:23 psg Exp $
+;; Version: 0.5
+;; X-RCS: $Id: debian-control-mode.el,v 1.3 2003/10/16 17:43:00 psg Exp $
 ;; URL: http://cvs.verbum.org/debian/debian-control-mode
 ;; Keywords: convenience
 
@@ -31,6 +31,11 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; Changes from 0.4 to 0.5:  Peter S Galbraith <psg@debian.org>
+
+;; * Add "View upgrading-checklist" to control menu.
+;; * Added debian-control-find-file to make this work on XEmacs.
 
 ;; Changes from 0.3 to 0.4:
 
@@ -91,20 +96,7 @@
 	(end-of-line)
 	(point))))
   (unless (fboundp 'match-string-no-properties)
-    (defalias 'match-string-no-properties 'match-string))
-  (unless (fboundp 'with-auto-compression-mode)
-    ;; Hacked from Emacs 21 jka-compr.el
-    (defmacro with-auto-compression-mode (&rest body)
-      "Evalute BODY with automatic file compression and uncompression enabled."
-      (let ((already-installed (make-symbol "with-auto-compression-mode")))
-	`(let ((,already-installed auto-compression-mode))
-	   (unwind-protect
-	       (progn
-		 (unless ,already-installed
-		   (auto-compression-mode t))
-		 ,@body)
-	     (unless ,already-installed
-	       (auto-compression-mode nil))))))))
+    (defalias 'match-string-no-properties 'match-string)))
 
 (defgroup debian-control nil "Debian control file maintenance"
   :link '(url-link "http://cvs.verbum.org/debian/debian-control-mode")
@@ -368,11 +360,10 @@ text file."
 			   nil t))))
   (case format
     (text
-     (with-auto-compression-mode
-       (find-file "/usr/share/doc/debian-policy/policy.txt.gz")))
+     (debian-control-find-file "/usr/share/doc/debian-policy/policy.txt.gz"))
     (checklist
-     (with-auto-compression-mode
-       (find-file "/usr/share/doc/debian-policy/upgrading-checklist.txt.gz")))
+     (debian-control-find-file
+      "/usr/share/doc/debian-policy/upgrading-checklist.txt.gz"))
     (html
      (require 'browse-url)
      (browse-url
@@ -383,6 +374,16 @@ text file."
 	  (message "Note: package `debian-policy' not installed, using web version")))))
     (t
      (error "Unknown format %s for policy" format))))
+
+(defun debian-control-find-file (file)
+  "Find-file a possibly compressed FILE"
+  (require 'jka-compr)
+  (let ((installed (jka-compr-installed-p)))
+    (if (not installed)
+        (auto-compression-mode t))
+    (find-file file)
+    (if (not installed)
+        (auto-compression-mode -1))))
 
 (defun debian-control-mode-bugs-mouse-click (event)
   "Display the bugs for the package name clicked on."

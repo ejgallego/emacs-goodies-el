@@ -1,3 +1,20 @@
+emacs-goodies-el (22.2-1) unstable; urgency=low
+
+  * devscripts-el:
+    - Bug fix in packaging: "byte-compilation failures (e20 at least)",
+      thanks to Aaron M. Ucko for reporting.  We'll use full Debian setup of
+      Emacs packages to byte-compile devscripts-el (Closes: #216037).
+  * dpkg-dev-el:
+    - Bug fix: "View upgrading-checklist: fails to decompress", thanks to
+      Neil Roeth for the thorough report.  Fixed by forcing
+      auto-compression-mode on all flavours of Emacs (Closes: #216040).
+  * debian/control bug fix: Package descriptions pointed to README.Debian.gz
+    but the files were not compressed, thanks to Jaume (Closes: #216055).
+  * debian/*emacsen-install*: Add STAMPFILE and don't byte-compile files
+    if already done.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 16 Oct 2003 13:17:13 -0400
+
 emacs-goodies-el (22.1-1) unstable; urgency=low
 
   * emacs-goodies-el:

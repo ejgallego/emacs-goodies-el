@@ -10,6 +10,7 @@
 
 FLAVOR=$1
 PACKAGE=debian-el
+STAMPFILE=debian-el.elc
 
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""
