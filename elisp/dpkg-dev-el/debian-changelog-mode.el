@@ -281,6 +281,9 @@
 ;;    "Developer Page for This Maintainer".
 ;;  - Added function `debian-changelog-maintainer' and interactive command
 ;;    `debian-changelog-web-developer-page'.
+;; V1.76 17Dec2003 Peter S Galbraith <psg@debian.org>
+;;  - debian-changelog-setdistribution: Use `should-use-dialog-box-p' on XEmacs
+;;    (Closes: #224187)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -487,9 +490,11 @@ STRING should be given if the last search was by `string-match' on STRING."
   (if (not (string-match "^.*security" val))
       (debian-changelog-setheadervalue ") \\(.*\\)\\;" val)
     (cond
-     ((and window-system
-           (equal last-nonmenu-event '(menu-bar))
-           use-dialog-box)
+     ((or (and (fboundp 'should-use-dialog-box-p)
+               (should-use-dialog-box-p))
+          (and window-system
+               (equal last-nonmenu-event '(menu-bar))
+               use-dialog-box))
       (if (y-or-n-p
            (concat
             "Warning, although the {oldstable,stable,testing}-security
@@ -1608,3 +1613,4 @@ Also set keymap."
 (provide 'debian-changelog-mode)
 
 ;;; debian-changelog-mode.el ends here
+

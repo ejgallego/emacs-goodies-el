@@ -1,10 +1,13 @@
-emacs-goodies-el (24.1-1) unstable; urgency=low
+emacs-goodies-el (24.1-1) UNRELEASED; urgency=low
 
   * debian-el:
     - apt-sources.el: Remove problematic requirement on autoinsert.el
       since it's not needed and upstream said he had removed it (but hadn't).
+  * dpkg-dev-el:
+    - debian-changelog-mode.el: Bug fix: "error setting distribution
+      to *-security", thanks to Yann Dirson for reporting (Closes: #224187).
 
- -- Peter S Galbraith <psg@debian.org>  Tue,  9 Dec 2003 23:31:07 -0500
+ -- Peter S Galbraith <psg@debian.org>  Wed, 17 Dec 2003 22:05:03 -0500
 
 emacs-goodies-el (24.0-1) unstable; urgency=low
 
