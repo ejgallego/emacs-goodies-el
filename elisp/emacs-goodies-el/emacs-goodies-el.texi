@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.44 2003/10/10 17:59:39 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.45 2003/10/16 00:43:23 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -99,6 +99,7 @@ be documented.
 * protocols::                   Protocol database access functions.
 * services::                    Services database access functions.
 * session::                     Session Management for Emacs
+* setnu::                       vi-style line number mode for Emacs
 * sys-apropos::                 Interface for the *nix apropos command.
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
@@ -127,8 +128,6 @@ because I intend to change their enabling interface soon.
 code to split customizations into different files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/projects.el
 Project-based buffer name management
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/setnu.el
-vi-style line number mode for Emacs
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
 generate bozotic mail headers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
@@ -1590,7 +1589,7 @@ Clear the protocols \"cache\".
 This package (services.el) provides a set of functions for accessing
 the services details list.
 
-@node session, sys-apropos, services, Top
+@node session, setnu, services, Top
 @chapter session - Session Management for Emacs
 
 When you start Emacs, package Session restores various variables (e.g.,
@@ -1744,7 +1743,32 @@ corresponding menu item in the new submenu @code{Open...recently changed}.
 
 @end itemize
 
-@node sys-apropos, table, session, Top
+@node sys-apropos, sys-apropos, session, Top
+
+@node setnu, sys-apropos, session, Top
+@chapter setnu - vi-style line number mode for Emacs
+
+@noindent Author: Kyle E. Jones <kyle@@wonderworks.com>
+
+This package adds line numbers on the left margin of a buffer.
+The numbers disappear when the mode is exited.
+
+@noindent Use @command{M-x setnu-mode} to toggle the line number mode
+on and off.
+
+@noindent @command{turn-on-setnu-mode} is useful for adding to a
+major-mode hook variable (not that you really want to do this).
+
+@example
+Example:
+    (add-hook 'text-mode-hook 'turn-on-setnu-mode)
+@end example
+to automatically turn on line numbering when enterting text-mode."
+
+You may customize the group @code{setnu} and customize the face
+@code{setnu-line-number-face} to change the appearance of the line numbers.
+
+@node sys-apropos, table, setnu, Top
 @chapter sys-apropos - Interface for the *nix apropos command.
 
 @noindent Author: Henrik Enberg <henrik@@enberg.org>
