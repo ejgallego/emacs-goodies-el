@@ -108,10 +108,10 @@ Add a :group 'emacs-goodies-el"
         (insert (format ";; %s\n" filename))
         (insert text)
         (delete-backward-char 1)
-        (insert (format "\n  :link '(custom-manual \"(emacs-goodies-el)%s\")\n"
+        (insert (format "\n;;:link '(custom-manual \"(emacs-goodies-el)%s\")\n"
                         filename))
         (insert (format "  :load '%s\n" filename))
-        (insert (format "  :require '%s\n" filename))
+;;      (insert (format "  :require '%s\n" filename))
         (insert         "  :group 'emacs-goodies-el)\n\n")
         (widen)
         (save-buffer)))))
@@ -125,6 +125,7 @@ Add a :group 'emacs-goodies-el"
                (not (looking-at ".*emacs-goodies-custom.el$")))
       (save-excursion
         (dired-find-file)
+        (goto-char (point-min))
         (emacs-lisp-mode)
         (insert-defgroup))))
   (find-file "emacs-goodies-custom.el")
