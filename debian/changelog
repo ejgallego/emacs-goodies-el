@@ -4,6 +4,9 @@ emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
     New upstream versions:
     - tc.el:  Version 0.13.3.
     - table.el:  Version 1.5.54.  Wow! This is a very cool package!
+    - tail.el: Benjamin Drieu gave me carte blanche to hack on it, so I
+      fixed a few bugs, including making it under XEmacs. Thanks to Adam
+      Sjøgren for reporting this bug (Closes: #164372).
     Patches:
     - nuke-trailing-whitespace.el: Add custom interface support with ability
        to install into write-file-hooks.
@@ -13,7 +16,7 @@ emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
     - documented nuke-trailing-whitespace, protbuf, protocols, services,
       sys-apropos, table.
 
- -- Peter S Galbraith <psg@debian.org>  Wed,  8 Oct 2003 10:59:20 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu,  9 Oct 2003 21:30:43 -0400
 
 emacs-goodies-el (22.0-1) unstable; urgency=low
 
