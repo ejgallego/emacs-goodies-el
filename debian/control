@@ -78,7 +78,7 @@ Architecture: all
 Depends: emacs-goodies-el (>= 22.0-1)
 Section: oldlibs
 Priority: extra
-Description: Transitional package.  Can be removed.
+Description: Transitional package that can be removed
  The content of the package emacs-goodies-extra-el has been moved to the
  package emacs-goodies-el.
  .
@@ -146,7 +146,7 @@ Architecture: all
 Depends: debian-el (>= 22.0-1)
 Section: oldlibs
 Priority: extra
-Description: Transitional package.  Can be removed.
+Description: Transitional package that can be removed
  The package debbugs-el has been renamed debian-el.
  .
  This package ensures that debian-el is installed during upgrades and
