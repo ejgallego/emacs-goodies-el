@@ -1,3 +1,10 @@
+emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
+
+  * emacs-goodies-el's nuke-trailing-whitespace.el: Add custom interface
+    support with ability to install into write-file-hooks.
+
+ -- Peter S Galbraith <psg@debian.org>  Mon,  6 Oct 2003 22:22:51 -0400
+
 emacs-goodies-el (22.0-1) unstable; urgency=low
 
   * Package `emacs-goodies-extra-el' now a transitional package.  Its

@@ -4,6 +4,7 @@
 5_highlight-beyond-fill-column
 6_diminish-defcustom
 8_whitespace_rename
+9_whitespace_enable_custom
 9_missing_provide
 50_newsticker_non-fatal_xml
 50_session_enable_custom

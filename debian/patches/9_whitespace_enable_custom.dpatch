@@ -1,0 +1,228 @@
+#!/bin/sh -e
+## 9_whitespace_enable_custom.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Support for custom interface
+
+if [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+       -patch) patch $patch_opts -p1 < $0;;
+       -unpatch) patch $patch_opts -p1 -R < $0;;
+        *)
+                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+                exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-10-06 22:18:14.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-10-06 22:18:34.000000000 -0400
+@@ -1,11 +1,12 @@
+ ;;; nuke-trailing-whitespace.el --- strip trailing whitespace from buffers
+ 
+ ;; Copyright (C) 1995, 1996, 1997, 2000 Noah S. Friedman
++;; Copyright (C) 2003 Peter S. Galbraith
+ 
+ ;; Author: Noah Friedman <friedman@splode.com>
+ ;; Maintainer: friedman@splode.com
+ ;; Keywords: extensions
+-;; Status: Works in Emacs 19 and XEmacs.
++;; Status: Works in Emacs 20 and 21 and XEmacs.
+ 
+ ;; $Id: 9_whitespace_enable_custom.dpatch,v 1.1 2003/10/07 02:23:53 psg Exp $
+ 
+@@ -25,34 +26,78 @@
+ ;; Inc.; 59 Temple Place, Suite 330; Boston, MA 02111-1307, USA.
+ 
+ ;;; Commentary:
++;;
++;; This package strips trailing whitespace from buffers.  It can be used
++;; manually on a buffer by calling `M-x nuke-trailing-whitespace' when
++;; editing a buffer, or automatically when you save a file.
++;;
++;; For automatic stripping, either add the following in your .emacs:
++;;
++;;     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
++;;     (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
++;;     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
++;;
++;; or better yet accomplish the same effect by customizing the variable
++;; `nuke-trailing-whitespace-install-as-hook' and saving the result for
++;; future sessions.
++;;
++;; By default, buffers that have a major-mode listed in the customizable
++;; list `nuke-trailing-whitespace-always-major-modes' are stripped, those
++;; listed in the list `nuke-trailing-whitespace-never-major-modes' are not,
++;; and others are prompted for.  You can change this default behaviour by
++;; customizing the variable `nuke-trailing-whitespace-p'.
+ 
++;;; History:
++;;
+ ;; This file was modified from Noah Friedman's whitespace.el by Cristian
+ ;; Ionescu-Idbohrn because emacs21 also provides a whitespace.el.  This
+ ;; file, and its functions, were renamed to nuke-trailing-whitespace to
+-;; avoid the namespace collision.
+-
+-;; You may wish to do the following in your .emacs:
++;; avoid the name-space collision.
+ ;;
+-;;     (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
+-;;     (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
+-;;     (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
++;; 2003-10-06 - Support for custom interface added by Peter S Galbraith
++;; <psg@debian.org>
+ 
+ ;;; Code:
+ 
+-(defvar nuke-trailing-whitespace-p 'nuke-trailing-whitespace-check-mode
++(defgroup nuke-trailing-whitespace nil
++  "Strip trailing whitespace from buffers."
++  :group 'editing)
++
++(defcustom nuke-trailing-whitespace-p 'nuke-trailing-whitespace-check-mode
+   "*Specify when stripping whitespace should be done.
+ This variable affects how the function `nuke-trailing-whitespace' behaves.
+-If `t', unreservedly strip trailing whitespace, including excess newlines.
+-If `nil', do nothing.
++If t, unreservedly strip trailing whitespace, including excess newlines.
++If nil, do nothing.
+ If a symbol \(not bound to a function\), query for each instance.
+ 
+ If a function or name of a function, call it to decide what to do.
+-This function is called once and should return `t', `nil', or the symbol
++This function is called once and should return t, nil, or the symbol
+ `query' to decide what to do.
+ 
+-This variable is made buffer-local when set in any fashion.")
++This variable is made buffer-local when set in any fashion."
++  :group 'nuke-trailing-whitespace
++  :type '(radio (const :tag "Never" nil)
++                (const :tag "Always" t)
++                (const :tag "Query" :value query)
++                (const :tag
++                       "Default function (nuke-trailing-whitespace-check-mode)"
++                       :value nuke-trailing-whitespace-check-mode)
++                (function :tag "Other function")))
+ (make-variable-buffer-local 'nuke-trailing-whitespace-p)
+ 
++(defcustom nuke-trailing-whitespace-install-as-hook nil
++  "List of hooks to install `nuke-trailing-whitespace into.
++Unsetting values does not remove hooks from the current session."
++  :type 'hook                           ;Not really, but gives us :options
++  :options '(write-file-hooks mail-send-hook)
++  :group 'nuke-trailing-whitespace
++  :set (lambda (symbol value)
++         (set-default symbol value)
++         (when value
++           (loop for x in value
++                 do (add-hook x 'nuke-trailing-whitespace))))
++  :require 'nuke-trailing-whitespace)
++
+ ;; The regexp "\\s-+$" is too general, since form feeds (\n), carriage
+ ;; returns (\r), and form feeds/page breaks (C-l) count as whitespace in
+ ;; some syntaxes even though they serve a functional purpose in the file.
+@@ -64,7 +109,7 @@
+ (defconst nuke-trailing-whitespace-eob-newline-regexp "\n\n+\\'"
+   "Regular expression which matches newlines at the end of the buffer.")
+ 
+-(defvar nuke-trailing-whitespace-always-major-modes
++(defcustom nuke-trailing-whitespace-always-major-modes
+   '(ada-mode
+     c++-mode
+     c-mode
+@@ -85,30 +130,34 @@
+     slitex-mode
+     sml-mode
+     texinfo-mode)
+-  "*Major modes for which `nuke-trailing-whitespace-check-mode' will return `t'.
++  "*Major modes for which `nuke-trailing-whitespace-check-mode' will return t.
+ These are major modes for which `nuke-trailing-whitespace' should
+ strip all trailing whitespace and excess newlines at the end of the buffer
+-without asking.")
++without asking."
++  :group 'nuke-trailing-whitespace
++  :type '(repeat (function :tag "Mode")))
+ 
+-(defvar nuke-trailing-whitespace-never-major-modes
++(defcustom nuke-trailing-whitespace-never-major-modes
+   '(mail-mode
+     rmail-mode
+     vm-mode
+     vm-summary-mode)
+-  "*Major modes for which `nuke-trailing-whitespace-check-mode' will return `nil'.
++  "*Major modes for which `nuke-trailing-whitespace-check-mode' returns nil.
+ These are major modes for which `nuke-trailing-whitespace' should
+-never strip trailing whitespace automatically.")
++never strip trailing whitespace automatically."
++  :group 'nuke-trailing-whitespace
++  :type '(repeat (function :tag "Mode")))
+ 
+ 
+ ;;;###autoload
+ (defun nuke-trailing-whitespace ()
+   "Nuke all trailing whitespace in the buffer.
+ Whitespace in this case is just spaces or tabs.
+-This is a useful function to put on write-file-hooks.
++This is a useful function to put on `write-file-hooks'.
+ 
+ Unless called interactively, this function uses
+ `nuke-trailing-whitespace-p' to determine how to behave.
+-However, even if this variable is `t', this function will query for
++However, even if this variable is t, this function will query for
+ replacement if the buffer is read-only."
+   (interactive)
+   (cond ((interactive-p)
+@@ -126,6 +175,7 @@
+   nil)
+ 
+ (defun nuke-trailing-whitespace-do-nuke-whitespace (&optional flag)
++  "Remove trailing whitespace in buffer, not prompting first if FLAG is t."
+   (interactive)
+   (let ((buffer-orig-read-only buffer-read-only)
+         (buffer-read-only nil))
+@@ -138,20 +188,27 @@
+            ((or (and (eq flag t)
+                      (not buffer-orig-read-only))
+                 (interactive-p))
+-	    (while (re-search-forward nuke-trailing-whitespace-regexp (point-max) t)
++	    (while (re-search-forward nuke-trailing-whitespace-regexp
++                                      (point-max) t)
+               (delete-region (match-beginning 0) (match-end 0)))
+             (goto-char (point-min))
+-	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
++	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp
++                                    nil t)
+                  (delete-region (1+ (match-beginning 0)) (match-end 0))))
+            (t
+ 	    (query-replace-regexp nuke-trailing-whitespace-regexp "")
+             (goto-char (point-min))
+-	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
++	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp
++                                    nil t)
+                  (y-or-n-p
+                   "Delete excess trailing newlines at end of buffer? ")
+                  (delete-region (1+ (match-beginning 0)) (match-end 0))))))))))
+ 
+ (defun nuke-trailing-whitespace-check-mode (&optional mode)
++  "Default function to determine if whitespace should be trimmed from a buffer.
++Returns t if MODE is listed in `nuke-trailing-whitespace-always-major-modes'.
++Returns nil if listed in `nuke-trailing-whitespace-never-major-modes'.
++Else returns symbol 'query if buffer is visible or nil otherwise."
+   (or mode (setq mode major-mode))
+   (cond ((memq mode nuke-trailing-whitespace-always-major-modes) t)
+         ((memq mode nuke-trailing-whitespace-never-major-modes) nil)
+@@ -163,4 +220,4 @@
+ 
+ (provide 'nuke-trailing-whitespace)
+ 
+-;;; nuke-trailing-whitespace.el ends here.
++;;; nuke-trailing-whitespace.el ends here
