@@ -87,7 +87,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.4 $
+| ;; $Revision: 1.5 $
 | 
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -553,6 +553,22 @@ Author/copyright info for services.el:
 `----
 
 
+Author/copyright info for session.el
+,----
+| ;;; session.el --- use variables, registers and buffer places across sessions
+| 
+| ;; Copyright 1996-1999, 2001-2003 Free Software Foundation, Inc.
+| ;;
+| ;; Author: Christoph Wedler <wedler@users.sourceforge.net>
+| ;; X-URL: http://emacs-session.sourceforge.net/
+| 
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
 Author/copyright info for setnu.el:
 ,----
 | ;;; vi-style line number mode for Emacs
@@ -631,7 +647,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.4 $
+| ;; $Revision: 1.5 $
 | 
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

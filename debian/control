@@ -52,6 +52,7 @@ Description: Miscellaneous add-ons for Emacs
   prot-buf.el: protect buffers from accidental killing;
   protocols.el: perform lookups in /etc/protocols;
   services.el: perform lookups in /etc/services;
+  session.el: menu to restore files visited in previous editing session.
   setnu.el: setnu-mode, a vi-style line number mode;
   silly-mail.el: generate bozotic mail headers;
   sys-apropos.el: interface for the *nix apropos command;

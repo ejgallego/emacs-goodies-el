@@ -5,6 +5,15 @@
 ;;
 ;;; Code:
 
+;; bar-cursor
+(defgroup bar-cursor nil
+  "switch block cursor to a bar."
+  :link '(custom-manual "(emacs-goodies-el)bar-cursor")
+  :group 'convenience
+  :load 'bar-cursor
+;;:require 'bar-cursor
+  :group 'emacs-goodies-el)
+
 ;; boxquote
 (defgroup boxquote nil
   "Mark regions of text with a half-box."
@@ -38,10 +47,19 @@
 (defgroup Dict nil
   "Browse DICT dictionaries."
   :prefix "dict-"
+  :group 'external
   :link '(custom-manual "(emacs-goodies-el)dict")
   :load 'dict
 ;;:require 'dict
-  :group 'external
+  :group 'emacs-goodies-el)
+
+;; diminish
+(defgroup diminish nil
+  "Diminished modes are minor modes with no modeline display."
+  :group 'convenience
+  :link '(custom-manual "(emacs-goodies-el)diminish")
+  :load 'diminish
+;;:require 'diminish
   :group 'emacs-goodies-el)
 
 ;; egocentric
@@ -85,13 +103,22 @@
 ;;:require 'floatbg
   :group 'emacs-goodies-el)
 
-;;framepop
+;; framepop
 (defgroup framepop nil
   "Display temporary buffers in a dedicated frame."
   :group 'frames
   :link '(custom-manual "(emacs-goodies-el)framepop")
   :load 'framepop
 ;;:require 'framepop
+  :group 'emacs-goodies-el)
+
+;; highlight-beyond-fill-column
+(defgroup highlight-beyond-fill-column nil
+  "Fontify beyond the fill-column."
+  :group 'fill
+  :link '(custom-manual "(emacs-goodies-el)highlight-beyond-fill-column")
+  :load 'highlight-beyond-fill-column
+;;:require 'highlight-beyond-fill-column
   :group 'emacs-goodies-el)
 
 ;; highlight-completion
@@ -154,6 +181,7 @@ selectable views (limits)."
   :version "21.2"
   :group 'games
   :group 'keyboard
+  :link '(emacs-commentary-link "keywiz.el")
   :link '(custom-manual "(emacs-goodies-el)keywiz")
   :load 'keywiz
 ;;:require 'keywiz
@@ -196,6 +224,18 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :link '(custom-manual "(emacs-goodies-el)perldoc")
   :load 'perldoc
 ;;:require 'perldoc
+  :group 'emacs-goodies-el)
+
+;; session
+(defgroup session nil
+  "Use variables, registers and buffer places across sessions."
+  :group 'data
+  :link '(emacs-commentary-link "session.el")
+  :link '(url-link "http://emacs-session.sourceforge.net/")
+  :prefix "session-"
+;;:link '(custom-manual "(emacs-goodies-el)session")
+  :load 'session
+;;:require 'session
   :group 'emacs-goodies-el)
 
 ;; table

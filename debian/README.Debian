@@ -189,6 +189,11 @@ protocols.el provides M-x protocols-lookup, to search for info in your
 services.el provides M-x services-lookup, to search for info in your
 /etc/services.
 
+session.el restores various variables (e.g., input histories) from your
+last session.  It also provides a menu containing recently changed/visited
+files and restores the places (e.g., point) of such a file when you revisit
+it.
+
 setnu.el provides M-x setnu-mode, a vi-style line number mode.
 
 silly-mail.el provides M-x add-sm-* commands to add various headers to
@@ -248,4 +253,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Fri Oct  3 13:16:19 2003
+ -- Peter S Galbraith <psg@debian.org>, Sat Oct  4 22:38:04 2003
