@@ -1,17 +1,16 @@
-;; This file is *NOT* part of GNU Emacs.
+;;; under.el --- Underline with the ^ character
 
-;;;  $Id: under.el,v 1.1 2003/04/04 20:16:17 lolando Exp $
+;;;  $Id: under.el,v 1.2 2003/10/10 17:25:37 psg Exp $
 
 ;; Copyright (C) 1998 by Benjamin Drieu
 ;; Author:	 Benjamin Drieu <bdrieu@april.org>
-;; Maintainer:	 Benjamin Drieu <bdrieu@april.org>
 ;; Created:	 1998-08-28
 ;; Keywords: convenience
 
 ;; LCD Archive Entry:
 ;; under|Benjamin Drieu|bdrieu@april.org|
 ;; Underline portions of a buffer with "^"|
-;; 1998|$Revision: 1.1 $|~/misc/under.el|
+;; 1998|$Revision: 1.2 $|~/misc/under.el|
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -28,21 +27,40 @@
 ;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 ;; Boston, MA 02111-1307, USA.
 
+;;; Commentary:
+;; 
 
-;;;  Add the following in your .emacs, and do a C-c C-u everywhere to
-;;;  underline the region with "^"
-;;;
-;;;  (autoload 'underline-region "under" "Underline the region" t)
-;;;  (global-set-key "\C-c\C-u" 'underline-region)
+;;  Add the following in your .emacs, and do a C-c C-u everywhere to
+;;  underline the region with "^"
+;;
+;;  (autoload 'underline-region "under" "Underline the region" t)
+;;  (global-set-key "\C-c\C-u" 'underline-region)
 
-(defun underline-region ()
-  "Underline the region"
-  (interactive)  
-  (setq position_un (point))
-  (setq position_deux (mark))
-  (beginning-of-line)
-  (setq num-of-chars (- (min position_un position_deux) (point)))
-  (end-of-line)
-  (newline) 
-  (insert-char (string-to-char " ") num-of-chars)
-  (insert-char ?^ (abs (- position_deux position_un))))
+;; Bugs: currently only works on a single line.  The region can't span
+;;       multiple lines.
+
+;;; History:
+;; 
+;; 2003-10-10 Peter S Galbraith <psg@debian.org>
+;;  - checkdoc clean; add autoload tag; don't make global variables;
+;;  - rename underline-region to underhat-region since it overloaded an
+;;     existing Emacs21 command.
+
+;;; Code:
+
+;;;###autoload
+(defun underhat-region ()
+  "Underline the region."
+  (interactive)
+  (let ((position_un (point))
+        (position_deux (mark)))
+    (beginning-of-line)
+    (setq num-of-chars (- (min position_un position_deux) (point)))
+    (end-of-line)
+    (insert "\n")
+    (insert-char (string-to-char " ") num-of-chars)
+    (insert-char ?^ (abs (- position_deux position_un)))))
+
+(provide 'under)
+
+;;; under.el ends here
