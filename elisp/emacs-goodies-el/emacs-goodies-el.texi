@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.19 2003/09/19 23:44:49 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.20 2003/09/20 22:43:06 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -75,12 +75,14 @@ documented files just yet.
 * cyclebuffer::                 Select buffer by cycling through.
 * df::                          Display space left on partitions in mode-line.
 * diminish::                    Diminish minor-mode's display.
-* dirvars::                     Local variables that apply to an entire directory.
+* dirvars::                     Local variables that apply to entire directory.
 * ff-paths::                    Searches certain paths to find files.
 * filladapt::                   Adaptively set fill-prefix.
 * floatbg::                     Slowly modify background color
+* highlight-beyond-fill-column::  Fontify beyond the fill-column.
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
+
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -623,7 +625,7 @@ what needs to be done.
     filladapt-token-conversion-table
 @end example
 
-@node floatbg, highlight-completion, filladapt, Top
+@node floatbg, highlight-beyond-fill-column, filladapt, Top
 @chapter floatbg - slowly modify background color
 
 Floatbg slowly modifies the backgound color through an hsv color
@@ -633,7 +635,20 @@ To enable it, customize the variable @code{floatbg-mode}.
 There are other tweaks to set in the customization group
 @code{floatbg}.
 
-@node highlight-completion, highlight-current-line, floatbg, Top
+@node highlight-beyond-fill-column, highlight-completion, floatbg, Top
+@chapter  highlight-beyond-fill-column - fontify beyond the fill-column.
+
+This defines a function that can be used by @code{font-lock-add-keyword}' to
+find the columns that are beyond @code{fill-column}'.  It does not currently
+work in XEmacs because it lacks the function @code{font-lock-add-keywords}.
+
+Enable it on a buffer using @code{M-x highlight-beyond-fill-column}.
+You may use that command in a hook (e.g. @code{text-mode-hook}).
+
+Use @code{customize-face highlight-beyond-fill-column-face} to to
+setup the face used for highlight-beyond-fill-column.
+
+@node highlight-completion, highlight-current-line, highlight-beyond-fill-column, Top
 @chapter highlight-completion - completion with highlighted provisional text
 
 This package modified how Emacs performs completions.  Ordinarily,
@@ -734,4 +749,5 @@ whose buffer-name match the regular expression in the customizable variable
 extend or redefine this regexp. This works together with the default ignore
 function @code{highlight-current-line-ignore-function}. You can redefine this
 function to implement your own criterias.
+
 
