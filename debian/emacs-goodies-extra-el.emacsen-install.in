@@ -15,6 +15,6 @@ PACKAGE=emacs-goodies-extra-el
 # INCLUDED_emacs21=""
 # INCLUDED_xemacs21=""
 
-# EXCLUDED_emacs20=""
+EXCLUDED_emacs20="newsticker.el"
 # EXCLUDED_emacs21=""
 # EXCLUDED_xemacs21=""
