@@ -884,6 +884,7 @@ find-file-using-paths searches certain paths to find files."
          (set-default symbol value)
          (when value
            (ff-paths-install)))
+  :require 'ff-paths
   :group 'ff-paths)
 
 (defcustom ff-paths-use-ffap nil
@@ -901,6 +902,7 @@ find-file-using-paths searches certain paths to find files."
            (require 'ffap)
            (ffap-bindings)
            (ff-paths-in-ffap-install)))
+  :require 'ff-paths
   :group 'ff-paths)
 
 (provide 'ff-paths)
