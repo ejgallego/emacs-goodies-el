@@ -24,6 +24,7 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - edit-env.el, view and edit environment variables.
     - dedicated.el, dedicate a window to a single buffer.
     - rfcview.el, view IETF RFCs with readability-improved formatting.
+      (Also thanks to Kevin Ryde for this suggestion; Closes: #222186)
     - marker-visit.el, navigate through a buffer's marks in order.
     - pack-windows.el, resize all windows to display as much info as possible.
     - ascii.el, ASCII code display for character under point.
