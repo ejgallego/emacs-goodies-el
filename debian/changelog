@@ -3,8 +3,10 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
   * debian-el:
     - deb-view.el: I'm now maintaining this file. New version supports
       customization.
+    - debian-bug.el: "Should send minor severty bugs to maintonly, not
+      submit", thanks to Tollef Fog Heen (Closes: #214242).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 30 Oct 2003 22:40:05 -0500
+ -- Peter S Galbraith <psg@debian.org>  Fri, 31 Oct 2003 09:29:25 -0500
 
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
