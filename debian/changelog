@@ -1,3 +1,13 @@
+emacs-goodies-el (24.3-1) UNRELEASED; urgency=low
+
+  * debian-el: 
+    - apt-utils.el: Updated to v1.82 (2004/02/17). Bug fix: "debian-el:
+    (args-out-of-range 922 922)", thanks to Johannes Rohr for reporting it
+    (Closes: #232367).  Also adds automatic rebuilding of its APT package
+    list; See `apt-utils-automatic-update'.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 19 Feb 2004 21:25:23 -0500
+
 emacs-goodies-el (24.2-2) unstable; urgency=low
 
   * gnus-bonus-el:
