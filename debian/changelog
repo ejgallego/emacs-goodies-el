@@ -1,4 +1,4 @@
-emacs-goodies-el (24.5-2) UNRELEASED; urgency=low
+emacs-goodies-el (24.6-1) UNRELEASED; urgency=low
 
   * gnus-bonus-el
     - Bug fix: "Missing file: nnmaildir.el", thanks to Christian Joergensen
@@ -8,9 +8,12 @@ emacs-goodies-el (24.5-2) UNRELEASED; urgency=low
     - debian-el.el: Bug fix: "debian-el: Add udeb support to debview",
       thanks to Frédéric Bothamy for the suggestion and patch
       (Closes: #260273).
+    - apt-utils.el: new upstream version from Matt, adds "m" key and menu
+      entry to read man page.  Addresses bug report "apt-utils.el: not
+      friendly" fromDan Jacobson (Closes: #249061).
   * Bug fix: "debian-el: debian-bug-wnpp: support RFH tag", (Closes: #262985).
 
- -- Peter S Galbraith <psg@debian.org>  Mon,  2 Aug 2004 16:20:04 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue,  3 Aug 2004 15:51:36 -0400
 
 emacs-goodies-el (24.5-1) unstable; urgency=low
 
