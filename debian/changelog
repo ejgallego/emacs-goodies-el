@@ -1,4 +1,4 @@
-emacs-goodies-el (21.13-1) unstable; urgency=low
+emacs-goodies-el (22.0-1) unstable; urgency=low
 
   * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
