@@ -1,3 +1,12 @@
+emacs-goodies-el (24.2-2) unstable; urgency=low
+
+  * gnus-bonus-el:
+    - gnus-pers.el bug fix: Use functionp instead of relying on
+      message-functionp being provided by gnus, since recent gnus no longer
+      has it. Thanks to Brian May for reporting (Closes: #230036).
+
+ -- Peter S Galbraith <psg@debian.org>  Wed, 28 Jan 2004 19:53:18 -0500
+
 emacs-goodies-el (24.2-1) unstable; urgency=low
 
   * debian-el: 
