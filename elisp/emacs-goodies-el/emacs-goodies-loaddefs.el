@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16262 60959))
+;;;;;;  "bar-cursor.el" (16269 61384))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16262 60959))
+;;;;;;  "diminish.el" (16269 61384))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -237,7 +237,7 @@ Toggle floatbg mode" t nil)
 ;;;***
 
 ;;;### (autoloads (framepop-display-buffer framepop-enable framepop-disable)
-;;;;;;  "framepop" "framepop.el" (16259 18880))
+;;;;;;  "framepop" "framepop.el" (16269 22307))
 ;;; Generated autoloads from framepop.el
 
 (autoload (quote framepop-disable) "framepop" "\
@@ -262,7 +262,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16262 60959))
+;;;;;;  "highlight-beyond-fill-column.el" (16269 61384))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -283,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16262 60959))
+;;;;;;  (16269 61384))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -299,28 +299,27 @@ of window, third in a row goes to end of buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
-;;;;;;  htmlize-region htmlize-buffer htmlize-buffer-noninteractive)
-;;;;;;  "htmlize" "htmlize.el" (16259 18881))
+;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (16266
+;;;;;;  62773))
 ;;; Generated autoloads from htmlize.el
 
-(autoload (quote htmlize-buffer-noninteractive) "htmlize" "\
-Convert BUFFER to HTML, preserving the font-lock and other colorization.
-Returns the buffer with the resulting text.
-If htmlize-major-mode is non-nil, this funcall the mode.  If this is
-not what you want in a non-interactive environment, bind htmlize-major-mode
-to nil before calling this function." nil nil)
-
 (autoload (quote htmlize-buffer) "htmlize" "\
-Convert BUFFER to HTML, preserving the font-lock and other colorization.
-HTML contents are provided in a new buffer." t nil)
+Convert buffer to HTML, preserving the font-lock colorization.
+The generated HTML is available in a new buffer, which is returned.
+When invoked interactively, the new buffer is selected in the
+current window." t nil)
 
 (autoload (quote htmlize-region) "htmlize" "\
-Convert the region to HTML, preserving the font-lock colorization." t nil)
+Convert the region to HTML, preserving the font-lock colorization.
+The generated HTML is available in a new buffer, which is returned.
+When invoked interactively, the new buffer is selected in the
+current window." t nil)
 
 (autoload (quote htmlize-file) "htmlize" "\
-HTML-ize FILE, and save the result.
+HTML-ize FILE, and save the result to an `.html' file.
+The file name of the HTML file is determined with `html-make-file-name'.
 If TARGET-DIRECTORY is non-nil, the resulting HTML file will be saved
-to that directory, instead of to the FILE's directory." t nil)
+to that directory, instead of to FILE's directory." t nil)
 
 (autoload (quote htmlize-many-files) "htmlize" "\
 HTML-ize files specified by FILES, and save them to `.html' files.
@@ -382,8 +381,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16262
-;;;;;;  60959))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16269
+;;;;;;  61384))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -396,7 +395,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16262 60959))
+;;;;;;  "nuke-trailing-whitespace.el" (16269 61384))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -425,7 +424,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16262 60959))
+;;;;;;  "perldoc.el" (16269 61384))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -442,7 +441,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16262 60959))
+;;;;;;  "protbuf" "protbuf.el" (16269 61384))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -500,77 +499,22 @@ Clear the services \"cache\"." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "session" "session.el" (16262 60959))
-;;; Generated autoloads from session.el
+;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
+;;;;;;  (16269 61384))
+;;; Generated autoloads from setnu.el
 
-;; General Emacs/XEmacs-compatibility compile-time macros
-(eval-when-compile
-  (require 'cl)
-  (defmacro cond-emacs-xemacs (&rest args)
-    (cond-emacs-xemacs-macfn
-     args "`cond-emacs-xemacs' must return exactly one element"))
-  (defun cond-emacs-xemacs-macfn (args &optional msg)
-    (if (atom args) args
-      (and (eq (car args) :@) (null msg) ; (:@ ...spliced...)
-	   (setq args (cdr args)
-		 msg "(:@ ....) must return exactly one element"))
-      (let ((ignore (if (string-match "XEmacs" emacs-version) :EMACS :XEMACS))
-	    (mode :BOTH) code)
-	(while (consp args)
-	  (if (memq (car args) '(:EMACS :XEMACS :BOTH)) (setq mode (pop args)))
-	  (if (atom args)
-	      (or args (error "Used selector %s without elements" mode))
-	    (or (eq ignore mode)
-		(push (cond-emacs-xemacs-macfn (car args)) code))
-	    (pop args)))
-	(cond (msg (if (or args (cdr code)) (error msg) (car code)))
-	      ((or (null args) (eq ignore mode)) (nreverse code))
-	      (t (nconc (nreverse code) args))))))
-  ;; Emacs/XEmacs-compatibility `defun': remove interactive "_" for Emacs, use
-  ;; existing functions when they are `fboundp', provide shortcuts if they are
-  ;; known to be defined in a specific Emacs branch (for short .elc)
-  (defmacro defunx (name arglist &rest definition)
-    (let ((xemacsp (string-match "XEmacs" emacs-version)) reuses first)
-      (while (memq (setq first (car definition))
-		   '(:try :emacs-and-try :xemacs-and-try
-			  :emacs-only :xemacs-only))
-	(if (memq first (if xemacsp
-			    '(:xemacs-and-try :xemacs-only)
-			  '(:emacs-and-try :emacs-only)))
-	    (setq reuses (cadr definition)
-		  definition nil)
-	  (unless (memq first '(:emacs-only :xemacs-only))
-	    (push (cadr definition) reuses)))
-	(setq definition (cddr definition)))
-      (if (and reuses (symbolp reuses))
-	  `(defalias ',name ',reuses)
-	(let* ((docstring (if (stringp (car definition)) (pop definition)))
-	       (spec (and (not xemacsp)
-			  (eq (car-safe (car definition)) 'interactive)
-			  (null (cddar definition))
-			  (cadar definition))))
-	  (if (and (stringp spec)
-		   (not (string-equal spec ""))
-		   (eq (aref spec 0) ?_))
-	      (setq definition
-		    (cons (if (string-equal spec "_")
-			      '(interactive)
-			    `(interactive ,(substring spec 1)))
-			  (cdr definition))))
-	  (if (null reuses)
-	      `(defun ,name ,arglist ,docstring
-		 ,@(cond-emacs-xemacs-macfn definition))
-	    ;; no dynamic docstring in this case
-	    `(eval-and-compile		; no warnings in Emacs
-	       (defalias ',name
-		 (cond ,@(mapcar (lambda (func) `((fboundp ',func) ',func))
-				 (nreverse reuses))
-		       (t ,(if definition
-			       `(lambda ,arglist ,docstring
-				  ,@(cond-emacs-xemacs-macfn definition))
-			     'ignore)))))))))))
+(autoload (quote setnu-mode) "setnu" "\
+Toggle `setnu-mode'.
+With prefix argument ARG, turn `setnu-mode' on if argument is positive.
+When `setnu-mode' is enabled, a line number will appear at the left
+margin of each line." t nil)
 
-(defunx session-initialize (&rest dummies) "Initialize package session and read previous session file.\nSetup hooks and load `session-save-file', see `session-initialize'.  At\nbest, this function is called at the end of the Emacs startup, i.e., add\nthis function to `after-init-hook'." (interactive) (setq session-use-package t) (when (or (eq session-initialize t) (memq (quote de-saveplace) session-initialize)) (when (functionp (quote eval-after-load)) (eval-after-load "saveplace" (quote (progn (remove-hook (quote find-file-hooks) (quote save-place-find-file-hook)) (remove-hook (quote kill-emacs-hook) (quote save-place-kill-emacs-hook)) (remove-hook (quote kill-buffer-hook) (quote save-place-to-alist))))))) (when (or (eq session-initialize t) (memq (quote places) session-initialize)) (add-hook (quote find-file-hooks) (quote session-find-file-hook) t) (add-hook (quote find-file-not-found-hooks) (quote session-find-file-not-found-hook) t) (add-hook (quote kill-buffer-hook) (quote session-kill-buffer-hook))) (when (or (eq session-initialize t) (memq (quote keys) session-initialize)) (condition-case nil (progn (define-key ctl-x-map [(undo)] (quote session-jump-to-last-change)) (define-key ctl-x-map [(control 47)] (quote session-jump-to-last-change)) (define-key minibuffer-local-map [(meta 63)] (quote session-minibuffer-history-help)) :XEMACS (define-key global-map [(control button3)] (quote session-popup-yank-menu)) :EMACS (define-key minibuffer-local-completion-map [(meta 63)] (quote session-minibuffer-history-help)) (define-key minibuffer-local-must-match-map [(meta 63)] (quote session-minibuffer-history-help)) (define-key minibuffer-local-ns-map [(meta 63)] (quote session-minibuffer-history-help))) (error nil))) (when (or (eq session-initialize t) (memq (quote menus) session-initialize)) (add-hook (quote find-file-hooks) (quote session-set-file-name-history)) (session-add-submenu (quote ("Open...recently visited" :included file-name-history :filter session-file-opened-menu-filter))) (session-add-submenu (quote ("Open...recently changed" :included session-file-alist :filter session-file-changed-menu-filter ["%_* Toggle Permanent Flag of Current Buffer" session-toggle-permanent-flag :keys (session-toggle-permanent-flag nil t) :active buffer-file-name] "---"))) :XEMACS (and (featurep (quote menubar)) (find-menu-item default-menubar (quote ("Edit"))) (let ((current-menubar default-menubar)) (add-submenu (quote ("Edit")) (quote ("Select and Paste" :included kill-ring :filter session-yank-menu-filter)) (cond ((find-menu-item default-menubar (quote ("Edit" "Delete"))) "Delete") ((find-menu-item default-menubar (quote ("Edit" "Paste"))) "Paste") ((find-menu-item default-menubar (quote ("Edit" "Undo"))) "Undo")))))) (when (or (eq session-initialize t) (memq (quote session) session-initialize)) (add-hook (quote kill-emacs-hook) (quote session-save-session)) (or session-successful-p (setq session-successful-p (and session-save-file (condition-case nil (progn (load session-save-file t nil t) (run-hooks (quote session-after-load-save-file-hook)) t) (error nil)))))))
+(autoload (quote turn-on-setnu-mode) "setnu" "\
+Turn on `setnu-mode'.
+Useful for adding to a `major-mode' hook variable.
+Example:
+    (add-hook 'text-mode-hook 'turn-on-setnu-mode)
+to automatically turn on line numbering when enterting `text-mode'." nil nil)
 
 ;;;***
 
@@ -609,7 +553,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16262 60959))
+;;;;;;  "table" "table.el" (16269 61384))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
