@@ -50,7 +50,8 @@ binary-arch: build install
 	dh_testroot
 	dh_installdocs
 	dh_installemacsen
-	dh_installinfo info/*
+	dh_installinfo -p emacs-goodies-el info/emacs-goodies-el
+	dh_installinfo -p emacs-goodies-extra-el info/emacs-goodies-extra-el
 	dh_installchangelogs
 	dh_compress
 	dh_fixperms
