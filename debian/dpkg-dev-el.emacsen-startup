@@ -53,7 +53,7 @@ being constructed."
   (autoload 'debian-copyright-mode "debian-copyright"
     "Mode to edit and read debian/copyright." t)
   (add-to-list 'auto-mode-alist
-               '("debian/copyright$" . debian-copyright-mode))
+               '("debian/*copyright$" . debian-copyright-mode))
   (add-to-list 'auto-mode-alist
                '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
   
@@ -61,7 +61,7 @@ being constructed."
   (autoload 'readme-debian-mode "readme-debian" "Mode to edit README.Debian."
     t)
   (add-to-list 'auto-mode-alist
-               '("debian/README.Debian$" . readme-debian-mode))
+               '("debian/*README.Debian$" . readme-debian-mode))
   (add-to-list 'auto-mode-alist
                '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
 
