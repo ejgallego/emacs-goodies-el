@@ -20,18 +20,20 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (bar-cursor-mode) "bar-cursor" "bar-cursor.el"
-;;;;;;  (16114 26305))
+;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
+;;;;;;  "bar-cursor.el" (16251 29973))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
-Toggle use of 'bar-cursor-mode'.
-
+Toggle use of variable `bar-cursor-mode'.
 This quasi-minor mode changes cursor to a bar cursor in insert mode,
 and a block cursor in overwrite mode.  It may only be turned on and
 off globally, not on a per-buffer basis (hence the quasi- designation).
 
-Optional ARG turns mode on iff ARG is a positive integer." t nil)
+Optional ARG turns mode on if ARG is a positive integer." t nil)
+
+(autoload (quote bar-cursor-change) "bar-cursor" "\
+Enable or disable advice based on value of variable `bar-cursor-mode'." nil nil)
 
 ;;;***
 
@@ -152,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16114 26305))
+;;;;;;  "diminish.el" (16251 29973))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -170,7 +172,10 @@ you're having problems with a cramped mode line, you may choose to use single
 letters for some modes, without leading spaces.  Capitalizing them works
 best; if you then diminish some mode to \"X\" but have abbrev-mode enabled as
 well, you'll get a display like \"AbbrevX\".  This function prepends a space
-to TO-WHAT if it's > 1 char long & doesn't already begin with a space." t nil)
+to TO-WHAT if it's > 1 char long & doesn't already begin with a space.
+
+If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
+the variable `diminished-minor-modes' will be modified to reflect the change." t nil)
 
 (autoload (quote diminish-undo) "diminish" "\
 Restore mode-line display of diminished mode MODE to its minor-mode value.
@@ -180,7 +185,10 @@ Interactively, enter (with completion) the name of any diminished mode (a
 mode that was formerly a minor mode on which you invoked M-x diminish).
 To restore all diminished modes to minor status, answer `diminished-modes'.
 The response to the prompt shouldn't be quoted.  However, in Lisp code,
-the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes)." t nil)
+the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes).
+
+If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
+the variable `diminished-minor-modes' will be modified to reflect the change." t nil)
 
 (autoload (quote diminished-modes) "diminish" "\
 Echo all active diminished or minor modes as if they were minor.
@@ -228,6 +236,15 @@ Toggle floatbg mode" t nil)
 
 ;;;***
 
+;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
+;;;;;;  "highlight-beyond-fill-column.el" (16251 29973))
+;;; Generated autoloads from highlight-beyond-fill-column.el
+
+(autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
+Setup this buffer to highlight beyond the `fill-column'." t nil)
+
+;;;***
+
 ;;;### (autoloads (highlight-current-line-minor-mode) "highlight-current-line"
 ;;;;;;  "highlight-current-line.el" (16235 37445))
 ;;; Generated autoloads from highlight-current-line.el
@@ -241,7 +258,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16114 26305))
+;;;;;;  (16251 29973))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -340,8 +357,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16114
-;;;;;;  26305))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16251
+;;;;;;  29973))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -363,6 +380,23 @@ Obfuscate an URL under `point'.
 This might be useful if you're writing out an URL for someone but the URL
 itself is a spoiler. The URL will still work but it won't be readable (by
 most mortals anyway)." t nil)
+
+;;;***
+
+;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
+;;;;;;  "perldoc.el" (16251 29973))
+;;; Generated autoloads from perldoc.el
+
+(autoload (quote perldoc) "perldoc" "\
+Run perldoc on the given STRING.
+If the string is a recognised function then we can call `perldoc-function',
+otherwise we call `perldoc-module'." t nil)
+
+(autoload (quote perldoc-at-point) "perldoc" "\
+Call `perldoc' for string at point." t nil)
+
+(autoload (quote perldoc-perl-hook) "perldoc" "\
+A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
@@ -1062,7 +1096,7 @@ See `wdired-mode'." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "whitespace" "whitespace.el"
-;;;;;;  (16114 26305))
+;;;;;;  (16251 29973))
 ;;; Generated autoloads from whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "whitespace" "\
