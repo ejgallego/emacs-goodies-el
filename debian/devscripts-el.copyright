@@ -1,14 +1,20 @@
 This package was first debianized by Roland Mas <lolando@debian.org>
-It is currently maintained by Peter S Galbraith <psg@debian.org>
+The source package `emacs-goodies-el' is maintained by Peter S Galbraith
+<psg@debian.org>.
+The binary package `devscripts-el' is maintained by its upstream author
+Junichi Uekawa <dancer@netfort.gr.jp>.
 
-  The text of the GNU GPL can be found in /usr/share/common-licenses.
 
 Copyright info for files in devscripts-el
 -----------------------------------------
 
-Author/copyright info for devscripts.el:
+Author/copyright info for devscripts.el, pbuilder-log-view-mode.el and
+pbuilder-mode.el
+
 ,----
 | ;; copyright 2002 Junichi Uekawa.
 | [...]
-| Copyright GPL.
+| Copyright GPL V2
 `----
+
+The text of the GNU GPL can be found in /usr/share/common-licenses.

@@ -1,17 +1,4 @@
-emacs-goodies-el (22.1-0) UNRELEASED; urgency=low
-
-  * Junichi Uekawa
-  - devscripts-el: integrate upstream release.
-    pbuilder-log-view.el
-    pbuilder-mode.el
-    devscripts.el
-  - 7_devscripts-debuild-uc-us.dpatch devscripts incorporated upstream.
-  - 9_missing_provide.dpatch remove part about devscripts.
-  - devscripts-el: Depend on elserv.
-
- -- Junichi Uekawa <dancer@debian.org>  Sun,  5 Oct 2003 01:00:14 +0900
-
-emacs-goodies-el (22.0-1) unstable; urgency=low
+emacs-goodies-el (22.0-1) UNRELEASED; urgency=low
 
   * Remove package `emacs-goodies-extra-el' and merge its files into
     `emacs-goodies-el'.  
@@ -38,8 +25,16 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     contributing the fix (Closes: #144963).
   * emacs-goodies-el: perldoc.el rewrite to get Perl function name on the
     fly from the perlfunc.pod file.
+  * Junichi Uekawa
+  - devscripts-el: integrate upstream release (Closes: #208974).
+    pbuilder-log-view.el
+    pbuilder-mode.el
+    devscripts.el
+  - 7_devscripts-debuild-uc-us.dpatch devscripts incorporated upstream.
+  - 9_missing_provide.dpatch remove part about devscripts.
+  - devscripts-el: Depend on elserv.
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  2 Oct 2003 22:22:16 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat,  4 Oct 2003 14:14:27 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 
