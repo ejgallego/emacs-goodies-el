@@ -770,9 +770,11 @@ Return a string if a single match, or a list if many matches."
     (goto-char 1)
       (if (eq status 1)
           nil                           ;Not found...
-        (while (and (or (not ff-paths-locate-max-matches)
+        (while (and (or (not (boundp 'ff-paths-locate-max-matches))
+                        (not ff-paths-locate-max-matches)
                         (> ff-paths-locate-max-matches count))
-                    (re-search-forward (if ff-paths-gzipped
+                    (re-search-forward (if (and (boundp 'ff-paths-gzipped)
+                                                ff-paths-gzipped)
                                            (concat "/" filename "\\(.gz\\)?$")
                                          (concat "/" filename "$"))
                                        nil t))
@@ -785,7 +787,8 @@ Return a string if a single match, or a list if many matches."
                                      (list the-file))
                                     (t
                                      (cons the-file matches))))))))
-      (if (and ff-paths-locate-max-matches
+      (if (and (boundp 'ff-paths-locate-max-matches)
+               ff-paths-locate-max-matches
                (<= ff-paths-locate-max-matches count))
           (setq ff-paths-have-reached-locate-max t))
       (kill-buffer ff-buffer)
