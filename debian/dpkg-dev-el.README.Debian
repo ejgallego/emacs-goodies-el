@@ -24,6 +24,10 @@ obtained from this source package.  It does not intend to replace reading
 the documentation that is made available in the files themselves (or not
 available at all, except insofar as code is self-documenting).
 
+To customize all files in this package, use:
+
+M-x customize-group [RET] dpkg-dev-el [RET]
+
 Introduction to files in dpkg-dev-el
 ------------------------------------
 
