@@ -1,3 +1,11 @@
+emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
+
+  * debian-el:
+    - deb-view.el: I'm now maintaining this file. New version supports
+      customization.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Oct 2003 22:40:05 -0500
+
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
   * gnus-bonus-el: (Prepared by Jérôme Marant)
