@@ -99,6 +99,9 @@ built-in adaptive fill mode but Filladapt is said to be much better.
 Use `M-x filladapt-mode' to toggle Filladapt mode on/off in the current
 buffer.  Use 'turn-on-filladapt-mode in mode hooks.
 
+framepop.el makes temporary buffers such as *Help* or *Completions* appear
+in a separate frame which is easily dismissed when no longer needed.
+
 floatbg.el provides M-x floatbg-mode, to slowly modify the background
 color of your Emacs.
 
@@ -245,4 +248,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 29 21:16:52 2003
+ -- Peter S Galbraith <psg@debian.org>, Thu Oct  2 22:21:10 2003

@@ -36,6 +36,7 @@ Description: Miscellaneous add-ons for Emacs
   ff-paths.el: $PATH-like searching in C-x C-f;
   filladapt.el: enhances Emacs's built-in adaptive fill;
   floatbg.el: slowly modify background color;
+  framepop.el: display temporary buffers in a dedicated frame;
   highlight-beyond-fill-column: highlight lines that are too long;
   highlight-completion.el: highlight completions in the minibuffer;
   highlight-current-line.el: highlight line where the cursor is;

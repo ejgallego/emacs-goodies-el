@@ -18,6 +18,7 @@ elisp/emacs-goodies-el/emacs-goodies-el.el /usr/share/emacs/site-lisp/emacs-good
 elisp/emacs-goodies-el/ff-paths.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/filladapt.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/floatbg.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/framepop.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/highlight-beyond-fill-column.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/highlight-completion.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/highlight-current-line.el /usr/share/emacs/site-lisp/emacs-goodies-el/
