@@ -8,8 +8,12 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
   * emacs-goodies-extra-el:
     - Re-introduce an harmless 50emacs-goodies-extra-el.el file since old one
       not removed in dist-upgrade.
+  * dpkg-dev-el:
+    - Edits *all* elisp files in package to add autoload tags.
+    - Create `dpkg-dev-el.el' and `dpkg-dev-el-loaddefs.el' startup files
+      and use them in Emacs startup.
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 31 Oct 2003 09:29:25 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon,  3 Nov 2003 21:11:48 -0500
 
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
