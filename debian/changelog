@@ -4,6 +4,7 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     `emacs-goodies-el'.  
   * Rename package `debbugs-el' to `debian-el' and move apt-sources.el and
     apt-utils.el into it.
+  * New file in emacs-goodies-el: newsticker.el, a news ticker for Emacs.  
   * Bug fix: "debbugs-el: debian-bug-search-file: should use dlocate when
     available", thanks to Jeff Sheinberg (Closes: #211598).  Added dlocate
     to package Recommends.
@@ -12,8 +13,8 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     50emacs-goodies-el.el.  Also for ibuffer: a customization variable
     (ibuffer-enable) was created to bind it to \C-x\C-b, and its
     documentation was added to the emacs-goodies-el Info.
-  * emacs-goodies-el: Add newsticker.el, a news ticker for Emacs.
-
+  * emacs-goodies-el: dict.el new upstream version, merges in Debian patch.
+  
  -- Peter S Galbraith <psg@debian.org>  Mon, 29 Sep 2003 20:47:58 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
