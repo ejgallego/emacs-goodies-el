@@ -24,8 +24,8 @@ exit 0
 
 @DPATCH@
 diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el	2003-12-22 20:53:20.000000000 -0500
-+++ emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el	2003-12-11 20:53:37.000000000 -0500
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el	2004-01-15 16:48:11.000000000 -0500
++++ emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el	2004-01-28 19:46:16.000000000 -0500
 @@ -1,4 +1,4 @@
 -;;; gnus-pers.el --- an alternative to gnus-posting-styles
 +;;; gnus-pers.el --- implements personalities for gnus Message mode
@@ -72,7 +72,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  ; + Added ability to use gnus-newsgroup-name as an electric criteria.
  
 +; 1.2 Peter S. Galbraith <psg@debian.org>
-+; + Require message.el for message-functionp.
++; + Use functionp instead of message-functionp since gnus no longer defines it.
 +; + Copy replace-in-string from XEmacs, name it
 +;   `gnus-personalities-replace-in-string' after removing the calls to
 +;   check-argument-type.  This was listed in the Todo list.
@@ -80,7 +80,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  ;Todo:
  ; + redo x-tra headers to be a repeat list of two parts, header name
  ; and header data. Then allow either to be a function.
-@@ -57,28 +77,12 @@
+@@ -57,23 +77,6 @@
  ; + BBDB integration
  ; + Have from and extra headers possibly be files as well.
  ; + Electric rescan buffer
@@ -104,13 +104,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  
  ;;; Code:
  
- (eval-when-compile (require 'cl))
- (require 'nnmail)
-+(require 'message)                      ; For message-functionp
- 
- ;; Variable setup
- 
-@@ -303,6 +307,39 @@
+@@ -303,6 +306,39 @@
  
  (define-key message-mode-map "\C-c\C-p" 'gnus-personality-choose)
  
@@ -150,7 +144,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  (defun gnus-personality-use (&optional personality)
    "Use a personality defined in gnus-personalities."
    (interactive)
-@@ -470,7 +507,7 @@
+@@ -470,7 +506,7 @@
  	      (message-goto-cc) ;; Yes, yes. This inserts a Cc: if there's nothing there. No worries.
  	      (beginning-of-line)
  	      (let ((beg (point))
@@ -159,7 +153,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  		(end-of-line)
  		(narrow-to-region beg (point))
  	      (goto-char (point-min))
-@@ -618,7 +655,7 @@
+@@ -618,7 +654,7 @@
  	      (message-goto-cc) ;; Yes, yes. This inserts a Cc: if there's nothing there. No worries.
  	      (beginning-of-line)
  	      (let ((beg (point))
@@ -168,3 +162,12 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/gnus-bonus-e
  		(end-of-line)
  		(narrow-to-region beg (point))
  	      (goto-char (point-min))
+@@ -698,7 +734,7 @@
+ 	   ((and (null message-signature)
+ 		 force)
+ 	    t)
+-	   ((message-functionp message-signature)
++	   ((functionp message-signature)
+ 	    (funcall message-signature))
+ 	   ((listp message-signature)
+ 	    (eval message-signature))
