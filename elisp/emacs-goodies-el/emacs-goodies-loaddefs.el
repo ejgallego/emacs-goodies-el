@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16262 59976))
+;;;;;;  "bar-cursor.el" (16262 60959))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16262 59976))
+;;;;;;  "diminish.el" (16262 60959))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -262,7 +262,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16262 59976))
+;;;;;;  "highlight-beyond-fill-column.el" (16262 60959))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -283,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16262 59975))
+;;;;;;  (16262 60959))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -383,7 +383,7 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 ;;;***
 
 ;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16262
-;;;;;;  59976))
+;;;;;;  60959))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -396,7 +396,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16262 59976))
+;;;;;;  "nuke-trailing-whitespace.el" (16262 60959))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -424,16 +424,33 @@ most mortals anyway)." t nil)
 
 ;;;***
 
+;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
+;;;;;;  "perldoc.el" (16262 60959))
+;;; Generated autoloads from perldoc.el
+
+(autoload (quote perldoc) "perldoc" "\
+Run perldoc on the given STRING.
+If the string is a recognised function then we can call `perldoc-function',
+otherwise we call `perldoc-module'." t nil)
+
+(autoload (quote perldoc-at-point) "perldoc" "\
+Call `perldoc' for string at point." t nil)
+
+(autoload (quote perldoc-perl-hook) "perldoc" "\
+A hook which binds F1 to `perldoc-at-point'." nil nil)
+
+;;;***
+
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16262 5574))
+;;;;;;  "protbuf" "protbuf.el" (16262 60959))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
-*If non-`nil', then prevent buffer from being accidentally killed.
+*If non-nil, then prevent buffer from being accidentally killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-mode nil "\
-*If non-`nil', then protect buffer with live process from being killed.
+*If non-nil, then protect buffer with live process from being killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-preserve-function nil "\
@@ -447,12 +464,15 @@ object is using this buffer as a process buffer.
 This variable is buffer-local when set.")
 
 (autoload (quote protect-buffer-from-kill-mode) "protbuf" "\
-Protect buffer from being killed.
-To remove this protection, call this command with a negative prefix argument." t nil)
+Toggle `kill-buffer' protection on current buffer.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER." t nil)
 
 (autoload (quote protect-process-buffer-from-kill-mode) "protbuf" "\
-Protect buffer from being killed as long as it has an active process.
-To remove this protection, call this command with a negative prefix argument." t nil)
+Toggle `kill-buffer' protection on current buffer with active process.
+Protection only applies as long as the buffer has an active process.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER." t nil)
 
 ;;;***
 
@@ -480,7 +500,7 @@ Clear the services \"cache\"." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "session" "session.el" (16262 5574))
+;;;### (autoloads nil "session" "session.el" (16262 60959))
 ;;; Generated autoloads from session.el
 
 ;; General Emacs/XEmacs-compatibility compile-time macros
@@ -589,7 +609,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16260 42243))
+;;;;;;  "table" "table.el" (16262 60959))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -1195,7 +1215,7 @@ If called with a prefix argument, prompt for a specific hack to run." t nil)
 
 ;;;***
 
-;;;### (autoloads (underhat-region) "under" "under.el" (16262 59937))
+;;;### (autoloads (underhat-region) "under" "under.el" (16262 60507))
 ;;; Generated autoloads from under.el
 
 (autoload (quote underhat-region) "under" "\
