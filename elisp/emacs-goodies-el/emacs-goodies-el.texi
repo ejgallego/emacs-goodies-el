@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.52 2003/11/26 01:25:32 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.53 2003/11/26 01:50:10 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -1016,16 +1016,17 @@ to have Filladapt always enabled in Text mode, or customize the
 variable @code{filladapt-turn-on-mode-hooks}.
 
 In C mode, @code{c-setup-filladapt} arranges for filling of block
-style comments (@pxref{Text Filling and Line Breaking,,, cc-mode, CC
+style comments (@pxref{Text Filling and Line Breaking,,, ccmode, CC
 Mode}).
 
 @example
+    (add-hook 'c-mode-hook 'turn-on-filladapt-mode)
     (add-hook 'c-mode-hook 'c-setup-filladapt)
 @end example
 
 Old versions of CC Mode (eg.@: the version with Emacs 20) don't have
 @code{c-setup-filladapt} and you may instead want to use
-@code{turn-off-filladapt-mode} there instead.
+@code{turn-off-filladapt-mode}.
 
 In many cases, you can extend Filladapt by adding appropriate entries
 to the following three custiomizable variables.  See
