@@ -26,12 +26,17 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
     - apt-sources.el: new upstream version 0.9.8.
     - 50debian-el.el renamed to 51debian-el.el to make sure it runs
       _after_ old version of 50debview.el.
+    - Bug fix: "debbugs-el: gnus-BTS.el causes error on opening article",
+      thanks to Johannes Rohr for reporting this (Closes: #218227).  We no
+      longer byte-compile gnus-BTS.el since it uses gnus macros and this
+      breaks if byte-compiled with one version of gnus and used with
+      another.
   * debview:
     - Bug fix: Re-introduce an harmless 50debview.el file since old one
       not removed in dist-upgrade and autoloaded debview from wrong place.
       Thanks to Neil Roeth (Closes: #218094).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 29 Oct 2003 20:57:07 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Oct 2003 19:57:50 -0500
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
