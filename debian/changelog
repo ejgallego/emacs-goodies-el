@@ -1,3 +1,15 @@
+emacs-goodies-el (22.3-1) unstable; urgency=low
+
+  * UNRELEASED 
+  * New file in gnus-bonus-el: gnus-pers.el, an alternative to
+    gnus-posting-styles. (Closes: #166459)
+  * New file in gnus-bonus-el: gnus-eyecandy.el, enhance the group
+    buffer by adding icons.
+  * New file in gnus-bonus-el: gnus-filterhist.el, add a buffer
+    which display the message filtering history.
+
+ --
+
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
   * devscripts-el:
