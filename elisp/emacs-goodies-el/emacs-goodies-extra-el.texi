@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-extra-el.texi,v 1.3 2003/09/24 02:39:46 psg Exp $
+@c $Id: emacs-goodies-extra-el.texi,v 1.4 2003/09/27 00:32:28 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-extra-el
 @settitle Emacs-Goodies-extra-el
@@ -47,6 +47,7 @@ basis, do:
 
 @menu
 * dict::                        Emacs interface to dict client
+* newsticker::                  A Newsticker for Emacs
 @end menu
 
 This work compiles GPL'ed documentation from the files in
@@ -55,7 +56,7 @@ from GPL'ed works, this text is also licensed under the GPL V2 (See
 /usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
 @email{psg@@debian.org}.
 
-@node dict,  , Top, Top
+@node dict, newsticker, Top, Top
 @chapter dict - Emacs interface to dict client
 
 This package is an Emacs wrapper around the shell @file{dict} command
@@ -96,3 +97,66 @@ the grou @code{Dict}.
 The author hopes you find the program useful and would like to know
 your opinion about the program, improvement suggestions and of course
 bug reports.  Mail them to max-appolo@@mail.ru
+
+@node newsticker,  , dict, Top
+@chapter newsticker - A Newsticker for Emacs.
+
+@noindent Copyright (C) 2003 by Ulf Jasper
+
+This package provides a newsticker for Emacs.  A newsticker is a thing
+that asynchronously retrieves a list of headlines (which are contained
+in RDF Site Summary (RSS) files) from a list of news sites, displays
+these headlines, and allows for loading the corresponding articles in
+a web browser.
+
+This package should work with all RSS files that follow the "RDF Rich
+Site Summary (RSS) 1.0" specification (see
+@url{http://purl.org/rss/1.0/spec}).  It may also work with
+other/older/alternative rss formats (like 0.9<something> or such).
+
+This package requires wget for retrieving headlines asynchronously.
+
+Headlines can be displayed in the echo area, but they will show only
+if no other program is using the echo area (and minibuffer).
+Besides, headlines and their descriptions are collected in a buffer
+called *newsticker*.
+
+To use, do @command{M-x newsticker-start}.  This will retrieve
+headlines from each url in @code{newsticker-url-list-defaults} and
+@code{newsticker-url-list} every @code{newsticker-retrieval-interval}
+seconds.  All headlines are placed in the buffer @code{*newsticker*}.
+Clicking @key{mouse-button-2} or pressing @key{RET} in that buffer on
+a headline will call @command{browse-url} to load the corresponding
+news story in your favourite web browser.
+
+Every @code{newsticker-display-interval} a headline is shown in the
+echo area (if @code{newsticker-display-interval} is positive).
+
+In order to stop the newsticker say @command{M-x newsticker-stop}.
+This will stop all timers.
+
+The function @command{newsticker-show-news} will update the
+\*newsticker* buffer, if necessary, and recreate it if you accidentally
+deleted it.  The modeline will indicate whether the *newsticker*
+buffer is up to date with the newsticker-cache.
+
+Newsticker-mode extends @command{outline-mode} so that you can easily
+hide and show descriptions of feeds and news items.
+
+Newsticker-mode supports imenu.  It allows for navigating with the
+help of a menu.  In order to use this feature you should add the
+following to you .emacs file:
+
+@example
+  (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+@end example
+
+All newsticker-options are customizable.  Do @command{M-x customize-group
+@key{RET} newsticker @key{RET}} in order to customize the newsticker settings.
+
+Enjoy!
+
+PS: This newsticker is designed do its job silently in the
+    background without disturbing you.  However, it is probably
+    impossible to prevent such a tool from slightly attenuating your
+    Editor's responsiveness every once in a while.

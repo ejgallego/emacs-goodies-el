@@ -35,4 +35,10 @@ a dictd server from within Emacs.  The package provides several
 d' runs dict on the word at point.  `C-c d r' runs dict on region as a
 single word.
 
- -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:11:38 2003
+newsticker.el is a newsticker for Emacs.  A newsticker is a thing that
+asynchronously retrieves a list of headlines (which are contained in RDF
+Site Summary (RSS) files) from a list of news sites, displays these
+headlines, and allows for loading the corresponding articles in a web
+browser.
+
+ -- Peter S Galbraith <psg@debian.org>, Fri Sep 26 20:26:15 2003

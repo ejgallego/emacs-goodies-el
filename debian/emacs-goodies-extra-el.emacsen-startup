@@ -31,4 +31,19 @@
 
   ;; autoloads for dict.el
   (autoload 'dict "dict" "Lookup a word in the dictionary" t)
-  (autoload 'dict-region "dict" "Lookup a region in the dictionary" t))
+  (autoload 'dict-region "dict" "Lookup a region in the dictionary" t)
+
+  (defgroup newsticker nil
+    "Newsticker settings. Some of these changes do not have an immediate
+effect.  Therefore it is recommended to `newsticker-stop' and then
+`newsticker-start' again after you have changed any of these settings."
+    :link '(custom-manual "(emacs-goodies-extra-el)newsticker")
+    :load 'newsticker
+    :group 'emacs-goodies-extra-el)
+
+  (autoload 'newsticker-start "newsticker" 
+  "Start the newsticker.
+Start the timers for display and retrieval.  If the newsticker, i.e. the
+timers, are running already a warning message is printed unless
+DO-NOT-COMPLAIN-IF-RUNNING is not nil."
+  t))

@@ -10,8 +10,9 @@ emacs-goodies-el (21.13-1) unstable; urgency=low
     documentation was added to the emacs-goodies-el Info.
   * emacs-goodies-extra-el: Add `emacs-goodies-extra-el' customization
     group and Info node.
+  * emacs-goodies-extra-el: Add newsticker.el, a news ticker for Emacs.
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 23 Sep 2003 22:08:46 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 26 Sep 2003 20:29:59 -0400
 
 emacs-goodies-el (21.12-1) unstable; urgency=low
 
