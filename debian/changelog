@@ -1,14 +1,16 @@
-emacs-goodies-el (22.3-1) unstable; urgency=low
+emacs-goodies-el (23.0-1) unstable; urgency=low
 
-  * UNRELEASED 
-  * New file in gnus-bonus-el: gnus-pers.el, an alternative to
-    gnus-posting-styles. (Closes: #166459)
-  * New file in gnus-bonus-el: gnus-eyecandy.el, enhance the group
-    buffer by adding icons.
-  * New file in gnus-bonus-el: gnus-filterhist.el, add a buffer
-    which display the message filtering history.
+  * gnus-bonus-el: (Prepared by Jérôme Marant)
+    New files:
+    - gnus-pers.el, an alternative to gnus-posting-styles. (Closes: #166459)
+    - gnus-eyecandy.el, enhance the group buffer by adding icons.
+    - gnus-filterhist.el, add a buffer which display the message filtering
+      history.
+  * emacs-goodies-el:
+    Patches:
+    - 51_newsticker_autoloads: Add autoloads for initial commands.
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Fri, 17 Oct 2003 20:43:59 -0400
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
