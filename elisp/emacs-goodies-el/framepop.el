@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 19:12:26 $
-;; Version: $Revision: 1.6 $
-;; RCS-Id: $Id: framepop.el,v 1.6 2003/10/02 19:12:26 psg Exp $
+;; Modified: $Date: 2003/10/02 19:22:16 $
+;; Version: $Revision: 1.7 $
+;; RCS-Id: $Id: framepop.el,v 1.7 2003/10/02 19:22:16 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,11 +177,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.6 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.7 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.6 2003/10/02 19:12:26 psg Exp $")
+$Id: framepop.el,v 1.7 2003/10/02 19:22:16 psg Exp $")
 
 ;;; Customizable variables at end
 
@@ -224,7 +224,7 @@ The key F2 is suggested."
   :set (lambda (symbol value)
          (set-default symbol value)
          (if value
-             (eval `(define-key global-map (kbd ,value) framepop-map)))))
+             (define-key global-map (read-kbd-macro value) framepop-map))))
 
 (defcustom framepop-use-advice 'automatic
   "Whether to use `advice' to extend Framepop functionality"
