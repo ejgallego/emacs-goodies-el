@@ -1,0 +1,40 @@
+Emacs Goodies for Debian
+------------------------
+
+This package is created from the `emacs-goodies-el' Debian source package,
+which contains a number of Emacs-Lisp files that provide various added
+functions to Emacs and/or Gnus.  The source package creates the following
+binary packages:
+
+ emacs-goodies-el: Miscellaneous add-ons for Emacs
+ emacs-goodies-extra-el:
+                   Miscellaneous add-ons for Emacs with extra dependencies 
+ gnus-bonus-el:    Miscellaneous add-ons for Gnus
+ debbugs-el:       Access the Debian BTS from within Emacs
+ dpkg-dev-el:      Emacs-related Debian development helpers
+ devscripts-el:    Emacs wrappers for the commands in devscripts
+
+  The numbering scheme for all packages follows the source package scheme:
+the major revision number changes when adding or removing files or binary
+packages to this source package; the minor revision number changes when
+these files have a new upstream release; Debian revision is for packaging
+only.
+
+  The file you're currently reading is mostly meant as an introductory
+starter for the various goodies included in the various binary packages
+obtained from this source package.  It does not intend to replace reading
+the documentation that is made available in the files themselves (or not
+available at all, except insofar as code is self-documenting).
+
+Introduction to files in debbugs-el
+-----------------------------------
+
+debian-bug.el provides M-x debian-bug (and variants), to submit bugs
+to the Debian bug tracking system.
+
+gnus-BTS.el makes bug numbers clickable in messages viewed in Gnus.
+It expects to see bug references in the form of (for example):
+"#48273", "closes: 238742" or similar.  To use, add the following to
+your .gnus: "(require 'gnus-BTS)".
+
+ -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:13:20 2003

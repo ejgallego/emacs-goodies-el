@@ -1,0 +1,64 @@
+Emacs Goodies for Debian
+------------------------
+
+This package is created from the `emacs-goodies-el' Debian source package,
+which contains a number of Emacs-Lisp files that provide various added
+functions to Emacs and/or Gnus.  The source package creates the following
+binary packages:
+
+ emacs-goodies-el: Miscellaneous add-ons for Emacs
+ emacs-goodies-extra-el:
+                   Miscellaneous add-ons for Emacs with extra dependencies 
+ gnus-bonus-el:    Miscellaneous add-ons for Gnus
+ debbugs-el:       Access the Debian BTS from within Emacs
+ dpkg-dev-el:      Emacs-related Debian development helpers
+ devscripts-el:    Emacs wrappers for the commands in devscripts
+
+  The numbering scheme for all packages follows the source package scheme:
+the major revision number changes when adding or removing files or binary
+packages to this source package; the minor revision number changes when
+these files have a new upstream release; Debian revision is for packaging
+only.
+
+  The file you're currently reading is mostly meant as an introductory
+starter for the various goodies included in the various binary packages
+obtained from this source package.  It does not intend to replace reading
+the documentation that is made available in the files themselves (or not
+available at all, except insofar as code is self-documenting).
+
+Introduction to files in gnus-bonus-el
+--------------------------------------
+
+gnus-junk.el provides a semi-automated way to deal with unsolicited
+commercial e-mail (also known as "spam").  It provides the M-x
+gnus-junk-complain command (use it in your *Summary* buffer).
+
+gnus-outlook-deuglify.el removes some of the ugliness introduced by
+Outlook (and maybe other agents too) users in the quoting that appears
+in their answers.  To use: add (require 'gnus-outlook-deuglify) to
+your Gnus and you're enabled to press `W k' in the Summary Buffer.
+
+message-x.el provides customizable completion in message headers.  Add
+(require 'message-x) to your .gnus.
+
+nnir.el provides the nnir backend, to search mail with various search
+engines.  Add (require 'nnir) to your .gnus.
+
+nnmaildir.el provides the nnmaildir backend.  Add (require 'nnmaildir)
+to your .gnus.
+
+nnnil.el provides an empty, read-only backend for Gnus.  This backend
+is suitable for use as the primary server when real servers are to be
+secondary or foreign.  Add (require 'nnnil) to your .gnus.
+
+nntodo.el provides a backend to manage todo items with Gnus.  Each
+todo item is a message.  Add (require 'nntodo) to your .gnus.
+
+spam-stat.el performs spam detection based on statistics.  To use, add
+(require 'spam-stat) and (spam-stat-load) to your .gnus file, use the
+spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
+(or spam-stat-buffer-change-to-spam and
+spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
+add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
+
+ -- Peter S Galbraith <psg@debian.org>, Sat Sep 20 19:11:17 2003
