@@ -1,4 +1,4 @@
-emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.0-1) unstable; urgency=low
 
   * emacs-goodies-el:
     - toggle-buffer.el renamed to joc-toggle-buffer.el
@@ -68,7 +68,7 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
   * make-orig.sh bug fix: "cvs .# files in source package", thanks to
     Kevin Ryde for reporting it (Closes: #221940).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Sun,  7 Dec 2003 14:38:09 -0500
 
 emacs-goodies-el (23.1-1) unstable; urgency=low
 
