@@ -15,6 +15,8 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
       exists on woody XEmacs. Fixes Bug "M-x newsticker-start crashes",
       reported by Volker Linke and fixed thanks to advice from Matt Hodges
       (Closes: #216233).
+    - 50_projects: Make projects.el less intrusive by default.  Rename
+      commands to have `project-' prefix.
   * devscripts-el: (Prepared by Junichi Uekawa)
     - implement 'debdiff'
     - devscripts-el.README.Debian: update to reflect latest changes.

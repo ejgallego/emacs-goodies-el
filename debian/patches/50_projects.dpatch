@@ -1,0 +1,220 @@
+#!/bin/sh -e
+## 50_projects.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Make projects.el less intrusive by default.
+
+if [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+       -patch) patch $patch_opts -p1 < $0;;
+       -unpatch) patch $patch_opts -p1 -R < $0;;
+        *)
+                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+                exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/projects.el emacs-goodies-el/elisp/emacs-goodies-el/projects.el
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/projects.el	2003-10-07 19:18:26.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/projects.el	2003-10-27 21:23:47.000000000 -0500
+@@ -1,6 +1,8 @@
+ ;;; projects.el -- Project-based buffer name management
+ 
+ ;; Copyright 1998 Naggum Software
++;; Copyright 2003 Peter S Galbraith <psg@debian.org>
++;;  (Erik, please contact me for copyright assignment back to you.  -psg)
+ 
+ ;; Author: Erik Naggum <erik@naggum.no>
+ ;; Keywords: internal
+@@ -33,19 +35,20 @@
+ ;; define what looks suspiciously like logical pathname hosts from Common
+ ;; Lisp and get abbreviated yet meaningful buffer names in the modeline.
+ 
+-;; Commands include ADD-PROJECT, which takes a project name and a directory
+-;; (which conveniently defaults to the current directory), REMOVE-PROJECT
+-;; (which completes on existing projects), and LIST-PROJECTS, which lists
+-;; the current projects in a rudimentary table.  UPDATE-BUFFER-NAMES is
+-;; called automatically when either ADD-PROJECT or REMOVE-PROJECT changes
++;; Commands include PROJECT-ADD, which takes a project name and a directory
++;; (which conveniently defaults to the current directory), PROJECT-REMOVE
++;; (which completes on existing projects), and PROJECT-LIST, which lists the
++;; current projects in a rudimentary table.  PROJECT-UPDATE-BUFFER-NAMES is
++;; called automatically when either PROJECT-ADD or PROJECT-REMOVE changes
+ ;; the project list, but may also be called by the user as a command.
+ 
+ ;; Variables include PROJECT-ROOT-ALIST, which contains the list of current
+ ;; projects and their root directories, and two variables that control the
+-;; naming of buffers: BUFFER-NAME-DIRECTORY-LIMIT, the uppper limit on the
+-;; number of characters in the last few directory elements in the pathname
+-;; that makes up the buffer name and BUFFER-NAME-DIRECTORY-PREFIX, the
+-;; string prepended to buffer names that would be too long.
++;; naming of buffers: PROJECT-BUFFER-NAME-DIRECTORY-LIMIT, the uppper limit
++;; on the number of characters in the last few directory elements in the
++;; pathname that makes up the buffer name and
++;; PROJECT-BUFFER-NAME-DIRECTORY-PREFIX, the string prepended to buffer
++;; names that would be too long.
+ 
+ ;; Internal functions include PROJECT-BUFFER-NAME, which computes the
+ ;; buffer name from the filename argument, PROJECT-ROOT-ALIST, which
+@@ -59,12 +62,54 @@
+ ;; Loading this file is sufficient to install the package.
+ ;; Reloading has no effect.
+ 
++;;; History:
++
++;; 2003-10-27 Peter S Galbraith <psg@debian.org>
++;;
++;;  I tried to contact the author but his host is down.  I like the concept
++;;  of prefixing certain buffer names with a project name, but not renaming
++;;  all unrelated buffers with the full directory path.  This breaks MH-E
++;;  mail folder names for example.  So I'm introducing the variable
++;;  `project-rename-all-buffers' with a default of nil.  You may customize
++;;  this to obtain the old behaviour.
++;;
++;;  In addition, I am renaming commands:
++;;
++;;    `add-project'    to `project-add'
++;;    `remove-project' to `project-remove'.
++;;    `list-projects'  to `project-list'.
++;;    `update-buffer-names' to `project-update-buffer-names'
++;;
++;;  variables (also made into defcustoms):
++;;
++;;    `buffer-name-directory-limit' to `project-buffer-name-directory-limit'
++;;    `buffer-name-directory-prefix' to `project-buffer-name-directory-prefix'
++
+ ;;; Code:
+ 
+ (require 'cl)
+ 
+ (provide 'projects)
+ 
++(defgroup projects nil
++  "Project-based buffer name management."
++  :group 'convenience)
++
++(defcustom project-rename-all-buffers nil
++  "*Whether to rename buffer not belonging to a project."
++  :type 'boolean
++  :group 'projects)
++
++(defcustom project-buffer-name-directory-limit 20
++  "*Directories in buffer names are attempted kept shorter than this."
++  :type 'integer
++  :group 'projects)
++
++(defcustom project-buffer-name-directory-prefix "<"
++  "*String to prepend to an abbreviated buffer name."
++  :type 'string
++  :group 'projects)
++
+ ;; External symbols
+ 
+ (defvar project-root-alist nil
+@@ -73,22 +118,23 @@
+ The value should be the project's root directory.
+ Multiple projects in the same hierarchy is handled correctly.")
+ 
+-(defun add-project (name directory)
++;;;###autoload
++(defun project-add (name directory)
+   "Add the project named NAME with root directory DIRECTORY."
+   (interactive "sName of project: \nDDirectory of project %s: ")
+   (push (cons name directory) project-root-alist)
+   (message "Project `%s' maps to `%s'" name directory)
+-  (update-buffer-names))
++  (project-update-buffer-names))
+ 
+-(defun remove-project (name)
++(defun project-remove (name)
+   "Remove the project named NAME."
+   (interactive
+    (list (completing-read "Name of project: " project-root-alist nil t)))
+   (setf project-root-alist
+     (remove* name project-root-alist :key #'car :test #'equal))
+-  (update-buffer-names))
++  (project-update-buffer-names))
+ 
+-(defun list-projects (&optional sort-by-root)
++(defun project-list (&optional sort-by-root)
+   "List all projects sorted by project name.
+ If optional argument SORT-BY-ROOT is true, sort by project root, instead."
+   (interactive "P")
+@@ -108,13 +154,7 @@
+ 	      (terpri)))
+       (message "There are no projects."))))
+ 
+-(defvar buffer-name-directory-limit 20
+-  "*Directories in buffer names are attempted kept shorter than this.")
+-
+-(defvar buffer-name-directory-prefix "<"
+-  "*String to prepend to an abbreviated buffer name.")
+-
+-(defun update-buffer-names (&rest buffers)
++(defun project-update-buffer-names (&rest buffers)
+   "Update the name of the indicated BUFFERS.
+ Interactively, or if no buffers are given, the names of all file-visiting
+ buffers are updated according to the new value of PROJECT-ROOT-ALIST."
+@@ -148,29 +188,38 @@
+ If the file is under a project hierarchy, as determined by the variable
+ PROJECT-ROOT-ALIST, prefix its project-relative name with the name of the
+ project.  Otherwise, name the buffer like the filename, but limit the
+-directory to BUFFER-NAME-DIRECTORY-LIMIT characters by chopping off from
+-the front and prepending BUFFER-NAME-DIRECTORY-PREFIX."
++directory to PROJECT-BUFFER-NAME-DIRECTORY-LIMIT characters by chopping
++off from the front and prepending PROJECT-BUFFER-NAME-DIRECTORY-PREFIX."
+   (block name
+     (let* ((truename (file-truename (if (file-directory-p filename)
+-				      (file-name-as-directory filename)
++                                        (file-name-as-directory filename)
+ 				      filename))))
+       (loop for (name . dir) in (project-root-alist)
+ 	    when (and (>= (length truename) (length dir))
+ 		      (string= dir (substring truename 0 (length dir))))
+ 	    do (return-from name
+ 		 (concat name ":" (substring truename (length dir)))))
+-      ;; may not need to abbreviate if directory is short enough
+-      (when (<= (position ?/ (abbreviate-file-name truename) :from-end t)
+-		buffer-name-directory-limit)
+-	(return-from name (abbreviate-file-name truename)))
+-      ;; keep directories shorter than BUFFER-NAME-DIRECTORY-LIMIT.
+-      ;; prepend BUFFER-NAME-DIRECTORY-PREFIX to abbreviated names.
+-      (let* ((final (position ?/ truename :from-end t))
+-	     (start (- final buffer-name-directory-limit))
+-	     (first (or (position ?/ truename :start start :end final)
+-			(position ?/ truename :end start :from-end t)
+-			start)))
+-	(concat buffer-name-directory-prefix (subseq truename first))))))
++      (cond
++       ((not project-rename-all-buffers)
++        (let ((lastname (file-name-nondirectory filename)))
++          (if (string= lastname "")
++              (setq lastname filename))
++          lastname))
++       (t
++        ;; Old behaviour
++        ;; may not need to abbreviate if directory is short enough
++        (when (<= (position ?/ (abbreviate-file-name truename) :from-end t)
++                  project-buffer-name-directory-limit)
++          (return-from name (abbreviate-file-name truename)))
++        ;; keep directories shorter than PROJECT-BUFFER-NAME-DIRECTORY-LIMIT.
++        ;; prepend PROJECT-BUFFER-NAME-DIRECTORY-PREFIX to abbreviated names.
++        (let* ((final (position ?/ truename :from-end t))
++               (start (- final project-buffer-name-directory-limit))
++               (first (or (position ?/ truename :start start :end final)
++                          (position ?/ truename :end start :from-end t)
++                          start)))
++          (concat project-buffer-name-directory-prefix
++                  (subseq truename first))))))))
+ 
+ ;; This overrides a function in EMACS:lisp/files.el
+ 
