@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.48 2003/10/28 02:42:35 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.49 2003/10/30 01:57:53 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -102,8 +102,9 @@ be documented.
 * session::                     Session Management for Emacs
 * setnu::                       vi-style line number mode for Emacs
 * sys-apropos::                 Interface for the *nix apropos command.
-* table::                       Create and edit WYSIWYG embedded tables
-* tail::                        Tail files within Emacs
+* table::                       Create and edit WYSIWYG embedded tables.
+* tail::                        Tail files within Emacs.
+* tc::                          Cite text with proper filling in mail.
 * thinks::                      Insert text in a think bubble.
 * tld::                         TLD (Top Level Domain) lookup tool.
 * todoo::                       Major mode for editing TODO files.
@@ -129,8 +130,6 @@ because I intend to change their enabling interface soon.
 code to split customizations into different files
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
 generate bozotic mail headers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/tc.el
-cite text with proper filling
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-buffer.el
 flips back and forth between two buffers
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/toggle-case.el
@@ -2584,7 +2583,7 @@ functions.
 
 And many other individuals who reported bugs and suggestions.
 
-@node tail, thinks, table, Top
+@node tail, tc, table, Top
 @chapter tail - Tail files within Emacs
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -2602,7 +2601,33 @@ Tails FILE specified with argument FILE inside a new buffer.
 Tails COMMAND with arguments ARGS inside a new buffer.
 @end table
 
-@node thinks, tld, tail, Top
+@node tc, thinks, tail, Top
+@chapter tc - trivial-cite -- cite text with proper filling in mail
+
+@noindent Author: Lars R. Clausen <lrclause@@cs.uiuc.edu>
+
+This package makes gnus and MH-E produce nicely nested citations of
+replied-to messages.
+
+No, I will not make it quote with name abbreviations like SuperCite does.
+That style is annoying and unreadable, goes against the RFC's (or rather,
+the sons of them:), and have generally been the most problematic thing to
+deal with.  Trivial-cite can handle them, but is better at 'normal'
+citation marking.
+
+To use, add the following to your .emacs:
+
+@verbatim
+;; For Gnus:
+(setq message-cite-function 'trivial-cite)
+
+;; For MH-E
+(add-hook 'mail-citation-hook 'trivial-cite)
+(setq mh-yank-from-start-of-msg t)
+;; -> then use `C-cC-y' in your draft.
+@end verbatim
+
+@node thinks, tld, tc, Top
 @chapter thinks - Insert text in a think bubble.
 
 @noindent Author Dave Pearson <davep@@davep.org>
