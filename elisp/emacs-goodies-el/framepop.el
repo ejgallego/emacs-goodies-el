@@ -9,9 +9,9 @@
 ;;  you are willing to do the same.  Contact me if you want to *actively*
 ;;  maintain this file.)
 ;; Created: 8 Oct 1993 by David Smith
-;; Modified: $Date: 2003/10/02 19:22:16 $
-;; Version: $Revision: 1.7 $
-;; RCS-Id: $Id: framepop.el,v 1.7 2003/10/02 19:22:16 psg Exp $
+;; Modified: $Date: 2003/10/02 19:32:25 $
+;; Version: $Revision: 1.8 $
+;; RCS-Id: $Id: framepop.el,v 1.8 2003/10/02 19:32:25 psg Exp $
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -177,11 +177,11 @@
 
 ;;; Code:
 
-(defconst framepop-version (substring "$Revision: 1.7 $" 11 -2)
+(defconst framepop-version (substring "$Revision: 1.8 $" 11 -2)
   "The revision number of the framepop package.
 
 The complete RCS ID is:
-$Id: framepop.el,v 1.7 2003/10/02 19:22:16 psg Exp $")
+$Id: framepop.el,v 1.8 2003/10/02 19:32:25 psg Exp $")
 
 ;;; Customizable variables at end
 
@@ -214,6 +214,26 @@ $Id: framepop.el,v 1.7 2003/10/02 19:22:16 psg Exp $")
            (framepop-disable))))
 
 (defvar framepop-map nil)
+(if framepop-map nil
+  (setq framepop-map (make-sparse-keymap))
+  (define-key framepop-map "?" 'framepop-display-help)
+  (define-key framepop-map "s" 'framepop-show-frame)
+  (define-key framepop-map "k" 'framepop-kill-buffer)
+  (define-key framepop-map "d" 'framepop-delete-frame)
+  (define-key framepop-map "i" 'framepop-make-invisible-frame)
+  (define-key framepop-map "w" 'framepop-resize-frame)
+  (define-key framepop-map "g" 'framepop-grow)
+  (define-key framepop-map "c" 'framepop-copy-frame)
+  (define-key framepop-map "/" 'framepop-pull-down)
+  (define-key framepop-map ">" 'framepop-eob)
+  (define-key framepop-map "<" 'framepop-bob)
+  (define-key framepop-map "v" 'framepop-scroll-frame)
+  (define-key framepop-map "l" 'framepop-lower-frame)
+  (define-key framepop-map "r" 'framepop-raise-frame)
+  (define-key framepop-map [f2] 'framepop-iconify-frame)
+  (define-key framepop-map "x" 'framepop-iconify-frame)
+  (define-key framepop-map "z" 'framepop-toggle-frame)
+  (define-key framepop-map "b" 'framepop-display-buffer))
 (defcustom framepop-enable-keybinding nil
   "Global key binding for FramePop keymap.
 The key F2 is suggested."
@@ -340,27 +360,6 @@ BUF.  If nil is returned, BUF is not displayed in the framepop frame.")
 
 (defvar framepop-last-displayed-buffer ""
   "Name of last buffer displayed in temp frame.")
-
-(if framepop-map nil
-  (setq framepop-map (make-sparse-keymap))
-  (define-key framepop-map "?" 'framepop-display-help)
-  (define-key framepop-map "s" 'framepop-show-frame)
-  (define-key framepop-map "k" 'framepop-kill-buffer)
-  (define-key framepop-map "d" 'framepop-delete-frame)
-  (define-key framepop-map "i" 'framepop-make-invisible-frame)
-  (define-key framepop-map "w" 'framepop-resize-frame)
-  (define-key framepop-map "g" 'framepop-grow)
-  (define-key framepop-map "c" 'framepop-copy-frame)
-  (define-key framepop-map "/" 'framepop-pull-down)
-  (define-key framepop-map ">" 'framepop-eob)
-  (define-key framepop-map "<" 'framepop-bob)
-  (define-key framepop-map "v" 'framepop-scroll-frame)
-  (define-key framepop-map "l" 'framepop-lower-frame)
-  (define-key framepop-map "r" 'framepop-raise-frame)
-  (define-key framepop-map [f2] 'framepop-iconify-frame)
-  (define-key framepop-map "x" 'framepop-iconify-frame)
-  (define-key framepop-map "z" 'framepop-toggle-frame)
-  (define-key framepop-map "b" 'framepop-display-buffer))
 
 (defvar framepop-frame nil)
 
