@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.37 2003/10/08 01:52:25 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.38 2003/10/08 15:22:06 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -99,6 +99,7 @@ be documented.
 * protocols::                   Protocol database access functions.
 * services::                    Services database access functions.
 * session::                     Session Management for Emacs
+* sys-apropos::                 Interface for the *nix apropos command.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -118,8 +119,6 @@ Project-based buffer name management
 vi-style line number mode for Emacs
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/silly-mail.el
 generate bozotic mail headers
-@item /usr/share/emacs/site-lisp/emacs-goodies-el/sys-apropos.el
-Interface for the *nix apropos command.
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/table.el
 create and edit WYSIWYG text based embedded tables
 @item /usr/share/emacs/site-lisp/emacs-goodies-el/tail.el
@@ -1599,7 +1598,7 @@ Clear the protocols \"cache\".
 This package (services.el) provides a set of functions for accessing
 the services details list.
 
-@node session,  , services, Top
+@node session, sys-apropos, services, Top
 @chapter session - Session Management for Emacs
 
 When you start Emacs, package Session restores various variables (e.g.,
@@ -1656,9 +1655,9 @@ interesting anymore.
 Details of Package Session
 
 @menu
-* Session Menus and Key-Bindings::  
-* Saving Session Variables::    
-* Storing Buffer Places::       
+* Session Menus and Key-Bindings::
+* Saving Session Variables::
+* Storing Buffer Places::
 @end menu
 
 @node Session Menus and Key-Bindings, Saving Session Variables, session, session
@@ -1752,3 +1751,19 @@ stored. Use @command{M-x session-toggle-permanent-flag} or select the
 corresponding menu item in the new submenu @code{Open...recently changed}.
 
 @end itemize
+
+@node sys-apropos,  , session, Top
+@chapter sys-apropos - Interface for the *nix apropos command.
+
+@noindent Author: Henrik Enberg <henrik@@enberg.org>
+
+@noindent Commands:
+
+@table @samp
+@item sys-apropos
+Ask the system apropos command for man-pages matching QUERY.
+@end table
+
+Do @command{M-x sys-apropos} and you're off.  In the *System Apropos*
+buffer, @key{RET} shows the manual page for the program on that line and
+@key{q} or @key{C-c C-c} quits the whole shebang.
