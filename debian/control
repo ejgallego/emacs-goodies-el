@@ -2,7 +2,7 @@ Source: emacs-goodies-el
 Section: editors
 Priority: optional
 Maintainer: Peter S Galbraith <psg@debian.org>
-Uploaders: Roland Mas <lolando@debian.org>
+Uploaders: Roland Mas <lolando@debian.org>, Jerome Marant <jerome@debian.org>
 Build-Depends-Indep: debhelper (>= 4.0.0), dpatch (>=1.5), texinfo
 Standards-Version: 3.6.1
 
