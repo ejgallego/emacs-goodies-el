@@ -1,0 +1,91 @@
+@c -*- mode: texinfo -*-
+\input texinfo
+
+@c $Id: emacs-goodies-extra-el.texi,v 1.1 2003/09/24 02:14:30 psg Exp $
+@c %**start of header
+@setfilename info/emacs-goodies-extra-el
+@settitle Emacs-Goodies-extra-el
+@c %**end of header
+
+@dircategory Emacs
+@direntry
+* Emacs-Goodies-extra-el: (emacs-goodies-extrael). Misc add-ons for Emacs
+@end direntry
+
+@c Version variables.
+@set EDITION 1.0
+@set UPDATED 23 Sept 2003
+
+@ifinfo
+This is Edition @value{EDITION}, last updated @value{UPDATED}, of
+@cite{Emacs-Goodies-extra-el}.
+@end ifinfo
+
+@titlepage
+@title Emacs-Goodies-extra-el: Miscellaneous add-ons for Emacs
+@subtitle A manual for what's in this package.
+@author Peter S. Galbraith
+@end titlepage
+
+@node Top, dict, (dir), (dir)
+@top The Emacs-Goodies-el Package Setup
+
+This manual describes the Emacs-Goodies-extra-el package and its
+setup.  A quick descriptions of elisp files contained in this package
+can be found in the file
+@file{/usr/share/doc/emacs-goodies-extra-el/README.Debian}.
+
+All packaged files are installed, setup and ready to use if they don't
+override standard Emacs commands, modes, or settings.
+
+To customize setup of all customizable packages on a finer-grain
+basis, do:
+@example
+@kbd{M-x} customize-group @key{RET} emacs-goodies-extra-el @key{RET}
+@end example
+
+@menu
+* dict::                        Emacs interface to dict client
+@end menu
+
+This work compiles GPL'ed documentation from the files in
+/usr/share/emacs/site-lisp/emacs-goodies-extra-el/.  As a derived work
+from GPL'ed works, this text is also licensed under the GPL V2 (See
+/usr/share/common-licenses/GPL-2) and is edited by Peter S. Galbraith
+@email{psg@@debian.org}.
+
+@node dict,  , Top, Top
+@chapter dict - Emacs interface to dict client
+
+This package is an Emacs wrapper around the shell @file{dict} command
+and provides an easy and comfortable (from my point of view) access to
+the dictd server from Emacs.
+
+The package provides several key bindings, which are customisation variables, 
+so you can change them easily:
+
+@itemize @bullet
+@item
+@key{C-c d d} for running dict with options defined by
+customisation variables described below.
+
+@item
+@key{C-c d r} for running dict on region as a single word.
+
+@item
+@key{C-c d m} for running dict on every word in the region.
+
+@item
+@key{C-c d s} for running dict to perform search on the given server.
+
+@item
+@key{C-c d w} for running wordinspect GUI dict client.
+@end itemize
+
+Descriptions of all customisation variables are given below in their 
+definitions, and of cause you can find them in the customization of
+the grou @code{Dict}.
+
+I hope you find the program usefull. And also I would like to know
+your opinion about the program, improvement suggestions and of cause
+bug reports.  Mail them to max-appolo@@mail.ru
