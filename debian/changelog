@@ -1,3 +1,11 @@
+emacs-goodies-el (24.1-1) unstable; urgency=low
+
+  * debian-el:
+    - apt-sources.el: Remove problematic requirement on autoinsert.el
+      since it's not needed and upstream said he had removed it (but hadn't).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue,  9 Dec 2003 23:31:07 -0500
+
 emacs-goodies-el (24.0-1) unstable; urgency=low
 
   * emacs-goodies-el:
