@@ -137,7 +137,7 @@ It's not good for C mode because C's comments are multiline."
   t)
 
 ;; home-end.el
-(defcustom home-end-enable nil
+(defcustom home-end-enable emacs-goodies-el-defaults
   "*Define [home] and [end] keys to act differently when hit 1, 2 or 3 times."
   :type 'boolean
   :set (lambda (symbol value)
