@@ -1,6 +1,8 @@
 ;;; tail.el --- Tail files within Emacs
 
-;; Copyright (C) 2000 by Benjamin Drieu
+;; Copyright (C) 1989, 1990, 1994, 1998 Free Software Foundation, Inc.
+;; (For appt.el code)
+;; Copyright (C) 2000 Benjamin Drieu
 
 ;; Author: Benjamin Drieu <bdrieu@april.org>
 ;; Keywords: tools
@@ -22,19 +24,28 @@
 ;; Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ;; 02111-1307, USA.
 
-;;  $Id: tail.el,v 1.1 2003/04/04 20:16:15 lolando Exp $
+;;  $Id: tail.el,v 1.2 2003/10/10 01:25:14 psg Exp $
 
 ;;; Commentary:
 
-;;  This program displays ``tailed'' contents of files inside
-;;  transients windows of Emacs.  It is primarily meant to keep an eye
-;;  on logs within Emacs instead of using additional terminals.
+;;  This program displays ``tailed'' contents of files inside transients
+;;  windows of Emacs.  It is primarily meant to keep an eye on logs within
+;;  Emacs instead of using additional terminals.
 
-;;  This was developed for GNU Emacs 20.x but should work as well for
-;;  XEmacs 21.x
+;;  Historical URL for tail.el is
+;;    http://inferno.cs.univ-paris8.fr/~drieu/emacs/
+;;  Active developement URL is
+;;    http://cvs.alioth.debian.org/cgi-bin/cvsweb.cgi/emacs-goodies-el/elisp/emacs-goodies-el/?cvsroot=pkg-goodies-el
 
-;;  Primary URL for tail.el is http://inferno.cs.univ-paris8.fr/~drieu/emacs/
-
+;;; History:
+;;
+;;  2003-10-09 Peter S Galbraith <psg@debian.org>
+;;   - minor checkdoc-suggested changes.
+;;   - tail-hide-window: Bug fix. Would kill all but one window when more than
+;;      one window was visible prior to the tail window being displayed.
+;;      copied code from appt.el appt-delete-window.
+;;   - Fix boolean defcustoms.
+;;   - Make it work on XEmacs (only briefly tested).
 
 ;;; Code:
 
@@ -45,28 +56,28 @@
   :prefix "tail-"
   :group 'environment)
 
-(defcustom tail-volatile t 
-  "Use non-nil to erase previous output"
-  :options '(nil t)
+(defcustom tail-volatile t
+  "Whether to erase previous output."
+  :type 'boolean
   :group 'tail)
 
-(defcustom tail-audible nil 
-  "Use non-nil to produce a bell when some output is displayed"
-  :options '(nil t)
+(defcustom tail-audible nil
+  "Whether to produce a bell when some output is displayed."
+  :type 'boolean
   :group 'tail)
 
-(defcustom tail-raise nil 
-  "Use non-nil to raise current frame when some output is displayed (could be *very* annoying)"
-  :options '(nil t)
+(defcustom tail-raise nil
+  "Whether to raise current frame when displaying (could be *very* annoying)."
+  :type 'boolean
   :group 'tail)
 
-(defcustom tail-hide-delay 5 
-  "Time in seconds before a tail window is deleted"
+(defcustom tail-hide-delay 5
+  "Time in seconds before a tail window is deleted."
   :type 'integer
   :group 'tail)
 
-(defcustom tail-max-size 5 
-  "Maximum size of the window"
+(defcustom tail-max-size 5
+  "Maximum size of the window."
   :type 'integer
   :group 'tail)
 
@@ -75,9 +86,9 @@
 
 ;; Taken from calendar/appt.el
 (defun tail-disp-window (tail-buffer tail-msg)
-  "Display some content specified by ``tail-msg'' inside buffer
-``tail-msg''.  Create this buffer if necessary and put it inside a
-newly created window on the lowest side of the frame."
+  "Display some content specified by TAIL-MSG inside buffer TAIL-BUFFER.
+Create this buffer if necessary and put it inside a newly created window on
+the lowest side of the frame."
 
   (require 'electric)
 
@@ -85,11 +96,11 @@ newly created window on the lowest side of the frame."
   ;; before splitting the window.
 
   (if (equal (selected-window) (minibuffer-window))
-      (if (other-window 1) 
+      (if (other-window 1)
 	  (select-window (other-window 1))
 	(if window-system
 	    (select-frame (other-frame 1)))))
-      
+
   (let* ((this-buffer (current-buffer))
 	 (this-window (selected-window))
 	 (tail-disp-buf (set-buffer (get-buffer-create tail-buffer))))
@@ -97,8 +108,10 @@ newly created window on the lowest side of the frame."
     (if (cdr (assq 'unsplittable (frame-parameters)))
 	;; In an unsplittable frame, use something somewhere else.
 	(display-buffer tail-disp-buf)
-      (unless (or (special-display-p (buffer-name tail-disp-buf)) ; special-display-p incompatible avec xemacs
-		  (same-window-p (buffer-name tail-disp-buf))
+      (unless (or (and (fboundp 'special-display-p)
+                       (special-display-p (buffer-name tail-disp-buf)))
+                  (and (fboundp 'same-window-p)
+                       (same-window-p (buffer-name tail-disp-buf)))
 		  (get-buffer-window tail-buffer))
 	;; By default, split the bottom window and use the lower part.
 	(tail-select-lowest-window)
@@ -122,62 +135,59 @@ newly created window on the lowest side of the frame."
     (if tail-hide-delay
 	(run-with-timer tail-hide-delay nil 'tail-hide-window tail-buffer))))
 
-
-(defun tail-hide-window (buffer)   
-  (delete-window (get-buffer-window buffer t)))	; TODO: cancel timer when some output comes during that time
-
+(defun tail-hide-window (buffer)
+  ;; TODO: cancel timer when some output comes during that time
+  (let ((window (get-buffer-window buffer t)))
+    (and window
+	 (or (eq window (frame-root-window (window-frame window)))
+	     (delete-window window)))))
 
 (defun tail-select-lowest-window ()
   "Select the lowest window on the frame."
-  (let* ((lowest-window (selected-window))
-	 (bottom-edge (car (cdr (cdr (cdr (window-edges))))))
-         (last-window (previous-window))
-         (window-search t))
-    (while window-search
-      (let* ((this-window (next-window))
-	     (next-bottom-edge (car (cdr (cdr (cdr 
-					       (window-edges this-window)))))))
-	(if (< bottom-edge next-bottom-edge)
-	    (progn
-	      (setq bottom-edge next-bottom-edge)
-	      (setq lowest-window this-window)))
-
-	(select-window this-window)
-	(if (eq last-window this-window)
-	    (progn
-	      (select-window lowest-window)
-	      (setq window-search nil)))))))
-
+  (if (fboundp 'frame-lowest-window)
+      (select-window (frame-lowest-window))
+    (let* ((lowest-window (selected-window))
+           (bottom-edge (car (cdr (cdr (cdr (window-edges))))))
+           (last-window (previous-window))
+           (window-search t))
+      (while window-search
+        (let* ((this-window (next-window))
+               (next-bottom-edge (cadr (cddr (window-edges this-window)))))
+          (when (< bottom-edge next-bottom-edge)
+            (setq bottom-edge next-bottom-edge)
+            (setq lowest-window this-window))
+          (select-window this-window)
+          (when (eq last-window this-window)
+            (select-window lowest-window)
+            (setq window-search nil)))))))
 
 (defun tail-file (file)
-  "Tails file specified with argument ``file'' inside a new buffer.
+  "Tails FILE specified with argument ``file'' inside a new buffer.
 ``file'' *cannot* be a remote file specified with ange-ftp syntaxm
 because it is passed to the Unix tail command."
   (interactive "Ftail file: ")
-  (tail-command "tail" "-f" file)) ; TODO: what if file is remote (i.e. via ange-ftp)
-  
+  ;; TODO: what if file is remote (i.e. via ange-ftp)
+  (tail-command "tail" "-f" file))
 
 (defun tail-command (command &rest args)
-  "Tails command specified with argument ``command'', with arguments
-``args'' inside a new buffer.  It is also called by tail-file"
+  "Tails COMMAND with arguments ARGS inside a new buffer.
+It is also called by `tail-file'"
   (interactive "sTail command: \neToto: ")
-  (let ((process 
+  (let ((process
 	 (apply 'start-process-shell-command
-		command 
-		(concat "*Tail: " 
-			command 
+		command
+		(concat "*Tail: "
+			command
 			(if args " " "")
-			(mapconcat 'identity args " ") 
+			(mapconcat 'identity args " ")
 			"*")
-		command 
-		args)))     
+		command
+		args)))
     (set-process-filter process 'tail-filter)))
-  
 
 (defun tail-filter (process line)
   "Tail filter called when some output comes."
   (tail-disp-window (process-buffer process) line))
-
 
 (provide 'tail)
 
