@@ -8,6 +8,7 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
   * emacs-goodies-extra-el:
     - Re-introduce a harmless 50emacs-goodies-extra-el.el file since old one
       not removed in dist-upgrade.
+    - tc.el: upstream-approved edits.  Includes new cite attribution string.
   * dpkg-dev-el:
     - Edits *all* elisp files in package to add autoload tags.
     - Create `dpkg-dev-el.el' and `dpkg-dev-el-loaddefs.el' startup files
