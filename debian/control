@@ -16,17 +16,23 @@ Description: Miscellaneous add-ons for Emacs
  This package contains:
   align-string - align string components over several lines;
   all - edit all lines matching a given regexp;
+  apache-mode - major mode for editing Apache configuration files;
+  ascii - ASCII code display for character under point;
   auto-fill-inhibit - finer grained control over auto-fill-mode;
   bar-cursor - change your cursor to a bar instead of a block;
   boxquote - quote texts in nice boxes;
+  browse-huge-tar - browse tar files without reading them memory;
   browse-kill-ring - browse, search, modify the kill ring;
   clipper - save strings of data for further use;
+  ctypes.el - enhanced Font lock support for custom defined types;
   coffee - now Emacs can even brew coffee;
   cyclebuffer - select buffer by cycling through;
+  dedicated - make a window dedicated to a single buffer;
   df - display in the mode line space left on devices;
   dict - wrapper around the 'dict' command. (Depends on bash and dict)
   diminish - shorten or erase modeline presence of minor modes;
   dirvars - provides directory-wide local variables;
+  edit-env - display, edit, delete and add environment variables;
   egocentric - highlight your name inside emacs buffers;
   ff-paths - $PATH-like searching in C-x C-f;
   filladapt - enhances Emacs's built-in adaptive fill;
@@ -41,19 +47,25 @@ Description: Miscellaneous add-ons for Emacs
   initsplit - split customizations into different files;
   keydef - a simpler way to define key mappings;
   keywiz - Emacs key sequence quiz;
+  lcomp - list-completion hacks;
   map-lines - map a command over lines matching a regexp;
+  marker-visit - navigate through a buffer's marks in order;
+  minibuffer-complete-cycle - cycle through the *Completions* buffer;
   mutt-alias - lookup and insert the expansion of mutt mail aliases;
   muttrc-mode - major mode for editing Mutt config files;
   newsticker - a newsticker for Emacs. (Depends on wget)
   nuke-trailing-whitespace - kill the trailing blanks at end of lines;
   obfusurl - obfuscate an URL;
+  pack-windows - resize all windows to display as much info as possible;
   perldoc - show help for Perl functions and modules. (Depends on perl-doc)
   projects - create project-based meaningful buffer names;
   prot-buf - protect buffers from accidental killing;
   protocols - perform lookups in /etc/protocols;
+  rfcview - view IETF RFCs with readability-improved formatting;
   services - perform lookups in /etc/services;
-  session - menu to restore files visited in previous editing session.
+  session - menu to restore files visited in previous editing session;
   setnu - setnu-mode, a vi-style line number mode;
+  shell-command - enables tab-completion for shell-command;
   silly-mail - generate bozotic mail headers;
   sys-apropos - interface for the *nix apropos command;
   table - create and edit WYSIWYG text based embedded tables;

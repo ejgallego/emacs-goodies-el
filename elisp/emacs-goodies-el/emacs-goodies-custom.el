@@ -5,6 +5,23 @@
 ;;
 ;;; Code:
 
+(defgroup apache-mode nil
+  "Major mode for editing Apache configuration files."
+  :group 'programming
+  :link '(custom-manual "(emacs-goodies-el)apache-mode")
+  :load 'apache-mode
+;;:require 'apache-mode
+  :group 'emacs-goodies-el)
+
+(defgroup ascii nil
+  "ASCII code display"
+  :link '(emacs-library-link :tag "Source Lisp File" "ascii.el")
+  :prefix "ascii-"
+  :group 'data
+  :link '(custom-manual "(emacs-goodies-el)ascii")
+  :load 'ascii
+  :group 'emacs-goodies-el)
+
 ;; bar-cursor
 (defgroup bar-cursor nil
   "switch block cursor to a bar."
@@ -32,6 +49,14 @@
   :link '(custom-manual "(emacs-goodies-el)browse-kill-ring")
   :load 'browse-kill-ring
 ;;:require 'browse-kill-ring
+  :group 'emacs-goodies-el)
+
+;; ctypes
+(defgroup ctypes nil
+  "Enhanced Font lock support for custom defined types."
+  :group 'programming
+  :link '(custom-manual "(emacs-goodies-el)ctypes")
+  :load 'ctypes
   :group 'emacs-goodies-el)
 
 ;; df
@@ -101,6 +126,15 @@
   :link '(custom-manual "(emacs-goodies-el)floatbg")
   :load 'floatbg
 ;;:require 'floatbg
+  :group 'emacs-goodies-el)
+
+;; folding
+(defgroup folding nil
+  "Managing buffers with Folds."
+  :group 'tools
+  :link '(custom-manual "(emacs-goodies-el)folding")
+  :load 'folding
+;;:require 'folding
   :group 'emacs-goodies-el)
 
 ;; framepop
@@ -187,6 +221,23 @@ selectable views (limits)."
 ;;:require 'keywiz
   :group 'emacs-goodies-el)
 
+;; lcomp
+(defgroup lcomp nil
+  "list-completion hacks."
+  :group 'completion
+  :link '(custom-manual "(emacs-goodies-el)lcomp")
+  :load 'lcomp
+  :group 'emacs-goodies-el)
+
+;; minibuffer-complete-cycle
+(defgroup minibuffer-complete-cycle nil
+  "Cycle through the *Completions* buffer."
+  :group 'completion
+  :link '(custom-manual "(emacs-goodies-el)minibuffer-complete-cycle")
+  :load 'minibuffer-complete-cycle
+;;:require 'minibuffer-complete-cycle
+  :group 'emacs-goodies-el)
+
 ;; mutt-alias
 (defgroup mutt-alias nil
   "Lookup mutt mail aliases."
@@ -226,6 +277,14 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'nuke-trailing-whitespace
   :group 'emacs-goodies-el)
 
+;; pack-windows
+(defgroup pack-windows nil
+  "Resize all windows to display as much info as possible."
+  :group 'convenience
+  :link '(custom-manual "(emacs-goodies-el)pack-windows")
+  :load 'pack-windows
+  :group 'emacs-goodies-el)
+
 ;; perldoc
 (defgroup perldoc nil
   "Show help for Perl functions, builtins, and modules."
@@ -253,6 +312,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'protbuf
   :group 'emacs-goodies-el)
 
+;; rfcview
+(defgroup rfcview nil
+  "View IETF RFC files with formatting."
+  :group  'hypermedia
+  :prefix "rfcview-"
+  :link '(custom-manual "(emacs-goodies-el)rfcview")
+  :load 'rfcview
+  :group 'emacs-goodies-el)
+
 ;; session
 (defgroup session nil
   "Use variables, registers and buffer places across sessions."
@@ -270,6 +338,14 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   "vi-style line number mode for Emacs."
   :link '(custom-manual "(emacs-goodies-el)setnu")
   :load 'setnu
+  :group 'emacs-goodies-el)
+
+;; shell-command
+(defgroup shell-command nil
+  "Enable Tab completions for `shell-command' and related commands."
+  :group 'shell
+  :link '(custom-manual "(emacs-goodies-el)shell-command")
+  :load 'shell-command
   :group 'emacs-goodies-el)
 
 ;; table

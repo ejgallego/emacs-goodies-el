@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.50 2003/11/03 01:44:38 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.51 2003/11/17 19:41:40 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -13,8 +13,8 @@
 @end direntry
 
 @c Version variables.
-@set EDITION 1.0
-@set UPDATED 8 May 2003
+@set EDITION 1.1
+@set UPDATED 14 Nov 2003
 
 @ifinfo
 This is Edition @value{EDITION}, last updated @value{UPDATED}, of
@@ -65,20 +65,28 @@ be documented.
 @menu
 * align-string::                Align string components over several lines
 * all::                         Edit all lines matching a given regexp
+* apache-mode::                 Major mode for Apache configuration files
 * auto-fill-mode-inhibit::      auto-fill-mode (de)activation
+* ascii::                       ASCII code display for character under point
 * bar-cursor::                  Switch block cursor to a bar
 * boxquote::                    Quote text with a semi-box
+* browse-huge-tar::             Browse files in a tarball memory-efficiently
 * browse-kill-ring::            Interactively insert items from kill-ring
 * coffee::                      Submit BREW request to RFC2324-compliant device
 * clipper::                     Save strings of data for further use
+* ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
+* dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
 * dict::                        Emacs interface to dict client
 * diminish::                    Diminish minor-mode's display
 * dirvars::                     Local variables that apply to entire directory
+* edit-env::                    Display and edit environment variables
+* egocentric::                  Highlight your name inside emacs buffers
 * ff-paths::                    Searches certain paths to find files
 * filladapt::                   Adaptively set fill-prefix
 * floatbg::                     Slowly modify background color
+* folding::                     A folding-editor-like minor mode
 * framepop::                    Display temporary buffers in a dedicated frame
 * highlight-beyond-fill-column::  Fontify beyond the fill-column
 * highlight-completion::        Completion with highlighted provisional text
@@ -88,31 +96,77 @@ be documented.
 * ibuffer::                     Operate on buffers like dired
 * keydef::                      A simpler way to define keys, with kbd syntax
 * keywiz::                      Emacs key sequence quiz
+* lcomp::                       list-completion hacks
 * map-lines::                   Map a command over many lines
-* mutt-alias::                  Lookup/insert mutt mail aliases.
+* marker-visit::                Navigate through a buffer's marks in order
+* minibuffer-complete-cycle::   Cycle through the *Completions* buffer
+* mutt-alias::                  Lookup/insert mutt mail aliases
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
 * newsticker::                  A Newsticker for Emacs
 * nuke-trailing-whitespace::    Strip trailing whitespace from buffers
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
-* perldoc::                     Show help for Perl functions and modules.
-* projects::                    Project-based buffer name management.
+* pack-window::                 Resize windows to display maximal information
+* perldoc::                     Show help for Perl functions and modules
+* projects::                    Project-based buffer name management
 * protbuf::                     Protect buffers from accidental killing
-* protocols::                   Protocol database access functions.
-* services::                    Services database access functions.
+* protocols::                   Protocol database access functions
+* rfcview::                     View IETF RFCs with improved formatting
+* services::                    Services database access functions
 * session::                     Session Management for Emacs
 * setnu::                       vi-style line number mode for Emacs
-* sys-apropos::                 Interface for the *nix apropos command.
-* table::                       Create and edit WYSIWYG embedded tables.
-* tail::                        Tail files within Emacs.
-* tc::                          Cite text with proper filling in mail.
-* thinks::                      Insert text in a think bubble.
-* tld::                         TLD (Top Level Domain) lookup tool.
-* todoo::                       Major mode for editing TODO files.
+* shell-command::               enables tab-completion for `shell-command'
+* sys-apropos::                 Interface for the *nix apropos command
+* table::                       Create and edit WYSIWYG embedded tables
+* tail::                        Tail files within Emacs
+* tc::                          Cite text with proper filling in mail
+* thinks::                      Insert text in a think bubble
+* tld::                         TLD (Top Level Domain) lookup tool
+* todoo::                       Major mode for editing TODO files
 * toggle-option::               Easily toggle frequently toggled options
-* twiddle::                     Cute mode-line display hack.
+* twiddle::                     Cute mode-line display hack
 * under::                       Underline with the ^ character
-* wdired::                      Rename files by editing in dired buffers.
-* xrdb-mode::                   Mode for editing X resource database files.
+* wdired::                      Rename files by editing in dired buffers
+* xrdb-mode::                   Mode for editing X resource database files
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+folding - A folding-editor-like minor mode.
+
+* folding Installation::        
+* folding documentation::       
+* folding custom::              
+* folding examples::            
+
+framepop - display temporary buffers in a dedicated frame
+
+* announcement::                Announcement on gnu-emacs-sources
+* Purpose::                     What's it's for
+* Quick Setup::                 Get going within a minute
+* Customization::               Extra settings
+* For elisp hackers::           More extra seetings for teh adventurous
+* Bugs::                        Or limitations
+
+session - Session Management for Emacs
+
+* Session Menus and Key-Bindings::  
+* Saving Session Variables::    
+* Storing Buffer Places::       
+
+table - Create and edit WYSIWYG text based embedded tables
+
+* table introduction::          
+* table background::            
+* table getting started::       
+* table keymap::                
+* table menu::                  
+* table function advising::     
+* Definition of tables and cells::  
+* Cell contents formatting::    
+* Cell Justification::          
+* Acknowledgments::             
+
+@end detailmenu
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -141,7 +195,7 @@ toggles case at point
 
 This elisp file is not documented.  The commands are:
 
-@itemize @bullet
+@table @samp
 @item align-string
 
   Align first occurrence of REGEXP in each line of region.  If given a
@@ -152,10 +206,9 @@ prefix argument, align occurrence number COUNT on each line.
   Align all occurrences of REGEXP in each line of region.  That is to
 say, align the first occurrence of each line with each other, align
 the second occurence of each line with each other, and so on.
-@end itemize
+@end table
 
-
-@node all, auto-fill-mode-inhibit, align-string, Top
+@node all, apache-mode, align-string, Top
 @chapter all - Edit all lines matching a given regexp.
 
 This is an implementation of the xedit @code{all} command for GNU Emacs.
@@ -165,7 +218,20 @@ It works mostly like @code{occur} except that changes to the
 
 Type @kbd{M-x all} to try it out.
 
-@node auto-fill-mode-inhibit, bar-cursor, all, Top
+@node apache-mode, auto-fill-mode-inhibit, all, Top
+@chapter apache-mode - major mode for editing Apache configuration files
+
+@noindent Authors: Jonathan Marten  <jonathan.marten@@uk.sun.com>,
+Kevin A. Burton  <burton@@openprivacy.org>
+
+The mode provides fontification while editing Apache configuration
+files.  The list of keywords was derived from the documentation for
+Apache 1.3; there may be some errors or omissions.
+
+There are currently no local keybindings defined, but the hooks are
+there in the event that anyone gets around to adding any.
+
+@node auto-fill-mode-inhibit, ascii, apache-mode, Top
 @chapter auto-fill-mode-inhibit - auto-fill-mode (de)activation
 
 The purpose of this library is to allow the use of @command{auto-fill-mode}
@@ -181,7 +247,52 @@ You may disable @command{auto-fill-mode} on buffers with names that
 match one of a list of regular expressions by customizing the variable
 @code{auto-fill-inhibit-list}.
 
-@node bar-cursor, boxquote, auto-fill-mode-inhibit, Top
+@node ascii, bar-cursor, auto-fill-mode-inhibit, Top
+@chapter ascii - ASCII code display.
+
+@noindent Author: Vinicius Jose Latorre <vinicius@@cpqd.com.br>
+
+@noindent http://www.cpqd.com.br/~vinicius/emacs/
+
+This package provides a way to display ASCII code on a window, that is,
+display in another window an ASCII table highlighting the current character
+code.
+
+@noindent Commands:
+
+@table @samp
+@item ascii-customize
+Customize ASCII options.
+@item ascii-display
+Toggle ASCII code display.
+@item ascii-on
+Turn on ASCII code display.
+@item ascii-off
+Turn off ASCII code display.
+@end table
+
+You can also bind @command{ascii-display}, @command{ascii-on},
+@command{ascii-off} and @command{ascii-customize} to some key, like:
+
+@example
+   (global-set-key "\C-c\C-a" 'ascii-on)
+   (global-set-key "\C-c\C-e" 'ascii-off)
+   (global-set-key "\C-c\C-t" 'ascii-display)
+   (global-set-key "\C-c\C-c" 'ascii-customize)
+@end example
+
+If you're using the `mule' package, a good usage example is to activate `ascii'
+on the emacs/etc/HELLO file.
+
+
+@noindent Acknowledgments
+
+Thanks to Roman Belenov <roman@@nstl.nnov.ru> for suggestion on dynamic ascii
+table evaluation (depending on character encoding).
+
+Thanks to Alex Schroeder <asc@@bsiag.com> for suggestion on customization.
+
+@node bar-cursor, boxquote, ascii, Top
 @chapter bar-cursor - switch block cursor to a bar
 
 A simple package to convert the block cursor into a bar cursor.  In
@@ -193,7 +304,7 @@ To enable it, customize the variable @code{bar-cursor-mode}.
 
 It is also listed when you customize the group @code{emacs-goodies-el}.
 
-@node boxquote, browse-kill-ring, bar-cursor, Top
+@node boxquote, browse-huge-tar, bar-cursor, Top
 @chapter boxquote - Quote text with a semi-box.
 
 boxquote provides a set of functions for using a text quoting style that
@@ -213,7 +324,39 @@ yanking text into the current buffer.
 
 Look for the @command{@kbd{M-x} boxquote-*} commands.
 
-@node browse-kill-ring, coffee, boxquote, Top
+@node browse-huge-tar, browse-kill-ring, boxquote, Top
+@chapter browse-huge-tar - Browse files in a tarball memory-efficiently.
+
+@noindent Author: Gareth Owen <gowen@@gwowen.freeserve.co.uk>
+
+This uses tar (z)tvf to browse a gzipped tar file without opening the
+whole thing, in a dired-stylee.  Knocked together in a fit of pique
+after trying to read the xemacs source tarball in xemacs chewed through
+all my swapspace one afternoon, and as an exercise in thesis avoidance.
+
+The trade off is memory usage vs. speed.  This is very slow on large,
+compressed tarballs, and each operation is slow individually, but
+relatively low memory machines (like old 486s running one of the i386
+unices) don't handle these well with jka-compress and tar-mode either.
+XEmacs-20.4 was a 13MB gzipped tarball and the similarly packaged linux
+kernel 2.0.36 was 7MB, so the memory savings can be pretty high too.
+
+On small files the saving/price is pretty low, and
+tar-mode/jka-compress have approximately 10^13 more features, so I'd
+advise you to go that way.
+
+@noindent Commands:
+
+@table @samp
+@item browse-huge-tar-file
+Create a buffer containing a listing of FILENAME as a tar file.
+@item browse-huge-tar-view-file-at-point
+Extract the file at the point into a buffer for viewing.
+@item browse-huge-tar-copy-file-at-point
+Extract the file at the point and copy to a local file OUTFILE.
+@end table
+
+@node browse-kill-ring, coffee, browse-huge-tar, Top
 @chapter browse-kill-ring.el -  interactively insert items from kill-ring.
 
 Ever feel that @kbd{C-y M-y M-y M-y ...} is not a great way of trying
@@ -269,7 +412,7 @@ You can probably guess how coffee.el came about ...yadda yadda
 everything but make coffee ...yadda yadda ...
 @end quotation
 
-@node clipper, cyclebuffer, coffee, Top
+@node clipper, ctypes, coffee, Top
 @chapter clipper.el - Save strings of data for further use.
 
 Clipper is a way to handle 'clips' of text with some persistance via handles.
@@ -309,7 +452,194 @@ filename without its directory and without an extension.
 (global-set-key "\C-ccc" 'clipper-create)
 @end example
 
-@node cyclebuffer, df, clipper, Top
+@node ctypes, cyclebuffer, clipper, Top
+@chapter ctypes - Enhanced font-lock support for custom defined types.
+
+@noindent Author: Anders Lindgren <andersl@@andersl.com>
+
+To activate this package in the Debian emacs-goodies-el package,
+customize the group @code{ctypes}, toggle on the variable
+@code{ctypes-install} and save for future seesions.  This will enable
+the package.  Then start by using @command{ctypes-buffer} in a C file.
+
+@noindent Description.
+
+As most Emacs users know, Emacs can fontify source code buffers
+using the `font-lock' package.  Most of the time it does a really
+good job.  Unfortunately, the syntax of one of the most widely
+spread languages, C, makes it difficult to fontify variable
+declarations.  For example, what does the following line mean:
+
+@verbatim
+    hello(foo * bar);
+@end verbatim
+
+@enumerate
+@item
+A new function @code{hello} that takes one argument @code{bar} that is
+a pointer to a @code{foo}, or;
+
+@item
+call the function @code{hello} with the result of @code{foo} multiplied by
+@code{bar}.
+@end enumerate
+
+To answer the question correctly you must know whether @code{foo} is a
+type or not.  Unfortunately, font-lock has no way of knowing this.
+
+This package can search through source files hunting down typedefs.
+When found, font-lock is informed and your source code will be even
+more beautifully colored than before.
+
+Each major mode has it's own set of types.  It is possible for one
+major mode to inherit the types of another mode.
+
+Currently, this package can parse C and C++ files.  (However, since
+I do not use C++, the probability is high (about 12, on a scale
+from 1 to 12) that I've missed something).  By default C++ inherits
+the types defined for C mode.
+
+@noindent Defining types:
+
+The following commands are available to define and remove types:
+
+@table @samp
+@item ctypes-define-type
+Add a type.
+@item ctypes-define-type-in-mode
+Add a type to another major mode.
+@item ctypes-buffer
+Scan a buffer for types.
+@item ctypes-all-buffer
+Scan all buffer for types.
+@item ctypes-tags
+Search through all files in a TAGS table.
+@item ctypes-dir
+Search a directory hierarchy for files.
+@item ctypes-file
+Search in a file for types.
+@item ctypes-remove-type
+Remove one type.
+@item ctypes-remove-type-in-mode
+Remove one type in another mode.
+@item ctypes-clear-types
+Forget all types.
+@item ctypes-clear-types-all-modes
+Forget all types in all major modes.
+@end table
+
+@noindent Edit types:
+
+If you would like to view or change the types found you can use the
+function @command{ctypes-edit}.  When done press @key{C-c C-c}.
+Should you like do discard your changes just kill the buffer with
+@key{C-x k}.
+
+To edit the types for another major mode use the command
+@command{ctypes-edit-types-for-mode}.
+
+@noindent Saving types:
+
+The commands @command{ctypes-write-file} and
+@command{ctypes-read-file} can be used to save your hard-earned
+collection of types to a file and to retrieve it later.
+
+The default file name is stored in the variable @code{ctypes-file-name}.
+
+Note that only one collection of types are managed.  Should you
+prefer to keep one type file per project, remember to clear the set
+of known types (using the command @command{ctypes-clear-types-all-modes})
+before each new set is generated.
+
+@noindent At Load:
+
+It is possible to automatically add new types, or read specific
+type files, when Emacs opens a file.
+
+By adding a "Local Variables" section to the end of the file
+containing the variables @code{ctypes-add-types-at-load} and/or
+@code{ctypes-read-files-at-load} this can be accomplished.
+
+For example:
+
+@verbatim
+/*
+ * Local Variables:
+ * ctypes-add-types-at-load: ("MyType" "YourType")
+ * ctypes-read-files-at-load: (".ctypes")
+ * End:
+ */
+@end verbatim
+
+@noindent The `Auto Parse' mode:
+
+This package can automatically search for new types in all visited
+files.  Activate the minor mode @command{ctypes-auto-parse-mode} to enable
+this feature.
+
+Add the following line to your startup file to automatically
+scan all visited files:
+@example
+ (ctypes-auto-parse-mode 1)
+@end example
+
+@noindent Example 1:
+
+The following setup is for the really lazy person.  The keywords
+collected during one session will be kept for the next, and all
+visited files will be parsed in the boldly search for new types.
+I would recomend using this approach only when you are keeping all
+your types in one file.
+
+@example
+(require 'ctypes)
+(setq ctypes-write-types-at-exit t)
+(ctypes-read-file nil nil t t)
+(ctypes-auto-parse-mode 1)
+@end example
+
+@noindent Example 2:
+
+In this example, ctypes will not be not loaded until either c-mode
+or c++-mode is activated.  When loaded, ctypes will read the type
+file @file{~/.ctypes_std_c} (containing, for example, all types defined
+in the standard C header files).
+
+@example
+(defun my-c-mode-hook ()
+  (require 'ctypes)
+  (turn-on-font-lock))
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+(add-hook 'c++-mode-hook 'my-c-mode-hook)
+
+(defun my-ctypes-load-hook ()
+  (ctypes-read-file "~/.ctypes_std_c" nil t t))
+(add-hook 'ctypes-load-hook 'my-ctypes-load-hook)
+@end example
+
+@noindent CTypes, the true story:
+
+Well, brave reader, are you willing to learn what this package
+really is capable of?
+
+Basically, it is a general purpose parsing package.  The default
+settings just happened to specify a parser that looks for C
+typedefs, and that the default action is to add the types found to
+font-lock.
+
+Be redefining the variable `ctypes-mode-descriptor' you can change
+the behavior totally.  For example, you can use it to search for
+all occurrences of XX (replace XX with whatever you like) in all
+files edited in major mode YY (ditto for YY) and to perform ZZ-top
+whenever a new XX is found.  (However, it might be difficult for
+Emacs to grow a beard).
+
+I will, however, in the document string, write "search for types"
+when I really mean "Call the parser routine as specified by
+`ctypes-mode-descriptor'".  Also, I write "Informing font-lock"
+whenever I mean "Performing the default action as specified in
+@code{ctypes-mode-descriptor}".
+@node cyclebuffer, dedicated, ctypes, Top
 @chapter cyclebuffer - Select buffer by cycling through.
 
 Cyclebuffer is yet another way of selecting buffers.  Instead of
@@ -330,7 +660,25 @@ searching for.
 (global-set-key "M-P" 'cyclebuffer-backward)
 @end example
 
-@node df, dict, cyclebuffer, Top
+@node dedicated, df, cyclebuffer, Top
+@chapter dedicated - a very simple minor mode for dedicated buffers
+
+@noindent Author: Eric Crampton <eric@@atdesk.com>
+
+This minor mode allows you to toggle a window's "dedicated" flag.
+When a window is "dedicated", Emacs will not select files into that
+window. This can be quite handy since many commands will use
+another window to show results (e.g., compilation mode, starting
+info, etc.) A dedicated window won't be used for such a purpose.
+
+Dedicated buffers will have "D" shown in the mode line.
+
+Use the command:
+@example
+M-x dedicated-mode
+@end example
+
+@node df, dict, dedicated, Top
 @chapter df - display space left on partitions in the mode-line.
 
 This is a quick hack to display disk usage in the mode-line.
@@ -469,7 +817,7 @@ interface by customizing the variable @code{diminished-minor-modes}.
 The same caveat as above applies and the minor mode libraries should
 be loaded in ~/.emacs before the @code{(custom-set-variables} line.
 
-@node dirvars, ff-paths, diminish, Top
+@node dirvars, edit-env, diminish, Top
 @chapter dirvars - local variables that apply to an entire directory.
 
 Emacs allows you to specify local variable values for use when
@@ -521,7 +869,50 @@ statement to your @file{~/.emacs} file:
   (require 'dirvars)
 @end example
 
-@node ff-paths, filladapt, dirvars, Top
+@node edit-env, egocentric, dirvars, Top
+@chapter edit-env - display and edit environment variables
+
+@noindent Author: Benjamin Rutt <brutt@@bloomington.in.us>
+
+This file uses the widget library to display, edit, delete and add
+environment variables.  Inspired by @key{G c} in a gnus *Group* buffer.
+Bug reports or patches are welcome, please use the above email
+address.
+
+@noindent To use it, do:
+
+@example
+M-x edit-env
+@end example
+
+to enter the environment editor.  To change variables, simply edit
+their values in place.  To delete variables, delete their values.  To
+add variables, add a new rows to the list at the bottom by pressing
+@key{INS}; then, add a new name/value pair of the form VAR=VALUE
+(e.g. FOO=BAR).  After changing and/or deleting and/or adding
+environment variables, press the @key{done} button at the top.  Note that
+environment variable changes will only be visible to your current
+emacs session or child processes thereof.
+
+@node egocentric, ff-paths, edit-env, Top
+@chapter egocentric - highlight your name inside emacs buffers
+
+@noindent Author: Benjamin Drieu <bdrieu@@april.org>
+
+This package highlights occurrences of your own name and/or
+nickname.  Quite useful for daily kibozing.
+
+Main purpose is to be used within your favourite Emacs mailer.  To
+use egocentric.el with Gnus, simply use the following inside your
+Gnus init file.
+
+@example
+(add-hook 'gnus-article-prepare-hook 'egocentric-mode)
+(autoload 'egocentric-mode "egocentric"
+          "Highlight your name or various keywords in buffers")
+@end example
+
+@node ff-paths, filladapt, egocentric, Top
 @chapter ff-paths - searches certain paths to find files.
 
 This code allows you to use C-x C-f normally most of the time, except that
@@ -644,7 +1035,7 @@ what needs to be done.
     filladapt-token-conversion-table
 @end example
 
-@node floatbg, framepop, filladapt, Top
+@node floatbg, folding, filladapt, Top
 @chapter floatbg - slowly modify background color
 
 Floatbg slowly modifies the backgound color through an hsv color
@@ -654,7 +1045,459 @@ To enable it, customize the variable @code{floatbg-mode}.
 There are other tweaks to set in the customization group
 @code{floatbg}.
 
-@node framepop, highlight-beyond-fill-column, floatbg, Top
+@node folding, framepop, floatbg, Top
+@chapter folding - A folding-editor-like minor mode.
+
+@noindent Author:      Jamie Lokier    <jamie@@imbolc.ucc.ie>
+Jari Aalto      <jari.aalto@@poboxes.com>
+Anders Lindgren <andersl@@csd.uu.se>
+
+@noindent Preface
+
+     This package provides a minor mode, compatible with all major
+     editing modes, for folding (hiding) parts of the edited text or
+     program.
+
+     Folding mode handles a document as a tree, where each branch
+     is bounded by special markers @{@{@{ and @}@}@}. A branch can be
+     placed inside another branch, creating a complete hierarchical
+     structure.
+
+     Folding mode can CLOSE a fold, leaving only the initial `@{@{@{'
+     and possibly a comment visible.
+
+     It can also ENTER a fold, which means that only the current
+     fold will be visible, all text above `@{@{@{' and below `@}@}@}'
+     will be invisible.
+
+     Please note, that the maintainers do not recommend to use only
+     folding for you your code layout and navigation. Folding.el is
+     on its best when it can "chunk" large sections of code inside
+     folds. The larger the chunks, the more the usability of
+     folding will increase. Folding.el is not meant to hide
+     individual functions: you may be better served by hideshow.el
+     or imenu.el (which can parse the function indexes)
+
+@menu
+* folding Installation::        
+* folding documentation::       
+* folding custom::              
+* folding examples::            
+@end menu
+
+
+@node folding Installation, folding documentation, folding, folding
+@section Folding installation
+
+     The best way to use folding is to turn it on explicitely when
+     needed using @command{M-x folding-mode}.
+
+     But if you always use folding, then consider adding these lines
+     to your @file{~/.emacs} file:
+
+@example
+         (if (load "folding" 'nomessage 'noerror)
+             (folding-mode-add-find-file-hook))
+@end example
+
+     The same folding marks can be used in `vim' editor command
+     "set fdm=marker".
+
+@noindent To remove folding, call `M-x' `folding-uninstall'.
+
+@node folding documentation, folding custom, folding Installation, folding
+@section Folding documentation
+
+@noindent Tutorial
+
+     To start folding mode, give the command: @command{M-x
+folding-mode}. The mode line should contain the string "Fld"
+indicating that folding mode is activated.
+
+     When loading a document containing fold marks, Folding mode is
+automatically started and all folds are closed. For example when
+loading my init file, only the following lines (plus a few lines of
+comments) are visible:
+
+@verbatim
+;;{{{ General...
+;;{{{ Keyboard...
+;;{{{ Packages...
+;;{{{ Major modes...
+;;{{{ Minor modes...
+;;{{{ Debug...
+@end verbatim
+
+     To enter a fold, use @key{C-c @ >}. To show it without entering, use
+@key{C-c @ C-s}, which produces this display:
+
+@verbatim
+;;{{{ Minor modes
+
+;;{{{ Follow mode...
+;;{{{ Font-lock mode...
+;;{{{ Folding...
+
+;;}}}
+@end verbatim
+
+     To show everything, just as the file would look like if Folding
+mode hadn't been activated, give the command @command{M-x
+folding-open-buffer}, normally bound to @key{C-c @ C-o}.  To
+close all folds and go to the top level, the command
+@command{folding-whole-buffer} could be used.
+
+@noindent Mouse support
+
+     Folding mode v2.0 introduced mouse support. Folds can be shown or
+hidden by simply clicking on a fold mark using mouse button 3.  The
+mouse routines have been designed to call the original function bound
+to button 3 when the user didn't click on a fold mark.
+
+@noindent The menu
+
+     A menu is placed in the "Tools" menu. Should no Tools menu exist
+(Emacs 19.28) the menu will be placed in the menu bar.
+
+@noindent ISearch
+
+     When searching using the incremental search (C-s) facilities,
+folds will be automagically entered and closed.
+
+@noindent Problems
+
+    Uneven fold marks
+
+     Oops, I just deleted some text, and a fold mark got deleted!
+What should I do?  Trust me, you will eventually do this sometime. the
+easiest way is to open the buffer using @command{folding-open-buffer}
+(@key{C-c @ C-o}) and add the fold mark by hand. To find mismatching
+fold marks, the package `occur' is useful. The command:
+
+@verbatim
+         M-x occur RET {{{\|}}} RET
+@end verbatim
+
+     will extract all lines containing folding marks and present them
+in a separate buffer.
+
+     Even though all folding marks are correct, Folding mode sometimes
+gets confused, especially when entering and leaving folds very
+often. To get it back on track, press @key{C-g} a few times and give the
+command @command{folding-open-buffer} (@key{C-c @ C-o}).
+
+    Fold must have a label
+
+     When you make a fold, be sure to write some text for the name of
+the fold, otherwise there may be an error "extraneous fold mark..."
+Write like this:
+
+@verbatim
+         ;;{{{ Note
+         ;;}}}
+@end verbatim
+
+     instead of
+
+@verbatim
+         ;;{{{
+         ;;}}}
+@end verbatim
+
+    folding-whole-buffer doesn't fold whole buffer
+
+     If you call commands @command{folding-open-buffer} and
+@command{folding-whole-buffer} and notice that there are open fold
+sections in the buffer, then you have mismatch of folds somewhere. Run
+@command{M-x occur} and type the regexp @code{@{@{@{\|@}@}@}} to check where
+is the extra open or closing fold mark.
+
+@noindent Folding and outline modes
+
+     Folding mode is not the same as Outline mode, a major and minor
+mode which is part of the Emacs distribution. The two packages do,
+however, resemble each other very much.  The main differences between
+the two packages are:
+
+@itemize @bullet
+@item 
+Folding mode uses explicit marks, @code{@{@{@{} and `@}@}@}', to
+mark the beginning and the end of a branch.
+Outline, on the other other hand, tries to use already
+existing marks, like the `\section' string in a TeX
+document.
+
+@item 
+Outline mode has no end marker which means that it is
+impossible for text to follow a sub-branch.
+
+@item 
+Folding mode use the same markers for branches on all depths,
+Outline mode requires that marks should be longer the
+further, down in the tree you go, e.g `\chap', \section',
+`\subsection', `\subsubsection'. This is needed to
+distinguish the next mark at the current or higher levels
+from a sub-branch, a problem caused by the lack of
+end-markers.
+
+@item 
+Folding mode has mouse support, you can navigate through a
+folded document by clicking on fold marks. (The XEmacs version
+of Outline mode has mouse support.)
+
+@item 
+The Isearch facilities of Folding is capable of
+automatically to open folds. Under Outline, the the entire
+document must be opened prior isearch.
+@end itemize
+
+     In conclusion, Outline mode is useful when the document being
+edited contains natural markers, like LaTeX. When writing code natural
+markers are hard to find, except if you're happy with one function per
+fold (I'm not).
+
+@noindent Personal reflections by Anders Lindgren
+
+     When writing this, version 2.0 of Folding mode is just about to
+be released. The current version has proven itself stable during a
+months of testing period. In other words: we haven't had time to touch
+the folding for quite some time.
+
+     Our plan was from the beginning to rewrite the entire package,
+including replacing the core of the program, written using old Emacs
+technology (selective display), and replace it with modern
+equivalences, like overlays or text-properties for Emacs and extents
+for XEmacs.
+
+     Unfortunately, this has not yet been done, even though we have
+implemented most other items on our to-do agenda.
+
+     It is not likely that any of us, even in the near future, will
+find the time required to rewrite the core of the package. Since the
+package, in it's current state, is much more powerful than the
+original, we have decided to release this code.
+
+@node folding custom, folding examples, folding documentation, folding
+@section Folding customization
+
+@noindent Customization: general
+
+     The behavior of Folding mode is controlled mainly by a set of
+Emacs Lisp variables. This section will discuss the most useful ones,
+for more details please see the code. The descriptions below assumes
+that you know a bit about how to use simple Emacs Lisp and knows how
+to edit ~/.emacs, your init file.
+
+@noindent Customization: hooks
+
+     The normal procedure when customizing a package is to write a
+function doing the customization. The function is then added to a hook
+which is called at an appropriate time. (Please see the example
+section below.)  The following hooks are available:
+@table @samp
+@item folding-mode-hook
+Called when folding mode is activated.
+@item <major mode>-folding-hook
+Called when starting folding mode in a buffer with major
+mode set to <major mode>. (e.g. When editing C code
+the hook `c-mode-folding-hook' is called.)
+@item folding-load-hook
+Called when folding mode is loaded into Emacs.
+@end table
+
+@noindent Customization: The Mouse
+
+     The variable @code{folding-behave-table} contains the actions
+which should be performed when the user clicks on an open fold, a
+closed fold etc.  For example, if you prefer to `enter' a fold rather
+than `open' it you should rebind this variable.
+
+     The variable @code{folding-default-mouse-keys-function} contains
+the name of the function used to bind your mouse keys. To use your own
+mouse bindings, create a function, say
+@command{my-folding-bind-mouse}, and set this variable to it.
+
+@noindent Customization: Keymaps
+
+     When Emacs 19.29 was released, the keymap was divided into strict
+parts. (This division existed before, but a lot of packages, even the
+ones delivered with Emacs, ignored them.)
+
+@verbatim
+         C-c <letter>    -- Reserved for the users private keymap.
+         C-c C-<letter>  -- Major mode. (Some other keys are
+                            reserved as well.)
+         C-c <Punctuation Char> <Whatever>
+                         -- Reserved for minor modes.
+@end verbatim
+
+     The reason why @key{C-c@@} was chosen as the default prefix is
+that it is used by outline-minor-mode. It is not likely that few
+people will try to use folding and outline at the same time.
+
+     However, old key bindings have been kept if possible.  The
+variable @code{folding-default-keys-function} specifies which function
+should be called to bind the keys. There are various function to
+choose from how user can select the keybindings.  To use the old key
+bindings, add the following line to your init file:
+
+@verbatim
+         (setq folding-default-keys-function
+               'folding-bind-backward-compatible-keys)
+@end verbatim
+
+     To define keys similar to the keys used by Outline mode, use:
+
+@verbatim
+         (setq folding-default-keys-function
+               'folding-bind-outline-compatible-keys)
+@end verbatim
+
+@noindent Customization: adding new major modes
+
+     To add fold marks for a new major mode, use the function
+@command{folding-add-to-marks-list}. Example:
+
+@verbatim
+         (folding-add-to-marks-list 
+          'c-mode "/* {{{ " "/* }}} */" " */" t)
+         (folding-add-to-marks-list 
+          'java-mode "// {{{ " "// }}}" nil t)
+@end verbatim
+
+@noindent Customization: ISearch
+
+     If you don't like the extension folding.el applies to isearch,
+set the variable `folding-isearch-install' to nil before loading this
+package.
+
+@node folding examples,  , folding custom, folding
+@section Folding examples
+
+@noindent Example: personal setup
+
+     To define your own key binding instead of using the standard
+ones, you can do like this:
+
+@verbatim
+          (setq folding-mode-prefix-key "\C-c")
+          ;;
+          (setq folding-default-keys-function
+              '(folding-bind-backward-compatible-keys))
+          ;;
+          (setq folding-load-hook 'my-folding-load-hook)
+
+
+          (defun my-folding-load-hook ()
+            "Folding setup."
+
+            (folding-install)  ;; just to be sure
+
+            ;; ............................................... markers ...
+
+            ;;  Change text-mode fold marks. Handy for quick
+            ;;  sh/perl/awk code
+
+            (defvar folding-mode-marks-alist nil)
+
+            (let* ((ptr (assq 'text-mode folding-mode-marks-alist)))
+              (setcdr ptr (list "# {{{" "# }}}")))
+
+            ;; ........................................ bindings ...
+
+            ;;  Put `folding-whole-buffer' and `folding-open-buffer'
+            ;;  close together.
+
+            (defvar folding-mode-prefix-map nil)
+
+            (define-key folding-mode-prefix-map "\C-w" nil)
+            (define-key folding-mode-prefix-map "\C-s"
+                        'folding-show-current-entry)
+            (define-key folding-mode-prefix-map "\C-p"
+                        'folding-whole-buffer))
+@end verbatim
+
+@noindent Example: changing default fold marks
+
+     In case you're not happy with the default folding marks, you can
+change them easily. Here is an example
+
+@verbatim
+         (setq folding-load-hook 'my-folding-load-hook)
+
+         (defun my-folding-load-hook ()
+           "Folding vars setup."
+           (let* ((ptr (assq 'text-mode folding-mode-marks-alist)))
+             (setcdr ptr (list "# {{{" "# }}}"))))
+@end verbatim
+
+
+@noindent Example: choosing different fold marks for mode
+
+     Suppose you sometimes want to use different fold marks for the
+major mode: e.g. to alternate between "# @{@{@{" and "@{@{@{" in `text-mode'
+Call @command{M-x my-folding-text-mode-setup} to change the marks.
+
+@verbatim
+   (defun my-folding-text-mode-setup (&optional use-custom-folding-marks)
+     (interactive
+       (list (y-or-n-p "Use Custom fold marks now? ")))
+     (let* ((ptr (assq major-mode folding-mode-marks-alist))
+            (default-begin "# {{{")
+            (default-end   "# }}}")
+            (begin "{{{")
+            (end   "}}}"))
+       (when (eq major-mode 'text-mode)
+         (unless use-custom-folding-marks
+           (setq  begin default-begin  end default-end)))
+       (setcdr ptr (list begin end))
+       (folding-set-marks begin end)))
+@end verbatim
+
+@noindent Example: AucTex setup
+
+     Suppose you're using comment.sty with AucTeX for editing LaTeX2e
+documents and you have these comment types. You would like to be able
+to set which of these 3 is to be folded at any one time, using a
+simple key sequence: move back and forth easily between the different
+comment types, e.g., "unfold everything then fold on \x".
+
+@verbatim
+         \O   ...  \endO
+         \L   ...  \endL
+         \B   ...  \endB
+
+         (setq folding-load-hook 'my-folding-load-hook)
+
+         (defun my-folding-load-hook ()
+           "Folding vars setup."
+           (let ((ptr (assq 'text-mode folding-mode-marks-alist)))
+             (setcdr ptr (list "\\O" "\\endO"))
+             (define-key folding-mode-prefix-map "C"
+                        'my-folding-marks-change)))
+
+         (defun my-folding-marks-change (&optional selection)
+           "Select folding marks: prefixes nil, C-u and C-u C-u."
+           (interactive "P")
+           (let ((ptr (assq major-mode folding-mode-marks-alist))
+                 input)
+             (when (string-match "^\\(plain-\\|la\\|auc\\)?tex-"
+                                 (symbol-name  major-mode))
+               (setq input
+                     (read-string "Latex \\end(X) Marker (default O): "
+                                  nil nil "O" nil))
+               (setq input (upcase input))
+               (turn-off-folding-mode)
+               (folding-add-to-marks-list
+                major-mode 
+                (concat "\\" input) (concat "\\end" input) nil nil t)
+               ;; (setcdr ptr (list (concat "\\" input) (concat "\\end" input)))
+               (turn-on-folding-mode))))
+         ;;  End of example
+@end verbatim
+
+
+@node framepop, highlight-beyond-fill-column, folding, Top
 @chapter framepop - display temporary buffers in a dedicated frame
 
 Framepop makes temporary buffers such as *Help* or *Completions*
@@ -1364,7 +2207,7 @@ write a mode-specific definition.
           (quote comment-region))))
 @end verbatim
 
-@node keywiz, map-lines, keydef, Top
+@node keywiz, lcomp, keydef, Top
 @chapter keywiz - Emacs key sequence quiz
 
 @noindent Author: Jesper Harder <harder@@ifa.au.dk>
@@ -1387,7 +2230,55 @@ wield the powers of the One True Editor at your fingertips will
 earn you more bragging rights than ascending bare-footed in some
 silly game with vi-keybindings :-)
 
-@node map-lines, mutt-alias, keywiz, Top
+@node lcomp, map-lines, keywiz, Top
+@chapter lcomp - list-completion hacks
+
+@noindent Author: Taiki SUGAWARA <taiki.s@@cityfujisawa.ne.jp>
+
+This package adds keybindings to the completions buffer:
+
+@table @kbd
+@item \C-i
+next-completion
+@item \M-\C-i
+previous-completion
+@item f
+next-completion
+@item b
+previous-completion
+@item n
+next-line
+@item p
+previous-line
+@item <space>
+scroll-up
+@item [del]
+scroll-down
+@item [backspace]
+scroll-down
+@item q
+delete-completion-window
+@end table
+
+@noindent It also add and a global keybinding:
+
+@table @kbd
+@item \M-v
+lcomp-select-completion-window-or-scroll-down
+@end table
+
+You may also enable advice to other Emacs functions to make the
+completions buffer window disappear after use by putting this line
+into your ~/.emacs.
+
+@example
+ (lcomp-activate-advices t)
+@end example
+
+Or alternatively, customize the group @code{lcomp} and then the
+variable @code{lcomp-enable} and save the the setting for future sessions.
+
+@node map-lines, marker-visit, lcomp, Top
 @chapter map-lines - Map a command over many lines
 
 @noindent Author: Andreas Fuchs <asf@@void.at>
@@ -1404,7 +2295,67 @@ go, or collecting a bunch of lines in the kill-ring ready to paste.
 
 Invoke it with @command{M-x map-lines}.
 
-@node mutt-alias, muttrc-mode, map-lines, Top
+@node marker-visit, minibuffer-complete-cycle, map-lines, Top
+@chapter marker-visit - navigate through a buffer's marks in order
+
+@noindent Benjamin Rutt <brutt@@bloomington.in.us>
+
+This file provides a simple way to navigate among marks in a
+buffer.  @key{C-u C-SPC} is similar, but takes you haphazardly around the
+buffer.  Setting bookmarks is a lot of extra work if you just want
+to jump around your buffer quickly; plus, you have to come up with
+a name for every bookmark.
+
+All the marks you've left while editing a buffer serve as bread
+crumb trails of areas in the buffer you've edited.  It is
+convenient to navigate back and forth among these marks in order.
+This file provides two methods to do just that, @command{marker-visit-prev}
+and @command{marker-visit-next}.  These two functions will take you, from
+point, to the nearest mark in either direction.  The function
+@command{marker-visit-truncate-mark-ring} will truncate the mark ring.
+
+The marks you can visit in a buffer consist of: "the mark" plus the
+contents of the mark-ring.
+
+This package is most useful when some easy-to-press keys are bound to
+the functions @command{marker-visit-prev} and
+@command{marker-visit-next}.  See @key{C-h i m Emacs RET m Key Bindings RET}
+for info on emacs key bindings.
+
+@node minibuffer-complete-cycle, mutt-alias, marker-visit, Top
+@chapter minibuffer-complete-cycle - cycle through the *Completions* buffer
+
+@noindent Author: Kevin Rodgers <ihs_4664@@yahoo.com>
+
+The @command{minibuffer-complete} command, bound by default to TAB in the
+minibuffer completion keymaps, displays the list of possible
+completions when no additional characters can be completed.
+Subsequent invocations of this command cause the window displaying
+the *Completions* buffer to scroll, if necessary.
+
+This library advises the @command{minibuffer-complete} command so that
+subsequent invocations instead select each of the possible
+completions in turn, inserting it into the minibuffer and
+highlighting it in the *Completions* buffer.  As before, the window
+displaying the possible completions is scrolled if necessary.
+
+This feature is enabled by setting the
+@code{minibuffer-complete-cycle} variable to @code{t} with
+@command{M-x customize-group minibuffer-complete-cycle} or
+@command{M-x set-variable}; it is disabled by unsetting the option (to
+nil).  Besides @code{t}, the special value @code{auto} enables the
+feature and also causes the first completion to be selected
+immediately.
+
+You can also customize the @code{minibuffer-complete-cycle} face, which is
+used to highlight the selected completion.
+
+The technique of deleting the minibuffer contents, then (for file
+name completion) inserting the directory component of the initial
+input, and then inserting the completion string itself is based on
+cycle-mini.el (1.03) by Joe Reiss <jreiss@@vt.edu>.
+
+@node mutt-alias, muttrc-mode, minibuffer-complete-cycle, Top
 @chapter mutt-alias - Lookup/insert mutt mail aliases.
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -1548,7 +2499,7 @@ customizing the variable @code{nuke-trailing-whitespace-p}.
 
 @noindent See also: whitespace.el packaged in Emacs-21
 
-@node obfusurl, perldoc, nuke-trailing-whitespace, Top
+@node obfusurl, pack-window, nuke-trailing-whitespace, Top
 @chapter obfusurl - Obfuscate URLs so they aren't spoilers
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -1569,7 +2520,32 @@ is turned into this:
 <URL:http://www.davep.org/%65%6d%61%63%73/>
 @end example
 
-@node perldoc, projects, obfusurl, Top
+@node pack-window, perldoc, obfusurl, Top
+@chapter pack-windows - resize all windows to display as much info as possible.
+
+@noindent Author: Michel Schinz <Michel.Schinz@@epfl.ch>
+          
+Resize all windows vertically to display as much information as possible
+with the command @command{M-x pack-windows}.
+
+Only windows that are on the left edge of the frame are taken into
+account. The vertical space available in the frame is first divided
+among all these windows. Then any window requireing less lines than it
+got to display its whole buffer is shrinked, and the freed space is
+divided equally among all the other windows.
+
+If some vertical space remains afterwards, it is given in totality to
+the currently selected window.
+
+Do not shrink any window to less than @code{window-min-height}.
+
+Shrink windows iteratively, performing at most
+@code{pack-windows-max-iteration} iterations. The number of iterations
+really performed will be displayed in the echo area if
+@code{pack-windows-verbose} is non-nil.  These two variables can be
+customized with @command{M-x customize-group pack-windows}.
+
+@node perldoc, projects, pack-window, Top
 @chapter perldoc - Show help for Perl functions, builtins, and modules.
 
 @noindent Author: Steve Kemp <skx@@tardis.ed.ac.uk>
@@ -1648,7 +2624,7 @@ Toggle @code{kill-buffer} protection on current buffer with active process.
 useful of the two, making it harder to accidentally kill shell buffers
 without terminating the process in them first.
 
-@node protocols, services, protbuf, Top
+@node protocols, rfcview, protbuf, Top
 @chapter protocols - Protocol database access functions.
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -1665,7 +2641,32 @@ Find a protocol and display its details.
 Clear the protocols \"cache\".
 @end table
 
-@node services, session, protocols, Top
+@node rfcview, services, protocols, Top
+@chapter rfcview - view IETF RFCs with readability-improved formatting
+
+@noindent Author: Neil W. Van Dyke <neil@@neilvandyke.org>
+
+For historical reasons, IETF Internet RFCs are required to be in a plain
+ASCII text format that's best-suited for sending directly to a 6-lpi
+US-letter-size printer.  This makes them suboptimal for viewing on-screen,
+as you will be doing for countless hours if you're ever doing network
+programming to one of them.  Fortunately, the ASCII format is usually
+close to what you, the Emacs zealot, *truly* want -- which is a format
+suited to more pleasurably viewing the RFC in Emacs.
+
+The `rfcview' package uses Emacs overlays to add some fontification and
+hide the page headers and footers (which it replaces with one-line page
+number references that look like "(p.1)", right-justified).  The file is
+never modified, and you can see the raw ASCII text by pressing `t'.
+
+You may customize some aspects of this package using @command{M-x
+customize-group rfcview}.
+
+The emacs-goodies-el package sets up Emacs to enter
+@command{rfcview-mode} automatically when reading such a file (as
+recognised by the filename).
+
+@node services, session, rfcview, Top
 @chapter services - Services database access functions.
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -1827,7 +2828,7 @@ corresponding menu item in the new submenu @code{Open...recently changed}.
 
 @end itemize
 
-@node setnu, sys-apropos, session, Top
+@node setnu, shell-command, session, Top
 @chapter setnu - vi-style line number mode for Emacs
 
 @noindent Author: Kyle E. Jones <kyle@@wonderworks.com>
@@ -1850,7 +2851,35 @@ to automatically turn on line numbering when enterting text-mode."
 You may customize the group @code{setnu} and customize the face
 @code{setnu-line-number-face} to change the appearance of the line numbers.
 
-@node sys-apropos, table, setnu, Top
+@node shell-command, sys-apropos, setnu, Top
+@chapter shell-command - enables tab-completion for `shell-command'
+
+@noindent Author: TSUCHIYA Masatoshi <tsuchiya@@namazu.org>
+
+This is an enhancement for shell-command, enabling tab-completion
+of commands and dir/filenames within the shell-command input
+context.
+
+The latest version of this program can be downloaded from
+http://namazu.org/~tsuchiya/elisp/shell-command.el.
+
+@noindent Install:
+
+Install this file to an appropriate directory, and put these lines
+into your ~/.emacs.
+
+@example
+    (require 'shell-command)
+    (shell-command-activate-advices)
+@end example
+
+Note that the @code{require} is not needed in the Debian package
+@code{emacs-goodies-el}.
+
+Or alternatively, customize the group @code{shell-command} and then the
+variable @code{shell-command-enable-completions} and save the the
+setting for future sessions.
+@node sys-apropos, table, shell-command, Top
 @chapter sys-apropos - Interface for the *nix apropos command.
 
 @noindent Author: Henrik Enberg <henrik@@enberg.org>

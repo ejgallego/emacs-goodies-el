@@ -198,6 +198,10 @@ Stores the value of the prior keybinding in case we need to restore it.")
 ;; muttrc-mode.el
 (add-to-list 'auto-mode-alist '("muttrc" . muttrc-mode))
 
+;; rfcview
+(add-to-list 'auto-mode-alist
+             '("/rfc[0-9]+\\.txt\\(\\.gz\\)?\\'" . rfcview-mode))
+
 ;; session.el
 (autoload 'session-initialize "session"
   "Initialize package session and read previous session file.

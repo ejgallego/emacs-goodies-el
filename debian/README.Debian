@@ -40,6 +40,12 @@ all.el provides M-x all, a way to see all lines matching a regexp
 pattern in a special buffer.  Editing these lines in that buffer
 propagates the changes back to the original buffer.
 
+apache-mode.el provides fontification when editing Apache configuration
+files.
+
+ascii.el provides a way to display ASCII code on a window, that is, display
+in another window an ASCII table highlighting the current character code.
+
 auto-fill-inhibit.el provides a finer grained control over
 auto-fill-mode activation.  Tu use it, simply load the file.  For
 instance, adding (load-library "auto-fill-inhibit") to your .emacs
@@ -50,6 +56,9 @@ bar-cursor.el allows you to change your cursor from a block to a
 vertical bar in insert mode, and back to a block in overwrite mode.
 Try M-x bar-cursor-mode.
 
+browse-huge-tar.el allows you to browse large tar files without reading
+them into memory.  The trade off is memory usage vs. speed.
+
 browse-kill-ring.el provides M-x browse-kill-ring.el, to, well, browse
 through your kill ring, perform searches on it, and insert items into
 a buffer.
@@ -58,6 +67,10 @@ clipper.el provides the M-x clipper-* commands to save strings of data
 and insert them afterwards.  Each string is labeled with a name, and
 can involve some basic template replacement.
 
+ctypes.el can search through source files hunting down typedefs.  When
+found, font-lock is informed and your source code will be even more
+beautifully colored than before.
+
 coffee.el provides an Emacs interface to RFC2324-compliant coffee
 devices
 
@@ -65,6 +78,9 @@ cyclebuffer.el provides M-x cyclebuffer-forward, to switch to other
 buffers in the most-recently-visited-first order.  If you accidentally
 overshoot, calling cyclebuffer-backward goes back.  You might want to
 bind these commands to your favourite keys.
+
+dedicated.el allows you to toggle a window's "dedicated" flag.
+When a window is "dedicated", Emacs will not select files into that window.
 
 df.el provides M-x df, to display in the mode line space left on
 devices.
@@ -83,6 +99,8 @@ dirvars.el provides a functionality similar to the local variables
 defined in a file, but for an entire directory tree.  Use (require
 'dirvars) in your .emacs to activate it.
 
+edit-env.el lets you display, edit, delete and add environment variables.
+
 egocentric.el provides M-x egocentric-mode, a mode to highlight your
 name (or other keywords) in buffers.  If you use Gnus, you might want
 to add (add-hook 'gnus-article-prepare-hook 'egocentric-mode) to your
@@ -98,6 +116,10 @@ guessing the proper fill prefix in many contexts.  Emacs has a
 built-in adaptive fill mode but Filladapt is said to be much better.
 Use `M-x filladapt-mode' to toggle Filladapt mode on/off in the current
 buffer.  Use 'turn-on-filladapt-mode in mode hooks.
+
+folding.el provides a minor mode for folding (hiding) parts of the edited
+text or program.  Folding mode handles a document as a tree, where each
+branch is bounded by special markers `{{{' and `}}}'.
 
 framepop.el makes temporary buffers such as *Help* or *Completions* appear
 in a separate frame which is easily dismissed when no longer needed.
@@ -145,8 +167,21 @@ the name of a command and the docstring, and then prompted for the
 correct key sequence.  You'll earn one point for each correct answer
 during the time limit.  Invoke with `M-x keywiz'.
 
+lcomp.el adds useful keybindings to the completions buffer.
+
 map-lines.el provides M-x map-lines, a command to iterate a given
 command over lines matching a regexp.
+
+marker-visit.el provides a simple way to navigate among marks in a buffer.
+All the marks you've left while editing a buffer serve as bread crumb
+trails of areas in the buffer you've edited.  It is convenient to navigate
+back and forth among these marks in order.  This file provides two methods
+to do just that, marker-visit-prev and marker-visit-next to visit the
+nearest mark in either direction.
+
+minibuffer-complete-cycle.el makes `minibuffer-complete' select each of the
+possible completions in turn, inserting it into the minibuffer and
+highlighting it in the *Completions* buffer.
 
 mutt-alias.el provides M-x mutt-alias-insert and M-x
 mutt-alias-lookup, two commands to lookup and insert the expansion of
@@ -170,6 +205,9 @@ buffers.
 obfusurl.el provides M-x obfuscate-url, a command that will obfuscate
 an URL under the cursor.
 
+pack-windows.el resizes all windows vertically to display as much
+information as possible with the command `M-x pack-windows'.
+
 perldoc.el provides an interface to the "perldoc" command in your
 Perl-mode or CPerl-mode buffers.  Use (require 'perldoc) in your
 .emacs to activate it, then place point over a word and press F1.
@@ -186,6 +224,8 @@ from being accidentally killed.
 protocols.el provides M-x protocols-lookup, to search for info in your
 /etc/protocols.
 
+rfcview.el formats IETF RFCs for improved readability.
+
 services.el provides M-x services-lookup, to search for info in your
 /etc/services.
 
@@ -195,6 +235,10 @@ files and restores the places (e.g., point) of such a file when you revisit
 it.
 
 setnu.el provides M-x setnu-mode, a vi-style line number mode.
+
+shell-command.el is an an enhancement for shell-command, enabling
+tab-completion of commands and dir/filenames within the shell-command input
+context.
 
 silly-mail.el provides M-x add-sm-* commands to add various headers to
 your email messages.
@@ -253,4 +297,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Sat Oct  4 22:38:04 2003
+ -- Peter S Galbraith <psg@debian.org>, Sun Nov 16 22:38:45 2003
