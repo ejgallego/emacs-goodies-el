@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.22 2003/09/20 23:01:08 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.23 2003/09/21 00:22:38 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -84,6 +84,7 @@ be documented.
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
 * home-end::                    Alternative Home and End key commands
+* htmlize::                     HTML-ize font-lock buffers
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -752,7 +753,7 @@ extend or redefine this regexp. This works together with the default ignore
 function @code{highlight-current-line-ignore-function}. You can redefine this
 function to implement your own criterias.
 
-@node home-end,  , highlight-current-line, Top
+@node home-end, htmlize, highlight-current-line, Top
 @chapter home-end - Alternative Home and End key commands
 
 Some useful bindings for Home and End keys:
@@ -763,3 +764,36 @@ Some useful bindings for Home and End keys:
 @end itemize
 
 To enable it, customize the variable @code{home-end-enable}.
+
+@node htmlize,  , home-end, Top
+@chapter htmlize - HTML-ize font-lock buffers
+
+This package analyses the text properties of the buffer and
+converts them, along with the text, to HTML.  Mail to
+<hniksic@@xemacs.org> to discuss features and additions.  All
+suggestions are more than welcome.
+
+To use, just switch to a buffer you want HTML-ized, and type @code{M-x
+htmlize-buffer}.  After that, you should find yourself in an HTML
+buffer, which you can save.  Alternatively, @code{M-x htmlize-file} will
+find a file, font-lockify the buffer, and save the HTML version,
+all before you blink.  Furthermore, @code{M-x htmlize-many-files} will
+prompt you for a slew of files to undergo the same treatment.  @code{M-x
+htmlize-many-files-dired} will do the same for the files marked by
+dired.
+
+The code attempts to generate compliant HTML, but I can't make any
+guarantees; I haven't yet bothered to run the generated markup
+through a validator.
+
+For any of this to work, you need to run Emacs under a window-system
+-- anything else will almost certainly fail.
+
+@noindent The latest version should be available at:
+
+       http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el
+
+@noindent You can find the sample htmlize output (run on an older version of
+@file{htmlize.el}) at:
+
+       http://fly.srk.fer.hr/~hniksic/emacs/htmlize.html
