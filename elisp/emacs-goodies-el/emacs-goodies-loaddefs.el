@@ -21,7 +21,7 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16259 26441))
+;;;;;;  "bar-cursor.el" (16262 4249))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -154,7 +154,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16259 26441))
+;;;;;;  "diminish.el" (16262 4249))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -262,7 +262,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16259 26441))
+;;;;;;  "highlight-beyond-fill-column.el" (16262 4249))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -283,7 +283,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16259 26441))
+;;;;;;  (16262 4249))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -382,8 +382,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16259
-;;;;;;  26441))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16262
+;;;;;;  4249))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -396,7 +396,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16259 26441))
+;;;;;;  "nuke-trailing-whitespace.el" (16262 4249))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -425,7 +425,7 @@ most mortals anyway)." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16259 26441))
+;;;;;;  "perldoc.el" (16262 4249))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -442,7 +442,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16259 26441))
+;;;;;;  "protbuf" "protbuf.el" (16262 4249))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -500,8 +500,9 @@ Clear the services \"cache\"." t nil)
 
 ;;;***
 
-;;;### (autoloads nil "session" "session.el" (16259 26441))
+;;;### (autoloads nil "session" "session.el" (16262 4249))
 ;;; Generated autoloads from session.el
+
 
 ;; General Emacs/XEmacs-compatibility compile-time macros
 (eval-when-compile
@@ -609,7 +610,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16259 18884))
+;;;;;;  "table" "table.el" (16260 42243))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -1126,6 +1127,21 @@ converts a table into plain text without frames.  It is a companion to
 
 (autoload (quote table-version) "table" "\
 Show version number of table package." t nil)
+
+;;;***
+
+;;;### (autoloads (tail-command tail-file) "tail" "tail.el" (16262
+;;;;;;  3977))
+;;; Generated autoloads from tail.el
+
+(autoload (quote tail-file) "tail" "\
+Tails FILE specified with argument FILE inside a new buffer.
+FILE *cannot* be a remote file specified with ange-ftp syntax because it is
+passed to the Unix tail command." t nil)
+
+(autoload (quote tail-command) "tail" "\
+Tails COMMAND with arguments ARGS inside a new buffer.
+It is also called by `tail-file'" t nil)
 
 ;;;***
 
