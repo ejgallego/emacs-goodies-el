@@ -17,8 +17,10 @@ emacs-goodies-el (23.0-1) UNRELEASED; urgency=low
   * devscripts-el: (Prepared by Junichi Uekawa)
     - implement 'debdiff'
     - devscripts-el.README.Debian: update to reflect latest changes.
+  * debian-el:
+    - apt-sources.el: new upstream version 0.9.8.
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 24 Oct 2003 10:51:38 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 26 Oct 2003 20:43:32 -0500
 
 emacs-goodies-el (22.2-1) unstable; urgency=low
 
