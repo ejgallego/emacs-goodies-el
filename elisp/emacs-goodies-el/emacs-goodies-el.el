@@ -227,32 +227,6 @@ this function to `after-init-hook'."
   t)
 (add-to-list 'auto-mode-alist '("TODO$" . todoo-mode))
 
-;; toggle-buffer.el
-(autoload 'joc-toggle-buffer "toggle-buffer"
-  "Switch to previous active buffer."
-  t)
-
-;; toggle-case.el
-(autoload 'joc-toggle-case "toggle-case"
-  "Toggles the case of the character under point."
-  t)
-
-(autoload 'joc-toggle-case "toggle-case-backwards"
-  "Toggle case of character preceding point."
-  t)
-
-(autoload 'joc-toggle-case "toggle-case-by-word"
-  "Toggles the case of the word under point."
-  t)
-
-(autoload 'joc-toggle-case "toggle-case-by-word-backwards"
-  "Toggles the case of the word preceding point."
-  t)
-
-(autoload 'joc-toggle-case "toggle-case-by-region"
-  "Toggles the case of all characters in the current region."
-  t)
-
 ;; toggle-option.el
 (autoload 'toggle-option "toggle-option"
   "Easily toggle frequently toggled options."
