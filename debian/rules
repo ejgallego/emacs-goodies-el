@@ -22,7 +22,7 @@ build-stamp:
 	for i in debian/*.emacsen-remove.in ; do cat $$i debian/emacsen-remove.template > debian/$$(basename $$i .in) ; done
 	install -d info
 	makeinfo elisp/emacs-goodies-el/emacs-goodies-el.texi
-	makeinfo elisp/emacs-goodies-el-extra/emacs-goodies-extra-el.texi
+	makeinfo elisp/debian-el/debian-el.texi
 	touch build-stamp
 
 clean: unpatch
@@ -51,7 +51,7 @@ binary-arch: build install
 	dh_installdocs
 	dh_installemacsen
 	dh_installinfo -p emacs-goodies-el info/emacs-goodies-el
-	dh_installinfo -p emacs-goodies-extra-el info/emacs-goodies-extra-el
+	dh_installinfo -p debian-el info/debian-el
 	dh_installchangelogs
 	dh_compress
 	dh_fixperms
