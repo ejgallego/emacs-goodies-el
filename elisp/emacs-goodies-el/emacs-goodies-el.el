@@ -215,7 +215,7 @@ Stores the value of the prior keybinding in case we need to restore it.")
   t)
 (autoload 'turn-on-setnu-mode "setnu"
   "Turn on setnu-mode."
-  t)
+  nil)
 
 ;; tail.el
 (autoload 'tail-file "tail"
