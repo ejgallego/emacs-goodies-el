@@ -1,12 +1,16 @@
 emacs-goodies-el (24.2-1) unstable; urgency=low
 
   * debian-el: 
-  - apt-utils.el: Updated to v1.78 (2004/01/04). Allow for multiple
-    buffers in apt-utils-mode that are independent of one another.
-    Also fix bug: "debian-el: apt-utils-show-package scrolling", thanks to
-    Kevin Ryde for reporting it (Closes: #225610).
+    - apt-utils.el: Updated to v1.78 (2004/01/04). Allow for multiple
+      buffers in apt-utils-mode that are independent of one another.
+      Also fix bug: "debian-el: apt-utils-show-package scrolling", thanks to
+      Kevin Ryde for reporting it (Closes: #225610).
+  * emacs-goodes-el:  
+    - browse-kill-ring.el: cannot setup `*Kill Ring*' buffer with items
+      propertized read-only", many thanks to INOUE Hiroyuki for reporting it
+      along with a working fix (Closes: #225082).
 
- -- Peter S Galbraith <psg@debian.org>  Mon,  5 Jan 2004 15:14:08 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 15 Jan 2004 15:04:43 -0500
 
 emacs-goodies-el (24.1-1) unstable; urgency=low
 
