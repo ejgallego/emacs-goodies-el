@@ -422,24 +422,6 @@ See `table-insert' for examples about how to use."
 ;;:require 'todoo
   :group 'emacs-goodies-el)
 
-;; toggle-buffer
-(defgroup joc-toggle-buffer nil
-  "toggle-buffer package customization"
-  :group 'tools
-;;:link '(custom-manual "(emacs-goodies-el)toggle-buffer")
-  :load 'toggle-buffer
-;;:require 'toggle-buffer
-  :group 'emacs-goodies-el)
-
-;; toggle-case
-(defgroup joc-toggle-case nil
-  "joc-toggle-case package customization"
-  :group 'tools
-;;:link '(custom-manual "(emacs-goodies-el)toggle-case")
-  :load 'toggle-case
-;;:require 'toggle-case
-  :group 'emacs-goodies-el)
-
 ;; toggle-option
 (defgroup toggle-option nil
   "Convenience library for toggling commonly toggled variables/functions."

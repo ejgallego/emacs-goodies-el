@@ -2,8 +2,14 @@ emacs-goodies-el (24.3-2) unstable; urgency=low
 
   * dpkg-dev-el:
     - debian-control-mode.el: Apply patch from Jhair Tocancipa Triana
-    <jhair_tocancipa@gmx.net> to fix an after-change-functions race
-    (Closes: #226770, #236506).
+      <jhair_tocancipa@gmx.net> to fix an after-change-functions race
+      (Closes: #226770, #236506).
+  * emacs-goodies-el:  
+    - emacs-goodies-custom.el:  Remove duplicate and obsolete entries
+      for joc-toggle-buffer and joc-toggle-case defcustoms. Thanks to
+      Kevin Ryde for reporting it (Closes: #234972).
+    - joc-toggle-buffer.el: Provide joc-toggle-buffer instead of older name
+      toggle-buffer. Thanks to Kevin Ryde for reporting it (Closes: #234971).
 
  --
 
@@ -42,7 +48,7 @@ emacs-goodies-el (24.2-1) unstable; urgency=low
     - deb-view.el: Resize top (control) window to fit number of lines since
       it doesn't really need to be 1/2 the screen. Thanks to Dan Jacobson
       for suggesting this change (Closes: #224950).
-  * emacs-goodes-el:  
+  * emacs-goodies-el:  
     - browse-kill-ring.el: cannot setup `*Kill Ring*' buffer with items
       propertized read-only", many thanks to INOUE Hiroyuki for reporting it
       along with a working fix (Closes: #225082).

@@ -24,8 +24,8 @@ exit 0
 
 @DPATCH@
 diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2003-10-07 19:18:29.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2003-11-23 14:41:17.000000000 -0500
+--- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-01-15 16:48:11.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el	2004-03-27 15:10:07.000000000 -0500
 @@ -1,4 +1,4 @@
 -;;; @(#) toggle-buffer.el --- flips back and forth between two buffers
 +;;; @(#) joc-toggle-buffer.el --- flips back and forth between two buffers
@@ -73,7 +73,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 @@ -162,7 +167,7 @@
  ;;; **************************************************************************
  (defconst joc-toggle-buffer-version
-   "$Revision: 1.1 $"
+   "$Revision: 1.2 $"
 -  "Version number for toggle-buffer package.")
 +  "Version number for `joc-toggle-buffer' package.")
  
@@ -97,10 +97,11 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  ;;; **************************************************************************
  ;;; ***** we're done
  ;;; **************************************************************************
+-(provide 'toggle-buffer)
+-(run-hooks 'toggle-buffer-load-hook)
 +(run-hooks 'joc-toggle-buffer-load-hook)
 +
- (provide 'toggle-buffer)
--(run-hooks 'toggle-buffer-load-hook)
++(provide 'joc-toggle-buffer)
  
  ;;; toggle-buffer.el ends here
 -;;; **************************************************************************
