@@ -6,7 +6,7 @@ emacs-goodies-el (23.1-1) UNRELEASED; urgency=low
     - debian-bug.el: "Should send minor severty bugs to maintonly, not
       submit", thanks to Tollef Fog Heen (Closes: #214242).
   * emacs-goodies-extra-el:
-    - Re-introduce an harmless 50emacs-goodies-extra-el.el file since old one
+    - Re-introduce a harmless 50emacs-goodies-extra-el.el file since old one
       not removed in dist-upgrade.
   * dpkg-dev-el:
     - Edits *all* elisp files in package to add autoload tags.
