@@ -3,8 +3,10 @@ emacs-goodies-el (22.0-2) UNRELEASED; urgency=low
   * emacs-goodies-el's nuke-trailing-whitespace.el: Add custom interface
     support with ability to install into write-file-hooks.
   * emacs-goodies-el's tc.el:  Updated to upstream version 0.13.3.
+  * emacs-goodies-el's protbuf.el: Patched for custom support and to make
+    interactive commands true toggles.
 
- -- Peter S Galbraith <psg@debian.org>  Tue,  7 Oct 2003 14:43:51 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue,  7 Oct 2003 21:26:06 -0400
 
 emacs-goodies-el (22.0-1) unstable; urgency=low
 

@@ -10,3 +10,4 @@
 50_session_enable_custom
 50_perl-doc-pager-bug144963
 51_perl-doc-rewrite
+50_protbuf_custom_and_toggle
