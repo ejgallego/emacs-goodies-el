@@ -1,6 +1,8 @@
 emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
+    - toggle-buffer.el renamed to joc-toggle-buffer.el
+    - toggle-case.el renamed to joc-toggle-case.el
     New files:
     - minibuffer-complete-cycle.el, cycle through possible completions.
       Thanks to Hisashi MORITA for suggesting it and to Kevin Rodgers for
@@ -17,7 +19,7 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - shell-command.el, enables tab-completion for shell-command.
       Thanks to Ole Laursen for suggesting it abd to its author TSUCHIYA
       Masatoshi for accepting suggestions for changes (Closes: #219766).
-    Thanks to Marcus Crafter for suggesting files below (Closes: #161159):
+     Thanks to Marcus Crafter for suggesting files below (Closes: #161159):
     - browse-huge-tar.el, browse tar files without reading them memory.
     - edit-env.el, view and edit environment variables.
     - dedicated.el, dedicate a window to a single buffer.
@@ -25,13 +27,27 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
     - marker-visit.el, navigate through a buffer's marks in order.
     - pack-windows.el, resize all windows to display as much info as possible.
     - ascii.el, ASCII code display for character under point.
+    New upstream versions:
+    - ff-paths.el: New variables to skip running locate for find very
+      common file names.  Thanks to Stephen Eglen for suggesting it.
+      (Closes: #220507)
     Patches:
     - 50_todoo_bug220718: Fix XEmacs keybindings for XEmacs.
       Thanks to Gianluca Della Vedova (Closes: #220718).
+    - 50_joc-toggle-buffer: Add prefix joc- where missing; Fix startup bug.
+    Info manual:
+    - filladapt.el: Document how to use with C, thanks to Kevin Ryde for the
+      patch (Closes: #221942).
+  * dpkg-dev-el:
+    - debian-changelog-mode.el: Make `debian-changelog-add-entry' works
+      from files in unpacked sources.  Thanks to Junichi Uekawa for
+      suggesting it (Closes: #220641)
   * debian-el
     - apt-utils.el: Updated to v1.72 (2003/11/25). More robust finding of
       ChangeLog and README files, and new commands to find NEWS and
       copyright files.
+  * make-orig.sh bug fix: "cvs .# files in source package", thanks to
+    Kevin Ryde for reporting it (Closes: #221940).
   
  -- Peter S Galbraith <psg@debian.org>  Tue, 25 Nov 2003 09:37:50 -0500
 
@@ -577,8 +593,7 @@ emacs-goodies-el (16-1) unstable; urgency=low
 emacs-goodies-el (15.1-1) unstable; urgency=low
 
   * Bumped Standards-Version to 3.5.7.
-  * Sorted the list of files in the package description (closes:
-    #160017).
+  * Sorted the list of files in the package description (closes: #160017).
   * New upstream release for muttrc-mode.el (2.5).
   * Started using a (very) light patching system.  First patch is
     500muttrc-manual, so that the file that muttrc-mode.el opens actually

@@ -157,6 +157,14 @@ To use it, just load the file in your .emacs: (load "initsplit").
 Note that that you *must* load each file that contains your various
 customizations from your .emacs.
 
+joc-toggle-buffer.el provides M-x joc-toggle-buffer, a command that can be
+bound to a key in order to speed up the switching between two buffers.
+
+joc-toggle-case.el provides a sophisticated (over-engineered?) set of
+functions to toggle the case of the character under point, with which
+you can emulate vi's ~ function.  Look for the M-x joc-toggle-case and
+M-x joc-toggle-case-* commands.
+
 keydef.el provides the `keydef' macro for use in .emacs files (or
 similar).  It is an alternative (simpler) way to define keys, with kbd
 syntax.  You should read the doc in keydef.el, as it is not intended
@@ -270,14 +278,6 @@ domains you just can't remember, and to the corresponding countries.
 todoo.el provides M-x todoo and M-x todoo-mode, to conveniently edit
 TODO lists.
 
-toggle-buffer.el provides M-x joc-toggle-buffer, a command that can be
-bound to a key in order to speed up the switching between two buffers.
-
-toggle-case.el provides a sophisticated (over-engineered?) set of
-functions to toggle the case of the character under point, with which
-you can emulate vi's ~ function.  Look for the M-x joc-toggle-case and
-M-x joc-toggle-case-* commands.
-
 toggle-option.el provides M-x toggle-option, a command to rapidly
 toggle an option.  You should set the toggle-option-list variable to
 an appropriate value.
@@ -297,4 +297,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Sun Nov 16 22:38:45 2003
+ -- Peter S Galbraith <psg@debian.org>, Sun Nov 23 14:46:49 2003

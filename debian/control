@@ -45,6 +45,8 @@ Description: Miscellaneous add-ons for Emacs
   htmlize - HTML-ize font-lock buffers;
   ibuffer - advanced replacement for the `buffer-menu';
   initsplit - split customizations into different files;
+  joc-toggle-buffer - fast switching between two buffers;
+  joc-toggle-case - a set of functions to toggle the case of characters;
   keydef - a simpler way to define key mappings;
   keywiz - Emacs key sequence quiz;
   lcomp - list-completion hacks;
@@ -74,8 +76,6 @@ Description: Miscellaneous add-ons for Emacs
   thinks - quote texts in cartoon-like think bubbles;
   tld - explain top-level domain names;
   todoo - major mode for editing TODO files;
-  toggle-buffer - fast switching between two buffers;
-  toggle-case - a set of functions to toggle the case of characters;
   toggle-option - easily toggle frequently toggled options;
   twiddle - mode line hacks to keep you awake;
   under - underline a region with ^ characters;

@@ -33,6 +33,8 @@ elisp/emacs-goodies-el/home-end.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/htmlize.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/ibuffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/initsplit.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/joc-toggle-buffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/joc-toggle-case.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/keydef.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/keywiz.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/lcomp.el /usr/share/emacs/site-lisp/emacs-goodies-el/
@@ -62,8 +64,6 @@ elisp/emacs-goodies-el/tc.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/thinks.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/tld.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/todoo.el /usr/share/emacs/site-lisp/emacs-goodies-el/
-elisp/emacs-goodies-el/toggle-buffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/
-elisp/emacs-goodies-el/toggle-case.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/toggle-option.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/twiddle.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/under.el /usr/share/emacs/site-lisp/emacs-goodies-el/

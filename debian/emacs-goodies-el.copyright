@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.6 $
+| ;; $Revision: 1.7 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -444,6 +444,98 @@ Author/copyright info for home-end.el:
 `----
 
 
+Author/copyright info for htmlize.el:
+,----
+| ;; Copyright (C) 1997,1998,1999,2000 Hrvoje Niksic
+|
+| ;; Author: Hrvoje Niksic <hniksic@xemacs.org>
+| [...]
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
+Author/copyright info for ibuffer.el:
+,----
+| ;;; ibuffer.el --- operate on buffers like dired
+|
+| ;; Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+|
+| ;; Author: Colin Walters <walters@verbum.org>
+| [...]
+| ;; This file is not currently part of GNU Emacs.
+|
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License as
+| ;; published by the Free Software Foundation; either version 2, or (at
+| ;; your option) any later version.
+`----
+
+
+Author/copyright info for initsplit.el:
+,----
+| ;;; initsplit --- code to split customizations into different files
+|
+| ;; Copyright (C) 2000, 2001 John Wiegley
+|
+| ;; Author: John Wiegley <johnw@gnu.org>
+| [...]
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License as
+| ;; published by the Free Software Foundation; either version 2, or (at
+| ;; your option) any later version.
+`----
+
+
+Author/copyright info for joc-toggle-buffer.el (eenamed from toggle-buffer.el)
+,----
+| ;;; @(#) toggle-buffer.el --- flips back and forth between two buffers
+| [...]
+| ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
+|
+| ;; Author:          Joe Casadonte (emacs@northbound-train.com)
+| ;; Maintainer:      Joe Casadonte (emacs@northbound-train.com)
+| [...]
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
+Author/copyright info for joc-toggle-case.el (renamed from toggle-case.el):
+,----
+| ;;; **************************************************************************
+| ;; @(#) toggle-case.el -- toggles case at poitn like ~ in vi
+| [...]
+| ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
+| ;; Author:          Joe Casadonte (emacs@northbound-train.com)
+| ;; Maintainer:      Joe Casadonte (emacs@northbound-train.com)
+| [...]
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
+Author/copyright info for keydef.el:
+,----
+| ;;; keydef.el --- a simpler way to define keys, with kbd syntax
+|
+| ;; Emacs Lisp Archive Entry
+| ;; Filename: keydef.el
+| ;; Author: Michael John Downes <mjd@ams.org>
+| [...]
+| ;; This program was placed in the public domain on 2001/01/18 by the
+| ;; Author. The program is distributed in the hope that it will be
+| ;; useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+| ;; of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+`----
+
+
 Author/copyright info for keywiz.el:
 ,----
 | ;;; keywiz.el --- Emacs key sequence quiz
@@ -471,66 +563,6 @@ Author/copyright info for lcomp.el
 | ;; it under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
-`----
-
-
-Author/copyright info for ibuffer.el:
-,----
-| ;;; ibuffer.el --- operate on buffers like dired
-|
-| ;; Copyright (C) 2000, 2001 Free Software Foundation, Inc.
-|
-| ;; Author: Colin Walters <walters@verbum.org>
-| [...]
-| ;; This file is not currently part of GNU Emacs.
-|
-| ;; This program is free software; you can redistribute it and/or
-| ;; modify it under the terms of the GNU General Public License as
-| ;; published by the Free Software Foundation; either version 2, or (at
-| ;; your option) any later version.
-`----
-
-
-Author/copyright info for htmlize.el:
-,----
-| ;; Copyright (C) 1997,1998,1999,2000 Hrvoje Niksic
-|
-| ;; Author: Hrvoje Niksic <hniksic@xemacs.org>
-| [...]
-| ;; This program is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
-`----
-
-
-Author/copyright info for keydef.el:
-,----
-| ;;; keydef.el --- a simpler way to define keys, with kbd syntax
-|
-| ;; Emacs Lisp Archive Entry
-| ;; Filename: keydef.el
-| ;; Author: Michael John Downes <mjd@ams.org>
-| [...]
-| ;; This program was placed in the public domain on 2001/01/18 by the
-| ;; Author. The program is distributed in the hope that it will be
-| ;; useful, but WITHOUT ANY WARRANTY; without even the implied warranty
-| ;; of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-`----
-
-
-Author/copyright info for initsplit.el:
-,----
-| ;;; initsplit --- code to split customizations into different files
-|
-| ;; Copyright (C) 2000, 2001 John Wiegley
-|
-| ;; Author: John Wiegley <johnw@gnu.org>
-| [...]
-| ;; This program is free software; you can redistribute it and/or
-| ;; modify it under the terms of the GNU General Public License as
-| ;; published by the Free Software Foundation; either version 2, or (at
-| ;; your option) any later version.
 `----
 
 
@@ -826,7 +858,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.6 $
+| ;; $Revision: 1.7 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -853,38 +885,6 @@ Author/copyright info for todoo.el:
 | [...]
 | ;; This is free software; you can redistribute it and/or modify it
 | ;; under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
-`----
-
-
-Author/copyright info for toggle-buffer.el:
-,----
-| ;;; @(#) toggle-buffer.el --- flips back and forth between two buffers
-| [...]
-| ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
-|
-| ;; Author:          Joe Casadonte (emacs@northbound-train.com)
-| ;; Maintainer:      Joe Casadonte (emacs@northbound-train.com)
-| [...]
-| ;; This program is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
-`----
-
-
-Author/copyright info for toggle-case.el:
-,----
-| ;;; **************************************************************************
-| ;; @(#) toggle-case.el -- toggles case at poitn like ~ in vi
-| [...]
-| ;; Copyright (C) 2001 by Joseph L. Casadonte Jr.
-| ;; Author:          Joe Casadonte (emacs@northbound-train.com)
-| ;; Maintainer:      Joe Casadonte (emacs@northbound-train.com)
-| [...]
-| ;; This program is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
 `----
