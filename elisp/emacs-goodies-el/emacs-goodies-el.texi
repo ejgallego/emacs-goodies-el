@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.45 2003/10/16 00:43:23 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.46 2003/10/16 01:21:20 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -1742,8 +1742,6 @@ stored. Use @command{M-x session-toggle-permanent-flag} or select the
 corresponding menu item in the new submenu @code{Open...recently changed}.
 
 @end itemize
-
-@node sys-apropos, sys-apropos, session, Top
 
 @node setnu, sys-apropos, session, Top
 @chapter setnu - vi-style line number mode for Emacs
