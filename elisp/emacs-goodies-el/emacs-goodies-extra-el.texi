@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-extra-el.texi,v 1.2 2003/09/24 02:32:32 psg Exp $
+@c $Id: emacs-goodies-extra-el.texi,v 1.3 2003/09/24 02:39:46 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-extra-el
 @settitle Emacs-Goodies-extra-el
@@ -83,10 +83,16 @@ customisation variables described below.
 @key{C-c d w} for running wordinspect GUI dict client.
 @end itemize
 
+The Debian emacs-goodies-extra-el package doesn't setup these keys by
+default.  The first time you use @code{dict} in a session you must do
+so manually with @code{M-x dict}.  Thereafter the keybindings will
+work.  If someone requests it, a customization variable could be added
+to enable them automatically.
+
 Descriptions of all customisation variables are given below in their 
 definitions, and of cause you can find them in the customization of
 the grou @code{Dict}.
 
-I hope you find the program usefull. And also I would like to know
-your opinion about the program, improvement suggestions and of cause
+The author hopes you find the program useful and would like to know
+your opinion about the program, improvement suggestions and of course
 bug reports.  Mail them to max-appolo@@mail.ru
