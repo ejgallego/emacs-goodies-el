@@ -85,6 +85,14 @@
 ;;:require 'floatbg
   :group 'emacs-goodies-el)
 
+;;framepop
+(defgroup framepop nil
+  "Display temporary buffers in a dedicated frame."
+  :group 'frames
+  :link '(custom-manual "(emacs-goodies-el)framepop")
+  :load 'framepop
+;;:require 'framepop
+  :group 'emacs-goodies-el)
 
 ;; highlight-completion
 (defgroup highlight-completion nil
