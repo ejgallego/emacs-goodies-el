@@ -40,7 +40,7 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
 ;; apt-sources
 (add-to-list 'auto-mode-alist '("sources.list$" . apt-sources-mode))
 
-;;  auto-fill-inhibit.el
+;; auto-fill-inhibit.el
 (defgroup auto-fill-inhibit '((auto-fill-inhibit-list custom-variable))
   "Finer grained control over auto-fill-mode (de)activation."
   :load 'auto-fill-inhibit
@@ -63,6 +63,10 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
 (autoload 'cyclebuffer-backward "cyclebuffer"
   "Cycle buffer backward."
   t)
+
+;; autoloads for dict.el
+(autoload 'dict "dict" "Lookup a word in the dictionary" t)
+(autoload 'dict-region "dict" "Lookup a region in the dictionary" t)
 
 ;; ff-paths.el
 (defcustom ff-paths-install emacs-goodies-el-defaults

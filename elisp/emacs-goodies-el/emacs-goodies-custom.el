@@ -53,6 +53,16 @@
 ;;:require 'df
   :group 'emacs-goodies-el)
 
+;; dict
+(defgroup Dict nil
+  "Browse DICT dictionaries."
+  :prefix "dict-"
+  :link '(custom-manual "(emacs-goodies-el)dict")
+  :load 'dict
+;;:require 'dict
+  :group 'external
+  :group 'emacs-goodies-extra-el)
+
 ;; egocentric
 (defgroup egocentric nil
   "Highlight your name in arbitrary buffers."
@@ -178,6 +188,16 @@ selectable views (limits)."
   :load 'muttrc-mode
 ;;:require 'muttrc-mode
   :group 'emacs-goodies-el)
+
+;; newsticker
+(defgroup newsticker nil
+  "Newsticker settings. Some of these changes do not have an immediate
+effect.  Therefore it is recommended to `newsticker-stop' and then
+`newsticker-start' again after you have changed any of these settings."
+  :link '(custom-manual "(emacs-goodies-el)newsticker")
+  :load 'newsticker
+;;:require 'newsticker
+  :group 'emacs-goodies-extra-el)
 
 ;; table
 (defgroup table nil

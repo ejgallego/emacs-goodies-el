@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.24 2003/09/24 01:16:58 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.25 2003/09/30 00:55:55 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -72,20 +72,22 @@ be documented.
 * boxquote::                    Quote text with a semi-box.
 * browse-kill-ring::            Interactively insert items from kill-ring.
 * coffee::                      Submit BREW request to RFC2324-compliant device
-* clipper::                     Save strings of data for further use.
-* cyclebuffer::                 Select buffer by cycling through.
-* df::                          Display space left on partitions in mode-line.
-* diminish::                    Diminish minor-mode's display.
-* dirvars::                     Local variables that apply to entire directory.
-* ff-paths::                    Searches certain paths to find files.
-* filladapt::                   Adaptively set fill-prefix.
+* clipper::                     Save strings of data for further use
+* cyclebuffer::                 Select buffer by cycling through
+* df::                          Display space left on partitions in mode-line
+* dict::                        Emacs interface to dict client
+* diminish::                    Diminish minor-mode's display
+* dirvars::                     Local variables that apply to entire directory
+* ff-paths::                    Searches certain paths to find files
+* filladapt::                   Adaptively set fill-prefix
 * floatbg::                     Slowly modify background color
-* highlight-beyond-fill-column::  Fontify beyond the fill-column.
+* highlight-beyond-fill-column::  Fontify beyond the fill-column
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
 * home-end::                    Alternative Home and End key commands
 * htmlize::                     HTML-ize font-lock buffers
 * ibuffer::                     Operate on buffers like dired
+* newsticker::                  A Newsticker for Emacs.
 @end menu
 
 This work compiles GPL'ed documentation from the various elisp files
@@ -357,7 +359,7 @@ searching for.
 (global-set-key "M-P" 'cyclebuffer-backward)
 @end example
 
-@node df, diminish, cyclebuffer, Top
+@node df, dict, cyclebuffer, Top
 @chapter df - display space left on partitions in the mode-line.
 
 This is a quick hack to display disk usage in the mode-line.
@@ -377,7 +379,49 @@ in your .emacs if you want to scan @file{/home}.  Even simpler, enable
 it by customizing the group @code{df} where you can toggle on the
 variable @code{df-run-on-startup}.
 
-@node diminish, dirvars, df, Top
+@node dict, diminish, df, Top
+@chapter dict - Emacs interface to dict client
+
+This package is an Emacs wrapper around the shell @file{dict} command
+and provides an easy and comfortable (from my point of view) access to
+the dictd server from Emacs.
+
+The package provides several key bindings, which are customisation variables, 
+so you can change them easily:
+
+@itemize @bullet
+@item
+@key{C-c d d} for running dict with options defined by
+customisation variables described below.
+
+@item
+@key{C-c d r} for running dict on region as a single word.
+
+@item
+@key{C-c d m} for running dict on every word in the region.
+
+@item
+@key{C-c d s} for running dict to perform search on the given server.
+
+@item
+@key{C-c d w} for running wordinspect GUI dict client.
+@end itemize
+
+The Debian emacs-goodies-extra-el package doesn't setup these keys by
+default.  The first time you use @code{dict} in a session you must do
+so manually with @code{M-x dict}.  Thereafter the keybindings will
+work.  If someone requests it, a customization variable could be added
+to enable them automatically.
+
+Descriptions of all customisation variables are given below in their 
+definitions, and of cause you can find them in the customization of
+the grou @code{Dict}.
+
+The author hopes you find the program useful and would like to know
+your opinion about the program, improvement suggestions and of course
+bug reports.  Mail them to max-appolo@@mail.ru
+
+@node diminish, dirvars, dict, Top
 @chapter diminish - Diminish minor-mode's display
 
 Minor modes each put a word on the mode line to signify that they're
@@ -799,7 +843,7 @@ For any of this to work, you need to run Emacs under a window-system
 
        http://fly.srk.fer.hr/~hniksic/emacs/htmlize.html
 
-@node ibuffer,  , htmlize, Top
+@node ibuffer, newsticker, htmlize, Top
 @chapter ibuffer - operate on buffers like dired
 
 ibuffer.el is an advanced replacement for the `buffer-menu' which
@@ -827,3 +871,66 @@ Remember, you can switch between formats using
 In emacs-goodies-el, you can use the customize interface to bind
 @code{ibuffer} to @key{\C-x\C-b} by customizing the variable
 @code{ibuffer-enable}.
+
+@node newsticker,  , ibuffer, Top
+@chapter newsticker - A Newsticker for Emacs.
+
+@noindent Copyright (C) 2003 by Ulf Jasper
+
+This package provides a newsticker for Emacs.  A newsticker is a thing
+that asynchronously retrieves a list of headlines (which are contained
+in RDF Site Summary (RSS) files) from a list of news sites, displays
+these headlines, and allows for loading the corresponding articles in
+a web browser.
+
+This package should work with all RSS files that follow the "RDF Rich
+Site Summary (RSS) 1.0" specification (see
+@url{http://purl.org/rss/1.0/spec}).  It may also work with
+other/older/alternative rss formats (like 0.9<something> or such).
+
+This package requires wget for retrieving headlines asynchronously.
+
+Headlines can be displayed in the echo area, but they will show only
+if no other program is using the echo area (and minibuffer).
+Besides, headlines and their descriptions are collected in a buffer
+called *newsticker*.
+
+To use, do @command{M-x newsticker-start}.  This will retrieve
+headlines from each url in @code{newsticker-url-list-defaults} and
+@code{newsticker-url-list} every @code{newsticker-retrieval-interval}
+seconds.  All headlines are placed in the buffer @code{*newsticker*}.
+Clicking @key{mouse-button-2} or pressing @key{RET} in that buffer on
+a headline will call @command{browse-url} to load the corresponding
+news story in your favourite web browser.
+
+Every @code{newsticker-display-interval} a headline is shown in the
+echo area (if @code{newsticker-display-interval} is positive).
+
+In order to stop the newsticker say @command{M-x newsticker-stop}.
+This will stop all timers.
+
+The function @command{newsticker-show-news} will update the
+\*newsticker* buffer, if necessary, and recreate it if you accidentally
+deleted it.  The modeline will indicate whether the *newsticker*
+buffer is up to date with the newsticker-cache.
+
+Newsticker-mode extends @command{outline-mode} so that you can easily
+hide and show descriptions of feeds and news items.
+
+Newsticker-mode supports imenu.  It allows for navigating with the
+help of a menu.  In order to use this feature you should add the
+following to you .emacs file:
+
+@example
+  (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+@end example
+
+All newsticker-options are customizable.  Do @command{M-x customize-group
+@key{RET} newsticker @key{RET}} in order to customize the newsticker settings.
+
+Enjoy!
+
+PS: This newsticker is designed do its job silently in the
+    background without disturbing you.  However, it is probably
+    impossible to prevent such a tool from slightly attenuating your
+    Editor's responsiveness every once in a while.
