@@ -1,3 +1,12 @@
+emacs-goodies-el (24.6-2) UNRELEASED; urgency=low
+
+  * gnus-bonus-el
+    - Attempt to fix Bug: "gnus-bonus-el: search-failed "--text follows this
+      line--". Thanks to Mathieu Roy for reporting, and email back if the
+      fix doesn't work for you (Closes: #240212).
+
+ --
+
 emacs-goodies-el (24.6-1) unstable; urgency=low
 
   * gnus-bonus-el
