@@ -217,6 +217,15 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'newsticker
   :group 'emacs-goodies-el)
 
+;; nuke-trailing-whitespace
+(defgroup nuke-trailing-whitespace nil
+  "Strip trailing whitespace from buffers."
+  :group 'editing
+  :link '(custom-manual "(emacs-goodies-el)nuke-trailing-whitespace")
+  :load 'nuke-trailing-whitespace
+;;:require 'nuke-trailing-whitespace
+  :group 'emacs-goodies-el)
+
 ;; perldoc
 (defgroup perldoc nil
   "Show help for Perl functions, builtins, and modules."
