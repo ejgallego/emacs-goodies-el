@@ -21,10 +21,10 @@
 ;; Cambridge, MA 02139, USA.
 
 ;;; Commentary:
-;; 
+;;
 ;; This is a major mode for Debian changelog files.  The main features
 ;; are:
-;; 
+;;
 ;;  - fontification (varies with upload urgency, etc).
 ;;  - create a entry for a new version (guessing the version number).
 ;;  - finalize a version with proper timestamp and syntax.
@@ -33,11 +33,11 @@
 ;;    read a bug report via browse-url or as email, close a bug with
 ;;    thanks.
 ;;  - closed bugs are fontified and clickable to view them via browse-url.
-;; 
+;;
 ;; The mode is entered automatically when editing a debian/changelog file.
 ;; See the menus "Bugs" and "Changelog" for commands or do `C-h m' to get
 ;; the list of keybindings.
-;; 
+;;
 ;; From other files in unpacked sources, do `M-x debian-changelog-add-entry'
 ;; to add an entry for that file in the changelog file.
 
@@ -275,6 +275,12 @@
 ;; V1.74 22Nov2003 Peter S Galbraith <psg@debian.org>
 ;;  - Make `debian-changelog-add-entry' works from files in unpacked sources.
 ;;    Thanks to Junichi Uekawa for suggesting it (Closes: #220641)
+;; V1.75 27Nov2003 Peter S Galbraith <psg@debian.org>
+;;  - Add menu entry for "Archived Bugs for This Package", for
+;;    "Developer Page for This Package" and
+;;    "Developer Page for This Maintainer".
+;;  - Added function `debian-changelog-maintainer' and interactive command
+;;    `debian-changelog-web-developer-page'.
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -350,6 +356,7 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
 (autoload 'debian-bug-web-package "debian-bug")
 (autoload 'debian-bug-bug-menu-init "debian-bug")
 (autoload 'debian-bug-web-this-bug-under-mouse "debian-bug")
+(autoload 'debian-bug-web-developer-page "debian-bug")
 (defvar debian-bug-open-alist)
 
 
@@ -551,7 +558,7 @@ Upload to " val  " anyway?")))
    ["New Version" debian-changelog-add-version (debian-changelog-finalised-p)]
    ["Add Entry" debian-changelog-add-entry
     (not (debian-changelog-finalised-p))]
-   ["Close bug" debian-changelog-close-bug
+   ["Close Bug" debian-changelog-close-bug
     (not (debian-changelog-finalised-p))]
    "--"
    ("Set Distribution"
@@ -579,14 +586,19 @@ Upload to " val  " anyway?")))
    ["Finalise+Save" debian-changelog-finalise-and-save
     (not (debian-changelog-finalised-p))]
    "--"
-   "Access www.debian.org"
-   ["Bugs for this package" (debian-bug-web-bugs) t]
-   ["Specific bug number" (debian-bug-web-bug) t]
-   ["Package list (all archives)" (debian-bug-web-packages) t]
-   ("Package web pages..."
-    ["stable" (debian-bug-web-package "stable") t]
-    ["testing" (debian-bug-web-package "testing") t]
-    ["unstable" (debian-bug-web-package "unstable") t])
+   "Web View"
+   ["Best Practices" (browse-url "http://www.debian.org/doc/developers-reference/ch-best-pkging-practices.en.html#s-bpp-debian-changelog") t]
+   ["Bugs for This Package" (debian-bug-web-bugs) t]
+   ["Archived Bugs for This Package" (debian-bug-web-bugs t) t]
+   ["Bug Number..." (debian-bug-web-bug) t]
+   ["Package Info" (debian-bug-web-packages) t]
+;; ("Package web pages..."
+;;  ["stable" (debian-bug-web-package "stable") t]
+;;  ["testing" (debian-bug-web-package "testing") t]
+;;  ["unstable" (debian-bug-web-package "unstable") t])
+   ["Developer Page for This Package" (debian-bug-web-developer-page) t]
+   ["Developer Page for This Maintainer" (debian-changelog-web-developer-page)
+    t]
    "--"
    ["Customize" (customize-group "debian-changelog") (fboundp 'customize-group)])))
  (t
@@ -596,7 +608,7 @@ Upload to " val  " anyway?")))
    ["New Version" debian-changelog-add-version (debian-changelog-finalised-p)]
    ["Add Entry" debian-changelog-add-entry
     (not (debian-changelog-finalised-p))]
-   ["Close bug" debian-changelog-close-bug
+   ["Close Bug" debian-changelog-close-bug
     (not (debian-changelog-finalised-p))]
    "--"
    ("Set Distribution"     :active (not (debian-changelog-finalised-p))
@@ -624,15 +636,19 @@ Upload to " val  " anyway?")))
    ["Finalise+Save" debian-changelog-finalise-and-save
     (not (debian-changelog-finalised-p))]
    "--"
-   "Access www.debian.org"
-   ["Best practices" (browse-url "http://www.debian.org/doc/developers-reference/ch-best-pkging-practices.en.html#s-bpp-debian-changelog") t]
-   ["Bugs for this package" (debian-bug-web-bugs) t]
-   ["Specific bug number" (debian-bug-web-bug) t]
-   ["Package list (all archives)" (debian-bug-web-packages) t]
-   ("Package web pages..."
-    ["stable" (debian-bug-web-package "stable") t]
-    ["testing" (debian-bug-web-package "testing") t]
-    ["unstable" (debian-bug-web-package "unstable") t])
+   "Web View"
+   ["Best Practices" (browse-url "http://www.debian.org/doc/developers-reference/ch-best-pkging-practices.en.html#s-bpp-debian-changelog") t]
+   ["Bugs for This Package" (debian-bug-web-bugs) t]
+   ["Archived Bugs for This Package" (debian-bug-web-bugs t) t]
+   ["Bug Number..." (debian-bug-web-bug) t]
+   ["Package Info" (debian-bug-web-packages) t]
+;; ("Package web pages..."
+;;  ["stable" (debian-bug-web-package "stable") t]
+;;  ["testing" (debian-bug-web-package "testing") t]
+;;  ["unstable" (debian-bug-web-package "unstable") t])
+   ["Developer Page for This Package" (debian-bug-web-developer-page) t]
+   ["Developer Page for This Maintainer" (debian-changelog-web-developer-page)
+    t]
    "--"
    ["Customize" (customize-group "debian-changelog") (fboundp 'customize-group)]))))
 
@@ -1080,6 +1096,28 @@ If file is empty, create initial entry."
     (insert " " debian-changelog-full-name
             " <" debian-changelog-mailing-address ">  "
 	    (debian-changelog-date-string))))
+
+(defun debian-changelog-maintainer ()
+  "Return maintainer of last changelog entry."
+  (save-excursion
+    (goto-char (point-min))
+    (if (re-search-forward "^ -- .*<\\(.*\\)>" nil t)
+        (if (fboundp 'match-string-no-properties)
+            (match-string-no-properties 1)
+          (match-string 1))
+      (error "Maintainer name not found."))))
+
+(defun debian-changelog-web-developer-page ()
+  "Browse the BTS for the last upload maintainer's developer summary page."
+  (interactive)
+  (if (not (featurep 'browse-url))
+      (progn
+        (load "browse-url" nil t)
+        (if (not (featurep 'browse-url))
+            (error "This function requires the browse-url elisp package"))))
+  (let ((name (debian-changelog-maintainer)))
+    (browse-url (concat "http://qa.debian.org/developer.php?login=" name))
+    (message "Looking up developer summary page for %s via browse-url" name)))
 
 ;;
 ;; interactive function to unfinalise changelog (so modifications can be made)

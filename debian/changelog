@@ -46,7 +46,9 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
   * dpkg-dev-el:
     - debian-changelog-mode.el: Make `debian-changelog-add-entry' works
       from files in unpacked sources.  Thanks to Junichi Uekawa for
-      suggesting it (Closes: #220641)
+      suggesting it (Closes: #220641).
+      Add menu entry for "Archived Bugs for This Package", for
+      "Developer Page for This Package", "Developer Page for This Maintainer".
     - debian-control-mode.el: highlight only known fields (Closes: #213779).
   * debian-el
     - apt-utils.el: Updated to v1.72 (2003/11/25). More robust finding of
@@ -58,6 +60,9 @@ emacs-goodies-el (24.0-1) UNRELEASED; urgency=low
         list of pseudo-packages can be scrolled. (Closes: #222332)
       - debian-bug-package: Let M-<next> and M-<prev> scroll the pseudo-package
         list window by making _it_ the other window. (Closes: #222333)
+    - debian-bug.el: Add menu entry for "Archived Bugs for This Package", for
+      "Developer Page for This Package", "Developer Page for This Maintainer"
+      (Closes: #222391).
   * make-orig.sh bug fix: "cvs .# files in source package", thanks to
     Kevin Ryde for reporting it (Closes: #221940).
   
