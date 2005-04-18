@@ -23,6 +23,7 @@
   ;; autoloads for devscripts.el
   (autoload 'debuild "devscripts" "Run debuild in the current directory." t)
   (autoload 'debc "devscripts" "Run debc in the current directory." t)
+  (autoload 'debi "devscripts" "Run debi in the current directory." t)
   (autoload 'debit "devscripts" "Run debit in the current directory." t)
   (autoload 'debdiff "devscripts" "Compare contents of CHANGES-FILE-1 and CHANGES-FILE-2." t)
   (autoload 'debdiff-current "devscripts"   "Compare the contents of .changes file of current version with previous version; 

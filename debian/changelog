@@ -1,3 +1,10 @@
+emacs-goodies-el (24.10-2) UNRELEASED; urgency=low
+
+  * devscripts-el:
+   - autoload 'debi' (closes: #305109)
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 18 Apr 2005 23:01:49 +0900
+
 emacs-goodies-el (24.10-1) unstable; urgency=low
 
   * debian-el:
@@ -80,7 +87,7 @@ emacs-goodies-el (24.6-1) unstable; urgency=low
       won't mention it anymore. (Closes: #256260).
   * debian-el:
     - debian-el.el: Bug fix: "debian-el: Add udeb support to debview",
-      thanks to Frédéric Bothamy for the suggestion and patch
+      thanks to Fré¤©ric Bothamy for the suggestion and patch
       (Closes: #260273).
     - apt-utils.el: new upstream version from Matt, adds "m" key and menu
       entry to read man page.  Addresses bug report "apt-utils.el: not
