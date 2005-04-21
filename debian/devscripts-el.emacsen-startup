@@ -35,5 +35,5 @@ requires access to debian/changelog, and being in debian/ dir." t)
 
 Running this requires elserv.  Use elserv, and do `elserv-start' before invoking this command." t)
   (autoload 'debuild-pbuilder "pbuilder-mode" "Run debuild-pbuilder in the current directory." t)
-  (autoload 'pduilder-build "pbuilder-mode" "Run pbuilder-build for the given filename." t)
-  (autoload 'pduilder-user-mode-linux-build "pbuilder-mode" "Run pbuilder-user-mode-linux for the given filename." t))
+  (autoload 'pbuilder-build "pbuilder-mode" "Run pbuilder-build for the given filename." t)
+  (autoload 'pbuilder-user-mode-linux-build "pbuilder-mode" "Run pbuilder-user-mode-linux for the given filename." t))

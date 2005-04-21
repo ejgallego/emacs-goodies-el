@@ -1,7 +1,7 @@
 emacs-goodies-el (24.10-2) UNRELEASED; urgency=low
 
   * devscripts-el:
-   - autoload 'debi' (closes: #305109)
+   - autoload 'debi'; fix spelling mistake in pduilder->pbuilder (closes: #305109)
 
  -- Junichi Uekawa <dancer@debian.org>  Mon, 18 Apr 2005 23:01:49 +0900
 
