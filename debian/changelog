@@ -1,9 +1,14 @@
-emacs-goodies-el (24.10-2) UNRELEASED; urgency=low
+emacs-goodies-el (24.11-1) UNRELEASED; urgency=low
 
-  * devscripts-el:
-   - autoload 'debi'; fix spelling mistake in pduilder->pbuilder (closes: #305109)
+  * debian-el:
+    - apt-utils.el: "apt-utils-show-package is broken", thanks to Thamer
+    Mahmoud for reporting it and to Matt Hodges for fixing it in a new
+    upstream version (Closes: #302888).
+  * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
+   - autoload 'debi'; fix spelling mistake in pduilder->pbuilder
+    (closes: #305109)
 
- -- Junichi Uekawa <dancer@debian.org>  Mon, 18 Apr 2005 23:01:49 +0900
+ -- Peter S Galbraith <psg@debian.org>  Thu,  2 Jun 2005 10:28:41 -0400
 
 emacs-goodies-el (24.10-1) unstable; urgency=low
 
