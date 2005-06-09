@@ -3,7 +3,7 @@
 ;; Copyright (C) 1996 Ian Jackson
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
-;; Copyright (C) 2000, 2001, 2002, 2003, 2004 Peter S Galbraith
+;; Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005 Peter S Galbraith
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -292,6 +292,9 @@
 ;;    distribution to security.  Thanks to Martin Schulze (Closes: #234730)
 ;;  - Should mark line beginning with a tab as invalid. Fontified in warning
 ;;    face.  Thanks to Michel Daenzer (Closes: #235310).
+;; V1.79 07June2005 Jari Aalto <jari.aalto@cante.net>
+;;  - fix byte-compilation warning about
+;;    `(fboundp (quote imenu))' called for effect (Closes: #309788)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1513,9 +1516,8 @@ Also set keymap."
 ;;; imenu stuff - Peter Galbraith, May 2001
 
 (eval-when-compile
-  (require 'cl))
-(if (fboundp 'imenu)                    ;Make sure auto-load is loaded
-    (eval-when-compile
+  (require 'cl)
+  (if (fboundp 'imenu)                    ;Make sure auto-load is loaded
       (require 'imenu)))
 
 (defvar debian-changelog-imenu-doing-closebug nil
