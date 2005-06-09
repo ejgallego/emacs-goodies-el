@@ -3,12 +3,15 @@ emacs-goodies-el (24.11-1) UNRELEASED; urgency=low
   * debian-el:
     - apt-utils.el: "apt-utils-show-package is broken", thanks to Thamer
     Mahmoud for reporting it and to Matt Hodges for fixing it in a new
-    upstream version (Closes: #302888).
+    upstream version (Closes: #302888, #312000).
   * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
    - autoload 'debi'; fix spelling mistake in pduilder->pbuilder
     (closes: #305109)
+  * dpkg-dev-el:
+   - debian-changelog-mode.el: "`(fboundp (quote imenu))' called for
+    effect", thanks to Jari Aalto for the patch (Closes: #309788).
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  2 Jun 2005 10:28:41 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed,  8 Jun 2005 21:56:22 -0400
 
 emacs-goodies-el (24.10-1) unstable; urgency=low
 
