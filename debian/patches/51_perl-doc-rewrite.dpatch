@@ -23,15 +23,15 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el	2003-10-05 22:06:19.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el	2003-10-05 22:06:35.000000000 -0400
+diff -urNad --exclude=CVS --exclude=.svn ./elisp/emacs-goodies-el/perldoc.el /tmp/dpep-work.P0kRF8/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el
+--- ./elisp/emacs-goodies-el/perldoc.el	2005-06-23 18:59:33.000000000 -0400
++++ /tmp/dpep-work.P0kRF8/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el	2005-06-23 19:07:46.000000000 -0400
 @@ -2,7 +2,7 @@
  
  ;;
  ;; Copyright (C) 2000-2002 Steve Kemp <skx@tardis.ed.ac.uk>
 -;;
-+;; Copyright (C) 2003 Peter S Galbraith <psg@debian.org>
++;; Copyright (C) 2003, 2005 Peter S Galbraith <psg@debian.org>
  
  ;; This file is not part of GNU Emacs.
  
@@ -58,7 +58,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  
  ;;; Version History
  ;;
-@@ -41,256 +39,82 @@
+@@ -41,256 +39,90 @@
  ;;  1.1 - Show error message when no help is found.
  ;;      - Fix name.
  ;;      - Include GPL + URL.
@@ -72,6 +72,9 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 +;;        hardwired list.
 +;;      - ToDo? Allow completion on module names, harvested from all .pod
 +;;              file under directories in @INC.
++;;  1.4 Peter S Galbraith <psg@debian.org>
++;;      - Handle case where Debian perldoc package is not installed.
++;;        Thanks to Kevin Ryde <user42@zip.com.au> for the full bug report.
  
 -;;; Source
 -;;
@@ -349,15 +352,20 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 +          (case-fold-search nil))
 +      (set-buffer tmp-buffer)
 +      (erase-buffer)
-+      (shell-command "perldoc -u perlfunc" t t)
++      (shell-command "perldoc -u perlfunc" t)
 +      (goto-char (point-min))
-+      (search-forward "Alphabetical Listing of Perl Functions" nil t)
-+      (while (re-search-forward
-+              "^=item \\(\\([a-z][^ //\n]*\\)\\|\\(I<\\(.*\\)> \\)\\)" nil t)
-+        (let ((entry (list (or (match-string 2)(match-string 4)))))
-+          (when (not (member entry perldoc-functions-alist))
-+            (push entry perldoc-functions-alist)))))
-+    perldoc-functions-alist))
++      (cond
++       ((search-forward "Alphabetical Listing of Perl Functions" nil t)
++        (while (re-search-forward
++                "^=item \\(\\([a-z][^ //\n]*\\)\\|\\(I<\\(.*\\)> \\)\\)" nil t)
++          (let ((entry (list (or (match-string 2)(match-string 4)))))
++            (when (not (member entry perldoc-functions-alist))
++              (push entry perldoc-functions-alist))))
++        perldoc-functions-alist)
++       ((re-search-forward "You need to install.*" nil t)
++        (error (format "%s" (match-string 0))))
++       (t
++        (error "`perldoc' program not available"))))))
  
 +;;;###autoload
 +(defun perldoc (string)
@@ -378,7 +386,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
  (defun perldoc-start-process (&rest args)
    "Call perldoc with ARGS.
  Sets up process sentinals and needed environment to call perldoc."
-@@ -298,10 +122,10 @@
+@@ -298,10 +130,10 @@
  		    "type"
  		  "cat"))
  	 (perldoc-process)
@@ -391,7 +399,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
      ;; benign one
      (set-buffer (get-buffer-create "*Perldoc*"))
      (kill-all-local-variables)
-@@ -314,56 +138,50 @@
+@@ -314,56 +146,50 @@
      (process-kill-without-query perldoc-process)))
      
  

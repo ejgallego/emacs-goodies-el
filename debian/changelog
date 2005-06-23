@@ -1,3 +1,11 @@
+emacs-goodies-el (24.11-2) unstable; urgency=low
+
+  * emacs-goodies-el:
+    - perldoc.el: Handle case when perl-doc is not installed", thanks to
+    Kevin Ryde for the report and a stab at fixing it (Closes: #314869).
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 23 Jun 2005 19:14:00 -0400
+
 emacs-goodies-el (24.11-1) unstable; urgency=low
 
   * debian-el:
