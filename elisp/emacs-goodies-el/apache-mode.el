@@ -7,7 +7,7 @@
 
 ;; Keywords: languages, faces
 ;; Last edit: 2005-01-06
-;; Version: 2.0 $Id: apache-mode.el,v 1.3 2005/01/07 00:16:53 psg Exp $
+;; Version: 2.0 $Id: apache-mode.el,v 1.4 2005/06/23 17:23:33 psg Exp $
 
 ;; apache-mode.el is free software; you can redistribute it and/or modify it
 ;; under the terms of the GNU General Public License as published by the Free
