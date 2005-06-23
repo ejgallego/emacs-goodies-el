@@ -1,17 +1,19 @@
 emacs-goodies-el (24.11-1) UNRELEASED; urgency=low
 
   * debian-el:
-    - apt-utils.el: "apt-utils-show-package is broken", thanks to Thamer
-    Mahmoud for reporting it and to Matt Hodges for fixing it in a new
-    upstream version (Closes: #302888, #312000).
+   - apt-utils.el: "apt-utils-show-package is broken", thanks to Thamer
+     Mahmoud for reporting it and to Matt Hodges for fixing it in a new
+     upstream version (Closes: #302888, #312000).
   * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
    - autoload 'debi'; fix spelling mistake in pduilder->pbuilder
-    (closes: #305109)
+     (closes: #305109)
   * dpkg-dev-el:
    - debian-changelog-mode.el: "`(fboundp (quote imenu))' called for
-    effect", thanks to Jari Aalto for the patch (Closes: #309788).
+     effect", thanks to Jari Aalto for the patch (Closes: #309788).
+   - 50dpkg-dev-el.el: Make debian changelogs default to utf-8,
+     thanks to Kevin Ryde for the patch (Closes: #315494).
 
- -- Peter S Galbraith <psg@debian.org>  Wed,  8 Jun 2005 21:56:22 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu, 23 Jun 2005 12:41:52 -0400
 
 emacs-goodies-el (24.10-1) unstable; urgency=low
 
@@ -99,7 +101,7 @@ emacs-goodies-el (24.6-1) unstable; urgency=low
       (Closes: #260273).
     - apt-utils.el: new upstream version from Matt, adds "m" key and menu
       entry to read man page.  Addresses bug report "apt-utils.el: not
-      friendly" fromDan Jacobson (Closes: #249061).
+      friendly" from Dan Jacobson (Closes: #249061).
     - debian-bug.el: debian-bug-wnpp now supports RFH tag (Closes: #262985).
   * emacs-goodies-el:
     - Since todoo.el and ibuffer.el don't work in XEmacs, do autoload

@@ -24,4 +24,9 @@
 
   ;; other useful automode
   (add-to-list 'auto-mode-alist
-               '("/debian/[^/]*emacsen-startup\\'" . emacs-lisp-mode)))
+               '("/debian/[^/]*emacsen-startup\\'" . emacs-lisp-mode))
+
+  ;; default to utf-8 for debian changelog files
+  (modify-coding-system-alist 'file "/changelog\\.Debian\\'" 'utf-8)
+  (modify-coding-system-alist 'file "/debian/changelog\\'" 'utf-8))
+
