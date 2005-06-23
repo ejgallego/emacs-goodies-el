@@ -1,4 +1,4 @@
-emacs-goodies-el (24.11-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.11-1) unstable; urgency=low
 
   * debian-el:
    - apt-utils.el: "apt-utils-show-package is broken", thanks to Thamer
@@ -13,7 +13,7 @@ emacs-goodies-el (24.11-1) UNRELEASED; urgency=low
    - 50dpkg-dev-el.el: Make debian changelogs default to utf-8,
      thanks to Kevin Ryde for the patch (Closes: #315494).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 23 Jun 2005 12:41:52 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu, 23 Jun 2005 13:00:40 -0400
 
 emacs-goodies-el (24.10-1) unstable; urgency=low
 
