@@ -2,6 +2,7 @@ emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
     - newsticker.el: new upstream version 1.7
+    - ff-paths.el: new upstream version 3.23    
 
  -- Peter S Galbraith <psg@debian.org>  Mon, 27 Jun 2005 08:35:07 -0400
 

@@ -1,10 +1,10 @@
 ;;; ff-paths.el --- searches certain paths to find files.
 
-;; Copyright (C) 1994-2003 Peter S. Galbraith
+;; Copyright (C) 1994-2005 Peter S. Galbraith
  
 ;; Author:    Peter S. Galbraith <psg@debian.org>
 ;; Created:   16 Sep 1994
-;; Version:   3.22 (Nov 21 2003)
+;; Version:   3.23 (Jul 08 2005)
 ;; Keywords:  find-file, ffap, paths, search
 
 ;;; This file is not part of GNU Emacs.
@@ -220,6 +220,8 @@
 ;;     `ff-paths-locate-ignore-filenames' and `ff-paths-locate-ignore-regexps' 
 ;;     and support infracstructure to skip using locate for certain
 ;;     (common) filenames.
+;; V3.23 Jul 08 2005  Heath Morgan
+;;   - Reinsert `ff-paths-prompt-for-only-one-match' in XEmacs code.
 ;; ----------------------------------------------------------------------------
 ;;; Code:
 
@@ -401,7 +403,13 @@ searching twice for a non-existing file the user actually wants to create")
                            (list 'ff-paths-fontify-non-existent-filename
                                  'ff-paths-display-locate-max-reached))))
               (setq the-name
-                    (or (and (string-equal "18" (substring emacs-version 0 2))
+                    ;; Heath Morgan pointed out that
+                    ;; `ff-paths-prompt-for-only-one-match' had been dropped.
+                    ;; Added back in V3.23
+                    (if (and (not ff-paths-prompt-for-only-one-match)
+                             (null (cdr matches)))
+                      (car matches)
+                      (or (and (string-equal "18" (substring emacs-version 0 2))
                              (completing-read ff-paths-prompt
                                               (create-alist-from-list matches)
                                               nil ff-paths-require-match
@@ -410,7 +418,7 @@ searching twice for a non-existing file the user actually wants to create")
                                          (create-alist-from-list matches)
                                          nil ff-paths-require-match
                                          (psg-common-in-list matches)
-                                         'file-name-history))))
+                                         'file-name-history)))))
           (quit (setq the-name nil)))
 ;; End of Christoph Wedler's change.
 
