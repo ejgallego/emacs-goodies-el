@@ -39,7 +39,7 @@
 (defcustom debuild-pbuilder-path "/usr/bin/debuild-pbuilder" "*Path to `debuild-pbuilder'."
   :group 'pbuilder
   :type 'file)
-(defconst pbuilder-mode-version "$Id: pbuilder-mode.el,v 1.1 2003/10/04 16:16:08 dancer Exp $" "Version of pbuilder mode.")
+(defconst pbuilder-mode-version "$Id: pbuilder-mode.el,v 1.2 2005/08/21 05:22:03 dancer Exp $" "Version of pbuilder mode.")
 
 (defun pdebuild ()
   "Run pdebuild in the current directory."
@@ -94,7 +94,7 @@ Uses `devscripts-mode-gain-root-command' as command to gain root."
     (switch-to-buffer pbuilder-buffer)
     (kill-region (point-min) (point-max))
     (compilation-mode)
-    (insert "start compile")
+    (insert "start compile\n")
     (pbuilder-log-view-add
      (file-name-sans-extension (file-name-nondirectory filename)) pbuilder-buffer
 	   (start-process pbuilder-process pbuilder-buffer devscripts-mode-gain-root-command pbuilder-path "build" (expand-file-name filename)))))
@@ -108,7 +108,7 @@ Uses `devscripts-mode-gain-root-command' as command to gain root."
 
     (kill-region (point-min) (point-max))
     (compilation-mode)
-    (insert "start compile")
+    (insert "start compile\n")
     (pbuilder-log-view-add
      (file-name-sans-extension (file-name-nondirectory filename)) pbuilder-buffer
 	   (start-process pbuilder-process pbuilder-buffer pbuilder-user-mode-linux-path "build" (expand-file-name filename)))
