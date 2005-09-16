@@ -295,6 +295,9 @@
 ;; V1.79 07June2005 Jari Aalto <jari.aalto@cante.net>
 ;;  - fix byte-compilation warning about
 ;;    `(fboundp (quote imenu))' called for effect (Closes: #309788)
+;; V1.80 15Sep2005   Rafael Laboissiere <rafael@debian.org>
+;;  - Add debian-changelog-add-version-hook defaulting to
+;;    debian-changelog-add-new-upstream-release (Closes: #296725)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -360,6 +363,13 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
   :group 'debian-changelog
   :type 'hook
   :options '(turn-on-auto-fill flyspell-mode))
+
+(defcustom debian-changelog-add-version-hook nil
+  (list 'debian-changelog-add-new-upstream-release)
+  "Hooks run just before inserting the signature separator \"--\" in a 
+new version in debian/changelog."
+  :group 'debian-changelog
+  :type 'hook)
 
 (defvar debian-changelog-local-variables-maybe-remove-done nil
   "Internal flag so we prompt only once.")
@@ -831,6 +841,13 @@ for the debian/changelog file to add the entry to."
 ;;
 
 (defvar debian-changelog-new-upstream-release-p nil)
+
+(defun debian-changelog-add-new-upstream-release ()
+  "Normal hook for adding \"new upstream release\" entry to changelog."
+    (when debian-changelog-new-upstream-release-p
+      (insert "New upstream release")
+      (setq debian-changelog-new-upstream-release-p nil)))
+
 (defun debian-changelog-add-version ()
   "Add a new version section to a debian-style changelog file.
 If file is empty, create initial entry."
@@ -847,9 +864,7 @@ If file is empty, create initial entry."
     (if (debian-changelog-experimental-p)
         (insert pkg-name " (" version ") experimental; urgency=low\n\n  * ")
       (insert pkg-name " (" version ") unstable; urgency=low\n\n  * "))
-    (when debian-changelog-new-upstream-release-p
-      (insert "New upstream release")
-      (setq debian-changelog-new-upstream-release-p nil))
+    (run-hooks 'debian-changelog-add-version-hook)
     (save-excursion (insert "\n\n --\n\n"))))
 
 (defun debian-changelog-experimental-p ()
