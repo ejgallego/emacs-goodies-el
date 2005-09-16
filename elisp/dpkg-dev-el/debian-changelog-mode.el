@@ -364,7 +364,7 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
   :type 'hook
   :options '(turn-on-auto-fill flyspell-mode))
 
-(defcustom debian-changelog-add-version-hook nil
+(defcustom debian-changelog-add-version-hook
   (list 'debian-changelog-add-new-upstream-release)
   "Hooks run just before inserting the signature separator \"--\" in a 
 new version in debian/changelog."
