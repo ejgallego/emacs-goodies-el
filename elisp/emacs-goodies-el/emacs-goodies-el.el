@@ -243,13 +243,15 @@ this function to `after-init-hook'."
 (add-to-list 'auto-mode-alist '("/Xresources/". xrdb-mode))
 
 ;; wdired.el
-(add-hook
- 'dired-load-hook
- '(lambda ()
-    (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-    (define-key dired-mode-map
-      [menu-bar immediate wdired-change-to-wdired-mode]
-      '("Edit File Names" . wdired-change-to-wdired-mode))))
+(if (and (>= emacs-major-version 22)	; Change these two lines if XEmacs
+	 (not (featurep 'xemacs)))	; contains the wdired package
+    '(lambda ()
+       (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+  '(lambda ()
+     (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+     (define-key dired-mode-map
+       [menu-bar immediate wdired-change-to-wdired-mode]
+       '("Edit File Names" . wdired-change-to-wdired-mode)))))
 
 (provide 'emacs-goodies-el)
 
