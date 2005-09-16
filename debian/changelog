@@ -5,6 +5,8 @@ emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
     - ff-paths.el: new upstream version 3.23    
     - emacs-goodies-el.el: Double entry in Dired menu on Emacs 22 fixed by
       Sven Joachim (Closes: #323754)
+    - perldoc.el: Apply patch from Kevin Ryde for when perldoc package is 
+      not installed. (Closes: #314869)
   * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
     - minor cosmetic fix on output of pbuilder-build command; add a missing
       newline
