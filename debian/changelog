@@ -1,13 +1,13 @@
 emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
-    - newsticker.el: new upstream version 1.7
+    - newsticker.el: new upstream version 1.8
     - ff-paths.el: new upstream version 3.23    
   * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
     - minor cosmetic fix on output of pbuilder-build command; add a missing
       newline
 
- -- Junichi Uekawa <dancer@debian.org>  Sun, 21 Aug 2005 14:21:41 +0900
+ -- Peter S Galbraith <psg@debian.org>  Thu, 15 Sep 2005 21:01:17 -0400
 
 emacs-goodies-el (24.11-2) unstable; urgency=low
 
