@@ -12,7 +12,9 @@ emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
     - gnus-BTS: Emacs namespace is being polluted (incorrect
       naming of funcs/vars).  Thanks to Jari Aalto for the updated file.
       (Closes: #324116)
-
+  * gnus-bonus-el: dependency compatible with emacs-snapshot.
+    Thanks to Luca Capello.  (Closes: #322536)
+  
  -- Peter S Galbraith <psg@debian.org>  Thu, 15 Sep 2005 21:17:10 -0400
 
 emacs-goodies-el (24.11-2) unstable; urgency=low
