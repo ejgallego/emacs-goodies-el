@@ -251,7 +251,7 @@ this function to `after-init-hook'."
      (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
      (define-key dired-mode-map
        [menu-bar immediate wdired-change-to-wdired-mode]
-       '("Edit File Names" . wdired-change-to-wdired-mode)))))
+       '("Edit File Names" . wdired-change-to-wdired-mode))))
 
 (provide 'emacs-goodies-el)
 
