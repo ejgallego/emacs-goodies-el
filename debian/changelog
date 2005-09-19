@@ -1,5 +1,8 @@
-emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.12-1) unstable; urgency=low
 
+  * No longer call (setq load-path (substitute "." nil load-path)) in startup
+    scripts since it's no longer useful and required 'cl to work correctly.
+    Thanks to Kevin Ryde for finding this and reporting it! (Closes: #328712)
   * emacs-goodies-el:
     - newsticker.el: new upstream version 1.8
     - ff-paths.el: new upstream version 3.23    
@@ -22,7 +25,7 @@ emacs-goodies-el (24.12-1) UNRELEASED; urgency=low
       debian-changelog-add-version-hook defaulting to
       debian-changelog-add-new-upstream-release (Closes: #296725)
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 15 Sep 2005 21:17:10 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 18 Sep 2005 19:47:11 -0400
 
 emacs-goodies-el (24.11-2) unstable; urgency=low
 

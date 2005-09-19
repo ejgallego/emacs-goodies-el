@@ -5,11 +5,6 @@
 (if (not (file-exists-p "/usr/share/emacs/site-lisp/dpkg-dev-el"))
     (message "Package dpkg-dev-el removed but not purged.  Skipping setup.")
 
-  ;; Replace all occurrences of nil in load-path by "." since nil breaks
-  ;; debian-pkg-add-load-path-item
-  (if (memq nil load-path)
-      (setq load-path (substitute "." nil load-path)))
-
   (debian-pkg-add-load-path-item
    (concat "/usr/share/"
            (symbol-name debian-emacs-flavor)
