@@ -298,6 +298,9 @@
 ;; V1.80 15Sep2005   Rafael Laboissiere <rafael@debian.org>
 ;;  - Add debian-changelog-add-version-hook defaulting to
 ;;    debian-changelog-add-new-upstream-release (Closes: #296725)
+;; V1.81 19Sep2005 Peter S Galbraith <psg@debian.org>
+;;  - Add outline-regexp and C-cC-n and C-cC-p movement commands as
+;;    suggested by Romain Francoise <rfrancoise@debian.org> (Closes: #322994)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -547,6 +550,9 @@ Upload to " val  " anyway?")))
 ;; keymap table definition
 ;;
 
+(autoload 'outline-next-visible-heading "outline")
+(autoload 'outline-prev-visible-heading "outline")
+
 (defvar debian-changelog-mode-map nil
   "Keymap for Debian changelog major mode.")
 (if debian-changelog-mode-map
@@ -567,7 +573,12 @@ Upload to " val  " anyway?")))
   (define-key debian-changelog-mode-map "\C-c\C-u"
     'debian-changelog-urgency)
   (define-key debian-changelog-mode-map "\C-c\C-e"
-    'debian-changelog-unfinalise-last-version))
+    'debian-changelog-unfinalise-last-version)
+  (define-key debian-changelog-mode-map "\C-c\C-n"
+    'outline-next-visible-heading)
+  (define-key debian-changelog-mode-map "\C-c\C-p"
+    'outline-previous-visible-heading))
+ 
 
 ;;
 ;; menu definition (Chris Waters)
@@ -1224,6 +1235,7 @@ interface to set it, or simply set the variable
   (set (make-local-variable
 	'debian-changelog-local-variables-maybe-remove-done) nil)
   (set (make-local-variable 'indent-line-function) 'indent-relative-maybe)
+  (set (make-local-variable 'outline-regexp) "^[a-z]")
   (setq local-abbrev-table text-mode-abbrev-table)
   (set-syntax-table text-mode-syntax-table)
   (debian-bug-bug-menu-init debian-changelog-mode-map)
