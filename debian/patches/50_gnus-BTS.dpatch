@@ -5,10 +5,10 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad --exclude=CVS --exclude=.svn ./elisp/debian-el/gnus-BTS.el /tmp/dpep-work.Ttj5Cg/emacs-goodies-el/elisp/debian-el/gnus-BTS.el
---- ./elisp/debian-el/gnus-BTS.el	2003-04-04 15:16:01.000000000 -0500
-+++ /tmp/dpep-work.Ttj5Cg/emacs-goodies-el/elisp/debian-el/gnus-BTS.el	2005-09-15 21:12:00.000000000 -0400
-@@ -33,42 +33,70 @@
+diff -urNad --exclude=CVS --exclude=.svn ./elisp/debian-el/gnus-BTS.el /tmp/dpep-work.XVQhTr/emacs-goodies-el/elisp/debian-el/gnus-BTS.el
+--- ./elisp/debian-el/gnus-BTS.el	2005-09-15 21:38:07.000000000 -0400
++++ /tmp/dpep-work.XVQhTr/emacs-goodies-el/elisp/debian-el/gnus-BTS.el	2005-09-19 18:54:07.000000000 -0400
+@@ -33,42 +33,74 @@
  ;; references to the Bug Tracking system in them. It expects to see
  ;; Bug references in the form of (for example): "#48273", "closes:
  ;; 238742" or similar.
@@ -29,6 +29,10 @@ diff -urNad --exclude=CVS --exclude=.svn ./elisp/debian-el/gnus-BTS.el /tmp/dpep
 +;; 	(gnus-dbts-buttonize): New.
 +;; 	(eval-after-load): New. Install at point when Gnus is being loaded.
 +;; 
++;; 2005-09-19 Peter S Galbraith <psg@debian.org>
++;;
++;;      Minor bug fix: gnus-dbts-gnus-install missing brackets.
++;;      
  ;;; Code:
  
  
@@ -105,7 +109,7 @@ diff -urNad --exclude=CVS --exclude=.svn ./elisp/debian-el/gnus-BTS.el /tmp/dpep
    (let* ((the-thing (if (null thing)
  			(thing-at-point 'sexp)
  		      thing))
-@@ -80,45 +108,48 @@
+@@ -80,45 +112,48 @@
  			   the-thing))
  	 (url (if bugp
  		  "http://bugs.debian.org/cgi-bin/bugreport.cgi?bug="
@@ -176,7 +180,7 @@ diff -urNad --exclude=CVS --exclude=.svn ./elisp/debian-el/gnus-BTS.el /tmp/dpep
 +		      (gnus-group-real-name
 +		       gnus-newsgroup-name))))
 +
-+(defun gnus-dbts-gnus-install
++(defun gnus-dbts-gnus-install ()
 +  (add-hook 'gnus-select-article-hook 'gnus-dbts-gnus-select-article-hook)
 +   ;; only run once, as soon as the article buffer has been created.
 +  (add-hook 'gnus-article-mode-hook 'gnus-dbts-buttonize))

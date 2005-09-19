@@ -3,6 +3,8 @@ emacs-goodies-el (24.12-2) unstable; urgency=low
   * debian-el:
     - debian-bug.el: debian-bug-build-bug-menu was broken from BTS HTML
       format changes (Closes: #329034).
+    - gnus-BTS.el:  Minor bug fix preventing byte-compilation on
+      emacs-snapshot. 
   * dpkg-dev-el:
     - Handle changelog coding system for debian native package, by Kevin
       Ryde (Closes: #317597).
