@@ -1,6 +1,6 @@
 ;;; tld.el --- TLD lookup tool.
 ;; Copyright 2000 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.1 $
+;; $Revision: 1.2 $
 
 ;; tld.el is free software distributed under the terms of the GNU
 ;; General Public Licence, version 2. For details see the file COPYING.
@@ -119,7 +119,6 @@
       ("FM"     . "Micronesia, Federal State of")
       ("FO"     . "Faroe Islands")
       ("FR"     . "France")
-      ("FX"     . "France (European Ter.)")
       ("GA"     . "Gabon")
       ("GB"     . "Great Britain (UK)")
       ("GD"     . "Grenada")

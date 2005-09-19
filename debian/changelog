@@ -6,6 +6,9 @@ emacs-goodies-el (24.12-2) unstable; urgency=low
   * dpkg-dev-el:
     - Handle changelog coding system for debian native package, by Kevin
       Ryde (Closes: #317597).
+  * emacs-goodies-el:
+    - tld.el: new upstream version omits FX which does not exist,
+      thanks to Stephane Bortzmeyer for reporting this (Closes: #273588).
 
  --
 
