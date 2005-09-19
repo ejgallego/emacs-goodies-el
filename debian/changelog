@@ -1,9 +1,13 @@
 emacs-goodies-el (24.12-2) unstable; urgency=low
 
-  * debian-el: debian-bug-build-bug-menu was broken from BTS HTML format
-    changes (Closes: #329034).
+  * debian-el:
+    - debian-bug-build-bug-menu was broken from BTS HTML format changes
+      (Closes: #329034).
+  * dpkg-dev-el:
+    - Handle changelog coding system for debian native package, by Kevin
+      Ryde (Closes: #317597).
 
-  --
+ --
 
 emacs-goodies-el (24.12-1) unstable; urgency=low
 
