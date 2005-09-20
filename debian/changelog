@@ -1,4 +1,4 @@
-emacs-goodies-el (24.12-2) unstable; urgency=low
+emacs-goodies-el (24.13-1) unstable; urgency=low
 
   * debian-el:
     - debian-bug.el: debian-bug-build-bug-menu was broken from BTS HTML
@@ -13,8 +13,13 @@ emacs-goodies-el (24.12-2) unstable; urgency=low
   * emacs-goodies-el:
     - tld.el: new upstream version omits FX which does not exist,
       thanks to Stephane Bortzmeyer for reporting this (Closes: #273588).
+    - Skip byte-compilation for wdired.el ibuffer.el table.el newsticker.el
+      for emacs-snapshot, since it has these files (Same for package
+      gnus-bonus-el and files nnnil.el and spam-stat.el). Also only define
+      the "r" key in dired-mode if `emacs-goodies-el-defaults' is set.
+      (Closes: #329114)
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Mon, 19 Sep 2005 19:25:31 -0400
 
 emacs-goodies-el (24.12-1) unstable; urgency=low
 

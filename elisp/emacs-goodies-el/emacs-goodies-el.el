@@ -243,15 +243,24 @@ this function to `after-init-hook'."
 (add-to-list 'auto-mode-alist '("/Xresources/". xrdb-mode))
 
 ;; wdired.el
-(if (and (>= emacs-major-version 22)	; Change these two lines if XEmacs
-	 (not (featurep 'xemacs)))	; contains the wdired package
-    '(lambda ()
-       (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
-  '(lambda ()
-     (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-     (define-key dired-mode-map
-       [menu-bar immediate wdired-change-to-wdired-mode]
-       '("Edit File Names" . wdired-change-to-wdired-mode))))
+(defcustom wdired-enable emacs-goodies-el-defaults
+  "*Defines \"r\" as 'wdired-change-to-wdired-mode if key was unset.
+Also add menu-bar entry."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (cond
+          (value          
+           (if (equal 'undefined (lookup-key dired-mode-map "r"))
+               (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
+           ;; emacs-snapshot, v22,  already has a menu entry
+           (if (and (>= emacs-major-version 22)
+                    (not (featurep 'xemacs)))
+               (define-key dired-mode-map
+                 [menu-bar immediate wdired-change-to-wdired-mode]
+                 '("Edit File Names" . wdired-change-to-wdired-mode))))))
+  :load 'wdired
+  :group 'emacs-goodies-el)
 
 (provide 'emacs-goodies-el)
 
