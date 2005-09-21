@@ -1,3 +1,11 @@
+emacs-goodies-el (24.14-2) UNRELEASED; urgency=low
+
+  * gnus-bonus-el:
+    - no longer add /usr/share/emacs/site-lisp/gnus-bonus-el to load-path
+      since that shadows emacs-snapshot packages nnnil.el and spam-stat.el
+
+ -- Peter Galbraith <psg@debian.org>  Wed, 21 Sep 2005 09:44:47 -0400
+
 emacs-goodies-el (24.14-1) unstable; urgency=low
 
   * dpkg-dev-el:
