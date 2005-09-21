@@ -1,4 +1,4 @@
-emacs-goodies-el (24.14-1) UNRELEASED; urgency=low
+emacs-goodies-el (24.14-1) unstable; urgency=low
 
   * dpkg-dev-el:
     - debian-bts-control.el: Pick bug number at point for debian-bts-control
@@ -6,8 +6,9 @@ emacs-goodies-el (24.14-1) UNRELEASED; urgency=low
   * emacs-goodies-el:
     - no longer add /usr/share/emacs/site-lisp/emacs-goodies-el to load-path
       since that shadows emacs-snapshot packages such as ibuffer and others.
-  
- -- Peter Galbraith <psg@debian.org>  Tue, 20 Sep 2005 11:00:28 -0400
+      (Closes: #329114)
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 20 Sep 2005 21:44:18 -0400
 
 emacs-goodies-el (24.13-1) unstable; urgency=low
 
