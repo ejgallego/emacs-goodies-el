@@ -251,6 +251,7 @@ Also add menu-bar entry."
          (set-default symbol value)
          (cond
           (value          
+           (require 'dired)
            (if (equal 'undefined (lookup-key dired-mode-map "r"))
                (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
            ;; emacs-snapshot, v22,  already has a menu entry
