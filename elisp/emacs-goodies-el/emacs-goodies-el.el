@@ -250,12 +250,12 @@ Also add menu-bar entry."
   :set (lambda (symbol value)
          (set-default symbol value)
          (cond
-          (value          
+          (value      
            (require 'dired)
            (if (equal 'undefined (lookup-key dired-mode-map "r"))
                (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
            ;; emacs-snapshot, v22,  already has a menu entry
-           (if (and (>= emacs-major-version 22)
+           (if (and (< emacs-major-version 22)
                     (not (featurep 'xemacs)))
                (define-key dired-mode-map
                  [menu-bar immediate wdired-change-to-wdired-mode]
