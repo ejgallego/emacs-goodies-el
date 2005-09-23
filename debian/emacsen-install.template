@@ -69,7 +69,7 @@ FILES=$(for i in $FILES ; do echo $i ; done | sort -u)
 # Symlinks instead of copying...
 cd ${ELCDIR}
 for i in $FILES ; do
-    ln -s ../../../emacs/site-lisp/${PACKAGE}/$i
+    ln -fs /usr/share/emacs/site-lisp/${PACKAGE}/$i
 done
 
 
