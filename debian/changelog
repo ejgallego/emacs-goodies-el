@@ -3,7 +3,7 @@ emacs-goodies-el (24.15-2) unstable; urgency=low
   * symlink .el files alongside .elc files such that they are available
     for `find-function' et al.  (Closes: #329114 again)
 
- -- Peter Galbraith <psg@debian.org>  Thu, 22 Sep 2005 10:50:21 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu, 22 Sep 2005 21:23:58 -0400
 
 emacs-goodies-el (24.15-1) unstable; urgency=low
 
