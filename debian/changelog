@@ -1,3 +1,12 @@
+emacs-goodies-el (24.16-1) unstable; urgency=low
+
+  * emacs-goodies-el:
+    - emacs-goodies-el.el: Key binding for wdired didn't get properly
+      defined in emacs-snapshot, thanks to Sven Joachim for the report and
+      the patch (Closes: #329883).
+
+ -- Peter Galbraith <psg@debian.org>  Mon, 26 Sep 2005 10:43:41 -0400
+
 emacs-goodies-el (24.15-2) unstable; urgency=low
 
   * symlink .el files alongside .elc files such that they are available

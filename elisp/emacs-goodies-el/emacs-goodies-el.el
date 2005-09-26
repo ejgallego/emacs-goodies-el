@@ -1,7 +1,7 @@
 ;;; emacs-goodies-el.el --- startup file for the emacs-goodies-el package
 
 ;;; Commentary:
-;; 
+;;
 ;; This file is loaded from /etc/emacs/site-start.d/50emacs-goodies-el.el
 
 ;;; History:
@@ -48,7 +48,7 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
 (autoload 'clipper-create "clipper" "Create a new 'clip' for use within Emacs."
   t)
 (autoload 'clipper-delete "clipper" "Delete an existing 'clip'." t)
-(autoload 'clipper-insert "clipper" 
+(autoload 'clipper-insert "clipper"
   "Insert a new 'clip' into the current buffer."
   t)
 (autoload 'clipper-edit-clip "clipper" "Edit an existing 'clip'." t)
@@ -195,7 +195,7 @@ Stores the value of the prior keybinding in case we need to restore it.")
 (autoload 'mutt-alias-lookup "mutt-alias"
   "Lookup and display the expansion for ALIAS."
   t)
-  
+
 ;; muttrc-mode.el
 (add-to-list 'auto-mode-alist '("muttrc" . muttrc-mode))
 
@@ -228,7 +228,7 @@ this function to `after-init-hook'."
     "TODO Mode"
     t)
   (add-to-list 'auto-mode-alist '("TODO$" . todoo-mode)))
-  
+
 ;; toggle-option.el
 (autoload 'toggle-option "toggle-option"
   "Easily toggle frequently toggled options."
@@ -250,9 +250,10 @@ Also add menu-bar entry."
   :set (lambda (symbol value)
          (set-default symbol value)
          (cond
-          (value      
+          (value
            (require 'dired)
-           (if (equal 'undefined (lookup-key dired-mode-map "r"))
+           (if (or (equal 'nil (lookup-key dired-mode-map "r"))
+                   (equal 'undefined (lookup-key dired-mode-map "r")))
                (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
            ;; emacs-snapshot, v22,  already has a menu entry
            (if (and (< emacs-major-version 22)
