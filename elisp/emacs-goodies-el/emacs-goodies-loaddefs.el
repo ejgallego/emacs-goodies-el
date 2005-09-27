@@ -20,20 +20,17 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (apache-mode) "apache-mode" "apache-mode.el" (16391
-;;;;;;  1480))
+;;;### (autoloads (apache-mode) "apache-mode" "apache-mode.el" (17082
+;;;;;;  61461))
 ;;; Generated autoloads from apache-mode.el
 
 (autoload (quote apache-mode) "apache-mode" "\
-Major mode for editing Apache configuration files.
-
-\\{apache-mode-map}
-
-\\[apache-mode] runs the hook `apache-mode-hook'." t nil)
-(add-to-list 'auto-mode-alist '("\\.htaccess$"   . apache-mode))
-(add-to-list 'auto-mode-alist '("httpd\\.conf$"  . apache-mode))
-(add-to-list 'auto-mode-alist '("srm\\.conf$"    . apache-mode))
-(add-to-list 'auto-mode-alist '("access\\.conf$" . apache-mode))
+Major mode for editing Apache configuration files." t nil)
+(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;;;***
 
@@ -61,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (16391 1480))
+;;;;;;  "bar-cursor.el" (17208 40484))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -179,7 +176,7 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (16391 1480))
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (17208 40484))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -195,7 +192,7 @@ Display items in the `kill-ring' in another buffer." t nil)
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (16391 1480))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17208 40484))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -287,8 +284,24 @@ Return non-nil if new types are found." t nil)
 
 ;;;***
 
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (16391
-;;;;;;  1480))
+;;;### (autoloads (cwebm-mode webm-mode) "cwebm" "cwebm.el" (17208
+;;;;;;  40679))
+;;; Generated autoloads from cwebm.el
+
+(autoload (quote webm-mode) "cwebm" "\
+Major mode like TeX mode plus \\[forward-module] and \\[backward-module].
+Used for relative module movement. The automatic \" feature is disabled." t nil)
+
+(autoload (quote cwebm-mode) "cwebm" "\
+Major mode like LaTeX mode plus \\[forward-module] and \\[backward-module].
+Used for relative module movement. The automatic \" feature is disabled." t nil)
+(setq auto-mode-alist (cons '("\\.w$" . cwebm-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.ch$" . cwebm-mode) auto-mode-alist))
+
+;;;***
+
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17208
+;;;;;;  40484))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -307,7 +320,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (16391 1480))
+;;;;;;  "diminish.el" (17208 40484))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -352,7 +365,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (16391 1481))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17208 40484))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -380,8 +393,8 @@ Update ``egocentric-regexp-list'' from $USER and $NAME variables." t nil)
 
 ;;;***
 
-;;;### (autoloads (ff-paths-install) "ff-paths" "ff-paths.el" (16318
-;;;;;;  50276))
+;;;### (autoloads (ff-paths-install) "ff-paths" "ff-paths.el" (17194
+;;;;;;  6223))
 ;;; Generated autoloads from ff-paths.el
 
 (autoload (quote ff-paths-install) "ff-paths" "\
@@ -401,8 +414,8 @@ Toggle floatbg mode" t nil)
 ;;;;;;  folding-mode-add-find-file-hook folding-keep-hooked folding-install-hooks
 ;;;;;;  folding-uninstall-hooks folding-mode-hook-no-regexp folding-mode-string
 ;;;;;;  folding-inside-mode-name folding-default-mouse-keys-function
-;;;;;;  folding-default-keys-function) "folding" "folding.el" (16313
-;;;;;;  9500))
+;;;;;;  folding-default-keys-function) "folding" "folding.el" (16806
+;;;;;;  38694))
 ;;; Generated autoloads from folding.el
 
 (defvar folding-mode nil "\
@@ -451,7 +464,7 @@ of \"{{{ \" and \"}}}\" are used.
 Use function  `folding-add-to-marks-list' to add more fold marks. The function
 also explains the alist use in details.
 
-Use function `folding-set-local-variables' is you change the current mode's
+Use function `folding-set-local-variables' if you change the current mode's
 folding marks during the session.")
 
 (autoload (quote folding-uninstall-hooks) "folding" "\
@@ -585,7 +598,7 @@ Managing folds
     of blank lines between the fold marks and the contents of the fold is
     set to 1 (by default).
 
-Folding package customisations
+Folding package customizations
 
     If the fold marks are not set on entry to Folding mode, they are set to
     a default for current major mode, as defined by
@@ -639,7 +652,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (16391 1480))
+;;;;;;  "highlight-beyond-fill-column.el" (17208 40484))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -660,7 +673,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (16391 1480))
+;;;;;;  (17208 40484))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -755,7 +768,7 @@ to use; see `ibuffer-limiting-qualifiers'." t nil)
 ;;;***
 
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (16391 1481))
+;;;;;;  (17208 40484))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -765,7 +778,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (16391 1481))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17208 40484))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -829,8 +842,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (16391
-;;;;;;  1481))
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17208
+;;;;;;  40484))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -839,8 +852,8 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (16391
-;;;;;;  1481))
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17208
+;;;;;;  40484))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -854,8 +867,8 @@ Truncate the `mark-ring'." t nil)
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (16391
-;;;;;;  1480))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17208
+;;;;;;  40484))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -868,14 +881,15 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (newsticker-show-news newsticker-start) "newsticker"
-;;;;;;  "newsticker.el" (16391 1481))
+;;;;;;  "newsticker.el" (17208 40484))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
 Start the newsticker.
 Start the timers for display and retrieval.  If the newsticker, i.e. the
 timers, are running already a warning message is printed unless
-DO-NOT-COMPLAIN-IF-RUNNING is not nil." t nil)
+DO-NOT-COMPLAIN-IF-RUNNING is not nil.
+Run `newsticker-start-hook' if newsticker was not running already." t nil)
 
 (autoload (quote newsticker-show-news) "newsticker" "\
 Switch to newsticker buffer.  You may want to bind this to a key." t nil)
@@ -883,7 +897,7 @@ Switch to newsticker buffer.  You may want to bind this to a key." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (16391 1480))
+;;;;;;  "nuke-trailing-whitespace.el" (17208 40484))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -936,7 +950,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (16391 1481))
+;;;;;;  "perldoc.el" (17208 40484))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -952,7 +966,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (16391 1481))
+;;;### (autoloads (project-add) "projects" "projects.el" (17208 40484))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -961,7 +975,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (16391 1481))
+;;;;;;  "protbuf" "protbuf.el" (17208 40484))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1036,7 +1050,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (16391 1481))
+;;;;;;  (17208 40484))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1063,7 +1077,7 @@ to automatically turn on line numbering when enterting `text-mode'." nil nil)
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (16391 1481))
+;;;;;;  "silly-mail.el" (17208 40484))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1098,7 +1112,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (16391 1481))
+;;;;;;  "table" "table.el" (17208 40484))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -1679,7 +1693,7 @@ If not, query for text to insert in bubble." t nil)
 
 ;;;***
 
-;;;### (autoloads (tld) "tld" "tld.el" (16259 18884))
+;;;### (autoloads (tld) "tld" "tld.el" (17199 13164))
 ;;; Generated autoloads from tld.el
 
 (autoload (quote tld) "tld" "\

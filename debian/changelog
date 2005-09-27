@@ -7,8 +7,10 @@ emacs-goodies-el (24.16-1) unstable; urgency=low
     New files:
     - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
       Thanks to Karl Hegbloom (Closes: #317566).
+    - cwebm.el:  a CWEB/WEB modified mode.
+      Thanks to Max Vasin (Closes: #326772).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 26 Sep 2005 20:39:54 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 26 Sep 2005 21:46:51 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

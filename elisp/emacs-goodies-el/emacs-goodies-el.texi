@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.58 2005/09/27 00:52:53 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.59 2005/09/27 01:51:58 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -76,6 +76,7 @@ be documented.
 * clipper::                     Save strings of data for further use
 * ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
+* cwebm::                       CWEB/WEB modified mode
 * dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
 * dict::                        Emacs interface to dict client
@@ -649,7 +650,7 @@ when I really mean "Call the parser routine as specified by
 `ctypes-mode-descriptor'".  Also, I write "Informing font-lock"
 whenever I mean "Performing the default action as specified in
 @code{ctypes-mode-descriptor}".
-@node cyclebuffer, dedicated, ctypes, Top
+@node cyclebuffer, cwebm, ctypes, Top
 @chapter cyclebuffer - Select buffer by cycling through.
 
 Cyclebuffer is yet another way of selecting buffers.  Instead of
@@ -670,7 +671,49 @@ searching for.
 (global-set-key "M-P" 'cyclebuffer-backward)
 @end example
 
-@node dedicated, df, cyclebuffer, Top
+@node cwebm, dedicated, cyclebuffer, Top
+@chapter cwebm - CWEB/WEB modified mode
+
+This is a modified and renamed version of cweb.el
+
+@noindent Differences from cweb.el:
+
+Key bindings:
+@example
+  1. @key{C-\} becomes @key{C-cwy}
+  2. @key{M-\} becomes @key{C-cws}
+  3. @key{C-z} becomes @key{C-cwr}
+@end example
+The first and second modifications are important for me because:
+@example
+  1. @key{C-\} switches keyboard layout.
+  2. I've used to use @key{M-\}.
+@end example
+The third modification was made to unify key bindings.
+
+@noindent Description
+
+Some WEB-oriented functions whose main purpose is to maintain a stack of
+module names that are "pending" as you are writing a program. When you
+first think of a module that needs to be written later, put it into the
+pending list (by typing @key{CTL-Z} instead of @key{@@>} after the
+name). Later you can say @key{CTL-\} to retrieve a pending name (and if
+you want to cycle through the pending names, @key{ESC-y} after
+@key{CTL-\} will do it, just as @key{ESC-y} works after a yank).  After
+you've said @key{CTL-\}, the current region is the name just removed
+from the pending list. If you change your mind, you can put it back
+again by saying @key{ESC-\}. If you had put it into the pending list by
+mistake, you can get rid of it by using the normal @key{CTL-W} operation
+(kill-region).  The following code binds the new commands to
+@key{CTL-Z}, @key{CTL-\}, and @key{ESC-\} in all modes. You may prefer
+other bindings, of course.  @key{CTL-Z} is normally "suspend emacs", but
+it is best not used when emacs has its own window as it usually does
+nowadays; if you need the old @key{CTL-Z}, you might rather bind it to
+@key{CTL-X CTL-Z}.  @key{CTL-\} is normally undefined.  @key{ESC-\} is
+normally "delete space", but @key{ESC-space DEL} does that easily too.
+
+
+@node dedicated, df, cwebm, Top
 @chapter dedicated - a very simple minor mode for dedicated buffers
 
 @noindent Author: Eric Crampton <eric@@atdesk.com>
@@ -2488,12 +2531,12 @@ for info on emacs key bindings.
 @node minibuf-electric, minibuffer-complete-cycle, marker-visit, Top
 @chapter minibuf-electric.el - Electric minibuffer behavior from XEmacs
 
-This works with GNU Emacs.  It implements the XEmacs minibuffer
-behavior for @key{C-x C-f} and other file name reading actions.  When you
-type @key{//}, it clears the minibuffer back to the start, leaving only a
-single @code{/}.  When you type a @key{~}, it does the similar, leaving only
-@code{~/}.  This is nicer than having to explicitly erase the contents of
-the minibuffer.
+This works with GNU Emacs.  It implements the XEmacs minibuffer behavior
+for @key{C-x C-f} and other file name reading actions.  When you type
+@key{/} twice, it clears the minibuffer back to the start, leaving only
+a single @code{/}.  When you type a @key{~}, it does the similar,
+leaving only @code{~/}.  This is nicer than having to explicitly erase
+the contents of the minibuffer.
 
 In the next GNU Emacs release (V22), the following will achieve this:
 

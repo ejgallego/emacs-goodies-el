@@ -79,6 +79,8 @@ buffers in the most-recently-visited-first order.  If you accidentally
 overshoot, calling cyclebuffer-backward goes back.  You might want to
 bind these commands to your favourite keys.
 
+cwebm.el is a modified CWEB/WEB modified mode.
+
 dedicated.el allows you to toggle a window's "dedicated" flag.
 When a window is "dedicated", Emacs will not select files into that window.
 
@@ -302,4 +304,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Mon Sep 26 20:05:52 2005
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 26 21:43:19 2005

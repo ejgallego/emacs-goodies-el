@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.10 $
+| ;; $Revision: 1.11 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -211,6 +211,27 @@ Author/copyright info for cyclebuffer.el:
 | ;; it under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
+`----
+
+
+Author/copyright info for cwebm.el
+,----
+| ;;; cwebm.el --- CWEB/WEB modified mode
+| ;;
+| ;; This file is replacement for the cweb.el from the Levi' CWEB.
+| ;;
+| ;; Copyright (C) 1987,1990,1993,2000 Silvio Levy and Donald E. Knuth
+| ;; Copyright (c) 2002,2003,2004,2005 Max Vasin
+| ;;
+| ;; Permission is granted to make and distribute verbatim copies of
+| ;; this document provided that the copyright notice and this
+| ;; permission notice are preserved on all copies.
+| ;;
+| ;; Permission is granted to copy and distribute modified versions of
+| ;; this document under the conditions for verbatim copying, provided
+| ;; that the entire resulting derived work is given a different name
+| ;; and distributed under the terms of a permission notice identical to
+| ;; this one.
 `----
 
 
@@ -871,7 +892,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.10 $
+| ;; $Revision: 1.11 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
