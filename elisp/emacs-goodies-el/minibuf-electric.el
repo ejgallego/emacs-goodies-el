@@ -1,16 +1,44 @@
 ;;; minibuf-electric.el -- Electric minibuffer behavior from XEmacs.
 ;;;
-;;; Modified by Karl Hegbloom for GNU Emacs.  Taken from XEmacs 21.4
-;;; "lisp/minibuf.el".  It needs fine tuning and placement in a
-;;; suitable location within the GNU Emacs Lisp tree.  See below for
-;;; notes concerning key-maps.
-;;;
-;;; Submitted for inclusion in the Debian `emacs-goodies-el' package.
-;;;
-;;; GPL.
+
+;; Extracted from minibuf.el --- Minibuffer functions for XEmacs
+;; Copyright (C) 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
+;; Copyright (C) 1995 Tinker Systems.
+;; Copyright (C) 1995, 1996, 2000 Ben Wing.
+
+;; Modified by Karl Hegbloom for GNU Emacs.  Taken from XEmacs 21.4
+;; "lisp/minibuf.el".  It needs fine tuning and placement in a
+;; suitable location within the GNU Emacs Lisp tree.  See below for
+;; notes concerning key-maps.
+;;
+;; Submitted for inclusion in the Debian `emacs-goodies-el' package.
+;;
+;; GPL.
+
+;;; Commentary:
+;; 
+;; 
+;; This works with GNU Emacs.  It implements the XEmacs minibuffer
+;; behavior for C-x C-f and other file name reading actions.  When you
+;; type "//", it clears the minibuffer back to the start, leaving only a
+;; single "/".  When you type a "~", it does the similar, leaving only
+;; "~/".  This is nicer than having to explicitly erase the contents of
+;; the minibuffer.
+;; 
+;; In the next GNU Emacs release (V22), the following will achieve this:
+;; 
+;;     (setq file-name-shadow-tty-properties '(invisible t))
+;;     (file-name-shadow-mode 1)
+
+;;; History:
+;; 
+;; 2005-09-26 Peter Galbraith <psg@debian.org>
+;;  - checkdoc clean.  Added command doc strings.
+;;  - added commentary from Karl's email about the file.
 
 
-(defcustom minibuffer-electric-file-name-behavior t
+;;; Code:
+(defcustom minibuffer-electric-file-name-behavior nil
   "*If non-nil, slash and tilde in certain places cause immediate deletion.
 These are the same places where this behavior would occur later on anyway,
 in `substitute-in-file-name'."
@@ -18,10 +46,10 @@ in `substitute-in-file-name'."
   :require 'minibuf-electric
   :group 'minibuffer)
 
-
 ;;; originally by Stig@hackvan.com, taken from XEmacs 21.4
 ;;;
 (defun minibuffer-electric-separator ()
+  "Insert / separator, but clear line first if typed twice in a row."
   (interactive)
   (let ((c last-command-char))
     (and minibuffer-completing-file-name ; added for GNU Emacs
@@ -51,6 +79,7 @@ in `substitute-in-file-name'."
     (insert c)))
 
 (defun minibuffer-electric-tilde ()
+  "Insert ~ but clear line first if twice not in logical place."
   (interactive)
   (and minibuffer-completing-file-name	; Added for GNU Emacs
        minibuffer-electric-file-name-behavior
@@ -86,3 +115,7 @@ in `substitute-in-file-name'."
 (define-key minibuffer-local-must-match-map "~" #'minibuffer-electric-tilde)
 
 (provide 'minibuf-electric)
+
+(provide 'minibuf-electric)
+
+;;; minibuf-electric.el ends here
