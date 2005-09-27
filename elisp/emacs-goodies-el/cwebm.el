@@ -1,5 +1,5 @@
+;;; cwebm.el --- CWEB/WEB modified mode
 ;;
-;; cwebm.el - Emacs CWEB/WEB modified mode 
 ;; This file is replacement for the cweb.el from the Levi' CWEB.
 ;;
 ;; Copyright (C) 1987,1990,1993,2000 Silvio Levy and Donald E. Knuth
@@ -15,6 +15,9 @@
 ;; and distributed under the terms of a permission notice identical to
 ;; this one.
 
+;;; Commentary:
+;; 
+
 ;; Part 0: Differences from cweb.el:
 ;;
 ;; Key bindings:
@@ -28,14 +31,14 @@
 ;;
 ;; Base mode modified form plain-TeX to latex, since I use cweb-latex.
 ;;
-;; Base keybings are now taken from the latex mode, instead of creaing 
+;; Base keybings are now taken from the latex mode, instead of creaing
 ;; them from scratch.
 ;;
 ;; Key bindings for commands operating on module names pending list
 ;; made local.
 ;;
 ;; `TeX-validate-paragraph' function is now beeing defined in this package,
-;; since it is defined in the file auc-old.el, which is provided for 
+;; since it is defined in the file auc-old.el, which is provided for
 ;; compatability with AUC-TeX 6.x. `TeX-validate-paragraph' renamed to
 ;; `cwebm-validate-paragraph'.
 ;;
@@ -63,6 +66,12 @@
 ;; CTL-\ is normally undefined.
 ;; ESC-\ is normally "delete space", but ESC-space DEL does that easily too.
 
+
+;;; History:
+;;  2005-09-26 Peter Galbraith <psg@debian.org>
+;;   - Made almost checkdoc clean.
+
+;;; Code:
 (require 'tex)
 
 (defgroup CWEBm nil
@@ -76,7 +85,7 @@
   :group 'CWEBm)
 
 (defcustom cwebm-base-mode "latex-mode"
-  "Specifies base mode for CWEBm"
+  "Specifies base mode for CWEBm."
   :type 'string
   :group 'CWEBm)
 
@@ -91,8 +100,8 @@
   :group 'CWEBm)
 
 (defcustom cwebm-pop-module-name-key-binding "\\C-cwy"
-  "Specifies key binding to remove first element from pending list
-and insert it as current region."
+  "Specifies key binding to remove first element from pending list.
+Then insert it as current region."
   :type 'string
   :group 'CWEBm)
 
@@ -107,20 +116,19 @@ and insert it as current region."
   :group 'CWEBm)
 
 (defcustom cwebm-ditto-key-binding "\\M-\\\""
-  "Specifies key binding to copy characters from the line above"
+  "Specifies key binding to copy characters from the line above."
   :type 'string
   :group 'CWEBm)
 
 (defun cwebm-process-key-binding (string)
-  "Process a string representation of key binding to allow easy key binding
-customisation."
+  "Process a STRING representation of key binding."
   (read (concat "\"" string "\"")))
 
 (defvar cwebm-pending-list nil
  "List of strings (usually WEB module names) still pending.")
 
 (defun cwebm-into-pending-list (beg end)
- "Copy region into cwebm-pending-list."
+ "Copy region between BEG and END into cwebm-pending-list."
  (interactive "r")
  (cwebm-indicate-region)
  (setq cwebm-pending-list (cons (buffer-substring beg end) cwebm-pending-list)))
@@ -138,7 +146,8 @@ customisation."
 
 (defun cwebm-pop-pending-list (arg)
  "Remove first element of cwebm-pending-list and insert it as current region.
-With argument, put point at left; otherwise point will follow the insertion.
+With argument ARG, put point at left; otherwise point will follow
+the insertion.
 Say \\[cwebm-new-yank-pop] to replace this by another element of the list.
 Say \\[cwebm-into-pending-list] to put it back in the list."
  (interactive "*P")
@@ -168,7 +177,7 @@ otherwise do an ordinary Meta-y."
 (global-set-key "\M-y" 'cwebm-new-yank-pop)
 
 (defun cwebm-indicate-region ()
-  "Bounce cursor to mark and back again"
+  "Bounce cursor to mark and back again."
   (let ((point-save (point)))
     (unwind-protect
         (progn (goto-char (mark))
@@ -220,8 +229,9 @@ otherwise do an ordinary Meta-y."
   (setq indent-line-function 'indent-relative-maybe)))
 
 (defun cwebm-newline (arg)
-"If previous character is newline and no ARG, check for unbalanced braces
-and/or dollar signs in previous paragraph. If ARG is \\[universal-argument],
+  "Handle a newline in cwebm mode.
+If previous character is newline and no ARG, check for unbalanced braces
+and/or dollar signs in previous paragraph.  If ARG is \\[universal-argument],
 do a single newline; otherwise do ordinary newline."
  (interactive "*P")
  (if (and (eq (preceding-char) ?\n) (not arg) cwebm-validate-paragraph)
@@ -279,7 +289,7 @@ Check for mismatched delimiters in paragraph being terminated."
    (setq arg (1+ arg))))
 
 (defun cwebm-make-common-settings ()
-  "Make settings common for both WEBm and CWEBm modes"
+  "Make settings common for both WEBm and CWEBm modes."
   ;; house-keeping first
   (kill-all-local-variables)
 
@@ -298,11 +308,11 @@ Check for mismatched delimiters in paragraph being terminated."
   (make-local-variable 'comment-start)
   (setq comment-start "%")
   (make-local-variable 'comment-end)
-  (setq comment-end ""))  
+  (setq comment-end ""))
 
 (defun webm-mode ()
-  "Major mode like TeX mode plus \\[forward-module] and \\[backward-module]
-for relative module movement. The automatic \" feature is disabled."
+  "Major mode like TeX mode plus \\[forward-module] and \\[backward-module].
+Used for relative module movement. The automatic \" feature is disabled."
   (interactive)
 
   ;; make settings common for both CWEBm and WEBm modes
@@ -317,8 +327,8 @@ for relative module movement. The automatic \" feature is disabled."
 (setq auto-mode-alist (cons '("\\.web$" . web-mode) auto-mode-alist))
 
 (defun cwebm-mode ()
-  "Major mode like LaTeX mode plus \\[forward-module] and \\[backward-module]
-for relative module movement. The automatic \" feature is disabled."
+  "Major mode like LaTeX mode plus \\[forward-module] and \\[backward-module].
+Used for relative module movement. The automatic \" feature is disabled."
   (interactive)
 
   ;; make settings common for both CWEBm and WEBm modes
@@ -335,3 +345,6 @@ for relative module movement. The automatic \" feature is disabled."
 (setq auto-mode-alist (cons '("\\.ch$" . cwebm-mode) auto-mode-alist))
 
 (provide 'cwebm)
+(provide 'cwebm)
+
+;;; cwebm.el ends here
