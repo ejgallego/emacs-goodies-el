@@ -310,6 +310,7 @@ Check for mismatched delimiters in paragraph being terminated."
   (make-local-variable 'comment-end)
   (setq comment-end ""))
 
+;;;###autoload
 (defun webm-mode ()
   "Major mode like TeX mode plus \\[forward-module] and \\[backward-module].
 Used for relative module movement. The automatic \" feature is disabled."
@@ -326,6 +327,7 @@ Used for relative module movement. The automatic \" feature is disabled."
   (run-hooks 'web-mode-hook))
 (setq auto-mode-alist (cons '("\\.web$" . web-mode) auto-mode-alist))
 
+;;;###autoload
 (defun cwebm-mode ()
   "Major mode like LaTeX mode plus \\[forward-module] and \\[backward-module].
 Used for relative module movement. The automatic \" feature is disabled."
@@ -341,10 +343,9 @@ Used for relative module movement. The automatic \" feature is disabled."
   ;; run a hook if it exists
   (run-hooks 'cwebm-mode-hook))
 
-(setq auto-mode-alist (cons '("\\.w$" . cwebm-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.ch$" . cwebm-mode) auto-mode-alist))
+;;;###autoload(setq auto-mode-alist (cons '("\\.w$" . cwebm-mode) auto-mode-alist))
+;;;###autoload(setq auto-mode-alist (cons '("\\.ch$" . cwebm-mode) auto-mode-alist))
 
-(provide 'cwebm)
 (provide 'cwebm)
 
 ;;; cwebm.el ends here
