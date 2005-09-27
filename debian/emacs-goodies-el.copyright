@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.9 $
+| ;; $Revision: 1.10 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -593,6 +593,18 @@ Author/copyright info for marker-visit.el:
 `----
 
 
+Author/copyright info for minibuf-electric.el
+,----
+| ;; Extracted from minibuf.el --- Minibuffer functions for XEmacs
+| ;; Copyright (C) 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
+| ;; Copyright (C) 1995 Tinker Systems.
+| ;; Copyright (C) 1995, 1996, 2000 Ben Wing.
+| 
+| ;; Modified by Karl Hegbloom for GNU Emacs.
+| ;; GPL
+`----
+
+
 Author/copyright info for minibuffer-complete-cycle.el
 ,----
 | ;; Copyright © 1997,1998,2000,2003 Kevin Rodgers
@@ -859,7 +871,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.9 $
+| ;; $Revision: 1.10 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

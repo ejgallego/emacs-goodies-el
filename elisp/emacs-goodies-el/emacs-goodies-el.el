@@ -188,6 +188,16 @@ Stores the value of the prior keybinding in case we need to restore it.")
   "Map COMMAND over lines matching REGEX."
   t)
 
+;; minibuf-electric.el
+(defcustom minibuffer-electric-file-name-behavior nil
+  "*If non-nil, slash and tilde in certain places cause immediate deletion.
+These are the same places where this behavior would occur later on anyway,
+in `substitute-in-file-name'."
+  :type 'boolean
+  :require 'minibuf-electric
+  :group 'emacs-goodies-el
+  :group 'minibuffer)
+
 ;; mutt-alias.el
 (autoload 'mutt-alias-insert "mutt-alias"
   "Insert the expansion for ALIAS into the current buffer."

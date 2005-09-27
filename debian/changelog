@@ -4,8 +4,11 @@ emacs-goodies-el (24.16-1) unstable; urgency=low
     - emacs-goodies-el.el: Key binding for wdired didn't get properly
       defined in emacs-snapshot, thanks to Sven Joachim for the report and
       the patch (Closes: #329883).
+    New files:
+    - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
+      Thanks to Karl Hegbloom (Closes: #317566).
 
- -- Peter Galbraith <psg@debian.org>  Mon, 26 Sep 2005 10:43:41 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 26 Sep 2005 20:39:54 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

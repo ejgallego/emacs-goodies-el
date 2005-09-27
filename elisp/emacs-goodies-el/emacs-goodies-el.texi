@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.57 2004/08/04 00:23:41 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.58 2005/09/27 00:52:53 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -101,6 +101,7 @@ be documented.
 * lcomp::                       list-completion hacks
 * map-lines::                   Map a command over many lines
 * marker-visit::                Navigate through a buffer's marks in order
+* minibuf-electric::            Electric minibuffer behavior from XEmacs
 * minibuffer-complete-cycle::   Cycle through the *Completions* buffer
 * mutt-alias::                  Lookup/insert mutt mail aliases
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
@@ -2457,7 +2458,7 @@ go, or collecting a bunch of lines in the kill-ring ready to paste.
 
 Invoke it with @command{M-x map-lines}.
 
-@node marker-visit, minibuffer-complete-cycle, map-lines, Top
+@node marker-visit, minibuf-electric, map-lines, Top
 @chapter marker-visit - navigate through a buffer's marks in order
 
 @noindent Benjamin Rutt <brutt@@bloomington.in.us>
@@ -2484,7 +2485,24 @@ the functions @command{marker-visit-prev} and
 @command{marker-visit-next}.  See @key{C-h i m Emacs RET m Key Bindings RET}
 for info on emacs key bindings.
 
-@node minibuffer-complete-cycle, mutt-alias, marker-visit, Top
+@node minibuf-electric, minibuffer-complete-cycle, marker-visit, Top
+@chapter minibuf-electric.el - Electric minibuffer behavior from XEmacs
+
+This works with GNU Emacs.  It implements the XEmacs minibuffer
+behavior for @key{C-x C-f} and other file name reading actions.  When you
+type @key{//}, it clears the minibuffer back to the start, leaving only a
+single @code{/}.  When you type a @key{~}, it does the similar, leaving only
+@code{~/}.  This is nicer than having to explicitly erase the contents of
+the minibuffer.
+
+In the next GNU Emacs release (V22), the following will achieve this:
+
+@example
+  (setq file-name-shadow-tty-properties '(invisible t))
+  (file-name-shadow-mode 1)
+@end example
+
+@node minibuffer-complete-cycle, mutt-alias, minibuf-electric, Top
 @chapter minibuffer-complete-cycle - cycle through the *Completions* buffer
 
 @noindent Author: Kevin Rodgers <ihs_4664@@yahoo.com>

@@ -187,6 +187,11 @@ back and forth among these marks in order.  This file provides two methods
 to do just that, marker-visit-prev and marker-visit-next to visit the
 nearest mark in either direction.
 
+minibuf-electric.el eases minibuffer typing.  When you type "//", it clears
+the minibuffer back to the start, leaving only a single "/".  When you type
+a "~", it does the similar, leaving only "~/".  This is nicer than having
+to explicitly erase the contents of the minibuffer.
+
 minibuffer-complete-cycle.el makes `minibuffer-complete' select each of the
 possible completions in turn, inserting it into the minibuffer and
 highlighting it in the *Completions* buffer.
@@ -297,4 +302,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Sun Nov 23 14:46:49 2003
+ -- Peter S Galbraith <psg@debian.org>, Mon Sep 26 20:05:52 2005

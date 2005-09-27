@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Peter S Galbraith <psg@debian.org>
 Uploaders: Roland Mas <lolando@debian.org>, Jerome Marant <jerome@debian.org>
 Build-Depends-Indep: debhelper (>= 4.0.0), dpatch (>=1.5), texinfo
-Standards-Version: 3.6.1
+Standards-Version: 3.6.2
 
 Package: emacs-goodies-el
 Architecture: all
@@ -52,6 +52,7 @@ Description: Miscellaneous add-ons for Emacs
   lcomp - list-completion hacks;
   map-lines - map a command over lines matching a regexp;
   marker-visit - navigate through a buffer's marks in order;
+  minibuf-electric -  electric minibuffer behavior from XEmacs;
   minibuffer-complete-cycle - cycle through the *Completions* buffer;
   mutt-alias - lookup and insert the expansion of mutt mail aliases;
   muttrc-mode - major mode for editing Mutt config files;
