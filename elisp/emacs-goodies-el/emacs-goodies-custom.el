@@ -51,6 +51,14 @@
 ;;:require 'browse-kill-ring
   :group 'emacs-goodies-el)
 
+;; csv-mode
+(defgroup CSV nil
+  "Major mode for editing files of comma-separated value type."
+  :group 'convenience
+  :link '(custom-manual "(emacs-goodies-el)csv-mode")
+  :load 'csv-mode
+  :group 'emacs-goodies-el)
+
 ;; ctypes
 (defgroup ctypes nil
   "Enhanced Font lock support for custom defined types."

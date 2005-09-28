@@ -53,6 +53,11 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
   t)
 (autoload 'clipper-edit-clip "clipper" "Edit an existing 'clip'." t)
 
+;; cvs-mode.el
+(add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+(autoload 'csv-mode "csv-mode"
+  "Major mode for editing comma-separated value files." t)
+
 ;; cyclebuffer.el
 (autoload 'cyclebuffer-forward "cyclebuffer"
   "Cycle buffer forward."

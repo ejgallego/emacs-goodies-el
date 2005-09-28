@@ -16,7 +16,7 @@ PACKAGE=emacs-goodies-el
 # INCLUDED_emacs21=""
 # INCLUDED_xemacs21=""
 
-EXCLUDED_emacs20="newsticker.el session.el"
+EXCLUDED_emacs20="newsticker.el session.el csv-mode.el"
 # EXCLUDED_emacs21="whitespace.el"
-EXCLUDED_xemacs21="todoo.el ibuffer.el minibuf-electric.el"
+EXCLUDED_xemacs21="todoo.el ibuffer.el minibuf-electric.el csv-mode.el"
 EXCLUDED_emacs_snapshot="wdired.el ibuffer.el table.el newsticker.el"
