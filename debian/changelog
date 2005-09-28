@@ -1,16 +1,18 @@
-emacs-goodies-el (24.16-1) unstable; urgency=low
+emacs-goodies-el (25.1-1) unstable; urgency=low
 
   * emacs-goodies-el:
     - emacs-goodies-el.el: Key binding for wdired didn't get properly
       defined in emacs-snapshot, thanks to Sven Joachim for the report and
       the patch (Closes: #329883).
+    - dict.el: `current-word' can return nil", thanks to Jorgen Schaefer
+      for the report and patch. (Closes: #301293).
     New files:
     - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
       Thanks to Karl Hegbloom (Closes: #317566).
     - cwebm.el:  a CWEB/WEB modified mode.
       Thanks to Max Vasin (Closes: #326772).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 26 Sep 2005 21:46:51 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 27 Sep 2005 21:15:26 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

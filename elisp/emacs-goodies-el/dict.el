@@ -1,6 +1,6 @@
 ;;; dict.el --- Emacs interface to dict client
 ;;
-;; $Id: dict.el,v 1.4 2003/10/06 14:01:21 psg Exp $
+;; $Id: dict.el,v 1.5 2005/09/28 01:16:23 psg Exp $
 ;;
 
 ;; Copyright (c) 2002, 2003 Max Vasin
@@ -45,6 +45,10 @@
 ;;; History:
 ;;
 ;;    $Log: dict.el,v $
+;;    Revision 1.5  2005/09/28 01:16:23  psg
+;;    dict.el: `current-word' can return nil", thanks to Jorgen Schaefer for the
+;;    report and patch. (Closes: #301293).
+;;
 ;;    Revision 1.4  2003/10/06 14:01:21  psg
 ;;    New upstream version, fixes initial enabling via defcustom.
 ;;
@@ -517,11 +521,10 @@ the databases until a match is found, and then stop searching."
 (defsubst dict-default-dict-entry ()
   "Make a guess at a default dict entry.
 This guess is based on the text surrounding the cursor."
-  (let (word)
-    (save-excursion
-      (setq word (current-word))
-      (if (string-match "[._]+$" word)
-	  (setq word (substring word 0 (match-beginning 0))))
+  (let ((word (or (current-word)
+                  "")))
+    (if (string-match "[._]+$" word)
+        (substring word 0 (match-beginning 0))
       word)))
 
 ;;;;
@@ -631,7 +634,7 @@ This guess is based on the text surrounding the cursor."
   (shell-command "dict --version"))
 
 (defconst dict-version
-  "$Revision: 1.4 $"
+  "$Revision: 1.5 $"
   "Version number for 'dict' package.")
 
 (defun dict-version-number ()
