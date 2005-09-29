@@ -380,6 +380,14 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :load 'shell-command
   :group 'emacs-goodies-el)
 
+(defgroup slang nil
+  "Major mode for editing slang code."
+  :prefix "slang-"
+  :group 'languages
+  :link '(custom-manual "(emacs-goodies-el)slang-mode")
+  :load 'slang-mode
+  :group 'emacs-goodies-el)
+
 (defgroup silly-mail nil
   "Generate bozotic mail headers."
   :group 'mail

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.60 2005/09/28 01:52:41 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.61 2005/09/29 00:09:55 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -120,6 +120,7 @@ be documented.
 * session::                     Session Management for Emacs
 * setnu::                       vi-style line number mode for Emacs
 * shell-command::               Enables tab-completion for `shell-command'
+* slang-mode::                  Major-mode for editing slang scripts
 * silly-mail::                  Generate bozotic mail headers
 * sys-apropos::                 Interface for the *nix apropos command
 * table::                       Create and edit WYSIWYG embedded tables
@@ -3121,7 +3122,7 @@ to automatically turn on line numbering when enterting text-mode."
 You may customize the group @code{setnu} and customize the face
 @code{setnu-line-number-face} to change the appearance of the line numbers.
 
-@node shell-command, silly-mail, setnu, Top
+@node shell-command, slang-mode, setnu, Top
 @chapter shell-command - enables tab-completion for `shell-command'
 
 @noindent Author: TSUCHIYA Masatoshi <tsuchiya@@namazu.org>
@@ -3150,7 +3151,29 @@ Or alternatively, customize the group @code{shell-command} and then the
 variable @code{shell-command-enable-completions} and save the
 setting for future sessions.
 
-@node silly-mail, sys-apropos, shell-command, Top
+@node slang-mode, silly-mail, shell-command, Top
+@chapter slang-mode - a major-mode for editing slang scripts.
+
+@noindent Authors: Gregor Schmid <schmid@@fb3-s7.math.tu-berlin.de>, Joe Robertson <jmrobert@@sbcs.com>
+
+Slang-mode supports c-mode style formatting and sending of
+lines/regions/files to a slang interpreter. An interpreter (see
+variable @code{slang-default-application}) will be started if you try to
+send some code and none is running. You can use the process-buffer
+(named after the application you chose) as if it were an
+interactive shell. See the documentation for @file{comint.el} for
+details.
+
+To see all the keybindings for folding mode, look at
+@code{slang-setup-keymap} or start @command{slang-mode} and type
+@key{\C-h m}.  The keybindings may seem strange, since I prefer to use
+them with slang-prefix-key set to nil, but since those keybindings are
+already used the default for @code{slang-prefix-key} is @key{\C-c},
+which is the conventional prefix for major-mode commands.
+
+You can customise the keybindings by setting @code{slang-prefix-key}.
+
+@node silly-mail, sys-apropos, slang-mode, Top
 @chapter silly-mail - generate bozotic mail headers
 
 @noindent Maintainer: Noah Friedman <friedman@@splode.com>

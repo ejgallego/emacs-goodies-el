@@ -72,6 +72,7 @@ Description: Miscellaneous add-ons for Emacs
   setnu - setnu-mode, a vi-style line number mode;
   shell-command - enables tab-completion for shell-command;
   silly-mail - generate bozotic mail headers;
+  slang-mode.el - a major-mode for editing slang scripts;
   sys-apropos - interface for the *nix apropos command;
   table - create and edit WYSIWYG text based embedded tables;
   tail - "tail -f" a file or a command form within Emacs;

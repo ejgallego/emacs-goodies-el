@@ -13,8 +13,10 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Max Vasin (Closes: #326772).
     - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
       Thanks to Karl Hegbloom (Closes: #317566).
+    - slang-mode.el: a major-mode for editing slang scripts.
+      Thanks to Rafael Laboissiere (Closes: #297828).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 27 Sep 2005 21:46:03 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 28 Sep 2005 20:03:13 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

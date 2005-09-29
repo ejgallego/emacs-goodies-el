@@ -259,6 +259,8 @@ shell-command.el is an an enhancement for shell-command, enabling
 tab-completion of commands and dir/filenames within the shell-command input
 context.
 
+slang-mode.el is a major mode for editing Slang files.
+
 silly-mail.el provides M-x add-sm-* commands to add various headers to
 your email messages.
 
@@ -308,4 +310,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Sep 27 21:44:28 2005
+ -- Peter S Galbraith <psg@debian.org>, Wed Sep 28 20:01:35 2005

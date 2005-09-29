@@ -234,6 +234,10 @@ this function to `after-init-hook'."
   "Turn on setnu-mode."
   nil)
 
+;; slang-mode.el
+(setq auto-mode-alist
+      (append '(("\\.sl$" . slang-mode)) auto-mode-alist))
+
 ;; todoo.el
 (when (not (featurep 'xemacs))
   (autoload 'todoo "todoo"

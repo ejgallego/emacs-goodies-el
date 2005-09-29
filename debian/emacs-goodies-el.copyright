@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.12 $
+| ;; $Revision: 1.13 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -862,6 +862,28 @@ Author/copyright info for silly-mail.el:
 `----
 
 
+Author/copyright info for slang-mode.el
+ http://home.mchsi.com/~jmrobert5/files/slang-mode.el
+,----
+| ;;; slang-mode.el --- a major-mode for editing slang scripts
+| 
+| ;; Copyright (C) 1993, 1994, 1995 Free Software Foundation, Inc.
+| 
+| ;; Modified By: Joe Robertson <jmrobert@sbcs.com>
+| ;; Modified From: tcl-mode.el
+| ;; 
+| ;; Original Author: Gregor Schmid <schmid@fb3-s7.math.tu-berlin.de>
+| ;; Keywords: languages, processes, tools
+| 
+| ;; This file is part of GNU Emacs.
+| 
+| ;; GNU Emacs is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
 Author/copyright info for table.el:
 ,----
 | ;;; table.el --- create and edit WYSIWYG text based embedded tables
@@ -909,7 +931,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.12 $
+| ;; $Revision: 1.13 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

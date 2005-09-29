@@ -60,6 +60,7 @@ elisp/emacs-goodies-el/session.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/setnu.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/shell-command.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/silly-mail.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/slang-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/sys-apropos.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/table.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/tail.el /usr/share/emacs/site-lisp/emacs-goodies-el/
