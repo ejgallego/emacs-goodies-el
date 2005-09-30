@@ -67,6 +67,19 @@
   :load 'ctypes
   :group 'emacs-goodies-el)
 
+;; cua
+(defgroup CUA-mode nil
+  "Emulate CUA key bindings including C-x and C-c."
+  :prefix "CUA-mode"
+  :group 'editing-basics
+  :group 'convenience
+  :group 'emulations
+  :link '(emacs-commentary-link :tag "Commentary" "cua.el")
+  :link '(emacs-library-link :tag "Lisp File" "cua.el")
+  :link '(custom-manual "(emacs-goodies-el)cua")
+  :load 'cua
+  :group 'emacs-goodies-el)
+
 ;; cwebm
 (defgroup CWEBm nil
   "Major mode for editing CWEB and WEB programs"
@@ -395,6 +408,13 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :group 'sendmail
   :link '(custom-manual "(emacs-goodies-el)silly-mail")
   :load 'silly-mail
+  :group 'emacs-goodies-el)
+
+(defgroup tabbar nil
+  "Display a tab bar in the header line."
+  :group 'convenience
+  :link '(custom-manual "(emacs-goodies-el)tabbar")
+  :load 'tabbar
   :group 'emacs-goodies-el)
 
 ;; table

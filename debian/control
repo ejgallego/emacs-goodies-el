@@ -27,6 +27,7 @@ Description: Miscellaneous add-ons for Emacs
   csv-mode - major mode for comma-separated value files;
   ctypes - enhanced Font lock support for custom defined types;
   coffee - now Emacs can even brew coffee;
+  cua - emulate CUA key bindings (C-z undo, C-x cut, C-c copy, C-v paste);
   cyclebuffer - select buffer by cycling through;
   cwebm - a modified CWEB/WEB modified mode;
   dedicated - make a window dedicated to a single buffer;
@@ -74,6 +75,7 @@ Description: Miscellaneous add-ons for Emacs
   silly-mail - generate bozotic mail headers;
   slang-mode.el - a major-mode for editing slang scripts;
   sys-apropos - interface for the *nix apropos command;
+  tabbar - Display a tab bar in the header line;
   table - create and edit WYSIWYG text based embedded tables;
   tail - "tail -f" a file or a command form within Emacs;
   tc - cite text with proper filling;

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.61 2005/09/29 00:09:55 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.62 2005/09/30 01:28:57 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -77,6 +77,7 @@ be documented.
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
+* cua::                         Emulate CUA key bindings (C-z, C-x, C-c, C-v)
 * cwebm::                       CWEB/WEB modified mode
 * dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
@@ -123,6 +124,7 @@ be documented.
 * slang-mode::                  Major-mode for editing slang scripts
 * silly-mail::                  Generate bozotic mail headers
 * sys-apropos::                 Interface for the *nix apropos command
+* tabbar::                      Display a tab bar in the header line
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
 * tc::                          Cite text with proper filling in mail
@@ -698,7 +700,7 @@ when I really mean "Call the parser routine as specified by
 `ctypes-mode-descriptor'".  Also, I write "Informing font-lock"
 whenever I mean "Performing the default action as specified in
 @code{ctypes-mode-descriptor}".
-@node cyclebuffer, cwebm, ctypes, Top
+@node cyclebuffer, cua, ctypes, Top
 @chapter cyclebuffer - Select buffer by cycling through.
 
 Cyclebuffer is yet another way of selecting buffers.  Instead of
@@ -719,7 +721,30 @@ searching for.
 (global-set-key "M-P" 'cyclebuffer-backward)
 @end example
 
-@node cwebm, dedicated, cyclebuffer, Top
+@node cua, cwebm, cyclebuffer, Top
+@chapter cua - emulate CUA key bindings
+
+@noindent Author: Kim F. Storm <storm@@cua.dk>
+@noindent http://www.cua.dk/
+
+This file is part of Emacs 22.
+
+The command @command{M-x cua-mode} sets up key bindings that are
+compatible with the Common User Access (CUA) system used in many other
+applications.  @key{C-x} means cut (kill), @key{C-c} copy, @key{C-v}
+paste (yank), and @key{C-z} undo.  Standard Emacs commands like @key{C-x
+C-c} still work, because @key{C-x} and @key{C-c} only take effect when
+the mark is active.  
+
+You may also use Customize the variable @code{cua-mode} to turn it
+on.  You may customize its features and fine tune its behaviour.
+
+CUA mode also provides enhanced rectangle support with visible
+rectangle highlighting.  Use `Shift-RET' to start a rectangle,
+extend it using the movement commands, and cut or copy it using
+`C-x' or `C-c'.
+
+@node cwebm, dedicated, cua, Top
 @chapter cwebm - CWEB/WEB modified mode
 
 This is a modified and renamed version of cweb.el
@@ -3215,7 +3240,7 @@ to you.
 Whether all headers use an "X-" prefix or not
 @end itemize
 
-@node sys-apropos, table, silly-mail, Top
+@node sys-apropos, tabbar, silly-mail, Top
 @chapter sys-apropos - Interface for the *nix apropos command.
 
 @noindent Author: Henrik Enberg <henrik@@enberg.org>
@@ -3231,7 +3256,45 @@ Do @command{M-x sys-apropos} and you're off.  In the *System Apropos*
 buffer, @key{RET} shows the manual page for the program on that line and
 @key{q} or @key{C-c C-c} quits the whole shebang.
 
-@node table, tail, sys-apropos, Top
+@node tabbar, table, sys-apropos, Top
+@chapter tabbar - Display a tab bar in the header line
+
+@noindent Author: David Ponce <david@@dponce.com>
+
+This library provides a minor mode to display tabs in the header
+line.  It works only on GNU Emacs 21 and 22.
+
+@command{M-x tabbar-mode} toggles the display of the tab bar, globally.
+
+@command{M-x tabbar-local-mode} toggles the display of the tab bar,
+locally in the current buffer, when the global mode in on.  This mode
+permits to see the tab bar in a buffer where the header line is already
+used by another mode (like `info' buffers).  That command is
+particularly useful when it is given a keyboard shortcut, like this:
+
+@example
+  (global-set-key [(control f10)] 'tabbar-local-mode)
+@end example
+
+It is possible to navigate through tabs using commands (that is,
+using the keyboard).  The main commands to cycle through tabs are:
+
+ @command{tabbar-forward} selects the next available tab.
+ @command{tabbar-backward} selects the previous available tab.
+
+It is worth defining keys for them.  For example: 
+
+@example
+  (global-set-key [(control shift tab)] 'tabbar-backward)
+  (global-set-key [(control tab)]       'tabbar-forward)
+@end example
+
+The default cycle is to first try to select the tab just
+after/before the selected tab.  If this is the last/first tab, then
+the first/last tab of the next/previous group of tabs is selected.
+That behavior is controlled by the `tabbar-cycling-scope' option.
+
+@node table, tail, tabbar, Top
 @chapter table - Create and edit WYSIWYG text based embedded tables
 
 @noindent Author: Takaaki Ota <Takaaki.Ota@@am.sony.com>

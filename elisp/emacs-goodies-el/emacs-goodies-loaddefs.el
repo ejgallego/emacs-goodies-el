@@ -58,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (17211 11315))
+;;;;;;  "bar-cursor.el" (17212 36142))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -176,7 +176,7 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring-default-keybindings) "browse-kill-ring"
-;;;;;;  "browse-kill-ring.el" (17211 11316))
+;;;;;;  "browse-kill-ring.el" (17212 36142))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -189,7 +189,7 @@ behavior.  This function sets things up so that M-y will invoke
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17211 11316))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17212 36142))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -281,6 +281,77 @@ Return non-nil if new types are found." t nil)
 
 ;;;***
 
+;;;### (autoloads (CUA-keypad-mode CUA-mode-on CUA-mode CUA-mode-bindings
+;;;;;;  CUA-movement-key CUA-exchange-point-and-mark CUA-mode) "cua"
+;;;;;;  "cua.el" (15419 33418))
+;;; Generated autoloads from cua.el
+
+(defvar CUA-mode nil "\
+Non-nil means that CUA emulation mode is enabled.
+In CUA mode, shifted movement keys highlight and extend the region.
+When a region is highlighted, the binding of the C-x and C-c keys are
+temporarily changed to work as Motif, MAC or MS-Windows cut and paste.
+Also, insertion commands first delete the region and then insert.
+This mode enables Transient Mark mode and it provides a superset of the
+PC Selection Mode and Delete Selection Modes.
+
+Setting this variable directly does not take effect;
+use either \\[customize] or the function `CUA-mode'.")
+
+(custom-add-to-group (quote CUA-mode) (quote CUA-mode) (quote custom-variable))
+
+(custom-add-load (quote CUA-mode) (quote cua))
+
+(autoload (quote CUA-exchange-point-and-mark) "cua" "\
+Exchanges point and mark, but don't activate the mark.
+Activates the mark if a prefix argument is given." t nil)
+
+(autoload (quote CUA-movement-key) "cua" "\
+Like `global-set-key' but also binds shifted KEY to COMMAND.
+KEY should be a simple symbol or character, like home or ?\\C-e,
+or a list like (control home)." nil nil)
+
+(autoload (quote CUA-mode-bindings) "cua" "\
+Define even more compatibility bindings.
+Optional argument BIND identifies what bindings to add." nil nil)
+
+(autoload (quote CUA-mode) "cua" "\
+Toggle CUA keybinding mode.
+When ON, C-x and C-c will cut and copy the selection if the selection
+is active (i.e. the region is highlighted), and typed text replaces
+the active selection. When OFF, typed text is just inserted at point.
+If non-nil, the optional second argument EXTRA specifies additional
+key bindings as defined by CUA-mode-bindings.
+The following key bindings are made unless optional third argument 
+NOBIND is non-nil:
+ C-z  is undo
+ C-v  is yank
+ C-x C-x is CUA-exchange-point-and-mark which doesn't enable the mark
+ C-space   starts/cancels the normal region 
+ S-C-space sets/cancels the global marker
+ S-return  starts a rectangular region, if repeated toggles between
+          rectangle and normal region." t nil)
+
+(autoload (quote CUA-mode-on) "cua" nil t nil)
+
+(autoload (quote CUA-keypad-mode) "cua" "\
+Set keypad bindings in function-key-map according to MODE.
+If optional second argument NUMLOCK is non-nil, the NumLock On bindings
+are changed. Otherwise, the NumLock Off binding are changed.
+
+ Mode      Binding
+ -------------------------------------------------------------
+ 'prefix   Command prefix argument, i.e.  M-0 .. M-9 and M--
+ 'S-cursor Bind shifted keypad keys to the shifted cursor movement keys.
+ 'cursor   Bind keypad keys to the cursor movement keys.
+ 'numeric  Plain numeric, i.e. 0 .. 9 and .  (or DECIMAL arg)
+ 'none     Removes all bindings for keypad keys in function-key-map.
+
+If mode is 'numeric and the optional third argument DECIMAL is non-nil,
+the decimal key on the keypad i<s mapped to DECIMAL instead of [.]." nil nil)
+
+;;;***
+
 ;;;### (autoloads (cwebm-mode webm-mode) "cwebm" "cwebm.el" (17208
 ;;;;;;  40679))
 ;;; Generated autoloads from cwebm.el
@@ -297,8 +368,8 @@ Used for relative module movement. The automatic \" feature is disabled." t nil)
 
 ;;;***
 
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17211
-;;;;;;  11316))
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17212
+;;;;;;  36142))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -317,7 +388,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (17211 11316))
+;;;;;;  "diminish.el" (17212 36142))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -362,7 +433,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17211 11316))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17212 36142))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -649,7 +720,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (17211 11315))
+;;;;;;  "highlight-beyond-fill-column.el" (17212 36142))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -670,7 +741,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (17211 11315))
+;;;;;;  (17212 36142))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -765,7 +836,7 @@ to use; see `ibuffer-limiting-qualifiers'." t nil)
 ;;;***
 
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (17211 11316))
+;;;;;;  (17212 36143))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -775,7 +846,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17211 11316))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17212 36142))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -839,8 +910,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17211
-;;;;;;  11316))
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17212
+;;;;;;  36143))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -849,8 +920,8 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17211
-;;;;;;  11316))
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17212
+;;;;;;  36143))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -864,8 +935,8 @@ Truncate the `mark-ring'." t nil)
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17211
-;;;;;;  11315))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17212
+;;;;;;  36142))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -878,7 +949,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (newsticker-show-news newsticker-start) "newsticker"
-;;;;;;  "newsticker.el" (17211 11316))
+;;;;;;  "newsticker.el" (17212 36143))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -894,7 +965,7 @@ Switch to newsticker buffer.  You may want to bind this to a key." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (17211 11316))
+;;;;;;  "nuke-trailing-whitespace.el" (17212 36142))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -947,7 +1018,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (17211 11317))
+;;;;;;  "perldoc.el" (17212 36143))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -963,7 +1034,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (17211 11317))
+;;;### (autoloads (project-add) "projects" "projects.el" (17212 36143))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -972,7 +1043,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (17211 11317))
+;;;;;;  "protbuf" "protbuf.el" (17212 36143))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1047,7 +1118,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (17211 11317))
+;;;;;;  (17212 36143))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1074,7 +1145,7 @@ to automatically turn on line numbering when enterting `text-mode'." nil nil)
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (17211 11317))
+;;;;;;  "silly-mail.el" (17212 36143))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1109,6 +1180,58 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 
 ;;;***
 
+;;;### (autoloads (tabbar-local-mode tabbar-mode tabbar-forward-tab
+;;;;;;  tabbar-backward-tab tabbar-forward-group tabbar-backward-group
+;;;;;;  tabbar-forward tabbar-backward) "tabbar" "tabbar.el" (16094
+;;;;;;  64565))
+;;; Generated autoloads from tabbar.el
+
+(autoload (quote tabbar-backward) "tabbar" "\
+Select the previous available tab.
+Depend on the setting of the option `tabbar-cycling-scope'." t nil)
+
+(autoload (quote tabbar-forward) "tabbar" "\
+Select the next available tab.
+Depend on the setting of the option `tabbar-cycling-scope'." t nil)
+
+(autoload (quote tabbar-backward-group) "tabbar" "\
+Go to selected tab in the previous available group." t nil)
+
+(autoload (quote tabbar-forward-group) "tabbar" "\
+Go to selected tab in the next available group." t nil)
+
+(autoload (quote tabbar-backward-tab) "tabbar" "\
+Select the previous visible tab." t nil)
+
+(autoload (quote tabbar-forward-tab) "tabbar" "\
+Select the next visible tab." t nil)
+
+(defvar tabbar-mode nil "\
+Non-nil if Tabbar mode is enabled.
+See the command `tabbar-mode' for a description of this minor-mode.
+Setting this variable directly does not take effect;
+use either \\[customize] or the function `tabbar-mode'.")
+
+(custom-add-to-group (quote tabbar) (quote tabbar-mode) (quote custom-variable))
+
+(custom-add-load (quote tabbar-mode) (quote tabbar))
+
+(autoload (quote tabbar-mode) "tabbar" "\
+Toggle display of a tab bar in the header line.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled." t nil)
+
+(autoload (quote tabbar-local-mode) "tabbar" "\
+Toggle local display of the tab bar.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+When on and tab bar global mode is on, if a buffer local value of
+`header-line-format' exists, it is saved, then the local header line
+is killed to show the tab bar.  When off, the saved local value of the
+header line is restored, hiding the tab bar." t nil)
+
+;;;***
+
 ;;;### (autoloads (table-version table-release table-capture table-delete-column
 ;;;;;;  table-delete-row table-insert-sequence table-generate-source
 ;;;;;;  table-query-dimension table-fixed-width-mode table-justify-column
@@ -1121,7 +1244,7 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (17211 11317))
+;;;;;;  "table" "table.el" (17212 36143))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\

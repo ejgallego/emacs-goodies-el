@@ -11,6 +11,7 @@ elisp/emacs-goodies-el/coffee.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/clipper.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/csv-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/ctypes.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/cua.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/cyclebuffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/cwebm.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/dedicated.el /usr/share/emacs/site-lisp/emacs-goodies-el/
@@ -62,6 +63,7 @@ elisp/emacs-goodies-el/shell-command.el /usr/share/emacs/site-lisp/emacs-goodies
 elisp/emacs-goodies-el/silly-mail.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/slang-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/sys-apropos.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/tabbar.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/table.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/tail.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/tc.el /usr/share/emacs/site-lisp/emacs-goodies-el/

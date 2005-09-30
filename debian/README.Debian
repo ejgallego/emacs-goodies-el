@@ -78,6 +78,12 @@ beautifully colored than before.
 coffee.el provides an Emacs interface to RFC2324-compliant coffee
 devices
 
+cua.el almost transparently allows you to use C-z, C-x, C-c, and C-v for undo,
+cut, copy, and paste, without interfering with the use of Ctrl-x and Ctrl-c as
+prefix keys.  It supports Shift-<movement> to highlight and extend the
+selected region.  It also includes a rectangle-selection mode, activated with
+Shift-Enter.
+
 cyclebuffer.el provides M-x cyclebuffer-forward, to switch to other
 buffers in the most-recently-visited-first order.  If you accidentally
 overshoot, calling cyclebuffer-backward goes back.  You might want to
@@ -266,6 +272,12 @@ your email messages.
 
 sys-apropos.el provides M-x sys-apropos, an interface to the "apropos"
 command.
+
+tabbar.el displays buffers as tabs in the header line, and provides commands
+to switch between them.  You can bind keys to M-x tabbar-forward and M-x
+tabbar-backward, and use these to quickly switch between buffers.  By default,
+tabbar-mode will group buffers into various groups, and only display one group
+at a time on the tabbar; you can change this by customizing tabbar.
 
 table.el provides a text based table creation and editing feature.
 With this package Emacs is capable of editing tables that are embedded
