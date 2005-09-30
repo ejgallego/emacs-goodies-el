@@ -55,3 +55,13 @@ Debian Files
   flavors of Emacs.
 
  emacs-goodies-el.install - add a one-line entry to install the file
+
+
+Testing the Package
+~~~~~~~~~~~~~~~~~~~
+
+ $ ./make-orig.sh
+ $ cd ../build_25.1-1/emacs-goodies-el
+ $ fakeroot debian/rules binary
+  or
+ $ dpkg-buildpackage -rfakeroot
