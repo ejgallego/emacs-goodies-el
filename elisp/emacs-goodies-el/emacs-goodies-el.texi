@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.62 2005/09/30 01:28:57 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.63 2005/09/30 14:25:29 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -13,8 +13,8 @@
 @end direntry
 
 @c Version variables.
-@set EDITION 1.1
-@set UPDATED 14 Nov 2003
+@set EDITION 25.1
+@set UPDATED 30 Sep 2005
 
 @ifinfo
 This is Edition @value{EDITION}, last updated @value{UPDATED}, of
@@ -72,8 +72,9 @@ be documented.
 * boxquote::                    Quote text with a semi-box
 * browse-huge-tar::             Browse files in a tarball memory-efficiently
 * browse-kill-ring::            Interactively insert items from kill-ring
-* coffee::                      Submit BREW request to RFC2324-compliant device
+* cfengine::                    Major-mode for editing cfengine scripts
 * clipper::                     Save strings of data for further use
+* coffee::                      Submit BREW request to RFC2324-compliant device
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
@@ -359,7 +360,7 @@ Extract the file at the point into a buffer for viewing.
 Extract the file at the point and copy to a local file OUTFILE.
 @end table
 
-@node browse-kill-ring, coffee, browse-huge-tar, Top
+@node browse-kill-ring, cfengine, browse-huge-tar, Top
 @chapter browse-kill-ring.el -  interactively insert items from kill-ring.
 
 Ever feel that @kbd{C-y M-y M-y M-y ...} is not a great way of trying
@@ -397,38 +398,16 @@ consequences if you do @command{@kbd{M-x} browse-kill-ring}, then
 switch your window configuration, and try to use the same @code{*Kill
 Ring*} buffer again.
 
-@node coffee, clipper, browse-kill-ring, Top
-@chapter coffee.el - Submit BREW request to an RFC2324-compliant coffee device
+@node cfengine, clipper, browse-kill-ring, Top
+@chapter cfengine - major-mode for editing cfengine scripts
 
-This module provides an Emacs interface to RFC2324-compliant coffee
-devices (Hyper Text Coffee Pot Control Protocol, or HTCPCP). It
-prompts the user for the different additives, then issues a BREW
-request to the coffee device.
+@noindent Author: Rolf Ebert <ebert@@waporo.muc.de>
 
-coffee.el requires a special BREW-capable version of Emacs/W3 to be
-installed.
+This mode is not the same as the one included in Emacs 22 and will be
+phased out eventually.
 
-Reference: <URL:ftp://ftp.isi.edu/in-notes/rfc2324.txt>
-
-@quotation
-You can probably guess how coffee.el came about ...yadda yadda
-everything but make coffee ...yadda yadda ...
-@end quotation
-
-To do anything at all on emacs21, coffee requires the Debian packages
-@file{w3-el} and @file{w3-url-e21} to be installed.  Then it will
-prompt for coffee and sweetener type.  Then @code{url-retrieve} will
-fail since it doesn't really support the coffee URL type.  So...
-this package is really an elaborate joke.  Because of this, it's
-longer autoloaded in Debian.  To try, do:
-
-@example
-M-x load-library coffee
-M-x coffee 
-@end example
-
-@node clipper, csv-mode, coffee, Top
-@chapter clipper.el - Save strings of data for further use.
+@node clipper, coffee, cfengine, Top
+@chapter clipper - Save strings of data for further use.
 
 Clipper is a way to handle 'clips' of text with some persistance via handles.
 A good example is something like the GNU Public License.  If you do a lot of
@@ -467,7 +446,37 @@ filename without its directory and without an extension.
 (global-set-key "\C-ccc" 'clipper-create)
 @end example
 
-@node csv-mode, ctypes, clipper, Top
+@node coffee, csv-mode, clipper, Top
+@chapter coffee.el - Submit BREW request to an RFC2324-compliant coffee device
+
+This module provides an Emacs interface to RFC2324-compliant coffee
+devices (Hyper Text Coffee Pot Control Protocol, or HTCPCP). It
+prompts the user for the different additives, then issues a BREW
+request to the coffee device.
+
+coffee.el requires a special BREW-capable version of Emacs/W3 to be
+installed.
+
+Reference: <URL:ftp://ftp.isi.edu/in-notes/rfc2324.txt>
+
+@quotation
+You can probably guess how coffee.el came about ...yadda yadda
+everything but make coffee ...yadda yadda ...
+@end quotation
+
+To do anything at all on emacs21, coffee requires the Debian packages
+@file{w3-el} and @file{w3-url-e21} to be installed.  Then it will
+prompt for coffee and sweetener type.  Then @code{url-retrieve} will
+fail since it doesn't really support the coffee URL type.  So...
+this package is really an elaborate joke.  Because of this, it's
+longer autoloaded in Debian.  To try, do:
+
+@example
+M-x load-library coffee
+M-x coffee 
+@end example
+
+@node csv-mode, ctypes, coffee, Top
 @chapter csv-mode - major mode for editing comma-separated value files.
 
 @noindent Author: Francis J. Wright <F.J.Wright at qmul.ac.uk>

@@ -63,6 +63,8 @@ browse-kill-ring.el provides M-x browse-kill-ring.el, to, well, browse
 through your kill ring, perform searches on it, and insert items into
 a buffer.
 
+cfengine.el is an Emacs major-mode for editing cfengine scripts.
+
 clipper.el provides the M-x clipper-* commands to save strings of data
 and insert them afterwards.  Each string is labeled with a name, and
 can involve some basic template replacement.
@@ -322,4 +324,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Wed Sep 28 20:01:35 2005
+ -- Peter S Galbraith <psg@debian.org>, Fri Sep 30 10:14:29 2005

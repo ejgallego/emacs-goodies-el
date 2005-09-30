@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.14 $
+| ;; $Revision: 1.15 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -145,6 +145,18 @@ Author/copyright info for browse-kill-ring.el:
 | ;; modify it under the terms of the GNU General Public License as
 | ;; published by the Free Software Foundation; either version 2, or (at
 | ;; your option) any later version.
+`----
+
+
+Author/copyright info for cfengine.el
+,----
+| ;;; cfengine.el --- An Emacs major-mode for editing cfengine scripts
+| ;;; Copyright (C) 1997 Rolf Ebert
+| 
+| ;; cfengine.el is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
 `----
 
 
@@ -969,7 +981,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.14 $
+| ;; $Revision: 1.15 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

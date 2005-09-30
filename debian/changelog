@@ -7,6 +7,8 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
     - dict.el: `current-word' can return nil", thanks to Jorgen Schaefer
       for the report and patch. (Closes: #301293).
     New files:
+    - cfengine.el: major mode for editing cfengine files.
+      Thanks to Morten Werner Olsen (Closes: #280415).
     - csv-mode.el: major mode for editing comma-separated value files
       (Closes: #260705)
     - cwebm.el:  a CWEB/WEB modified mode.
@@ -20,7 +22,7 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Josh Triplett for both suggestions and a patch
       (Closes: #237341).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 29 Sep 2005 21:25:43 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 30 Sep 2005 10:16:48 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

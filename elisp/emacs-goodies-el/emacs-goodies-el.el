@@ -44,6 +44,9 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
   :link '(custom-manual "(emacs-goodies-el)auto-fill-inhibit")
   :group 'emacs-goodies-el)
 
+;; cfengine.el
+(add-to-list 'auto-mode-alist '("cf\\." . cfengine-mode))
+
 ;; clipper.el
 (autoload 'clipper-create "clipper" "Create a new 'clip' for use within Emacs."
   t)

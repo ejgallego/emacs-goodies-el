@@ -24,6 +24,7 @@ Description: Miscellaneous add-ons for Emacs
   browse-huge-tar - browse tar files without reading them memory;
   browse-kill-ring - browse, search, modify the kill ring;
   clipper - save strings of data for further use;
+  cfengine - major mode for editing cfengine scripts;
   csv-mode - major mode for comma-separated value files;
   ctypes - enhanced Font lock support for custom defined types;
   coffee - now Emacs can even brew coffee;
