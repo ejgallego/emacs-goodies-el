@@ -58,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (17213 17831))
+;;;;;;  "bar-cursor.el" (17213 19879))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -175,8 +175,8 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 
 ;;;***
 
-;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (17213 17831))
+;;;### (autoloads (browse-kill-ring-default-keybindings) "browse-kill-ring"
+;;;;;;  "browse-kill-ring.el" (17213 19879))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -184,9 +184,6 @@ Set up M-y (`yank-pop') so that it can invoke `browse-kill-ring'.
 Normally, if M-y was not preceeded by C-y, then it has no useful
 behavior.  This function sets things up so that M-y will invoke
 `browse-kill-ring'." t nil)
-
-(autoload (quote browse-kill-ring) "browse-kill-ring" "\
-Display items in the `kill-ring' in another buffer." t nil)
 
 ;;;***
 
@@ -213,7 +210,7 @@ Comments are handled using standard Emacs conventions, including:
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17213 17831))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17213 19879))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -393,7 +390,7 @@ Used for relative module movement. The automatic \" feature is disabled." t nil)
 ;;;***
 
 ;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17213
-;;;;;;  17831))
+;;;;;;  19879))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -412,7 +409,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (17213 17831))
+;;;;;;  "diminish.el" (17213 19879))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -457,7 +454,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17213 17831))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17213 19879))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -744,7 +741,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (17213 17831))
+;;;;;;  "highlight-beyond-fill-column.el" (17213 19879))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -765,7 +762,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (17213 17831))
+;;;;;;  (17213 19879))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -859,8 +856,216 @@ to use; see `ibuffer-limiting-qualifiers'." t nil)
 
 ;;;***
 
+;;;### (autoloads (ido-read-directory-name ido-read-file-name ido-dired
+;;;;;;  ido-insert-file ido-write-file ido-find-file-other-frame
+;;;;;;  ido-display-file ido-find-file-read-only-other-frame ido-find-file-read-only-other-window
+;;;;;;  ido-find-file-read-only ido-find-alternate-file ido-find-file-other-window
+;;;;;;  ido-find-file ido-find-file-in-dir ido-switch-buffer-other-frame
+;;;;;;  ido-insert-buffer ido-kill-buffer ido-display-buffer ido-switch-buffer-other-window
+;;;;;;  ido-switch-buffer ido-read-buffer ido-mode ido-enabled) "ido"
+;;;;;;  "ido.el" (15415 32378))
+;;; Generated autoloads from ido.el
+
+(defvar ido-enabled nil "\
+Determines for which functional group (buffer and files) ido behavior
+should be enabled. The following values are possible:
+- 'buffer: Turn only on ido buffer behavior (switching, killing,
+  displaying...) 
+- 'file: Turn only on ido file behavior (finding, writing, inserting...)
+- 'both: Turn on ido buffer and file behavior.
+- nil: Turn off any ido switching.
+
+Setting this variable directly does not take effect;
+use either \\[customize] or the function `ido-mode'.")
+
+(custom-add-to-group (quote ido) (quote ido-enabled) (quote custom-variable))
+
+(custom-add-load (quote ido-enabled) (quote ido))
+
+(autoload (quote ido-mode) "ido" "\
+Toggle ido speed-ups on or off.
+With ARG, turn ido speed-up on if arg is positive, off otherwise.
+If second argument NOBIND is non-nil, no keys are rebound; otherwise,
+turning on ido-mode will modify the default keybindings for the 
+find-file and switch-to-buffer families of commands to the ido
+versions of these functions.
+However, if second arg equals 'files, bind only for files, or if it 
+equals 'buffers, bind only for buffers.
+This function also adds a hook to the minibuffer." t nil)
+
+(autoload (quote ido-read-buffer) "ido" "\
+Replacement for the built-in `read-buffer'.
+Return the name of a buffer selected.  
+PROMPT is the prompt to give to the user.  DEFAULT if given is the default
+buffer to be selected, which will go to the front of the list.
+If REQUIRE-MATCH is non-nil, an existing-buffer must be selected.
+If INITIAL is non-nil, it specifies the initial input string." nil nil)
+
+(autoload (quote ido-switch-buffer) "ido" "\
+Switch to another buffer.
+The buffer is displayed according to `ido-default-buffer-method' -- the
+default is to show it in the same window, unless it is already visible
+in another frame.
+
+As you type in a string, all of the buffers matching the string are
+displayed if substring-matching is used (default). Look at
+`ido-enable-prefix' and `ido-toggle-prefix'. When you have found the
+buffer you want, it can then be selected. As you type, most keys have their
+normal keybindings, except for the following: \\<ido-mode-map>
+
+RET Select the buffer at the front of the list of matches.  If the
+list is empty, possibly prompt to create new buffer.
+
+\\[ido-select-text] Select the current prompt as the buffer.
+If no buffer is found, prompt for a new one.
+
+\\[ido-next-match] Put the first element at the end of the list.
+\\[ido-prev-match] Put the last element at the start of the list.
+\\[ido-complete] Complete a common suffix to the current string that 
+matches all buffers.  If there is only one match, select that buffer.
+If there is no common suffix, show a list of all matching buffers
+in a separate window.
+\\[ido-edit-input] Edit input string.
+\\[ido-fallback-command] Fallback to non-ido version of current command.
+\\[ido-toggle-regexp] Toggle regexp searching.
+\\[ido-toggle-prefix] Toggle between substring and prefix matching.
+\\[ido-toggle-case] Toggle case-sensitive searching of buffer names.
+\\[ido-completion-help] Show list of matching buffers in separate window.
+\\[ido-enter-find-file] Drop into ido-find-file.
+\\[ido-kill-buffer-at-head] Kill buffer at head of buffer list.
+\\[ido-toggle-ignore] Toggle ignoring buffers listed in `ido-ignore-buffers'." t nil)
+
+(autoload (quote ido-switch-buffer-other-window) "ido" "\
+Switch to another buffer and show it in another window.
+The buffer name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido'." t nil)
+
+(autoload (quote ido-display-buffer) "ido" "\
+Display a buffer in another window but don't select it.
+The buffer name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido'." t nil)
+
+(autoload (quote ido-kill-buffer) "ido" "\
+Kill a buffer.
+The buffer name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido'." t nil)
+
+(autoload (quote ido-insert-buffer) "ido" "\
+Insert contents of a buffer in current buffer after point.
+The buffer name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido'." t nil)
+
+(autoload (quote ido-switch-buffer-other-frame) "ido" "\
+Switch to another buffer and show it in another frame.
+The buffer name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido'." t nil)
+
+(autoload (quote ido-find-file-in-dir) "ido" "\
+Switch to another file starting from DIR." t nil)
+
+(autoload (quote ido-find-file) "ido" "\
+Edit file with name obtained via minibuffer.
+The file is displayed according to `ido-default-file-method' -- the
+default is to show it in the same window, unless it is already
+visible in another frame.
+
+The file name is selected interactively by typing a substring. As you type
+in a string, all of the filenames matching the string are displayed if
+substring-matching is used (default). Look at `ido-enable-prefix' and
+`ido-toggle-prefix'. When you have found the filename you want, it can
+then be selected. As you type, most keys have their normal keybindings,
+except for the following: \\<ido-mode-map>
+
+RET Select the file at the front of the list of matches.  If the
+list is empty, possibly prompt to create new file.
+
+\\[ido-select-text] Select the current prompt as the buffer or file.
+If no buffer or file is found, prompt for a new one.
+
+\\[ido-next-match] Put the first element at the end of the list.
+\\[ido-prev-match] Put the last element at the start of the list.
+\\[ido-complete] Complete a common suffix to the current string that 
+matches all files.  If there is only one match, select that file.
+If there is no common suffix, show a list of all matching files
+in a separate window.
+\\[ido-edit-input] Edit input string (including path).
+\\[ido-prev-work-directory] or \\[ido-next-work-directory] go to previous/next directory in work directory history.
+\\[ido-merge-work-directories] search for file in the work directory history.
+\\[ido-forget-work-directory] removes current directory from the work directory history.
+\\[ido-prev-work-file] or \\[ido-next-work-file] cycle through the work file history.
+\\[ido-wide-find-file] and \\[ido-wide-find-dir] prompts and uses find to locate files or directories.
+\\[ido-make-directory] prompts for a directory to create in current directory.
+\\[ido-fallback-command] Fallback to non-ido version of current command.
+\\[ido-toggle-regexp] Toggle regexp searching.
+\\[ido-toggle-prefix] Toggle between substring and prefix matching.
+\\[ido-toggle-case] Toggle case-sensitive searching of file names.
+\\[ido-toggle-vc] Toggle version control for this file.
+\\[ido-toggle-literal] Toggle literal reading of this file.
+\\[ido-completion-help] Show list of matching files in separate window.
+\\[ido-toggle-ignore] Toggle ignoring files listed in `ido-ignore-files'." t nil)
+
+(autoload (quote ido-find-file-other-window) "ido" "\
+Switch to another file and show it in another window.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-find-alternate-file) "ido" "\
+Switch to another file and show it in another window.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-find-file-read-only) "ido" "\
+Edit file read-only with name obtained via minibuffer.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-find-file-read-only-other-window) "ido" "\
+Edit file read-only in other window with name obtained via minibuffer.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-find-file-read-only-other-frame) "ido" "\
+Edit file read-only in other frame with name obtained via minibuffer.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-display-file) "ido" "\
+Display a file in another window but don't select it.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-find-file-other-frame) "ido" "\
+Switch to another file and show it in another frame.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-write-file) "ido" "\
+Write current buffer to a file.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-insert-file) "ido" "\
+Insert contents of file in current buffer.
+The file name is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-dired) "ido" "\
+Call dired the ido way.
+The directory is selected interactively by typing a substring.
+For details of keybindings, do `\\[describe-function] ido-find-file'." t nil)
+
+(autoload (quote ido-read-file-name) "ido" "\
+Read file name, prompting with PROMPT and completing in directory DIR.
+See `read-file-name' for additional parameters." nil nil)
+
+(autoload (quote ido-read-directory-name) "ido" "\
+Read directory name, prompting with PROMPT and completing in directory DIR.
+See `read-file-name' for additional parameters." nil nil)
+
+;;;***
+
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (17213 17831))
+;;;;;;  (17213 19879))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -870,7 +1075,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17213 17831))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17213 19879))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -935,7 +1140,7 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 ;;;***
 
 ;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17213
-;;;;;;  17831))
+;;;;;;  19879))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -945,7 +1150,7 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
 ;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17213
-;;;;;;  17831))
+;;;;;;  19879))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -960,7 +1165,7 @@ Truncate the `mark-ring'." t nil)
 ;;;***
 
 ;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17213
-;;;;;;  17831))
+;;;;;;  19879))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -973,7 +1178,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (newsticker-show-news newsticker-start) "newsticker"
-;;;;;;  "newsticker.el" (17213 17831))
+;;;;;;  "newsticker.el" (17213 19879))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -989,7 +1194,7 @@ Switch to newsticker buffer.  You may want to bind this to a key." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (17213 17831))
+;;;;;;  "nuke-trailing-whitespace.el" (17213 19879))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -1042,7 +1247,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (17213 17831))
+;;;;;;  "perldoc.el" (17213 19879))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -1058,7 +1263,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (17213 17832))
+;;;### (autoloads (project-add) "projects" "projects.el" (17213 19879))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -1067,7 +1272,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (17213 17831))
+;;;;;;  "protbuf" "protbuf.el" (17213 19879))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1142,7 +1347,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (17213 17832))
+;;;;;;  (17213 19879))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1169,7 +1374,7 @@ to automatically turn on line numbering when enterting `text-mode'." nil nil)
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (17213 17831))
+;;;;;;  "silly-mail.el" (17213 19879))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1268,7 +1473,7 @@ header line is restored, hiding the tab bar." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (17213 17832))
+;;;;;;  "table" "table.el" (17213 19879))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\

@@ -231,6 +231,17 @@ selectable views (limits)."
   ;;:require 'ibuffer
     :group 'emacs-goodies-el))
 
+;; ido.el
+(defgroup ido nil
+  "Switch between files using substrings."
+  :group 'extensions
+  :group 'convenience
+  :link '(emacs-commentary-link :tag "Commentary" "ido.el")
+  :link '(emacs-library-link :tag "Lisp File" "ido.el")
+  :link '(custom-manual "(emacs-goodies-el)ido")
+  :load 'ido
+  :group 'emacs-goodies-el))
+
 ;; initsplit
 (defgroup initsplit nil
   "Code to split customizations into different files."

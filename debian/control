@@ -48,6 +48,7 @@ Description: Miscellaneous add-ons for Emacs
   home-end - alternative Home and End commands;
   htmlize - HTML-ize font-lock buffers;
   ibuffer - advanced replacement for the `buffer-menu';
+  ido - a faster way to switch buffers and get files;
   initsplit - split customizations into different files;
   joc-toggle-buffer - fast switching between two buffers;
   joc-toggle-case - a set of functions to toggle the case of characters;

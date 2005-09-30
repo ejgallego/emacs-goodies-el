@@ -35,6 +35,7 @@ elisp/emacs-goodies-el/highlight-completion.el /usr/share/emacs/site-lisp/emacs-
 elisp/emacs-goodies-el/highlight-current-line.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/home-end.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/htmlize.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/ido.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/ibuffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/initsplit.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/joc-toggle-buffer.el /usr/share/emacs/site-lisp/emacs-goodies-el/

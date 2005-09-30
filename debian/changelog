@@ -13,6 +13,8 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       (Closes: #260705)
     - cwebm.el:  a CWEB/WEB modified mode.
       Thanks to Max Vasin (Closes: #326772).
+    - ido.el: a faster way to switch buffers and get files.
+      Thanks to Cyril Bouthors (Closes: #293732).
     - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
       Thanks to Karl Hegbloom (Closes: #317566).
     - slang-mode.el: a major-mode for editing slang scripts.
@@ -22,7 +24,7 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Josh Triplett for both suggestions and a patch
       (Closes: #237341).
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 30 Sep 2005 10:16:48 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 30 Sep 2005 10:49:08 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 
