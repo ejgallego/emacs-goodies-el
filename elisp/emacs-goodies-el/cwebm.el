@@ -72,7 +72,7 @@
 ;;   - Made almost checkdoc clean.
 
 ;;; Code:
-(require 'tex)
+;;(require 'tex)
 
 (defgroup CWEBm nil
   "Major mode for editing CWEB and WEB programs"
@@ -215,19 +215,22 @@ otherwise do an ordinary Meta-y."
 ; I made RET check for unmatched delimiters if it ends a paragraph.
 ; Otherwise TeX mode remains as it was before.
 
-(define-key TeX-mode-map "\C-c\C-k" 'TeX-kill-job)
-(define-key TeX-mode-map "\C-c\C-l" 'TeX-recenter-output-buffer)
-(define-key TeX-mode-map "\C-c\C-p" 'TeX-print)
-(define-key TeX-mode-map "\e}" 'up-list)
-(define-key TeX-mode-map "\e{" 'TeX-insert-braces)
-(define-key TeX-mode-map "\C-c\C-r" 'TeX-region)
-(define-key TeX-mode-map "\C-c\C-b" 'TeX-buffer)
-(define-key TeX-mode-map "\r" 'cwebm-newline)
-(define-key TeX-mode-map "\t" 'LaTeX-indent-line)
-(setq TeX-mode-hook '(lambda ()
-  (make-local-variable 'indent-line-function)
-  (setq indent-line-function 'indent-relative-maybe)))
-
+(eval-after-load "tex"
+  '(progn
+     (define-key TeX-mode-map "\C-c\C-k" 'TeX-kill-job)
+     (define-key TeX-mode-map "\C-c\C-l" 'TeX-recenter-output-buffer)
+     (define-key TeX-mode-map "\C-c\C-p" 'TeX-print)
+     (define-key TeX-mode-map "\e}" 'up-list)
+     (define-key TeX-mode-map "\e{" 'TeX-insert-braces)
+     (define-key TeX-mode-map "\C-c\C-r" 'TeX-region)
+     (define-key TeX-mode-map "\C-c\C-b" 'TeX-buffer)
+     (define-key TeX-mode-map "\r" 'cwebm-newline)
+     (define-key TeX-mode-map "\t" 'LaTeX-indent-line)
+     (setq TeX-mode-hook
+           '(lambda ()
+              (make-local-variable 'indent-line-function)
+              (setq indent-line-function 'indent-relative-maybe)))))
+     
 (defun cwebm-newline (arg)
   "Handle a newline in cwebm mode.
 If previous character is newline and no ARG, check for unbalanced braces
