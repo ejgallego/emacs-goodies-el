@@ -4,7 +4,7 @@
 
 ;; Author: TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 ;; Keywords: shell
-;; Version: $Revision: 1.1 $
+;; Version: $Revision: 1.2 $
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@
 
 ;;; Commentary:
 
-;; This is an enhancement for shell-command, enabling tab-completion
-;; of commands and dir/filenames within the shell-command input
-;; context.
+;; This is an enhancement of shell-command, shell-command-on-region,
+;; grep, grep-find, and compile, that enables tab-completion of
+;; commands and dir/filenames within their input contexts.
 
 ;; The latest version of this program can be downloaded from
 ;; http://namazu.org/~tsuchiya/elisp/shell-command.el.
@@ -34,12 +34,9 @@
 
 ;; Install this file to appropriate directory, and put these lines
 ;; into your ~/.emacs.
-;;
+
 ;;     (require 'shell-command)
-;;     (shell-command-activate-advices)
-;;
-;; Or alternatively, customize the variable `shell-command-enable-completions'
-;; and save the the setting for future sessions.
+;;     (shell-command-completion-mode)
 
 ;;; Code:
 (eval-when-compile
@@ -76,63 +73,58 @@
   "Enable Tab completions for `shell-command' and related commands."
   :group 'shell)
 
-(defcustom shell-command-enable-completions nil
-  "*Enable Tab completions for `shell-command',
-`shell-command-on-region', `grep' and `grep-find'."
-  :type 'boolean
-  :set (lambda (symbol value)
-	 (set-default symbol value)
-	 (if (featurep 'shell-command)
-	     (shell-command-activate-advices)))
-  :require 'shell-command
-  :group 'shell-command)
-
 (defcustom shell-command-complete-functions
   '(shell-dynamic-complete-environment-variable
     shell-dynamic-complete-command
     shell-replace-by-expanded-directory
     comint-dynamic-complete-filename)
-  "Function list to complete shell commands."
+  "*Function list to complete shell commands."
   :type '(repeat function)
   :group 'shell-command)
 
 (defcustom shell-command-prompt
   "Shell command [%w]%$ "
-  "Prompt string of `shell-command'.
-A number of %-sequences is available to customize.  Note
-`shell-command-make-prompt-string'."
+  "*The prompt string for `shell-command' when tab-completion is enabled.
+Some %-sequences are available to customize this variable.  For more
+detail, see the document of `shell-command-make-prompt-string'."
   :type 'string
   :group 'shell-command)
 
 (defcustom shell-command-on-region-prompt
   "Shell command on region [%w]%$ "
-  "Prompt string of `shell-command-on-region'.
-A number of %-sequences is available to customize.  Note
-`shell-command-make-prompt-string'."
+  "*Prompt string of `shell-command-on-region' when tab-completion is enabled.
+Some %-sequences are available to customize this variable.  For more
+detail, see the document of `shell-command-make-prompt-string'."
   :type 'string
   :group 'shell-command)
 
 (defcustom grep-prompt
   "Run grep [%w]%$ "
-  "Prompt string of `grep'.
-A number of %-sequences is available to customize.  Note
-`shell-command-make-prompt-string'."
+  "*Prompt string of `grep' when tab-completion is enabled.
+Some %-sequences are available to customize this variable.  For more
+detail, see the document of `shell-command-make-prompt-string'."
   :type 'string
   :group 'shell-command)
 
 (defcustom grep-find-prompt
   "Run find [%w]%$ "
-  "Prompt string of `grep-find'.
-A number of %-sequences is available to customize.  Note
-`shell-command-make-prompt-string'."
+  "*Prompt string of `grep-find' when tab-completion is enabled.
+Some %-sequences are available to customize this variable.  For more
+detail, see the document of `shell-command-make-prompt-string'."
   :type 'string
   :group 'shell-command)
 
+(defcustom compile-prompt
+  "Compile command [%w]%$ "
+  "*Prompt string of `compile' when tab-completion is enabled.
+Some %-sequences are available to customize this variable.  For more
+detail, see the document of `shell-command-make-prompt-string'."
+  :type 'string
+  :group 'shell-command)
 
 (put 'shell-command/static-if 'lisp-indent-function 2)
 (defmacro shell-command/static-if (cond then &rest else)
   (if (eval cond) then (` (progn  (,@ else)))))
-
 
 (defun shell-command-make-prompt-string (format-string current-directory) "\
 Function to generate prompt string
@@ -217,7 +209,6 @@ FORMAT-STRING:
 	    alist (cdr alist)))
     (apply 'concat list)))
 
-
 (defmacro shell-command/minibuffer-prompt-end ()
   (if (fboundp 'minibuffer-prompt-end)
       '(minibuffer-prompt-end)
@@ -260,7 +251,10 @@ FORMAT-STRING:
 	    (fset 'message orig-function)))))
     (read-from-minibuffer prompt initial-contents keymap read hist)))
 
-
+;; This local bind of `current-load-list' is requred to keep the
+;; position where real `shell-command' is defined.  If this local bind
+;; is removed, `find-function' will tell that `shell-command' is
+;; defined in shell-command.el instaed of simple.el.
 (let (current-load-list)
   (defadvice shell-command
     (before shell-command-with-completion disable compile)
@@ -273,7 +267,6 @@ by `shell-command-prompt'."
 				     default-directory
 				     nil nil nil 'shell-command-history)
       current-prefix-arg))))
-
 
 (let (current-load-list)
   (defadvice shell-command-on-region
@@ -289,7 +282,6 @@ by `shell-command-on-region-prompt'."
 	   current-prefix-arg
 	   current-prefix-arg
 	   shell-command-default-error-buffer))))
-
 
 (let (current-load-list)
   (defadvice grep
@@ -317,7 +309,6 @@ by `grep-prompt'."
 					    (or grep-default grep-command)
 					    nil nil 'grep-history))))))
 
-
 (let (current-load-list)
   (defadvice grep-find
     (before grep-find-with-completion disable compile)
@@ -333,19 +324,57 @@ by `grep-find-prompt'."
 					    grep-find-command
 					    nil nil 'grep-find-history))))))
 
-;;;###autoload
-(defun shell-command-activate-advices ()
-  (let ((commands '(shell-command shell-command-on-region grep grep-find)))
+(let (current-load-list)
+  (defadvice compile
+    (before compile-with-completion disable compile)
+    "Defined in shell-command.el, to enable tab-completion of commands
+and dir/filenames within the input context.  Its prompt string is kept
+by `compile-prompt'."
+    (interactive
+     (if (or compilation-read-command current-prefix-arg)
+	 (list (shell-command-read-minibuffer compile-prompt
+					      default-directory
+					      (eval compile-command) nil nil
+					      '(compile-history . 1)))
+       (list (eval compile-command))))))
+
+(defun shell-command-custom-set (symbol value)
+  "Set SYMBOL's value to VALUE, and enable or disable tab-completion
+for following commands: `shell-command', `shell-command-on-region',
+`grep', `grep-find' and `compile'."
+  (let ((commands
+	 '(shell-command shell-command-on-region grep grep-find compile)))
     (while commands
-      (funcall (if shell-command-enable-completions
-		   'ad-enable-advice
-		 'ad-disable-advice)
+      (funcall (if value 'ad-enable-advice 'ad-disable-advice)
 	       (car commands)
 	       'before
 	       (intern (concat (symbol-name (car commands))
 			       "-with-completion")))
       (ad-activate (car commands))
-      (setq commands (cdr commands)))))
+      (setq commands (cdr commands))))
+  (set-default symbol value))
+
+(defcustom shell-command-completion-mode nil
+  "*Non-nil means that tab-completion for some commands is enabled.
+The commands are `shell-command', `shell-command-on-region', `grep',
+`grep-find' and `compile'."
+  :type 'boolean
+  :set 'shell-command-custom-set
+  :group 'shell-command)
+
+;;;###autoload
+(defun shell-command-completion-mode (&optional arg)
+  "Enable or disable tab-completion for some commands.
+The commands are `shell-command', `shell-command-on-region', `grep',
+`grep-find' and `compile'."
+  (interactive "P")
+  (prog1 (shell-command-custom-set 'shell-command-completion-mode
+				   (if arg
+				       (> (prefix-numeric-value arg) 0)
+				     (not shell-command-completion-mode)))
+    (when (interactive-p)
+      (message "Tab-completion is %s"
+	       (if shell-command-completion-mode "enabled" "disabled")))))
 
 (provide 'shell-command)
 
