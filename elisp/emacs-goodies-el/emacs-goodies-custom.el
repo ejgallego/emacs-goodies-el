@@ -240,7 +240,7 @@ selectable views (limits)."
   :link '(emacs-library-link :tag "Lisp File" "ido.el")
   :link '(custom-manual "(emacs-goodies-el)ido")
   :load 'ido
-  :group 'emacs-goodies-el))
+  :group 'emacs-goodies-el)
 
 ;; initsplit
 (defgroup initsplit nil

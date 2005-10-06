@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.64 2005/09/30 14:54:36 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.65 2005/10/06 01:36:41 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3194,9 +3194,9 @@ You may customize the group @code{setnu} and customize the face
 
 @noindent Author: TSUCHIYA Masatoshi <tsuchiya@@namazu.org>
 
-This is an enhancement for shell-command, enabling tab-completion
-of commands and dir/filenames within the shell-command input
-context.
+This is an enhancement of shell-command, shell-command-on-region,
+grep, grep-find, and compile, that enables tab-completion of
+commands and dir/filenames within their input contexts.
 
 The latest version of this program can be downloaded from
 http://namazu.org/~tsuchiya/elisp/shell-command.el.
@@ -3207,16 +3207,16 @@ Install this file to an appropriate directory, and put these lines
 into your ~/.emacs.
 
 @example
-    (require 'shell-command)
-    (shell-command-activate-advices)
+    (shell-command-completion-mode)
 @end example
 
-Note that the @code{require} is not needed in the Debian package
-@code{emacs-goodies-el}.
+Or alternatively, customize the group @code{shell-command} and then
+the variable @code{shell-command-completion-mode} and save the setting
+for future sessions.
 
-Or alternatively, customize the group @code{shell-command} and then the
-variable @code{shell-command-enable-completions} and save the
-setting for future sessions.
+Note that setup has changed since Debian sarge for which the function
+to call was @code{shell-command-activate-advices} and the variable to
+customize was @code{shell-command-enable-completions}.
 
 @node slang-mode, silly-mail, shell-command, Top
 @chapter slang-mode - a major-mode for editing slang scripts.
