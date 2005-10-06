@@ -4,7 +4,7 @@
 
 ;; Author: TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 ;; Keywords: shell
-;; Version: $Revision: 1.2 $
+;; Version: $Revision: 1.3 $
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -360,6 +360,7 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 `grep-find' and `compile'."
   :type 'boolean
   :set 'shell-command-custom-set
+  :require 'shell-command
   :group 'shell-command)
 
 ;;;###autoload
