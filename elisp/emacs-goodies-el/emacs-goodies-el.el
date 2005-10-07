@@ -203,6 +203,7 @@ These are the same places where this behavior would occur later on anyway,
 in `substitute-in-file-name'."
   :type 'boolean
   :require 'minibuf-electric
+  :load 'minibuf-electric
   :group 'emacs-goodies-el
   :group 'minibuffer)
 
