@@ -9,6 +9,9 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
     - shell-command.el: New upstream version.  Also fixed bug "activation
       is documented wrongly" from Sven Joachim.  The activation has changed
       to using the variable `shell-command-completion-mode'. (Closes: #331421)
+    - bar-cursor.el bug fix: Loading the library changes cursor to hollow
+      box in emacs-snapshot", Fixed by skipping installion on emacs-snapshot.
+      Thanks to Sven Joachim (Closes: #331430).
     New files:
     - cfengine.el: major mode for editing cfengine files.
       Thanks to Morten Werner Olsen (Closes: #280415).
@@ -30,7 +33,7 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Josh Triplett for both suggestions and a patch
       (Closes: #237341).
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  6 Oct 2005 19:51:15 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu,  6 Oct 2005 20:56:44 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 
