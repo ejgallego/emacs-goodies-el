@@ -57,6 +57,7 @@ Description: Miscellaneous add-ons for Emacs
   lcomp - list-completion hacks;
   map-lines - map a command over lines matching a regexp;
   marker-visit - navigate through a buffer's marks in order;
+  matlab - major mode for MatLab dot-m files;
   minibuf-electric -  electric minibuffer behavior from XEmacs;
   minibuffer-complete-cycle - cycle through the *Completions* buffer;
   mutt-alias - lookup and insert the expansion of mutt mail aliases;
@@ -82,6 +83,7 @@ Description: Miscellaneous add-ons for Emacs
   tail - "tail -f" a file or a command form within Emacs;
   tc - cite text with proper filling;
   thinks - quote texts in cartoon-like think bubbles;
+  tlc - major mode for editing Target Language Compiler scripts;
   tld - explain top-level domain names;
   todoo - major mode for editing TODO files;
   toggle-option - easily toggle frequently toggled options;

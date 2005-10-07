@@ -205,6 +205,10 @@ back and forth among these marks in order.  This file provides two methods
 to do just that, marker-visit-prev and marker-visit-next to visit the
 nearest mark in either direction.
 
+matlab.el provides support for editing MATLAB dot-m files.  It
+automatically indents for block structures, line continuations (e.g., ...),
+and comments.
+
 minibuf-electric.el eases minibuffer typing.  When you type "//", it clears
 the minibuffer back to the start, leaving only a single "/".  When you type
 a "~", it does the similar, leaving only "~/".  This is nicer than having
@@ -300,8 +304,12 @@ tc.el provides a nice way to quote cited texts, with proper filling
 and attribution.  You can use it for instance by setting the cite
 function to 'trivial-cite: (setq message-cite-function 'trivial-cite).
 
+
 thinks.el provides cartoon-like think bubbles . o O ( like this ).
 Look for M-x thinks* commands.
+
+tlc.el is a major mode for editing Target Language Compiler scripts.  It
+automatically indents the programming constructs.
 
 tld.el provides M-x tld, for easy access to all those top-level
 domains you just can't remember, and to the corresponding countries.
@@ -328,4 +336,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Fri Sep 30 10:46:38 2005
+ -- Peter S Galbraith <psg@debian.org>, Thu Oct  6 19:48:20 2005

@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.16 $
+| ;; $Revision: 1.17 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -663,6 +663,18 @@ Author/copyright info for map-lines.el:
 `----
 
 
+Author/copyright info for matlab.el
+,----
+| ;; Copyright (C) 1997-1999 Eric M. Ludlam
+| ;; Copyright (C) 1991-1997 Matthew R. Wette
+| ;;
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
 Author/copyright info for marker-visit.el:
 ,----
 | ;;; marker-visit.el --- navigate through a buffer's marks in order
@@ -990,11 +1002,22 @@ Author/copyright info for tc.el:
 `----
 
 
+Author/copyright info for tlc.el
+,----
+| ;; Copyright (c) 1997, 1998 by The MathWorks, Inc.
+| ;;
+| ;; This program is derived from free software; you can redistribute it
+| ;; and/or modify it under the terms of the GNU General Public License
+| ;; as published by the Free Software Foundation; either version 2, or
+| ;; (at your option) any later version.
+`----
+
+
 Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.16 $
+| ;; $Revision: 1.17 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

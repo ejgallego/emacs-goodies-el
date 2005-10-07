@@ -285,6 +285,15 @@ selectable views (limits)."
   :load 'lcomp
   :group 'emacs-goodies-el)
 
+;; matlab
+(defgroup matlab nil
+  "Matlab mode."
+  :prefix "matlab-"
+  :group 'languages
+  :link '(custom-manual "(emacs-goodies-el)matlab")
+  :load 'matlab
+  :group 'emacs-goodies-el)
+
 ;; minibuffer-complete-cycle
 (defgroup minibuffer-complete-cycle nil
   "Cycle through the *Completions* buffer."
@@ -468,6 +477,14 @@ See `table-insert' for examples about how to use."
   :link '(custom-manual "(emacs-goodies-el)thinks")
   :load 'thinks
 ;;:require 'thinks
+  :group 'emacs-goodies-el)
+
+;;tlc
+(defgroup tlc nil
+  "Major mode for editing tlc files."
+  :group 'languages
+  :link '(custom-manual "(emacs-goodies-el)tlc")
+  :load 'tlc
   :group 'emacs-goodies-el)
 
 ;; todoo

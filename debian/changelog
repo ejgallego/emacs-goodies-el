@@ -14,20 +14,23 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Morten Werner Olsen (Closes: #280415).
     - csv-mode.el: major mode for editing comma-separated value files
       (Closes: #260705)
+    - cua.el: emulate CUA key bindings (C-z undo, C-x cut, C-c copy, C-v paste)
     - cwebm.el:  a CWEB/WEB modified mode.
       Thanks to Max Vasin (Closes: #326772).
     - ido.el: a faster way to switch buffers and get files.
       Thanks to Cyril Bouthors (Closes: #293732).
+    - matlab.el: a major mode for MATLAB dot-m files
+      tlc.el: a major mode for editing Target Language Compiler scripts
+      Thanks to Riccardo Vestrini (Closes: #246379).
     - minibuf-electric.el:  Electric minibuffer behavior from XEmacs.
       Thanks to Karl Hegbloom (Closes: #317566).
     - slang-mode.el: a major-mode for editing slang scripts.
       Thanks to Rafael Laboissiere (Closes: #297828).
-    - cua.el: emulate CUA key bindings (C-z undo, C-x cut, C-c copy, C-v paste)
     - tabbar.el: Display a tab bar in the header line.
       Thanks to Josh Triplett for both suggestions and a patch
       (Closes: #237341).
 
- -- Peter S Galbraith <psg@debian.org>  Wed,  5 Oct 2005 21:35:44 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu,  6 Oct 2005 19:51:15 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 

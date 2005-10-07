@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.65 2005/10/06 01:36:41 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.66 2005/10/07 00:01:33 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -106,6 +106,7 @@ be documented.
 * lcomp::                       list-completion hacks
 * map-lines::                   Map a command over many lines
 * marker-visit::                Navigate through a buffer's marks in order
+* matlab::                      Major mode for MATLAB dot-m files
 * minibuf-electric::            Electric minibuffer behavior from XEmacs
 * minibuffer-complete-cycle::   Cycle through the *Completions* buffer
 * mutt-alias::                  Lookup/insert mutt mail aliases
@@ -130,6 +131,7 @@ be documented.
 * table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
 * tc::                          Cite text with proper filling in mail
+* tlc::                         Major mode for editing tlc files
 * thinks::                      Insert text in a think bubble
 * tld::                         TLD (Top Level Domain) lookup tool
 * todoo::                       Major mode for editing TODO files
@@ -2616,7 +2618,7 @@ go, or collecting a bunch of lines in the kill-ring ready to paste.
 
 Invoke it with @command{M-x map-lines}.
 
-@node marker-visit, minibuf-electric, map-lines, Top
+@node marker-visit, matlab, map-lines, Top
 @chapter marker-visit - navigate through a buffer's marks in order
 
 @noindent Benjamin Rutt <brutt@@bloomington.in.us>
@@ -2643,7 +2645,46 @@ the functions @command{marker-visit-prev} and
 @command{marker-visit-next}.  See @key{C-h i m Emacs RET m Key Bindings RET}
 for info on emacs key bindings.
 
-@node minibuf-electric, minibuffer-complete-cycle, marker-visit, Top
+@node matlab, minibuf-electric, marker-visit, Top
+@chapter matlab - Major mode for MATLAB dot-m files
+
+@noindent Authors: Matt Wette <mwette@@alumni.caltech.edu>, Eric M. Ludlam <eludlam@@mathworks.com>
+
+@noindent http://www.mathworks.com/access/pub/emacs_add_ons.zip
+
+This major mode for GNU Emacs provides support for editing MATLAB dot-m
+files.  It automatically indents for block structures, line continuations
+(e.g., ...), and comments.
+
+The default mode for files with the extension .m is c-mode, and so
+this is not overriden here.  To use this mode, either invoke it each
+time with:
+
+@example
+ M-x matlab-mode
+@end example
+
+or insert the following snippet of code in your @file{.emacs} file.
+
+@example
+ (add-to-list 'auto-mode-alist '("\\.m$" . matlab-mode))
+@end example
+
+Additional features include auto-fill including auto-additions of
+ellipsis for commands, and even strings.  Block/end construct
+highlighting as you edit.  Primitive code-verification and
+identification.  Templates and other code editing functions.
+Advanced symbol completion.  Code highlighting via font-lock.
+There are many navigation commands that let you move across blocks
+of code at different levels.
+
+Lastly, there is support for running Matlab in an Emacs buffer,
+with full shell history and debugger support (when used with the db
+commands.)  The shell can be used as an online help while editing
+code, providing help on functions, variables, or running arbitrary
+blocks of code from the buffer you are editing.
+
+@node minibuf-electric, minibuffer-complete-cycle, matlab, Top
 @chapter minibuf-electric.el - Electric minibuffer behavior from XEmacs
 
 This works with GNU Emacs.  It implements the XEmacs minibuffer behavior
@@ -4071,7 +4112,7 @@ Tails FILE specified with argument FILE inside a new buffer.
 Tails COMMAND with arguments ARGS inside a new buffer.
 @end table
 
-@node tc, thinks, tail, Top
+@node tc, tlc, tail, Top
 @chapter tc - trivial-cite -- cite text with proper filling in mail
 
 @noindent Author: Lars R. Clausen <lrclause@@cs.uiuc.edu>
@@ -4116,7 +4157,15 @@ citation marking.
 ;; -> then use `C-cC-y' in your draft.
 @end verbatim
 
-@node thinks, tld, tc, Top
+@node tlc, thinks, tc, Top
+@chapter tlc - Major mode for editing tlc files
+
+@noindent  Author: Eric M. Ludlam <eludlam@@mathworks.com>
+
+This is a major mode for editing Target Language Compiler scripts.  It
+automatically indents the programming constructs.
+
+@node thinks, tld, tlc, Top
 @chapter thinks - Insert text in a think bubble.
 
 @noindent Author Dave Pearson <davep@@davep.org>
