@@ -16,8 +16,8 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       is documented wrongly" from Sven Joachim.  The activation has changed
       to using the variable `shell-command-completion-mode'. (Closes: #331421)
     - bar-cursor.el bug fix: Loading the library changes cursor to hollow
-      box in emacs-snapshot", Fixed by skipping installion on emacs-snapshot.
-      Thanks to Sven Joachim (Closes: #331430).
+      box in emacs-snapshot", Thanks to Sven Joachim for the report and the
+      patch (Closes: #331430).
     New files:
     - cfengine.el: major mode for editing cfengine files.
       Thanks to Morten Werner Olsen (Closes: #280415).
