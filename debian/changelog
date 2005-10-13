@@ -1,5 +1,11 @@
 emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
 
+  * General Bug fix: "compiling *.el files should display errors, not just
+    log file name", thanks to Jari Aalto (Closes: #309790).  I implemented
+    the suggested grep for byte-compilation warnings and now delete the
+    temporary log files after their creation ("debian-el: leaves temporary
+    files in /tmp after installation", thanks to Lars Wirzenius; Closes:
+    #331114).
   * emacs-goodies-el:
     - emacs-goodies-el.el: Key binding for wdired didn't get properly
       defined in emacs-snapshot, thanks to Sven Joachim for the report and
@@ -33,7 +39,7 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
       Thanks to Josh Triplett for both suggestions and a patch
       (Closes: #237341).
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  6 Oct 2005 20:56:44 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 12 Oct 2005 20:05:44 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 
