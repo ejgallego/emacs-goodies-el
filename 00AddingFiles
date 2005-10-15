@@ -65,3 +65,13 @@ Testing the Package
  $ fakeroot debian/rules binary
   or
  $ dpkg-buildpackage -rfakeroot
+
+
+Releasing the package
+~~~~~~~~~~~~~~~~~~~~~
+
+ - Set the distribution to "unstable"
+ - See "Testing the Package" to build.
+ - Tag the files in CVS, e.g. for version 25.1-1 :
+
+   $ cvs tag debian_version_25_1-1
