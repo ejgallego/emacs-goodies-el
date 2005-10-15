@@ -85,7 +85,7 @@ fi
 
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
 "${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} 2>&1
-egrep  'While compiling|\*\*' ${LOG}
+egrep -s -e "While compiling|\*\*" ${LOG} || /bin/true
 echo install/${PACKAGE}: Deleting ${LOG}
 rm -f path.el ${LOG}
 
