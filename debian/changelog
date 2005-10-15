@@ -1,4 +1,4 @@
-emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
+emacs-goodies-el (25.1-1) unstable; urgency=low
 
   * General Bug fix: "compiling *.el files should display errors, not just
     log file name", thanks to Jari Aalto (Closes: #309790).  I implemented
@@ -42,7 +42,7 @@ emacs-goodies-el (25.1-1) UNRELEASED; urgency=low
     - gnus-filterhist.el: Move face-changing command inside temporary buffer
       manipulation (Closes: #331234)
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 12 Oct 2005 20:05:44 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 15 Oct 2005 15:31:53 -0400
 
 emacs-goodies-el (24.15-2) unstable; urgency=low
 
