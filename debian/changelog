@@ -1,3 +1,11 @@
+emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
+
+  * New package vm-bonus-el: Miscellaneous add-ons for VM
+  * Removed transitional packages:
+     emacs-goodies-extra-el, debbugs-el and debview
+
+ -- Peter S Galbraith <psg@debian.org>  Sat, 15 Oct 2005 17:06:34 -0400
+
 emacs-goodies-el (25.1-1) unstable; urgency=low
 
   * General Bug fix: "compiling *.el files should display errors, not just

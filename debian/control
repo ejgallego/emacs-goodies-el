@@ -95,18 +95,6 @@ Description: Miscellaneous add-ons for Emacs
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
  description of all files, or the Info node `emacs-goodies-el' for details.
 
-Package: emacs-goodies-extra-el
-Architecture: all
-Depends: emacs-goodies-el (>= 22.0-1)
-Section: oldlibs
-Priority: extra
-Description: Transitional package that can be removed
- The content of the package emacs-goodies-extra-el has been moved to the
- package emacs-goodies-el.
- .
- This package ensures that emacs-goodies-el is installed during upgrades
- and should thereafter be removed.
-
 Package: gnus-bonus-el
 Architecture: all
 Depends: emacs21 | emacsen, gnus | emacs21 | xemacs21 | emacs-snapshot
@@ -162,28 +150,6 @@ Description: Emacs helpers specific to Debian users
  See /usr/share/doc/debian-el/README.Debian for a short description of
  all files, or the Info node `debian-el' for details.
 
-Package: debbugs-el
-Architecture: all
-Depends: debian-el (>= 22.0-1)
-Section: oldlibs
-Priority: extra
-Description: Transitional package that can be removed
- The package debbugs-el has been renamed debian-el.
- .
- This package ensures that debian-el is installed during upgrades and
- should thereafter be removed.
-
-Package: debview
-Architecture: all
-Depends: debian-el (>= 22.0-1)
-Section: oldlibs
-Priority: extra
-Description: Transitional package that can be removed
- The content of the package debview has been moved to the package debian-el.
- .
- This package ensures that debian-el is installed during upgrades and
- should thereafter be removed.
-
 Package: dpkg-dev-el
 Architecture: all
 Depends: emacs21 | emacsen, debian-el (>= 24.0-1)
@@ -202,3 +168,19 @@ Description: Emacs helpers specific to Debian development
  .
  See /usr/share/doc/dpkg-dev-el/README.Debian for a short description of
  all files.
+
+Package: vm-bonus-el
+Architecture: all
+Depends: vm
+Section: mail
+Description: Miscellaneous add-ons for VM
+
+ This package contains a few Emacs-Lisp files that provide various
+ functions to VM, a mail user agent for Emacs.
+ .
+ This package contains:
+  u-vm-color.el - font-lock support for VM;
+  vm-rfaddons.el - a collections of various useful VM helper functions.
+ .
+ See /usr/share/doc/vm-bonus-el/README.Debian for a short description
+ of all files.
