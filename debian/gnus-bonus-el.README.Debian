@@ -11,6 +11,7 @@ binary packages:
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
+ vm-bonus-el:      Miscellaneous add-ons for VM
 
   The numbering scheme for all packages follows the source package scheme:
 the major revision number changes when adding or removing files or binary
@@ -72,4 +73,4 @@ spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
 spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
 add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Jul 13 21:25:29 2004
+ -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:22:04 2005

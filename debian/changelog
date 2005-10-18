@@ -1,10 +1,14 @@
 emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
 
-  * New package vm-bonus-el: Miscellaneous add-ons for VM
+  * New package vm-bonus-el: Miscellaneous add-ons for VM.
+    Thanks to Patrice Karatchentzeff for the suggestion. (Closes: #244444)
+    - vm-rfaddons.el: a collections of various useful VM helper functions.
   * Removed transitional packages:
      emacs-goodies-extra-el, debbugs-el and debview
+  * emacs-goodies-el:
+    - matlab.el: New upstream version, updated to 3.0.1.
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 15 Oct 2005 17:06:34 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 17 Oct 2005 22:07:33 -0400
 
 emacs-goodies-el (25.1-1) unstable; urgency=low
 

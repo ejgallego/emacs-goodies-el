@@ -174,7 +174,6 @@ Architecture: all
 Depends: vm
 Section: mail
 Description: Miscellaneous add-ons for VM
-
  This package contains a few Emacs-Lisp files that provide various
  functions to VM, a mail user agent for Emacs.
  .

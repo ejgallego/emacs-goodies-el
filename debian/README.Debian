@@ -11,6 +11,7 @@ binary packages:
  debian-el:        Debian-specific tools (Access the Debian BTS, etc)
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
+ vm-bonus-el:      Miscellaneous add-ons for VM
 
   The numbering scheme for all packages follows the source package scheme:
 the major revision number changes when adding or removing files or binary
@@ -336,4 +337,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Thu Oct  6 19:48:20 2005
+ -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:26:43 2005

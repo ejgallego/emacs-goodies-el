@@ -11,6 +11,7 @@ binary packages:
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
+ vm-bonus-el:      Miscellaneous add-ons for VM
 
   The numbering scheme for all packages follows the source package scheme:
 the major revision number changes when adding or removing files or binary
@@ -53,4 +54,4 @@ to "C-c C-a" by default), and viewing bugs (bound to "C-c C-b").
 readme-debian.el provides readme-debian-mode, a major mode to
 highlight README.Debian files.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Sep 30 21:33:42 2003
+ -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:22:08 2005

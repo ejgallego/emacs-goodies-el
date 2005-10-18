@@ -1,0 +1,29 @@
+;; -*-emacs-lisp-*-
+;;
+;; Emacs startup file for the Debian GNU/Linux vm-bonus-el package
+
+(if (not (file-exists-p "/usr/share/emacs/site-lisp/vm-bonus-el"))
+    (message "Package vm-bonus-el removed but not purged.  Skipping setup.")
+
+  (debian-pkg-add-load-path-item
+   (concat "/usr/share/"
+           (symbol-name debian-emacs-flavor)
+           "/site-lisp/vm-bonus-el"))
+
+  ;; autoloads for vm-rfaddons.el
+  (autoload 'vm-rfaddons-infect-vm "vm-rfaddons"
+    "setup the key bindings, advices and hooks to use all of vm-rfaddons.el
+Much more information is available when loaded."
+    t)
+
+  (defgroup vm-bonus-el nil
+    "Customize vm-bonus-el Debian packages."
+    :group 'vm)
+
+  (defgroup vm-rfaddons nil
+    "Customize vm-rfaddons.el"
+    :group 'vm
+    :group 'vm-bonus-el
+    :load 'vm-rfaddons)
+  
+  )

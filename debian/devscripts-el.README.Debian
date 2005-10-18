@@ -11,6 +11,7 @@ binary packages:
  debian-el:        Access the Debian BTS from within Emacs
  dpkg-dev-el:      Emacs-related Debian development helpers
  devscripts-el:    Emacs wrappers for the commands in devscripts
+ vm-bonus-el:      Miscellaneous add-ons for VM
 
   The numbering scheme for all packages follows the source package scheme:
 the major revision number changes when adding or removing files or binary
@@ -53,4 +54,4 @@ pbuilder-log-view-mode.el provides
 
 command to view pbuilder and debuild logs from Mozilla through elserv web server.
 
- -- Junichi Uekawa <dancer@debian.org>, Sat Oct 18 17:42:21 2003
+ -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:22:13 2005
