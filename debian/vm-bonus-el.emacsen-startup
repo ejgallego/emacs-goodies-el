@@ -25,5 +25,18 @@ Much more information is available when loaded."
     :group 'vm
     :group 'vm-bonus-el
     :load 'vm-rfaddons)
-  
-  )
+
+  ;; u-vm-color.el
+  (defgroup u-vm-color nil
+    "Font-lock support for vm."
+    :group 'vm
+    :group 'vm-bonus-el
+    :load 'vm-rfaddons)
+
+   (autoload 'u-vm-color-summary-mode "u-vm-color"
+  "Configure `font-lock-keywords' and add some hooks for vm-buffers.
+Optional argument ARG is not used!")
+
+   (autoload 'u-vm-color-fontify-buffer "u-vm-color"
+     "Fontifies mail-buffers.")
+   )

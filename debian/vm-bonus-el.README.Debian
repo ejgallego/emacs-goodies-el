@@ -25,8 +25,12 @@ obtained from this source package.  It does not intend to replace reading
 the documentation that is made available in the files themselves (or not
 available at all, except insofar as code is self-documenting).
 
+------------------------------------
 Introduction to files in vm-bonus-el
 ------------------------------------
+
+vm-rfaddons.el
+--------------
 
 vm-rfaddons.el is a collections of various useful VM helper functions.
 Enable them all by adding `(vm-rfaddons-infect-vm)' at the end of your .vm
@@ -67,8 +71,59 @@ Author Commentary:
  As I am no active GNU Emacs user, I would be thankful for any patches to
  make things work with GNU Emacs!
 
-------------------------------------
+----------------------------------------------------------------------------
 
-u-vm-color.el is...
+u-vm-color.el 
+-------------
 
- -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:51:09 2005
+ Author Commentary:
+
+ This package provides a simple way for configuring faces for VM.
+ All faces are customizable.
+
+ For the VM summary buffer this is done using `font-lock', for the
+ message buffer by a "proprietary" fontifier.
+
+ For vm-summary-mode font-lock-keywords are created from the value of
+ `vm-summary-format'.  All vm format-specifiers are understood (as of VM
+ 6.88), as well as the user-defined specifier `%UB', provided by BBDB.
+
+ To install and use place this file somewhere in your load-path and put
+ the following in your VM startup file (~/.emacs or ~/.vm)
+
+ (require 'u-vm-color)
+ (add-hook 'vm-summary-mode-hook 'u-vm-color-summary-mode)
+ (add-hook 'vm-select-message-hook 'u-vm-color-fontify-buffer)
+
+ It may be necessary to add the following, which probably comes from
+ a bug in my code...
+ (defadvice vm-decode-mime-message (after u-vm-color activate)
+   (u-vm-color-fontify-buffer-even-more))
+
+ If you are using auto-fill, ie when the variable
+ `vm-fill-paragraphs-containing-long-lines' is not nil, you should
+ also add this:
+ (defadvice vm-fill-paragraphs-containing-long-lines
+             (after u-vm-color activate)
+             (u-vm-color-fontify-buffer))
+
+ It will make sure that buffers/messages, which have been re-filled
+ are fontified properly.
+
+ It is possible to use the face definitions from Gnus by adding
+ (setq u-vm-color-use-gnus-faces t)
+ However, this is irreversible.  At least for that Emacs session.
+
+ All faces are customizable: Just say
+ M-x customize-group <ret> u-vm-color
+
+ In order to prevent Emacs from locking I strongly recommend to use
+ lazy-lock or jit-mode.
+
+ Disclaimer: `u-vm-color' may show unexpected results, or even fail, if
+ vm-summary-format is sufficiently complex=strange.
+
+ XEmacs users might want to turn off `vm-use-lucid-highlighting', if
+ this package works...
+
+ -- Peter S Galbraith <psg@debian.org>, Tue Oct 18 19:55:25 2005

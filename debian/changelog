@@ -1,8 +1,9 @@
 emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
 
   * New package vm-bonus-el: Miscellaneous add-ons for VM.
-    Thanks to Patrice Karatchentzeff for the suggestion. (Closes: #244444)
     - vm-rfaddons.el: a collections of various useful VM helper functions.
+    - u-vm-color.el: font-lock support for VM.
+    Thanks to Patrice Karatchentzeff for the suggestion. (Closes: #244444)
   * Removed transitional packages:
      emacs-goodies-extra-el, debbugs-el and debview
   * emacs-goodies-el:
