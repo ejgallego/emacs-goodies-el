@@ -31,7 +31,7 @@ Much more information is available when loaded."
     "Font-lock support for vm."
     :group 'vm
     :group 'vm-bonus-el
-    :load 'vm-rfaddons)
+    :load 'vm-bonus-el)
 
    (autoload 'u-vm-color-summary-mode "u-vm-color"
   "Configure `font-lock-keywords' and add some hooks for vm-buffers.
