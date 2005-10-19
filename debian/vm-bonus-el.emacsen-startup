@@ -33,10 +33,12 @@ Much more information is available when loaded."
     :group 'vm-bonus-el
     :load 'u-vm-color)
 
-   (autoload 'u-vm-color-summary-mode "u-vm-color"
-  "Configure `font-lock-keywords' and add some hooks for vm-buffers.
-Optional argument ARG is not used!")
+  (autoload 'u-vm-color-summary-mode "u-vm-color"
+    "Configure `font-lock-keywords' and add some hooks for vm-buffers.
+Optional argument ARG is not used!"
+    t)
 
-   (autoload 'u-vm-color-fontify-buffer "u-vm-color"
-     "Fontifies mail-buffers.")
-   )
+  (autoload 'u-vm-color-fontify-buffer "u-vm-color"
+    "Fontifies mail-buffers."
+    t)
+  )
