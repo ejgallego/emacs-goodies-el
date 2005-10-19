@@ -8,8 +8,11 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
      emacs-goodies-extra-el, debbugs-el and debview
   * emacs-goodies-el:
     - matlab.el: New upstream version, updated to 3.0.1.
+    New files:
+    - maple.el: major mode for editing Maple files. Thanks to Anders
+      Lennartsson for suggesting it (Closes: #334425).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 17 Oct 2005 22:07:33 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 18 Oct 2005 21:50:21 -0400
 
 emacs-goodies-el (25.1-1) unstable; urgency=low
 

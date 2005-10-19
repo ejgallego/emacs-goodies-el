@@ -285,6 +285,14 @@ selectable views (limits)."
   :load 'lcomp
   :group 'emacs-goodies-el)
 
+;; maplev
+(defgroup maplev nil
+  "Major mode for editing Maple source in Emacs"
+  :group 'languages
+  :link '(custom-manual "(emacs-goodies-el)maplev")
+  :load 'maplev
+  :group 'emacs-goodies-el)
+
 ;; matlab
 (defgroup matlab nil
   "Matlab mode."

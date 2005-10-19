@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.66 2005/10/07 00:01:33 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.67 2005/10/19 02:05:29 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -104,6 +104,7 @@ be documented.
 * keydef::                      A simpler way to define keys, with kbd syntax
 * keywiz::                      Emacs key sequence quiz
 * lcomp::                       list-completion hacks
+* maplev::                      Maple major mode
 * map-lines::                   Map a command over many lines
 * marker-visit::                Navigate through a buffer's marks in order
 * matlab::                      Major mode for MATLAB dot-m files
@@ -2553,7 +2554,7 @@ wield the powers of the One True Editor at your fingertips will
 earn you more bragging rights than ascending bare-footed in some
 silly game with vi-keybindings :-)
 
-@node lcomp, map-lines, keywiz, Top
+@node lcomp, maplev, keywiz, Top
 @chapter lcomp - list-completion hacks
 
 @noindent Author: Taiki SUGAWARA <taiki.s@@cityfujisawa.ne.jp>
@@ -2601,7 +2602,28 @@ into your ~/.emacs.
 Or alternatively, customize the group @code{lcomp} and then the
 variable @code{lcomp-enable} and save the the setting for future sessions.
 
-@node map-lines, marker-visit, lcomp, Top
+@node maplev, map-lines, lcomp, Top
+@chapter maplev - Maple major mode
+
+@noindent Authors:    Joseph S. Riel <joer@@k-online.com> and Roland Winkler <Roland.Winkler@@physik.uni-erlangen.de>
+
+To use this Maple major mode, you must customize some of the default
+settings to be appropriate for your installation.  You can do this in
+several ways.  The most user friendly way is to use `customize'.  You
+can do this with:
+
+@example
+@kbd{M-x} customize-group @key{RET} maplev @key{RET}
+@end example
+
+The important options are in the subgroup @code{maplev-important}.  After
+setting and testing these options, save them to your .emacs by
+clicking on the @code{Save for Future Sessions} button.
+
+This mode has full documentation in it's own Info manual.
+See @inforef{top, MapleV mode info node, maplev}.
+
+@node map-lines, marker-visit, maplev, Top
 @chapter map-lines - Map a command over many lines
 
 @noindent Author: Andreas Fuchs <asf@@void.at>

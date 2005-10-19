@@ -43,6 +43,7 @@ elisp/emacs-goodies-el/joc-toggle-case.el /usr/share/emacs/site-lisp/emacs-goodi
 elisp/emacs-goodies-el/keydef.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/keywiz.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/lcomp.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/maplev.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/map-lines.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/matlab.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/marker-visit.el /usr/share/emacs/site-lisp/emacs-goodies-el/

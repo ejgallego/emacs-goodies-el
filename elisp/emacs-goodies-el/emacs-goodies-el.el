@@ -196,6 +196,11 @@ Stores the value of the prior keybinding in case we need to restore it.")
   "Map COMMAND over lines matching REGEX."
   t)
 
+;; maplev
+(autoload 'maplev-mode "maplev" "Maple editing mode" t)
+(autoload 'cmaple      "maplev" "Start maple process" t)
+(add-to-list 'auto-mode-alist '("\\.mpl\\'" . maplev-mode))
+
 ;; minibuf-electric.el
 (defcustom minibuffer-electric-file-name-behavior nil
   "*If non-nil, slash and tilde in certain places cause immediate deletion.

@@ -196,6 +196,8 @@ during the time limit.  Invoke with `M-x keywiz'.
 
 lcomp.el adds useful keybindings to the completions buffer.
 
+maplev.el is a major mode for Maple.
+
 map-lines.el provides M-x map-lines, a command to iterate a given
 command over lines matching a regexp.
 
@@ -337,4 +339,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:26:43 2005
+ -- Peter S Galbraith <psg@debian.org>, Tue Oct 18 21:48:38 2005

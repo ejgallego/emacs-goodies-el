@@ -55,6 +55,7 @@ Description: Miscellaneous add-ons for Emacs
   keydef - a simpler way to define key mappings;
   keywiz - Emacs key sequence quiz;
   lcomp - list-completion hacks;
+  maplev - major mode for Maple;
   map-lines - map a command over lines matching a regexp;
   marker-visit - navigate through a buffer's marks in order;
   matlab - major mode for MatLab dot-m files;

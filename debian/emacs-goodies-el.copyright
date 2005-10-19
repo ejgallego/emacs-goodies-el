@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.17 $
+| ;; $Revision: 1.18 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -650,6 +650,22 @@ Author/copyright info for lcomp.el
 `----
 
 
+Author/copyright info for maplev.el and maplev.texi
+,----
+| ;;; maplev.el --- Maple mode for GNU Emacs
+| ;; Copyright (C) 2001,2003 Joseph S. Riel
+| 
+| ;; Authors:    Joseph S. Riel <joer@k-online.com>
+| ;;             and Roland Winkler <Roland.Winkler@physik.uni-erlangen.de>
+| ;; X-URL:      http://www.k-online.com/~joer/maplev/maplev.html
+| 
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License as
+| ;; published by the Free Software Foundation; either version 2 of the
+| ;; License, or (at your option) any later version.
+`----
+
+
 Author/copyright info for map-lines.el:
 ,----
 | ;; Copyright (C) 2002  Andreas Fuchs <asf@void.at>
@@ -1017,7 +1033,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.17 $
+| ;; $Revision: 1.18 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
