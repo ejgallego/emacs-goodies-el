@@ -1,6 +1,6 @@
 ;;; boxquote.el --- Quote text with a semi-box.
-;; Copyright 1999,2000,2001,2002 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.1 $
+;; Copyright 1999,2000,2001,2002,2003 by Dave Pearson <davep@davep.org>
+;; $Revision: 1.2 $
 
 ;; boxquote.el is free software distributed under the terms of the GNU
 ;; General Public Licence, version 2. For details see the file COPYING.
@@ -26,16 +26,18 @@
 
 ;;; Thanks:
 
-;; Thanks to Kai Grossjohann <URL:mailto:kai.grossjohann@cs.uni-dortmund.de>
-;; for inspiring the idea of boxquote. I wrote this code to mimic the
-;; "inclusion quoting" style in his Usenet posts. I could have hassled him
-;; for his code but it was far more fun to write it myself.
+;; Kai Grossjohann for inspiring the idea of boxquote. I wrote this code to
+;; mimic the "inclusion quoting" style in his Usenet posts. I could have
+;; hassled him for his code but it was far more fun to write it myself.
 ;;
 ;; Mark Milhollan for providing a patch that helped me get the help quoting
 ;; functions working with XEmacs.
 ;;
 ;; Oliver Much for suggesting the idea of having a `boxquote-kill-ring-save'
 ;; function.
+;;
+;; Reiner Steib for suggesting `boxquote-where-is' and the idea of letting
+;; `boxquote-describe-key' describe key bindings from other buffers.
 
 ;;; Code:
 
@@ -153,6 +155,31 @@ the article you'd copied the text from."
   :type  'function
   :group 'boxquote)
 
+(defcustom boxquote-describe-function-title-format "C-h f %s RET"
+  "*Format string to use when formatting a function description box title"
+  :type  'string
+  :group 'boxquote)
+
+(defcustom boxquote-describe-variable-title-format "C-h v %s RET"
+  "*Format string to use when formatting a variable description box title"
+  :type  'string
+  :group 'boxquote)
+
+(defcustom boxquote-describe-key-title-format "C-h k %s"
+  "*Format string to use when formatting a key description box title"
+  :type  'string
+  :group 'boxquote)
+
+(defcustom boxquote-where-is-title-format "C-h w %s RET"
+  "*Format string to use when formatting a `where-is' description box title"
+  :type  'string
+  :group 'boxquote)
+
+(defcustom boxquote-where-is-body-format "%s is on %s"
+  "*Format string to use when formatting a `where-is' description."
+  :type  'string
+  :group 'boxquote)
+  
 ;; Main code:
 
 (defun boxquote-xemacs-p ()
@@ -361,7 +388,7 @@ whatever `boxquote-kill-ring-save-title' returned at the time."
             return buffer)
     "*Help*"))
 
-(defun boxquote-yank-and-quote-help-buffer (help-call title-format item)
+(defun boxquote-quote-help-buffer (help-call title-format item)
   "Perform a help command and boxquote the output.
 
 HELP-CALL is a function that calls the help command.
@@ -370,11 +397,11 @@ TITLE-FORMAT is the `format' string to use to product the boxquote title.
 
 ITEM is a function for retrieving the item to get help on."
   (let ((one-window-p (one-window-p)))
-    (save-window-excursion
-      (funcall help-call)
-      (with-current-buffer (boxquote-help-buffer-name (funcall item))
-        (kill-ring-save (point-min) (point-max))))
-    (boxquote-yank)
+    (boxquote-text
+     (save-window-excursion
+       (funcall help-call)
+       (with-current-buffer (boxquote-help-buffer-name (funcall item))
+         (buffer-string))))
     (boxquote-title (format title-format (funcall item)))
     (when one-window-p
       (delete-other-windows))))
@@ -383,10 +410,10 @@ ITEM is a function for retrieving the item to get help on."
 (defun boxquote-describe-function ()
   "Call `describe-function' and boxquote the output into the current buffer."
   (interactive)
-  (boxquote-yank-and-quote-help-buffer
+  (boxquote-quote-help-buffer
    #'(lambda ()
        (call-interactively #'describe-function))
-   "C-h f %s RET"
+   boxquote-describe-function-title-format
    #'(lambda ()
        (car (if (boxquote-xemacs-p)
                 (symbol-value 'function-history)
@@ -396,10 +423,10 @@ ITEM is a function for retrieving the item to get help on."
 (defun boxquote-describe-variable ()
   "Call `describe-variable' and boxquote the output into the current buffer."
   (interactive)
-  (boxquote-yank-and-quote-help-buffer
+  (boxquote-quote-help-buffer
    #'(lambda ()
        (call-interactively #'describe-variable))
-   "C-h v %s RET"
+   boxquote-describe-variable-title-format
    #'(lambda ()
        (car (if (boxquote-xemacs-p)
                 (symbol-value 'variable-history)
@@ -407,17 +434,28 @@ ITEM is a function for retrieving the item to get help on."
 
 ;;;###autoload
 (defun boxquote-describe-key (key)
-  "Call `describe-key' and boxquote the output into the current buffer."
+  "Call `describe-key' and boxquote the output into the current buffer.
+
+If the call to this command is prefixed with \\[universal-argument] you will also be
+prompted for a buffer. The key defintion used will be taken from that buffer."
   (interactive "kDescribe key: ")
-  (let ((binding (key-binding key)))
-    (if (or (null binding) (integerp binding))
-        (message "%s is undefined" (key-description key))
-      (boxquote-yank-and-quote-help-buffer
-       `(lambda ()
-         (describe-key ,key))
-       "C-h k %s"
-       `(lambda ()
-         (key-description ,key))))))
+  (let ((from-buffer (if current-prefix-arg
+                         (read-buffer "Buffer: " (current-buffer) t)
+                       (current-buffer))))
+    (let ((binding
+           (with-current-buffer from-buffer
+             (key-binding key))))
+      (if (or (null binding) (integerp binding))
+          (message "%s is undefined" (with-current-buffer from-buffer
+                                       (key-description key)))
+        (boxquote-quote-help-buffer
+         #'(lambda ()
+             (with-current-buffer from-buffer
+               (describe-key key)))
+         boxquote-describe-key-title-format
+         #'(lambda ()
+             (with-current-buffer from-buffer
+               (key-description key))))))))
 
 ;;;###autoload
 (defun boxquote-shell-command (command)
@@ -427,6 +465,15 @@ ITEM is a function for retrieving the item to get help on."
                    (shell-command command t)
                    (buffer-string)))
   (boxquote-title command))
+
+;;;###autoload
+(defun boxquote-where-is (definition)
+  "Call `where-is' with DEFINITION and boxquote the result."
+  (interactive "CCommand: ")
+  (boxquote-text (with-temp-buffer
+                   (where-is definition t)
+                   (format boxquote-where-is-body-format definition (buffer-string))))
+  (boxquote-title (format boxquote-where-is-title-format definition)))
 
 ;;;###autoload
 (defun boxquote-text (text)

@@ -20,8 +20,8 @@ Any changes made in that buffer will be propagated to this buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (apache-mode) "apache-mode" "apache-mode.el" (17082
-;;;;;;  61461))
+;;;### (autoloads (apache-mode) "apache-mode" "apache-mode.el" (17102
+;;;;;;  30750))
 ;;; Generated autoloads from apache-mode.el
 
 (autoload (quote apache-mode) "apache-mode" "\
@@ -58,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (17221 45469))
+;;;;;;  "bar-cursor.el" (17241 16904))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -76,11 +76,11 @@ Enable or disable advice based on value of variable `bar-cursor-mode'." nil nil)
 
 ;;;### (autoloads (boxquote-unbox boxquote-unbox-region boxquote-fill-paragraph
 ;;;;;;  boxquote-kill boxquote-narrow-to-boxquote-content boxquote-narrow-to-boxquote
-;;;;;;  boxquote-text boxquote-shell-command boxquote-describe-key
+;;;;;;  boxquote-text boxquote-where-is boxquote-shell-command boxquote-describe-key
 ;;;;;;  boxquote-describe-variable boxquote-describe-function boxquote-boxquote
 ;;;;;;  boxquote-paragraph boxquote-defun boxquote-yank boxquote-kill-ring-save
 ;;;;;;  boxquote-insert-file boxquote-buffer boxquote-region boxquote-title)
-;;;;;;  "boxquote" "boxquote.el" (16259 18879))
+;;;;;;  "boxquote" "boxquote.el" (17241 16854))
 ;;; Generated autoloads from boxquote.el
 
 (autoload (quote boxquote-title) "boxquote" "\
@@ -130,10 +130,16 @@ Call `describe-function' and boxquote the output into the current buffer." t nil
 Call `describe-variable' and boxquote the output into the current buffer." t nil)
 
 (autoload (quote boxquote-describe-key) "boxquote" "\
-Call `describe-key' and boxquote the output into the current buffer." t nil)
+Call `describe-key' and boxquote the output into the current buffer.
+
+If the call to this command is prefixed with \\[universal-argument] you will also be
+prompted for a buffer. The key defintion used will be taken from that buffer." t nil)
 
 (autoload (quote boxquote-shell-command) "boxquote" "\
 Call `shell-command' with COMMAND and boxquote the output." t nil)
+
+(autoload (quote boxquote-where-is) "boxquote" "\
+Call `where-is' with DEFINITION and boxquote the result." t nil)
 
 (autoload (quote boxquote-text) "boxquote" "\
 Insert TEXT, boxquoted." t nil)
@@ -175,8 +181,8 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 
 ;;;***
 
-;;;### (autoloads (browse-kill-ring-default-keybindings) "browse-kill-ring"
-;;;;;;  "browse-kill-ring.el" (17221 45469))
+;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (17241 16904))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -185,10 +191,13 @@ Normally, if M-y was not preceeded by C-y, then it has no useful
 behavior.  This function sets things up so that M-y will invoke
 `browse-kill-ring'." t nil)
 
+(autoload (quote browse-kill-ring) "browse-kill-ring" "\
+Display items in the `kill-ring' in another buffer." t nil)
+
 ;;;***
 
 ;;;### (autoloads (cfengine-mode) "cfengine" "cfengine.el" (17213
-;;;;;;  17501))
+;;;;;;  19161))
 ;;; Generated autoloads from cfengine.el
 
 (autoload (quote cfengine-mode) "cfengine" "\
@@ -210,7 +219,7 @@ Comments are handled using standard Emacs conventions, including:
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17221 45469))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (17241 16904))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -304,7 +313,7 @@ Return non-nil if new types are found." t nil)
 
 ;;;### (autoloads (CUA-keypad-mode CUA-mode-on CUA-mode CUA-mode-bindings
 ;;;;;;  CUA-movement-key CUA-exchange-point-and-mark CUA-mode) "cua"
-;;;;;;  "cua.el" (15419 33418))
+;;;;;;  "cua.el" (17212 38105))
 ;;; Generated autoloads from cua.el
 
 (defvar CUA-mode nil "\
@@ -373,8 +382,8 @@ the decimal key on the keypad i<s mapped to DECIMAL instead of [.]." nil nil)
 
 ;;;***
 
-;;;### (autoloads (cwebm-mode webm-mode) "cwebm" "cwebm.el" (17213
-;;;;;;  60621))
+;;;### (autoloads (cwebm-mode webm-mode) "cwebm" "cwebm.el" (17221
+;;;;;;  28087))
 ;;; Generated autoloads from cwebm.el
 
 (autoload (quote webm-mode) "cwebm" "\
@@ -389,8 +398,8 @@ Used for relative module movement. The automatic \" feature is disabled." t nil)
 
 ;;;***
 
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17221
-;;;;;;  45469))
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (17241
+;;;;;;  16904))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -409,7 +418,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (17221 45469))
+;;;;;;  "diminish.el" (17241 16904))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -454,7 +463,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17221 45469))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (17241 16904))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -741,7 +750,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (17221 45469))
+;;;;;;  "highlight-beyond-fill-column.el" (17241 16904))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -762,7 +771,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (17221 45469))
+;;;;;;  (17241 16904))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -778,8 +787,8 @@ of window, third in a row goes to end of buffer." t nil)
 ;;;***
 
 ;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
-;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (16284
-;;;;;;  31796))
+;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (16285
+;;;;;;  9287))
 ;;; Generated autoloads from htmlize.el
 
 (autoload (quote htmlize-buffer) "htmlize" "\
@@ -863,7 +872,7 @@ to use; see `ibuffer-limiting-qualifiers'." t nil)
 ;;;;;;  ido-find-file ido-find-file-in-dir ido-switch-buffer-other-frame
 ;;;;;;  ido-insert-buffer ido-kill-buffer ido-display-buffer ido-switch-buffer-other-window
 ;;;;;;  ido-switch-buffer ido-read-buffer ido-mode ido-enabled) "ido"
-;;;;;;  "ido.el" (15415 32378))
+;;;;;;  "ido.el" (17213 20908))
 ;;; Generated autoloads from ido.el
 
 (defvar ido-enabled nil "\
@@ -1065,7 +1074,7 @@ See `read-file-name' for additional parameters." nil nil)
 ;;;***
 
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (17221 45469))
+;;;;;;  (17241 16904))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -1075,7 +1084,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17221 45469))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (17241 16904))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -1139,8 +1148,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17221
-;;;;;;  45469))
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (17241
+;;;;;;  16904))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -1149,8 +1158,8 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17221
-;;;;;;  45469))
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (17241
+;;;;;;  16904))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -1165,11 +1174,11 @@ Truncate the `mark-ring'." t nil)
 ;;;***
 
 ;;;### (autoloads (matlab-shell matlab-mode) "matlab" "matlab.el"
-;;;;;;  (17221 29147))
+;;;;;;  (17238 24754))
 ;;; Generated autoloads from matlab.el
 
 (autoload (quote matlab-mode) "matlab" "\
-Matlab-mode is a major mode for editing MATLAB dot-m files.
+MATLAB-mode is a major mode for editing MATLAB dot-m files.
 \\<matlab-mode-map>
 Convenient editing commands are:
  \\[matlab-comment-region]   - Comment/Uncomment out a region of code.
@@ -1177,6 +1186,7 @@ Convenient editing commands are:
  \\[matlab-fill-region] - Fill code and comments in region.
  \\[matlab-fill-paragraph]     - Refill the current command or comment.
  \\[matlab-complete-symbol]   - Symbol completion of matlab symbolsbased on the local syntax.
+ \\[matlat-indent-sexp] - Indent syntactic block of code.
 
 Convenient navigation commands are:
  \\[matlab-beginning-of-command]   - Move to the beginning of a command.
@@ -1193,11 +1203,12 @@ Convenient template insertion commands:
  \\[tempo-template-matlab-switch] - Insert a SWITCH END statement.
  \\[matlab-insert-next-case] - Insert the next CASE condition in a SWITCH.
  \\[matlab-insert-end-block] - Insert a matched END statement.  With optional ARG, reindent.
- \\[matlab-stringify-region] - Convert some plaintext into a string with correctly quoted chars.
+ \\[matlab-stringify-region] - Convert plaintext in region to a string with correctly quoted chars.
 
 Variables:
   `matlab-indent-level'		Level to indent blocks.
   `matlab-cont-level'		Level to indent continuation lines.
+  `matlab-cont-requires-ellipsis' Does your MATLAB support implied elipsis.
   `matlab-case-level'		Level to unindent case statements.
   `matlab-indent-past-arg1-functions'
                                 Regexp of functions to indent past the first
@@ -1205,14 +1216,15 @@ Variables:
   `matlab-maximum-indents'      List of maximum indents during lineups.
   `matlab-comment-column'       Goal column for on-line comments.
   `fill-column'			Column used in auto-fill.
-  `matlab-indent-function'	If non-nil, indents body of MATLAB functions.
-  `matlab-return-function'	Customize RET handling with this function
-  `matlab-auto-fill'            Non-nil, do auto-fill at startup
+  `matlab-indent-function-body' If non-nil, indents body of MATLAB functions.
+  `matlab-functions-have-end'	If non-nil, MATLAB functions terminate with end.
+  `matlab-return-function'	Customize RET handling with this function.
+  `matlab-auto-fill'            Non-nil, do auto-fill at startup.
   `matlab-fill-code'            Non-nil, auto-fill code.
   `matlab-fill-strings'         Non-nil, auto-fill strings.
-  `matlab-verify-on-save-flag'  Non-nil, enable code checks on save
+  `matlab-verify-on-save-flag'  Non-nil, enable code checks on save.
   `matlab-highlight-block-match-flag'
-                                Enable matching block begin/end keywords
+                                Enable matching block begin/end keywords.
   `matlab-vers-on-startup'	If t, show version on start-up.
   `matlab-handle-simulink'      If t, enable simulink keyword highlighting.
 
@@ -1220,15 +1232,15 @@ All Key Bindings:
 \\{matlab-mode-map}" t nil)
 
 (autoload (quote matlab-shell) "matlab" "\
-Create a buffer with Matlab running as a subprocess.
+Create a buffer with MATLAB running as a subprocess.
 
-Matlab shell cannot work on the MS Windows platform because Matlab is not
+MATLAB shell cannot work on the MS Windows platform because MATLAB is not
 a console application." t nil)
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17221
-;;;;;;  45469))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (17241
+;;;;;;  16904))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -1241,7 +1253,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (newsticker-show-news newsticker-start) "newsticker"
-;;;;;;  "newsticker.el" (17221 45469))
+;;;;;;  "newsticker.el" (17241 16904))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -1257,7 +1269,7 @@ Switch to newsticker buffer.  You may want to bind this to a key." t nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (17221 45469))
+;;;;;;  "nuke-trailing-whitespace.el" (17241 16904))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -1310,7 +1322,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (17221 45469))
+;;;;;;  "perldoc.el" (17241 16904))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -1326,7 +1338,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (17221 45470))
+;;;### (autoloads (project-add) "projects" "projects.el" (17241 16905))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -1335,7 +1347,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (17221 45469))
+;;;;;;  "protbuf" "protbuf.el" (17241 16904))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1410,7 +1422,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (17221 45470))
+;;;;;;  (17241 16905))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1429,7 +1441,7 @@ to automatically turn on line numbering when enterting `text-mode'." nil nil)
 ;;;***
 
 ;;;### (autoloads (shell-command-completion-mode) "shell-command"
-;;;;;;  "shell-command.el" (17220 32152))
+;;;;;;  "shell-command.el" (17221 28092))
 ;;; Generated autoloads from shell-command.el
 
 (autoload (quote shell-command-completion-mode) "shell-command" "\
@@ -1440,7 +1452,7 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (17221 45469))
+;;;;;;  "silly-mail.el" (17241 16904))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1454,8 +1466,8 @@ The choice of available headers is taken from `sm-mail-header-table'." t nil)
 
 ;;;***
 
-;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (16670
-;;;;;;  55874))
+;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (17211
+;;;;;;  12498))
 ;;; Generated autoloads from slang-mode.el
 
 (autoload (quote slang-mode) "slang-mode" "\
@@ -1539,7 +1551,7 @@ header line is restored, hiding the tab bar." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (17221 45470))
+;;;;;;  "table" "table.el" (17241 16904))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -2059,8 +2071,8 @@ Show version number of table package." t nil)
 
 ;;;***
 
-;;;### (autoloads (tail-command tail-file) "tail" "tail.el" (16262
-;;;;;;  3977))
+;;;### (autoloads (tail-command tail-file) "tail" "tail.el" (16269
+;;;;;;  21296))
 ;;; Generated autoloads from tail.el
 
 (autoload (quote tail-file) "tail" "\
@@ -2074,7 +2086,7 @@ It is also called by `tail-file'" t nil)
 
 ;;;***
 
-;;;### (autoloads (trivial-cite) "tc" "tc.el" (16295 5169))
+;;;### (autoloads (trivial-cite) "tc" "tc.el" (16295 49414))
 ;;; Generated autoloads from tc.el
 
 (autoload (quote trivial-cite) "tc" "\
@@ -2154,7 +2166,7 @@ If called with a prefix argument, prompt for a specific hack to run." t nil)
 
 ;;;***
 
-;;;### (autoloads (underhat-region) "under" "under.el" (16262 60507))
+;;;### (autoloads (underhat-region) "under" "under.el" (16269 21249))
 ;;; Generated autoloads from under.el
 
 (autoload (quote underhat-region) "under" "\
