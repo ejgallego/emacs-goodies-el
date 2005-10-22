@@ -22,7 +22,7 @@ This is a checklist for adding files to the emacs-goodies-el package.
   $ cd -
   $ debian/rules unpatch
 
-- Update `emacs-goodies-custom.el' by adding amodified copy of the file's
+- Update `emacs-goodies-custom.el' by adding a modified copy of the file's
   defgroup.  Add lines for `:load' and a `:group 'emacs-goodies-el'.
 
 - Add whatever required startup and setup code that doesn't fit in the
