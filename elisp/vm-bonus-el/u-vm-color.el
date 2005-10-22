@@ -7,10 +7,10 @@
 ;;  Filename:   u-vm-color.el
 ;;  Created:    January 19 2001
 ;;  Keywords:   VM, Customization
-;;  Time-stamp: "5. April 2005, 17:22:14 (ulf)"
-;;  CVS-Version: $Id: u-vm-color.el,v 1.1 2005/10/18 23:58:00 psg Exp $
+;;  Time-stamp: "22. Oktober 2005, 16:19:09 (ulf)"
+;;  CVS-Version: $Id: u-vm-color.el,v 1.2 2005/10/22 15:12:46 u11-guest Exp $
 
-(defconst u-vm-color-version "2.8" "Version number of u-vm-color.")
+(defconst u-vm-color-version "2.8.1" "Version number of u-vm-color.")
 
 ;;  This program is free software; you can redistribute it and/or modify it
 ;;  under the terms of the GNU General Public License as published by the
@@ -80,6 +80,9 @@
 ;; ======================================================================
 ;;; History:
 
+;;  2.8.1: (2005-10-22)
+;;        Added autoload cookies.
+;;        Silence compiler warnings.
 ;;  2.8:  (2005-04-05)
 ;;        Fixed problems with non-graphical chars in summary buffers.
 ;;        Fixed font-lock-problems with "older" Emacsen which were
@@ -134,6 +137,9 @@
 ;; ======================================================================
 ;;; Code:
 (require 'font-lock)
+
+;; Silence compiler warnings
+(defvar vm-summary-format)
 
 (defgroup u-vm-color nil
   "Font-lock support for vm."
@@ -369,8 +375,7 @@ subexpressions."
 	(count 1)
 	(t-vm-summary-format vm-summary-format)
 	(u-vm-color-xemacs-workaround
-	 (string-match "XEmacs\\|Lucid" emacs-version))
-	 )
+	 (string-match "XEmacs\\|Lucid" emacs-version)))
     ;; pick up all elements in the vm-summary-format
     (while (string-match
 	    (concat "%-?\\([0-9]+\\.\\)?\\([0-9]+\\)?"
@@ -403,7 +408,7 @@ subexpressions."
       ;; No!
       (cond ((string-equal value "a") ;; attributes -- make sure that all
 				      ;; possible letters are given!
-	     (setq f-element "\\([DNU ][FW ][RZB ][E ]\\)" )
+	     (setq f-element "\\([DNU ][FW ][RZB ][E ]\\)")
 	     (setq m-element (list count (quote 'u-vm-color-attribute-face)
 				   nil u-vm-color-xemacs-workaround)))
 	    ((string-equal value "A") ;; attributes -- long
@@ -529,13 +534,9 @@ subexpressions."
       (if m-element
 	  (progn
 	    (setq count (+ 1 count))
-	    (setq u-match (append u-match (list m-element)))))
-      )
+	    (setq u-match (append u-match (list m-element))))))
     (setq u-format (concat u-format "$"))
     (append (list u-format) u-match)))
-
-
-
 
 (defvar u-vm-color-summary-mode nil)
 (make-variable-buffer-local 'u-vm-color-summary-mode)
@@ -544,6 +545,7 @@ subexpressions."
 (defvar u-vm-color-summary-keywords nil)
 
 ;; FIXME: u-vm-color-summary-mode cannot be turned off
+;;;###autoload
 (defun u-vm-color-summary-mode (&optional arg)
   "Configure `font-lock-keywords' and add some hooks for vm-buffers.
 Optional argument ARG is not used!"
@@ -569,8 +571,7 @@ Optional argument ARG is not used!"
 		nil  ; syntax-begin
 		))
 	 (setq font-lock-keywords (list (u-vm-color-make-summary-keywords)))
-	 (font-lock-fontify-buffer)
-	 )
+	 (font-lock-fontify-buffer))
    	(t
 	 ;; GNU Emacs
 	 (setq u-vm-color-summary-keywords
@@ -626,10 +627,9 @@ Search is restricted to the region between START and END."
       (goto-char end)
       (setq start (re-search-backward "^-- ?\n" start t))
 	(when start
-	  (put-text-property start end 'face 'u-vm-color-signature-face))
-	)
-      ))
+	  (put-text-property start end 'face 'u-vm-color-signature-face)))))
 
+;;;###autoload
 (defun u-vm-color-fontify-buffer ()
   "Fontifies mail-buffers."
   (interactive)
@@ -641,8 +641,7 @@ Search is restricted to the region between START and END."
 		     (save-excursion
 		       (goto-char (point-min))
 		       (re-search-forward "^[ \t]*$" (point-max) t))
-		     (point-min))
-		    ))
+		     (point-min))))
     (u-vm-color-fontify-regexp pmin header-end
 			       (concat "^\\([A-Z][-A-Za-z0-9]+:\\) "
 				       continued-header-contents)
@@ -693,6 +692,7 @@ Search is restricted to the region between START and END."
 			       '((1 u-vm-color-spamassassin-face)))
     (set-buffer-modified-p buffer-has-been-modified-before)))
 
+;;;###autoload
 (defun u-vm-color-fontify-buffer-even-more ()
   "Temporarily widen buffer and call `u-vm-color-fontify-buffer'."
 (save-restriction
