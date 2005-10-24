@@ -6,6 +6,14 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
     Thanks to Patrice Karatchentzeff for the suggestion. (Closes: #244444)
   * Removed transitional packages:
      emacs-goodies-extra-el, debbugs-el and debview
+  * debian-el:
+    - deb-view.el V1.12:  Bug fixes suggested by Dan Jacobson.
+      + Output an error message if the package file is corrupted
+        (e.g. partial download) (Closes: #235673).
+      + deb-view-dired-view: Check if file in dired is a .deb before opening
+        (Closes: #273902).
+      + deb-view-tar-view: If the file to be opned is from the INFO buffer,
+        then open in the other (larger) window (Closes: #321869).
   * dpkg-dev-el:
     - 50dpkg-dev-el.el: Only apply utf-8 coding-system if it exists.
   * emacs-goodies-el:
