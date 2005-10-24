@@ -12,6 +12,8 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
     - matlab.el: New upstream version, updated to 3.0.1
     - boxquote.el: New upstream version, updated to 1.18,
       Thanks to Simon Taylor (Closes: #335070).
+    - bar-cursor.el bug fix: In my previous fix, I forgot to undo skipping
+      installation for emacs-snapshot (Closes: #331430).
     New files:
     - maple.el: major mode for editing Maple files. Thanks to Anders
       Lennartsson for suggesting it (Closes: #334425).
