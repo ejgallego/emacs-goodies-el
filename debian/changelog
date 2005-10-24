@@ -6,6 +6,8 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
     Thanks to Patrice Karatchentzeff for the suggestion. (Closes: #244444)
   * Removed transitional packages:
      emacs-goodies-extra-el, debbugs-el and debview
+  * dpkg-dev-el:
+    - 50dpkg-dev-el.el: Only apply utf-8 coding-system if it exists.
   * emacs-goodies-el:
     - matlab.el: New upstream version, updated to 3.0.1
     - boxquote.el: New upstream version, updated to 1.18,
