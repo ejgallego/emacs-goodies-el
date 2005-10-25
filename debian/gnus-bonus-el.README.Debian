@@ -1,29 +1,11 @@
-Emacs Goodies for Debian
-------------------------
+  This is an introductory starter for the various goodies included in
+gnus-bonus-el.  It does not intend to replace reading the documentation
+that is made available in the files themselves (or not available at all,
+except insofar as code is self-documenting).
 
-This package is created from the `emacs-goodies-el' Debian source package,
-which contains a number of Emacs-Lisp files that provide various added
-functions to Emacs and/or Gnus.  The source package creates the following
-binary packages:
+You may customize files in this package by using:
 
- emacs-goodies-el: Miscellaneous add-ons for Emacs
- gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debian-el:        Access the Debian BTS from within Emacs
- dpkg-dev-el:      Emacs-related Debian development helpers
- devscripts-el:    Emacs wrappers for the commands in devscripts
- vm-bonus-el:      Miscellaneous add-ons for VM
-
-  The numbering scheme for all packages follows the source package scheme:
-the major revision number changes when adding or removing files or binary
-packages to this source package; the minor revision number changes when
-these files have a new upstream release; Debian revision is for packaging
-only.
-
-  The file you're currently reading is mostly meant as an introductory
-starter for the various goodies included in the various binary packages
-obtained from this source package.  It does not intend to replace reading
-the documentation that is made available in the files themselves (or not
-available at all, except insofar as code is self-documenting).
+ M-x customize-group [RET] gnus-bonus-el [RET]
 
 Introduction to files in gnus-bonus-el
 --------------------------------------
@@ -73,4 +55,4 @@ spam-stat-buffer-is-spam and spam-stat-buffer-is-non-spam functions
 spam-stat-buffer-change-to-non-spam) in the appropriate buffers, and
 add the rule (: gnus-spam-stat-split) to `nnmail-split-fancy'.
 
- -- Peter S Galbraith <psg@debian.org>, Sun Oct 16 21:22:04 2005
+ -- Peter S Galbraith <psg@debian.org>, Mon Oct 24 21:07:13 2005

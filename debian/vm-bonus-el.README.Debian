@@ -1,29 +1,10 @@
-Emacs Goodies for Debian
-------------------------
+  This is an introductory starter for the various goodies included in
+vm-bonus-el. It does not intend to replace reading the documentation that
+is made available in the files themselves.
 
-This package is created from the `emacs-goodies-el' Debian source package,
-which contains a number of Emacs-Lisp files that provide various added
-functions to Emacs and/or Gnus.  The source package creates the following
-binary packages:
+You may customize files in this package by using:
 
- emacs-goodies-el: Miscellaneous add-ons for Emacs
- gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debian-el:        Access the Debian BTS from within Emacs
- dpkg-dev-el:      Emacs-related Debian development helpers
- devscripts-el:    Emacs wrappers for the commands in devscripts
- vm-bonus-el:      Miscellaneous add-ons for VM
-
-  The numbering scheme for all packages follows the source package scheme:
-the major revision number changes when adding or removing files or binary
-packages to this source package; the minor revision number changes when
-these files have a new upstream release; Debian revision is for packaging
-only.
-
-  The file you're currently reading is mostly meant as an introductory
-starter for the various goodies included in the various binary packages
-obtained from this source package.  It does not intend to replace reading
-the documentation that is made available in the files themselves (or not
-available at all, except insofar as code is self-documenting).
+ M-x customize-group [RET] vm-bonus-el [RET]
 
 ------------------------------------
 Introduction to files in vm-bonus-el
@@ -126,4 +107,4 @@ u-vm-color.el
  XEmacs users might want to turn off `vm-use-lucid-highlighting', if
  this package works...
 
- -- Peter S Galbraith <psg@debian.org>, Tue Oct 18 19:55:25 2005
+ -- Peter S Galbraith <psg@debian.org>, Mon Oct 24 21:06:25 2005
