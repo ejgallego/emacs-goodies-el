@@ -14,6 +14,10 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
         (Closes: #273902).
       + deb-view-tar-view: If the file to be opned is from the INFO buffer,
         then open in the other (larger) window (Closes: #321869).
+    New files:
+    - pressed.el: a major mode for editing debian-installer preseed files.
+      Thanks to W. Borgert <debacle@debian.org> for suggesing and providing it.
+      (Closes: #279061)
   * dpkg-dev-el:
     - 50dpkg-dev-el.el: Only apply utf-8 coding-system if it exists.
   * emacs-goodies-el:
@@ -26,7 +30,7 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
     - maple.el: major mode for editing Maple files. Thanks to Anders
       Lennartsson for suggesting it (Closes: #334425).
 
- -- Peter Galbraith <psg@debian.org>  Fri, 21 Oct 2005 15:33:29 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 24 Oct 2005 21:13:55 -0400
 
 emacs-goodies-el (25.1-1) unstable; urgency=low
 

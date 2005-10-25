@@ -1,28 +1,9 @@
 Emacs Goodies for Debian
 ------------------------
 
-This package is created from the `emacs-goodies-el' Debian source package,
-which contains a number of Emacs-Lisp files that provide various added
-functions to Emacs and/or Gnus.  The source package creates the following
-binary packages:
-
- emacs-goodies-el: Miscellaneous add-ons for Emacs
- gnus-bonus-el:    Miscellaneous add-ons for Gnus
- debian-el:        Debian-specific tools (Access the Debian BTS, etc)
- dpkg-dev-el:      Emacs-related Debian development helpers
- devscripts-el:    Emacs wrappers for the commands in devscripts
- vm-bonus-el:      Miscellaneous add-ons for VM
-
-  The numbering scheme for all packages follows the source package scheme:
-the major revision number changes when adding or removing files or binary
-packages to this source package; the minor revision number changes when
-these files have a new upstream release; Debian revision is for packaging
-only.
-
   The file you're currently reading is mostly meant as an introductory
-starter for the various goodies included in emacs-goodies-el.  The package
-comes with Info node `emacs-goodies-el' (still a work-in-progress) that
-will document each included files when it's finished.
+starter for the various goodies included in emacs-goodies-el.  Consult the
+Info node `emacs-goodies-el' for more complete information.
 
 
 Introduction to files in emacs-goodies-el
@@ -339,4 +320,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Oct 18 21:48:38 2005
+ -- Peter S Galbraith <psg@debian.org>, Mon Oct 24 21:03:20 2005
