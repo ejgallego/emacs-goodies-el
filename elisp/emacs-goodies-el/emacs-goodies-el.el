@@ -69,7 +69,7 @@ Setting to aggresisve will enable feature that superceed Emacs defaults."
   "Cycle buffer backward."
   t)
 
-;; autoloads for dict.el
+;; dict.el
 (autoload 'dict "dict" "Lookup a word in the dictionary" t)
 (autoload 'dict-region "dict" "Lookup a region in the dictionary" t)
 

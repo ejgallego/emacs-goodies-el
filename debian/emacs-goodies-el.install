@@ -9,6 +9,7 @@ elisp/emacs-goodies-el/browse-huge-tar.el /usr/share/emacs/site-lisp/emacs-goodi
 elisp/emacs-goodies-el/browse-kill-ring.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/cfengine.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/coffee.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/color-theme.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/clipper.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/csv-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/ctypes.el /usr/share/emacs/site-lisp/emacs-goodies-el/

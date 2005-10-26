@@ -1,4 +1,4 @@
-emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
+emacs-goodies-el (26.1-1) unstable; urgency=low
 
   * New package vm-bonus-el: Miscellaneous add-ons for VM.
     - vm-rfaddons.el: a collections of various useful VM helper functions.
@@ -29,8 +29,9 @@ emacs-goodies-el (26.1-1) UNRELEASED; urgency=low
     New files:
     - maple.el: major mode for editing Maple files. Thanks to Anders
       Lennartsson for suggesting it (Closes: #334425).
+    - color-theme.el: changes the colors used within Emacs (Closes: #144420).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 24 Oct 2005 21:13:55 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 25 Oct 2005 22:08:16 -0400
 
 emacs-goodies-el (25.1-1) unstable; urgency=low
 

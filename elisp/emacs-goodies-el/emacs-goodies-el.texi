@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.67 2005/10/19 02:05:29 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.68 2005/10/26 02:16:59 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -75,6 +75,7 @@ be documented.
 * cfengine::                    Major-mode for editing cfengine scripts
 * clipper::                     Save strings of data for further use
 * coffee::                      Submit BREW request to RFC2324-compliant device
+* color-theme::                 Install color themes
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
@@ -450,7 +451,7 @@ filename without its directory and without an extension.
 (global-set-key "\C-ccc" 'clipper-create)
 @end example
 
-@node coffee, csv-mode, clipper, Top
+@node coffee, color-theme, clipper, Top
 @chapter coffee.el - Submit BREW request to an RFC2324-compliant coffee device
 
 This module provides an Emacs interface to RFC2324-compliant coffee
@@ -480,7 +481,80 @@ M-x load-library coffee
 M-x coffee 
 @end example
 
-@node csv-mode, ctypes, coffee, Top
+@node color-theme, csv-mode, coffee, Top
+@chapter color-theme - install color themes
+
+@noindent Authors: Jonadab the Unsightly One <jonadab@@bright.net>,
+Alex Schroeder <alex@@gnu.org>, Xavier Maillard <zedek@@gnu-rox.org>
+
+@noindent Maintainer: Xavier Maillard <zedek@@gnu-rox.org>
+
+@noindent Installing a color theme:
+
+There are two ways to explore and install themes.  The first is to
+customize the group @code{color-theme} and then the variable
+@code{color-theme-selection} and select a theme, then set the variable
+for the current session to test it out.  If you don't like it, either
+select @code{Undo} immediately or select another theme and set it.  If
+you like it, set and save the customization for future sessions.
+
+The second method is to call the command @code{M-x
+color-theme-select}.  That creates a Color Theme Selection buffer.
+Press @key{RET} or @key{i} on a color theme to install it for the rest
+of your session. If you want to install the theme in future sessions,
+read the description of the theme you like and remember the name of
+the color theme function.  Press @key{d} on a color theme in the Color
+Theme Selection buffer to read the description.  Assuming you like the
+Gnome2 theme, you'll find that the function to use is called
+@code{color-theme-gnome2}.  Add the following to the end of your
+@file{.emacs}
+
+@example
+(require 'color-theme)
+(color-theme-gnome2)
+@end example
+
+@noindent Changing menu colors:
+
+In Emacs 21 on X, you can set the menu colors and font using the
+menu face.  Example for your .emacs file:
+
+@example
+  (set-face-font 'menu "7x14")
+  (set-face-foreground 'menu "white").
+@end example
+
+If are using X, you can set the menu foreground and background using
+a resource file, usually @file{.Xdefaults} or @file{.Xresources}.  Usually
+@file{.Xdefaults} is used when you start your session using a display
+manager such as xdm or gdm.  @file{.Xresources} is usually used when you
+start X directly via a shell script such as startx.  If you set
+Emacs*Background and Emacs*Foreground in such a resource file, the
+foreground and background of Emacs including the menu will be set.
+If your @file{.emacs} then loads a color theme, the foreground and
+background are changed -- with the exception of the menu.  There is
+no way to manipulate the menu foreground and background color from
+elisp.  You can also set more specific menu resources for Emacs in
+the resource file.  Here is a sample entry for your resource file:
+
+@example
+  Emacs*Background:		DarkSlateGray
+  Emacs*Foreground:		wheat
+@end example
+
+@noindent Sharing your current color setup:
+
+If you have already invested time in customizing Emacs faces, please
+consider sharing your current setup.  Type @code{M-x
+color-theme-submit} and mail the result to the maintainer of this
+package (see above for mail addres).
+
+If you want to make sure that all your customization was exported,
+type @code{M-x list-faces-display} to get a list of all faces currently
+defined.  This is the list of faces that @code{color-theme-print} uses.
+
+
+@node csv-mode, ctypes, color-theme, Top
 @chapter csv-mode - major mode for editing comma-separated value files.
 
 @noindent Author: Francis J. Wright <F.J.Wright at qmul.ac.uk>

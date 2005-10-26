@@ -51,6 +51,17 @@
 ;;:require 'browse-kill-ring
   :group 'emacs-goodies-el)
 
+;; color-theme
+(defgroup color-theme nil
+  "Color Themes for Emacs.
+A color theme consists of frame parameter settings, variable settings,
+and face definitions."
+  :version "20.6"
+  :group 'faces
+  :link '(custom-manual "(emacs-goodies-el)color-theme")
+  :load 'color-theme
+  :group 'emacs-goodies-el)
+
 ;; csv-mode
 (defgroup CSV nil
   "Major mode for editing files of comma-separated value type."

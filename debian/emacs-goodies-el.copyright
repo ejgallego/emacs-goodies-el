@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.18 $
+| ;; $Revision: 1.19 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -224,6 +224,25 @@ Author/copyright info for coffee.el:
 | ;;     modify it under the terms of the GNU General Public License as
 | ;;     published by the Free Software Foundation; either version 2 of
 | ;;     the License, or (at your option) any later version.
+`----
+
+
+Author/copyright info for color-theme.el
+,----
+| ;;; color-theme.el --- install color themes
+| 
+| ;; Copyright (C) 1999, 2000  Jonadab the Unsightly One <jonadab@bright.net>
+| ;; Copyright (C) 2000, 2001, 2002, 2003  Alex Schroeder <alex@gnu.org>
+| ;; Copyright (C) 2003, 2004  Xavier Maillard <zedek@gnu-rox.org>
+| 
+| ;; Author: Jonadab the Unsightly One <jonadab@bright.net>
+| ;; Maintainer: Xavier Maillard <zedek@gnu-rox.org>
+| ;; URL: http://www.emacswiki.org/cgi-bin/wiki.pl?ColorTheme
+| 
+| ;; This is free software; you can redistribute it and/or modify it under
+| ;; the terms of the GNU General Public License as published by the Free
+| ;; Software Foundation; either version 2, or (at your option) any later
+| ;; version.
 `----
 
 
@@ -1033,7 +1052,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.18 $
+| ;; $Revision: 1.19 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
