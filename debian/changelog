@@ -8,7 +8,9 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
   * debian-el:
     - debian-bug.el: Use bug number under point as prompt default whenever
       possible.  Thanks to Luca Capello (Closes: #337233)
-  
+    - debian-bug.el: Swap CC: for X-Debbugs-CC: in mail header.
+      Thanks to Francesco Potorti` (Closes: #208570)
+
  -- Peter S Galbraith <psg@debian.org>  Wed,  2 Nov 2005 21:03:52 -0500
 
 emacs-goodies-el (26.2-1) unstable; urgency=low
