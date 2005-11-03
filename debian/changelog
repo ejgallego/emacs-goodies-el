@@ -5,7 +5,10 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
       in info page", thanks to Luca Capello (Closes: #336938).
     - Leaves temporary file behind if already configured", thanks to
       Romain Francoise for the report and the patch (Closes: #336830).
-
+  * debian-el:
+    - debian-bug.el: Use bug number under point as prompt default whenever
+      possible.  Thanks to Luca Capello (Closes: #337233)
+  
  -- Peter S Galbraith <psg@debian.org>  Wed,  2 Nov 2005 21:03:52 -0500
 
 emacs-goodies-el (26.2-1) unstable; urgency=low
