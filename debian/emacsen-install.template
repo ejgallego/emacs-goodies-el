@@ -24,6 +24,7 @@ ELDIR=/usr/share/emacs/site-lisp/${PACKAGE}
 ELCDIR=/usr/share/${FLAVOR}/site-lisp/${PACKAGE}
 if test -e "${ELCDIR}/${STAMPFILE}"; then
     echo "${PACKAGE} files already compiled in ${ELCDIR}."
+    rm -f ${LOG}
     exit
 fi
 echo install/${PACKAGE}: Handling ${FLAVOR}, logged in ${LOG}
