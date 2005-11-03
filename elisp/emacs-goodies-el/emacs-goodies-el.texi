@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.68 2005/10/26 02:16:59 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.69 2005/11/03 02:01:06 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -4444,7 +4444,7 @@ of a line with the @code{^} character.
 
 Suggested key-binding to put in ~/.emacs:
 @example
-  (global-set-key "\C-c\C-u" 'underline-region)
+  (global-set-key "\C-c\C-u" 'underhat-region)
 @end example
 
 @emph{Bugs:} currently only works on a single line.  The region can't
