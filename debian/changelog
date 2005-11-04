@@ -14,6 +14,10 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
       wasn't skipping byte-compilation for gnus-BTS.el, I was skipping
       installation!  I added a new method to install yet skip
       byte-compilation.  Thanks to Luca Capello (Closes: #336935).
+    - apt-utils.el: New upstream release:
+      Files in apt-utils-search-file-names are now hyperlinks;
+      New command, apt-utils-view-version, to report the installed version
+      of a package.
 
  -- Peter Galbraith <psg@debian.org>  Thu,  3 Nov 2005 15:16:33 -0500
 
