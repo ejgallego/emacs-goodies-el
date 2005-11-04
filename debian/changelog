@@ -7,11 +7,15 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
       Romain Francoise for the report and the patch (Closes: #336830).
   * debian-el:
     - debian-bug.el: Use bug number under point as prompt default whenever
-      possible.  Thanks to Luca Capello (Closes: #337233)
+      possible.  Thanks to Luca Capello (Closes: #337233).
     - debian-bug.el: Swap CC: for X-Debbugs-CC: in mail header.
-      Thanks to Francesco Potorti` (Closes: #208570)
+      Thanks to Francesco Potorti` (Closes: #208570).
+    - gnus-BTS.el: Invalid function macro trying to view an article.  I
+      wasn't skipping byte-compilation for gnus-BTS.el, I was skipping
+      installation!  I added a new method to install yet skip
+      byte-compilation.  Thanks to Luca Capello (Closes: #336935).
 
- -- Peter S Galbraith <psg@debian.org>  Wed,  2 Nov 2005 21:03:52 -0500
+ -- Peter Galbraith <psg@debian.org>  Thu,  3 Nov 2005 15:16:33 -0500
 
 emacs-goodies-el (26.2-1) unstable; urgency=low
 

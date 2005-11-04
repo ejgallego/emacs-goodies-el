@@ -1,12 +1,17 @@
 
 eval included_here=\$$(echo INCLUDED_$FLAVOR | tr - _)
 eval excluded_here=\$$(echo EXCLUDED_$FLAVOR | tr - _)
+eval sourceonly_here=\$$(echo SOURCEONLY_$FLAVOR | tr - _)
 
 included_all=$(for i in ${!INCLUDED_*} ; do
     eval echo \$$i
     done | sort -u)
 
 excluded_all=$(for i in ${!EXCLUDED_*} ; do
+    eval echo \$$i
+    done | sort -u)
+
+sourceonly_all=$(for i in ${!SOURCEONLY_*} ; do
     eval echo \$$i
     done | sort -u)
 
@@ -42,7 +47,7 @@ FILES=$(ls -1 *.el)
 # Here we have all of them
 
 PATTERN=""
-for i in $included_all $excluded_all ; do
+for i in $included_all $excluded_all $sourceonly_all; do
     [ ! -z "$PATTERN" ] && PATTERN="${PATTERN}\|"
     PATTERN="${PATTERN}^$i\$"
 done
@@ -69,10 +74,9 @@ FILES=$(for i in $FILES ; do echo $i ; done | sort -u)
 
 # Symlinks instead of copying...
 cd ${ELCDIR}
-for i in $FILES ; do
+for i in $FILES $sourceonly_all; do
     ln -fs /usr/share/emacs/site-lisp/${PACKAGE}/$i
 done
-
 
 cat << EOF > path.el
 (setq load-path (cons "." load-path) byte-compile-warnings nil)

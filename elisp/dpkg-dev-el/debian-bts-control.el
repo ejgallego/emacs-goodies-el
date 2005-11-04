@@ -258,14 +258,14 @@ a negative prefix argument turns it off.
   "Prompt for bug number using sensible default if found."
   (let ((default-number number))
     (unless default-number
-  (save-excursion
-    (goto-char (point-min))
+      (save-excursion
+        (goto-char (point-min))
 	(if (re-search-forward "\\([0-9]+\\)@bugs.debian.org"
-                                      (mail-header-end) t)
+                               (mail-header-end) t)
 	    (setq default-number (match-string-no-properties 1)))))
-      (if default-number
-          (read-string (format "%s [%s]: " prompt default-number)
-                       nil nil default-number)
+    (if default-number
+        (read-string (format "%s [%s]: " prompt default-number)
+                     nil nil default-number)
       (read-string (format "%s: " prompt)))))
 
 ;;;###autoload

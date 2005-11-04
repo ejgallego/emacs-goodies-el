@@ -17,10 +17,17 @@ STAMPFILE=debian-el.elc
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""
 # INCLUDED_xemacs21=""
+# INCLUDED_emacs_snapshot=""
+
+# EXCLUDED_emacs20=""
+# EXCLUDED_emacs21=""
+# EXCLUDED_xemacs21=""
+# EXCLUDED_emacs_snapshot=""
 
 # Don't byte-compile gnus-BTS.el since it uses gnus macros and will break
 # if compiled and then used with different versions of gnus (e.g. as
 # shipped wth Emacs vs package separately).
-EXCLUDED_emacs20="gnus-BTS.el"
-EXCLUDED_emacs21="gnus-BTS.el"
-EXCLUDED_xemacs21="gnus-BTS.el"
+SOURCEONLY_emacs20="gnus-BTS.el"
+SOURCEONLY_emacs21="gnus-BTS.el"
+SOURCEONLY_xemacs21="gnus-BTS.el"
+SOURCEONLY_emacs_snapshot="gnus-BTS.el"
