@@ -23,10 +23,10 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	2004-11-11 13:57:34.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	2004-11-12 16:08:36.000000000 -0500
-@@ -278,7 +278,16 @@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/newsticker.el emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/newsticker.el	2005-11-05 13:08:14.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/newsticker.el	2005-11-05 13:20:30.000000000 -0500
+@@ -385,7 +385,16 @@
  ;;; Code:
  
  (require 'derived)
@@ -42,21 +42,5 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodie
 +  (ignore-errors
 +    (require 'xml)))
  
- ;; ======================================================================
- ;;; Customizables
-@@ -1137,6 +1146,7 @@
- ;;; User fun
- ;; ======================================================================
- 
-+;;;###autoload
- (defun newsticker-start (&optional do-not-complain-if-running)
-   "Start the newsticker.
- Start the timers for display and retrieval.  If the newsticker, i.e. the
-@@ -1218,6 +1228,7 @@
- 
- 
- ;; the functions we need for retrieval and display
-+;;;###autoload
- (defun newsticker-show-news ()
-   "Switch to newsticker buffer.  You may want to bind this to a key."
-   (interactive)
+ ;; Silence warnings
+ (defvar tool-bar-map)
