@@ -1,4 +1,4 @@
-emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
+emacs-goodies-el (26.3-1) unstable; urgency=low
 
   * emacs-goodies-el:
     - Info manual concerning under.el: s/underline-region/underhat-region/
@@ -10,6 +10,8 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
       possible.  Thanks to Luca Capello (Closes: #337233).
     - debian-bug.el: Swap CC: for X-Debbugs-CC: in mail header.
       Thanks to Francesco Potorti` (Closes: #208570).
+    - debian-bug.el: debian-bug-wnpp must skip over mml directives in
+      new mail drafts. Thanks to Luca Capello for reporting (Closes: #337659)
     - gnus-BTS.el: Invalid function macro trying to view an article.  I
       wasn't skipping byte-compilation for gnus-BTS.el, I was skipping
       installation!  I added a new method to install yet skip
@@ -19,7 +21,7 @@ emacs-goodies-el (26.3-1) UNRELEASED; urgency=low
       New command, apt-utils-view-version, to report the installed version
       of a package.
 
- -- Peter Galbraith <psg@debian.org>  Thu,  3 Nov 2005 15:16:33 -0500
+ -- Peter S Galbraith <psg@debian.org>  Sat,  5 Nov 2005 13:12:35 -0500
 
 emacs-goodies-el (26.2-1) unstable; urgency=low
 
