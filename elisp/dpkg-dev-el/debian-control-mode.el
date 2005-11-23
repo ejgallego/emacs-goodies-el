@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 0.9
-;; X-RCS: $Id: debian-control-mode.el,v 1.8 2005/11/23 02:05:01 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.9 2005/11/23 02:37:02 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -139,7 +139,7 @@
   (setq debian-control-syntax-table (make-syntax-table))
   ;; Support # style comments
   (modify-syntax-entry ?#  "<"  debian-control-syntax-table)
-  (modify-syntax-entry ?\n "> "    debian-control-syntax-table))
+  (modify-syntax-entry ?\n "> " debian-control-syntax-table))
 
 ;; FIXME: As of policy 3.5.6.0, the allowed characters in a field name
 ;; are not specified.  So we just go with "word constituent" or '-'
@@ -219,12 +219,12 @@
 
       (make-local-variable 'font-lock-defaults)
       (setq font-lock-defaults
-            '(debian-control-font-lock-keywords)
-            nil           ;;; Keywords only? No, let it do syntax via table.
-            nil           ;;; case-fold?
-            nil           ;;; Local syntax table.
-            nil           ;;; Use `backward-paragraph' ? No
-            )
+            '(debian-control-font-lock-keywords
+              nil           ;;; Keywords only? No, let it do syntax via table.
+              nil           ;;; case-fold?
+              nil           ;;; Local syntax table.
+              nil           ;;; Use `backward-paragraph' ? No
+              ))
       (set (make-local-variable 'fill-paragraph-function)
 	   #'debian-control-mode-fill-paragraph)
       (make-local-variable 'after-change-functions)
