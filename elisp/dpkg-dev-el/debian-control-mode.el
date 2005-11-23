@@ -1,13 +1,13 @@
 ;;; debian-control-mode.el --- major mode for Debian control files
 
 ;; Copyright (C) 2001, 2003 Free Software Foundation, Inc.
-;; Copyright (C) 2003, 2004 Peter S Galbraith <psg@debian.org>
+;; Copyright (C) 2003, 2004, 2005 Peter S Galbraith <psg@debian.org>
 
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.8
-;; X-RCS: $Id: debian-control-mode.el,v 1.7 2005/02/08 02:45:13 psg Exp $
+;; Version: 0.9
+;; X-RCS: $Id: debian-control-mode.el,v 1.8 2005/11/23 02:05:01 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V0.9 (2005-11-22)  Peter S Galbraith <psg@debian.org>
+;; - Make # the comment character. (Closes: #339868)
 
 ;; V0.8 (2005-02-07)  Peter S Galbraith <psg@debian.org>
 ;; - Change mouse-2 binding to C-mouse-2 (Closes: #293629)
@@ -128,6 +131,16 @@
   :type 'face
   :group 'debian-control)
 
+(defvar debian-control-syntax-table nil
+  "Syntax table used in debian-control-mode buffers.")
+
+(if debian-control-syntax-table
+    ()
+  (setq debian-control-syntax-table (make-syntax-table))
+  ;; Support # style comments
+  (modify-syntax-entry ?#  "<"  debian-control-syntax-table)
+  (modify-syntax-entry ?\n "> "    debian-control-syntax-table))
+
 ;; FIXME: As of policy 3.5.6.0, the allowed characters in a field name
 ;; are not specified.  So we just go with "word constituent" or '-'
 ;; characters before a colon.
@@ -195,8 +208,23 @@
   (if (< emacs-major-version 21)
       (message "debian-control-mode only supports emacsen version >= 21; disabling features")
     (progn
-      (set (make-local-variable 'font-lock-defaults)
-	   '((debian-control-font-lock-keywords) t))
+      (set-syntax-table debian-control-syntax-table)
+      ;; Comments
+      (make-local-variable 'comment-start-skip)  ;Need this for font-lock...
+      (setq comment-start-skip "\\(^\\|\\s-\\);?#+ *") ;;From perl-mode
+      (make-local-variable 'comment-start)
+      (make-local-variable 'comment-end)
+      (setq comment-start "#"
+            comment-end "")
+
+      (make-local-variable 'font-lock-defaults)
+      (setq font-lock-defaults
+            '(debian-control-font-lock-keywords)
+            nil           ;;; Keywords only? No, let it do syntax via table.
+            nil           ;;; case-fold?
+            nil           ;;; Local syntax table.
+            nil           ;;; Use `backward-paragraph' ? No
+            )
       (set (make-local-variable 'fill-paragraph-function)
 	   #'debian-control-mode-fill-paragraph)
       (make-local-variable 'after-change-functions)

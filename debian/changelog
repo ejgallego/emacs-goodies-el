@@ -3,8 +3,11 @@ emacs-goodies-el (26.4-1) unstable; urgency=low
   * debian-el:
     - debian-bug.el: Swap "^CC:" for X-Debbugs-CC: in mail header.
       Thanks to Luca Capello (Really closes: #208570).
+  * dpkg-dev-el:
+    - debian-control-mode.el: Make # the comment character.
+      Thanks to Romain Francoise for the suggestion (Closes: #339868).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 14 Nov 2005 20:30:09 -0500
+ -- Peter S Galbraith <psg@debian.org>  Tue, 22 Nov 2005 20:59:11 -0500
 
 emacs-goodies-el (26.3-1) unstable; urgency=low
 
