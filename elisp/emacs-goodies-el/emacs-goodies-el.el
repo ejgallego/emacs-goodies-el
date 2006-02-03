@@ -146,6 +146,12 @@ It's not good for C mode because C's comments are multiline."
   t)
 
 ;; home-end.el
+(defvar home-end-end-enable nil
+  "Whether `home-end-enable' was activated.
+Stores the value of the prior `end' keybinding.")
+(defvar home-end-home-enable nil
+  "Whether `home-end-enable' was activated.
+Stores the value of the prior `home' keybinding.")
 (defcustom home-end-enable emacs-goodies-el-defaults
   "*Define [home] and [end] keys to act differently when hit 1, 2 or 3 times."
   :type 'boolean
@@ -153,11 +159,15 @@ It's not good for C mode because C's comments are multiline."
          (set-default symbol value)
          (cond
           (value
+           (setq home-end-end-enable (key-binding [end])
+                 home-end-home-enable (key-binding [home]))
            (global-set-key [end]  'home-end-end)
            (global-set-key [home] 'home-end-home))
           (t
-           (global-set-key [end] 'end-of-line)
-           (global-set-key [home] 'beginning-of-line))))
+           (if home-end-end-enable
+               (global-set-key [end] home-end-end-enable))
+           (if home-end-home-enable             
+               (global-set-key [home] home-end-home-enable)))))
   :load 'home-end
   :group 'emacs-goodies-el)
 
