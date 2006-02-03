@@ -1,4 +1,4 @@
-emacs-goodies-el (26.5-1) UNRELEASED; urgency=low
+emacs-goodies-el (26.5-1) unstable; urgency=low
 
   * dpkg-dev-el:
     - readme-debian.el: Update date not in RFC822 format.
@@ -9,8 +9,10 @@ emacs-goodies-el (26.5-1) UNRELEASED; urgency=low
   * emacs-goodies-el:
     - emacs-goodies-el: Bug fix: home-end-enable defcustom clobbers bindings.
       Thanks to Matt Hodges for the bug report (Closes: #340694).
+    - edit-env.el: Symbol's function definition is void: copy-list.
+      Thanks to Sven Joachim for the bug report (Closes: #340735).
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  2 Feb 2006 21:59:13 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu,  2 Feb 2006 22:13:10 -0500
 
 emacs-goodies-el (26.4-1) unstable; urgency=low
 
