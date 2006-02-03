@@ -58,7 +58,7 @@
 	     " -- "
 	     debian-changelog-full-name
 	     " <" debian-changelog-mailing-address ">, "
-	     (current-time-string)))
+             (format-time-string "%a, %e %b %Y %T %z" (current-time))))
     (if (and (= (point)(point-max)) (not (bolp)))
 	(insert "\n"))))
 
