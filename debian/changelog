@@ -3,8 +3,11 @@ emacs-goodies-el (26.5-1) UNRELEASED; urgency=low
   * dpkg-dev-el:
     - readme-debian.el: Update date not in RFC822 format.
       Thanks to Luca Capello for the bug report and patch (Closes: #351010).
+  * debian-el:
+    - deb-view.wl: Bug fix: Fails if coding system utf-8 is preferred.
+      Thanks to Sven Joachim for the report and the patch (Closes: #344260).
 
- -- Peter S Galbraith <psg@debian.org>  Thu,  2 Feb 2006 21:24:38 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu,  2 Feb 2006 21:36:08 -0500
 
 emacs-goodies-el (26.4-1) unstable; urgency=low
 
