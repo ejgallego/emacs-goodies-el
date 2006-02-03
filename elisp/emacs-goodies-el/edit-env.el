@@ -111,7 +111,6 @@
 	       (list (widget-get widget 'environment-variable-name)
 		     widget)))
   
-;;;###autoload
 (defun edit-env ()
   "Display, edit, delete and add environment variables."
   (interactive)
