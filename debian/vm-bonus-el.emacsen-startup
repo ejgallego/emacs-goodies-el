@@ -2,9 +2,14 @@
 ;;
 ;; Emacs startup file for the Debian GNU/Linux vm-bonus-el package
 
-(if (not (file-exists-p "/usr/share/emacs/site-lisp/vm-bonus-el"))
-    (message "Package vm-bonus-el removed but not purged.  Skipping setup.")
-
+(cond
+ ((not (file-exists-p "/usr/share/emacs/site-lisp/vm-bonus-el"))
+  (message "Package vm-bonus-el removed but not purged.  Skipping setup."))
+ ((not (file-exists-p (concat "/usr/share/"
+                              (symbol-name debian-emacs-flavor)
+                              "/site-lisp/vm-bonus-el/vm-rfaddons.elc")))
+  (message "Package vm-bonus-el not fully installed.  Skipping setup."))
+ (t
   (debian-pkg-add-load-path-item
    (concat "/usr/share/"
            (symbol-name debian-emacs-flavor)
@@ -41,4 +46,4 @@ Optional argument ARG is not used!"
   (autoload 'u-vm-color-fontify-buffer "u-vm-color"
     "Fontifies mail-buffers."
     t)
-  )
+  ))

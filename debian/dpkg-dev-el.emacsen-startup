@@ -2,9 +2,14 @@
 ;;
 ;; Emacs startup file for the Debian GNU/Linux dpkg-dev-el package
 
-(if (not (file-exists-p "/usr/share/emacs/site-lisp/dpkg-dev-el"))
-    (message "Package dpkg-dev-el removed but not purged.  Skipping setup.")
-
+(cond
+ ((not (file-exists-p "/usr/share/emacs/site-lisp/dpkg-dev-el"))
+  (message "Package dpkg-dev-el removed but not purged.  Skipping setup."))
+ ((not (file-exists-p (concat "/usr/share/"
+                              (symbol-name debian-emacs-flavor)
+                              "/site-lisp/dpkg-dev-el/readme-debian.elc")))
+  (message "Package dpkg-dev-el not fully installed.  Skipping setup."))
+ (t
   (debian-pkg-add-load-path-item
    (concat "/usr/share/"
            (symbol-name debian-emacs-flavor)
@@ -37,4 +42,4 @@ what other rules say."
           'utf-8)))
     
     (modify-coding-system-alist 'file "/usr/share/doc/[^/]+/changelog\\'"
-                                'debian-changelog-coding-system)))
+                                'debian-changelog-coding-system))))
