@@ -1,6 +1,6 @@
 ;;; readme-debian.el --- a simple mode for README.Debian files
 
-;; Copyright 2002, 2003 Junichi Uekawa.
+;; Copyright 2002, 2003, 2006 Junichi Uekawa.
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
