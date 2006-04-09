@@ -1,3 +1,11 @@
+emacs-goodies-el (26.5-3) UNRELEASED; urgency=low
+
+  * readme-debian.el: (Changed by Junichi Uekawa <dancer@debian.org>)
+    - set locale to C for obtaining rfc822-style date, follow-up for 
+      fix for 351010.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun,  9 Apr 2006 13:15:27 +0900
+
 emacs-goodies-el (26.5-2) unstable; urgency=low
 
   * Bug fix: "dpkg-dev-el: Error message during configuration of
