@@ -5,7 +5,7 @@
 (provide 'dpkg-dev-el-loaddefs)
 
 ;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
-;;;;;;  (16295 49412))
+;;;;;;  (17260 62732))
 ;;; Generated autoloads from debian-bts-control.el
 
 (autoload (quote debian-bts-control) "debian-bts-control" "\
@@ -21,8 +21,8 @@ in `debian-bts-control-modes-to-reuse'." t nil)
 ;;;***
 
 ;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
-;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (16437
-;;;;;;  29492))
+;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (17199
+;;;;;;  13164))
 ;;; Generated autoloads from debian-changelog-mode.el
 
 (autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\
@@ -54,7 +54,7 @@ interface to set it, or simply set the variable
 ;;;***
 
 ;;;### (autoloads (debian-control-mode) "debian-control-mode" "debian-control-mode.el"
-;;;;;;  (16326 44873))
+;;;;;;  (17283 54734))
 ;;; Generated autoloads from debian-control-mode.el
 
 (autoload (quote debian-control-mode) "debian-control-mode" "\
@@ -76,7 +76,7 @@ Mode to edit and read debian/copyright.
 ;;;***
 
 ;;;### (autoloads (readme-debian-mode) "readme-debian" "readme-debian.el"
-;;;;;;  (16295 49413))
+;;;;;;  (17497 19989))
 ;;; Generated autoloads from readme-debian.el
 
 (autoload (quote readme-debian-mode) "readme-debian" "\
@@ -85,8 +85,8 @@ Upon saving the visited README.Debian file, the timestamp at the bottom
 will be updated.
 
 \\{readme-debian-mode-map}" t nil)
-(add-to-list 'auto-mode-alist '("debian/.*README.Debian$" . readme-debian-mode))
-(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
+(add-to-list 'auto-mode-alist '("debian/.*README.*Debian$" . readme-debian-mode))
+(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.*Debian.*$" . readme-debian-mode))
 
 ;;;***
 

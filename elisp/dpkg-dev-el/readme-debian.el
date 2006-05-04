@@ -105,11 +105,11 @@ will be updated.
   (run-hooks 'readme-debian-mode-hook))
 
 (add-to-list 'auto-mode-alist
-             '("debian/.*README.Debian$" . readme-debian-mode))
+             '("debian/.*README.*Debian$" . readme-debian-mode))
 (add-to-list 'auto-mode-alist
-             '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("debian/.*README.Debian$" . readme-debian-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
+             '("^/usr/share/doc/.*/README.*Debian.*$" . readme-debian-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("debian/.*README.*Debian$" . readme-debian-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.*Debian.*$" . readme-debian-mode))
 
 (run-hooks 'readme-debian-mode-load-hook)
 
