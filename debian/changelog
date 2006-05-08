@@ -3,7 +3,9 @@ emacs-goodies-el (26.5-3) UNRELEASED; urgency=low
   * dpkg-dev-el:
     - readme-debian.el: (Changed by Junichi Uekawa <dancer@debian.org>)
       set locale to C for obtaining rfc822-style date, follow-up for 
-      fix for 351010.
+      fix for 351010. (closes: #364770)
+    - remove duplicate add-to-list for auto-load-alist.
+      (Changed by Junichi Uekawa <dancer@debian.org>)
     - readme-debian.el: Better regexp to activate on *.Debian$ files".
       Thanks to Jari Aalto for the bug and the patch (Closes: #354970).
 

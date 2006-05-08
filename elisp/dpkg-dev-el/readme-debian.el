@@ -30,9 +30,6 @@
   :type 'hook
   :group 'readme-debian)
 
-(add-to-list 'auto-mode-alist '("debian/README.Debian$" . readme-debian-mode))
-(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.Debian.*$" . readme-debian-mode))
-
 (defvar readme-debian-font-lock-keywords
   '(("^\\(.*\\) for \\(Debian\\)$"
      (1 font-lock-keyword-face)
