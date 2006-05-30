@@ -1,4 +1,4 @@
-emacs-goodies-el (26.5-3) unstable; urgency=low
+emacs-goodies-el (26.6-1) unstable; urgency=low
 
   * dpkg-dev-el:
     - readme-debian.el: (Changed by Junichi Uekawa <dancer@debian.org>)
