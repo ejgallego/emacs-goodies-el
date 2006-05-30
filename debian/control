@@ -8,7 +8,7 @@ Standards-Version: 3.6.2
 
 Package: emacs-goodies-el
 Architecture: all
-Depends: emacs21 | emacsen, bash (>= 2.05a)
+Depends: emacs21 | emacsen, bash (>= 2.05a) | bash-static
 Recommends: dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
