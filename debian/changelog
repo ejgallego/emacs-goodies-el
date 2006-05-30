@@ -1,4 +1,4 @@
-emacs-goodies-el (26.5-3) UNRELEASED; urgency=low
+emacs-goodies-el (26.5-3) unstable; urgency=low
 
   * dpkg-dev-el:
     - readme-debian.el: (Changed by Junichi Uekawa <dancer@debian.org>)
@@ -19,7 +19,7 @@ emacs-goodies-el (26.5-3) UNRELEASED; urgency=low
     - debian-bug.el: "Change the face of Tags: for experimental", thanks to
       Luca Capello for the bug and patch (Closes: #357265).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 30 May 2006 19:41:56 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 30 May 2006 19:43:18 -0400
 
 emacs-goodies-el (26.5-2) unstable; urgency=low
 
