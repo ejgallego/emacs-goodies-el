@@ -25,6 +25,7 @@
     ;; default to utf-8 for debian changelog files
     (modify-coding-system-alist 'file "/changelog\\.Debian\\'" 'utf-8)
     (modify-coding-system-alist 'file "/debian/changelog\\'" 'utf-8)
+    (modify-coding-system-alist 'file "/debian/control\\'" 'utf-8)
     
     ;; Handle Debian native package, from Kevin Ryde in bug #317597
     (defun debian-changelog-coding-system (args)
