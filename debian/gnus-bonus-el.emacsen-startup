@@ -12,7 +12,7 @@
   (message "Package gnus-bonus-el removed but not purged.  Skipping setup."))
  ((not (file-exists-p (concat "/usr/share/"
                               (symbol-name debian-emacs-flavor)
-                              "/site-lisp/gnus-bonus-el/spam-stat.elc")))
+                              "/site-lisp/gnus-bonus-el/nntodo.elc")))
   (message "Package gnus-bonus-el not fully installed.  Skipping setup."))
  (t
   (debian-pkg-add-load-path-item
