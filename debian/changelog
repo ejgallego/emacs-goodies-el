@@ -1,3 +1,12 @@
+emacs-goodies-el (26.6-2) unstable; urgency=low
+
+  * debian-el:
+    - Bug fix: "debian-el: debian-changelog mode does not support bugs with
+      only e-mail address and no full name.", by Junichi Uekawa
+      (Closes: #380217).
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 29 Jul 2006 11:05:39 +0900
+
 emacs-goodies-el (26.6-1) unstable; urgency=low
 
   * dpkg-dev-el:
