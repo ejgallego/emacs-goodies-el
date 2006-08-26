@@ -1,5 +1,5 @@
 #!/bin/sh -e
-## 50_gnus-pers.dpatch by Peter S Galbraith <psg@debian.org>
+## 50_gnus-filterhist.dpatch by Jaakko Kangasharju <ashar@iki.fi>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
 ## DP: Set font before turning buffer read-only (Fixes #331234)
