@@ -3,13 +3,15 @@ emacs-goodies-el (26.6-2) UNRELEASED; urgency=low
   * gnus-bonus-el: (Jaakko Kangasharju <ashar@iki.fi>)
     - Verify gnus-newsgroup-name is set before using it
       (thanks to Elias Oltmanns) (Closes: #384402)
-
   * debian-el (Junichi Uekawa <dancer@debian.org>)
     - Bug fix: "debian-el: debian-changelog mode does not support bugs with
       only e-mail address and no full name.", by Junichi Uekawa
       (Closes: #380217).
+  * emacs-goodies-el:
+    - Bug fix: minor info manual error", thanks to Sebastian Luque
+      (Closes: #385234).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 28 Aug 2006 10:06:41 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 30 Aug 2006 11:11:16 -0400
 
 emacs-goodies-el (26.6-1) unstable; urgency=low
 

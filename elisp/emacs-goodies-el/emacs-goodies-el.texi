@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.69 2005/11/03 02:01:06 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.70 2006/08/30 15:12:12 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -2857,7 +2857,7 @@ font-lock. The basic fontification appears on strings, comments,
 command names and variables. Additional fontification for commands
 arguments can be enabled through the customization buffer.
 
-To customize it, execute @command{M-x configure-group RET muttrc RET}
+To customize it, execute @command{M-x customize-group RET muttrc RET}
 
 By default, help on command/variable is displayed automatically
 while executing a command to modify them. Disable this feature if
