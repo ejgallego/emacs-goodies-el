@@ -301,6 +301,8 @@
 ;; V1.81 19Sep2005 Peter S Galbraith <psg@debian.org>
 ;;  - Add outline-regexp and C-cC-n and C-cC-p movement commands as
 ;;    suggested by Romain Francoise <rfrancoise@debian.org> (Closes: #322994)
+;; V1.82 05Sep2006 Peter Samuelson <peter@p12n.org>
+;;  - Add tilde support for upstream version numbers (Closes: #382514)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -920,17 +922,17 @@ If file is empty, create initial entry."
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
 ;;; I'm also assuming it begins with a digit, which is not enforced
-         "\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:]*\\)\\(-\\([0-9a-zA-Z.+]+\\)\\)?\\() +[^\n]*\\)"))
+         "\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:~]*\\)\\(-\\([0-9a-zA-Z.+~]+\\)\\)?\\() +[^\n]*\\)"))
 
      ;; No match...
      ;; Check again for multiple hyphens, and adjust match-data if found
      ;; to leave only the bit past the last hyphen as the debian version
      ;; number.
        ((looking-at
-         "\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:]*\\)\\(-\\([0-9a-zA-Z.+]+\\)\\)*\\() +[^\n]*\\)")
+         "\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:~]*\\)\\(-\\([0-9a-zA-Z.+~]+\\)\\)*\\() +[^\n]*\\)")
         ;; We have a hit.  Adjust match-data...
         (goto-char (match-end 5))
-        (skip-chars-backward "0-9a-zA-Z.+")
+        (skip-chars-backward "0-9a-zA-Z.+~")
         (let ((deb-vsn-beg (point))
               (ups-vsn-end (1- (point))))
           (store-match-data
@@ -987,7 +989,7 @@ If file is empty, create initial entry."
                  (string-match (concat
                                 "/"
                                 (regexp-quote pkg-name)
-                                "-\\([0-9][0-9a-zA-Z.+-]+\\)/debian/changelog")
+                                "-\\([0-9][0-9a-zA-Z.+~-]+\\)/debian/changelog")
                                buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
@@ -997,7 +999,7 @@ If file is empty, create initial entry."
            ;; -> Use new upstream version with "-1" debian version.
            ((and debian-vsn
                  (string-match
-                  (concat "-\\([0-9][0-9a-zA-Z.+-]+\\)/debian/changelog")
+                  (concat "-\\([0-9][0-9a-zA-Z.+~-]+\\)/debian/changelog")
                   buffer-file-name))
             (setq debian-changelog-new-upstream-release-p t)
             (concat epoch (match-string 1 buffer-file-name) "-1"))
@@ -1018,7 +1020,7 @@ If file is empty, create initial entry."
                                (regexp-quote upstream-vsn) "/debian/changelog")
                        buffer-file-name))
                  (string-match (concat "/" (regexp-quote pkg-name)
-                                       "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
+                                       "-\\([0-9a-zA-Z.+~]+\\)/debian/changelog")
                                buffer-file-name)
                  (debian-changelog-greater-than
                   upstream-vsn (match-string 1 buffer-file-name)))
@@ -1044,19 +1046,19 @@ If file is empty, create initial entry."
                        buffer-file-name))
                  (string-match (concat
                                 "/" (regexp-quote pkg-name)
-                                "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
+                                "-\\([0-9a-zA-Z.+~]+\\)/debian/changelog")
                                buffer-file-name)
                  (debian-changelog-greater-than
                   (match-string 1 buffer-file-name) upstream-vsn))
             (concat epoch (match-string 1 buffer-file-name)))
 
            ((string-match (concat "/" (regexp-quote pkg-name)
-                                  "-\\([0-9a-zA-Z.+]+\\)/debian/changelog")
+                                  "-\\([0-9a-zA-Z.+~]+\\)/debian/changelog")
                           buffer-file-name)
             ;;Hmmm.. return version number from directory if we get this far
             (concat epoch (match-string 1 buffer-file-name)))
            ((string-match
-             (concat "-\\([0-9][0-9a-zA-Z.+]+\\)/debian/changelog")
+             (concat "-\\([0-9][0-9a-zA-Z.+~]+\\)/debian/changelog")
              buffer-file-name)
             ;;Hmmm.. return version number from directory if we get this far
             (concat epoch (match-string 1 buffer-file-name)))
@@ -1353,8 +1355,8 @@ match 1 -> package name
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
 ;;; I'm assuming it begins with a digit, which is not enforced
-         "^\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:]*\\)\\(-\\([0-9a-zA-Z.+]+\\)\\)*)" nil t)
-;;                                                                                         ^
+         "^\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:~]*\\)\\(-\\([0-9a-zA-Z.+~]+\\)\\)*)" nil t)
+;;                                                                                           ^
 ;; Note the asterix above, allowing more than one hyphen in the version
 ;; number, but wrongly assuming that all of it is the Debian version
 ;; instead of only the bit past the last hyphen.  I might get NMUs wrongly

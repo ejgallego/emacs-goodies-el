@@ -1,3 +1,12 @@
+emacs-goodies-el (26.8-1) unstable; urgency=low
+
+  * dpkg-dev-el:
+   - debian-changelog-mode.el: Allow tilde (~) in version numbers", thanks
+     to Rafael Laboissiere for the report and to Peter Samuelson for the
+     patch (Closes: #382514).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue,  5 Sep 2006 21:27:17 -0400
+
 emacs-goodies-el (26.7-1) unstable; urgency=low
 
   By Jaakko Kangasharju <ashar@iki.fi>:
