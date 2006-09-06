@@ -7,11 +7,12 @@ emacs-goodies-el (26.6-2) UNRELEASED; urgency=low
     - Bug fix: "debian-el: debian-changelog mode does not support bugs with
       only e-mail address and no full name.", by Junichi Uekawa
       (Closes: #380217).
+    - apt-utils.el: New upstream release 2.8.0:
   * emacs-goodies-el:
     - Bug fix: minor info manual error", thanks to Sebastian Luque
       (Closes: #385234).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 30 Aug 2006 11:11:16 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue,  5 Sep 2006 20:28:02 -0400
 
 emacs-goodies-el (26.6-1) unstable; urgency=low
 
