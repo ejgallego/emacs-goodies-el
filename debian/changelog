@@ -1,4 +1,4 @@
-emacs-goodies-el (26.6-2) UNRELEASED; urgency=low
+emacs-goodies-el (26.7-1) unstable; urgency=low
 
   By Jaakko Kangasharju <ashar@iki.fi>:
   * gnus-bonus-el:
@@ -17,7 +17,7 @@ emacs-goodies-el (26.6-2) UNRELEASED; urgency=low
     - Bug fix: minor info manual error", thanks to Sebastian Luque
       (Closes: #385234).
 
- -- Peter S Galbraith <psg@debian.org>  Tue,  5 Sep 2006 20:48:47 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue,  5 Sep 2006 20:53:27 -0400
 
 emacs-goodies-el (26.6-1) unstable; urgency=low
 
