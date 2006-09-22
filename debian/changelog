@@ -1,3 +1,14 @@
+emacs-goodies-el (26.9-1) unstable; urgency=low
+
+  * debian-el:
+    - debian-bug.el: Added "Owner:" to ITP bugs. Thanks to Romain
+      Francoise for bringing this to my attention (Closes: #388747).
+  * dpkg-dev-el:
+    - debian-bts-control.el: Some tags are missing in the list". I also
+      updated debian-bug.el. Thanks to Thomas Weber (Closes: #373283).
+
+ -- Peter S Galbraith <psg@debian.org>  Fri, 22 Sep 2006 15:29:06 -0400
+
 emacs-goodies-el (26.8-1) unstable; urgency=low
 
   * dpkg-dev-el:

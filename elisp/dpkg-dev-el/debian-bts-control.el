@@ -204,7 +204,7 @@ added to the Cc: field and the comamnds added at t6he top of the message."
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
      (4 font-lock-warning-face))
-    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed\\|upstream\\|fixed-upstream\\|potato\\|woody\\|sarge\\|sarge-ignore\\|sid\\)"
+    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed\\|fixed-in-experimental\\|fixed-upstream\\|security\\|upstream\\|confirmed\\|d-i\\|ipv6\\|lfs\\|l10n\\|potato\\|woody\\|sarge\\|sarge-ignore\\|etch\\|etch-ignore\\|sid\\|experimental\\)"
      (1 font-lock-function-name-face)
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
@@ -569,8 +569,9 @@ in `debian-bts-control-modes-to-reuse'."
  afresh. The default action is adding.
 
  Tags are patch, wontfix, moreinfo, unreproducible, help, pending, fixed,
- security, upstream, fixed-upstream, potato, woody, sarge, sarge-ignore,
- sid and experimental.
+ fixed-in-experimental, fixed-upstream, security, upstream, confirmed, d-i,
+ ipv6, lfs, l10n, potato, woody, sarge, sarge-ignore, etch, etch-ignore,
+ sid, and experimental.
 
  For their meanings, consult the Control->Help->Tags menu.
 
