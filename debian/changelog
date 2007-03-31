@@ -1,3 +1,17 @@
+emacs-goodies-el (26.9-2) UNRELEASED; urgency=low
+
+  [ Junichi Uekawa ]
+  * dpkg-dev-el: 
+    - debian-changelog-mode.el: support co-maintainers. If previous 
+      maintainer editing the entry is different from the current, an 
+      entry of the form '[ NAME ]' is created.
+      Thanks to Luca Capello (Closes: #352957).
+  * debian-el:
+    - fix debian-bug.el (debian-bug-build-bug-menu) to work with new 
+      BTS output format.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 31 Mar 2007 20:38:40 +0900
+
 emacs-goodies-el (26.9-1) unstable; urgency=low
 
   * debian-el:

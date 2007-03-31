@@ -303,6 +303,17 @@
 ;;    suggested by Romain Francoise <rfrancoise@debian.org> (Closes: #322994)
 ;; V1.82 05Sep2006 Peter Samuelson <peter@p12n.org>
 ;;  - Add tilde support for upstream version numbers (Closes: #382514)
+;; V1.83 11Oct2006 Luca Capello <luca@pca.it>
+;;  - Rename `debian-changelog-maintainer' to `debian-changelog-last-maintainer',
+;;    this is what the function really work on
+;;  - `debian-changelog-last-maintainer' now returns a list of "(NAME EMAIL)"
+;;    and not only EMAIL
+;;  - Add `debian-changelog-comaintainer-insert', which actually inserts the
+;;    co-maintainer name in the form "[ NAME ]"
+;;  - Add `debian-changelog-comaintainer', which checks if we're in a
+;;    co-maintenance, calling `debian-changelog-comaintainer-insert'
+;;  - Add co-maintenance support to `debian-changelog-unfinalise-last-version'
+
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1144,15 +1155,18 @@ If file is empty, create initial entry."
             " <" debian-changelog-mailing-address ">  "
 	    (debian-changelog-date-string))))
 
-(defun debian-changelog-maintainer ()
-  "Return maintainer of last changelog entry."
+(defun debian-changelog-last-maintainer ()
+  "Return maintainer name and e-mail of the last changelog entry as
+a list in the form (NAME EMAIL)."
   (save-excursion
     (goto-char (point-min))
-    (if (re-search-forward "^ -- .*<\\(.*\\)>" nil t)
-        (if (fboundp 'match-string-no-properties)
-            (match-string-no-properties 1)
-          (match-string 1))
-      (error "Maintainer name not found."))))
+    (let ((string
+	   (if (re-search-forward "^ -- \\(.*\\)>" nil t)
+	       (if (fboundp 'match-string-no-properties)
+		   (match-string-no-properties 1)
+		 (match-string 1))
+	     (error "Maintainer name and email not found."))))
+      (split-string string " <"))))
 
 (defun debian-changelog-web-developer-page ()
   "Browse the BTS for the last upload maintainer's developer summary page."
@@ -1162,9 +1176,47 @@ If file is empty, create initial entry."
         (load "browse-url" nil t)
         (if (not (featurep 'browse-url))
             (error "This function requires the browse-url elisp package"))))
-  (let ((name (debian-changelog-maintainer)))
-    (browse-url (concat "http://qa.debian.org/developer.php?login=" name))
-    (message "Looking up developer summary page for %s via browse-url" name)))
+  (let ((email (cadr (debian-changelog-last-maintainer))))
+    (browse-url (concat "http://qa.debian.org/developer.php?login=" email))
+    (message "Looking up developer summary page for %s via browse-url" email)))
+
+;; co-maintenance as per bug #352957 by Luca Capello 2006
+(defun debian-changelog-comaintainer-insert (name separator)
+  "In the line before SEPARATOR, insert the co-maintainer name as for
+the form [ NAME ]."
+  (goto-char (point-min))
+  (re-search-forward (concat "\n " separator))
+  (previous-line 1)
+  (insert "\n  [ " name " ]")
+  (when (string= "--" separator)
+    (insert "\n")))
+  
+(defun debian-changelog-comaintainer ()
+  "If the last maintainer is different from the current one, create a
+co-maintained changelog entry."
+  (let ((name (car (debian-changelog-last-maintainer))))
+    (unless (string= name debian-changelog-full-name)
+      (let ((maintainers-found)
+	    (debian-changelog-last-entry-end
+	     (progn (goto-char (point-min))
+		    (re-search-forward "\n --"))))
+	(mapc (lambda (x)
+		(goto-char (point-min))
+		(when (search-forward x debian-changelog-last-entry-end t)
+		  (add-to-list 'maintainers-found x)))
+	      (list name debian-changelog-full-name))
+	;; set the co-maintenance if any
+	(if maintainers-found
+	    ;; co-maintenance, debian-changelog-full-name is not present
+	    (if (and (member name maintainers-found)
+		     (not (member debian-changelog-full-name
+				  maintainers-found)))
+		(debian-changelog-comaintainer-insert
+		 debian-changelog-full-name "--"))
+	  ;; no co-maintenance
+	  (mapc (lambda (x)
+		  (debian-changelog-comaintainer-insert (car x) (cadr x)))
+		`((,name " *") (,debian-changelog-full-name "--"))))))))
 
 ;;
 ;; interactive function to unfinalise changelog (so modifications can be made)
@@ -1178,6 +1230,7 @@ can be made."
   (if (debian-changelog-finalised-p) nil
     (error "Most recent version is not finalised"))
   (save-excursion
+    (debian-changelog-comaintainer)
     (goto-char (point-min))
     (re-search-forward "\n --")
     (let ((dels (point)))
