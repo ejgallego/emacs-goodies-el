@@ -27,20 +27,22 @@
     (modify-coding-system-alist 'file "/debian/changelog\\'" 'utf-8)
     (modify-coding-system-alist 'file "/debian/control\\'" 'utf-8)
     
-    ;; Handle Debian native package, from Kevin Ryde in bug #317597
+    ;; Handle Debian native package, from Kevin Ryde in bug #317597 and #416218
     (defun debian-changelog-coding-system (args)
       "Return the coding system for a /usr/share/doc/[package]/changelog file.
 If [package] is a debian native (no separate changelog.Debian) then answer
 `utf-8', otherwise remove ourselves from `file-coding-system-alist' and see
 what other rules say."
-      (let ((dirname (file-name-directory (cadr args))))
+      (let ((filename (if (consp (cadr args))
+                          (car (cadr args)) ;; ("filename" . buffer) in emacs 22
+                        (cadr args)))       ;; "filename" in emacs 21
+            (dirname  (file-name-directory filename)))
         (if (file-exists-p (concat dirname "changelog.Debian.gz"))
             (let ((file-coding-system-alist
                    (remove '("/usr/share/doc/[^/]+/changelog\\'"
                              . debian-changelog-coding-system)
                            file-coding-system-alist)))
               (apply 'find-operation-coding-system args))
-          'utf-8)))
-    
-    (modify-coding-system-alist 'file "/usr/share/doc/[^/]+/changelog\\'"
-                                'debian-changelog-coding-system))))
+          'utf-8))))))
+
+

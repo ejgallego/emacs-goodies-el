@@ -18,8 +18,11 @@ emacs-goodies-el (26.10-1) unstable; urgency=low
      thanks to R.Ramkumar (Closes: #402580).
    - emacs-goodies-el.el: Too many files put into cfengine-mode,
      thanks to Sven Joachim (Closes: #408285).
+  * dpkg-dev-al:
+   - 50dpkg-dev-el.el: "Fixed native package changelog coding system for
+     emacs 22", thanks to Kevin Ryde (Closes: #416218).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:10:13 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:18:33 -0400
 
 emacs-goodies-el (26.9-1) unstable; urgency=low
 
