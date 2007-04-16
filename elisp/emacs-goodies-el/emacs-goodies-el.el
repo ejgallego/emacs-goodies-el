@@ -47,7 +47,7 @@ Setting to aggressive will enable features that supercede Emacs defaults."
   :group 'emacs-goodies-el)
 
 ;; cfengine.el
-(add-to-list 'auto-mode-alist '("cf\\." . cfengine-mode))
+(add-to-list 'auto-mode-alist '("/cf\\." . cfengine-mode))
 
 ;; clipper.el
 (autoload 'clipper-create "clipper" "Create a new 'clip' for use within Emacs."
