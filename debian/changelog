@@ -1,4 +1,4 @@
-emacs-goodies-el (26.9-2) UNRELEASED; urgency=low
+emacs-goodies-el (26.10-1) unstable; urgency=low
 
   [ Junichi Uekawa ]
   * dpkg-dev-el: 
@@ -9,8 +9,12 @@ emacs-goodies-el (26.9-2) UNRELEASED; urgency=low
   * debian-el:
     - fix debian-bug.el (debian-bug-build-bug-menu) to work with new 
       BTS output format.
+  [ Peter S Galbraith ]
+  * gnus-bonus-el:
+    - gnus-pers.el: gnus-functionp is absent in Oort Gnus, thanks
+      to Dmitry Astapov (Closes: #416360).
 
- -- Junichi Uekawa <dancer@debian.org>  Sat, 31 Mar 2007 20:38:40 +0900
+ -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 20:52:55 -0400
 
 emacs-goodies-el (26.9-1) unstable; urgency=low
 

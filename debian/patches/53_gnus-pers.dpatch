@@ -1,0 +1,98 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 53_gnus-pers.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad emacs-goodies-el~/elisp/gnus-bonus-el/gnus-pers.el emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el
+--- emacs-goodies-el~/elisp/gnus-bonus-el/gnus-pers.el	2003-10-17 16:20:53.000000000 -0400
++++ emacs-goodies-el/elisp/gnus-bonus-el/gnus-pers.el	2007-04-15 20:50:04.000000000 -0400
+@@ -325,8 +325,8 @@
+ 		    ((stringp fromfoo)
+ 		    fromfoo)
+ 		   ((or (symbolp fromfoo)
+-			(gnus-functionp fromfoo))
+-		    (cond ((gnus-functionp fromfoo)
++			(functionp fromfoo))
++		    (cond ((functionp fromfoo)
+ 			   (funcall fromfoo))
+ 			  ((boundp fromfoo)
+ 			   (symbol-value fromfoo))))
+@@ -339,8 +339,8 @@
+ 		    ((stringp extrasfoo)
+ 		    extrasfoo)
+ 		   ((or (symbolp extrasfoo)
+-			(gnus-functionp extrasfoo))
+-		    (cond ((gnus-functionp extrasfoo)
++			(functionp extrasfoo))
++		    (cond ((functionp extrasfoo)
+ 			   (funcall extrasfoo))
+ 			  ((boundp extrasfoo)
+ 			   (symbol-value extrasfoo))))
+@@ -386,8 +386,8 @@
+ 		     ((stringp fromfoo)
+ 		      fromfoo)
+ 		     ((or (symbolp fromfoo)
+-			  (gnus-functionp fromfoo))
+-		      (cond ((gnus-functionp fromfoo)
++			  (functionp fromfoo))
++		      (cond ((functionp fromfoo)
+ 			     (funcall fromfoo))
+ 			    ((boundp fromfoo)
+ 			     (symbol-value fromfoo))))
+@@ -400,8 +400,8 @@
+ 		       ((stringp extrasfoo)
+ 			extrasfoo)
+ 		       ((or (symbolp extrasfoo)
+-			    (gnus-functionp extrasfoo))
+-			(cond ((gnus-functionp extrasfoo)
++			    (functionp extrasfoo))
++			(cond ((functionp extrasfoo)
+ 			       (funcall extrasfoo))
+ 			      ((boundp extrasfoo)
+ 			       (symbol-value extrasfoo))))
+@@ -414,8 +414,8 @@
+ 			  ((stringp signaturesfoo)
+ 			   signaturesfoo)
+ 			  ((or (symbolp signaturesfoo)
+-			       (gnus-functionp signaturesfoo))
+-			   (cond ((gnus-functionp signaturesfoo)
++			       (functionp signaturesfoo))
++			   (cond ((functionp signaturesfoo)
+ 				  (funcall signaturesfoo))
+ 				 ((boundp signaturesfoo)
+ 				  (symbol-value signaturesfoo))))
+@@ -544,8 +544,8 @@
+ 		    ((stringp fromfoo)
+ 		    fromfoo)
+ 		   ((or (symbolp fromfoo)
+-			(gnus-functionp fromfoo))
+-		    (cond ((gnus-functionp fromfoo)
++			(functionp fromfoo))
++		    (cond ((functionp fromfoo)
+ 			   (funcall fromfoo))
+ 			  ((boundp fromfoo)
+ 			   (symbol-value fromfoo))))
+@@ -558,8 +558,8 @@
+ 		    ((stringp extrasfoo)
+ 		    extrasfoo)
+ 		   ((or (symbolp extrasfoo)
+-			(gnus-functionp extrasfoo))
+-		    (cond ((gnus-functionp extrasfoo)
++			(functionp extrasfoo))
++		    (cond ((functionp extrasfoo)
+ 			   (funcall extrasfoo))
+ 			  ((boundp extrasfoo)
+ 			   (symbol-value extrasfoo))))
+@@ -572,8 +572,8 @@
+ 			 ((stringp signaturesfoo)
+ 			  signaturesfoo)
+ 			 ((or (symbolp signaturesfoo)
+-			      (gnus-functionp signaturesfoo))
+-			  (cond ((gnus-functionp signaturesfoo)
++			      (functionp signaturesfoo))
++			  (cond ((functionp signaturesfoo)
+ 				 (funcall signaturesfoo))
+ 				((boundp signaturesfoo)
+ 				 (symbol-value signaturesfoo))))
