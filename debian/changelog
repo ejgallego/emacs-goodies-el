@@ -20,14 +20,16 @@ emacs-goodies-el (26.10-1) unstable; urgency=low
      thanks to Sven Joachim (Closes: #408285).
    - emacs-goodies-el.el: "add apache2.conf to auto-mode-alist",
      thanks to Shannon Eric Peevey (Closes: #392719).
-  * dpkg-dev-al:
+  * dpkg-dev-el:
    - 50dpkg-dev-el.el: "Fixed native package changelog coding system for
      emacs 22", thanks to Kevin Ryde (Closes: #416218).
+   - debian-bts-control.el: typo in debian-bts-control-modes-to-reuse,
+     thanks to Luca Capello (Closes: #392274).
   * debian-el:
    - debian-bug.el: Updated list of pseudo packages,
      thanks to Sven Joachim (Closes: #417882).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:35:57 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:39:23 -0400
 
 emacs-goodies-el (26.9-1) unstable; urgency=low
 

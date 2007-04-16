@@ -82,7 +82,7 @@
   '(mh-letter-mode mail-mode message-mode)
   "List of modes in which calling `debian-bts-control' will reuse the buffer.
 No new draft will be created.  Instead control@bugs.debian.org will be
-added to the Cc: field and the comamnds added at t6he top of the message."
+added to the Cc: field and the comamnds added at the top of the message."
   :group 'debian-bts-control
   :type '(repeat symbol))
 
@@ -204,7 +204,7 @@ added to the Cc: field and the comamnds added at t6he top of the message."
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
      (4 font-lock-warning-face))
-    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed\\|fixed-in-experimental\\|fixed-upstream\\|security\\|upstream\\|confirmed\\|d-i\\|ipv6\\|lfs\\|l10n\\|potato\\|woody\\|sarge\\|sarge-ignore\\|etch\\|etch-ignore\\|sid\\|experimental\\)"
+    ("^ *\\(tags\\) +\\(-?[0-9]+\\) +\\([-+=]? +\\)?\\(patch\\|wontfix\\|moreinfo\\|unreproducible\\|help\\|pending\\|fixed-in-experimental\\|fixed-upstream\\|fixed\\|security\\|upstream\\|confirmed\\|d-i\\|ipv6\\|lfs\\|l10n\\|potato\\|woody\\|sarge-ignore\\|sarge\\|etch-ignore\\|etch\\|sid\\|experimental\\)"
      (1 font-lock-function-name-face)
      (2 font-lock-type-face)
      (3 font-lock-keyword-face nil t)
