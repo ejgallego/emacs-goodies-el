@@ -23,8 +23,11 @@ emacs-goodies-el (26.10-1) unstable; urgency=low
   * dpkg-dev-al:
    - 50dpkg-dev-el.el: "Fixed native package changelog coding system for
      emacs 22", thanks to Kevin Ryde (Closes: #416218).
+  * debian-el:
+   - debian-bug.el: Updated list of pseudo packages,
+     thanks to Sven Joachim (Closes: #417882).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:27:17 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:35:57 -0400
 
 emacs-goodies-el (26.9-1) unstable; urgency=low
 
