@@ -39,6 +39,9 @@ Setting to aggressive will enable features that supercede Emacs defaults."
   "Align all occurrences of REGEXP in each line of region."
   t)
 
+;; apache-mode.el
+(add-to-list 'auto-mode-alist '("apache2\\.conf\\'"  . apache-mode))
+
 ;; auto-fill-inhibit.el
 (defgroup auto-fill-inhibit '((auto-fill-inhibit-list custom-variable))
   "Finer grained control over auto-fill-mode (de)activation."
