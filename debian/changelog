@@ -1,3 +1,11 @@
+emacs-goodies-el (26.11-1) unstable; urgency=low
+
+  * dpkg-dev-el:
+   - debian-changelog-mode.el: Use "date -R" instead of deprecated
+    "822-date".  Thanks to Matej Vela. (Closes: #423142, #423155, #423828)
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 11:03:51 -0400
+
 emacs-goodies-el (26.10-1) unstable; urgency=low
 
   [ Junichi Uekawa ]

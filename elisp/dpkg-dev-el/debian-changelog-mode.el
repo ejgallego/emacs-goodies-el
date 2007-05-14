@@ -313,7 +313,9 @@
 ;;  - Add `debian-changelog-comaintainer', which checks if we're in a
 ;;    co-maintenance, calling `debian-changelog-comaintainer-insert'
 ;;  - Add co-maintenance support to `debian-changelog-unfinalise-last-version'
-
+;; V1.84 14May2007 Peter S Galbraith <psg@debian.org>
+;;  - Use "date -R" instead of deprecated "822-date"
+;;    (Closes: #423142, #423155, #423828) 
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1115,9 +1117,9 @@ If file is empty, create initial entry."
 
 (defun debian-changelog-date-string ()
   "Return RFC-822 format date string."
-  (let* ((dp "822-date")
+  (let* ((dp "date")
 	 (cp (point))
-	 (ret (call-process "822-date" nil t))
+	 (ret (call-process "date" nil t nil "-R"))
 	 (np (point))
 	 (out nil))
     (cond ((not (or (eq ret nil) (eq ret 0)))
