@@ -3,9 +3,14 @@ emacs-goodies-el (26.11-1) unstable; urgency=low
   * dpkg-dev-el:
    - debian-changelog-mode.el: Use "date -R" instead of deprecated
     "822-date".  Thanks to Matej Vela. (Closes: #423142, #423155, #423828)
+  * emacs-goodies-el:
+   - todoo.el: Comment out clobbering of outline-mode-menu-bar-map key
+     entries. This is far too aggressive.  A much better fix would be to
+     undefine the keys for todoo-mode-map.  Thanks to Simon Pepping
+     (Closes: #144781).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 11:03:51 -0400
-
+ -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 19:26:43 -0400
+  
 emacs-goodies-el (26.10-1) unstable; urgency=low
 
   [ Junichi Uekawa ]
@@ -37,7 +42,7 @@ emacs-goodies-el (26.10-1) unstable; urgency=low
    - debian-bug.el: Updated list of pseudo packages,
      thanks to Sven Joachim (Closes: #417882).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 15 Apr 2007 21:39:23 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 19:24:37 -0400
 
 emacs-goodies-el (26.9-1) unstable; urgency=low
 
@@ -469,11 +474,11 @@ emacs-goodies-el (24.6-1) unstable; urgency=low
 
 emacs-goodies-el (24.5-1) unstable; urgency=low
 
-  * debian/control: Added JÃ©rÃ´me Marant <jerome@debian.org> to uploaders.
+  * debian/control: Added Jérôme Marant <jerome@debian.org> to uploaders.
   * debian/changelog: Converted to UTF-8 as per Policy.
   * debian/emacsen-install.template: Since dashes are not allowed in
     flavour names within shell variables, replace them with underline
-    characters. (JÃ©rÃ´me Marant).
+    characters. (Jérôme Marant).
   * dpkg-dev-el:
     - debian-changelog-mode.el: "dpkg-dev-el: Warning message for security
       uploads should be dismissed".  Thanks to Martin Schulze (Closes: #234730)
@@ -581,10 +586,10 @@ emacs-goodies-el (24.0-1) unstable; urgency=low
     - lcomp.el, list-completion hacks. Thanks to Hisashi MORITA for
       suggesting it (Closes: #217371).
     - folding.el, a folding-editor-like minor mode. Thanks to Michael Vogt
-      (Closes: #161404) and to JÃ©rÃ´me Marant (Closes: #170587) for the
+      (Closes: #161404) and to Jérôme Marant (Closes: #170587) for the
       suggestion.
     - apache-mode.el, major mode for editing Apache configuration files
-      Thanks to JÃ©rÃ´me Marant for suggesting it (Closes: #165316).
+      Thanks to Jérôme Marant for suggesting it (Closes: #165316).
     - ctypes.el, Enhanced Font lock support for custom defined types.
       Thanks to Toby Speight (for suggesting it Closes: #212884).
     - shell-command.el, enables tab-completion for shell-command.
@@ -664,7 +669,7 @@ emacs-goodies-el (23.1-1) unstable; urgency=low
 
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
-  * gnus-bonus-el: (Prepared by JÃ©rÃ´me Marant)
+  * gnus-bonus-el: (Prepared by Jérôme Marant)
     New files:
     - gnus-pers.el, an alternative to gnus-posting-styles. (Closes: #166459)
     - gnus-eyecandy.el, enhance the group buffer by adding icons.
@@ -727,7 +732,7 @@ emacs-goodies-el (22.1-1) unstable; urgency=low
     - table.el:  Version 1.5.54.  Wow! This is a very cool package!
     - tail.el: Benjamin Drieu gave me carte blanche to hack on it, so I
       fixed a few bugs, including making it under XEmacs. Thanks to Adam
-      SjÃ¸gren for reporting this bug (Closes: #164372).
+      Sjøgren for reporting this bug (Closes: #164372).
     - under.el: checkdoc clean; add autoload tag; don't make global
        variables; rename underline-region to underhat-region since it
        overloaded an existing Emacs21 command.
@@ -783,8 +788,8 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     checkdoc clean.
   * Bug fix: "emacs-goodies-el: perldoc does not work - terminal is not
     fully functional due to perldoc setting a pager", thanks to Sebastian
-    SchÃ¼tte for reporting and to Alan Shutko <ats@acm.org> for
-    contributing the fixÂ (Closes: #144963).
+    Schütte for reporting and to Alan Shutko <ats@acm.org> for
+    contributing the fix (Closes: #144963).
   * emacs-goodies-el: perldoc.el rewrite to get Perl function name on the
     fly from the perlfunc.pod file.
   * debian-bug.el and debian-bts-control.el: Add `sarge-ignore' and
@@ -808,7 +813,7 @@ emacs-goodies-el (21.12-1) unstable; urgency=low
     code cleanup.  Created `highligh-beyond-fill-column' to activate it.
     Added to Info docs.
   * emacs-goodies-el's home-end.el: Bug fix: "home-end-enable shouldn't
-    unset end and home!", thanks to Jorgen SchÃ¤fer <forcer@debian.org>
+    unset end and home!", thanks to Jorgen Schäfer <forcer@debian.org>
     (Closes: #211859).  Add to Info docs.
   * dpkg-dev-el: setup auto-mode-alist better for README.Debian and
     copyright files.
