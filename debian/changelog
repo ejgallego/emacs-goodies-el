@@ -8,6 +8,8 @@ emacs-goodies-el (26.11-1) unstable; urgency=low
      entries. This is far too aggressive.  A much better fix would be to
      undefine the keys for todoo-mode-map.  Thanks to Simon Pepping
      (Closes: #144781).
+   - filladapt.el: Make turn-on-filladapt-mode interactive.
+     Thanks to Kevin Ryde (Closes: #420845).
 
  -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 19:26:43 -0400
   

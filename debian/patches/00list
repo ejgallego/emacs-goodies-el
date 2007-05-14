@@ -15,6 +15,7 @@
 50_dedicated
 50_edit-env_autoload
 51_edit-env_copy-list
+50_filladapt_bug420845
 50_gnus-BTS
 50_gnus-filterhist
 50_gnus-pers
