@@ -316,6 +316,7 @@
 ;; V1.84 14May2007 Peter S Galbraith <psg@debian.org>
 ;;  - Use "date -R" instead of deprecated "822-date"
 ;;    (Closes: #423142, #423155, #423828) 
+;;  - Tighter regexp for finalisation string
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1410,7 +1411,7 @@ match 1 -> package name
 ;;; The following is not strictly correct.  The upstream version may actually
 ;;; contain a hyphen if a debian version number also exists, making two hyphens
 ;;; I'm assuming it begins with a digit, which is not enforced
-         "^\\(\\S-+\\) +(\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:~]*\\)\\(-\\([0-9a-zA-Z.+~]+\\)\\)*)" nil t)
+         "^\\(\\S-+\\) (\\([0-9]:\\)?\\([0-9][0-9a-zA-Z.+:~]*\\)\\(-\\([0-9a-zA-Z.+~]+\\)\\)*)" nil t)
 ;;                                                                                           ^
 ;; Note the asterix above, allowing more than one hyphen in the version
 ;; number, but wrongly assuming that all of it is the Debian version
