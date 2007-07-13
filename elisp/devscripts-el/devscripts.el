@@ -27,7 +27,7 @@
 (defcustom debuild-option-list '("-i" "-uc" "-us") "*Options to give to debuild."
   :type '(repeat string)
   :group 'devscripts)
-(defconst devscripts-mode-version "$Id: devscripts.el,v 1.4 2003/12/20 05:05:19 dancer Exp $" "Version of devscripts mode.")
+(defconst devscripts-mode-version "$Id: devscripts.el,v 1.5 2007/07/13 15:13:30 dancer Exp $" "Version of devscripts mode.")
 
 (defun devscripts-internal-get-debian-package-name ()
   "Find the directory with debian/ dir, and get the dir name."
@@ -46,9 +46,9 @@
 	 (debuild-process (concat "debuild-process-" default-directory))
 	 (package-name (devscripts-internal-get-debian-package-name)))
     (switch-to-buffer debuild-buffer)
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
-    (compilation-mode)
-    
+    (compilation-mode)    
     (pbuilder-log-view-add package-name debuild-buffer (apply 'start-process debuild-process debuild-buffer "/usr/bin/debuild" debuild-option-list))))
 
 (defun debi ()
