@@ -2,6 +2,8 @@ emacs-goodies-el (26.12-1) UNRELEASED; urgency=low
 
   * devscripts-el:
    - unset read-only state in debuild.
+  * pbuilder-mode.el:
+   - unset read-only state.
 
  -- Junichi Uekawa <dancer@debian.org>  Sat, 14 Jul 2007 00:09:56 +0900
 

@@ -39,7 +39,7 @@
 (defcustom debuild-pbuilder-path "/usr/bin/debuild-pbuilder" "*Path to `debuild-pbuilder'."
   :group 'pbuilder
   :type 'file)
-(defconst pbuilder-mode-version "$Id: pbuilder-mode.el,v 1.2 2005/08/21 05:22:03 dancer Exp $" "Version of pbuilder mode.")
+(defconst pbuilder-mode-version "$Id: pbuilder-mode.el,v 1.3 2007/07/14 09:26:05 dancer Exp $" "Version of pbuilder mode.")
 
 (defun pdebuild ()
   "Run pdebuild in the current directory."
@@ -48,6 +48,7 @@
 	 (pdebuild-process (concat "pdebuild-process-" default-directory))
 	 (package-name (devscripts-internal-get-debian-package-name)))
     (switch-to-buffer pdebuild-buffer)
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
     (compilation-mode)
     (pbuilder-log-view-add
@@ -61,7 +62,7 @@
 	 (pdebuild-process (concat "pdebuild-process-" default-directory))
 	 (package-name (devscripts-internal-get-debian-package-name)))
     (switch-to-buffer pdebuild-buffer)
-    
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
     (compilation-mode)
     (pbuilder-log-view-add
@@ -78,6 +79,7 @@
 	 (pdebuild-process (concat "debuild-pbuilder-process-" default-directory))
 	 (package-name (devscripts-internal-get-debian-package-name)))
     (switch-to-buffer pdebuild-buffer)
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
     (pbuilder-log-view-add
      package-name
@@ -92,6 +94,7 @@ Uses `devscripts-mode-gain-root-command' as command to gain root."
   (let* ((pbuilder-buffer (concat "*pbuilder-build*" filename))
 	 (pbuilder-process (concat "pbuilder-build-process-" filename)))
     (switch-to-buffer pbuilder-buffer)
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
     (compilation-mode)
     (insert "start compile\n")
@@ -105,7 +108,7 @@ Uses `devscripts-mode-gain-root-command' as command to gain root."
   (let* ((pbuilder-buffer (concat "*pbuilder-uml-build*" filename))
 	 (pbuilder-process (concat "pbuilder-uml-build-process-" filename)))
     (switch-to-buffer pbuilder-buffer)
-
+    (toggle-read-only 0)
     (kill-region (point-min) (point-max))
     (compilation-mode)
     (insert "start compile\n")
