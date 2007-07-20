@@ -20,3 +20,4 @@ EXCLUDED_emacs20="cwebm.el tabbar.el newsticker.el session.el csv-mode.el maplev
 # EXCLUDED_emacs21="whitespace.el"
 EXCLUDED_xemacs21="csv-mode.el cua.el ibuffer.el minibuf-electric.el tabbar.el todoo.el "
 EXCLUDED_emacs_snapshot="cua.el cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
+EXCLUDED_emacs22="cua.el cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "

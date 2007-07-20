@@ -1,12 +1,23 @@
-emacs-goodies-el (26.12-1) UNRELEASED; urgency=low
+emacs-goodies-el (26.12-1) unstable; urgency=low
 
+  [ Michael Olson ]
+  * debian/emacs-goodies-el.emacsen-install.in:
+    - (EXCLUDED_emacs22): Exclude programs that are part of Emacs 22.
+  * debian/compat:
+    - Set to 4 to silence lintian warning.
+  * debian/control:
+    - (Standards-Version): Set to 3.7.2
+    - (Build-Depends): Move debhelper and dpatch here.
+  * debian/rules:
+    - Don't set DH_COMPAT.
+  [ Junichi Uekawa ]
   * devscripts-el:
    - unset read-only state in debuild.
   * pbuilder-mode.el:
    - unset read-only state.
 
- -- Junichi Uekawa <dancer@debian.org>  Sat, 14 Jul 2007 00:09:56 +0900
-
+ -- Peter S Galbraith <psg@debian.org>  Fri, 20 Jul 2007 05:39:30 -0400
+  
 emacs-goodies-el (26.11-1) unstable; urgency=low
 
   * dpkg-dev-el:

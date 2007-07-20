@@ -3,8 +3,9 @@ Section: editors
 Priority: optional
 Maintainer: Peter S Galbraith <psg@debian.org>
 Uploaders: Roland Mas <lolando@debian.org>
-Build-Depends-Indep: debhelper (>= 4.0.0), dpatch (>=1.5), texinfo
-Standards-Version: 3.6.2
+Build-Depends: debhelper (>= 4.0.0), dpatch (>=1.5)
+Build-Depends-Indep: texinfo
+Standards-Version: 3.7.2
 
 Package: emacs-goodies-el
 Architecture: all
