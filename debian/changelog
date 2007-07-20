@@ -15,8 +15,11 @@ emacs-goodies-el (26.12-1) unstable; urgency=low
    - unset read-only state in debuild.
   * pbuilder-mode.el:
    - unset read-only state.
+  [ Peter Galbraith ]
+  * gnus-bonus-el.emacsen-install.in, debian-el.emacsen-install.in: Setup
+    emacs22 with similar exceptions as emacs-snapshot.
 
- -- Peter S Galbraith <psg@debian.org>  Fri, 20 Jul 2007 05:39:30 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 20 Jul 2007 10:14:25 -0400
   
 emacs-goodies-el (26.11-1) unstable; urgency=low
 

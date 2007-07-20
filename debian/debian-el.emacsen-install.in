@@ -29,5 +29,6 @@ STAMPFILE=debian-el.elc
 # shipped wth Emacs vs package separately).
 SOURCEONLY_emacs20="gnus-BTS.el"
 SOURCEONLY_emacs21="gnus-BTS.el"
+SOURCEONLY_emacs22="gnus-BTS.el"
 SOURCEONLY_xemacs21="gnus-BTS.el"
 SOURCEONLY_emacs_snapshot="gnus-BTS.el"
