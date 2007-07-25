@@ -9,7 +9,7 @@ Standards-Version: 3.7.2
 
 Package: emacs-goodies-el
 Architecture: all
-Depends: emacs21 | emacsen, bash (>= 2.05a) | bash-static
+Depends: emacs22 | emacsen, bash (>= 2.05a) | bash-static
 Recommends: dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
@@ -100,7 +100,7 @@ Description: Miscellaneous add-ons for Emacs
 
 Package: gnus-bonus-el
 Architecture: all
-Depends: emacs21 | emacsen, gnus | emacs21 | xemacs21 | emacs-snapshot
+Depends: emacs22 | emacsen, gnus | emacs22 | emacs21 | xemacs21 | emacs-snapshot
 Section: news
 Description: Miscellaneous add-ons for Gnus
  This package contains a few Emacs-Lisp files, obtained from various
@@ -124,7 +124,7 @@ Description: Miscellaneous add-ons for Gnus
 
 Package: devscripts-el
 Architecture: all
-Depends: emacs21 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, elserv
+Depends: emacs22 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
   devscripts - wrappers around the debuild, debc and debi commands;
@@ -135,7 +135,7 @@ Description: Emacs wrappers for the commands in devscripts
 
 Package: debian-el
 Architecture: all
-Depends: emacs21 | emacsen, reportbug (>= 1.41.1), binutils
+Depends: emacs22 | emacsen, reportbug (>= 1.41.1), binutils
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el, debview
@@ -156,7 +156,7 @@ Description: Emacs helpers specific to Debian users
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs21 | emacsen, debian-el (>= 24.0-1)
+Depends: emacs22 | emacsen, debian-el (>= 24.0-1)
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)

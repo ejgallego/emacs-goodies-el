@@ -1,3 +1,10 @@
+emacs-goodies-el (26.12-2) UNRELEASED; urgency=low
+
+  * Bug fix: "gnus-bonus-el does not know about emacs22", thanks to
+    Mikhail Gusarov (Closes: #434491).
+
+ -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 13:43:02 -0400
+
 emacs-goodies-el (26.12-1) unstable; urgency=low
 
   [ Michael Olson ]
