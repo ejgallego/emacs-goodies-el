@@ -796,7 +796,9 @@ for the debian/changelog file to add the entry to."
     (insert (cadr (assoc bug-number debian-bug-open-alist)))
     (fill-paragraph nil))
    (t
-    (save-excursion (insert " (closes: #" bug-number ")"))
+    (save-excursion
+      (insert " " (debian-changelog--rris
+		   "%s" bug-number debian-changelog-close-bug-statement)))
     (message "Enter a brief description of what was done here."))))
 
 ;;
