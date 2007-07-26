@@ -1,4 +1,4 @@
-emacs-goodies-el (26.13-1) UNRELEASED; urgency=low
+emacs-goodies-el (26.13-1) unstable; urgency=low
 
   * Bug fix: "gnus-bonus-el does not know about emacs22", thanks to
     Mikhail Gusarov (Closes: #434491).
@@ -13,7 +13,7 @@ emacs-goodies-el (26.13-1) UNRELEASED; urgency=low
     function using it".  Added 50_df_minor_mode_alist.dpatch thanks to
     Remi Vanicat (Closes: #430788).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:28:18 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:53:16 -0400
 
 emacs-goodies-el (26.12-1) unstable; urgency=low
 
@@ -47,7 +47,7 @@ emacs-goodies-el (26.11-1) unstable; urgency=low
    - todoo.el: Comment out clobbering of outline-mode-menu-bar-map key
      entries. This is far too aggressive.  A much better fix would be to
      undefine the keys for todoo-mode-map.  Thanks to Simon Pepping
-     (Closes: #144781).
+     (Closes: #414781).
    - filladapt.el: Make turn-on-filladapt-mode interactive.
      Thanks to Kevin Ryde (Closes: #420845).
 
