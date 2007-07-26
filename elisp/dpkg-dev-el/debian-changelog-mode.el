@@ -381,7 +381,7 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
 
 ;; This solves the consistency problem with `debian-changelog-close-bug'
 ;; as per bug #431091
-(defcustom debian-changelog-close-bug-statement "(closes: #%s)"
+(defcustom debian-changelog-close-bug-statement "(Closes: #%s)."
   "The text to be inserted to close a bug.  `%s' is replaced by
 the bug number."
   :group 'debian-changelog
