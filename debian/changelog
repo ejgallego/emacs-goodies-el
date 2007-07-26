@@ -9,8 +9,11 @@ emacs-goodies-el (26.13-1) UNRELEASED; urgency=low
     #431091).
   * Bug fix: "cyclebuffer.el too old global-set-key example", thanks to
     Dan Jacobson (Closes: #371861).
+  * Bug fix: "emacs-goodies-el: df-mode break minor-mode-alist and
+    function using it".  Added 50_df_minor_mode_alist.dpatch thanks to
+    Remi Vanicat (Closes: #430788).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:23:29 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:28:18 -0400
 
 emacs-goodies-el (26.12-1) unstable; urgency=low
 
