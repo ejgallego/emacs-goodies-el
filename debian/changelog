@@ -2,11 +2,15 @@ emacs-goodies-el (26.13-1) UNRELEASED; urgency=low
 
   * Bug fix: "gnus-bonus-el does not know about emacs22", thanks to
     Mikhail Gusarov (Closes: #434491).
+  * Bug fix: "emacs-goodies-el: Please prefer emacs22 as first
+    alternative", thanks to Sven Joachim (Closes: #432100).
   * Bug fix: "[debian-bug.el, debian-changelog-mode.el] please be
     consistent for the close statement", thanks to Luca Capello (Closes:
     #431091).
+  * Bug fix: "cyclebuffer.el too old global-set-key example", thanks to
+    Dan Jacobson (Closes: #371861).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:03:27 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 25 Jul 2007 21:23:29 -0400
 
 emacs-goodies-el (26.12-1) unstable; urgency=low
 

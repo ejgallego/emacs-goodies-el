@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.70 2006/08/30 15:12:12 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.71 2007/07/26 01:24:00 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -804,8 +804,8 @@ searching for.
 
 @noindent Suggested keybings:
 @example
-(global-set-key "M-N" 'cyclebuffer-forward)
-(global-set-key "M-P" 'cyclebuffer-backward)
+(global-set-key "\M-N" 'cyclebuffer-forward)
+(global-set-key "\M-P" 'cyclebuffer-backward)
 @end example
 
 @node cua, cwebm, cyclebuffer, Top
