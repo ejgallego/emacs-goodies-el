@@ -317,6 +317,8 @@
 ;;  - Use "date -R" instead of deprecated "822-date"
 ;;    (Closes: #423142, #423155, #423828) 
 ;;  - Tighter regexp for finalisation string
+;; V1.85 25Jul2007 Peter S Galbraith <psg@debian.org>
+;;  - Adapt patch from Luca Capello <luca@pca.it> for bug #431091
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -377,6 +379,14 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
   :group 'debian-changelog
   :type 'boolean)
 
+;; This solves the consistency problem with `debian-changelog-close-bug'
+;; as per bug #431091
+(defcustom debian-changelog-close-bug-statement "(closes: #%s)"
+  "The text to be inserted to close a bug.  `%s' is replaced by
+the bug number."
+  :group 'debian-changelog
+  :type 'string)
+
 (defcustom debian-changelog-mode-hook nil
   "Normal hook run when entering Debian Changelog mode."
   :group 'debian-changelog
@@ -389,6 +399,20 @@ If you do not wish this behaviour, reset it in your .emacs file like so:
 new version in debian/changelog."
   :group 'debian-changelog
   :type 'hook)
+
+;; This function is from emacs/lisp/calendar/icalendar.el,
+;; necessary to replace "%s" with the bug number in
+;; `debian-changelog-close-bug-statement'
+(defsubst debian-changelog--rris (&rest args)
+  "Replace regular expression in string.
+Pass ARGS to `replace-regexp-in-string' (GNU Emacs) or to
+`replace-in-string' (XEmacs)."
+  ;; XEmacs:
+  (if (fboundp 'replace-in-string)
+      (save-match-data ;; apparently XEmacs needs save-match-data
+        (apply 'replace-in-string args))
+    ;; Emacs:
+    (apply 'replace-regexp-in-string args)))
 
 (defvar debian-changelog-local-variables-maybe-remove-done nil
   "Internal flag so we prompt only once.")
