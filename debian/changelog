@@ -1,4 +1,4 @@
-emacs-goodies-el (26.14-1) UNRELEASED; urgency=low
+emacs-goodies-el (27.0-1) UNRELEASED; urgency=low
   
   [ Cyril Brulebois ]
   * emacs-goodies-el:
@@ -10,8 +10,11 @@ emacs-goodies-el (26.14-1) UNRELEASED; urgency=low
   * debian/compat thanks to Michael Olson.
   * dpkg-dev-el:
     - debian-bts-control.el: Use `C-c C-b' instead of `C-c c' (Closes: #435247).
+  * emacs-goodies-el:
+    - tabbar.el updated to version 2.0 and Info updated as well.
+      Thanks to Michal Sojka (Closes: #435335).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 17:45:58 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 18:22:48 -0400
 
 emacs-goodies-el (26.13-1) unstable; urgency=low
 
