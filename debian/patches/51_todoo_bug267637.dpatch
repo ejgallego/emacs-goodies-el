@@ -23,19 +23,6 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/debian/changelog emacs-goodies-el/debian/changelog
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/debian/changelog	2004-11-25 21:58:49.000000000 -0500
-+++ emacs-goodies-el/debian/changelog	2004-11-25 21:48:23.000000000 -0500
-@@ -5,9 +5,6 @@
-       dependence on jka-compr (Closes: #278929) and addressed the issue of
-       memory usage (Closes: #252481).
-   * emacs-goodies-el:
--    - todoo.el: changes to outline-regexp should be buffer-local
--      (Closes: #267637).  Thanks to Daniel Skarda <0rfelyus@hobitin.ucw.cz>
--      for pointing it out.
-     - folding.el: Updated to latest CVS version to fix bug: "folding.el:
-       support for BibTeX-mode is b0rken", thanks to Juhapekka Tolvanen
-       (Closes: #282388).
 diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/todoo.el emacs-goodies-el/elisp/emacs-goodies-el/todoo.el
 --- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/todoo.el	2004-11-25 21:51:26.000000000 -0500
 +++ emacs-goodies-el/elisp/emacs-goodies-el/todoo.el	2004-11-25 21:56:39.000000000 -0500
