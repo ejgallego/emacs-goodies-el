@@ -5,7 +5,7 @@
 (provide 'dpkg-dev-el-loaddefs)
 
 ;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
-;;;;;;  (17260 62732))
+;;;;;;  (18106 18843))
 ;;; Generated autoloads from debian-bts-control.el
 
 (autoload (quote debian-bts-control) "debian-bts-control" "\
@@ -21,8 +21,8 @@ in `debian-bts-control-modes-to-reuse'." t nil)
 ;;;***
 
 ;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
-;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (17199
-;;;;;;  13164))
+;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (18106
+;;;;;;  17482))
 ;;; Generated autoloads from debian-changelog-mode.el
 
 (autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\
@@ -44,6 +44,7 @@ interface to set it, or simply set the variable
 `debian-changelog-mailing-address' in your ~/.emacs file, e.g.
 
  (setq debian-changelog-mailing-address \"myname@debian.org\"))" t nil)
+(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
@@ -76,7 +77,7 @@ Mode to edit and read debian/copyright.
 ;;;***
 
 ;;;### (autoloads (readme-debian-mode) "readme-debian" "readme-debian.el"
-;;;;;;  (17497 19989))
+;;;;;;  (17503 21939))
 ;;; Generated autoloads from readme-debian.el
 
 (autoload (quote readme-debian-mode) "readme-debian" "\
