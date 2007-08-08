@@ -94,7 +94,7 @@ added to the Cc: field and the comamnds added at the top of the message."
 (if debian-bts-control-minor-mode-map
     nil
   (setq debian-bts-control-minor-mode-map (make-sparse-keymap))
-  (define-key debian-bts-control-minor-mode-map "\C-cc" 'debian-bts-control))
+  (define-key debian-bts-control-minor-mode-map "\C-c\C-b" 'debian-bts-control))
 
 (easy-menu-define debian-bts-control-menu debian-bts-control-minor-mode-map
   "Debian Bug Mode Menu"
