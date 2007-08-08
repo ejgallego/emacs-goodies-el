@@ -59,6 +59,7 @@ Description: Miscellaneous add-ons for Emacs
   lcomp - list-completion hacks;
   maplev - major mode for Maple;
   map-lines - map a command over lines matching a regexp;
+  markdown-mode - major mode for editing Markdown files;
   marker-visit - navigate through a buffer's marks in order;
   matlab - major mode for MatLab dot-m files;
   minibuf-electric -  electric minibuffer behavior from XEmacs;

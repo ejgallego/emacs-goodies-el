@@ -1,3 +1,13 @@
+emacs-goodies-el (26.14-1) unstable; urgency=low
+  
+  [ Cyril Brulebois ]
+  * emacs-goodies-el:
+    New file:
+    - markdown-mode.el: major mode for editing Markdown files 
+      (Closes: #435485).   
+
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Thu, 02 Aug 2007 07:09:11 +0200
+
 emacs-goodies-el (26.13-1) unstable; urgency=low
 
   * Bug fix: "gnus-bonus-el does not know about emacs22", thanks to

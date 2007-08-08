@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.71 2007/07/26 01:24:00 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.72 2007/08/08 21:43:45 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -107,6 +107,7 @@ be documented.
 * lcomp::                       list-completion hacks
 * maplev::                      Maple major mode
 * map-lines::                   Map a command over many lines
+* markdown-mode::               Major mode for editing Markdown files
 * marker-visit::                Navigate through a buffer's marks in order
 * matlab::                      Major mode for MATLAB dot-m files
 * minibuf-electric::            Electric minibuffer behavior from XEmacs
@@ -2697,7 +2698,7 @@ clicking on the @code{Save for Future Sessions} button.
 This mode has full documentation in it's own Info manual.
 See @inforef{top, MapleV mode info node, maplev}.
 
-@node map-lines, marker-visit, maplev, Top
+@node map-lines, markdown-mode, maplev, Top
 @chapter map-lines - Map a command over many lines
 
 @noindent Author: Andreas Fuchs <asf@@void.at>
@@ -2714,7 +2715,30 @@ go, or collecting a bunch of lines in the kill-ring ready to paste.
 
 Invoke it with @command{M-x map-lines}.
 
-@node marker-visit, matlab, map-lines, Top
+@node markdown-mode, marker-visit, map-lines, Top
+@chapter markdown-mode - Major mode for editing Markdown files
+
+@noindent Author: Jason Blevins <jrblevin@@sdf.lonestar.org>
+
+This major mode provides syntax highlighting and basic element insertion
+commands for Markdown files.
+
+No extension gets associated with this mode by default since there is no
+official extension: .mdml, .text, .md, .mdt, etc.
+
+To use this mode, either invoke it each time with:
+
+@example
+ M-X markdown-mode
+@end example
+
+or insert the following snippet of code in your @file{.emacs} file.
+
+@example
+ (add-to-list 'auto-mode-alist '("\\.mdwn$" . markdown-mode))
+@end example
+
+@node marker-visit, matlab, markdown-mode, Top
 @chapter marker-visit - navigate through a buffer's marks in order
 
 @noindent Benjamin Rutt <brutt@@bloomington.in.us>

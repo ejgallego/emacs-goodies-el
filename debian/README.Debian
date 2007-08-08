@@ -185,6 +185,9 @@ maplev.el is a major mode for Maple.
 map-lines.el provides M-x map-lines, a command to iterate a given
 command over lines matching a regexp.
 
+markdown-mode.el provides support for editing Markdown files. It
+provides syntax highlighting and basic element insertion commands.
+
 marker-visit.el provides a simple way to navigate among marks in a buffer.
 All the marks you've left while editing a buffer serve as bread crumb
 trails of areas in the buffer you've edited.  It is convenient to navigate
@@ -323,4 +326,4 @@ xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named
 .Xdefaults, .Xenvironment, .Xresources or *.ad.
 
- -- Peter S Galbraith <psg@debian.org>, Tue Oct 25 21:22:07 2005
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>, Thu,  2 Aug 2007 06:56:40 +0200

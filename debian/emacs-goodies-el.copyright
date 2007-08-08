@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.19 $
+| ;; $Revision: 1.20 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -710,6 +710,22 @@ Author/copyright info for matlab.el
 `----
 
 
+Author/copyright info for markdown-mode.el:
+,----
+| ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
+| ;; Created: May 24, 2007
+| ;; $Id: emacs-goodies-el.copyright,v 1.20 2007/08/08 21:43:45 psg Exp $
+| ;; Keywords: Markdown major mode
+| ;;
+| ;; Copyright (C) 2007 Jason Blevins
+| ;;
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`----
+
+
 Author/copyright info for marker-visit.el:
 ,----
 | ;;; marker-visit.el --- navigate through a buffer's marks in order
@@ -1052,7 +1068,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.19 $
+| ;; $Revision: 1.20 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

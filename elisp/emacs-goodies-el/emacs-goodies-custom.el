@@ -313,6 +313,15 @@ selectable views (limits)."
   :load 'matlab
   :group 'emacs-goodies-el)
 
+;; markdown
+(defgroup markdown nil
+  "Markdown mode."
+  :prefix "markdown-"
+  :group 'languages
+  :link '(custom-manual "(emacs-goodies-el)markdown")
+  :load 'markdown
+  :group 'emacs-goodies-el)
+
 ;; minibuffer-complete-cycle
 (defgroup minibuffer-complete-cycle nil
   "Cycle through the *Completions* buffer."
