@@ -8,6 +8,9 @@ emacs-goodies-el (27.0-1) UNRELEASED; urgency=low
 
   [ Peter S Galbraith ]
   * debian/compat thanks to Michael Olson.
+  * debian-el:
+    - /etc/emacs/site-start.d/51debian-el.el: Typo: debian-el-el,
+      thanks to Josh Triplett (Closes: #427770).  
   * dpkg-dev-el:
     - debian-bts-control.el: Use `C-c C-b' instead of `C-c c' (Closes: #435247).
     - debian-changelog-model.el:
@@ -17,7 +20,7 @@ emacs-goodies-el (27.0-1) UNRELEASED; urgency=low
     - tabbar.el updated to version 2.0 and Info updated as well.
       Thanks to Michal Sojka (Closes: #435335).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 18:22:48 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 18:37:40 -0400
 
 emacs-goodies-el (26.13-1) unstable; urgency=low
 
