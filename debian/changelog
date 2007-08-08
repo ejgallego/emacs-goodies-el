@@ -10,6 +10,9 @@ emacs-goodies-el (27.0-1) UNRELEASED; urgency=low
   * debian/compat thanks to Michael Olson.
   * dpkg-dev-el:
     - debian-bts-control.el: Use `C-c C-b' instead of `C-c c' (Closes: #435247).
+    - debian-changelog-model.el:
+      auto-mode-alist  for "/debian/*NEWS" files, thanks to Per Olofsson
+      (Closes: #424779).
   * emacs-goodies-el:
     - tabbar.el updated to version 2.0 and Info updated as well.
       Thanks to Michal Sojka (Closes: #435335).

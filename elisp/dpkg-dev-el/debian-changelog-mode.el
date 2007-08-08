@@ -319,6 +319,8 @@
 ;;  - Tighter regexp for finalisation string
 ;; V1.85 25Jul2007 Peter S Galbraith <psg@debian.org>
 ;;  - Adapt patch from Luca Capello <luca@pca.it> for bug #431091
+;; V1.86 08Aug2007 Peter S Galbraith <psg@debian.org>
+;;  - auto-mode-alist  for "/debian/*NEWS" files (Closes: #424779)
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1722,6 +1724,7 @@ Also set keymap."
 ;;; Setup auto-mode-alist
 ;; (in case /etc/emacs/site-start.d/50dpkg-dev.el not used)
 
+(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist
@@ -1731,6 +1734,7 @@ Also set keymap."
   ;; For debchange
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
