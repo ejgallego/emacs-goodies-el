@@ -23,10 +23,10 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el
---- /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el	Fri Apr  4 15:16:10 2003
-+++ emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el	Thu Nov 27 10:59:36 2003
-@@ -28,42 +28,119 @@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/silly-mail.el emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/silly-mail.el	2003-04-04 15:16:10.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el	2007-08-08 19:36:46.000000000 -0400
+@@ -28,42 +28,122 @@
  
  ;;; Commentary:
  
@@ -87,8 +87,12 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
 +
  ;;; Code:
  
- (require 'sendmail)
- 
+-(require 'sendmail)
++;; Try without requiring sendmail, as byte-compilations fails if
++;; /usr/bin/mail doesn't exist (Closes: #434104)
++;;
++;;(require 'sendmail)
++
 +(defgroup silly-mail nil
 +  "Generate bozotic mail headers."
 +  :group 'mail
@@ -137,7 +141,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
 +This affects headers Emacs, Microsoft and Tomato."
 +  :type 'boolean
 +  :group 'silly-mail)
-+
+ 
  (random t)
  
 -(defvar sm-mail-header-table
@@ -166,7 +170,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
    "List of routines which generate silly mail headers.
  Each element is either a symbol or a list.
  If an element is a function, that function can be called.
-@@ -72,25 +149,103 @@
+@@ -72,25 +152,103 @@
     2. A symbol naming a function required by the header-generator.
        If this function is not defined, the header-generator cannot run.
     3. The name of a library to load if the required function isn't defined.
@@ -277,7 +281,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
    (interactive)
    (let ((fns sm-mail-header-table)
          fn)
-@@ -110,7 +265,7 @@
+@@ -110,7 +268,7 @@
  
  
  (defun sm-use-header-function-p (func)
@@ -286,7 +290,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
           (let ((fn (nth 0 func))
                 (fbound-sym (nth 1 func))
                 (lib (nth 2 func)))
-@@ -120,7 +275,7 @@
+@@ -120,7 +278,7 @@
                         (load lib t)
                         (fboundp fbound-sym))
                    fn))))
@@ -295,7 +299,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  
  (defvar sm-fill-single-line-width   78)
-@@ -186,6 +341,10 @@
+@@ -186,6 +344,10 @@
        (kill-buffer buf)))
    (sm-put-header header contents))
  
@@ -306,7 +310,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  (defsubst sm-put-random-sequence-items (header sequence &optional range)
    (sm-put-header-contents header
      (apply 'sm-random-sequence-items sequence range)))
-@@ -195,17 +354,13 @@
+@@ -195,17 +357,13 @@
      items
      (concat "\n" (make-string sm-fill-indent-width ?\040))))
  
@@ -325,7 +329,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
      (while continuep
        (setq tem (sm-sequence-item sequence (random seqlen)))
        (setq newlen (+ len (length sep) (length tem)))
-@@ -231,8 +386,29 @@
+@@ -231,8 +389,29 @@
                         (goto-char (match-end 0)))))
              (delete-region beg end)))
        (insert contents)
@@ -355,7 +359,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  (put 'sm-put-header-fill-content 'lisp-indent-function 1)
  (put 'sm-put-header-contents 'lisp-indent-function 1)
  (put 'sm-put-header 'lisp-indent-function 1)
-@@ -243,9 +419,14 @@
+@@ -243,9 +422,14 @@
  (defvar sm-antipastobozoticataclysm-header
    "X-Antipastobozoticataclysm")
  
@@ -373,7 +377,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defun sm-add-antipastobozoticataclysm ()
    (interactive)
-@@ -267,8 +448,19 @@
+@@ -267,8 +451,19 @@
  
  (defvar sm-drdoom-fodder-header "X-Drdoom-Fodder")
  
@@ -395,7 +399,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defvar sm-drdoom-fodder-length-range
    (list 5 (length sm-drdoom-fodder-words)))
-@@ -285,62 +477,118 @@
+@@ -285,62 +480,118 @@
  ;; These have been contributed by people all over the network
  ;; (see the file etc/JOKES or emacs.names in the Emacs 19 distribution).
  ;; I modified some of them.
@@ -570,7 +574,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defun sm-add-emacs-name ()
    (interactive)
-@@ -353,57 +601,97 @@
+@@ -353,57 +604,97 @@
  
  (defvar sm-emacs-taunt-header "Emacs")
  
@@ -714,7 +718,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  
  ;; Add an insulting flame into your mail headers.
-@@ -446,40 +734,76 @@
+@@ -446,40 +737,76 @@
  
  (defvar sm-meat-header "X-Meat")
  
@@ -825,7 +829,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defun sm-add-meat ()
    (interactive)
-@@ -491,20 +815,32 @@
+@@ -491,20 +818,32 @@
  
  (defvar sm-microsoft-header "Microsoft")
  
@@ -869,7 +873,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
      (sm-random-sequence-item sm-microsoft-table)))
  
  
-@@ -547,8 +883,8 @@
+@@ -547,8 +886,8 @@
  
  (defvar sm-tom-swifty-header "X-Tom-Swifty")
  
@@ -880,7 +884,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
      "\"And what should you set your PS1 shell variable to?\" Tom prompted."
      "\"Any fresh fruit in the kitchen?\" Tom asked peeringly."
      "\"C++ is the wave of the future,\" Tom said objectively."
-@@ -645,7 +981,108 @@
+@@ -645,7 +984,108 @@
      "\"Who drank the last beer?\" Tom asked, hopping mad."
      "\"You have new mail,\" Tom said in his usual delivery."
      "\"You light up my life,\" Tom said brightly."
@@ -990,7 +994,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defun sm-add-tom-swifty ()
    (interactive)
-@@ -661,17 +1098,26 @@
+@@ -661,17 +1101,26 @@
  
  (defvar sm-tomato-header "Tomato")
  
@@ -1025,7 +1029,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
      (sm-random-sequence-item sm-tomato-table)))
  
  
-@@ -689,8 +1135,8 @@
+@@ -689,8 +1138,8 @@
  
  (defvar sm-x-taunt-header "X-Windows")
  
@@ -1036,7 +1040,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
      "a moment of convenience, a lifetime of regret."
      "a terminal disease."
      "all the problems and twice the bugs."
-@@ -729,8 +1175,51 @@
+@@ -729,8 +1178,51 @@
      "there's got to be a better way."
      "warn your friends about it."
      "you'd better sit down."
@@ -1090,7 +1094,7 @@ diff -urNad /home/rhogee/emacs/pkg-goodies-el/emacs-goodies-el/elisp/emacs-goodi
  
  (defun sm-add-x-taunt ()
    (interactive)
-@@ -747,6 +1236,7 @@
+@@ -747,6 +1239,7 @@
    (or (fboundp 'yow) (load "yow"))
    (sm-put-header-fill-content sm-zippy-quote-header (yow)))
  
