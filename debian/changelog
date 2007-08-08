@@ -1,4 +1,4 @@
-emacs-goodies-el (26.14-1) unstable; urgency=low
+emacs-goodies-el (26.14-1) UNRELEASED; urgency=low
   
   [ Cyril Brulebois ]
   * emacs-goodies-el:
@@ -6,7 +6,10 @@ emacs-goodies-el (26.14-1) unstable; urgency=low
     - markdown-mode.el: major mode for editing Markdown files 
       (Closes: #435485).   
 
- -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Thu, 02 Aug 2007 07:09:11 +0200
+  [ Peter S Galbraith ]
+  * debian/compat thanks to Michael Olson.
+
+ -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 17:45:58 -0400
 
 emacs-goodies-el (26.13-1) unstable; urgency=low
 
