@@ -25,7 +25,7 @@
 ;;; Commentary:
 ;;
 ;;  Use `M-x debian-bts-control' to create an initial message, and
-;;  `M-x debian-bts-control' again (or `C-c c') to insert new directives.
+;;  `M-x debian-bts-control' again (or `C-c C-b') to insert new directives.
 
 ;;; Change log:
 ;;
@@ -56,6 +56,8 @@
 ;;      (debian-bts-control-prompt): Code structure slightly redesigned.
 ;;      (debian-bts-control): Use `debian-bts-bug-number-at-point' to
 ;;      set `number-default'.
+;; V1.08 08Aug2007 Peter S Galbraith <psg@debian.org>
+;;  - Use `C-c C-b' instead of `C-c c' (Closes: #435247).
 
 ;;; Code:
 
