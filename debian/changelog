@@ -4,8 +4,11 @@ emacs-goodies-el (27.2-1) UNRELEASED; urgency=low
     - debian-bug.el: "Bugs menu gone due to missing
       debian-changelog-close-bug-statement", thanks to Bill Wohler
       (Closes: #440002).
+  * emacs-goodies-el:
+    - Bug fix: Lists packages available in emacs22 separately.
+      Thanks to Trent W. Buck (Closes: #438498).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 15:18:57 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 15:26:23 -0400
 
 emacs-goodies-el (27.1-1) unstable; urgency=low
 
