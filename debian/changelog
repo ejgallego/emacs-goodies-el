@@ -1,4 +1,4 @@
-emacs-goodies-el (27.2-1) UNRELEASED; urgency=low
+emacs-goodies-el (27.2-1) unstable; urgency=low
 
   * debian-el:
     - debian-bug.el: "Bugs menu gone due to missing
@@ -15,7 +15,7 @@ emacs-goodies-el (27.2-1) UNRELEASED; urgency=low
       outline-font-lock-level in todoo-indent-line".
       Thanks to Kumar Appaiah (Closes: #438964).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 21:58:11 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 22:01:32 -0400
 
 emacs-goodies-el (27.1-1) unstable; urgency=low
 
