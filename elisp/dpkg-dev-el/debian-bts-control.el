@@ -60,6 +60,9 @@
 ;;  - Use `C-c C-b' instead of `C-c c' (Closes: #435247).
 ;; V1.09 30Aug2007 Peter S Galbraith <psg@debian.org>
 ;;  - skip over mml directives (Closes: #392132)
+;; V1.10 30Aug2007 Peter S Galbraith <psg@debian.org>
+;;  - Add `fixed' `notfixed' `block' `unblock' `archive' `unarchive'
+;;    `found' `notfound'.  (Closes: #391647)
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -247,7 +250,9 @@ a negative prefix argument turns it off.
 (defvar debian-bts-control-alist
   '(("reassign") ("severity") ("reopen") ("submitter") ("forwarded")
     ("notforwarded") ("retitle") ("clone") ("merge") ("unmerge")
-    ("tags") ("close") ("package") ("owner") ("noowner"))
+    ("tags") ("close") ("package") ("owner") ("noowner") ("found")
+    ("notfound") ("fixed") ("notfixed") ("block") ("unblock") ("archive")
+    ("unarchive"))
   "List of available commands at control@bugs.debian.org.")
 
 (defun debian-bts-bug-number-at-point ()
@@ -612,6 +617,146 @@ in `debian-bts-control-modes-to-reuse'."
                               (concat verbose "Bug number")
 			      number-default)))
             (insert (format "close %s\n" bug-number)))))
+     ((string-equal "found" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "found bugnumber [version]
+
+    Record that #bugnumber has been encountered in the given
+    version of the package to which it is assigned.
+
+    The BTS considers a bug to be open when it has no fixed
+    version, or when it has been found more recently than it has
+    been fixed.
+
+    If no version is given, then the list of fixed versions for
+    the bug is cleared. This is identical to the behaviour of
+    reopen.
+
+    This command will only cause a bug to be marked as not done
+    if no version is specified, or if the version being marked
+    found is equal to the version which was last marked
+    fixed. (If you are certain that you want the bug marked as
+    not done, use reopen in conjunction with found.)
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (version (read-string (concat verbose "Version (if any): "))))
+        (insert (format "found %s %s\n" bug-number version))))
+     ((string-equal "notfound" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "notfound bugnumber version
+
+    Remove the record that #bugnumber was encountered in the
+    given version of the package to which it is assigned.
+
+    This differs from closing the bug at that version in that the
+    bug is not listed as fixed in that version either; no
+    information about that version will be known. It is intended
+    for fixing mistakes in the record of when a bug was found.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (version (read-string (concat verbose "Version: "))))
+        (insert (format "notfound %s %s\n" bug-number version))))
+     ((string-equal "fixed" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "fixed bugnumber version
+
+    Indicate that bug #bugnumber was fixed in the given version
+    of the package to which it is assigned.
+
+    This does not cause the bug to be marked as closed, it merely
+    adds another version in which the bug was fixed. Use the
+    bugnumber-done address to close a bug and mark it fixed in a
+    particular version.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (version (read-string (concat verbose "Version: "))))
+        (insert (format "fixed %s %s\n" bug-number version))))
+     ((string-equal "notfixed" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "notfixed bugnumber  version
+
+    Remove the record that bug #bugnumber has been fixed in the
+    given version.
+
+    This command is equivalent to found followed by notfound (the
+    found removes the fixed at a particular version, and notfound
+    removes the found.)
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (version (read-string (concat verbose "Version: "))))
+        (insert (format "notfixed %s %s\n" bug-number version))))
+     ((string-equal "block" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "block bugnumber by  bug ...
+
+    Note that the fix for the first bug is blocked by the other
+    listed bugs.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (by-bug (read-string (concat verbose "by bug number(s): "))))
+        (insert (format "block %s %s\n" bug-number by-bug))))
+     ((string-equal "unblock" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "nblock bugnumber  by bug ...
+    Note that the fix for the first bug is no longer blocked by the other listed bugs.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default))
+             (by-bug (read-string (concat verbose "by bug number(s): "))))
+        (insert (format "unblock %s %s\n" bug-number by-bug))))
+     ((string-equal "archive" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "archive bugnumber
+
+    Archives a bug that had been archived at some point in the
+    past but is currently not archived if the bug fulfills the
+    requirements for archival, ignoring time.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default)))
+        (insert (format "archive %s\n" bug-number))))
+     ((string-equal "unarchive" action)
+      (let* ((verbose (if debian-bts-control-verbose-prompts-flag
+                          "unarchive bugnumber
+
+    Unarchives a bug that was previously archived. Unarchival
+    should generally be coupled with reopen and found/fixed as
+    appropriate. Bugs that have been unarchived can be archived
+    using archive assuming the non-time based archival
+    requirements are met.
+
+"
+                        ""))
+             (bug-number (debian-bts-control-prompt
+                          (concat verbose "Bug number")
+			  number-default)))
+        (insert (format "unarchive %s\n" bug-number))))
      )))
 
 
@@ -625,7 +770,7 @@ in `debian-bts-control-modes-to-reuse'."
     earlier assignment. No notifications are sent to anyone (other than the
     usual information in the processing transcript).
 
-reopen bugnumber [    originator-address | = | ! ]
+reopen bugnumber [ originator-address | = | ! ]
 
     Reopens #bugnumber if it is closed.
 
@@ -647,6 +792,57 @@ reopen bugnumber [    originator-address | = | ! ]
     the originator. To change the originator of an open bug report, use the
     submitter command; note that this will inform the original submitter of
     the change.
+
+found bugnumber [ version ]
+
+    Record that #bugnumber has been encountered in the given
+    version of the package to which it is assigned.
+
+    The bug tracking system uses this information, in conjunction
+    with fixed versions recorded when closing bugs, to display
+    lists of bugs open in various versions of each package. It
+    considers a bug to be open when it has no fixed version, or
+    when it has been found more recently than it has been fixed.
+
+    If no version is given, then the list of fixed versions for
+    the bug is cleared. This is identical to the behaviour of
+    reopen.
+
+    This command will only cause a bug to be marked as not done
+    if no version is specified, or if the version being marked
+    found is equal to the version which was last marked
+    fixed. (If you are certain that you want the bug marked as
+    not done, use reopen in conjunction with found.)
+
+    This command was introduced in preference to reopen because
+    it was difficult to add a version to that command's syntax
+    without suffering ambiguity.
+
+notfound bugnumber version
+
+    Remove the record that #bugnumber was encountered in the
+    given version of the package to which it is assigned.
+
+    This differs from closing the bug at that version in that the
+    bug is not listed as fixed in that version either; no
+    information about that version will be known. It is intended
+    for fixing mistakes in the record of when a bug was found.
+
+fixed bugnumber version
+
+    Indicate that bug #bugnumber was fixed in the given version
+    of the package to which it is assigned.
+
+    This does not cause the bug to be marked as closed, it merely
+    adds another version in which the bug was fixed. Use the
+    bugnumber-done address to close a bug and mark it fixed in a
+    particular version.
+
+notfixed bugnumber version
+
+    Remove the record that bug #bugnumber has been fixed in the given version.
+
+    This command is equivalent to found followed by notfound (the found removes the fixed at a particular version, and notfound removes the found.)
 
 submitter bugnumber originator-address | !
 
@@ -769,6 +965,16 @@ tags bugnumber [ + | - | = ] tag
 
     For their meanings, consult the Control->Help->Tags menu.
 
+block bugnumber by  bug ...
+
+    Note that the fix for the first bug is blocked by the other
+    listed bugs.
+
+unblock bugnumber by bug ...
+
+    Note that the fix for the first bug is no longer blocked by
+    the other listed bugs.
+
 close bugnumber
 
     Close bug report #bugnumber.
@@ -815,6 +1021,20 @@ noowner bugnumber
     Forgets any idea that the bug has an owner other than the usual
     maintainer. If the bug had no owner recorded then this will do
     nothing.
+
+archive bugnumber
+
+    Archives a bug that had been archived at some point in the
+    past but is currently not archived if the bug fulfills the
+    requirements for archival, ignoring time.
+
+unarchive bugnumber
+
+    Unarchives a bug that was previously archived. Unarchival
+    should generally be coupled with reopen and found/fixed as
+    appropriate. Bugs that have been unarchived can be archived
+    using archive assuming the non-time based archival
+    requirements are met.
 
 quit
 stop

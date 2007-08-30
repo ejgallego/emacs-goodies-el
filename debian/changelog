@@ -1,3 +1,12 @@
+emacs-goodies-el (27.4-1) unstable; urgency=low
+
+  * dpkg-dev-el: 
+    - debian-bts-control.el: Added `fixed' `notfixed' `block' `unblock'
+      `archive' `unarchive' `found' `notfound'.  Thanks to intrigeri
+      (Closes: #391647).
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Aug 2007 09:27:43 -0400
+
 emacs-goodies-el (27.3-1) unstable; urgency=low
 
   * dpkg-dev-el: 
