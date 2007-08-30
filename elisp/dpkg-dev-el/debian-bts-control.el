@@ -148,9 +148,44 @@ added to the Cc: field and the comamnds added at the top of the message."
      )
     ))
 
+;;  - Add `fixed' `notfixed' `block' `unblock' `archive' `unarchive'
+;;    `found' `notfound'.  (Closes: #391647)
+
 (defvar debian-bts-control-font-lock-keywords
   '(("#.*$" .  font-lock-comment-face)
     ("^ *thank.*$" . font-lock-function-name-face)
+    ("^ *\\(found\\) +\\(-?[0-9]+\\) *\\(.*\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-string-face))
+    ("^ *\\(notfound\\) +\\(-?[0-9]+\\) +\\(.+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-string-face))
+    ("^ *\\(archive\\) +\\(-?[0-9]+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face))
+    ("^ *\\(unarchive\\) +\\(-?[0-9]+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face))
+    ("^ *\\(block\\) +\\(-?[0-9]+\\) +\\(by\\) +\\(.+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-function-name-face)
+     (4 font-lock-string-face))
+    ("^ *\\(unblock\\) +\\(-?[0-9]+\\) +\\(by\\) +\\(.+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-function-name-face)
+     (4 font-lock-string-face))
+    ("^ *\\(fixed\\) +\\(-?[0-9]+\\) +\\(.+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-string-face))
+    ("^ *\\(notfixed\\) +\\(-?[0-9]+\\) +\\(.+\\)$"
+     (1 font-lock-function-name-face)
+     (2 font-lock-type-face)
+     (3 font-lock-string-face))
     ("^ *\\(package\\)  +\\([a-z0-9\\.\\-]+\\)$"
      (1 font-lock-function-name-face)
      (2 font-lock-keyword-face nil t))
@@ -714,7 +749,7 @@ in `debian-bts-control-modes-to-reuse'."
                           (concat verbose "Bug number")
 			  number-default))
              (by-bug (read-string (concat verbose "by bug number(s): "))))
-        (insert (format "block %s %s\n" bug-number by-bug))))
+        (insert (format "block %s by %s\n" bug-number by-bug))))
      ((string-equal "unblock" action)
       (let* ((verbose (if debian-bts-control-verbose-prompts-flag
                           "nblock bugnumber  by bug ...
@@ -726,7 +761,7 @@ in `debian-bts-control-modes-to-reuse'."
                           (concat verbose "Bug number")
 			  number-default))
              (by-bug (read-string (concat verbose "by bug number(s): "))))
-        (insert (format "unblock %s %s\n" bug-number by-bug))))
+        (insert (format "unblock %s by %s\n" bug-number by-bug))))
      ((string-equal "archive" action)
       (let* ((verbose (if debian-bts-control-verbose-prompts-flag
                           "archive bugnumber
