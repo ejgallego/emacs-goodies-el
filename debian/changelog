@@ -11,8 +11,11 @@ emacs-goodies-el (27.2-1) UNRELEASED; urgency=low
       Thanks to Trent W. Buck (Closes: #438497).
     - cfengine.el: Updated to better version of cfengine.el.
       Thanks to its author, Dave Love (Closes: #377675).
+    - todoo-mode.el: Symbol function definition is void:
+      outline-font-lock-level in todoo-indent-line".
+      Thanks to Kumar Appaiah (Closes: #438964).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 21:24:33 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 21:58:11 -0400
 
 emacs-goodies-el (27.1-1) unstable; urgency=low
 
