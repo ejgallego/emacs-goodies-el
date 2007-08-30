@@ -1,3 +1,12 @@
+emacs-goodies-el (27.3-1) unstable; urgency=low
+
+  * dpkg-dev-el: 
+    - debian-bts-control.el: debian-bts-control suffers of bug #336466 and
+      doesn't skip over mml directives.
+      Thanks to Luca Capello (Closes: #392132).
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Aug 2007 08:25:26 -0400
+
 emacs-goodies-el (27.2-1) unstable; urgency=low
 
   * debian-el:

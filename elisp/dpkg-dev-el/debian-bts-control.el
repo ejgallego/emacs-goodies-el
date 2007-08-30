@@ -58,7 +58,8 @@
 ;;      set `number-default'.
 ;; V1.08 08Aug2007 Peter S Galbraith <psg@debian.org>
 ;;  - Use `C-c C-b' instead of `C-c c' (Closes: #435247).
-
+;; V1.09 30Aug2007 Peter S Galbraith <psg@debian.org>
+;;  - skip over mml directives (Closes: #392132)
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -296,6 +297,8 @@ in `debian-bts-control-modes-to-reuse'."
           (setq number-default (match-string 1)))
       (goto-char (mail-header-end))
       (forward-line 1)
+      (if (looking-at "^<#secure")      ;Skip over mml directives
+          (forward-line 1))
       (insert "thanks\n\n")
       (debian-bts-control-minor-mode 1))
      ((not debian-bts-control-minor-mode)
@@ -317,6 +320,8 @@ in `debian-bts-control-modes-to-reuse'."
           (debian-bug--set-CC debian-bug-From-address "cc:"))
       (goto-char (mail-header-end))
       (forward-line 1)
+      (if (looking-at "^<#secure")      ;Skip over mml directives
+          (forward-line 1))
       (insert "thanks\n")
       (debian-bts-control-minor-mode 1)))
     (goto-char (mail-header-end))
