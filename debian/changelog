@@ -9,8 +9,10 @@ emacs-goodies-el (27.2-1) UNRELEASED; urgency=low
       Thanks to Trent W. Buck (Closes: #438498).
     - Bug fix: "Description field typo, s/: / - /."
       Thanks to Trent W. Buck (Closes: #438497).
+    - cfengine.el: Updated to better version of cfengine.el.
+      Thanks to its author, Dave Love (Closes: #377675).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 15:29:02 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 29 Aug 2007 21:24:33 -0400
 
 emacs-goodies-el (27.1-1) unstable; urgency=low
 

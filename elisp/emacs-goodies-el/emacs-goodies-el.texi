@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.73 2007/08/08 22:24:29 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.74 2007/08/30 01:25:46 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -407,10 +407,10 @@ Ring*} buffer again.
 @node cfengine, clipper, browse-kill-ring, Top
 @chapter cfengine - major-mode for editing cfengine scripts
 
-@noindent Author: Rolf Ebert <ebert@@waporo.muc.de>
+@noindent Author: Dave Love <fx@@gnu.org>
 
-This mode is not the same as the one included in Emacs 22 and will be
-phased out eventually.
+Provides support for editing GNU Cfengine files, including
+font-locking, Imenu and indention, but with no special keybindings.
 
 @node clipper, coffee, cfengine, Top
 @chapter clipper - Save strings of data for further use.

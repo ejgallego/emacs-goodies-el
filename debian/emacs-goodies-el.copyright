@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.20 $
+| ;; $Revision: 1.21 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -149,14 +149,18 @@ Author/copyright info for browse-kill-ring.el:
 
 
 Author/copyright info for cfengine.el
+http://www.loveshack.ukfsn.org/emacs/cfengine.el
 ,----
-| ;;; cfengine.el --- An Emacs major-mode for editing cfengine scripts
-| ;;; Copyright (C) 1997 Rolf Ebert
-| 
-| ;; cfengine.el is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
+;;; cfengine.el --- mode for editing Cfengine files
+|
+|;; Copyright (C) 2003, 2004, 2005  Free Software Foundation, Inc.
+|
+|;; Author: Dave Love <fx@gnu.org>
+|
+|;; GNU Emacs is free software; you can redistribute it and/or modify
+|;; it under the terms of the GNU General Public License as published by
+|;; the Free Software Foundation; either version 2, or (at your option)
+|;; any later version.
 `----
 
 
@@ -714,7 +718,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.20 2007/08/08 21:43:45 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.21 2007/08/30 01:25:46 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -1068,7 +1072,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.20 $
+| ;; $Revision: 1.21 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
