@@ -321,6 +321,11 @@
 ;;  - Adapt patch from Luca Capello <luca@pca.it> for bug #431091
 ;; V1.86 08Aug2007 Peter S Galbraith <psg@debian.org>
 ;;  - auto-mode-alist  for "/debian/*NEWS" files (Closes: #424779)
+;; V1.87 02Sep2007 Peter S Galbraith <psg@debian.org>
+;;  - Implement pacakge lookup on http://packages.debian.org/
+;;    See http://bugs.debian.org/87725
+;;  - Patch from Luca Capello <luca@pca.it> to add keys to generate the
+;;    open bug alist.
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -602,6 +607,8 @@ Upload to " val  " anyway?")))
   (setq debian-changelog-mode-map (make-sparse-keymap))
   (define-key debian-changelog-mode-map "\C-c\C-a"
     'debian-changelog-add-entry)
+  (define-key debian-changelog-mode-map "\C-c\C-o"
+    'debian-changelog-build-open-bug-list)
   (define-key debian-changelog-mode-map "\C-c\C-b"
     'debian-changelog-close-bug)
   (define-key debian-changelog-mode-map "\C-c\C-f"
@@ -639,6 +646,7 @@ Upload to " val  " anyway?")))
    ["New Version" debian-changelog-add-version (debian-changelog-finalised-p)]
    ["Add Entry" debian-changelog-add-entry
     (not (debian-changelog-finalised-p))]
+   ["Build Open Bug List" debian-changelog-build-open-bug-list]
    ["Close Bug" debian-changelog-close-bug
     (not (debian-changelog-finalised-p))]
    "--"
@@ -689,6 +697,7 @@ Upload to " val  " anyway?")))
    ["New Version" debian-changelog-add-version (debian-changelog-finalised-p)]
    ["Add Entry" debian-changelog-add-entry
     (not (debian-changelog-finalised-p))]
+   ["Build Open Bug List" debian-changelog-build-open-bug-list]
    ["Close Bug" debian-changelog-close-bug
     (not (debian-changelog-finalised-p))]
    "--"
@@ -723,10 +732,10 @@ Upload to " val  " anyway?")))
    ["Archived Bugs for This Package" (debian-bug-web-bugs t) t]
    ["Bug Number..." (debian-bug-web-bug) t]
    ["Package Info" (debian-bug-web-packages) t]
-;; ("Package web pages..."
-;;  ["stable" (debian-bug-web-package "stable") t]
-;;  ["testing" (debian-bug-web-package "testing") t]
-;;  ["unstable" (debian-bug-web-package "unstable") t])
+   ("Package web pages..."
+    ["stable" (debian-bug-web-package "stable") t]
+    ["testing" (debian-bug-web-package "testing") t]
+    ["unstable" (debian-bug-web-package "unstable") t])
    ["Developer Page for This Package" (debian-bug-web-developer-page) t]
    ["Developer Page for This Maintainer" (debian-changelog-web-developer-page)
     t]
@@ -804,6 +813,11 @@ for the debian/changelog file to add the entry to."
 
 (defvar debian-changelog-close-bug-takes-arg t
   "A compatibility flag for debian-bug.el.")
+
+(defun debian-changelog-build-open-bug-list ()
+  "Generate open bugs list, i.e. `debian-bug-open-alist'."
+  (interactive)
+  (debian-bug-build-bug-menu (debian-changelog-suggest-package-name)))
 
 (defun debian-changelog-close-bug (bug-number)
   "Add a new change entry to close a BUG-NUMBER."
