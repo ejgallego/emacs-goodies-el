@@ -1,3 +1,13 @@
+emacs-goodies-el (27.5-1) unstable; urgency=low
+
+  * debian-el: debian-bug.el (and debian-changelog-mode.el)
+    - Implement pacakge lookup on http://packages.debian.org/
+      See http://bugs.debian.org/87725
+  * dpkg-dev-el:
+    - Patch from Luca Capello <luca@pca.it> to add keys to generate the
+      open bug alist (Closes: #430517).
+ --
+
 emacs-goodies-el (27.4-1) unstable; urgency=low
 
   * dpkg-dev-el: 
