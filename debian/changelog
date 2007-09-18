@@ -1,3 +1,12 @@
+emacs-goodies-el (27.6-1) unstable; urgency=low
+
+  * gnus-bonus-el:
+    - gnus-pers.el: "Cc-fix feature in gnus-pers is horribly broken".
+      Thanks to Elias Oltmanns for the report and the patches, and I
+      apologise for the delay in applying them! (Closes: #384209).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 17 Sep 2007 22:15:29 -0400
+
 emacs-goodies-el (27.5-1) unstable; urgency=low
 
   * debian-el: debian-bug.el (and debian-changelog-mode.el)
