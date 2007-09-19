@@ -1,3 +1,12 @@
+emacs-goodies-el (27.6-2) unstable; urgency=low
+
+  * debian-el:
+    - gnus-BTS.el: fails when clicking a bug. Thanks to Jhair Tocancipa
+      Triana and Manoj Srivastava for reports, and to Elias Oltmanns for
+      testing my fix. (Closes: #363161, #442438).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 18 Sep 2007 21:25:16 -0400
+
 emacs-goodies-el (27.6-1) unstable; urgency=low
 
   * gnus-bonus-el:
