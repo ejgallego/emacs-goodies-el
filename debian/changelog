@@ -1,11 +1,15 @@
-emacs-goodies-el (27.6-2) unstable; urgency=low
+emacs-goodies-el (27.7-1) unstable; urgency=low
 
   * debian-el:
     - gnus-BTS.el: fails when clicking a bug. Thanks to Jhair Tocancipa
       Triana and Manoj Srivastava for reports, and to Elias Oltmanns for
       testing my fix. (Closes: #363161, #442438).
+  * gnus-bonus-el:
+    - gnus-pers.el: gives newsgroup setting priority over interactive
+      choice". Thanks to Bruce Stephens and to Elias Oltmanns
+      (Closes: #263371).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 18 Sep 2007 21:25:16 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 18 Sep 2007 21:38:17 -0400
 
 emacs-goodies-el (27.6-1) unstable; urgency=low
 
