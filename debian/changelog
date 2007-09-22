@@ -1,3 +1,15 @@
+emacs-goodies-el (27.8-1) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * debian/control:
+    - Removed Roland Mas from the Uploaders upon his request.
+
+  TODO before uploading:
+   - Either put me in Uploaders, and sponsor.
+   - Or adjust the signature below and upload.
+
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Sat, 22 Sep 2007 02:29:06 +0200
+
 emacs-goodies-el (27.7-1) unstable; urgency=low
 
   * debian-el:
