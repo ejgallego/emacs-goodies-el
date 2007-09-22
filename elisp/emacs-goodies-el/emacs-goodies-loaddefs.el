@@ -1490,6 +1490,24 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 
 ;;;***
 
+;;;### (autoloads (toggle-trailing-whitespace-font-lock toggle-hardspace-font-lock
+;;;;;;  toggle-tabs-font-lock) "show-wspace" "show-wspace.el" (18164
+;;;;;;  32598))
+;;; Generated autoloads from show-wspace.el
+
+(autoload (quote toggle-tabs-font-lock) "show-wspace" "\
+Toggle highlighting of TABs, using face `pesche-tab'." t nil)
+
+(autoload (quote toggle-hardspace-font-lock) "show-wspace" "\
+Toggle highlighting of non-breaking space characters (`\240').
+Uses face `pesche-hardspace'." t nil)
+
+(autoload (quote toggle-trailing-whitespace-font-lock) "show-wspace" "\
+Toggle highlighting of trailing whitespace.
+Uses face `pesche-space'." t nil)
+
+;;;***
+
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
 ;;;;;;  "silly-mail.el" (18097 34334))
 ;;; Generated autoloads from silly-mail.el

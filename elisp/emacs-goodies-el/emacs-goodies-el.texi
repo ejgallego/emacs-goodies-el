@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.74 2007/08/30 01:25:46 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.75 2007/09/22 23:31:40 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -127,6 +127,7 @@ be documented.
 * session::                     Session Management for Emacs
 * setnu::                       vi-style line number mode for Emacs
 * shell-command::               Enables tab-completion for `shell-command'
+* show-wspace::                 Highlight whitespaces of various kinds
 * slang-mode::                  Major-mode for editing slang scripts
 * silly-mail::                  Generate bozotic mail headers
 * sys-apropos::                 Interface for the *nix apropos command
@@ -3350,7 +3351,7 @@ to automatically turn on line numbering when enterting text-mode."
 You may customize the group @code{setnu} and customize the face
 @code{setnu-line-number-face} to change the appearance of the line numbers.
 
-@node shell-command, slang-mode, setnu, Top
+@node shell-command, show-wspace, setnu, Top
 @chapter shell-command - enables tab-completion for `shell-command'
 
 @noindent Author: TSUCHIYA Masatoshi <tsuchiya@@namazu.org>
@@ -3379,7 +3380,42 @@ Note that setup has changed since Debian sarge for which the function
 to call was @code{shell-command-activate-advices} and the variable to
 customize was @code{shell-command-enable-completions}.
 
-@node slang-mode, silly-mail, shell-command, Top
+@node show-wspace, slang-mode, shell-command, Top
+@chapter show-wspace - highlight whitespaces of various kinds.
+
+You can use commands `toggle-*' (see below) to turn the various kinds
+of whitespace highlighting on and off in Font-Lock mode.
+
+If you want to always use a particular kind of whitespace
+highlighting, by default, then add the corresponding `highlight-*'
+command (see below) to the hook `font-lock-mode-hook'.  Then, whenever
+Font-Lock mode is turned on, so will the whitespace highlighting.
+
+For example, you can turn on tab highlighting by default by adding
+command `highlight-tabs' to `font-lock-mode-hook' in your .emacs file,
+as follows:
+
+@example
+    (add-hook 'font-lock-mode-hook 'highlight-tabs)
+@end example
+
+Faces:
+    `pesche-hardspace', `pesche-space', `pesche-tab'.
+
+Commands:
+    `toggle-hardspace-font-lock', `toggle-tabs-font-lock',
+    `toggle-trailing-whitespace-font-lock'.
+
+Non-interactive functions:
+    `highlight-hard-spaces', `highlight-tabs',
+    `highlight-trailing-whitespace'.
+
+Internal variables defined here:
+    `highlight-hard-spaces-p', `highlight-tabs-p',
+    `highlight-trailing-whitespace-p'.
+
+
+@node slang-mode, silly-mail, show-wspace, Top
 @chapter slang-mode - a major-mode for editing slang scripts.
 
 @noindent Authors: Gregor Schmid <schmid@@fb3-s7.math.tu-berlin.de>, Joe Robertson <jmrobert@@sbcs.com>

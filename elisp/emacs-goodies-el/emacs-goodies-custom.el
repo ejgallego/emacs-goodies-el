@@ -441,6 +441,27 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :load 'shell-command
   :group 'emacs-goodies-el)
 
+;; show-wspace
+(defgroup Show-Whitespace nil
+  "Highlight whitespace of various kinds."
+  :group 'convenience :group 'matching
+  :link `(url-link :tag "Send Bug Report"
+          ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=\
+show-wspace.el bug: \
+&body=Describe bug here, starting with `emacs -q'.  \
+Don't forget to mention your Emacs and library versions."))
+  :link '(url-link :tag "Other Libraries by Drew"
+          "http://www.emacswiki.org/cgi-bin/wiki/DrewsElispLibraries")
+  :link '(url-link :tag "Download"
+          "http://www.emacswiki.org/cgi-bin/wiki/show-wspace.el")
+  :link '(url-link :tag "Description"
+          "http://www.emacswiki.org/cgi-bin/wiki/ShowWhiteSpace#ShowWspace")
+  :link '(emacs-commentary-link :tag "Commentary" "show-wspace")
+  :load 'show-wspace
+  :group 'emacs-goodies-el
+  )
+
+
 (defgroup slang nil
   "Major mode for editing slang code."
   :prefix "slang-"
