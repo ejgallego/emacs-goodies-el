@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.75 2007/09/22 23:31:40 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.76 2007/09/22 23:57:15 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3399,21 +3399,33 @@ as follows:
     (add-hook 'font-lock-mode-hook 'highlight-tabs)
 @end example
 
-Faces:
-    `pesche-hardspace', `pesche-space', `pesche-tab'.
+@noindent Faces:
+@itemize
+@item pesche-hardspace
+@item pesche-space
+@item pesche-tab
+@end itemize
 
-Commands:
-    `toggle-hardspace-font-lock', `toggle-tabs-font-lock',
-    `toggle-trailing-whitespace-font-lock'.
+@noindent Commands:
+@itemize
+@item toggle-hardspace-font-lock
+@item toggle-tabs-font-lock
+@item toggle-trailing-whitespace-font-lock
+@end itemize
 
-Non-interactive functions:
-    `highlight-hard-spaces', `highlight-tabs',
-    `highlight-trailing-whitespace'.
+@noindent Non-interactive functions:
+@itemize
+@item highlight-hard-spaces
+@item highlight-tabs
+@item highlight-trailing-whitespace
+@end itemize
 
-Internal variables defined here:
-    `highlight-hard-spaces-p', `highlight-tabs-p',
-    `highlight-trailing-whitespace-p'.
-
+@noindent Internal variables:
+@itemize
+@item highlight-hard-spaces-p
+@item highlight-tabs-p
+@item highlight-trailing-whitespace-p
+@end itemize
 
 @node slang-mode, silly-mail, show-wspace, Top
 @chapter slang-mode - a major-mode for editing slang scripts.
