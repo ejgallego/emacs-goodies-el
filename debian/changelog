@@ -3,6 +3,10 @@ emacs-goodies-el (27.8-1) unstable; urgency=low
   [ Cyril Brulebois ]
   * debian/control:
     - Removed Roland Mas from the Uploaders upon his request.
+  * emacs-goodies-el:
+    New file:
+    - show-wspace.el: highlights whitespaces of various kinds.
+      (Closes: #422876).
 
   TODO before uploading:
    - Either put me in Uploaders, and sponsor.

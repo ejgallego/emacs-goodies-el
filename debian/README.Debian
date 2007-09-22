@@ -265,6 +265,8 @@ shell-command.el is an an enhancement for shell-command, enabling
 tab-completion of commands and dir/filenames within the shell-command input
 context.
 
+show-wspace.el is a minor mode to highlight whitespaces of various kinds.
+
 slang-mode.el is a major mode for editing Slang files.
 
 silly-mail.el provides M-x add-sm-* commands to add various headers to

@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.21 $
+| ;; $Revision: 1.22 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -718,7 +718,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.21 2007/08/30 01:25:46 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.22 2007/09/22 22:54:55 kibi-guest Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -956,6 +956,21 @@ Author/copyright info for shell-command.el:
 `----
 
 
+Author/copyright info for show-wspace.el:
+,----
+| ;;; show-wspace.el --- Highlight whitespace of various kinds.
+|
+| ;; Author: Peter Steiner <unistein@isbe.ch>, Drew Adams
+| ;; Maintainer: Drew Adams
+| ;; Copyright (C) 2000-2007, Drew Adams, all rights reserved.
+| ;; [...]
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation; either version 2, or (at your option)
+| ;; any later version.
+`---
+
+
 Author/copyright info for silly-mail.el:
 ,----
 | ;;; silly-mail.el --- generate bozotic mail headers
@@ -1072,7 +1087,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.21 $
+| ;; $Revision: 1.22 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

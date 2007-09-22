@@ -74,6 +74,7 @@ Description: Miscellaneous add-ons for Emacs
   session - menu to restore files visited in previous editing session;
   setnu - setnu-mode, a vi-style line number mode;
   shell-command - enables tab-completion for shell-command;
+  show-wspace - highlight whitespaces of various kinds;
   silly-mail - generate bozotic mail headers;
   slang-mode.el - a major-mode for editing slang scripts;
   sys-apropos - interface for the *nix apropos command;
