@@ -8,7 +8,13 @@ emacs-goodies-el (28.0-1) unstable; urgency=low
     - show-wspace.el: highlights whitespaces of various kinds.
       Thanks to Lennart Poettering for the suggestion (Closes: #422876).
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 23 Sep 2007 20:30:57 -0400
+  [ Peter S Galbraith ]
+  * debian-el:
+    - gnus.BTS.el: Implement "reading bugs as mail instead of in browser".
+      Thanks to Johannes Rohr for the report and to intrigeri for the patch
+      (Closes: #218286).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 19:27:19 -0400
 
 emacs-goodies-el (27.7-1) unstable; urgency=low
 
