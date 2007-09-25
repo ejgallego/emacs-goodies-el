@@ -13,8 +13,11 @@ emacs-goodies-el (28.0-1) unstable; urgency=low
     - gnus.BTS.el: Implement "reading bugs as mail instead of in browser".
       Thanks to Johannes Rohr for the report and to intrigeri for the patch
       (Closes: #218286).
+  * emacs-goodies-el:
+    - cwebm.el: Blank out the contents of cwebm.el, whose license is not
+      compatible with Emacs.
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 19:27:19 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 19:55:56 -0400
 
 emacs-goodies-el (27.7-1) unstable; urgency=low
 
