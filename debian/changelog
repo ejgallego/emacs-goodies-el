@@ -1,3 +1,12 @@
+emacs-goodies-el (28.1-1) unstable; urgency=low
+
+  * emacs-goodies-el:
+    - xrdm-mode.el: Added pointer to `xrdb-mode-setup-auto-mode-alist'
+      customization to enable this feature in both Info file and
+      README.Debian. .  Thanks to Reuben Thomas (Closes: #411434).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 20:54:42 -0400
+
 emacs-goodies-el (28.0-1) unstable; urgency=low
 
   [ Cyril Brulebois ]

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.76 2007/09/22 23:57:15 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.77 2007/09/25 00:56:58 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -4622,5 +4622,6 @@ This file provides a major mode for editing X resource database files
 definitions and commands for controlling indentation, re-indenting by
 subdivisions, and loading and merging into the the resource database.
 
-The mode should load automatically for appropriate files, or invoke it
+The mode should load automatically for appropriate files after having
+customized @code{xrdb-mode-setup-auto-mode-alist}, or invoke it
 using @command{xrdb-mode}.

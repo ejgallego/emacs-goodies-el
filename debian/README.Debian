@@ -325,7 +325,8 @@ buffer) and allows you to edit the filenames and permission bits
 easily.
 
 xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
-resource database files.  To use it, simple open a file named
-.Xdefaults, .Xenvironment, .Xresources or *.ad.
+resource database files.  To use it, simple open a file named .Xdefaults,
+.Xenvironment, .Xresources or *.ad after having enabled it by customising
+`xrdb-mode-setup-auto-mode-alist'.
 
- -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>, Thu,  2 Aug 2007 06:56:40 +0200
+ -- Peter S Galbraith <psg@debian.org>, Mon, 24 Sep 2007 20:48:57 -0400
