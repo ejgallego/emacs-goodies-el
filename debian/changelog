@@ -18,8 +18,10 @@ emacs-goodies-el (28.0-1) unstable; urgency=low
   * emacs-goodies-el:
     - cwebm.el: Blank out the contents of cwebm.el, whose license is not
       compatible with Emacs.
+    - rfcview.el: Add hyperlinks for rfcview.el patch from Dave Love
+      (Closes: #377678).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 19:55:56 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 24 Sep 2007 20:36:30 -0400
 
 emacs-goodies-el (27.7-1) unstable; urgency=low
 
