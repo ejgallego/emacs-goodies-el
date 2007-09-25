@@ -13,6 +13,8 @@ emacs-goodies-el (28.0-1) unstable; urgency=low
     - gnus.BTS.el: Implement "reading bugs as mail instead of in browser".
       Thanks to Johannes Rohr for the report and to intrigeri for the patch
       (Closes: #218286).
+    - debian-bug.el: Add `debian-bug-get-bug-as-email-hook' and relative
+      `run-hooks' patch from Luca Capello (Closes: #392475) 
   * emacs-goodies-el:
     - cwebm.el: Blank out the contents of cwebm.el, whose license is not
       compatible with Emacs.
