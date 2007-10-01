@@ -5,6 +5,10 @@ emacs-goodies-el (28.2-1) unstable; urgency=low
     Updated file:
     - show-wspace.el: upstream has added a `show-ws-' prefix to improve
       semantics and avoid namespace clash.
+  * dpkg-dev-el:
+    Updated file:
+    - debian-control-mode.el: added `Homepage' to the list of the valid fields
+      for the source packages.
 
  -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Mon, 01 Oct 2007 16:47:02 +0200
 

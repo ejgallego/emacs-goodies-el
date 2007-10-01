@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 0.9
-;; X-RCS: $Id: debian-control-mode.el,v 1.9 2005/11/23 02:37:02 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.10 2007/10/01 18:45:03 kibi-guest Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -151,7 +151,8 @@
 
 (defvar debian-control-source-fields
   '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
-    "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders")
+    "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders"
+    "Homepage")
   "Valid source package field names, collected from several policy sections.")
 
 (defvar debian-control-binary-fields
