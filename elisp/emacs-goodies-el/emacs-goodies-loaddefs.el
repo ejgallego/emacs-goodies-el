@@ -1490,21 +1490,27 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 
 ;;;***
 
-;;;### (autoloads (toggle-trailing-whitespace-font-lock toggle-hardspace-font-lock
-;;;;;;  toggle-tabs-font-lock) "show-wspace" "show-wspace.el" (18164
-;;;;;;  32598))
+;;;### (autoloads (show-ws-toggle-show-trailing-whitespace show-ws-toggle-show-hard-spaces
+;;;;;;  show-ws-toggle-show-tabs) "show-wspace" "show-wspace.el"
+;;;;;;  (18176 64695))
 ;;; Generated autoloads from show-wspace.el
 
-(autoload (quote toggle-tabs-font-lock) "show-wspace" "\
-Toggle highlighting of TABs, using face `pesche-tab'." t nil)
+(defalias (quote toggle-show-tabs-show-ws) (quote show-ws-toggle-show-tabs))
 
-(autoload (quote toggle-hardspace-font-lock) "show-wspace" "\
+(autoload (quote show-ws-toggle-show-tabs) "show-wspace" "\
+Toggle highlighting of TABs, using face `show-ws-tab'." t nil)
+
+(defalias (quote toggle-show-hard-spaces-show-ws) (quote show-ws-toggle-show-hard-spaces))
+
+(autoload (quote show-ws-toggle-show-hard-spaces) "show-wspace" "\
 Toggle highlighting of non-breaking space characters (`\240').
-Uses face `pesche-hardspace'." t nil)
+Uses face `show-ws-hard-space'." t nil)
 
-(autoload (quote toggle-trailing-whitespace-font-lock) "show-wspace" "\
+(defalias (quote toggle-show-trailing-whitespace-show-ws) (quote show-ws-toggle-show-trailing-whitespace))
+
+(autoload (quote show-ws-toggle-show-trailing-whitespace) "show-wspace" "\
 Toggle highlighting of trailing whitespace.
-Uses face `pesche-space'." t nil)
+Uses face `show-ws-trailing-whitespace'." t nil)
 
 ;;;***
 
