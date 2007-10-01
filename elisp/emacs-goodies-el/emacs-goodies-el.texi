@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.78 2007/10/01 14:45:27 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.79 2007/10/01 15:45:07 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3396,6 +3396,7 @@ command `show-ws-highlight-tabs' to `font-lock-mode-hook' in your
 .emacs file, as follows:
 
 @example
+    (require 'show-wspace)
     (add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
 @end example
 
