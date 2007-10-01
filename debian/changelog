@@ -9,6 +9,11 @@ emacs-goodies-el (28.2-1) unstable; urgency=low
     Updated file:
     - debian-control-mode.el: added `Homepage' to the list of the valid fields
       for the source packages.
+    - debian-control-mode.el: added `XS-Vcs-Browser' and `XS-Vcs-*' to the
+      list of the valid fields for the source packages. The list of valid *
+      has been taken from:
+        http://svn.debian.org/wsvn/qa/trunk/pts/www/bin/common.py?op=file
+      Patch contributed by Rafael Laboissiere (Closes: #422491).
 
  -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Mon, 01 Oct 2007 16:47:02 +0200
 

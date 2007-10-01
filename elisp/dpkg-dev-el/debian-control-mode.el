@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 0.9
-;; X-RCS: $Id: debian-control-mode.el,v 1.10 2007/10/01 18:45:03 kibi-guest Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.11 2007/10/01 19:05:22 kibi-guest Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,11 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V1.0 (2007-10-01)  Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>
+;; - Add "Homepage" field to source fields.
+;; - Add "XS-Vcs-*" fields to source fields, patch contributed by
+;;   Rafael Laboissiere <rafael@debian.org> (Closes: #422491).
 
 ;; V0.9 (2005-11-22)  Peter S Galbraith <psg@debian.org>
 ;; - Make # the comment character. (Closes: #339868)
@@ -149,10 +154,19 @@
 
 (defvar debian-control-mode-package-name-keymap (make-sparse-keymap))
 
+;; An uptodate list can be found at:
+;;   http://svn.debian.org/wsvn/qa/trunk/pts/www/bin/common.py?op=file
+(defvar debian-control-vcs-names
+  '("Arch" "Bzr" "Cvs" "Darcs" "Git" "Hg" "Mtn" "Svn")
+  "Valid VCS names for the XS-Vcs-* field.")
+
 (defvar debian-control-source-fields
+  (append
   '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
-    "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders"
-    "Homepage")
+     "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders"
+     "Homepage" "XS-Vcs-Browser")
+   (mapcar (lambda (elt) (concat "XS-Vcs-" elt))
+           debian-control-vcs-names))
   "Valid source package field names, collected from several policy sections.")
 
 (defvar debian-control-binary-fields
