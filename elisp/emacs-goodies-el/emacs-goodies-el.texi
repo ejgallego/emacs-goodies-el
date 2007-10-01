@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.77 2007/09/25 00:56:58 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.78 2007/10/01 14:45:27 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3383,8 +3383,8 @@ customize was @code{shell-command-enable-completions}.
 @node show-wspace, slang-mode, shell-command, Top
 @chapter show-wspace - highlight whitespaces of various kinds.
 
-You can use commands `toggle-*' (see below) to turn the various kinds
-of whitespace highlighting on and off in Font-Lock mode.
+You can use commands `show-ws-toggle-*' (see below) to turn the
+various kinds of whitespace highlighting on and off in Font-Lock mode.
 
 If you want to always use a particular kind of whitespace
 highlighting, by default, then add the corresponding `highlight-*'
@@ -3392,39 +3392,42 @@ command (see below) to the hook `font-lock-mode-hook'.  Then, whenever
 Font-Lock mode is turned on, so will the whitespace highlighting.
 
 For example, you can turn on tab highlighting by default by adding
-command `highlight-tabs' to `font-lock-mode-hook' in your .emacs file,
-as follows:
+command `show-ws-highlight-tabs' to `font-lock-mode-hook' in your
+.emacs file, as follows:
 
 @example
-    (add-hook 'font-lock-mode-hook 'highlight-tabs)
+    (add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
 @end example
 
 @noindent Faces:
 @itemize
-@item pesche-hardspace
-@item pesche-space
-@item pesche-tab
+@item show-ws-hard-space
+@item show-ws-tab
+@item show-ws-trailing-whitespace
 @end itemize
 
 @noindent Commands:
 @itemize
-@item toggle-hardspace-font-lock
-@item toggle-tabs-font-lock
-@item toggle-trailing-whitespace-font-lock
+@item show-ws-toggle-show-hard-spaces
+@item show-ws-toggle-show-tabs
+@item show-ws-toggle-show-trailing-whitespace
+@item toggle-show-hard-spaces-show-ws (alias)
+@item toggle-show-tabs-show-ws (alias)
+@item toggle-show-trailing-whitespace-show-ws (alias)
 @end itemize
 
 @noindent Non-interactive functions:
 @itemize
-@item highlight-hard-spaces
-@item highlight-tabs
-@item highlight-trailing-whitespace
+@item show-ws-highlight-hard-spaces
+@item show-ws-highlight-tabs
+@item show-ws-highlight-trailing-whitespace
 @end itemize
 
 @noindent Internal variables:
 @itemize
-@item highlight-hard-spaces-p
-@item highlight-tabs-p
-@item highlight-trailing-whitespace-p
+@item show-ws-highlight-hard-spaces-p
+@item show-ws-highlight-tabs-p
+@item show-ws-highlight-trailing-whitespace-p
 @end itemize
 
 @node slang-mode, silly-mail, show-wspace, Top

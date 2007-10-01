@@ -444,6 +444,7 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;; show-wspace
 (defgroup Show-Whitespace nil
   "Highlight whitespace of various kinds."
+  :prefix "show-ws-"
   :group 'convenience :group 'matching
   :link `(url-link :tag "Send Bug Report"
           ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=\
@@ -461,7 +462,7 @@ Don't forget to mention your Emacs and library versions."))
   :group 'emacs-goodies-el
   )
 
-
+;; slang-mode
 (defgroup slang nil
   "Major mode for editing slang code."
   :prefix "slang-"
