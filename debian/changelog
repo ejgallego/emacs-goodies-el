@@ -1,9 +1,12 @@
-emacs-goodies-el (28.3-1) unstable; urgency=low
+emacs-goodies-el (28.3-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
     - htmlize.el: Updated file to V1.34 (Thanks to S.P. Tseng).
- 
- -- Peter S Galbraith <psg@debian.org>  Sat, 06 Oct 2007 12:08:03 -0400
+  * debian-el:
+    - apt-utils.el: "suggest apt-utils-show-package defer package name
+      completions", thanks to Kevin Ryde and Matt Hodges (Closes: #442425).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 09 Oct 2007 20:16:40 -0400
 
 emacs-goodies-el (28.2-1) unstable; urgency=low
 
