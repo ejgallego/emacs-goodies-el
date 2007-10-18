@@ -1,10 +1,18 @@
 emacs-goodies-el (28.3-1) UNRELEASED; urgency=low
 
+  [ Peter S Galbraith ]
   * emacs-goodies-el:
     - htmlize.el: Updated file to V1.34 (Thanks to S.P. Tseng).
   * debian-el:
     - apt-utils.el: "suggest apt-utils-show-package defer package name
       completions", thanks to Kevin Ryde and Matt Hodges (Closes: #442425).
+
+  [ Cyril Brulebois ]
+  * emacs-goodies-el:
+    - markdown-mode.el: Updated file to V1.5.
+  * dpkg-dev-el:
+    - debian-control-mode.el: Renamed `XS-Vcs-*' into `Vcs-*' since these
+      fields are now recognized by dpkg (since 1.14.7).
 
  -- Peter S Galbraith <psg@debian.org>  Tue, 09 Oct 2007 20:16:40 -0400
 
