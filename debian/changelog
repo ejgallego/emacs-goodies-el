@@ -1,8 +1,11 @@
-emacs-goodies-el (28.3-1) UNRELEASED; urgency=low
+emacs-goodies-el (28.3-1) unstable; urgency=low
 
   [ Peter S Galbraith ]
   * emacs-goodies-el:
     - htmlize.el: Updated file to V1.34 (Thanks to S.P. Tseng).
+    - todoo.el: Symbol's function definition is void:
+      outline-font-lock-level", I had forgotten an instance of that old
+      function. Thanks to Jens Thiele and Sven Joachim (Closes: #447760).
   * debian-el:
     - apt-utils.el: "suggest apt-utils-show-package defer package name
       completions", thanks to Kevin Ryde and Matt Hodges (Closes: #442425).
@@ -14,7 +17,7 @@ emacs-goodies-el (28.3-1) UNRELEASED; urgency=low
     - debian-control-mode.el: Renamed `XS-Vcs-*' into `Vcs-*' since these
       fields are now recognized by dpkg (since 1.14.7).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 09 Oct 2007 20:16:40 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 23 Oct 2007 20:31:24 -0400
 
 emacs-goodies-el (28.2-1) unstable; urgency=low
 
