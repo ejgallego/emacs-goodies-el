@@ -1377,7 +1377,15 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (18097 34336))
+;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (18252 12261))
+;;; Generated autoloads from pod-mode.el
+
+(autoload (quote pod-mode) "pod-mode" "\
+Major mode for editing POD files (Plain Old Documentation for Perl)." t nil)
+
+;;;***
+
+;;;### (autoloads (project-add) "projects" "projects.el" (18252 12219))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
