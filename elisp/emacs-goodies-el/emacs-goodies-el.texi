@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.79 2007/10/01 15:45:07 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.80 2007/11/28 00:46:26 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -119,6 +119,7 @@ be documented.
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
 * pack-windows::                Resize windows to display maximal information
 * perldoc::                     Show help for Perl functions and modules
+* pod-mode::                    Major mode for editing POD files
 * projects::                    Project-based buffer name management
 * protbuf::                     Protect buffers from accidental killing
 * protocols::                   Protocol database access functions
@@ -3045,7 +3046,7 @@ really performed will be displayed in the echo area if
 @code{pack-windows-verbose} is non-nil.  These two variables can be
 customized with @command{M-x customize-group pack-windows}.
 
-@node perldoc, projects, pack-windows, Top
+@node perldoc, pod-mode, pack-windows, Top
 @chapter perldoc - Show help for Perl functions, builtins, and modules.
 
 @noindent Author: Steve Kemp <skx@@tardis.ed.ac.uk>
@@ -3059,7 +3060,14 @@ the key @key{F1} to show point for the item under point in
 
 The code handles functions, builtins, and third party modules.
 
-@node projects, protbuf, perldoc, Top
+@node pod-mode, projects, perldoc, Top
+@chapter pod-mode - major-mode for editing Plain Old Documentation files
+
+@noindent Author: Steffen Schwigon <schwigon@webit.de>
+
+Provides font-locking for editing POD (Plain Old Documentation) files.
+
+@node projects, protbuf, pod-mode, Top
 @chapter projects - Project-based buffer name management
 
 @noindent Author: Erik Naggum <erik@@naggum.no>

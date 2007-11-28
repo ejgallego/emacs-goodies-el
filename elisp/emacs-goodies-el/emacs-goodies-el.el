@@ -238,6 +238,10 @@ in `substitute-in-file-name'."
 ;; muttrc-mode.el
 (add-to-list 'auto-mode-alist '("muttrc" . muttrc-mode))
 
+
+;; pod-mode.el
+(add-to-list 'auto-mode-alist '("\\.pod$" . pod-mode))
+
 ;; rfcview
 (add-to-list 'auto-mode-alist
              '("/rfc[0-9]+\\.txt\\(\\.gz\\)?\\'" . rfcview-mode))
