@@ -1,3 +1,17 @@
+emacs-goodies-el (28.4-1) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * debian/changelog:
+    - Converted to UTF-8.
+    - Deleted local variables at the end, Emacs shouldn't need this any
+      longer.
+    - Nuked trailing spaces at the same time.
+  * emacs-goodies-el:
+    - pod-mode.el: Added file (version 0.4), as suggested by
+      Emmanuel Bouthenot (Closes: #452857).
+
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Wed, 28 Nov 2007 02:09:36 +0100
+
 emacs-goodies-el (28.3-1) unstable; urgency=low
 
   [ Peter S Galbraith ]
@@ -63,7 +77,7 @@ emacs-goodies-el (28.0-1) unstable; urgency=low
       Thanks to Johannes Rohr for the report and to intrigeri for the patch
       (Closes: #218286).
     - debian-bug.el: Add `debian-bug-get-bug-as-email-hook' and relative
-      `run-hooks' patch from Luca Capello (Closes: #392475) 
+      `run-hooks' patch from Luca Capello (Closes: #392475)
   * emacs-goodies-el:
     - cwebm.el: Blank out the contents of cwebm.el, whose license is not
       compatible with Emacs.
@@ -107,7 +121,7 @@ emacs-goodies-el (27.5-1) unstable; urgency=low
 
 emacs-goodies-el (27.4-1) unstable; urgency=low
 
-  * dpkg-dev-el: 
+  * dpkg-dev-el:
     - debian-bts-control.el: Added `fixed' `notfixed' `block' `unblock'
       `archive' `unarchive' `found' `notfound'.  Thanks to intrigeri
       (Closes: #391647).
@@ -116,7 +130,7 @@ emacs-goodies-el (27.4-1) unstable; urgency=low
 
 emacs-goodies-el (27.3-1) unstable; urgency=low
 
-  * dpkg-dev-el: 
+  * dpkg-dev-el:
     - debian-bts-control.el: debian-bts-control suffers of bug #336466 and
       doesn't skip over mml directives.
       Thanks to Luca Capello (Closes: #392132).
@@ -151,18 +165,18 @@ emacs-goodies-el (27.1-1) unstable; urgency=low
  -- Peter S Galbraith <psg@debian.org>  Wed, 08 Aug 2007 19:42:02 -0400
 
 emacs-goodies-el (27.0-1) unstable; urgency=low
-  
+
   [ Cyril Brulebois ]
   * emacs-goodies-el:
     New file:
-    - markdown-mode.el: major mode for editing Markdown files 
-      (Closes: #435485).   
+    - markdown-mode.el: major mode for editing Markdown files
+      (Closes: #435485).
 
   [ Peter S Galbraith ]
   * debian/compat thanks to Michael Olson.
   * debian-el:
     - /etc/emacs/site-start.d/51debian-el.el: Typo: debian-el-el,
-      thanks to Josh Triplett (Closes: #427770).  
+      thanks to Josh Triplett (Closes: #427770).
   * dpkg-dev-el:
     - debian-bts-control.el: Use `C-c C-b' instead of `C-c c' (Closes: #435247).
     - debian-changelog-model.el:
@@ -213,7 +227,7 @@ emacs-goodies-el (26.12-1) unstable; urgency=low
     emacs22 with similar exceptions as emacs-snapshot.
 
  -- Peter S Galbraith <psg@debian.org>  Fri, 20 Jul 2007 10:14:25 -0400
-  
+
 emacs-goodies-el (26.11-1) unstable; urgency=low
 
   * dpkg-dev-el:
@@ -228,17 +242,17 @@ emacs-goodies-el (26.11-1) unstable; urgency=low
      Thanks to Kevin Ryde (Closes: #420845).
 
  -- Peter S Galbraith <psg@debian.org>  Mon, 14 May 2007 19:26:43 -0400
-  
+
 emacs-goodies-el (26.10-1) unstable; urgency=low
 
   [ Junichi Uekawa ]
-  * dpkg-dev-el: 
-    - debian-changelog-mode.el: support co-maintainers. If previous 
-      maintainer editing the entry is different from the current, an 
+  * dpkg-dev-el:
+    - debian-changelog-mode.el: support co-maintainers. If previous
+      maintainer editing the entry is different from the current, an
       entry of the form '[ NAME ]' is created.
       Thanks to Luca Capello (Closes: #352957).
   * debian-el:
-    - fix debian-bug.el (debian-bug-build-bug-menu) to work with new 
+    - fix debian-bug.el (debian-bug-build-bug-menu) to work with new
       BTS output format.
   [ Peter S Galbraith ]
   * gnus-bonus-el:
@@ -295,7 +309,7 @@ emacs-goodies-el (26.7-1) unstable; urgency=low
     - debian-changelog-mode.el: Does not support bugs with only e-mail
       address and no full name. (Closes: #380217).
   By Peter S Galbraith <psg@debian.org>:
-  * debian-el:      
+  * debian-el:
     - apt-utils.el: New upstream release 2.8.0:
     - debian-bug.el: Bug fix: "debian-el: debian-bug-prompt-bug-number
       missing word-at-point", thanks to Kevin Ryde (Closes: #384542).
@@ -309,7 +323,7 @@ emacs-goodies-el (26.6-1) unstable; urgency=low
 
   * dpkg-dev-el:
     - readme-debian.el: (Changed by Junichi Uekawa <dancer@debian.org>)
-      set locale to C for obtaining rfc822-style date, follow-up for 
+      set locale to C for obtaining rfc822-style date, follow-up for
       fix for 351010. (closes: #364770)
     - remove duplicate add-to-list for auto-load-alist.
       (Changed by Junichi Uekawa <dancer@debian.org>)
@@ -498,7 +512,7 @@ emacs-goodies-el (24.15-1) unstable; urgency=low
   * gnus-bonus-el:
     - no longer add /usr/share/emacs/site-lisp/gnus-bonus-el to load-path
       since that shadows emacs-snapshot packages nnnil.el and spam-stat.el
-    - skip byte-compilation for unsupported emacs20.  Thanks to Thomas 
+    - skip byte-compilation for unsupported emacs20.  Thanks to Thomas
       Bushnell BSG for reporting it and noticing the Emacs20 involvement.
       (Closes: #329430).
   * emacs-goodies-el:
@@ -524,7 +538,7 @@ emacs-goodies-el (24.13-1) unstable; urgency=low
     - debian-bug.el: debian-bug-build-bug-menu was broken from BTS HTML
       format changes (Closes: #329034).
     - gnus-BTS.el:  Minor bug fix preventing byte-compilation on
-      emacs-snapshot. 
+      emacs-snapshot.
   * dpkg-dev-el:
     - Handle changelog coding system for debian native package, by Kevin
       Ryde (Closes: #317597).
@@ -548,10 +562,10 @@ emacs-goodies-el (24.12-1) unstable; urgency=low
     Thanks to Kevin Ryde for finding this and reporting it! (Closes: #328712)
   * emacs-goodies-el:
     - newsticker.el: new upstream version 1.8
-    - ff-paths.el: new upstream version 3.23    
+    - ff-paths.el: new upstream version 3.23
     - emacs-goodies-el.el: Double entry in Dired menu on Emacs 22 fixed by
       Sven Joachim (Closes: #323754)
-    - perldoc.el: Apply patch from Kevin Ryde for when perldoc package is 
+    - perldoc.el: Apply patch from Kevin Ryde for when perldoc package is
       not installed. (Closes: #314869)
   * devscripts-el: (Changed by Junichi Uekawa <dancer@debian.org>)
     - minor cosmetic fix on output of pbuilder-build command; add a missing
@@ -692,11 +706,11 @@ emacs-goodies-el (24.6-1) unstable; urgency=low
 
 emacs-goodies-el (24.5-1) unstable; urgency=low
 
-  * debian/control: Added Jérôme Marant <jerome@debian.org> to uploaders.
+  * debian/control: Added JÃ©rÃ´me Marant <jerome@debian.org> to uploaders.
   * debian/changelog: Converted to UTF-8 as per Policy.
   * debian/emacsen-install.template: Since dashes are not allowed in
     flavour names within shell variables, replace them with underline
-    characters. (Jérôme Marant).
+    characters. (JÃ©rÃ´me Marant).
   * dpkg-dev-el:
     - debian-changelog-mode.el: "dpkg-dev-el: Warning message for security
       uploads should be dismissed".  Thanks to Martin Schulze (Closes: #234730)
@@ -711,7 +725,7 @@ emacs-goodies-el (24.4-1) unstable; urgency=low
     - debian-control-mode.el: Apply patch from Jhair Tocancipa Triana
       <jhair_tocancipa@gmx.net> to fix an after-change-functions race
       (Closes: #226770, #236506).
-  * emacs-goodies-el:  
+  * emacs-goodies-el:
     - emacs-goodies-custom.el:  Remove duplicate and obsolete entries
       for joc-toggle-buffer and joc-toggle-case defcustoms. Thanks to
       Kevin Ryde for reporting it (Closes: #234972).
@@ -725,7 +739,7 @@ emacs-goodies-el (24.4-1) unstable; urgency=low
 
 emacs-goodies-el (24.3-1) unstable; urgency=low
 
-  * debian-el: 
+  * debian-el:
     - apt-utils.el: Updated to v1.82 (2004/02/17). Bug fix: "debian-el:
       (args-out-of-range 922 922)", thanks to Johannes Rohr for reporting it
       (Closes: #232367).  Also adds automatic rebuilding of its APT package
@@ -750,7 +764,7 @@ emacs-goodies-el (24.2-2) unstable; urgency=low
 
 emacs-goodies-el (24.2-1) unstable; urgency=low
 
-  * debian-el: 
+  * debian-el:
     - apt-utils.el: Updated to v1.78 (2004/01/04). Allow for multiple
       buffers in apt-utils-mode that are independent of one another.
       Also fix bug: "debian-el: apt-utils-show-package scrolling", thanks to
@@ -758,7 +772,7 @@ emacs-goodies-el (24.2-1) unstable; urgency=low
     - deb-view.el: Resize top (control) window to fit number of lines since
       it doesn't really need to be 1/2 the screen. Thanks to Dan Jacobson
       for suggesting this change (Closes: #224950).
-  * emacs-goodies-el:  
+  * emacs-goodies-el:
     - browse-kill-ring.el: cannot setup `*Kill Ring*' buffer with items
       propertized read-only", many thanks to INOUE Hiroyuki for reporting it
       along with a working fix (Closes: #225082).
@@ -804,10 +818,10 @@ emacs-goodies-el (24.0-1) unstable; urgency=low
     - lcomp.el, list-completion hacks. Thanks to Hisashi MORITA for
       suggesting it (Closes: #217371).
     - folding.el, a folding-editor-like minor mode. Thanks to Michael Vogt
-      (Closes: #161404) and to Jérôme Marant (Closes: #170587) for the
+      (Closes: #161404) and to JÃ©rÃ´me Marant (Closes: #170587) for the
       suggestion.
     - apache-mode.el, major mode for editing Apache configuration files
-      Thanks to Jérôme Marant for suggesting it (Closes: #165316).
+      Thanks to JÃ©rÃ´me Marant for suggesting it (Closes: #165316).
     - ctypes.el, Enhanced Font lock support for custom defined types.
       Thanks to Toby Speight (for suggesting it Closes: #212884).
     - shell-command.el, enables tab-completion for shell-command.
@@ -887,7 +901,7 @@ emacs-goodies-el (23.1-1) unstable; urgency=low
 
 emacs-goodies-el (23.0-1) unstable; urgency=low
 
-  * gnus-bonus-el: (Prepared by Jérôme Marant)
+  * gnus-bonus-el: (Prepared by JÃ©rÃ´me Marant)
     New files:
     - gnus-pers.el, an alternative to gnus-posting-styles. (Closes: #166459)
     - gnus-eyecandy.el, enhance the group buffer by adding icons.
@@ -950,7 +964,7 @@ emacs-goodies-el (22.1-1) unstable; urgency=low
     - table.el:  Version 1.5.54.  Wow! This is a very cool package!
     - tail.el: Benjamin Drieu gave me carte blanche to hack on it, so I
       fixed a few bugs, including making it under XEmacs. Thanks to Adam
-      Sjøgren for reporting this bug (Closes: #164372).
+      SjÃ¶gren for reporting this bug (Closes: #164372).
     - under.el: checkdoc clean; add autoload tag; don't make global
        variables; rename underline-region to underhat-region since it
        overloaded an existing Emacs21 command.
@@ -1006,8 +1020,8 @@ emacs-goodies-el (22.0-1) unstable; urgency=low
     checkdoc clean.
   * Bug fix: "emacs-goodies-el: perldoc does not work - terminal is not
     fully functional due to perldoc setting a pager", thanks to Sebastian
-    Schütte for reporting and to Alan Shutko <ats@acm.org> for
-    contributing the fix (Closes: #144963).
+    SchÃ¼tte for reporting and to Alan Shutko <ats@acm.org> for
+    contributing the fix (Closes: #144963).
   * emacs-goodies-el: perldoc.el rewrite to get Perl function name on the
     fly from the perlfunc.pod file.
   * debian-bug.el and debian-bts-control.el: Add `sarge-ignore' and
@@ -1031,7 +1045,7 @@ emacs-goodies-el (21.12-1) unstable; urgency=low
     code cleanup.  Created `highligh-beyond-fill-column' to activate it.
     Added to Info docs.
   * emacs-goodies-el's home-end.el: Bug fix: "home-end-enable shouldn't
-    unset end and home!", thanks to Jorgen Schäfer <forcer@debian.org>
+    unset end and home!", thanks to Jorgen SchÃ¤fer <forcer@debian.org>
     (Closes: #211859).  Add to Info docs.
   * dpkg-dev-el: setup auto-mode-alist better for README.Debian and
     copyright files.
@@ -2176,7 +2190,3 @@ dpkg-dev-el (1.01-1) unstable; urgency=low
   * Initial Release.
 
  -- Roland Mas <99.roland.mas@aist.enst.fr>  Fri, 22 Dec 2000 14:09:40 +0100
-
-Local variables:
-coding: utf-8
-End:

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.80 2007/11/28 00:46:26 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.81 2007/11/28 01:30:35 kibi-guest Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3063,7 +3063,7 @@ The code handles functions, builtins, and third party modules.
 @node pod-mode, projects, perldoc, Top
 @chapter pod-mode - major-mode for editing Plain Old Documentation files
 
-@noindent Author: Steffen Schwigon <schwigon@webit.de>
+@noindent Author: Steffen Schwigon <schwigon@@webit.de>
 
 Provides font-locking for editing POD (Plain Old Documentation) files.
 
