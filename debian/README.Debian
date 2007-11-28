@@ -237,6 +237,9 @@ perldoc.el provides an interface to the "perldoc" command in your
 Perl-mode or CPerl-mode buffers.  Use (require 'perldoc) in your
 .emacs to activate it, then place point over a word and press F1.
 
+pod-mode.el provides support for editing Plain Old Documentation
+(Perl documentation) files.  It provides syntax highlighting.
+
 projects.el provides M-x add-project, remove-project and
 list-projects, and introduces the concept of PROJECT ROOTS that allow
 the user to define logical project names and get abbreviated yet
@@ -329,4 +332,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Mon, 24 Sep 2007 20:48:57 -0400
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>, Wed, 28 Nov 2007 01:50:10 +0100

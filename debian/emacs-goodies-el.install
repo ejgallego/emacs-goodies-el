@@ -58,6 +58,7 @@ elisp/emacs-goodies-el/nuke-trailing-whitespace.el /usr/share/emacs/site-lisp/em
 elisp/emacs-goodies-el/obfusurl.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/pack-windows.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/perldoc.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/pod-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/projects.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/protbuf.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/protocols.el /usr/share/emacs/site-lisp/emacs-goodies-el/

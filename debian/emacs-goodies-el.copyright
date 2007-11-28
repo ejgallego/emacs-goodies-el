@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.22 $
+| ;; $Revision: 1.23 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -718,7 +718,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.22 2007/09/22 22:54:55 kibi-guest Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.23 2007/11/28 01:00:11 kibi-guest Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -841,6 +841,25 @@ Author/copyright info for perldoc.el:
 | ;; it under the terms of the GNU General Public License as published by
 | ;; the Free Software Foundation; either version 2, or (at your option)
 | ;; any later version.
+`----
+
+
+Author/copyright info for pod-mode.el:
+,----
+| ;;; pod-mode.el --- Major mode for editing .pod-files
+|
+| ;;; Copyright 2003-2005 Steffen Schwigon
+|
+| ;;; Author: Steffen Schwigon <schwigon@webit.de>
+| ;;; Version: 0.4
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.23 2007/11/28 01:00:11 kibi-guest Exp $
+| ;;; Keywords: perl pod
+| ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
+|
+| ;;; This program is free software; you can redistribute it and/or modify
+| ;;; it under the terms of the GNU General Public License as published by
+| ;;; the Free Software Foundation; either version 2, or (at your option)
+| ;;; any later version.
 `----
 
 
@@ -1087,7 +1106,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.22 $
+| ;; $Revision: 1.23 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
