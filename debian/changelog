@@ -9,6 +9,8 @@ emacs-goodies-el (28.4-1) unstable; urgency=low
   * emacs-goodies-el:
     - pod-mode.el: Added file (version 0.4), as suggested by
       Emmanuel Bouthenot (Closes: #452857).
+  * debian/control:
+    - Added Vcs-Cvs and Vcs-Browser fields.
 
  -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Wed, 28 Nov 2007 02:09:36 +0100
 

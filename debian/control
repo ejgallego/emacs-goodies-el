@@ -5,6 +5,8 @@ Maintainer: Peter S Galbraith <psg@debian.org>
 Build-Depends: debhelper (>= 4.0.0), dpatch (>=1.5)
 Build-Depends-Indep: texinfo
 Standards-Version: 3.7.2
+Vcs-Cvs: :pserver:anonymous@cvs.alioth.debian.org:/cvsroot/pkg-goodies-el co emacs-goodies-el
+Vcs-Browser: http://alioth.debian.org/plugins/scmcvs/cvsweb.php/?cvsroot=pkg-goodies-el
 
 Package: emacs-goodies-el
 Architecture: all
