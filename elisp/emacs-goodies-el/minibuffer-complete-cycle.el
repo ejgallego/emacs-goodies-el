@@ -1,13 +1,13 @@
 ;;; minibuffer-complete-cycle.el --- Cycle through the *Completions* buffer
 ;;; -*-unibyte: t; coding: iso-8859-1;-*-
 
-;; Copyright © 1997,1998,2000,2003 Kevin Rodgers
+;; Copyright ï¿½ 1997,1998,2000,2003,2006 Kevin Rodgers
 
 ;; Author: Kevin Rodgers <ihs_4664@yahoo.com>
 ;; Created: 15 Oct 1997
-;; Version: $Revision: 1.1 $
+;; Version: $Revision: 1.2 $
 ;; Keywords: completion
-;; RCS: $Id: minibuffer-complete-cycle.el,v 1.1 2003/11/17 19:44:28 psg Exp $
+;; RCS: $Id: minibuffer-complete-cycle.el,v 1.2 2007/12/04 22:35:11 psg Exp $
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -119,7 +119,10 @@ To cycle to previous completions, type `M-TAB'."
 	   ;; See Fminibuffer_complete:
 	   (or (eq last-command this-command)
 	       (and (eq minibuffer-complete-cycle 'auto)
-		    ad-do-it))
+		    (progn
+		      (setq mcc-completion-begin nil
+			    mcc-completion-end nil)
+		      ad-do-it)))
 	   minibuffer-scroll-window
 	   (window-live-p minibuffer-scroll-window))
       ;; Delete the current completion, then insert and display the

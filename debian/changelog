@@ -1,4 +1,4 @@
-emacs-goodies-el (28.4-1) unstable; urgency=low
+emacs-goodies-el (29.0-1) UNRELEASED; urgency=low
 
   [ Cyril Brulebois ]
   * debian/changelog:
@@ -12,7 +12,12 @@ emacs-goodies-el (28.4-1) unstable; urgency=low
   * debian/control:
     - Added Vcs-Cvs and Vcs-Browser fields.
 
- -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Wed, 28 Nov 2007 02:09:36 +0100
+  [ Peter S Galbraith ]
+  * emacs-goodies-el:
+    - minibuffer-complete-cycle.el: Updated to V1.14 with patch from
+      Sebastian P. Luque
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 04 Dec 2007 17:34:25 -0500
 
 emacs-goodies-el (28.3-1) unstable; urgency=low
 
