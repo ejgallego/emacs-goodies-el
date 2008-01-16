@@ -1,3 +1,12 @@
+emacs-goodies-el (29.0-2) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * dpkg-dev-el:
+    - debian-control-mode.el: Added `Dm-Upload-Allowed' to the list of
+      valid fields for the source packages.
+
+ -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Thu, 17 Jan 2008 00:47:05 +0100
+
 emacs-goodies-el (29.0-1) unstable; urgency=low
 
   [ Cyril Brulebois ]
