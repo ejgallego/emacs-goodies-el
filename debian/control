@@ -182,7 +182,7 @@ Description: Emacs helpers specific to Debian development
 
 Package: vm-bonus-el
 Architecture: all
-Depends: vm
+Depends: vm (>= 8.0.9-1)
 Section: mail
 Description: Miscellaneous add-ons for VM
  This package contains a few Emacs-Lisp files that provide various
@@ -190,7 +190,6 @@ Description: Miscellaneous add-ons for VM
  .
  This package contains:
   u-vm-color.el - font-lock support for VM;
-  vm-rfaddons.el - a collections of various useful VM helper functions.
  .
  See /usr/share/doc/vm-bonus-el/README.Debian for a short description
  of all files.

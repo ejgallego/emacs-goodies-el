@@ -1,11 +1,16 @@
-emacs-goodies-el (29.0-2) unstable; urgency=low
+emacs-goodies-el (29.1-1) unstable; urgency=low
+
+  [ Sven Joachim ]
+  * vm-bonus-el:
+    - Don't include vm-rfaddons.el and depend on vm versions
+      that ship that file (Closes: #469652, #469625). 
 
   [ Cyril Brulebois ]
   * dpkg-dev-el:
     - debian-control-mode.el: Added `Dm-Upload-Allowed' to the list of
       valid fields for the source packages.
 
- -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Thu, 17 Jan 2008 00:47:05 +0100
+ -- Peter S Galbraith <psg@debian.org>  Wed, 26 Mar 2008 19:48:13 -0400
 
 emacs-goodies-el (29.0-1) unstable; urgency=low
 

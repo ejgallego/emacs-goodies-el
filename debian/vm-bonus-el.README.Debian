@@ -10,50 +10,6 @@ You may customize files in this package by using:
 Introduction to files in vm-bonus-el
 ------------------------------------
 
-vm-rfaddons.el
---------------
-
-vm-rfaddons.el is a collections of various useful VM helper functions.
-Enable them all by adding `(vm-rfaddons-infect-vm)' at the end of your .vm
-file.
-
-Author Commentary:
-
- Some of the functions should be unbundled into separate packages,
- but well I'm a lazy guy.  And some of them are not tested well. 
-
- In order to install this package you need to byte-compile it and put
- it into your load-path and add the following lines to the _end_ of your
- .vm file.  It should be the _end_ in order to ensure that variable you had
- been setting are honored!
-
-      (vm-rfaddons-infect-vm)
-
- When using only a subset of the functions you should have a
- look at the documentation of `vm-rfaddons-infect-vm' and modify
- its call as desired.  
- 
- Additional packages you may need are:
-
- * Package: Personality Crisis for VM
-   is a really cool package if you want to do automatic header rewriting,
-   e.g.  if you have various mail accounts and always want to use the right
-   from header, then check it out! 
-   It used to be on http://student.uq.edu.au/~s323140/pcrisis/
-   but it is no longer available there and thus I provide it on my site.
- * Package: BBDB
-   Homepage: http://bbdb.sourceforge.net
-
- All other packages should be included within standard (X)Emacs
- distributions.
-
- Feel free to sent me any comments or bug reports.
-
- As I am no active GNU Emacs user, I would be thankful for any patches to
- make things work with GNU Emacs!
-
-----------------------------------------------------------------------------
-
 u-vm-color.el 
 -------------
 
@@ -107,4 +63,4 @@ u-vm-color.el
  XEmacs users might want to turn off `vm-use-lucid-highlighting', if
  this package works...
 
- -- Peter S Galbraith <psg@debian.org>, Mon Oct 24 21:06:25 2005
+ -- Sven Joachim <svenjoac@gmx.de>, Thu,  6 Mar 2008 21:55:24 +0100
