@@ -9,8 +9,12 @@ emacs-goodies-el (29.1-1) unstable; urgency=low
   * dpkg-dev-el:
     - debian-control-mode.el: Added `Dm-Upload-Allowed' to the list of
       valid fields for the source packages.
+  
+  [ Peter S Galbraith ]
+  * Bug fix: "emacs-goodies-el: FTBFS if built twice in a row", thanks to
+    Sven Joachim (Closes: #469751).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 26 Mar 2008 19:48:13 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 26 Mar 2008 20:26:56 -0400
 
 emacs-goodies-el (29.0-1) unstable; urgency=low
 
