@@ -1,11 +1,13 @@
 ;;; rfcview.el -- view IETF RFCs with readability-improved formatting
 
 ;; Copyright (C) 2001-2002 Neil W. Van Dyke
+;; Copyright (C) 2006 Free Software Foundation, Inc.
+;;    (mods by Dave Love <fx@gnu.org>)
 
 ;; Author:   Neil W. Van Dyke <neil@neilvandyke.org>
-;; Version:  0.5
-;; X-URL:    http://www.neilvandyke.org/rfcview/
-;; X-CVS:    $Id: rfcview.el,v 1.1 2003/11/17 19:44:28 psg Exp $ GMT
+;; Version:  0.10
+;; X-URL:    http://www.loveshack.ukfsn.org/emacs/rfcview.el
+;; X-CVS:    $Id: rfcview.el,v 1.2 2008/03/28 03:17:05 psg Exp $ GMT
 
 ;; This is free software; you can redistribute it and/or modify it under the
 ;; terms of the GNU General Public License as published by the Free Software
@@ -37,7 +39,7 @@
 ;; System Requirements:
 ;;
 ;;   The `rfcview.el' package was first written using FSF GNU Emacs 20.7 on a
-;;   GNU/Linux system, and is now maintained under Emacs 21.1.  It should work
+;;   GNU/Linux system, and is now maintained under Emacs 21.4.  It should work
 ;;   with recent Emacs versions on Unix variants.  `rfcview.el' has not yet
 ;;   been tested with the XEmacs fork of Emacs, and I'd welcome any necessary
 ;;   patches.
@@ -48,16 +50,18 @@
 ;;
 ;;   2. Add the following lines to your `~/.emacs' file:
 ;;
-;;          (setq auto-mode-alist
-;;                (cons '("/rfc[0-9]+\\.txt\\(\\.gz\\)?\\'" . rfcview-mode)
-;;                      auto-mode-alist))
+;;          (add-to-list 'auto-mode-alist
+;;                       '("/\\(rfc\\|std\\)[0-9]+\\.txt\\'" . rfcview-mode))
 ;;
 ;;          (autoload 'rfcview-mode "rfcview" nil t)
 ;;
-;;   3. Restart Emacs.  The next time you visit an RFC file, it should be
-;;      displayed prettily using `rfcview-mode'.
+;;      The next time you visit an RFC file, it should be
+;;      displayed prettily using `rfcview-mode'.  (Do this before turning
+;;      on `auto-compression-mode', so that the `.gz' extension comes before
+;;      `.txt' in `auto-mode-alist'; then compressed RFCs will work too.)
 ;;
-;;   4. Optionally, do `M-x rfcview-customize RET' to 
+;;   4. Optionally, do `M-x rfcview-customize RET' to customize the mode
+;;      options.
 
 ;; Things for the Author to Someday Do (but Probably Not):
 ;;
@@ -70,16 +74,8 @@
 ;;   * Handle "Table of Contents" heading centered, such as in RFC 1035 and RFC
 ;;     1157.
 ;;
-;;   * Add hyperlinks to TOC entries.
-;;
-;;   * Build popup TOC navigation menu.
-;;
-;;   * Make hyperlinks for bibliographic references.  Display in other-window
+;;   * Display bibliographic references in other-window
 ;;     vertically-sized to fit only the reference (or min window height).
-;;
-;;   * Maybe make hyperlinks for urls (but not email addrs).
-;;
-;;   * Make hyperlinks to referenced RFCs.
 ;;
 ;;   * Download RFCs on demand, and cache them.  Probably integrate one of the
 ;;     existing one or two packages that do this.
@@ -90,9 +86,28 @@
 ;;
 ;;         19.6.1.1 Changes to Simplify Multi-homed Web Servers and Conserve IP
 ;;         Addresses
+;;
+;;   * Have a stack for (internal) hyperlinks a la Info.
 
 ;;; CHANGE LOG:
 
+;; [Version 0.10, 2008-01-28]  (Dave Love)
+;; * Fix rfcview-find-location-of-rfc-mouse interactive spec.
+;; * Get speedbar working.
+;; * Allow list of alternative locations for RFCs.
+;;
+;; [Version 0.9, 2007-10-14]  (Dave Love)
+;; * Fix view-mode require and fix overlay type for reference.
+;;
+;; [Version 0.8, 2007-04-25]  (Dave Love)
+;; * Fix rfcview-overriding-map; modify rfcview-headlink-face for dark b/g.
+;;
+;; [Version 0.7, 2006-10-01]  (Dave Love)
+;; * Use ange-ftp, not browse-url;
+;; * Handle STDs as well as RFCs.
+;;
+;; [Version 0.6, 2006-07-07] Hyperlinking (Dave Love).
+;;
 ;; [Version 0.5, 15-Oct-2002] Updated email address.
 ;;
 ;; [Version 0.4, 26-Feb-2002]
@@ -120,7 +135,8 @@
 
 ;;; CODE:
 
-(require 'easymenu)
+(require 'goto-addr)
+(require 'view)
 
 ;; Customization:
 
@@ -139,6 +155,31 @@
   :group 'rfcview
   :type  'boolean)
 
+;; Note that this is also defined by `ffap-rfc-path', though Emacs
+;; 21's value of that is wrong, and we probably don't want to require
+;; ffap.
+;; Fixme: This should be a path, e.g. local directory plus rfc-editor site.
+(defcustom rfcview-rfc-location-pattern "/ftp@ftp.rfc-editor.org:/in-notes/rfc%s.txt"
+  "Pattern to generate the location of a numbered RFC.
+Must contain a single `%s' to be substituted with the RFC's number.
+On a Debian-style system, with the doc-rfc packages installed, this could be
+\"/usr/share/doc/RFC/links/rfc%s.txt.gz\" to read local copies.
+A list of such patterns is also valid; its elements are tried in order
+to find the RFC.  Typically you want to try a local directory first and
+then the IETF site."
+  :type '(choice string (repeat string))
+  :group 'rfcview)
+
+(defcustom rfcview-std-location-pattern
+  "/ftp@ftp.rfc-editor.org:/in-notes/std/std%s.txt"
+  "Pattern to generate the location of a numbered STD.
+Must contain a single `%s' to be substituted with the STD's number.
+A list of such patterns is also valid; its elements are tried in order
+to find the RFC.  Typically you want to try a local directory first and
+then the IETF site."
+  :type '(choice string (repeat string))
+  :group 'rfcview)
+
 (defface rfcview-title-face
   '((t (:bold t)))
   "Face used for titles."
@@ -155,14 +196,15 @@
   :group 'rfcview)
 
 (defface rfcview-headlink-face
-  '((t (:foreground "blue"))
+  '((((type tty pc) (class color)) (:foreground "blue" :weight light))
+    (((class color) (background light)) (:foreground "blue"))
+    (((class color) (background dark)) (:foreground "LightSkyBlue"))
     (t (:bold t)))
   "Face used for hyperlinks to headings."
   :group 'rfcview)
 
 (defface rfcview-mouseover-face
-  '((((class color)) (:foreground "white" :background "blue" :bold t))
-    (t               (:inverse-video t)))
+  '((t (:inherit highlight)))
   "Face used for mousing over a hyperlink."
   :group 'rfcview)
 
@@ -180,7 +222,18 @@
 
 (defvar rfcview-debug-show-hidden-p nil)
 
-(defvar rfcview-mode-map nil)
+(defvar rfcview-mode-map
+  (let ((km (make-sparse-keymap)))
+    (define-key km "t" 'rfcview-textmode)
+    (define-key km "q" 'rfcview-quit)
+    (define-key km "\t" 'rfcview-next-button)
+    (easy-menu-define rfcview-mode-menu km
+      "Menu for RFCview."
+      '("RFCview"
+	["Quit"      rfcview-quit     t]
+	["Text Mode" rfcview-textmode t]
+	["Next Button" rfcview-next-button t]))
+    km))
 
 (defvar rfcview-stock-section-names
   '("abstract"
@@ -206,7 +259,9 @@
     "references"
     "security considerations"
     "status of this memo"
-    "table of contents"))
+    "table of contents"
+    "informative references"
+    "normative references"))
 
 (defvar rfcview-headlink-ovlcat nil)
 (defvar rfcview-headname-ovlcat nil)
@@ -219,6 +274,9 @@
 
 (defvar rfcview-local-heading-alist nil)
 
+(defvar rfcview-ref-alist nil
+  "Alist of RFC references `(<reference> . <position>)'.")
+
 ;; Functions:
 
 (defun rfcview-add-overlay (begin end category)
@@ -229,10 +287,12 @@
 
 ;;;###autoload
 (defun rfcview-customize ()
+  "Enter the RFCview Custom group."
   (interactive)
   (customize-group 'rfcview))
 
 (defun rfcview-grok-buffer ()
+  "Add overlays to the buffer to modify its presentation."
   (interactive)
   (let ((case-fold-search nil)
         (top-point        (point-min))
@@ -240,7 +300,6 @@
     
     ;; Clean up everything.
     (rfcview-remove-all-overlays)
-    (rfcview-remove-all-markers)
     (make-local-variable 'rfcview-local-heading-alist)
     (setq rfcview-local-heading-alist '())
 
@@ -290,7 +349,7 @@
                            (let ((n (string-to-number (match-string 3))))
                              (if (= n 0) "?" (1+ n))))))
             (overlay-put overlay
-                         'before-string 
+                         'before-string
                          (concat (make-string (max (- 79
                                                       (- (match-beginning 1)
                                                          (match-beginning 0))
@@ -305,7 +364,7 @@
     (unless (re-search-forward (concat "^[ \t]*\r?\n"
                                        "\\(\\([ \t]*\r?\n\\)+\\)?")
                                nil t)
-      (error "This doesn't seem to be an RFC - no blank line before title."))
+      (error "This doesn't seem to be an RFC - no blank line before title"))
     (when (match-beginning 1)
       (rfcview-hide-region (match-beginning 1) (match-end 1)))
     (setq title-line-point (point))
@@ -393,7 +452,7 @@
                                            name-match 12)
                  (setq num-highlight-begin (match-beginning 9)
                        num-highlight-end   (match-end       11)))
-                (t (error "this should never happen")))
+                (t (error "This should never happen")))
 
           ;; Add overlays.
           (when num-match
@@ -414,11 +473,22 @@
                               (vector
                                num
                                name
-                               (rfcview-make-marker (match-beginning 0))
-                               (rfcview-make-marker (match-end       0))))
+                               (match-beginning 0)
+                               (match-end 0)))
                         rfcview-local-heading-alist))))))
     ;; Reverse `rfcview-local-heading-alist'.
     (setq rfcview-local-heading-alist (nreverse rfcview-local-heading-alist))
+
+    ;; Hyperlink the contents and references
+    (rfcview-hyperlink-contents)
+    (rfcview-hyperlink-refs)
+
+    ;; Hyperlink URLs.  `goto-address-fontify-maximum-size' is only
+    ;; 30000 by default.
+    (let ((goto-address-fontify-maximum-size (point-max))
+	  (goto-address-highlight-p t)
+	  (goto-address-mail-regexp "\\<\\>")) ; don't match emails
+      (goto-address))
 
     ;; Leave the point at the visible top of the buffer.
     (goto-char top-point))
@@ -428,25 +498,180 @@
 (defun rfcview-hide-region (start end)
   (rfcview-add-overlay start end 'rfcview-hide-ovlcat))
 
-(defun rfcview-link-add-headlink (start end marker)
+;; Hyperlinking
+
+(defun rfcview-imenu-index-function ()
+  "`imenu-create-index-function' for RFCview."
+  (mapcar (lambda (elt)
+	    (setq elt (cdr elt))
+	    (let ((num (aref elt 0))
+		  (head (aref elt 1))
+		  (pos (aref elt 2)))
+	      (cons (if num
+			(concat num " " head)
+		      head)
+		    pos)))
+	  rfcview-local-heading-alist))
+
+(defun rfcview-link-add-headlink (start end pos)
   (let ((overlay (rfcview-add-overlay start end 'rfcview-headlink-ovlcat)))
-    (overlay-put overlay 'rfcview-link (list 'head marker))
+    (overlay-put overlay 'rfcview-link (list 'head pos))
     overlay))
 
 (defun rfcview-link-add-headlink-for (start end key)
-  (let ((vec (cdr (member (downcase key) rfcview-local-heading-alist))))
+  (let ((vec (cdr (assoc (downcase key) rfcview-local-heading-alist))))
     (when vec
       (rfcview-link-add-headlink start end (aref vec 2)))))
 
-(defun rfcview-make-marker (pt)
-  (let ((marker (make-marker)))
-    (set-marker marker pt)
-    marker))
+(defun rfcview-hyperlink-contents ()
+  "Find table of contents and hyperlink the entries to headers."
+  (let* ((elt (assoc "table of contents" rfcview-local-heading-alist))
+	 (start (if elt (aref (cdr elt) 3)))
+	 (next (cadr (member elt rfcview-local-heading-alist)))
+	 (end (if next (aref (cdr next) 2)))
+	 (case-fold-search t))
+    (when (and start end)
+      (save-excursion
+	(save-restriction
+	  (narrow-to-region start end)
+	  (goto-char (point-min))
+	  (dolist (elt rfcview-local-heading-alist)
+	    (let ((key (car elt)))
+	      (when (re-search-forward (concat "^ *\\(" (regexp-quote key)
+					       "\\) ")
+				       nil t)
+		(rfcview-link-add-headlink-for (match-beginning 1)
+					       (line-end-position)
+					       key)
+		(end-of-line)))))))))
+
+(defvar rfcview-link-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map [mouse-2] #'rfcview-goto-link-mouse)
+    map)
+  "Keymap for use on link overlays.")
+
+(defvar rfcview-overriding-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "\C-m" #'rfcview-maybe-goto-link)
+    (set-keymap-parent map view-mode-map)
+    map)
+  "Keymap binding RET to override the View mode binding.")
+
+(defun rfcview-maybe-goto-link ()
+  "Follow link if on one, else use normal binding of RET.
+Push mark if on a link."
+  (interactive)
+  (or (rfcview-goto-link)
+      (rfcview-find-location-of-rfc)
+      (if (get-char-property (point) 'goto-address) ; URL found by goto-addr
+	  (goto-address-at-point))
+      ;; Use the binding that's presumably from View mode:
+      (let ((minor-mode-overriding-map-alist nil))
+	(call-interactively (key-binding [?\C-m])))))
+
+(defun rfcview-goto-link ()
+  "If on a link, go to target, push mark, and return non-nil.
+Else return nil."
+  (interactive)
+  (let ((pos (cadr (get-char-property (point) 'rfcview-link))))
+    (when pos
+      (push-mark)
+      (goto-char pos))))
+
+(defun rfcview-goto-link-mouse (event)
+  "Follow a link selected with the mouse EVENT and push mark."
+  (interactive "e")
+  (mouse-set-point event)
+  (rfcview-goto-link))
+
+(defun rfcview-hyperlink-refs ()
+  "Find references in appropriate sections and hyperlink them from elsewhere."
+  (save-excursion
+    ;; Find the references sections, including `Normative
+    ;; references' &c.
+    (dolist (elt rfcview-local-heading-alist)
+      (when (let ((case-fold-search t))
+	      (string-match "\\<\\(?:references\\|bibliography\\)\\'"
+			    (aref (cdr elt) 1)))
+	(let* ((start (aref (cdr elt) 3))
+	       (next (cadr (member elt rfcview-local-heading-alist)))
+	       (end (if next
+			(aref (cdr next) 2)
+		      (point-max)))
+	       (case-fold-search nil))
+	  (save-restriction
+	    (narrow-to-region start end)
+	    (goto-char (point-min))
+	    ;; Look for plausible-looking tags (with uppercase
+	    ;; letters, numbers or hyphens within brackets).
+	    (while (re-search-forward "^ *\\([[][-A-Z0-9]+]\\) " nil t)
+	      (push (cons (match-string 1) (match-beginning 1))
+		    rfcview-ref-alist)
+	      ;; If it looks like an RFC reference, hyperlink it.
+	      (let ((start (match-beginning 1))
+		    (end (match-end 1))
+		    (string (match-string 1)))
+		(when (string-match "[[]\\(RFC\\|STD\\)\\([0-9]+\\)]" string)
+		  (let ((overlay (make-overlay start end)))
+		    (overlay-put overlay 'category 'rfcview-rfcurl-ovlcat)
+		    (overlay-put overlay 'location
+				 (if (equal "RFC" (match-string 1 string))
+				     (mapcar
+				      (lambda (x)
+					(format x (match-string 2 string)))
+				      (if (listp rfcview-rfc-location-pattern)
+					  rfcview-rfc-location-pattern
+					(list rfcview-rfc-location-pattern)))
+				   (mapcar
+				    (lambda (x)
+				      (format x (match-string 2 string)))
+				    (if (listp rfcview-std-location-pattern)
+					rfcview-std-location-pattern
+				      (list rfcview-std-location-pattern)))))))))))))
+    ;; Find and activate references in the body.  Skip if it's at the
+    ;; position of a target.
+    (goto-char (point-min))
+    (while (re-search-forward "\\([[][-A-Z0-9]+]\\)" nil t)
+      (let ((elt (assoc (match-string 1) rfcview-ref-alist)))
+	(when (and elt (/= (match-beginning 1) (cdr elt)))
+	  (overlay-put (rfcview-add-overlay (match-beginning 1) (match-end 1)
+					    'rfcview-reflink-ovlcat)
+		       'rfcview-link (list 'ref (cdr elt))))))))
+
+(defun rfcview-find-location-of-rfc ()
+  "Browse to the LOCATION of any RFC referenced at point."
+  (interactive)
+  (let ((location (get-char-property (point) 'location)))
+    (catch 'found
+      (dolist (file location)
+	(when (file-exists-p file)
+	  (find-file file)
+	  (throw 'found t)))
+      (error "Referenced document not found: %s"
+	     (mapconcat #'identity location ", ")))))
+
+(defun rfcview-find-location-of-rfc-mouse (event)
+  "Browse to the LOCATION of the RFC reference at the mouse EVENT."
+  (interactive "e")
+  (save-excursion
+    (mouse-set-point event)
+    (rfcview-find-location-of-rfc)))
+
+(defvar rfcview-rfc-keymap
+  (let ((map (make-sparse-keymap)))
+    (define-key map [mouse-2] #'rfcview-find-location-of-rfc-mouse)
+    (define-key map [?\C-m] #'rfcview-find-location-of-rfc)
+    map)
+  "Keymap for links to RFC locations.")
+
+;; Major mode
 
 ;;;###autoload
 (defun rfcview-mode ()
   "Major mode for viewing Internet RFCs.
 
+http://www.loveshack.ukfsn.org/emacs/rfcview.el
 http://www.neilvandyke.org/rfcview/
 
 Key bindings:
@@ -459,9 +684,19 @@ Key bindings:
   (make-local-variable 'font-lock-defaults)
   (make-local-variable 'rfcview-local-heading-alist)
   (setq font-lock-defaults nil)
+  ;; Arrange to lose the C-m binding from View mode:
+  (push (cons 'view-mode rfcview-overriding-map)
+	minor-mode-overriding-map-alist)
+  (set (make-local-variable 'imenu-create-index-function)
+       'rfcview-imenu-index-function)
+  (set (make-local-variable 'imenu-sort-function) nil)
+  (make-local-variable 'rfcview-ref-alist)
   (when rfcview-use-view-mode-p
-    (view-mode-enter nil (function (lambda (buf) (rfcview-quit)))))
+    (view-mode-enter nil #'rfcview-quit))
   (rfcview-grok-buffer)
+  ;; This is easier and probably better than inserting contents in the
+  ;; mode menu.
+  (imenu-add-to-menubar "Contents")
   (run-hooks 'rfcview-mode-hook))
 
 (defun rfcview-put-alist (symbol alist)
@@ -469,13 +704,11 @@ Key bindings:
                       (put symbol (nth 0 cell) (cdr cell))))
           alist))
 
-(defun rfcview-quit ()
+(defun rfcview-quit (&optional buffer)
+  "Kill the RFCview buffer.
+Arg BUFFER is ignored."
   (interactive)
   (kill-buffer (current-buffer)))
-
-(defun rfcview-remove-all-markers ()
-  ;; TODO: 
-  )
 
 (defun rfcview-remove-all-overlays ()
   (mapcar (function (lambda (lst)
@@ -486,30 +719,21 @@ Key bindings:
             (list (car lists) (cdr lists)))))
 
 (defun rfcview-textmode ()
+  "Remove overlays from the buffer and put it into Text mode."
   (interactive)
   (rfcview-remove-all-overlays)
-  (rfcview-remove-all-markers)
   (text-mode))
 
-;; Keymap and Menu:
-
-(setq rfcview-mode-map
-      (let ((km (make-sparse-keymap)))
-        (define-key km "t" 'rfcview-textmode)
-        (define-key km "q" 'rfcview-quit)
-        km))
-
-(easy-menu-define rfcview-mode-menu rfcview-mode-map
-  "Menu for RFCview."
-  '("RFCview"
-    ["Quit"      rfcview-quit     t]
-    ["Text Mode" rfcview-textmode t]
-    ;;("Table of Contents" ["ERROR!" error t])
-    ))
+(defun rfcview-next-button ()
+  "Move point to the next \"button\" (active link)."
+  (interactive)
+  (if (get-char-property (point) 'keymap) ; move off it
+      (goto-char (next-single-char-property-change (point) 'keymap)))
+  (goto-char (next-single-char-property-change (point) 'keymap)))
 
 ;; Overlay Categories:
 
-(rfcview-put-alist 'rfcview-hide-ovlcat 
+(rfcview-put-alist 'rfcview-hide-ovlcat
                    (if rfcview-debug-show-hidden-p
                        '((face       . region)
                          (intangible . nil)
@@ -525,8 +749,25 @@ Key bindings:
 (rfcview-put-alist 'rfcview-title-ovlcat    '((face . rfcview-title-face)))
 
 (rfcview-put-alist 'rfcview-headlink-ovlcat
-                   '((face       . rfcview-headlink-face)
-                     (mouse-face . rfcview-mouseover-face)))
+                   `((face       . rfcview-headlink-face)
+                     (mouse-face . rfcview-mouseover-face)
+		     (keymap . ,rfcview-link-map)
+		     (help-echo . "mouse-2, C-m: go to section")))
+(rfcview-put-alist 'rfcview-reflink-ovlcat
+                   `((face       . rfcview-headlink-face)
+                     (mouse-face . rfcview-mouseover-face)
+		     (keymap . ,rfcview-link-map)
+		     (help-echo . "mouse-2, C-m: follow reference")))
+
+(rfcview-put-alist 'rfcview-rfcurl-ovlcat
+		   `((face . ,goto-address-url-face)
+		     (mouse-face . ,goto-address-url-mouse-face)
+		     (help-echo . "mouse-2, C-m: browse RFC's location")
+		     (keymap . ,rfcview-rfc-keymap)))
+
+;; This persuades speedbar to use Imenu with RRCs.
+(eval-after-load "speedbar"
+  '(speedbar-add-supported-extension '("rfc[0-9]+\.txt\.gz" "rfc[0-9]+\.txt")))
 
 ;; End:
 
