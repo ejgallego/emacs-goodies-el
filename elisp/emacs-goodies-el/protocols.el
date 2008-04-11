@@ -1,9 +1,10 @@
 ;;; protocols.el --- Protocol database access functions.
-;; Copyright 2000,2001,2003 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.3 $
+;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
+;; $Revision: 1.4 $
 
 ;; protocols.el is free software distributed under the terms of the GNU
-;; General Public Licence, version 2. For details see the file COPYING.
+;; General Public Licence, version 2 or (at your option) any later version.
+;; For details see the file COPYING.
 
 ;;; Commentary:
 ;;
@@ -102,7 +103,7 @@ If FILE isn't supplied the value of `protocols-file' is used."
   (or protocols-cache
       (setq protocols-cache (when (file-readable-p file)
                               (with-temp-buffer
-                                (insert-file-contents-literally file)
+                                (insert-file-contents file)
                                 (setf (point) (point-min))
                                 (loop until (eobp)
                                       do (setf (point) (line-beginning-position))

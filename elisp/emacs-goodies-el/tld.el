@@ -1,9 +1,10 @@
 ;;; tld.el --- TLD lookup tool.
-;; Copyright 2000 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.2 $
+;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
+;; $Revision: 1.3 $
 
-;; tld.el is free software distributed under the terms of the GNU
-;; General Public Licence, version 2. For details see the file COPYING.
+;; tld.el is free software distributed under the terms of the GNU General
+;; Public Licence, version 2 or (at your option) any later version. For
+;; details see the file COPYING.
 
 ;;; Commentary:
 ;;

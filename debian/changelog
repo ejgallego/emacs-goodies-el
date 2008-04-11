@@ -5,8 +5,16 @@ emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
       http://www.loveshack.ukfsn.org/emacs/rfcview.el
       Should fix fontification bug reported by jidanni@jidanni.org
       (Closes: #464940).
+    - Updated to lastest version compatible with GPL V3:
+        box-quote.el
+        mutt-alias.el
+        obfusurl.el
+        protocols.el
+        services.el
+        thinks.el
+        tld.el
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 27 Mar 2008 23:15:31 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 11 Apr 2008 15:21:33 -0400
 
 emacs-goodies-el (29.1-1) unstable; urgency=low
 

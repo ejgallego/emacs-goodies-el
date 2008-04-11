@@ -1,9 +1,10 @@
 ;;; mutt-alias.el --- Lookup/insert mutt mail aliases.
-;; Copyright 1999,2000,2003 by Dave Pearson <davep@davep.org>
-;; $Revision: 1.2 $
+;; Copyright 1999-2008 by Dave Pearson <davep@davep.org>
+;; $Revision: 1.3 $
 
 ;; mutt-alias is free software distributed under the terms of the GNU
-;; General Public Licence, version 2. For details see the file COPYING.
+;; General Public Licence, version 2 or (at your option) any later version.
+;; For details see the file COPYING.
 
 ;;; Commentary:
 ;;
