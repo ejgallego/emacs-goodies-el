@@ -4,6 +4,7 @@
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
 ;; Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005 Peter S Galbraith
+;; Copyright (C) 2006, 2007, 2008, Peter S Galbraith
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -326,6 +327,9 @@
 ;;    See http://bugs.debian.org/87725
 ;;  - Patch from Luca Capello <luca@pca.it> to add keys to generate the
 ;;    open bug alist.
+;; V1.88 12Apr2008 Trent W. Buck <trentbuck@gmail.com>
+;;  - Generalize auto-mode-alist entry.
+;;    See http://bugs.debian.org/457047
 
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1741,8 +1745,11 @@ Also set keymap."
 (add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist
-             '("/debian/changelog\\'" . debian-changelog-mode))
+
+;;(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
+;;; Instead use this.  See http://bugs.debian.org/457047 by Trent W. Buck
+(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" . debian-changelog-mode))
+
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
   ;; For debchange
@@ -1751,7 +1758,7 @@ Also set keymap."
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))

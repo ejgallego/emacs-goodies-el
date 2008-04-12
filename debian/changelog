@@ -16,8 +16,11 @@ emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
   * debian-el:
     - Enable apt-sources-mode for files in /etc/apt/sources.list.d/".
       Thanks to Géraud Meyer for the report and patch (Closes: #475701).
+  * dpkg-dev-el:
+    - Generalise automatic invocation to files named debian/package.changelog
+      Thanks to Trent W. Buck for the report and patch.  (Closes: #457047)
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:09:39 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:40:00 -0400
 
 emacs-goodies-el (29.1-1) unstable; urgency=low
 
