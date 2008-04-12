@@ -1,4 +1,4 @@
-emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
+emacs-goodies-el (29.2-1) unstable; urgency=low
 
   * emacs-goodies-el:
     - Updated to lastest version compatible with GPL V3:
@@ -22,7 +22,7 @@ emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
     - Generalise automatic invocation to files named debian/package.changelog
       Thanks to Trent W. Buck for the report and patch.  (Closes: #457047)
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:47:38 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:49:26 -0400
 
 emacs-goodies-el (29.1-1) unstable; urgency=low
 
