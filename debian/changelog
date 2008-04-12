@@ -1,10 +1,6 @@
 emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
-    - rfcview.el: Updated from maintained version at
-      http://www.loveshack.ukfsn.org/emacs/rfcview.el
-      Should fix fontification bug reported by jidanni@jidanni.org
-      (Closes: #464940).
     - Updated to lastest version compatible with GPL V3:
         box-quote.el
         mutt-alias.el
@@ -13,6 +9,12 @@ emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
         services.el
         thinks.el
         tld.el
+    - rfcview.el: Updated from maintained version at
+      http://www.loveshack.ukfsn.org/emacs/rfcview.el
+      Should fix fontification bug reported by jidanni@jidanni.org
+      (Closes: #464940).
+    - Fix S-Lang spelling in package description.
+      Thanks to Rafael Laboissiere (Closes: #460445).
   * debian-el:
     - Enable apt-sources-mode for files in /etc/apt/sources.list.d/".
       Thanks to Géraud Meyer for the report and patch (Closes: #475701).
@@ -20,7 +22,7 @@ emacs-goodies-el (29.2-1) UNRELEASED; urgency=low
     - Generalise automatic invocation to files named debian/package.changelog
       Thanks to Trent W. Buck for the report and patch.  (Closes: #457047)
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:40:00 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 12 Apr 2008 09:47:38 -0400
 
 emacs-goodies-el (29.1-1) unstable; urgency=low
 

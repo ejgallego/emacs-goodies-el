@@ -79,7 +79,7 @@ Description: Miscellaneous add-ons for Emacs
   shell-command - enables tab-completion for shell-command;
   show-wspace - highlight whitespaces of various kinds;
   silly-mail - generate bozotic mail headers;
-  slang-mode.el - a major-mode for editing slang scripts;
+  slang-mode.el - a major-mode for editing S-Lang scripts;
   sys-apropos - interface for the *nix apropos command;
   tabbar - Display a tab bar in the header line;
   tail - "tail -f" a file or a command form within Emacs;

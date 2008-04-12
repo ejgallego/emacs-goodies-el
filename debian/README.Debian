@@ -270,7 +270,7 @@ context.
 
 show-wspace.el is a minor mode to highlight whitespaces of various kinds.
 
-slang-mode.el is a major mode for editing Slang files.
+slang-mode.el is a major mode for editing S-Lang files.
 
 silly-mail.el provides M-x add-sm-* commands to add various headers to
 your email messages.
@@ -332,4 +332,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>, Wed, 28 Nov 2007 01:50:10 +0100
+ -- Peter S Galbraith <psg@debian.org>, Sat, 12 Apr 2008 09:45:15 -0400
