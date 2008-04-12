@@ -12,6 +12,7 @@ emacs-goodies-el (29.2-1) unstable; urgency=low
     - rfcview.el: Updated from maintained version at
       http://www.loveshack.ukfsn.org/emacs/rfcview.el
       Should fix fontification bug reported by jidanni@jidanni.org
+      but no longer works with XEmacs (it requires view.el).
       (Closes: #464940).
     - Fix S-Lang spelling in package description.
       Thanks to Rafael Laboissiere (Closes: #460445).
