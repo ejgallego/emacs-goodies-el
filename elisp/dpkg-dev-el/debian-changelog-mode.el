@@ -1762,7 +1762,7 @@ Also set keymap."
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" . debian-changelog-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:]][[:lower:][:digit:].+-]+\\.\\)?changelog\\'" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))

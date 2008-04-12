@@ -22,7 +22,7 @@ in `debian-bts-control-modes-to-reuse'." t nil)
 
 ;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
 ;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (18432
-;;;;;;  52193))
+;;;;;;  52589))
 ;;; Generated autoloads from debian-changelog-mode.el
 
 (autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\
@@ -47,7 +47,7 @@ interface to set it, or simply set the variable
 (add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" . debian-changelog-mode))
+(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:]][[:lower:][:digit:].+-]+\\.\\)?changelog\\'" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
