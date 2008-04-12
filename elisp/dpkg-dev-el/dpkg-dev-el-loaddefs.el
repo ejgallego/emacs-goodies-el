@@ -22,7 +22,7 @@ in `debian-bts-control-modes-to-reuse'." t nil)
 
 ;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
 ;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (18432
-;;;;;;  47753))
+;;;;;;  52193))
 ;;; Generated autoloads from debian-changelog-mode.el
 
 (autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\

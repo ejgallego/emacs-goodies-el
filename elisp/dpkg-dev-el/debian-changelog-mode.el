@@ -1748,7 +1748,11 @@ Also set keymap."
 
 ;;(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
 ;;; Instead use this.  See http://bugs.debian.org/457047 by Trent W. Buck
-(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" . debian-changelog-mode))
+;;; Valid package names spec is Debian Policy section 5.6.7
+(add-to-list
+ 'auto-mode-alist
+ '("/debian/\\([[:lower:][:digit:]][[:lower:][:digit:].+-]+\\.\\)?changelog\\'"
+   . debian-changelog-mode))
 
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
