@@ -131,7 +131,7 @@ Description: Miscellaneous add-ons for Gnus
 
 Package: devscripts-el
 Architecture: all
-Depends: emacs22 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el
+Depends: emacs22 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel
 Recommends: elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
