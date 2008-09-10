@@ -1,11 +1,17 @@
-emacs-goodies-el (29.4-1) UNRELEASED; urgency=low
+emacs-goodies-el (29.4-1) testing; urgency=low
 
+  * debian-el:
+    - debian-bug.el:
+      Bug fix: "Bug submenus have vanished", thanks to Bill Wohler for the
+      report and to Camm Maguire for an initial patch (Closes: #463053).
+      This _should_ go in lenny; I have only changed code that was currently
+      broken under the new Debian bug web page format.
   * emacs-goodies-el:
-  - markdown-mode.el: Thanks to Jason Blevins for the new upstream version
-    1.6. It fixes "blockquote-region only works if the region was selected
-    with the mouse" submitted by Daniel Burrows (Closes: #456592).
+    - markdown-mode.el: Thanks to Jason Blevins for the new upstream version
+      1.6. It fixes "blockquote-region only works if the region was selected
+      with the mouse" submitted by Daniel Burrows (Closes: #456592).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 05 Jun 2008 09:07:16 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 09 Sep 2008 21:08:52 -0400
 
 emacs-goodies-el (29.3-2) unstable; urgency=low
 
