@@ -5,14 +5,14 @@
 ## DP: Add autoload.
 
 @DPATCH@
-
---- emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el~	2007-07-24 17:46:26.000000000 +0200
-+++ emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el	2007-08-02 09:19:37.000000000 +0200
-@@ -361,6 +361,7 @@
- 
- ;; Mode definition  ===========================================================
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/markdown-mode.el emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/markdown-mode.el	2008-09-09 21:13:59.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el	2008-09-09 21:22:48.000000000 -0400
+@@ -1007,6 +1007,7 @@
+   (interactive)
+   (message "markdown-mode, version %s" markdown-mode-version))
  
 +;;;###autoload
- (define-derived-mode markdown-mode fundamental-mode "Markdown"
+ (define-derived-mode markdown-mode text-mode "Markdown"
    "Major mode for editing Markdown files."
    ;; Font lock.
