@@ -1,4 +1,4 @@
-emacs-goodies-el (29.4-1) testing; urgency=low
+emacs-goodies-el (29.4-1) unstable; urgency=high
 
   * debian-el:
     - debian-bug.el:
@@ -11,7 +11,7 @@ emacs-goodies-el (29.4-1) testing; urgency=low
       1.6. It fixes "blockquote-region only works if the region was selected
       with the mouse" submitted by Daniel Burrows (Closes: #456592).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 09 Sep 2008 21:08:52 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 09 Sep 2008 21:28:31 -0400
 
 emacs-goodies-el (29.3-2) unstable; urgency=low
 
