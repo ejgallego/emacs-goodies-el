@@ -330,7 +330,8 @@
 ;; V1.88 12Apr2008 Trent W. Buck <trentbuck@gmail.com>
 ;;  - Generalize auto-mode-alist entry.
 ;;    See http://bugs.debian.org/457047
-
+;; V1.89 23Feb2009 Jari.aalto@cante.net
+;;  - finalize date in UTC (User configurable) (Closes: #503700)
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
 ;;   James LewisMoss <dres@ioa.com>
@@ -410,6 +411,12 @@ the bug number."
 new version in debian/changelog."
   :group 'debian-changelog
   :type 'hook)
+
+(defcustom debian-changelog-date-utc-flag nil
+  "If non-nil, return date string in UTC when finalizing entry.
+See function `debian-changelog-date-string'."
+  :group 'debian-changelogx
+  :type 'boolean)
 
 ;; This function is from emacs/lisp/calendar/icalendar.el,
 ;; necessary to replace "%s" with the bug number in
@@ -1163,10 +1170,21 @@ If file is empty, create initial entry."
 ;;
 
 (defun debian-changelog-date-string ()
-  "Return RFC-822 format date string."
+  "Return RFC-822 format date string.
+Use UTC if `debian-changelog-date-utc-flag' is non-nil."
   (let* ((dp "date")
 	 (cp (point))
-	 (ret (call-process "date" nil t nil "-R"))
+	 (ret
+	  (let ((process-environment process-environment)
+		(tz (dolist (item process-environment)
+		      (when (and (stringp item)
+				 (string-match "^TZ=" item))
+			(return item)))))
+	    (when debian-changelog-date-utc-flag
+	      (setq process-environment
+		    (delete tz process-environment))
+	      (push "TZ=UTC" process-environment))
+	    (call-process "date" nil t nil "-R")))
 	 (np (point))
 	 (out nil))
     (cond ((not (or (eq ret nil) (eq ret 0)))
