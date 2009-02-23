@@ -3,7 +3,7 @@
 ;;; Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007 Matthew P. Hodges
 
 ;; Author: Matthew P. Hodges <MPHodges@member.fsf.org>
-;;	$Id: apt-utils.el,v 1.16 2007/10/10 00:17:11 psg Exp $
+;;	$Id: apt-utils.el,v 1.17 2009/02/23 16:42:43 psg Exp $
 
 ;; apt-utils.el is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -2033,7 +2033,7 @@ Files associated with installed packages can be accessed using:
     \\[apt-utils-view-changelog] view ChangeLog file
     \\[apt-utils-view-debian-changelog] view Debian ChangeLog file
     \\[apt-utils-view-readme] view README file
-    \\[apt-utils-view-debian-readme] view Debian ChangeLog file
+    \\[apt-utils-view-debian-readme] view Debian README file
     \\[apt-utils-view-news] view NEWS file
     \\[apt-utils-view-debian-news] view Debian NEWS file
     \\[apt-utils-view-copyright] view copyright (licence) file

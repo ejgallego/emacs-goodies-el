@@ -4,16 +4,18 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
     - debian-bug.el:
       Bug fix: Adapted patch from Håkon Stordahl to quote bug descriptions
       when building the bug menu. (Closes: #489786)
+    - apt-utils.el:
+      Fix help text error, thanks to Jens Thiele (Closes: #459958)
   * dpkg-dev-el:
     - dpkg-dev-el.el:
       Moved some stuff in from 50dpkg-dev-el.el.
       Added README.Source to auto-mode-alist, thanks to Noah Slater
-      (Closes #490292).
+      (Closes: #490292).
   * vm-bonus-el
     - This is now a dummy package since u-vm-color.el is now bundled and
       maintained with VM.  Thanks to Sven Joachim (Closes: #510945).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 11:34:32 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 11:41:50 -0500
 
 emacs-goodies-el (29.4-1) unstable; urgency=high
 
