@@ -8,6 +8,9 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
       for garbled Help buffer (Closes: #502426).      
     - apt-utils.el:
       Fix help text error, thanks to Jens Thiele (Closes: #459958)
+    - debian-el.el:
+      Add code from Kevin Ryde to set deb-view control file coding system
+      (Closes: #484027)
   * dpkg-dev-el:
     - dpkg-dev-el.el:
       Moved some stuff in from 50dpkg-dev-el.el.
@@ -23,7 +26,7 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
     - This is now a dummy package since u-vm-color.el is now bundled and
       maintained with VM.  Thanks to Sven Joachim (Closes: #510945).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 13:54:22 -0500
 
 emacs-goodies-el (29.4-1) unstable; urgency=high
 
