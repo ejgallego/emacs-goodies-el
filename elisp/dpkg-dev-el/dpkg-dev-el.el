@@ -57,6 +57,43 @@
   :load 'readme-debian
   :group 'dpkg-dev-el)
 
+
+
+
+;; other useful automode
+(add-to-list 'auto-mode-alist
+             '("/debian/[^/]*emacsen-startup\\'" . emacs-lisp-mode))
+;; Closes #490292 
+(add-to-list 'auto-mode-alist '("README.source" . readme-debian-mode))
+
+(when (member 'utf-8 (coding-system-list))
+  ;; default to utf-8 for debian changelog files
+  (modify-coding-system-alist 'file "/changelog\\.Debian\\'" 'utf-8)
+  (modify-coding-system-alist 'file "/debian/control\\'" 'utf-8)
+
+;;; (modify-coding-system-alist 'file "/debian/changelog\\'" 'utf-8)
+;;; Instead use this.  See http://bugs.debian.org/457047 by Trent W. Buck
+  (modify-coding-system-alist 'file "/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" 'utf-8)
+
+  ;; Handle Debian native package, from Kevin Ryde in bug #317597 and #416218
+  (defun debian-changelog-coding-system (args)
+      "Return the coding system for a /usr/share/doc/[package]/changelog file.
+If [package] is a debian native (no separate changelog.Debian) then answer
+`utf-8', otherwise remove ourselves from `file-coding-system-alist' and see
+what other rules say."
+      (let ((filename (if (consp (cadr args))
+                          (car (cadr args)) ;; ("filename" . buffer) in emacs 22
+                        (cadr args)))       ;; "filename" in emacs 21
+            (dirname  (file-name-directory filename)))
+        (if (file-exists-p (concat dirname "changelog.Debian.gz"))
+            (let ((file-coding-system-alist
+                   (remove '("/usr/share/doc/[^/]+/changelog\\'"
+                             . debian-changelog-coding-system)
+                           file-coding-system-alist)))
+              (apply 'find-operation-coding-system args))
+          'utf-8))))
+
+
 (provide 'dpkg-dev-el)
 
 ;;; dpkg-dev-el.el ends here
