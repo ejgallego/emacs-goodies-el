@@ -16,11 +16,14 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
     - debian-control-mode.el
       Applied patch from Morten Kjeldgaard changing Dm-Upload-Allowed to
       DM-Upload-Allowed (Closes: #508748).
+    - debian-bts-control.el
+      Applied patch from Luca Capello <luca@pca.it> adding
+      `debian-bts-control-cc-or-bcc' (Closes: #392494)
   * vm-bonus-el
     - This is now a dummy package since u-vm-color.el is now bundled and
       maintained with VM.  Thanks to Sven Joachim (Closes: #510945).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 13:02:39 -0500
+ --
 
 emacs-goodies-el (29.4-1) unstable; urgency=high
 

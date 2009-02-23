@@ -63,6 +63,8 @@
 ;; V1.10 30Aug2007 Peter S Galbraith <psg@debian.org>
 ;;  - Add `fixed' `notfixed' `block' `unblock' `archive' `unarchive'
 ;;    `found' `notfound'.  (Closes: #391647)
+;; V1.11 23Feb2009, Patch from Luca Capello <luca@pca.it>.
+;;  - Add `debian-bts-control-cc-or-bcc' (Closes: #392494)
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -88,9 +90,15 @@
   '(mh-letter-mode mail-mode message-mode)
   "List of modes in which calling `debian-bts-control' will reuse the buffer.
 No new draft will be created.  Instead control@bugs.debian.org will be
-added to the Cc: field and the comamnds added at the top of the message."
+added to the `debian-bts-control-cc-or-bcc' field and the commands added at
+the top of the message."
   :group 'debian-bts-control
   :type '(repeat symbol))
+
+(defcustom debian-bts-control-cc-or-bcc 'cc
+  "Whether to use Cc: or Bcc: header."
+  :group 'debian-bts-control
+  :type '(choice (const cc) (const bcc)))
 
 (defvar debian-bts-control-minor-mode nil)
 (defvar debian-bts-control-minor-mode-map nil
@@ -330,7 +338,9 @@ in `debian-bts-control-modes-to-reuse'."
           (and (car (memq t (mapcar '(lambda (item) (eq item major-mode))
                                     debian-bts-control-modes-to-reuse)))
                (not debian-bts-control-minor-mode)))
-      (debian-bug--set-CC "control@bugs.debian.org" "cc:")
+      (debian-bug--set-CC "control@bugs.debian.org"
+			  (concat
+			   (symbol-name debian-bts-control-cc-or-bcc) ":"))
       (goto-char (point-min))
       (if (re-search-forward "\\([0-9]+\\)@bugs.debian.org"
                              (mail-header-end) t)
