@@ -22,7 +22,7 @@ THISDIR=$(basename $PWD)
 #    $THISDIR
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 mkdir ../${SOURCE}-${UPSTREAM_VERSION}
-tar cf - --exclude=CVS elisp | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
+tar cf - --exclude=CVS --exclude=elisp/vm-bonus-el elisp | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
 (cd .. ; tar zcf ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 mkdir ../${SOURCE}-${UPSTREAM_VERSION}
