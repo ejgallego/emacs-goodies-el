@@ -1,3 +1,12 @@
+emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
+
+  * debian-el:
+    - debian-bug.el:
+      Bug fix: Adapted patch from Håkon Stordahl <haastord@online.no> to
+      quote bug descriptions when building the bug menu. (Closes: #489786)
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 10:50:23 -0500
+
 emacs-goodies-el (29.4-1) unstable; urgency=high
 
   * debian-el:
