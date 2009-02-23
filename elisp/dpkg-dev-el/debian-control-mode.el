@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 0.9
-;; X-RCS: $Id: debian-control-mode.el,v 1.13 2008/01/16 23:48:40 kibi-guest Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.14 2009/02/23 18:05:53 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V1.2a (2009-02-23) Applied patch from Morten Kjeldgaard changing
+;;      Dm-Upload-Allowed to DM-Upload-Allowed (Closes: #508748)
 
 ;; V1.2 (2008-01-17)  Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>
 ;; - Add "Dm-Upload-Allowed" field to source fields.
@@ -171,7 +174,7 @@
   (append
   '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
      "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders"
-     "Dm-Upload-Allowed" "Homepage" "Vcs-Browser")
+     "DM-Upload-Allowed" "Homepage" "Vcs-Browser")
    (mapcar (lambda (elt) (concat "Vcs-" elt))
            debian-control-vcs-names))
   "Valid source package field names, collected from several policy sections.")

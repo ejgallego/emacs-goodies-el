@@ -13,11 +13,14 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
       Moved some stuff in from 50dpkg-dev-el.el.
       Added README.Source to auto-mode-alist, thanks to Noah Slater
       (Closes: #490292).
+    - debian-control-mode.el
+      Applied patch from Morten Kjeldgaard changing Dm-Upload-Allowed to
+      DM-Upload-Allowed (Closes: #508748).
   * vm-bonus-el
     - This is now a dummy package since u-vm-color.el is now bundled and
       maintained with VM.  Thanks to Sven Joachim (Closes: #510945).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 12:13:28 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 13:02:39 -0500
 
 emacs-goodies-el (29.4-1) unstable; urgency=high
 
