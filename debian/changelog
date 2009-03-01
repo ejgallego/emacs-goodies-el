@@ -1,4 +1,12 @@
-emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
+emacs-goodies-el (29.6-1) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+    - pod-mode.el: updated to V0.502, thanks to Kevin Ryde
+      (Closes: #499473).
+
+ -- Peter S Galbraith <psg@debian.org>  Sun, 01 Mar 2009 14:59:15 -0500
+
+emacs-goodies-el (29.5-1) unstable; urgency=low
 
   * debian-el:
     - debian-bug.el:
@@ -29,7 +37,7 @@ emacs-goodies-el (29.5-1) UNRELEASED; urgency=low
     - This is now a dummy package since u-vm-color.el is now bundled and
       maintained with VM.  Thanks to Sven Joachim (Closes: #510945).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 14:52:40 -0500
+ -- Peter S Galbraith <psg@debian.org>  Mon, 23 Feb 2009 20:11:51 +0000
 
 emacs-goodies-el (29.4-1) unstable; urgency=high
 

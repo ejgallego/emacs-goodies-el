@@ -3,11 +3,10 @@
 ;;; It mainly defines a grammar for syntax highlighting.
 ;;; POD is the Plain Old Documentation format of Perl.
 
-;;; Copyright 2003-2005 Steffen Schwigon
+;;; Copyright 2003-2008 Steffen Schwigon
 
-;;; Author: Steffen Schwigon <schwigon@webit.de>
-;;; Version: 0.4
-;;; CVS Version: $Id: pod-mode.el,v 1.1 2007/11/27 14:03:02 kibi-guest Exp $
+;;; Author: Steffen Schwigon <ss5@renormalist.net>
+;;; Version: 0.502
 ;;; Keywords: perl pod
 ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 
@@ -33,7 +32,12 @@
 
 ;;; This mode is built with help of the
 ;;; "Emacs language mode creation tutorial" at
-;;; http://two-wugs.net/emacs/mode-tutorial.html
+;;;
+;;;   http://two-wugs.net/emacs/mode-tutorial.html
+;;;
+;;; which disapeared from the net and is now hosted at
+;;;
+;;;   http://renormalist.net/cgi-bin/twiki/view/Renormalist/EmacsLanguageModeCreationTutorial
 ;;;
 ;;; Regexes are defined for the following font-lock-faces:
 ;;;
@@ -128,6 +132,18 @@
     (set-syntax-table pod-mode-syntax-table)
     ))
 
+(defun pod-add-support-for-outline-minor-mode ()
+  "Provides additional menus from =head lines in outline-minor-mode"
+  (make-local-variable 'outline-regexp)
+  (setq outline-regexp "=head[1234] ")
+  (make-local-variable 'outline-level)
+  (setq outline-level
+        (function (lambda ()
+                    (save-excursion
+                      (string-to-int (buffer-substring (+ (point) 5) (+ (point) 6)))
+                      ))))
+  )
+
 ;; main
 (defun pod-mode ()
   "Major mode for editing POD files (Plain Old Documentation for Perl)."
@@ -142,7 +158,9 @@
   (setq major-mode 'pod-mode)
   (setq mode-name "POD")
   (setq imenu-generic-expression '((nil "^=head[1234] +\\(.*\\)" 1)))
-  (run-hooks 'pod-mode-hook))
+  (run-hooks 'pod-mode-hook)
+  (pod-add-support-for-outline-minor-mode)
+  )
 
 (provide 'pod-mode)
 
