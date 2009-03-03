@@ -405,6 +405,16 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
 ;;:require 'protbuf
   :group 'emacs-goodies-el)
 
+;; quack
+(defgroup quack nil
+  "Enhanced support for editing and running Scheme code."
+  :group  'scheme
+  :prefix "quack-"
+  :link   '(url-link "http://www.neilvandyke.org/quack/")
+  :load 'quack
+  :link '(custom-manual "(emacs-goodies-el)quack")
+  :group 'emacs-goodies-el)
+
 ;; rfcview
 (defgroup rfcview nil
   "View IETF RFC files with formatting."

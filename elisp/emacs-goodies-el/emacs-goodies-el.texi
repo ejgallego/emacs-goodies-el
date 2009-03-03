@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.81 2007/11/28 01:30:35 kibi-guest Exp $
+@c $Id: emacs-goodies-el.texi,v 1.82 2009/03/03 01:38:41 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -123,6 +123,7 @@ be documented.
 * projects::                    Project-based buffer name management
 * protbuf::                     Protect buffers from accidental killing
 * protocols::                   Protocol database access functions
+* quack::                       Enhanced support for editing and running Scheme
 * rfcview::                     View IETF RFCs with improved formatting
 * services::                    Services database access functions
 * session::                     Session Management for Emacs
@@ -3132,7 +3133,7 @@ Toggle @code{kill-buffer} protection on current buffer with active process.
 useful of the two, making it harder to accidentally kill shell buffers
 without terminating the process in them first.
 
-@node protocols, rfcview, protbuf, Top
+@node protocols, quack, protbuf, Top
 @chapter protocols - Protocol database access functions.
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -3149,7 +3150,89 @@ Find a protocol and display its details.
 Clear the protocols \"cache\".
 @end table
 
-@node rfcview, services, protocols, Top
+@node quack, rfcview, protocols, Top
+@chapter quack - Enhanced support for editing and running Scheme code
+
+@noindent Author: Neil W. Van Dyke <neil@@neilvandyke.org>
+
+Quack enhances Emacs support for Scheme programming.  Quack is layered
+atop the standard packages `cmuscheme.el', by Olin Shivers, and
+`scheme.el', by Bill Rozas and Dave Love.  Added features include:
+
+@itemize @bullet
+@item Menu and commands for viewing popular Scheme-related manuals or
+books.  Uses local copies of PLT manuals when available, and remote
+Web copies when necessary.  Command for keyword lookup in PLT
+manual, with keyword defaulting to symbol at point.
+
+@item Menus and command for viewing SRFIs.  SRFI index information is
+automatically downloaded from SRFI Web site.  Prompt defaults to
+SRFI number referenced at point.
+
+@item A `find-file' alternative that defaults to the file corresponding to
+the PLT `require' form at point.  (Other module systems will be
+supported in future versions of Quack.)
+
+@item Two new sets of font-lock rules for Scheme: "PLT Style," which is
+similar to that used by DrScheme 200 Check Syntax; and "Extended GNU
+Emacs Style," which is an extended version of the standard Scheme
+font-lock rules under GNU Emacs.
+
+@item Pretty-lambda fontification.  (GNU Emacs 21 only.)
+
+@item Enhanced `run-scheme' behavior.
+
+@item Enhanced `switch-to-scheme' behavior.
+
+@item Scheme Mode indentation rules for extensions of PLT, Guile, and
+other dialects.
+
+@item Command to toggle a `define' form between `(define (<name> <args>)
+<body>)' and `(define <name> (lambda (<args>) <body>))' syntax.
+
+@item Command for tidying the formatting in a Scheme Mode buffer.
+
+@item The `)' and `]' keys insert the character that agrees with the
+s-expression's opening character.
+
+@item Automatic indenting options for Return key.
+
+@item Mode for inspecting contents of PLT `.plt' package files, before
+releasing or installing the packages, or if one does not have PLT
+available.
+
+@item Command to open a Dired on a specified PLT collection.
+
+@item `compile' mode can navigate from PLT `setup-plt' errors.
+@end itemize
+
+@noindent The name "Quack" was a play on "DrScheme".
+
+@noindent Quack is dedicated to Yosh, naturally.
+
+@noindent Commands:
+
+@key{C-c C-q m}   View a manual in your Web browser.
+
+@key{C-c C-q k}   View the manual documentation for a keyword
+
+@key{C-c C-q s}   View an SRFI.
+
+@key{C-c C-q r}   Run an inferior Scheme process.
+
+@key{C-c C-q f}   Find a file using context of point for default.
+
+@key{C-c C-q l}   Toggle `lambda' syntax of `define'-like form.
+
+@key{C-c C-q t}   Tidy the formatting of the buffer.
+
+One additional command that does not currently have a standard binding
+is `quack-dired-pltcollect', which prompts for a PLT collection name and
+creates a Dired buffer on the collection's directory.  (A future version
+of Quack may integrate this functionality into a more generalized
+documentation navigation interface.)
+
+@node rfcview, services, quack, Top
 @chapter rfcview - view IETF RFCs with readability-improved formatting
 
 @noindent Author: Neil W. Van Dyke <neil@@neilvandyke.org>

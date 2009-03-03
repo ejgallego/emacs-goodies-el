@@ -72,6 +72,7 @@ Description: Miscellaneous add-ons for Emacs
   projects - create project-based meaningful buffer names;
   prot-buf - protect buffers from accidental killing;
   protocols - perform lookups in /etc/protocols;
+  quack - enhanced support for editing and running Scheme code;
   rfcview - view IETF RFCs with readability-improved formatting;
   services - perform lookups in /etc/services;
   session - menu to restore files visited in previous editing session;

@@ -58,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (18097 34331))
+;;;;;;  "bar-cursor.el" (18852 37684))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -80,7 +80,7 @@ Enable or disable advice based on value of variable `bar-cursor-mode'." nil nil)
 ;;;;;;  boxquote-describe-variable boxquote-describe-function boxquote-boxquote
 ;;;;;;  boxquote-paragraph boxquote-defun boxquote-yank boxquote-kill-ring-save
 ;;;;;;  boxquote-insert-file boxquote-buffer boxquote-region boxquote-title)
-;;;;;;  "boxquote" "boxquote.el" (18097 33628))
+;;;;;;  "boxquote" "boxquote.el" (18431 47702))
 ;;; Generated autoloads from boxquote.el
 
 (autoload (quote boxquote-title) "boxquote" "\
@@ -182,7 +182,7 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (18097 34332))
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (18852 37684))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -196,29 +196,21 @@ Display items in the `kill-ring' in another buffer." t nil)
 
 ;;;***
 
-;;;### (autoloads (cfengine-mode) "cfengine" "cfengine.el" (18097
-;;;;;;  33628))
+;;;### (autoloads (cfengine-mode) "cfengine" "cfengine.el" (18134
+;;;;;;  7322))
 ;;; Generated autoloads from cfengine.el
 
 (autoload (quote cfengine-mode) "cfengine" "\
-Cfengine mode is the major mode for editing Cfengine code.
+Major mode for editing cfengine input.
+There are no special keybindings by default.
 
-Bindings are as follows:
-
- Indent line                                          '\\[cfengine-tab]'
- Indent line, insert newline and indent the new line. '\\[newline-and-indent]'
-
-Comments are handled using standard Emacs conventions, including:
- Start a comment                                      '\\[indent-for-comment]'
- Comment region                                       '\\[comment-region]'
- Uncomment region                                     '\\[cfengine-uncomment-region]'
- Continue comment on next line                        '\\[indent-new-comment-line]'
-" t nil)
+Action blocks are treated as defuns, i.e. \\[beginning-of-defun] moves
+to the action header." t nil)
 
 ;;;***
 
 ;;;### (autoloads (color-theme-select) "color-theme" "color-theme.el"
-;;;;;;  (18097 34332))
+;;;;;;  (18852 37684))
 ;;; Generated autoloads from color-theme.el
 
 (autoload (quote color-theme-select) "color-theme" "\
@@ -232,7 +224,7 @@ libraries are mainly useful for color theme authors." t nil)
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (18097 34332))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (18852 37684))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -395,24 +387,8 @@ the decimal key on the keypad i<s mapped to DECIMAL instead of [.]." nil nil)
 
 ;;;***
 
-;;;### (autoloads (cwebm-mode webm-mode) "cwebm" "cwebm.el" (18097
-;;;;;;  33628))
-;;; Generated autoloads from cwebm.el
-
-(autoload (quote webm-mode) "cwebm" "\
-Major mode like TeX mode plus \\[forward-module] and \\[backward-module].
-Used for relative module movement. The automatic \" feature is disabled." t nil)
-
-(autoload (quote cwebm-mode) "cwebm" "\
-Major mode like LaTeX mode plus \\[forward-module] and \\[backward-module].
-Used for relative module movement. The automatic \" feature is disabled." t nil)
-(setq auto-mode-alist (cons '("\\.w$" . cwebm-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.ch$" . cwebm-mode) auto-mode-alist))
-
-;;;***
-
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (18097
-;;;;;;  34332))
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (18852
+;;;;;;  37684))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -421,7 +397,7 @@ With ARG, turn minor mode on if ARG is positive, off otherwise." t nil)
 
 ;;;***
 
-;;;### (autoloads (df) "df" "df.el" (18097 34332))
+;;;### (autoloads (df) "df" "df.el" (18852 37684))
 ;;; Generated autoloads from df.el
 
 (autoload (quote df) "df" "\
@@ -431,7 +407,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (18097 34331))
+;;;;;;  "diminish.el" (18852 37684))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -476,7 +452,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (18097 34333))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (18852 37684))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -763,7 +739,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (18097 34331))
+;;;;;;  "highlight-beyond-fill-column.el" (18852 37684))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -784,7 +760,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (18097 34330))
+;;;;;;  (18852 37684))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -1087,7 +1063,7 @@ See `read-file-name' for additional parameters." nil nil)
 ;;;***
 
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (18097 34334))
+;;;;;;  (18852 37685))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -1097,7 +1073,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (18097 34334))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (18852 37685))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -1161,8 +1137,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (18097
-;;;;;;  34334))
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (18852
+;;;;;;  37685))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -1171,7 +1147,7 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 ;;;***
 
 ;;;### (autoloads (markdown-mode) "markdown-mode" "markdown-mode.el"
-;;;;;;  (18097 34336))
+;;;;;;  (18852 37685))
 ;;; Generated autoloads from markdown-mode.el
 
 (autoload (quote markdown-mode) "markdown-mode" "\
@@ -1180,8 +1156,8 @@ Major mode for editing Markdown files." t nil)
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (18097
-;;;;;;  34334))
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (18852
+;;;;;;  37685))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -1261,8 +1237,8 @@ a console application." t nil)
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (18097
-;;;;;;  34331))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (18852
+;;;;;;  37684))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -1276,7 +1252,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 
 ;;;### (autoloads (newsticker-ticker-running-p newsticker-running-p
 ;;;;;;  newsticker-show-news newsticker-start-ticker newsticker-start)
-;;;;;;  "newsticker" "newsticker.el" (18097 34334))
+;;;;;;  "newsticker" "newsticker.el" (18852 37685))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -1308,7 +1284,7 @@ empty." nil nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (18097 34331))
+;;;;;;  "nuke-trailing-whitespace.el" (18852 37684))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -1323,8 +1299,8 @@ replacement if the buffer is read-only." t nil)
 
 ;;;***
 
-;;;### (autoloads (obfuscate-url) "obfusurl" "obfusurl.el" (18097
-;;;;;;  33628))
+;;;### (autoloads (obfuscate-url) "obfusurl" "obfusurl.el" (18431
+;;;;;;  47702))
 ;;; Generated autoloads from obfusurl.el
 
 (autoload (quote obfuscate-url) "obfusurl" "\
@@ -1361,7 +1337,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (18097 34335))
+;;;;;;  "perldoc.el" (18852 37685))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -1377,7 +1353,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (18252 12261))
+;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (18852 37685))
 ;;; Generated autoloads from pod-mode.el
 
 (autoload (quote pod-mode) "pod-mode" "\
@@ -1385,7 +1361,7 @@ Major mode for editing POD files (Plain Old Documentation for Perl)." t nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (18252 12219))
+;;;### (autoloads (project-add) "projects" "projects.el" (18852 37685))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -1394,7 +1370,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (18097 34335))
+;;;;;;  "protbuf" "protbuf.el" (18852 37685))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1429,7 +1405,7 @@ alternate BUFFER." t nil)
 ;;;***
 
 ;;;### (autoloads (protocols-clear-cache protocols-lookup) "protocols"
-;;;;;;  "protocols.el" (18097 33628))
+;;;;;;  "protocols.el" (18431 47702))
 ;;; Generated autoloads from protocols.el
 
 (autoload (quote protocols-lookup) "protocols" "\
@@ -1440,15 +1416,45 @@ Clear the protocols \"cache\"." t nil)
 
 ;;;***
 
+;;;### (autoloads (quack-pltfile-mode quack-view-manual quack-tidy-buffer)
+;;;;;;  "quack" "quack.el" (18852 37685))
+;;; Generated autoloads from quack.el
+
+(autoload (quote quack-tidy-buffer) "quack" "\
+Tidy the formatting of the current Scheme buffer.
+
+This reindents, converts tabs to spaces, removes trailing whitespace on lines,
+removes formfeed characters, removes extraneous blank lines, and makes sure
+the buffer ends with a newline.
+
+This can conceivably corrupt multi-line string literals, but not in any way
+they wouldn't be corrupted by Usenet, various mailers, typesetting for print,
+etc.
+
+This may also result in large diffs when the tidied file is commited back to a
+version control or configuration management system.  Consider making a VC or CM
+delta that consists only of changes made by `quack-tidy-buffer'." t nil)
+
+(autoload (quote quack-view-manual) "quack" "\
+View a manual." t nil)
+
+(defadvice run-scheme (around quack-ad-run first nil activate) "Adds prompting for which Scheme interpreter program to run." (interactive (list (cond ((comint-check-proc "*scheme*") nil) ((or current-prefix-arg quack-run-scheme-always-prompts-p) (quack-run-scheme-prompt)) (t quack-default-program)))) (if cmd (let ((buf (current-buffer)) (wg (current-window-configuration))) ad-do-it (unless (or (not quack-switch-to-scheme-method) (eq quack-switch-to-scheme-method (quote cmuscheme))) (set-window-configuration wg) (set-buffer buf) (switch-to-scheme t)) (message "Started Scheme: %s" scheme-program-name)) (if (or (not quack-switch-to-scheme-method) (eq quack-switch-to-scheme-method (quote cmuscheme))) (pop-to-buffer "*scheme*") (switch-to-scheme t)) (message "Switched to running Scheme: %s" scheme-program-name)))
+
+(autoload (quote quack-pltfile-mode) "quack" nil t nil)
+
+;;;***
+
 ;;;### (autoloads (rfcview-mode rfcview-customize) "rfcview" "rfcview.el"
-;;;;;;  (18097 33628))
+;;;;;;  (18412 25393))
 ;;; Generated autoloads from rfcview.el
 
-(autoload (quote rfcview-customize) "rfcview" nil t nil)
+(autoload (quote rfcview-customize) "rfcview" "\
+Enter the RFCview Custom group." t nil)
 
 (autoload (quote rfcview-mode) "rfcview" "\
 Major mode for viewing Internet RFCs.
 
+http://www.loveshack.ukfsn.org/emacs/rfcview.el
 http://www.neilvandyke.org/rfcview/
 
 Key bindings:
@@ -1457,7 +1463,7 @@ Key bindings:
 ;;;***
 
 ;;;### (autoloads (services-clear-cache services-lookup) "services"
-;;;;;;  "services.el" (18097 33628))
+;;;;;;  "services.el" (18431 47702))
 ;;; Generated autoloads from services.el
 
 (autoload (quote services-lookup) "services" "\
@@ -1469,7 +1475,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (18097 34335))
+;;;;;;  (18852 37685))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1500,7 +1506,7 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 
 ;;;### (autoloads (show-ws-toggle-show-trailing-whitespace show-ws-toggle-show-hard-spaces
 ;;;;;;  show-ws-toggle-show-tabs) "show-wspace" "show-wspace.el"
-;;;;;;  (18176 64695))
+;;;;;;  (18180 5423))
 ;;; Generated autoloads from show-wspace.el
 
 (defalias (quote toggle-show-tabs-show-ws) (quote show-ws-toggle-show-tabs))
@@ -1523,7 +1529,7 @@ Uses face `show-ws-trailing-whitespace'." t nil)
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (18097 34334))
+;;;;;;  "silly-mail.el" (18852 37685))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1537,8 +1543,8 @@ The choice of available headers is taken from `sm-mail-header-table'." t nil)
 
 ;;;***
 
-;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (18097
-;;;;;;  34335))
+;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (18852
+;;;;;;  37685))
 ;;; Generated autoloads from slang-mode.el
 
 (autoload (quote slang-mode) "slang-mode" "\
@@ -1558,19 +1564,23 @@ Ask the system apropos command for man-pages matching QUERY." t nil)
 
 ;;;***
 
-;;;### (autoloads (tabbar-local-mode tabbar-mode tabbar-forward-tab
+;;;### (autoloads (tabbar-mwheel-mode tabbar-mode tabbar-local-mode
+;;;;;;  tabbar-mwheel-switch-group tabbar-mwheel-switch-tab tabbar-mwheel-forward-tab
+;;;;;;  tabbar-mwheel-backward-tab tabbar-mwheel-forward-group tabbar-mwheel-backward-group
+;;;;;;  tabbar-mwheel-forward tabbar-mwheel-backward tabbar-press-scroll-right
+;;;;;;  tabbar-press-scroll-left tabbar-press-home tabbar-forward-tab
 ;;;;;;  tabbar-backward-tab tabbar-forward-group tabbar-backward-group
-;;;;;;  tabbar-forward tabbar-backward) "tabbar" "tabbar.el" (18097
-;;;;;;  33628))
+;;;;;;  tabbar-forward tabbar-backward) "tabbar" "tabbar.el" (18106
+;;;;;;  17053))
 ;;; Generated autoloads from tabbar.el
 
 (autoload (quote tabbar-backward) "tabbar" "\
 Select the previous available tab.
-Depend on the setting of the option `tabbar-cycling-scope'." t nil)
+Depend on the setting of the option `tabbar-cycle-scope'." t nil)
 
 (autoload (quote tabbar-forward) "tabbar" "\
 Select the next available tab.
-Depend on the setting of the option `tabbar-cycling-scope'." t nil)
+Depend on the setting of the option `tabbar-cycle-scope'." t nil)
 
 (autoload (quote tabbar-backward-group) "tabbar" "\
 Go to selected tab in the previous available group." t nil)
@@ -1583,6 +1593,71 @@ Select the previous visible tab." t nil)
 
 (autoload (quote tabbar-forward-tab) "tabbar" "\
 Select the next visible tab." t nil)
+
+(autoload (quote tabbar-press-home) "tabbar" "\
+Press the tab bar home button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click." t nil)
+
+(autoload (quote tabbar-press-scroll-left) "tabbar" "\
+Press the tab bar scroll-left button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click." t nil)
+
+(autoload (quote tabbar-press-scroll-right) "tabbar" "\
+Press the tab bar scroll-right button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click." t nil)
+
+(autoload (quote tabbar-mwheel-backward) "tabbar" "\
+Select the previous available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward'." t nil)
+
+(autoload (quote tabbar-mwheel-forward) "tabbar" "\
+Select the next available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward'." t nil)
+
+(autoload (quote tabbar-mwheel-backward-group) "tabbar" "\
+Go to selected tab in the previous available group.
+If there is only one group, select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-group'." t nil)
+
+(autoload (quote tabbar-mwheel-forward-group) "tabbar" "\
+Go to selected tab in the next available group.
+If there is only one group, select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-group'." t nil)
+
+(autoload (quote tabbar-mwheel-backward-tab) "tabbar" "\
+Select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-tab'." t nil)
+
+(autoload (quote tabbar-mwheel-forward-tab) "tabbar" "\
+Select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-tab'." t nil)
+
+(autoload (quote tabbar-mwheel-switch-tab) "tabbar" "\
+Select the next or previous tab according to EVENT." t nil)
+
+(autoload (quote tabbar-mwheel-switch-group) "tabbar" "\
+Select the next or previous group of tabs according to EVENT." t nil)
+
+(autoload (quote tabbar-local-mode) "tabbar" "\
+Toggle local display of the tab bar.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+When turned on, if a local header line is shown, it is hidden to show
+the tab bar.  The tab bar is locally hidden otherwise.  When turned
+off, if a local header line is hidden or the tab bar is locally
+hidden, it is shown again.  Signal an error if Tabbar mode is off." t nil)
 
 (defvar tabbar-mode nil "\
 Non-nil if Tabbar mode is enabled.
@@ -1597,16 +1672,26 @@ use either \\[customize] or the function `tabbar-mode'.")
 (autoload (quote tabbar-mode) "tabbar" "\
 Toggle display of a tab bar in the header line.
 With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled." t nil)
+Returns non-nil if the new state is enabled.
 
-(autoload (quote tabbar-local-mode) "tabbar" "\
-Toggle local display of the tab bar.
+\\{tabbar-mode-map}" t nil)
+
+(defvar tabbar-mwheel-mode nil "\
+Non-nil if Tabbar-Mwheel mode is enabled.
+See the command `tabbar-mwheel-mode' for a description of this minor-mode.
+Setting this variable directly does not take effect;
+use either \\[customize] or the function `tabbar-mwheel-mode'.")
+
+(custom-add-to-group (quote tabbar) (quote tabbar-mwheel-mode) (quote custom-variable))
+
+(custom-add-load (quote tabbar-mwheel-mode) (quote tabbar))
+
+(autoload (quote tabbar-mwheel-mode) "tabbar" "\
+Toggle use of the mouse wheel to navigate through tabs or groups.
 With prefix argument ARG, turn on if positive, otherwise off.
 Returns non-nil if the new state is enabled.
-When on and tab bar global mode is on, if a buffer local value of
-`header-line-format' exists, it is saved, then the local header line
-is killed to show the tab bar.  When off, the saved local value of the
-header line is restored, hiding the tab bar." t nil)
+
+\\{tabbar-mwheel-mode-map}" t nil)
 
 ;;;***
 
@@ -1622,7 +1707,7 @@ header line is restored, hiding the tab bar." t nil)
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (18097 34335))
+;;;;;;  "table" "table.el" (18852 37685))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -2176,7 +2261,7 @@ tc-citation-string, tc-make-attribution and tc-header-funs." nil nil)
 ;;;***
 
 ;;;### (autoloads (thinks-maybe-region thinks-yank thinks-region
-;;;;;;  thinks) "thinks" "thinks.el" (18097 33628))
+;;;;;;  thinks) "thinks" "thinks.el" (18431 47702))
 ;;; Generated autoloads from thinks.el
 
 (autoload (quote thinks) "thinks" "\
@@ -2212,7 +2297,7 @@ Major mode for editing Tlc files, or files found in tlc directories." t nil)
 
 ;;;***
 
-;;;### (autoloads (tld) "tld" "tld.el" (18097 33628))
+;;;### (autoloads (tld) "tld" "tld.el" (18431 47702))
 ;;; Generated autoloads from tld.el
 
 (autoload (quote tld) "tld" "\

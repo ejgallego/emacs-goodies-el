@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.23 $
+| ;; $Revision: 1.24 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -718,7 +718,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.23 2007/11/28 01:00:11 kibi-guest Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.24 2009/03/03 01:38:40 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -852,7 +852,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.23 2007/11/28 01:00:11 kibi-guest Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.24 2009/03/03 01:38:40 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -905,6 +905,17 @@ Author/copyright info for protocols.el:
 | [...]
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2. For details see the file COPYING.
+`----
+
+Author/copyright info for quack.el:
+
+,----
+| ;;; quack.el --- Enhanced support for editing and running Scheme code
+| ;; Copyright 2002-2009 by Neil Van Dyke <neil@neilvandyke.org>
+| [...]
+| ;; This is free software; you can redistribute it and/or modify it under the
+| ;; terms of the GNU General Public License as published by the Free Software
+| ;; Foundation; either version 2, or (at your option) any later version.
 `----
 
 Author/copyright info for rfcview.el:
@@ -1106,7 +1117,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.23 $
+| ;; $Revision: 1.24 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

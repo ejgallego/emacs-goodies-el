@@ -62,6 +62,7 @@ elisp/emacs-goodies-el/pod-mode.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/projects.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/protbuf.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/protocols.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/quack.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/rfcview.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/services.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/session.el /usr/share/emacs/site-lisp/emacs-goodies-el/
