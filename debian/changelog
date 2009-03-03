@@ -1,8 +1,9 @@
-emacs-goodies-el (29.6-1) UNRELEASED; urgency=low
+emacs-goodies-el (30.0-1) UNRELEASED; urgency=low
 
   * emacs-goodies-el:
     - pod-mode.el: updated to V0.502, thanks to Kevin Ryde
       (Closes: #499473).
+    New file:
     - quack.el: Added file (version 0.34), integration contributed by
       Daniel Moerner <dmoerner@gmail.com>, (Closes: #509486)
 

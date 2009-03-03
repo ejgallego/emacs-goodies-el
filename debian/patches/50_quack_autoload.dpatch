@@ -6,9 +6,48 @@
 
 @DPATCH@
 diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/elisp/emacs-goodies-el/quack.el
---- emacs-goodies-el~/elisp/emacs-goodies-el/quack.el	2009-02-24 16:40:07.000000000 -0800
-+++ emacs-goodies-el/elisp/emacs-goodies-el/quack.el	2009-02-24 17:34:28.814945294 -0800
-@@ -4100,6 +4100,7 @@
+--- emacs-goodies-el~/elisp/emacs-goodies-el/quack.el	2009-03-02 20:39:52.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/quack.el	2009-03-02 21:18:30.000000000 -0500
+@@ -28,7 +28,7 @@
+ ;; INTRODUCTION:
+ ;;
+ ;;     Quack enhances Emacs support for Scheme programming.  Quack is layered
+-;;     atop the standard packages `cmuscheme.el', by Olin Shivers, and
++;;     atop the standardpackages `cmuscheme.el', by Olin Shivers, and
+ ;;     `scheme.el', by Bill Rozas and Dave Love.  Added features include:
+ ;;
+ ;;       * Menu and commands for viewing popular Scheme-related manuals or
+@@ -3117,6 +3117,8 @@
+                              ;; Non-Scheme:
+                              ("\\.plt\\'"    . quack-pltfile-mode)))
+ 
++;;;###autoload(add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
++
+ ;; Syntax Table:
+ 
+ (defmacro quack-str-syntax (str)
+@@ -4000,9 +4002,11 @@
+   (quack-when-xemacs
+    (quack-install-global-menu)))
+ 
++;;;###autoload
+ (defun quack-inferior-scheme-mode-hookfunc ()
+   (quack-shared-mode-hookfunc-stuff))
+ 
++;;;###autoload
+ (defun quack-scheme-mode-hookfunc ()
+   (quack-shared-mode-hookfunc-stuff)
+ 
+@@ -4015,6 +4019,8 @@
+   ;;(quack-install-tool-bar)))
+   )
+ 
++;;;###autoload(add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
++;;;###autoload(add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
+ (add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
+ (add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
+ 
+@@ -4100,6 +4106,7 @@
  
  ;; TODO: Make a menu map for pltfile-mode.
  

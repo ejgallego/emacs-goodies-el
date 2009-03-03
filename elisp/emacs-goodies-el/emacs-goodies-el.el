@@ -242,12 +242,6 @@ in `substitute-in-file-name'."
 ;; pod-mode.el
 (add-to-list 'auto-mode-alist '("\\.pod$" . pod-mode))
 
-;; quack.el
-;; Adapted from Gentoo site-lisp configuration.
-(autoload 'quack-pltfile-mode "quack"
-  "Major mode for viewing PLT Scheme `.plt' package files." t)
-(add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
-
 ;; rfcview
 (add-to-list 'auto-mode-alist
              '("/rfc[0-9]+\\.txt\\(\\.gz\\)?\\'" . rfcview-mode))
