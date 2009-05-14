@@ -9,8 +9,10 @@ emacs-goodies-el (30.0-1) UNRELEASED; urgency=low
   * debian-el:
     - debian-bug.el: "List of pseudo-packages not up to date".
       Thanks to Tommi Vainikainen (Closes: #526496).
+    - debian-bug.el: "[PATCH] using the "maintainer mbox" instead of "mbox
+      folder". Thanks to Evgeny M. Zubok (Closes: #521571).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 13 May 2009 22:57:27 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 13 May 2009 23:06:42 -0400
 
 emacs-goodies-el (29.5-1) unstable; urgency=low
 
