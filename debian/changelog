@@ -1,3 +1,12 @@
+emacs-goodies-el (30.1-1) UNRELEASED; urgency=low
+
+  [ Daniel Moerner ]
+  * emacs-goodies-el:
+    - quack.el: updated to version 0.36, autoload patch
+      refreshed. (Closes: #530703)  
+
+ -- Daniel Moerner <dmoerner@gmail.com>  Sun, 31 May 2009 20:15:51 -0700
+
 emacs-goodies-el (30.0-1) unstable; urgency=low
 
   * emacs-goodies-el:
