@@ -2,22 +2,13 @@
 ## 50_quack_autoload.dpatch by Daniel Moerner <dmoerner@gmail.com>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: Insert autoload headers for quack.el.
 
 @DPATCH@
 diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/elisp/emacs-goodies-el/quack.el
---- emacs-goodies-el~/elisp/emacs-goodies-el/quack.el	2009-03-02 20:39:52.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/quack.el	2009-03-02 21:18:30.000000000 -0500
-@@ -28,7 +28,7 @@
- ;; INTRODUCTION:
- ;;
- ;;     Quack enhances Emacs support for Scheme programming.  Quack is layered
--;;     atop the standard packages `cmuscheme.el', by Olin Shivers, and
-+;;     atop the standardpackages `cmuscheme.el', by Olin Shivers, and
- ;;     `scheme.el', by Bill Rozas and Dave Love.  Added features include:
- ;;
- ;;       * Menu and commands for viewing popular Scheme-related manuals or
-@@ -3117,6 +3117,8 @@
+--- emacs-goodies-el~/elisp/emacs-goodies-el/quack.el	2009-05-26 22:06:46.000000000 -0700
++++ emacs-goodies-el/elisp/emacs-goodies-el/quack.el	2009-05-26 22:43:29.897795890 -0700
+@@ -3102,6 +3102,8 @@
                               ;; Non-Scheme:
                               ("\\.plt\\'"    . quack-pltfile-mode)))
  
@@ -26,7 +17,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; Syntax Table:
  
  (defmacro quack-str-syntax (str)
-@@ -4000,9 +4002,11 @@
+@@ -3989,9 +3991,11 @@
    (quack-when-xemacs
     (quack-install-global-menu)))
  
@@ -38,7 +29,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  (defun quack-scheme-mode-hookfunc ()
    (quack-shared-mode-hookfunc-stuff)
  
-@@ -4015,6 +4019,8 @@
+@@ -4004,6 +4008,8 @@
    ;;(quack-install-tool-bar)))
    )
  
@@ -47,7 +38,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  (add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
  (add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
  
-@@ -4100,6 +4106,7 @@
+@@ -4135,6 +4141,7 @@
  
  ;; TODO: Make a menu map for pltfile-mode.
  
