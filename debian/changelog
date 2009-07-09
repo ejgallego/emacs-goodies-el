@@ -1,4 +1,4 @@
-emacs-goodies-el (30.1-1) UNRELEASED; urgency=low
+emacs-goodies-el (30.1-1) unstable; urgency=low
 
   [ Daniel Moerner ]
   * emacs-goodies-el:
@@ -10,8 +10,9 @@ emacs-goodies-el (30.1-1) UNRELEASED; urgency=low
   * emacs-goodies-el:
     - "please add info-dir-section to your info files", thanks to
       Norbert Preining (Closes: #528868).
+    - muttrc-mode.el: Files updated by Kumar Appaiah (Closes: #451477).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Thu, 09 Jul 2009 15:30:33 -0400
 
 emacs-goodies-el (30.0-1) unstable; urgency=low
 
