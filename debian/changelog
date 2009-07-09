@@ -6,7 +6,12 @@ emacs-goodies-el (30.1-1) UNRELEASED; urgency=low
       refreshed. (Closes: #530703)  
   * Bug fix: Remove useless co from Vcs-Cvs field. (Closes: #530702)
   
- -- Daniel Moerner <dmoerner@gmail.com>  Wed, 01 Jul 2009 13:36:00 -0700
+  [ Peter S Galbraith ]
+  * emacs-goodies-el:
+    - "please add info-dir-section to your info files", thanks to
+      Norbert Preining (Closes: #528868).
+
+ --
 
 emacs-goodies-el (30.0-1) unstable; urgency=low
 
