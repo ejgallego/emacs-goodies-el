@@ -415,6 +415,16 @@ effect.  Therefore it is recommended to `newsticker-stop' and then
   :link '(custom-manual "(emacs-goodies-el)quack")
   :group 'emacs-goodies-el)
 
+(defcustom quack-install nil
+  "Whether to setup quack for use."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (when value
+           (quack-install)))
+  :require 'quack
+  :group 'quack)
+
 ;; rfcview
 (defgroup rfcview nil
   "View IETF RFC files with formatting."

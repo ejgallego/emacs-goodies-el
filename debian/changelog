@@ -1,3 +1,11 @@
+emacs-goodies-el (30.2-1) unstable; urgency=low
+
+  * emacs-goodies-el:
+    - quack.el: Bug fix: "quack overrides emacs defaults, should probably
+      be optional (aggressive)", thanks to Sami Liedes (Closes: #536154).
+
+ -- Peter S Galbraith <psg@debian.org>  Fri, 17 Jul 2009 17:02:14 -0400
+
 emacs-goodies-el (30.1-1) unstable; urgency=low
 
   [ Daniel Moerner ]

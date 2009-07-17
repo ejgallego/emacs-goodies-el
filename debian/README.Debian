@@ -255,7 +255,8 @@ protocols.el provides M-x protocols-lookup, to search for info in your
 quack.el provides enhanced support for editing and running Scheme code
 in both the major and minor modes. It also provides easy access to online
 references for plt-scheme, books on Scheme, and SRFIs (Scheme Requests
-For Implementation).
+For Implementation). Because it invasively changes scheme-mode, it is
+not enabled by default. To enable it, customize the variable `quack-install'.
 
 rfcview.el formats IETF RFCs for improved readability.
 
@@ -337,4 +338,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Sat, 12 Apr 2008 09:45:15 -0400
+ -- Peter S Galbraith <psg@debian.org>, Fri, 17 Jul 2009 18:27:44 -0400

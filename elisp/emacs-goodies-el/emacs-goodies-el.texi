@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.82 2009/03/03 01:38:41 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.83 2009/07/17 22:34:44 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3158,6 +3158,8 @@ Clear the protocols \"cache\".
 Quack enhances Emacs support for Scheme programming.  Quack is layered
 atop the standard packages `cmuscheme.el', by Olin Shivers, and
 `scheme.el', by Bill Rozas and Dave Love.  Added features include:
+
+To use it, customize the variable @code{quack-install}.
 
 @itemize @bullet
 @item Menu and commands for viewing popular Scheme-related manuals or

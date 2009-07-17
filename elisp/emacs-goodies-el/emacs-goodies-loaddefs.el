@@ -58,7 +58,7 @@ Turn off ASCII code display." t nil)
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (18860 37780))
+;;;;;;  "bar-cursor.el" (19040 58517))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload (quote bar-cursor-mode) "bar-cursor" "\
@@ -182,7 +182,7 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (18860 37780))
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (19040 58517))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload (quote browse-kill-ring-default-keybindings) "browse-kill-ring" "\
@@ -210,7 +210,7 @@ to the action header." t nil)
 ;;;***
 
 ;;;### (autoloads (color-theme-select) "color-theme" "color-theme.el"
-;;;;;;  (18860 37780))
+;;;;;;  (19040 58518))
 ;;; Generated autoloads from color-theme.el
 
 (autoload (quote color-theme-select) "color-theme" "\
@@ -224,7 +224,7 @@ libraries are mainly useful for color theme authors." t nil)
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (18860 37780))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (19040 58517))
 ;;; Generated autoloads from ctypes.el
 
 (autoload (quote ctypes-define-type) "ctypes" "\
@@ -387,8 +387,8 @@ the decimal key on the keypad i<s mapped to DECIMAL instead of [.]." nil nil)
 
 ;;;***
 
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (18860
-;;;;;;  37780))
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (19040
+;;;;;;  58518))
 ;;; Generated autoloads from dedicated.el
 
 (autoload (quote dedicated-mode) "dedicated" "\
@@ -397,7 +397,7 @@ With ARG, turn minor mode on if ARG is positive, off otherwise." t nil)
 
 ;;;***
 
-;;;### (autoloads (df) "df" "df.el" (18860 37780))
+;;;### (autoloads (df) "df" "df.el" (19040 58518))
 ;;; Generated autoloads from df.el
 
 (autoload (quote df) "df" "\
@@ -407,7 +407,7 @@ This display updates automatically every `df-refresh' seconds." t nil)
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (18860 37780))
+;;;;;;  "diminish.el" (19040 58517))
 ;;; Generated autoloads from diminish.el
 
 (autoload (quote diminish) "diminish" "\
@@ -452,7 +452,7 @@ what diminished modes would be on the mode-line if they were still minor." t nil
 
 ;;;***
 
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (18860 37780))
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (19040 58518))
 ;;; Generated autoloads from edit-env.el
 
 (autoload (quote edit-env) "edit-env" "\
@@ -739,7 +739,7 @@ typing the keymap prefix (default F2).
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (18860 37780))
+;;;;;;  "highlight-beyond-fill-column.el" (19040 58517))
 ;;; Generated autoloads from highlight-beyond-fill-column.el
 
 (autoload (quote highlight-beyond-fill-column) "highlight-beyond-fill-column" "\
@@ -760,7 +760,7 @@ line is hightlighted by customizing the group highlight-current-line." t nil)
 ;;;***
 
 ;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (18860 37780))
+;;;;;;  (19040 58517))
 ;;; Generated autoloads from home-end.el
 
 (autoload (quote home-end-home) "home-end" "\
@@ -1063,7 +1063,7 @@ See `read-file-name' for additional parameters." nil nil)
 ;;;***
 
 ;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (18860 37781))
+;;;;;;  (19040 58518))
 ;;; Generated autoloads from joc-toggle-buffer.el
 
 (autoload (quote joc-toggle-buffer) "joc-toggle-buffer" "\
@@ -1073,7 +1073,7 @@ Switch to previous active buffer." t nil)
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (18860 37781))
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (19040 58518))
 ;;; Generated autoloads from joc-toggle-case.el
 
 (autoload (quote joc-toggle-case) "joc-toggle-case" "\
@@ -1137,8 +1137,8 @@ the name of the mode-map that goes with the given mode." nil (quote macro))
 
 ;;;***
 
-;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (18860
-;;;;;;  37781))
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (19040
+;;;;;;  58518))
 ;;; Generated autoloads from lcomp.el
 
 (autoload (quote lcomp-activate-advices) "lcomp" "\
@@ -1147,7 +1147,7 @@ Activate lcomp advices if ON is non-nil, disable otherwise." t nil)
 ;;;***
 
 ;;;### (autoloads (markdown-mode) "markdown-mode" "markdown-mode.el"
-;;;;;;  (18860 37781))
+;;;;;;  (19040 58518))
 ;;; Generated autoloads from markdown-mode.el
 
 (autoload (quote markdown-mode) "markdown-mode" "\
@@ -1156,8 +1156,8 @@ Major mode for editing Markdown files." t nil)
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (18860
-;;;;;;  37781))
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (19040
+;;;;;;  58518))
 ;;; Generated autoloads from marker-visit.el
 
 (autoload (quote marker-visit-prev) "marker-visit" "\
@@ -1237,8 +1237,8 @@ a console application." t nil)
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (18860
-;;;;;;  37780))
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (19030
+;;;;;;  17715))
 ;;; Generated autoloads from muttrc-mode.el
 
 (autoload (quote muttrc-mode) "muttrc-mode" "\
@@ -1252,7 +1252,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 
 ;;;### (autoloads (newsticker-ticker-running-p newsticker-running-p
 ;;;;;;  newsticker-show-news newsticker-start-ticker newsticker-start)
-;;;;;;  "newsticker" "newsticker.el" (18860 37781))
+;;;;;;  "newsticker" "newsticker.el" (19040 58518))
 ;;; Generated autoloads from newsticker.el
 
 (autoload (quote newsticker-start) "newsticker" "\
@@ -1284,7 +1284,7 @@ empty." nil nil)
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (18860 37780))
+;;;;;;  "nuke-trailing-whitespace.el" (19040 58517))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload (quote nuke-trailing-whitespace) "nuke-trailing-whitespace" "\
@@ -1337,7 +1337,7 @@ displayed in the echo area if `pack-windows-verbose' is non-nil." t nil)
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (18860 37781))
+;;;;;;  "perldoc.el" (19040 58518))
 ;;; Generated autoloads from perldoc.el
 
 (autoload (quote perldoc) "perldoc" "\
@@ -1353,7 +1353,7 @@ A hook which binds F1 to `perldoc-at-point'." nil nil)
 
 ;;;***
 
-;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (18860 37781))
+;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (19040 58518))
 ;;; Generated autoloads from pod-mode.el
 
 (autoload (quote pod-mode) "pod-mode" "\
@@ -1361,7 +1361,7 @@ Major mode for editing POD files (Plain Old Documentation for Perl)." t nil)
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (18860 37781))
+;;;### (autoloads (project-add) "projects" "projects.el" (19040 58518))
 ;;; Generated autoloads from projects.el
 
 (autoload (quote project-add) "projects" "\
@@ -1370,7 +1370,7 @@ Add the project named NAME with root directory DIRECTORY." t nil)
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (18860 37781))
+;;;;;;  "protbuf" "protbuf.el" (19040 58518))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
@@ -1416,19 +1416,20 @@ Clear the protocols \"cache\"." t nil)
 
 ;;;***
 
-;;;### (autoloads (quack-pltfile-mode quack-scheme-mode-hookfunc
-;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "quack.el" (18860
-;;;;;;  37781))
+;;;### (autoloads (quack-install quack-pltfile-mode quack-scheme-mode-hookfunc
+;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "quack.el" (19040
+;;;;;;  58518))
 ;;; Generated autoloads from quack.el
 (add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
 
 (autoload (quote quack-inferior-scheme-mode-hookfunc) "quack" nil nil nil)
 
 (autoload (quote quack-scheme-mode-hookfunc) "quack" nil nil nil)
-(add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
-(add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
 
 (autoload (quote quack-pltfile-mode) "quack" nil t nil)
+
+(autoload (quote quack-install) "quack" "\
+Install quack.el into scheme-mode." nil nil)
 
 ;;;***
 
@@ -1463,7 +1464,7 @@ Clear the services \"cache\"." t nil)
 ;;;***
 
 ;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (18860 37781))
+;;;;;;  (19040 58518))
 ;;; Generated autoloads from setnu.el
 
 (autoload (quote setnu-mode) "setnu" "\
@@ -1517,7 +1518,7 @@ Uses face `show-ws-trailing-whitespace'." t nil)
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (18860 37781))
+;;;;;;  "silly-mail.el" (19040 58518))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload (quote sm-add-random-header) "silly-mail" "\
@@ -1531,8 +1532,8 @@ The choice of available headers is taken from `sm-mail-header-table'." t nil)
 
 ;;;***
 
-;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (18860
-;;;;;;  37781))
+;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (19040
+;;;;;;  58518))
 ;;; Generated autoloads from slang-mode.el
 
 (autoload (quote slang-mode) "slang-mode" "\
@@ -1695,7 +1696,7 @@ Returns non-nil if the new state is enabled.
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (18860 37781))
+;;;;;;  "table" "table.el" (19040 58518))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
