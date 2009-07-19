@@ -1,3 +1,11 @@
+emacs-goodies-el (30.2-1.1) unstable; urgency=low
+
+  [ Daniel Moerner ]
+  * Change references in all *-loaddefs.make files to call emacs rather
+    than emacs21 as emacs21 is scheduled for removal from unstable.
+
+ -- Daniel Moerner <dmoerner@gmail.com>  Sat, 18 Jul 2009 21:15:25 -0600
+
 emacs-goodies-el (30.2-1) unstable; urgency=low
 
   * emacs-goodies-el:
