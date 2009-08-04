@@ -19,6 +19,7 @@ APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/gnus/lisp/\")"
 # EXCLUDED_xemacs21=""
 EXCLUDED_emacs_snapshot="nnnil.el spam-stat.el"
 EXCLUDED_emacs22="nnnil.el spam-stat.el"
+EXCLUDED_emacs23="nnnil.el spam-stat.el"
 
 if [ ${FLAVOR} = emacs20 ]; then 
     echo "Skipping byte-compilation for emacs20"

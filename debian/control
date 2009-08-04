@@ -10,7 +10,7 @@ Vcs-Browser: http://alioth.debian.org/plugins/scmcvs/cvsweb.php/?cvsroot=pkg-goo
 
 Package: emacs-goodies-el
 Architecture: all
-Depends: emacs22 | emacsen, bash (>= 2.05a) | bash-static
+Depends: emacs23 | emacsen, bash (>= 2.05a) | bash-static
 Recommends: dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
@@ -95,11 +95,10 @@ Description: Miscellaneous add-ons for Emacs
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
- As well as some packages included in emacs22 for use in other flavours:
+ As well as some packages included in emacs23 and emacs22 for use in other flavours:
   cfengine - major mode for editing cfengine scripts;
   ibuffer - advanced replacement for the `buffer-menu';
   ido - a faster way to switch buffers and get files;
-  newsticker - a newsticker for Emacs. (Depends on wget)
   newsticker - a newsticker for Emacs. (Depends on wget)
   table - create and edit WYSIWYG text based embedded tables;
  .

@@ -1,10 +1,17 @@
-emacs-goodies-el (30.2-1.1) unstable; urgency=low
+emacs-goodies-el (30.3-1) unstable; urgency=low
 
   [ Daniel Moerner ]
   * Change references in all *-loaddefs.make files to call emacs rather
     than emacs21 as emacs21 is scheduled for removal from unstable.
 
- -- Daniel Moerner <dmoerner@gmail.com>  Sat, 18 Jul 2009 21:15:25 -0600
+  [ Peter S Galbraith ]
+  * Update for emacs23
+    - Bug fix: "emacs-goodies-el's ido takes precedence over emacs23's",
+      thanks to Trent W. Buck (Closes: #539853).
+    - Bug fix: "please update for emacs23", thanks to Sven Joachim
+      (Closes: #539768).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 04 Aug 2009 10:15:33 -0400
 
 emacs-goodies-el (30.2-1) unstable; urgency=low
 
