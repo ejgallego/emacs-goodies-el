@@ -84,6 +84,13 @@ It installs `perldoc-perl-hook' in Perl mode hooks."
            (remove-hook 'cperl-mode-hook 'perldoc-perl-hook)
            (remove-hook 'perl-mode-hook 'perldoc-perl-hook)))))
 
+(defcustom perldoc-unique-buffer t
+  "If nil, use uniquely-named buffers, such as *Perldoc Getopt::Long*.
+Else, use a single *Perldoc* buffer."
+  :type 'boolean
+  :group 'perldoc
+  )
+
 (defvar perldoc-functions-alist nil
   "Alist holding the list of perl functions.")
 
@@ -115,14 +122,60 @@ It installs `perldoc-perl-hook' in Perl mode hooks."
        (t
         (error "`perldoc' program not available"))))))
 
+(defvar perldoc-modules-alist nil
+  "Alist holding the list of perl modules.")
+
+(defun perldoc-modules-alist ()
+  "Return the alist of perl modules found in @INC."
+  (if perldoc-modules-alist
+      perldoc-modules-alist
+    (setq perldoc-modules-alist nil)
+    (let ((tmp-buffer (get-buffer-create " *perldoc*"))
+	  (case-fold-search nil)
+	  (perldoc-inc nil))
+      (set-buffer tmp-buffer)
+      (erase-buffer)
+      (shell-command "perl -e 'print \"@INC\"'" t)
+      (goto-char (point-min))
+      (while (re-search-forward "\\(/[^ ]*\\)" nil t)
+	(let ((libdir (match-string 1)))
+	  (when (not (member libdir perldoc-inc))
+	    (push libdir perldoc-inc))))
+      (dolist (dir perldoc-inc)
+	(let (modules (list))
+	  (when (file-readable-p dir)
+	    (erase-buffer)
+	    (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t)
+	    (goto-char (point-min))
+	    (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).pm$") nil t)
+	      (let ((entry (list (replace-regexp-in-string "/" "::" (match-string 1)))))
+		(when (not (member entry perldoc-modules-alist))
+		  (push entry perldoc-modules-alist)))))))
+      perldoc-modules-alist)))
+
+(defvar perldoc-all-completions-alist nil
+  "Alist holding the list of perl functions and modules.")
+
+(defun perldoc-all-completions-alist ()
+  "Return the alist of perl functions and modules."
+  (if perldoc-all-completions-alist
+      perldoc-all-completions-alist
+    (setq perldoc-all-completions-alist nil)
+    (perldoc-functions-alist)
+    (perldoc-modules-alist)
+    (append perldoc-functions-alist
+	    perldoc-modules-alist
+	    perldoc-all-completions-alist)))
+
 ;;;###autoload
 (defun perldoc (string)
   "Run perldoc on the given STRING.
 If the string is a recognised function then we can call `perldoc-function',
 otherwise we call `perldoc-module'."
   (interactive (list (completing-read "Perl function or module: "
-                                      (perldoc-functions-alist) nil nil)))
+                                      (perldoc-all-completions-alist) nil nil)))
   (perldoc-functions-alist)
+  (perldoc-modules-alist)
   (cond
    ((assoc string perldoc-functions-alist)
     (perldoc-function string))
@@ -130,62 +183,63 @@ otherwise we call `perldoc-module'."
     (perldoc-module string))
    (t
     (message "Nothing to find."))))
-    
+
+(defun perldoc-get-buffer-name (target)
+  "Return the buffer name used to display documentation about TARGET."
+  (or
+   (and (not perldoc-unique-buffer)
+	(stringp target)
+	(concat"*Perldoc " target "*"))
+   "*Perldoc*"))
+
 (defun perldoc-start-process (&rest args)
   "Call perldoc with ARGS.
 Sets up process sentinals and needed environment to call perldoc."
-  (let* ((pager (if (member system-type '(ms-dos windows-nt))
-		    "type"
-		  "cat"))
-	 (perldoc-process)
-	 (process-environment
-	  (cons (concat "PERLDOC_PAGER=" pager)
-	  process-environment)))
-    ;; Can't convince perldoc not to run a pager, so we run a
-    ;; benign one
-    (set-buffer (get-buffer-create "*Perldoc*"))
+  (let ((buffer-name (perldoc-get-buffer-name (car (reverse args)))))
+    (set-buffer (get-buffer-create buffer-name))
     (kill-all-local-variables)
     (erase-buffer)
     (text-mode)
     (message "Loading documentation ..")
-    (setq perldoc-process (apply 'start-process args))
-    (set-process-filter perldoc-process 'perldoc-process-filter)
-    (set-process-sentinel perldoc-process 'perldoc-sentinel)
-    (process-kill-without-query perldoc-process)))
-    
+    (set-process-sentinel
+     (apply 'start-process args)
+     'perldoc-sentinel)))
 
 (defun perldoc-function (function)
  "Show the help text for the given Perl FUNCTION / builtin."
  (interactive (list (completing-read "Perl function: "
                                      (perldoc-functions-alist) nil t)))
- (perldoc-start-process "perldol" nil "perldoc" "-f" function))
+ (perldoc-start-process "perldol" (perldoc-get-buffer-name function) "perldoc" "-T" "-f" function))
 
 (defun perldoc-module (module)
  "Show the help text for the given Perl MODULE."
- (interactive "sPerl module : ")
-   (perldoc-start-process "perldol" nil "perldoc" module))
+ (interactive (list (completing-read "Perl module: "
+                                     (perldoc-modules-alist) nil t)))
+   (perldoc-start-process "perldol" (perldoc-get-buffer-name module) "perldoc" "-T" module))
 
 (defun perldoc-process-filter (proc string)
   "Process the results from the catdoc process PROC, inserting STRING."
-  (set-buffer (get-buffer-create "*Perldoc*"))
+  (message "buffer: %s" (process-buffer proc))
+  (set-buffer (process-buffer proc))
   (insert string))
 
 (defun perldoc-sentinel (proc msg)
   "Perldoc sentinel for process PROC and MSG describing the change.
 When the catdoc process has finished, switch to its output buffer."
-  (cond ((eq (process-status proc) 'exit)
-	 (set-buffer "*Perldoc*")
-         (goto-char (point-min))
-         (cond
-          ((and (< (count-lines (point-min) (point-max)) 2)
-                (re-search-forward "No documentation found for .*" nil t))
-           (message (match-string 0))
-           (kill-buffer (get-buffer "*Perldoc*")))
-          (t
-	   (pop-to-buffer "*Perldoc*")
-	   (goto-char (point-min))
-	   (let ((Man-args "perldoc"))
-	     (Man-fontify-manpage)))))))
+  (let ((buffer (process-buffer proc)))
+    (when (eq (process-status proc) 'exit)
+      (set-buffer buffer)
+      (goto-char (point-min))
+      (cond
+       ((and (< (count-lines (point-min) (point-max)) 2)
+	     (re-search-forward "No documentation found for .*" nil t))
+	(message (match-string 0))
+	(kill-buffer (get-buffer buffer)))
+       (t
+	(pop-to-buffer buffer)
+	(goto-char (point-min))
+	(let ((Man-args "perldoc"))
+	  (Man-fontify-manpage)))))))
 
 ;;;###autoload
 (defun perldoc-at-point ()
