@@ -11,8 +11,12 @@ emacs-goodies-el (30.4-1) unstable; urgency=low
    - perldoc.el: Fixed "allow uniquely-named buffers" and "add completion
      for modules", thanks to new "upstream" intrigeri@boum.org;
      (Closes: #504186, #504230).
+  * debian/control: Bug fix: "Incorrect Vcs-Browser URL", thanks to
+     jamessan@debian.org; (Closes: #528295).
+     Bug fix: "gnus-bonus-el needs to allow emacs23 in dependency", thanks
+     to Russ Allbery (Closes: #541361).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Wed, 02 Sep 2009 17:05:19 -0400
 
 emacs-goodies-el (30.3-1) unstable; urgency=low
 
