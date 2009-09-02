@@ -95,7 +95,8 @@ Description: Miscellaneous add-ons for Emacs
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
- As well as some packages included in emacs23 and emacs22 for use in other flavours:
+ As well as some packages included in emacs23 and emacs22 for use in other
+ flavours:
   cfengine - major mode for editing cfengine scripts;
   ibuffer - advanced replacement for the `buffer-menu';
   ido - a faster way to switch buffers and get files;
@@ -107,7 +108,7 @@ Description: Miscellaneous add-ons for Emacs
 
 Package: gnus-bonus-el
 Architecture: all
-Depends: emacs22 | emacsen, gnus | emacs22 | emacs21 | xemacs21 | emacs-snapshot
+Depends: emacs23 | emacsen, gnus | emacs23 | emacs22 | emacs21 | xemacs21 | emacs-snapshot
 Section: news
 Description: Miscellaneous add-ons for Gnus
  This package contains a few Emacs-Lisp files, obtained from various
@@ -131,7 +132,7 @@ Description: Miscellaneous add-ons for Gnus
 
 Package: devscripts-el
 Architecture: all
-Depends: emacs22 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel
+Depends: emacs23 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel
 Recommends: elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
@@ -143,7 +144,7 @@ Description: Emacs wrappers for the commands in devscripts
 
 Package: debian-el
 Architecture: all
-Depends: emacs22 | emacsen, reportbug (>= 1.41.1), binutils
+Depends: emacs23 | emacsen, reportbug (>= 1.41.1), binutils
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el, debview
@@ -164,7 +165,7 @@ Description: Emacs helpers specific to Debian users
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs22 | emacsen, debian-el (>= 24.0-1)
+Depends: emacs23 | emacsen, debian-el (>= 24.0-1)
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)
