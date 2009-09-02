@@ -1,3 +1,12 @@
+emacs-goodies-el (30.3-2) unstable; urgency=low
+
+  * debian-el:
+   - deb-view.el: Bug fix: "undo limit vs. .deb", thanks to Dan Jacobson
+     for reporting and to Sven Joachim for the patch.  Apologies for
+     forgetting about it for so long (Closes: #388637).
+
+ --
+
 emacs-goodies-el (30.3-1) unstable; urgency=low
 
   [ Daniel Moerner ]
