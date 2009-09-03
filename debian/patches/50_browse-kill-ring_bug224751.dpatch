@@ -23,10 +23,10 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el	2003-10-07 19:18:23.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el	2003-12-22 20:42:42.000000000 -0500
-@@ -456,7 +456,10 @@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/browse-kill-ring.el emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/browse-kill-ring.el	2009-09-03 09:43:06.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el	2009-09-03 09:55:51.000000000 -0400
+@@ -591,7 +591,10 @@
      (unwind-protect
  	(progn
  	  (setq buffer-read-only nil)

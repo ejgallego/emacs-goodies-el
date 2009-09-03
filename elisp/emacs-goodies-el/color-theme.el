@@ -586,9 +586,9 @@ libraries are mainly useful for color theme authors."
   (color-theme-mode))
 
 (require 'easymenu)
-(easy-menu-add-item nil '("tools") "--")
-(easy-menu-add-item  nil '("tools")
-                     ["Color Themes" color-theme-select t])
+(easy-menu-add-item nil '("Tools") "--")
+(easy-menu-add-item  nil '("Tools")
+  ["Color Themes" color-theme-select t])
 
 (defun color-theme-mode ()
   "Major mode to select and install color themes.

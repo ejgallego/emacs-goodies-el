@@ -5,8 +5,16 @@ emacs-goodies-el (30.5-1) unstable; urgency=low
    - htmlize.el: Updated to lastest upstream version.  Bug fix:
      "htmlize-region complains about Invalid face", thanks to Eric
       Warmenhoven (Closes: #544593).
-
- --
+   - align-string.el: Updated to lastest upstream version.
+   - apache-mode.el: Updated to lastest upstream version.
+   - ascii.el: Updated to 2.2.1
+   - boxquote.el: Updated to 1.23
+   - browse-kill-ring.el: Updated to (unofficial?) 1.3a, which includes 
+     50_browse-kill-ring_bug225082.dpatch, now removed.  
+     However 50_browse-kill-ring_bug224751.dpatch was not applied upstream,
+     so is still included in Debian.
+  
+ -- Peter S Galbraith <psg@debian.org>  Thu, 03 Sep 2009 10:39:10 -0400
 
 emacs-goodies-el (30.4-1) unstable; urgency=low
 
