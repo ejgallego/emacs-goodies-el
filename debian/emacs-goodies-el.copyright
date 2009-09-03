@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999,2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.24 $
+| ;; $Revision: 1.25 $
 |
 | ;; boxquote is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.
@@ -718,7 +718,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.24 2009/03/03 01:38:40 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.25 2009/09/03 12:55:25 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -836,6 +836,8 @@ Author/copyright info for perldoc.el:
 |
 | ;;
 | ;; Copyright (C) 2000-2002 Steve Kemp <skx@tardis.ed.ac.uk>
+| ;; Copyright (C) 2003, 2005 Peter S Galbraith <psg@debian.org>
+| ;; Copyright (C) 2008-2009 Ben Voui <intrigeri@boum.org>
 | [...]
 | ;; This program is free software; you can redistribute it and/or modify
 | ;; it under the terms of the GNU General Public License as published by
@@ -852,7 +854,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.24 2009/03/03 01:38:40 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.25 2009/09/03 12:55:25 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -1117,7 +1119,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000,2001 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.24 $
+| ;; $Revision: 1.25 $
 |
 | ;; thinks is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2. For details see the file COPYING.

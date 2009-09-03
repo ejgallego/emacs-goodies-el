@@ -3,6 +3,7 @@
 ;;
 ;; Copyright (C) 2000-2002 Steve Kemp <skx@tardis.ed.ac.uk>
 ;; Copyright (C) 2003, 2005 Peter S Galbraith <psg@debian.org>
+;; Copyright (C) 2008-2009 Ben Voui <intrigeri@boum.org>
 
 ;; This file is not part of GNU Emacs.
 
@@ -54,9 +55,21 @@
 ;;
 ;;  1.5 Peter S Galbraith <psg@debian.org>
 ;;      - Apply patch from Kevin Ryde (Closes: #314869)
+;;
+;;  1.6 Ben Voui <intrigeri@boum.org>
+;;      - Complete modules names as well.
+;;      - Allow using several uniquely-named perldoc buffers, thanks to the
+;;        perldoc-unique-buffer custom setting.
+;;
+;;  1.7 Ben Voui <intrigeri@boum.org>
+;;      - A non-nil interactive argument forces the cache to be updated.
 
 
-;;  Comments / suggests / feedback welcomed to skx@tardis.ed.ac.uk
+;;  Comments / suggests / feedback welcomed to
+;;  skx@tardis.ed.ac.uk and intrigeri@boum.org
+
+;;  intrigeri's "upstream" lives in a Git repository:
+;;  git://gaffer.ptitcanardnoir.org/perldoc-el.git
 
 ;;; Code:
 
@@ -94,9 +107,10 @@ Else, use a single *Perldoc* buffer."
 (defvar perldoc-functions-alist nil
   "Alist holding the list of perl functions.")
 
-(defun perldoc-functions-alist ()
-  "Return the alist of perl functions constructed from perlfunc.pod."
-  (if perldoc-functions-alist
+(defun perldoc-functions-alist (&optional re-cache)
+  "Return the alist of perl functions constructed from perlfunc.pod.
+A non-nil argument forces caches to be updated."
+  (if (and perldoc-functions-alist (not re-cache))
       perldoc-functions-alist
     (setq perldoc-functions-alist nil)
     (let ((tmp-buffer (get-buffer-create " *perldoc*"))
@@ -125,9 +139,10 @@ Else, use a single *Perldoc* buffer."
 (defvar perldoc-modules-alist nil
   "Alist holding the list of perl modules.")
 
-(defun perldoc-modules-alist ()
-  "Return the alist of perl modules found in @INC."
-  (if perldoc-modules-alist
+(defun perldoc-modules-alist (&optional re-cache)
+  "Return the alist of perl modules found in @INC.
+An non-nil argument forces caches to be updated."
+  (if (and perldoc-modules-alist (not re-cache))
       perldoc-modules-alist
     (setq perldoc-modules-alist nil)
     (let ((tmp-buffer (get-buffer-create " *perldoc*"))
@@ -156,26 +171,29 @@ Else, use a single *Perldoc* buffer."
 (defvar perldoc-all-completions-alist nil
   "Alist holding the list of perl functions and modules.")
 
-(defun perldoc-all-completions-alist ()
-  "Return the alist of perl functions and modules."
-  (if perldoc-all-completions-alist
+(defun perldoc-all-completions-alist (&optional re-cache)
+  "Return the alist of perl functions and modules.
+A non-nil argument forces the caches to be updated."
+  (if (and perldoc-all-completions-alist (not re-cache))
       perldoc-all-completions-alist
-    (setq perldoc-all-completions-alist nil)
-    (perldoc-functions-alist)
-    (perldoc-modules-alist)
-    (append perldoc-functions-alist
-	    perldoc-modules-alist
-	    perldoc-all-completions-alist)))
+    (message "Building completion list of all perldoc topics...")
+    (setq perldoc-all-completions-alist
+	  (append (perldoc-functions-alist t)
+		  (perldoc-modules-alist t)))))
 
 ;;;###autoload
-(defun perldoc (string)
+(defun perldoc (&optional string re-cache)
   "Run perldoc on the given STRING.
 If the string is a recognised function then we can call `perldoc-function',
-otherwise we call `perldoc-module'."
-  (interactive (list (completing-read "Perl function or module: "
-                                      (perldoc-all-completions-alist) nil nil)))
-  (perldoc-functions-alist)
-  (perldoc-modules-alist)
+otherwise we call `perldoc-module'.
+A non-nil interactive argument forces the caches to be updated."
+  (interactive (list nil current-prefix-arg))
+  (if (or re-cache
+	  (not perldoc-all-completions-alist))
+    (perldoc-all-completions-alist t))
+  (unless (stringp string)
+    (setq string (completing-read "Perl function or module: "
+				  (perldoc-all-completions-alist) nil nil)))
   (cond
    ((assoc string perldoc-functions-alist)
     (perldoc-function string))
