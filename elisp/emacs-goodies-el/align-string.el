@@ -98,5 +98,3 @@ sAlign by: ")
 	  (setq i (1+ i)))))
     ;; Clear end marker.
     (set-marker end nil)))
-
-(provide 'align-string)
