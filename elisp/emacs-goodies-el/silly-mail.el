@@ -9,7 +9,7 @@
 ;; Keywords: extensions, mail
 ;; Status: works in Emacs 19 and XEmacs.
 
-;; $Id: silly-mail.el,v 1.2 2009/09/04 02:24:05 psg Exp $
+;; $Id: silly-mail.el,v 1.3 2009/09/04 02:31:00 psg Exp $
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@
     sm-add-drdoom-fodder
     sm-add-emacs-name
     sm-add-emacs-taunt
-    (sm-add-flame               flame               "flame")
+    (sm-add-flame               *flame              "flame")
     (sm-add-horoscope           horoscope           "horoscope")
     (sm-add-kibology            kibologize          "kibologize")
     sm-add-meat
@@ -354,8 +354,7 @@ The choice of available headers is taken from sm-mail-header-table."
 (defvar sm-emacs-taunt-header "Emacs")
 
 (defvar sm-emacs-taunt-table
-  '["... it's not just a way of life, it's a text editor!"
-    "(setq software-quality (/ 1 number-of-authors))"
+  '["(setq software-quality (/ 1 number-of-authors))"
     "a Lisp interpreter masquerading as ... a Lisp interpreter!"
     "a compelling argument for pencil and paper."
     "a learning curve that you can use as a plumb line."
@@ -377,8 +376,6 @@ The choice of available headers is taken from sm-mail-header-table."
     "if SIGINT doesn't work, try a tranquilizer."
     "if it payed rent for disk space, you'd be rich."
     "impress your (remaining) friends and neighbors."
-    "indefensible, reprehensible, and fully extensible."
-    "is that a Lisp interpreter in your editor, or are you just happy to see me?"
     "it's all fun and games, until somebody tries to edit a file."
     "it's like swatting a fly with a supernova."
     "it's not slow --- it's stately."
@@ -389,7 +386,6 @@ The choice of available headers is taken from sm-mail-header-table."
     "or perhaps you'd prefer Russian Roulette, after all?"
     "Our Lady of Perpetual Garbage Collection"
     "resistance is futile; you will be assimilated and byte-compiled."
-    "The Awakening"
     "the Swiss Army of Editors."
     "the answer to the world surplus of CPU cycles."
     "the definitive fritterware."
@@ -399,7 +395,6 @@ The choice of available headers is taken from sm-mail-header-table."
     "there's a reason it comes with a built-in psychotherapist."
     "well, why *shouldn't* you pay property taxes on your editor?"
     "where editing text is like playing Paganini on a glass harmonica."
-    "why choose between a word processor and a Lisp interpreter when you could have neither instead?"
     "you'll understand when you're older, dear."]
   "Facts about Emacs that you and your loved ones should be aware of.")
 
@@ -699,16 +694,13 @@ The choice of available headers is taken from sm-mail-header-table."
     "a moment of convenience, a lifetime of regret."
     "a terminal disease."
     "all the problems and twice the bugs."
-    "big enough to hurt."
     "complex nonsolutions to simple nonproblems."
     "dissatisfaction guaranteed."
     "don't get frustrated without it."
     "even not doing anything would have been better than nothing."
     "even your dog won't like it."
-    "faster than it used to be.  This isn't hard."
     "flaky and built to stay that way."
     "flawed beyond belief."
-    "flawesome."
     "foiled again."
     "form follows malfunction."
     "garbage at your fingertips."
