@@ -4,8 +4,8 @@
 
 ;; Author: Colin Walters <walters@verbum.org>
 ;; Created: 8 Sep 2000
-;; Version: 2.6
-;; X-RCS: $Id: ibuffer.el,v 1.1 2003/04/04 20:16:06 lolando Exp $
+;; Version: 2.6.1
+;; X-RCS: $Id: ibuffer.el,v 1.2 2009/09/04 02:24:04 psg Exp $
 ;; URL: http://web.verbum.org/~walters
 ;; Keywords: buffer, convenience
 ;; Compatibility: Emacs 20.7, Emacs 21, XEmacs
@@ -71,6 +71,10 @@
 ;; `ibuffer-switch-format', bound to ` by default.
 
 ;;; Change Log:
+
+;; Changes from 2.6 to 2.6.1:
+
+;;  * Fix `ibuffer-toggle-sorting-mode'.
 
 ;; Changes from 2.5 to 2.6:
 
@@ -3377,23 +3381,19 @@ Ordering is lexicographic."
 
 (defun ibuffer-toggle-sorting-mode ()
   "Toggle the current sorting mode.
-Possible sorting modes are:
+Default sorting modes are:
  Recency - the last time the buffer was viewed
  Name - the name of the buffer
  Major Mode - the name of the major mode of the buffer
  Size - the size of the buffer"
   (interactive)
-  (let* ((keys (mapcar #'car ibuffer-sorting-functions-alist))
-	 (entry (memq ibuffer-sorting-mode keys))
-	 (next (or (cadr entry) (car keys)))
-	 (nextentry (assq next ibuffer-sorting-functions-alist)))
-    (if (and entry nextentry)
-	(progn
-	  (setq ibuffer-sorting-mode next)
-	  (message "Sorting by %s" (cadr nextentry)))
-      (progn
-	(setq ibuffer-sorting-mode 'recency)
-	(message "Sorting by last view time"))))
+  (let ((modes (mapcar 'car ibuffer-sorting-functions-alist)))
+    (add-to-list 'modes 'recency)
+    (setq modes (sort modes 'string-lessp))
+    (let ((next (or (car-safe (cdr-safe (memq ibuffer-sorting-mode modes)))
+                    (car modes))))
+      (setq ibuffer-sorting-mode next)
+      (message "Sorting by %s" next)))
   (ibuffer-redisplay t))
 
 (defun ibuffer-invert-sorting ()

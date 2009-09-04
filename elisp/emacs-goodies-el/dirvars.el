@@ -6,7 +6,7 @@
 ;; Author: Matt Armstrong <matt@lickey.com>
 ;; Location: http://www.lickey.com/env/elisp/dirvars.el
 ;; Keywords: files
-;; Version: 1.2
+;; Version: 1.3
 ;; Obscure: matt@squeaker.lickey.com|elisp/dirvars.el|20021213043855|48166
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -58,6 +58,9 @@
 ;;   - the symbol has the risky-local-variable property.
 ;;   - the symbol name ends in -hook(s), -function(s), -form(s),
 ;;     -program, -command, or -predicate.
+;;
+;; change by Benjamin Rutt:  don't look upwards by default in a
+;; remote filesystem
 
 ;;; Todo:
 
@@ -74,6 +77,14 @@
 
 ;;; Code:
 
+(defcustom dirvars-file-name ".emacs-dirvars"
+  "File base name that is loaded by dirvars."
+  :type 'string) 
+
+(defcustom dirvars-chase-remote nil
+  "Whether dirvars looks upward if in a remote filesystem."
+  :type 'boolean)
+
 (defvar dirvars-enable-flag t
   "*Control use of directory variables in files you visit.
 The meaningful values are nil and non-nil.")
@@ -84,114 +95,116 @@ The meaningful values are nil and non-nil.")
 Returns the fully qualified file name, or nil if it isn't found.
 
 The FILE-NAME specifies the file name to search for."
-  ;; Chase links in the source file and search in the dir where it
-  ;; points.
-  (setq dir-name (or (and buffer-file-name
-			  (file-name-directory (file-chase-links
-						buffer-file-name)))
-		     default-directory))
-  ;; Chase links before visiting the file.  This makes it easier to
-  ;; use a single file for several related directories.
-  (setq dir-name (file-chase-links dir-name))
-  (setq dir-name (expand-file-name dir-name))
-  ;; Move up in the dir hierarchy till we find a change log file.
-  (let ((file1 (concat dir-name file-name))
-	parent-dir)
-    (while (and (not (file-exists-p file1))
-		(progn (setq parent-dir
-			     (file-name-directory
-			      (directory-file-name
-			       (file-name-directory file1))))
-		       ;; Give up if we are already at the root dir.
-		       (not (string= (file-name-directory file1)
-				     parent-dir))))
-      ;; Move up to the parent dir and try again.
-      (setq file1 (expand-file-name file-name parent-dir)))
-    ;; If we found the file in a parent dir, use that.  Otherwise,
-    ;; return nil
-    (if (or (get-file-buffer file1) (file-exists-p file1))
-	file1
-      nil)))
+  (if (and (not dirvars-chase-remote) (file-remote-p default-directory))
+      nil
+    ;; Chase links in the source file and search in the dir where it
+    ;; points.
+    (setq dir-name (or (and buffer-file-name
+                            (file-name-directory (file-chase-links
+                                                  buffer-file-name)))
+                       default-directory))
+    ;; Chase links before visiting the file.  This makes it easier to
+    ;; use a single file for several related directories.
+    (setq dir-name (file-chase-links dir-name))
+    (setq dir-name (expand-file-name dir-name))
+    ;; Move up in the dir hierarchy till we find a change log file.
+    (let ((file1 (concat dir-name file-name))
+          parent-dir)
+      (while (and (not (file-exists-p file1))
+                  (progn (setq parent-dir
+                               (file-name-directory
+                                (directory-file-name
+                                 (file-name-directory file1))))
+                         ;; Give up if we are already at the root dir.
+                         (not (string= (file-name-directory file1)
+                                       parent-dir))))
+        ;; Move up to the parent dir and try again.
+        (setq file1 (expand-file-name file-name parent-dir)))
+      ;; If we found the file in a parent dir, use that.  Otherwise,
+      ;; return nil
+      (if (or (get-file-buffer file1) (file-exists-p file1))
+          file1
+        nil))))
 
 (defun dirvars-eat-comment ()
   (while (looking-at "[ \t\n]*;")
     (let ((begin (point)))
       (skip-chars-forward " \t\n")
       (if (looking-at ";")
-	  (progn
-	    (end-of-line)
-	    (delete-region begin (point)))))))
+          (progn
+            (end-of-line)
+            (delete-region begin (point)))))))
 
 (defun dirvars-hack-local-variables (dirvars-file)
   (save-excursion
     (let ((original-buffer (current-buffer))
-	  (temp-buffer (get-buffer-create "*dirvars-temp*"))
-	  (enable-local-variables (and local-enable-local-variables
-				       enable-local-variables
-				       dirvars-enable-flag))
-	  (continue t)
-	  (parse-sexp-ignore-comments t)
-	  (lisp-mode-hook nil)
-	  beg)
+          (temp-buffer (get-buffer-create "*dirvars-temp*"))
+          (enable-local-variables (and local-enable-local-variables
+                                       enable-local-variables
+                                       dirvars-enable-flag))
+          (continue t)
+          (parse-sexp-ignore-comments t)
+          (lisp-mode-hook nil)
+          beg)
       (set-buffer temp-buffer)
       (erase-buffer)
       (lisp-mode)
       (insert-file dirvars-file)
       (goto-char (point-min))
       (catch 'done
-	(while continue
-	  (if (null (scan-sexps (point) 1))
-	      (throw 'done nil))
-	  (goto-char (scan-sexps (point) 1))
-	  (goto-char (scan-sexps (point) -1))
-	  (if (eobp)
-	      (throw 'done nil))
-	  (setq beg (point))
-	  (skip-chars-forward "^:\n")
-	  (if (not (looking-at ":"))
-	      (error (format "Missing colon in directory variables entry at %d"
-			     (point))))
-	  (skip-chars-backward " \t")
-	  (let* ((str (buffer-substring beg (point)))
-		 (var (read str))
-		 val)
-	    ;; Read the variable value.
-	    (skip-chars-forward "^:")
-	    (forward-char 1)
-	    (setq val (read (current-buffer)))
-	    (save-excursion
-	      (set-buffer original-buffer)
-	      (dirvars-hack-one-local-variable dirvars-file
-					       var val))))))))
+        (while continue
+          (if (null (scan-sexps (point) 1))
+              (throw 'done nil))
+          (goto-char (scan-sexps (point) 1))
+          (goto-char (scan-sexps (point) -1))
+          (if (eobp)
+              (throw 'done nil))
+          (setq beg (point))
+          (skip-chars-forward "^:\n")
+          (if (not (looking-at ":"))
+              (error (format "Missing colon in directory variables entry at %d"
+                             (point))))
+          (skip-chars-backward " \t")
+          (let* ((str (buffer-substring beg (point)))
+                 (var (read str))
+                 val)
+            ;; Read the variable value.
+            (skip-chars-forward "^:")
+            (forward-char 1)
+            (setq val (read (current-buffer)))
+            (save-excursion
+              (set-buffer original-buffer)
+              (dirvars-hack-one-local-variable dirvars-file
+                                               var val))))))))
 
 (defun dirvars-hack-one-local-variable (dirvars-file var val)
   "\"Set\" one variable in a local variables spec.
 A few variable names are treated specially."
   (cond ((memq var ignored-local-variables)
-	 nil)
-	;; Trap risky variables and such.  This is the same logic
-	;; that files.el uses.
-	((or (get var 'risky-local-variable)
-	     (and
-	      (string-match "-hooks?$\\|-functions?$\\|-forms?$\\|-program$\\|-command$\\|-predicate$"
-			    (symbol-name var))
-	      (not (get var 'safe-local-variable))))
-	 (message (format "Ignoring %s in %s"
-			  (symbol-name var) dirvars-file)))
-	;; Ordinary variable, really set it.
-	(t (make-local-variable var)
-	   (set var val))))
+         nil)
+        ;; Trap risky variables and such.  This is the same logic
+        ;; that files.el uses.
+        ((or (get var 'risky-local-variable)
+             (and
+              (string-match 
+"-hooks?$\\|-functions?$\\|-forms?$\\|-program$\\|-command$\\|-predicate$"
+                            (symbol-name var))
+              (not (get var 'safe-local-variable))))
+         (message (format "Ignoring %s in %s"
+                          (symbol-name var) dirvars-file)))
+        ;; Ordinary variable, really set it.
+        (t (make-local-variable var)
+           (set var val))))
 
 (defun dirvars-hack-local-variables-before ()
-  (let ((dirvars-file (dirvars-find-upwards ".emacs-dirvars")))
+  (let ((dirvars-file (dirvars-find-upwards dirvars-file-name)))
     (if dirvars-file
-	(dirvars-hack-local-variables dirvars-file))))
+        (dirvars-hack-local-variables dirvars-file))))
 
 (defadvice hack-local-variables
-  (before dirvars-hack-local-variables-before)
+  (before dirvars-hack-local-variables-before activate)
   "Process dirvars before a file's local variables are processed."
   (dirvars-hack-local-variables-before))
-(ad-activate 'hack-local-variables)
 
 (provide 'dirvars)
 ;;; dirvars.el ends here

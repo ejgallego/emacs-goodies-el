@@ -4,8 +4,10 @@
 
 ;; Filename: wdired.el
 ;; Author: Juan León Lahoz García <juan-leon.lahoz@tecsidel.es>
-;; Version: 1.9.2pre2
+;; Version: 1.9.2pre3
 ;; Keywords: dired, environment, files, renaming
+
+;; wdired.el is free software
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -31,7 +33,7 @@
 ;; (query-replace), M-c (capitalize-word), etc. to change the name of
 ;; the files in a "dired" buffer? Now you can do this. All the power
 ;; of emacs commands are available to renaming files!
-;; 
+;;
 ;; This package provides a function that makes the filenames of a a
 ;; dired buffer editable, by changing the buffer mode (which inhibits
 ;; all of the commands of dired mode). Here you can edit the names of
@@ -105,6 +107,9 @@
 ;;
 ;; - René Kyllingstad <kyllingstad at users dot sourceforge dot net>
 ;;   added support for XEmacs. Reported to work under XEmacs 21.4.6.
+;;
+;; - Small fix to make WDired work with XEmacs 21.1. Thanks to Uwe
+;;   Brauer
 
 ;; From 1.9 to 1.91
 ;;
@@ -180,13 +185,13 @@ Confirmation is required also for overwriting files.  If nil, no
 confirmation is required for change the file names, and the variable
 `wdired-is-ok-overwrite' is used to see if it is ok to overwrite files
 without asking."
-  :type 'boolean
+:type 'boolean
   :group 'wdired)
 
 (defcustom wdired-is-ok-overwrite nil
-  "*If non-nil the renames can overwrite files without asking. 
+  "*If non-nil the renames can overwrite files without asking.
 This variable is used only if `wdired-use-interactive-rename' is nil."
-  :type 'boolean
+:type 'boolean
   :group 'wdired)
 
 (defcustom wdired-always-move-to-filename-beginning nil
@@ -198,10 +203,10 @@ before it, and `track-eol' is honored.  This behavior is very handy
 when editing several filenames.
 
 If nil, \"up\" and \"down\" movement is done as in any other buffer."
-  :type '(choice (const :tag "As in any other mode" nil)
-		 (const :tag "Smart cursor placement" sometimes)
+:type '(choice (const :tag "As in any other mode" nil)
+(const :tag "Smart cursor placement" sometimes)
 		 (other :tag "As in dired mode" t))
-  :group 'wdired)
+:group 'wdired)
 
 (defcustom wdired-advise-functions t
   "*If t some editing commands are advised when wdired is loaded.
@@ -213,14 +218,14 @@ prematurely.
 
 Setting this to nil does not unadvise the functions, if they are
 already advised, but new Emacs will not advise them"
-  :type 'boolean
+:type 'boolean
   :group 'wdired)
 
 (defcustom wdired-allow-to-redirect-links t
   "*If non-nil, the target of the symbolic links can be changed also.
 In systems without symbolic links support, this variable has no effect
 at all."
-  :type 'boolean
+:type 'boolean
   :group 'wdired)
 
 (defcustom wdired-allow-to-change-permissions nil
@@ -240,23 +245,23 @@ intelligible value.
 
 Anyway, the real change of the permissions is done with the external
 program `dired-chmod-program', which must exist."
-  :type '(choice (const :tag "Not allowed" nil)
-                 (const :tag "Toggle/set bits" t)
+:type '(choice (const :tag "Not allowed" nil)
+(const :tag "Toggle/set bits" t)
                  (other :tag "Bits freely editable" advanced))
-  :group 'wdired)
+:group 'wdired)
 
 
 (defvar wdired-running-xemacs (featurep 'xemacs))
 
 (require 'dired)
 (if (not wdired-running-xemacs)
-    (define-key dired-mode-map [menu-bar immediate 
+    (define-key dired-mode-map [menu-bar immediate
                                          wdired-change-to-wdired-mode]
       '("Edit File Names" . wdired-change-to-wdired-mode))
   (add-hook 'dired-mode-hook
             (lambda ()
               (add-menu-button
-               '("Do") (vector "Edit File Names" 
+               '("Do") (vector "Edit File Names"
                                'wdired-change-to-wdired-mode))) t))
 
 (defvar wdired-mode-map nil)
@@ -308,6 +313,18 @@ program `dired-chmod-program', which must exist."
 (defvar wdired-old-content)
 
 
+;;;xemacs compatibility
+
+(or (fboundp 'buffer-substring-no-properties)
+    (fset 'buffer-substring-no-properties 'buffer-substring))
+
+(or (fboundp 'match-string-no-properties)
+    (defun match-string-no-properties (number)
+      "Return string of text matched by last search."
+      (buffer-substring-no-properties (match-beginning number)
+                                      (match-end number))))
+
+
 (defun wdired-mode ()
   "\\<wdired-mode-map>File Names Editing mode.
 
@@ -328,7 +345,7 @@ not allowed, because the rest of the buffer is read-only."
 ;;;###autoload
 (defun wdired-change-to-wdired-mode ()
   "Put a dired buffer in a mode in which filenames are editable.
-In this mode the names of the files can be changed, and after 
+In this mode the names of the files can be changed, and after
 typing C-c C-c the files and directories in disk are renamed.
 
 See `wdired-mode'."
@@ -394,15 +411,16 @@ See `wdired-mode'."
                              "\\([^\\]\\|\\`\\)\"" file "\\1\\\\\"" nil t)
                             file)
                         "\""))))
-    (and file buffer-file-coding-system
-         (not file-name-coding-system)
-         ;; default-file-name-coding-system doesn't exist in XEmacs
-         (or
-          (not (boundp 'default-file-name-coding-system))
-          (not default-file-name-coding-system))
-         (setq file (encode-coding-string file
-                                          buffer-file-coding-system)))
-    file)
+  (and file
+       (boundp 'buffer-file-coding-system) buffer-file-coding-system
+       (not file-name-coding-system)
+       ;; default-file-name-coding-system doesn't exist in XEmacs
+       (or
+        (not (boundp 'default-file-name-coding-system))
+        (not default-file-name-coding-system))
+       (setq file (encode-coding-string file
+                                        buffer-file-coding-system)))
+  file)
 
 (defun wdired-get-filename (&optional no-dir old)
   "Return the filename at line.
@@ -661,7 +679,7 @@ If OLD, return the old target.  If MOVE, move point before it."
             (if (equal link-to-new "") ;empty filename!
                 (setq link-to-new "/dev/null"))
 	    (condition-case err
-		(progn 
+		(progn
 		  (delete-file link-from)
 		  (make-symbolic-link
 		   (substitute-in-file-name link-to-new) link-from))
@@ -744,7 +762,7 @@ commands.  This advice only has effect in wdired mode."
            (progn
              (wdired-add-skip-in-replace 'search-forward)
              (wdired-add-skip-in-replace 're-search-forward)
-             (unwind-protect 
+             (unwind-protect
                  ad-do-it
                (progn
                  (ad-remove-advice 'search-forward
@@ -840,7 +858,7 @@ commands.  This advice only has effect in wdired mode."
 	(new-bit "-")
 	(pos-prop (- (point) (- (current-column) wdired-col-perm))))
     (if (eq (char-after (point)) ?-)
-	(setq new-bit	
+	(setq new-bit
 	      (if (= (% (- (current-column) wdired-col-perm) 3) 0) "r"
 		(if (= (% (- (current-column) wdired-col-perm) 3) 1) "w"
 		  "x"))))

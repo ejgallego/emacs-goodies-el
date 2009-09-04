@@ -7,7 +7,7 @@
 ;; Keywords: extensions
 ;; Status: Works in Emacs 19 and XEmacs.
 
-;; $Id: nuke-trailing-whitespace.el,v 1.1 2003/10/03 16:49:26 psg Exp $
+;; $Id: nuke-trailing-whitespace.el,v 1.2 2009/09/04 02:24:05 psg Exp $
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; if not, you can either send email to this
 ;; program's maintainer or write to: The Free Software Foundation,
-;; Inc.; 59 Temple Place, Suite 330; Boston, MA 02111-1307, USA.
+;; Inc.; 51 Franklin Street, Fifth Floor; Boston, MA 02110-1301, USA.
 
 ;;; Commentary:
 
@@ -64,6 +64,7 @@ This variable is made buffer-local when set in any fashion.")
     c++-mode
     c-mode
     change-log-mode
+    cperl-mode
     emacs-lisp-mode
     fortran-mode
     latex-mode
@@ -142,8 +143,9 @@ replacement if the buffer is read-only."
             (query-replace-regexp whitespace-regexp "")
             (goto-char (point-min))
             (and (re-search-forward whitespace-eob-newline-regexp nil t)
-                 (y-or-n-p
-                  "Delete excess trailing newlines at end of buffer? ")
+                 (save-match-data
+                   (y-or-n-p
+                    "Delete excess trailing newlines at end of buffer? "))
                  (delete-region (1+ (match-beginning 0)) (match-end 0))))))))))
 
 (defun whitespace-check-mode (&optional mode)
