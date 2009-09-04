@@ -1,26 +1,13 @@
-#! /bin/sh -e
-## 8_whitespace_rename.dpatch
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 8_whitespace_rename.dpatch by  <psg@mixed>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: Rename whitespace.el and its internals to nuke-trailing-whitespace
+## DP: No description.
 
-if [ $# -ne 1 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-case "$1" in
-       -patch) patch -f --no-backup-if-mismatch -p1 < $0;;
-       -unpatch) patch -f --no-backup-if-mismatch -R -p1 < $0;;
-	*)
-		echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-		exit 1;;
-esac
-
-exit 0
-				    
-diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
---- 8.tmp/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-05-05 22:20:30.000000000 -0400
-+++ 8/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2003-05-05 22:56:27.000000000 -0400
+@DPATCH@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/nuke-trailing-whitespace.el emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2009-09-03 20:15:18.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el	2009-09-03 22:09:33.000000000 -0400
 @@ -1,4 +1,4 @@
 -;;; whitespace.el --- strip trailing whitespace from buffers
 +;;; nuke-trailing-whitespace.el --- strip trailing whitespace from buffers
@@ -65,7 +52,7 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
    "Regular expression which matches newlines at the end of the buffer.")
  
  (defvar nuke-trailing-whitespace-always-major-modes
-@@ -80,7 +85,7 @@
+@@ -81,7 +86,7 @@
      slitex-mode
      sml-mode
      texinfo-mode)
@@ -74,7 +61,7 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
  These are major modes for which `nuke-trailing-whitespace' should
  strip all trailing whitespace and excess newlines at the end of the buffer
  without asking.")
-@@ -90,7 +95,7 @@
+@@ -91,7 +96,7 @@
      rmail-mode
      vm-mode
      vm-summary-mode)
@@ -83,7 +70,7 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
  These are major modes for which `nuke-trailing-whitespace' should
  never strip trailing whitespace automatically.")
  
-@@ -107,7 +112,7 @@
+@@ -108,7 +113,7 @@
  replacement if the buffer is read-only."
    (interactive)
    (cond ((interactive-p)
@@ -92,7 +79,7 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
          (t
           (let ((flag nuke-trailing-whitespace-p))
             (and nuke-trailing-whitespace-p
-@@ -116,11 +121,11 @@
+@@ -117,11 +122,11 @@
                  (setq flag (funcall nuke-trailing-whitespace-p)))
  
             (and flag
@@ -106,25 +93,26 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
    (interactive)
    (let ((buffer-orig-read-only buffer-read-only)
          (buffer-read-only nil))
-@@ -133,20 +138,20 @@
+@@ -134,21 +139,21 @@
             ((or (and (eq flag t)
                       (not buffer-orig-read-only))
                  (interactive-p))
 -            (while (re-search-forward whitespace-regexp (point-max) t)
-+	    (while (re-search-forward nuke-trailing-whitespace-regexp (point-max) t)
++            (while (re-search-forward nuke-trailing-whitespace-regexp (point-max) t)
                (delete-region (match-beginning 0) (match-end 0)))
              (goto-char (point-min))
 -            (and (re-search-forward whitespace-eob-newline-regexp nil t)
-+	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
++            (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
                   (delete-region (1+ (match-beginning 0)) (match-end 0))))
             (t
 -            (query-replace-regexp whitespace-regexp "")
-+	    (query-replace-regexp nuke-trailing-whitespace-regexp "")
++            (query-replace-regexp nuke-trailing-whitespace-regexp "")
              (goto-char (point-min))
 -            (and (re-search-forward whitespace-eob-newline-regexp nil t)
-+	    (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
-                  (y-or-n-p
-                   "Delete excess trailing newlines at end of buffer? ")
++            (and (re-search-forward nuke-trailing-whitespace-eob-newline-regexp nil t)
+                  (save-match-data
+                    (y-or-n-p
+                     "Delete excess trailing newlines at end of buffer? "))
                   (delete-region (1+ (match-beginning 0)) (match-end 0))))))))))
  
 -(defun whitespace-check-mode (&optional mode)
@@ -132,7 +120,7 @@ diff -urNad 8.tmp/elisp/whitespace.el 8/elisp/whitespace.el
    (or mode (setq mode major-mode))
    (cond ((memq mode nuke-trailing-whitespace-always-major-modes) t)
          ((memq mode nuke-trailing-whitespace-never-major-modes) nil)
-@@ -156,6 +161,6 @@
+@@ -158,6 +163,6 @@
          ((get-buffer-window (current-buffer) t) 'query)
          (t nil)))
  
