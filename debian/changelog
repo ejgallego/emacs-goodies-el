@@ -13,8 +13,9 @@ emacs-goodies-el (30.6-1) UNRELEASED; urgency=low
    - show-wspace.el: Updated to 282
    - silly-mail.el updated.
    - wdired.el: Updated to1.9.2pre3
+   - home-end.el updated.
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 03 Sep 2009 22:34:58 -0400
+ -- Peter S Galbraith <psg@debian.org>  Thu, 10 Sep 2009 17:15:19 -0400
 
 emacs-goodies-el (30.5-1) unstable; urgency=low
 
