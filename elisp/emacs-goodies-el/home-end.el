@@ -3,7 +3,7 @@
 ;; Copyright 2002 Toby Speight
 
 ;; home-end.el is free software distributed under the terms of the GNU
-;; General Public Licence, version 2. For details see the file COPYING.
+;; General Public Licence, version 3.
 
 
 ;;; Commentary:
@@ -34,6 +34,10 @@
 ;; 2002-07-12:
 ;; Added comments and license terms (with Kai's agreement).
 ;; Added autoload cookies.
+;;
+;; 2002-07-15:
+;; Use `equal' instead of `eq' at suggestion of James LewisMoss
+;; <dres@debian.org>, for XEmacs compatibility.
 
 (defvar home-end-marker)
 
@@ -50,8 +54,8 @@ beginning of window, third in a row goes to beginning of buffer."
            (key1 (if (> len 0) (elt keys (- len 1)) nil))
            (key2 (if (> len 1) (elt keys (- len 2)) nil))
            (key3 (if (> len 2) (elt keys (- len 3)) nil))
-           (key-equal-1 (eq key1 key2))
-           (key-equal-2 (and key-equal-1 (eq key2 key3))))
+           (key-equal-1 (equal key1 key2))
+           (key-equal-2 (and key-equal-1 (equal key2 key3))))
       (cond (key-equal-2 (goto-char (point-min)))
             (key-equal-1 (push-mark home-end-marker)
                          (move-to-window-line 0))
@@ -71,8 +75,8 @@ of window, third in a row goes to end of buffer."
            (key1 (if (> len 0) (elt keys (- len 1)) nil))
            (key2 (if (> len 1) (elt keys (- len 2)) nil))
            (key3 (if (> len 2) (elt keys (- len 3)) nil))
-           (key-equal-1 (eq key1 key2))
-           (key-equal-2 (and key-equal-1 (eq key2 key3))))
+           (key-equal-1 (equal key1 key2))
+           (key-equal-2 (and key-equal-1 (equal key2 key3))))
       (cond (key-equal-2 (goto-char (point-max)))
             (key-equal-1 (push-mark home-end-marker)
                          (move-to-window-line -1)
