@@ -22,10 +22,8 @@ emacs-goodies-el (30.6-1) unstable; urgency=low
      Reuben Thomas (Closes: #549924).
    - Move nuke-trailing-whitespace to superceded category, thanks to
      Reuben Thomas (Closes: #549923)
-   - No longer byte-compile emacs-goodies-loaddefs.el because of problems
-     with session.el macros.
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 07 Oct 2009 15:59:03 -0400
+ -- Peter S Galbraith <psg@debian.org>  Wed, 07 Oct 2009 17:17:59 -0400
 
 emacs-goodies-el (30.5-1) unstable; urgency=low
 
