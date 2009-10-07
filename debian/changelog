@@ -14,10 +14,14 @@ emacs-goodies-el (30.6-1) UNRELEASED; urgency=low
    - silly-mail.el updated.
    - wdired.el: Updated to1.9.2pre3
    - home-end.el updated.
-   - markdown-mode.el: Updated to 1.7 (Closes: #549208), thanks to Jason
-     Blevins
+   - markdown-mode.el: Updated to 1.7, thanks to Jason Blevins
+     (Closes: #549208).
+   - Fix typos in control file, thanks to Reuben Thomas
+     (Closes: #549917, #549918).
+   - Improved summary of session.el for package description, thanks to
+     Reuben Thomas (Closes: #549924).
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 06 Oct 2009 20:33:59 -0400
+ --
 
 emacs-goodies-el (30.5-1) unstable; urgency=low
 
