@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (align-all-strings align-string) "align-string"
-;;;;;;  "align-string.el" (19147 60529))
+;;;;;;  "align-string.el" (19149 1011))
 ;;; Generated autoloads from align-string.el
 
 (autoload 'align-string "align-string" "\
@@ -89,20 +89,24 @@ Turn off ASCII code display.
 
 ;;;***
 
-;;;### (autoloads (bar-cursor-mode) "bar-cursor" "bar-cursor.el"
-;;;;;;  (19147 60529))
+;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
+;;;;;;  "bar-cursor.el" (19149 1011))
 ;;; Generated autoloads from bar-cursor.el
 
 (autoload 'bar-cursor-mode "bar-cursor" "\
-Toggle use of 'bar-cursor-mode'.
-
+Toggle use of variable `bar-cursor-mode'.
 This quasi-minor mode changes cursor to a bar cursor in insert mode,
 and a block cursor in overwrite mode.  It may only be turned on and
 off globally, not on a per-buffer basis (hence the quasi- designation).
 
-Optional ARG turns mode on iff ARG is a positive integer.
+Optional ARG turns mode on if ARG is a positive integer.
 
 \(fn &optional ARG)" t nil)
+
+(autoload 'bar-cursor-change "bar-cursor" "\
+Enable or disable advice based on value of variable `bar-cursor-mode'.
+
+\(fn)" nil nil)
 
 ;;;***
 
@@ -271,7 +275,7 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (19147 60529))
+;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (19149 1011))
 ;;; Generated autoloads from browse-kill-ring.el
 
 (autoload 'browse-kill-ring-default-keybindings "browse-kill-ring" "\
@@ -304,19 +308,24 @@ to the action header.
 
 ;;;***
 
-;;;### (autoloads (coffee) "coffee" "coffee.el" (19147 60529))
-;;; Generated autoloads from coffee.el
+;;;### (autoloads (color-theme-select) "color-theme" "color-theme.el"
+;;;;;;  (19149 1011))
+;;; Generated autoloads from color-theme.el
 
-(autoload 'coffee "coffee" "\
-Submit a BREW request to an RFC2324-compliant coffee device
+(autoload 'color-theme-select "color-theme" "\
+Displays a special buffer for selecting and installing a color theme.
+With optional prefix ARG, this buffer will include color theme libraries
+as well.  A color theme library is in itself not complete, it must be
+used as part of another color theme to be useful.  Thus, color theme
+libraries are mainly useful for color theme authors.
 
-\(fn)" t nil)
+\(fn &optional ARG)" t nil)
 
 ;;;***
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (19147 60529))
+;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (19149 1011))
 ;;; Generated autoloads from ctypes.el
 
 (autoload 'ctypes-define-type "ctypes" "\
@@ -508,6 +517,18 @@ the decimal key on the keypad i<s mapped to DECIMAL instead of [.].
 
 ;;;***
 
+;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (19149
+;;;;;;  1011))
+;;; Generated autoloads from dedicated.el
+
+(autoload 'dedicated-mode "dedicated" "\
+Toggle dedicated minor mode.
+With ARG, turn minor mode on if ARG is positive, off otherwise.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads (df) "df" "df.el" (19104 28952))
 ;;; Generated autoloads from df.el
 
@@ -520,7 +541,7 @@ This display updates automatically every `df-refresh' seconds.
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (19147 60529))
+;;;;;;  "diminish.el" (19149 1011))
 ;;; Generated autoloads from diminish.el
 
 (autoload 'diminish "diminish" "\
@@ -540,7 +561,10 @@ best; if you then diminish some mode to \"X\" but have abbrev-mode enabled as
 well, you'll get a display like \"AbbrevX\".  This function prepends a space
 to TO-WHAT if it's > 1 char long & doesn't already begin with a space.
 
-\(fn MODE &optional TO-WHAT)" t nil)
+If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
+the variable `diminished-minor-modes' will be modified to reflect the change.
+
+\(fn MODE &optional TO-WHAT ANNOTATE-FLAG)" t nil)
 
 (autoload 'diminish-undo "diminish" "\
 Restore mode-line display of diminished mode MODE to its minor-mode value.
@@ -552,7 +576,10 @@ To restore all diminished modes to minor status, answer `diminished-modes'.
 The response to the prompt shouldn't be quoted.  However, in Lisp code,
 the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes).
 
-\(fn MODE)" t nil)
+If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
+the variable `diminished-minor-modes' will be modified to reflect the change.
+
+\(fn MODE &optional ANNOTATE-FLAG)" t nil)
 
 (autoload 'diminished-modes "diminish" "\
 Echo all active diminished or minor modes as if they were minor.
@@ -560,6 +587,16 @@ The display goes in the echo area; if it's too long even for that,
 you can see the whole thing in the *Messages* buffer.
 This doesn't change the status of any modes; it just lets you see
 what diminished modes would be on the mode-line if they were still minor.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (19149 1011))
+;;; Generated autoloads from edit-env.el
+
+(autoload 'edit-env "edit-env" "\
+Display, edit, delete and add environment variables.
 
 \(fn)" t nil)
 
@@ -881,6 +918,17 @@ typing the keymap prefix (default F2).
 \\{framepop-map}
 
 \(fn BUF)" t nil)
+
+;;;***
+
+;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
+;;;;;;  "highlight-beyond-fill-column.el" (19149 1011))
+;;; Generated autoloads from highlight-beyond-fill-column.el
+
+(autoload 'highlight-beyond-fill-column "highlight-beyond-fill-column" "\
+Setup this buffer to highlight beyond the `fill-column'.
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -1259,6 +1307,66 @@ See `read-file-name' for additional parameters.
 
 ;;;***
 
+;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
+;;;;;;  (19149 1011))
+;;; Generated autoloads from joc-toggle-buffer.el
+
+(autoload 'joc-toggle-buffer "joc-toggle-buffer" "\
+Switch to previous active buffer.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
+;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
+;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (19149 1011))
+;;; Generated autoloads from joc-toggle-case.el
+
+(autoload 'joc-toggle-case "joc-toggle-case" "\
+Toggle the case of the character under point.
+If called with a PREFIX argument, it toggles that many
+characters (see joc-toggle-case-stop-at-eol).  If the prefix is
+negative, the case of the character before point is toggled, and
+if called with a prefix argument, N characters before point will
+have their case toggled (see also joc-toggle-case-backwards).
+
+\(fn PREFIX)" t nil)
+
+(autoload 'joc-toggle-case-backwards "joc-toggle-case" "\
+Convenience function to toggle case of character preceeding point.
+This is the same as calling joc-toggle-case with a negative
+prefix (and is in fact implemented that way).
+
+\(fn PREFIX)" t nil)
+
+(autoload 'joc-toggle-case-by-word "joc-toggle-case" "\
+Similar to joc-toggle-case except that the count (supplied by
+the prefix argument) is of the number of words, not letters, to
+be toggled.  It will start from point and move to the end of
+the first word at a minimum, and then take whole words from
+there.  If called with a negative prefix, then from point to
+beginning of current word will have their case toggled, going
+backwards for N words (see also
+joc-toggle-case-by-word-backwards).  Note that the
+joc-toggle-case-stop-at-eol setting will be honored.
+
+\(fn PREFIX)" t nil)
+
+(autoload 'joc-toggle-case-by-word-backwards "joc-toggle-case" "\
+Convenience function to toggle case by word, backwards.
+This is the same as calling joc-toggle-case-by-word with a
+negative prefix (and is in fact implemented that way).
+
+\(fn PREFIX)" t nil)
+
+(autoload 'joc-toggle-case-by-region "joc-toggle-case" "\
+Toggles the case of all characters in the current region.
+
+\(fn START END)" t nil)
+
+;;;***
+
 ;;;### (autoloads (keydef) "keydef" "keydef.el" (16013 59398))
 ;;; Generated autoloads from keydef.el
 
@@ -1285,6 +1393,50 @@ variable mode-map-alist. But for other cases you will need to look up
 the name of the mode-map that goes with the given mode.
 
 \(fn SEQ &rest CMD)" nil (quote macro))
+
+;;;***
+
+;;;### (autoloads (lcomp-activate-advices) "lcomp" "lcomp.el" (19149
+;;;;;;  1011))
+;;; Generated autoloads from lcomp.el
+
+(autoload 'lcomp-activate-advices "lcomp" "\
+Activate lcomp advices if ON is non-nil, disable otherwise.
+
+\(fn ON)" t nil)
+
+;;;***
+
+;;;### (autoloads (markdown-mode) "markdown-mode" "markdown-mode.el"
+;;;;;;  (19149 1012))
+;;; Generated autoloads from markdown-mode.el
+
+(autoload 'markdown-mode "markdown-mode" "\
+Major mode for editing Markdown files.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
+;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (19149
+;;;;;;  1011))
+;;; Generated autoloads from marker-visit.el
+
+(autoload 'marker-visit-prev "marker-visit" "\
+From point, visit the nearest mark earlier in the buffer.
+
+\(fn)" t nil)
+
+(autoload 'marker-visit-next "marker-visit" "\
+From point, visit the nearest mark later in the buffer.
+
+\(fn)" t nil)
+
+(autoload 'marker-visit-truncate-mark-ring "marker-visit" "\
+Truncate the `mark-ring'.
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -1376,7 +1528,7 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 
 ;;;### (autoloads (newsticker-ticker-running-p newsticker-running-p
 ;;;;;;  newsticker-show-news newsticker-start-ticker newsticker-start)
-;;;;;;  "newsticker" "newsticker.el" (19147 60528))
+;;;;;;  "newsticker" "newsticker.el" (19149 1011))
 ;;; Generated autoloads from newsticker.el
 
 (autoload 'newsticker-start "newsticker" "\
@@ -1418,17 +1570,17 @@ empty.
 ;;;***
 
 ;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "nuke-trailing-whitespace.el" (19147 60529))
+;;;;;;  "nuke-trailing-whitespace.el" (19149 1011))
 ;;; Generated autoloads from nuke-trailing-whitespace.el
 
 (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" "\
 Nuke all trailing whitespace in the buffer.
 Whitespace in this case is just spaces or tabs.
-This is a useful function to put on write-file-hooks.
+This is a useful function to put on `write-file-hooks'.
 
 Unless called interactively, this function uses
 `nuke-trailing-whitespace-p' to determine how to behave.
-However, even if this variable is `t', this function will query for
+However, even if this variable is t, this function will query for
 replacement if the buffer is read-only.
 
 \(fn)" t nil)
@@ -1500,16 +1652,36 @@ A hook which binds F1 to `perldoc-at-point'.
 
 ;;;***
 
+;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (19149 1012))
+;;; Generated autoloads from pod-mode.el
+
+(autoload 'pod-mode "pod-mode" "\
+Major mode for editing POD files (Plain Old Documentation for Perl).
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (project-add) "projects" "projects.el" (19149 1012))
+;;; Generated autoloads from projects.el
+
+(autoload 'project-add "projects" "\
+Add the project named NAME with root directory DIRECTORY.
+
+\(fn NAME DIRECTORY)" t nil)
+
+;;;***
+
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (19147 60528))
+;;;;;;  "protbuf" "protbuf.el" (19149 1012))
 ;;; Generated autoloads from protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
-*If non-`nil', then prevent buffer from being accidentally killed.
+*If non-nil, then prevent buffer from being accidentally killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-mode nil "\
-*If non-`nil', then protect buffer with live process from being killed.
+*If non-nil, then protect buffer with live process from being killed.
 This variable is local to all buffers.")
 
 (defvar protect-process-buffer-from-kill-preserve-function nil "\
@@ -1523,14 +1695,17 @@ object is using this buffer as a process buffer.
 This variable is buffer-local when set.")
 
 (autoload 'protect-buffer-from-kill-mode "protbuf" "\
-Protect buffer from being killed.
-To remove this protection, call this command with a negative prefix argument.
+Toggle `kill-buffer' protection on current buffer.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER.
 
 \(fn &optional PREFIX BUFFER)" t nil)
 
 (autoload 'protect-process-buffer-from-kill-mode "protbuf" "\
-Protect buffer from being killed as long as it has an active process.
-To remove this protection, call this command with a negative prefix argument.
+Toggle `kill-buffer' protection on current buffer with active process.
+Protection only applies as long as the buffer has an active process.
+Optionally, set a PREFIX argument to set or unset protection, and specify
+alternate BUFFER.
 
 \(fn &optional PREFIX BUFFER)" t nil)
 
@@ -1549,6 +1724,34 @@ Find a protocol and display its details.
 Clear the protocols \"cache\".
 
 \(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (quack-install quack-pltfile-mode quack-scheme-mode-hookfunc
+;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "quack.el" (19149
+;;;;;;  1012))
+;;; Generated autoloads from quack.el
+(add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
+
+(autoload 'quack-inferior-scheme-mode-hookfunc "quack" "\
+Not documented
+
+\(fn)" nil nil)
+
+(autoload 'quack-scheme-mode-hookfunc "quack" "\
+Not documented
+
+\(fn)" nil nil)
+
+(autoload 'quack-pltfile-mode "quack" "\
+Not documented
+
+\(fn)" t nil)
+
+(autoload 'quack-install "quack" "\
+Install quack.el into scheme-mode.
+
+\(fn)" nil nil)
 
 ;;;***
 
@@ -1602,10 +1805,26 @@ Clear the services \"cache\".
 
 ;;;***
 
-;;;### (autoloads nil "session" "session.el" (19147 60528))
-;;; Generated autoloads from session.el
+;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
+;;;;;;  (19149 1012))
+;;; Generated autoloads from setnu.el
 
-(defunx session-initialize (&rest dummies) "Initialize package session and read previous session file.\nSetup hooks and load `session-save-file', see `session-initialize'.  At\nbest, this function is called at the end of the Emacs startup, i.e., add\nthis function to `after-init-hook'." (interactive) (setq session-use-package t) (when (or (eq session-initialize t) (memq 'de-saveplace session-initialize)) (when (functionp 'eval-after-load) (eval-after-load "saveplace" '(progn (remove-hook 'find-file-hooks 'save-place-find-file-hook) (remove-hook 'kill-emacs-hook 'save-place-kill-emacs-hook) (remove-hook 'kill-buffer-hook 'save-place-to-alist))))) (when (or (eq session-initialize t) (memq 'places session-initialize)) (add-hook 'find-file-hooks 'session-find-file-hook t) (add-hook 'find-file-not-found-hooks 'session-find-file-not-found-hook t) (add-hook 'kill-buffer-hook 'session-kill-buffer-hook)) (when (or (eq session-initialize t) (memq 'keys session-initialize)) (condition-case nil (progn (define-key ctl-x-map [(undo)] 'session-jump-to-last-change) (define-key ctl-x-map [(control 47)] 'session-jump-to-last-change) (define-key minibuffer-local-map [(meta 63)] 'session-minibuffer-history-help) :XEMACS (define-key global-map [(control button3)] 'session-popup-yank-menu) :EMACS (define-key minibuffer-local-completion-map [(meta 63)] 'session-minibuffer-history-help) (define-key minibuffer-local-must-match-map [(meta 63)] 'session-minibuffer-history-help) (define-key minibuffer-local-ns-map [(meta 63)] 'session-minibuffer-history-help)) (error nil))) (when (or (eq session-initialize t) (memq 'menus session-initialize)) (add-hook 'find-file-hooks 'session-set-file-name-history) (session-add-submenu '("Open...recently visited" :included file-name-history :filter session-file-opened-menu-filter)) (session-add-submenu '("Open...recently changed" :included session-file-alist :filter session-file-changed-menu-filter ["%_* Toggle Permanent Flag of Current Buffer" session-toggle-permanent-flag :keys (session-toggle-permanent-flag nil t) :active buffer-file-name] "---")) :XEMACS (and (featurep 'menubar) (find-menu-item default-menubar '("Edit")) (let ((current-menubar default-menubar)) (add-submenu '("Edit") '("Select and Paste" :included kill-ring :filter session-yank-menu-filter) (cond ((find-menu-item default-menubar '("Edit" "Delete")) "Delete") ((find-menu-item default-menubar '("Edit" "Paste")) "Paste") ((find-menu-item default-menubar '("Edit" "Undo")) "Undo")))))) (when (or (eq session-initialize t) (memq 'session session-initialize)) (add-hook 'kill-emacs-hook 'session-save-session) (or session-successful-p (setq session-successful-p (and session-save-file (condition-case nil (progn (load session-save-file t nil t) (run-hooks 'session-after-load-save-file-hook) t) (error nil)))))))
+(autoload 'setnu-mode "setnu" "\
+Toggle `setnu-mode'.
+With prefix argument ARG, turn `setnu-mode' on if argument is positive.
+When `setnu-mode' is enabled, a line number will appear at the left
+margin of each line.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'turn-on-setnu-mode "setnu" "\
+Turn on `setnu-mode'.
+Useful for adding to a `major-mode' hook variable.
+Example:
+    (add-hook 'text-mode-hook 'turn-on-setnu-mode)
+to automatically turn on line numbering when enterting `text-mode'.
+
+\(fn)" nil nil)
 
 ;;;***
 
@@ -1653,25 +1872,26 @@ Uses face `show-ws-trailing-whitespace'.
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (19147 60528))
+;;;;;;  "silly-mail.el" (19149 1012))
 ;;; Generated autoloads from silly-mail.el
 
 (autoload 'sm-add-random-header "silly-mail" "\
 Insert a random silly mail header.
-The choice of available headers is taken from sm-mail-header-table.
+The choice of available headers is taken from `sm-mail-header-table'.
+If a random header was already inserted, it it removed in favor of a new one.
 
 \(fn)" t nil)
 
 (autoload 'sm-add-all-headers "silly-mail" "\
 Insert one of every kind of silly mail header defined.
-The choice of available headers is taken from sm-mail-header-table.
+The choice of available headers is taken from `sm-mail-header-table'.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (19147
-;;;;;;  60528))
+;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (19149
+;;;;;;  1012))
 ;;; Generated autoloads from slang-mode.el
 
 (autoload 'slang-mode "slang-mode" "\
@@ -1875,7 +2095,7 @@ Returns non-nil if the new state is enabled.
 ;;;;;;  table-recognize table-insert-row-column table-insert-column
 ;;;;;;  table-insert-row table-insert table-point-left-cell-hook
 ;;;;;;  table-point-entered-cell-hook table-load-hook table-cell-map-hook)
-;;;;;;  "table" "table.el" (19147 60528))
+;;;;;;  "table" "table.el" (19149 1012))
 ;;; Generated autoloads from table.el
 
 (defvar table-cell-map-hook nil "\
@@ -2624,16 +2844,13 @@ Major mode for editing xrdb config files
 
 ;;;***
 
-;;;### (autoloads nil nil ("auto-fill-inhibit.el" "clipper.el" "color-theme.el"
-;;;;;;  "csv-mode.el" "cwebm.el" "cyclebuffer.el" "dedicated.el"
-;;;;;;  "dict.el" "dirvars.el" "edit-env.el" "emacs-goodies-build.el"
-;;;;;;  "emacs-goodies-custom.el" "emacs-goodies-el.el" "filladapt.el"
-;;;;;;  "highlight-beyond-fill-column.el" "highlight-completion.el"
-;;;;;;  "initsplit.el" "joc-toggle-buffer.el" "joc-toggle-case.el"
-;;;;;;  "keywiz.el" "lcomp.el" "map-lines.el" "maplev.el" "markdown-mode.el"
-;;;;;;  "marker-visit.el" "minibuf-electric.el" "minibuffer-complete-cycle.el"
-;;;;;;  "mutt-alias.el" "pod-mode.el" "projects.el" "quack.el" "setnu.el"
-;;;;;;  "todoo.el" "toggle-option.el") (19148 61438 483573))
+;;;### (autoloads nil nil ("auto-fill-inhibit.el" "clipper.el" "coffee.el"
+;;;;;;  "csv-mode.el" "cwebm.el" "cyclebuffer.el" "dict.el" "dirvars.el"
+;;;;;;  "emacs-goodies-build.el" "emacs-goodies-custom.el" "emacs-goodies-el.el"
+;;;;;;  "filladapt.el" "highlight-completion.el" "initsplit.el" "keywiz.el"
+;;;;;;  "map-lines.el" "maplev.el" "minibuf-electric.el" "minibuffer-complete-cycle.el"
+;;;;;;  "mutt-alias.el" "session.el" "todoo.el" "toggle-option.el")
+;;;;;;  (19149 1025 766314))
 
 ;;;***
 
