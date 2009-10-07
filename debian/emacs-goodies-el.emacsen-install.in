@@ -22,3 +22,9 @@ EXCLUDED_xemacs21="csv-mode.el cua.el ibuffer.el minibuf-electric.el tabbar.el t
 EXCLUDED_emacs_snapshot="cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
 EXCLUDED_emacs22="cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
 EXCLUDED_emacs23="cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
+SOURCEONLY_all="emacs-goodies-loaddefs.el"
+
+# Don't byte-compile emacs-goodies-loaddefs.el (and emacs-goodies-el.el
+# since it requires it) because session.el macros (e.g. defunx) create problems
+# with various flavours of Emacs:
+SOURCEONLY_all="emacs-goodies-el.el emacs-goodies-loaddefs.el"
