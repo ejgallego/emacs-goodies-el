@@ -64,7 +64,6 @@ Description: Miscellaneous add-ons for Emacs
   minibuffer-complete-cycle - cycle through the *Completions* buffer;
   mutt-alias - lookup and insert the expansion of mutt mail aliases;
   muttrc-mode - major mode for editing Mutt config files;
-  nuke-trailing-whitespace - kill the trailing blanks at end of lines;
   obfusurl - obfuscate an URL;
   pack-windows - resize all windows to display as much info as possible;
   perldoc - show help for Perl functions and modules. (Depends on perl-doc)
@@ -95,12 +94,13 @@ Description: Miscellaneous add-ons for Emacs
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
- As well as some packages included in emacs23 and emacs22 for use in other
- flavours:
+ As well as some packages included or superceded in emacs22 and emacs23 for
+ use in other flavors:
   cfengine - major mode for editing cfengine scripts;
   ibuffer - advanced replacement for the `buffer-menu';
   ido - a faster way to switch buffers and get files;
   newsticker - a newsticker for Emacs. (Depends on wget)
+  nuke-trailing-whitespace - kill the trailing blanks at end of lines;
   table - create and edit WYSIWYG text based embedded tables;
  .
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short

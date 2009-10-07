@@ -20,6 +20,8 @@ emacs-goodies-el (30.6-1) UNRELEASED; urgency=low
      (Closes: #549917, #549918).
    - Improved summary of session.el for package description, thanks to
      Reuben Thomas (Closes: #549924).
+   - Move nuke-trailing-whitespace to superceded category, thanks to
+     Reuben Thomas (Closes: #549923)
 
  --
 
