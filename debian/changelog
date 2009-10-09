@@ -1,3 +1,14 @@
+emacs-goodies-el (30.7-1) unstable; urgency=low
+
+  * emacs-goodies-el:
+  - Bug fix: "dpkg: error processing emacs-goodies-el (--configure):",
+    thanks to John A Martin (Closes: #550225). The autoloads file
+    emacs-goodies-loaddefs.el used to be pre-generated using the latest
+    Emacs flavour, and XEmacs found code that it didn't understand.  My
+    fix is to build it at install time for each installed Emacs flavour.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 08 Oct 2009 17:35:30 -0400
+
 emacs-goodies-el (30.6-1) unstable; urgency=low
 
   * emacs-goodies-el:

@@ -78,6 +78,15 @@ for i in $FILES $sourceonly_all; do
     ln -fs /usr/share/emacs/site-lisp/${PACKAGE}/$i
 done
 
+# Prepare the flavour specific autoload file
+if [ ${PACKAGE} = emacs-goodies-el ]; then
+   echo ${FLAVOR} -batch --no-site-file --multibyte --eval '(setq load-path (cons "." load-path))' -l autoload --eval '(setq generated-autoload-file (expand-file-name "emacs-goodies-loaddefs.el"))' --eval '(setq make-backup-files nil)' -f batch-update-autoloads . >> ${LOG}
+   cd ${ELCDIR}
+   echo Building autoloads for ${FLAVOR} in ${ELCDIR}
+    "${FLAVOR}" -batch --no-site-file --multibyte --eval '(setq load-path (cons "." load-path))' -l autoload --eval '(setq generated-autoload-file (expand-file-name "emacs-goodies-loaddefs.el"))' --eval '(setq make-backup-files nil)' -f batch-update-autoloads . >> ${LOG}  2>&1
+    echo "(provide 'emacs-goodies-loaddefs)" >> emacs-goodies-loaddefs.el
+fi
+
 cat << EOF > path.el
 (setq load-path (cons "." load-path) byte-compile-warnings nil)
 EOF
