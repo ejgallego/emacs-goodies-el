@@ -4,8 +4,13 @@ emacs-goodies-el (30.7-3) UNRELEASED; urgency=low
   - Bug fix: "never cleaned up 50debian-el.el", thanks to
     jidanni@jidanni.org; (Closes: #487175).  Created debian-el.postinst to
     delete the old file if found.
+  * Bug fix: "Outputs wrongly utf-8 chars if the buffer is called
+    control", thanks to Marco Túlio Gontijo e Silva (Closes: #526374).
+    Edited deb-view-control-coding to (1) return 'undecided instead or nil
+    when there's no match, and (2) call deb-view-control-coding only on
+    exact match of "control" filename.
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 10 Oct 2009 17:23:48 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 10 Oct 2009 18:14:16 -0400
 
 emacs-goodies-el (30.7-2) unstable; urgency=low
 
