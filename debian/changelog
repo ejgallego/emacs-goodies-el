@@ -9,8 +9,11 @@ emacs-goodies-el (30.8-1) unstable; urgency=low
     Edited deb-view-control-coding to (1) return 'undecided instead or nil
     when there's no match, and (2) call deb-view-control-coding only on
     exact match of "control" filename.
+  * Added "${misc:Depends}" Depends as per policy to all binary packages.
+  * Added "dpkg (>= 1.15.4) | install-info" Depends as per policy to
+    emacs-goodies-el and debian-el as they install info file.
 
- -- Peter S Galbraith <psg@debian.org>  Sun, 11 Oct 2009 15:51:53 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 11 Oct 2009 16:17:40 -0400
 
 emacs-goodies-el (30.7-2) unstable; urgency=low
 
