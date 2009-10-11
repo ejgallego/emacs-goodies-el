@@ -94,7 +94,7 @@ Description: Miscellaneous add-ons for Emacs
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
- As well as some packages included or superceded in emacs22 and emacs23 for
+ As well as some packages included or superseded in emacs22 and emacs23 for
  use in other flavors:
   cfengine - major mode for editing cfengine scripts;
   ibuffer - advanced replacement for the `buffer-menu';

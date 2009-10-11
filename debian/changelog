@@ -54,7 +54,7 @@ emacs-goodies-el (30.6-1) unstable; urgency=low
      (Closes: #549917, #549918).
    - Improved summary of session.el for package description, thanks to
      Reuben Thomas (Closes: #549924).
-   - Move nuke-trailing-whitespace to superceded category, thanks to
+   - Move nuke-trailing-whitespace to superseded category, thanks to
      Reuben Thomas (Closes: #549923)
 
  -- Peter S Galbraith <psg@debian.org>  Wed, 07 Oct 2009 17:17:59 -0400
