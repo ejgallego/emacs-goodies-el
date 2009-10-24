@@ -318,8 +318,8 @@ selectable views (limits)."
   "Markdown mode."
   :prefix "markdown-"
   :group 'languages
-  :link '(custom-manual "(emacs-goodies-el)markdown")
-  :load 'markdown
+  :link '(custom-manual "(emacs-goodies-el)markdown-mode")
+  :load 'markdown-mode
   :group 'emacs-goodies-el)
 
 ;; minibuffer-complete-cycle

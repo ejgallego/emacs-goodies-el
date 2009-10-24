@@ -1,3 +1,12 @@
+emacs-goodies-el (30.9-1) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+  - Bug fix: "'M-x customize-group markdown' doesn't load
+    markdown-mode.el", thanks to Kevin Ryde (Closes: #551014).  Edited
+    emacs-goodies-custom.el as suggested by Kevin.
+
+ -- Peter S Galbraith <psg@debian.org>  Sat, 24 Oct 2009 11:43:49 -0400
+
 emacs-goodies-el (30.8-1) unstable; urgency=low
 
   * debian-el
