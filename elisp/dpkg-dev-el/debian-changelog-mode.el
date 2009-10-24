@@ -4,7 +4,7 @@
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
 ;; Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005 Peter S Galbraith
-;; Copyright (C) 2006, 2007, 2008, Peter S Galbraith
+;; Copyright (C) 2006, 2007, Peter S Galbraith
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -332,6 +332,11 @@
 ;;    See http://bugs.debian.org/457047
 ;; V1.89 23Feb2009 Jari.aalto@cante.net
 ;;  - finalize date in UTC (User configurable) (Closes: #503700)
+;; V1.90 24Oct2009 Rafael Laboissiere <rafael@debian.org>
+;;  - debian-changelog-close-bug does not work properly under XEmacs 21.4.21
+;;    because the arguments passed to replace-in-string in the inline function
+;;    debian-chagelog--rris are in the wrong order. Closes: #476271
+;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
 ;;   James LewisMoss <dres@ioa.com>
@@ -428,7 +433,10 @@ Pass ARGS to `replace-regexp-in-string' (GNU Emacs) or to
   ;; XEmacs:
   (if (fboundp 'replace-in-string)
       (save-match-data ;; apparently XEmacs needs save-match-data
-        (apply 'replace-in-string args))
+        ;; and arguments are in different order.
+        ;; Patch from Rafael Laboissiere <rafael@debian.org>
+        ;; Closes: #476271
+        (apply 'replace-in-string (list (nth 2 args) (nth 0 args) (nth 1 args))))
     ;; Emacs:
     (apply 'replace-regexp-in-string args)))
 

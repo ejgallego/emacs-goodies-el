@@ -4,8 +4,14 @@ emacs-goodies-el (30.9-1) UNRELEASED; urgency=low
   - Bug fix: "'M-x customize-group markdown' doesn't load
     markdown-mode.el", thanks to Kevin Ryde (Closes: #551014).  Edited
     emacs-goodies-custom.el as suggested by Kevin.
+  * dpkg-dev-el:
+  - debian-changelog-mode.el: debian-changelog-close-bug does not work
+    properly under XEmacs 21.4.21 because the arguments passed to
+    replace-in-string in the inline function debian-chagelog--rris are in
+    the wrong order (Closes: #476271).  (I apologise for losing trrack of
+    this bug for so long).
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 24 Oct 2009 11:43:49 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sat, 24 Oct 2009 12:44:20 -0400
 
 emacs-goodies-el (30.8-1) unstable; urgency=low
 
