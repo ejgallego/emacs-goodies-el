@@ -1,4 +1,4 @@
-emacs-goodies-el (30.9-1) UNRELEASED; urgency=low
+emacs-goodies-el (30.9-1) unstable; urgency=low
 
   * emacs-goodies-el:
   - Bug fix: "'M-x customize-group markdown' doesn't load
@@ -8,10 +8,12 @@ emacs-goodies-el (30.9-1) UNRELEASED; urgency=low
   - debian-changelog-mode.el: debian-changelog-close-bug does not work
     properly under XEmacs 21.4.21 because the arguments passed to
     replace-in-string in the inline function debian-chagelog--rris are in
-    the wrong order (Closes: #476271).  (I apologise for losing trrack of
+    the wrong order (Closes: #476271).  (I apologise for losing track of
     this bug for so long).
+  * debian-el:
+  - deb-view.el: Added support for data.tar.bz2 deb files (Closes: #457094).
 
- -- Peter S Galbraith <psg@debian.org>  Sat, 24 Oct 2009 12:44:20 -0400
+ -- Peter S Galbraith <psg@debian.org>  Sun, 25 Oct 2009 12:11:31 -0400
 
 emacs-goodies-el (30.8-1) unstable; urgency=low
 
