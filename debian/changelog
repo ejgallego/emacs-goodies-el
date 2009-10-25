@@ -12,7 +12,8 @@ emacs-goodies-el (30.9-1) unstable; urgency=low
     this bug for so long).
   * debian-el:
   - deb-view.el: Added support for data.tar.bz2 deb files (Closes: #457094).
-
+  - Changed dependency on binutils for bzip2, file and gzip.
+  
  -- Peter S Galbraith <psg@debian.org>  Sun, 25 Oct 2009 12:11:31 -0400
 
 emacs-goodies-el (30.8-1) unstable; urgency=low
