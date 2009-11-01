@@ -41,6 +41,18 @@
      (3 font-lock-string-face)))
   "Regexp keywords used to fontify README.Debian buffers.")
 
+(defun readme-debian-date-string ()
+  "Return RFC-822 format date string."
+  ;; this function could be simpler if xemacs supported %z, but
+  ;; it doesn't, so we're shelling out to invoke date -R to obtain
+  ;; Debian-policy-compliant date string.
+  (let* ((date-program "date -R")
+	 (system-time-locale "C"))
+    (if (featurep 'xemacs)
+	(replace-in-string (exec-to-string date-program) "\n" "")
+      ;; if it's not xemacs, just use format-time-string
+      (format-time-string "%a, %e %b %Y %T %z" (current-time)))))
+
 (defun readme-debian-update-timestamp ()
   "Function to update timestamp in README.Debian files, automatically invoked when saving file."
   (save-excursion
@@ -55,8 +67,7 @@
 	     " -- "
 	     debian-changelog-full-name
 	     " <" debian-changelog-mailing-address ">, "
-             (let* ((system-time-locale "C"))
-	       (format-time-string "%a, %e %b %Y %T %z" (current-time)))))
+             (readme-debian-date-string)))
     (if (and (= (point)(point-max)) (not (bolp)))
 	(insert "\n"))))
 
