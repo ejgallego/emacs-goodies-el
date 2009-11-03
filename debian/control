@@ -2,9 +2,9 @@ Source: emacs-goodies-el
 Section: editors
 Priority: optional
 Maintainer: Peter S Galbraith <psg@debian.org>
-Build-Depends: debhelper (>= 4.0.0), dpatch (>=1.5)
+Build-Depends: debhelper (>= 7), dpatch (>=1.5)
 Build-Depends-Indep: texinfo
-Standards-Version: 3.7.2
+Standards-Version: 3.8.3
 Vcs-Cvs: :pserver:anonymous@cvs.alioth.debian.org:/cvsroot/pkg-goodies-el emacs-goodies-el
 Vcs-Browser: http://alioth.debian.org/scm/viewvc.php/?root=pkg-goodies-el
 
@@ -144,7 +144,7 @@ Description: Emacs wrappers for the commands in devscripts
 
 Package: debian-el
 Architecture: all
-Depends: emacs23 | emacsen, reportbug (>= 1.41.1), ${misc:Depends}, dpkg (>= 1.15.4) | install-info, bzip2, file, gzip
+Depends: emacs23 | emacsen, reportbug (>= 1.41.1), ${misc:Depends}, dpkg (>= 1.15.4) | install-info, bzip2, file
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el, debview
@@ -184,7 +184,7 @@ Description: Emacs helpers specific to Debian development
 
 Package: vm-bonus-el
 Architecture: all
-Depends: vm (>= 8.0.12-1)
+Depends: vm (>= 8.0.12-1), ${misc:Depends}
 Section: mail
 Description: transitional dummy package
  This package no longer installs any files.
