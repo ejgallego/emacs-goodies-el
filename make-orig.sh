@@ -26,7 +26,7 @@ tar cf - --exclude=CVS --exclude=elisp/vm-bonus-el elisp | ( cd ../${SOURCE}-${U
 (cd .. ; tar zcf ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 mkdir ../${SOURCE}-${UPSTREAM_VERSION}
-tar cf - --exclude=CVS debian make-orig.sh | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
+tar cf - --exclude=CVS debian | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
 (cd .. ; tar zcf debian-${UPSTREAM_VERSION}-${DEBIAN_VERSION}.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 
