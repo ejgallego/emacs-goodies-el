@@ -1,3 +1,11 @@
+emacs-goodies-el (30.10-2) UNRELEASED; urgency=low
+
+  * Added README.source
+  * Fixed rules file to use binary-indep target.
+  * Various lintian fixes.
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 03 Nov 2009 17:22:52 -0500
+
 emacs-goodies-el (30.10-1) unstable; urgency=low
 
   * debian-el:

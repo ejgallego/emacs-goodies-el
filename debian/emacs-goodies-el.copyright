@@ -16,9 +16,9 @@ Copyright info for files in emacs-goodies-el
 
 Author/copyright info for align-string.el:
 ,----
-| ;; Copyright (c) 2001 Markus Bjartveit Krüger
+| ;; Copyright (c) 2001 Markus Bjartveit KrÃ¼ger
 |
-| ;; Author:   Markus Bjartveit Krüger <markusk@pvv.org>
+| ;; Author:   Markus Bjartveit KrÃ¼ger <markusk@pvv.org>
 | [...]
 | ;; X-URL:    http://www.pvv.org/~markusk/align-string.el
 |
@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999-2009 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; boxquote.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -713,7 +713,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.26 2009/09/10 22:40:49 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.27 2009/11/03 23:02:33 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -752,7 +752,7 @@ Author/copyright info for minibuf-electric.el
 
 Author/copyright info for minibuffer-complete-cycle.el
 ,----
-| ;; Copyright © 1997,1998,2000,2003 Kevin Rodgers
+| ;; Copyright Â© 1997,1998,2000,2003 Kevin Rodgers
 |
 | ;; Author: Kevin Rodgers <ihs_4664@yahoo.com>
 | [...]
@@ -805,7 +805,7 @@ Author/copyright info for newsticker.el
 Author/copyright info for obfusurl.el:
 ,----
 | ;; Copyright 2001-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; obfusurl.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -849,7 +849,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.26 2009/09/10 22:40:49 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.27 2009/11/03 23:02:33 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -899,7 +899,7 @@ Author/copyright info for protocols.el:
 ,----
 | ;;; protocols.el --- Protocol database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -935,7 +935,7 @@ Author/copyright info for services.el:
 ,----
 | ;;; services.el --- Services database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; services.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -1117,7 +1117,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; thinks.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1129,7 +1129,7 @@ Author/copyright info for tld.el:
 ,----
 | ;;; tld.el --- TLD lookup tool.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.26 $
+| ;; $Revision: 1.27 $
 | 
 | ;; tld.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1197,9 +1197,9 @@ Author/copyright info for under.el:
 Author/copyright info for wdired.el:
 ,----
 | ;;; wdired.el --- Rename files editing their names in dired buffers
-| ;; Copyright (C) 2001 Juan León Lahoz García
+| ;; Copyright (C) 2001 Juan LeÃ³n Lahoz GarcÃ­a
 | [...]
-| ;; Author: Juan León Lahoz García <juan-leon.lahoz@tecsidel.es>
+| ;; Author: Juan LeÃ³n Lahoz GarcÃ­a <juan-leon.lahoz@tecsidel.es>
 | [...]
 | ;; This program is free software; you can redistribute it and/or
 | ;; modify it under the terms of the GNU General Public License as

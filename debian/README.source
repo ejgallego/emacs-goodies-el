@@ -1,0 +1,7 @@
+This package uses dpatch to manage all modifications. See
+
+  /usr/share/doc/dpatch/README.source.gz
+
+to get more information on how to use it.
+
+ -- Peter S Galbraith <psg@debian.org>, Tue,  3 Nov 2009 17:18:52 -0500

@@ -22,7 +22,7 @@ Author/copyright info for gnus-eyecandy.el:
 | ;; Copyright (C) 1999 BrYan P. Johnson
 | 
 | ;; Modified 2003-10-15 to work with GNU Emacs
-| ;; by Johan BockgÂrd <bojohan@dd.chalmers.se>
+| ;; by Johan Bockg√•rd <bojohan@dd.chalmers.se>
 | [...]
 | ;; gnus-eyecandy.el is free software; you can redistribute it and/or modify it
 | ;; under the terms of the GNU General Public License as published by the Free
@@ -94,7 +94,7 @@ Author/copyright info for gnus-pers.el:
 Author/copyright info for message-x.el:
 ,----
 | ;; message-x.el -- customizable completion in message headers
-| ;; Copyright (C) 1998 Kai Groﬂjohann
+| ;; Copyright (C) 1998 Kai Gro√üjohann
 | [...]
 | ;; Author: Kai Grossjohann <grossjohann@ls6.informatik.uni-dortmund.de>
 | ;; Keywords: news, mail, compose, completion
@@ -117,9 +117,9 @@ Author/copyright info for nnnil.el:
 Author/copyright info for nnir.el:
 ,----
 | ;;; nnir.el --- search mail with various search engines -*- coding: iso-8859-1 -*-
-| ;; Copyright (C) 1998 Kai Groﬂjohann
+| ;; Copyright (C) 1998 Kai Gro√üjohann
 | [...]
-| ;; Author: Kai Groﬂjohann <grossjohann@ls6.cs.uni-dortmund.de>
+| ;; Author: Kai Gro√üjohann <grossjohann@ls6.cs.uni-dortmund.de>
 | [...]
 | ;; This is free software; you can redistribute it and/or modify
 | ;; it under the terms of the GNU General Public License as published by

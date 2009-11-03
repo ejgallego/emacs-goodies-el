@@ -37,13 +37,13 @@ clean: unpatch
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 	dh_install
 
-binary-indep: build install
+binary-arch:
 
-binary-arch: build install
+binary-indep: build install
 	dh_testdir
 	dh_testroot
 	dh_installdocs
@@ -59,5 +59,5 @@ binary-arch: build install
 	dh_md5sums
 	dh_builddeb
 
-binary: binary-indep binary-arch
+binary: binary-indep
 .PHONY: build clean binary-indep binary-arch binary install configure patch unpatch
