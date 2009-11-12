@@ -336,6 +336,8 @@
 ;;  - debian-changelog-close-bug does not work properly under XEmacs 21.4.21
 ;;    because the arguments passed to replace-in-string in the inline function
 ;;    debian-chagelog--rris are in the wrong order. Closes: #476271
+;; V1.91 12Nov2009 Peter S Galbraith <psg@debian.org>
+;;    Updated URL for "Best practices".
 ;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -695,7 +697,7 @@ Upload to " val  " anyway?")))
     (not (debian-changelog-finalised-p))]
    "--"
    "Web View"
-   ["Best Practices" (browse-url "http://www.debian.org/doc/developers-reference/ch-best-pkging-practices.en.html#s-bpp-debian-changelog") t]
+   ["Best Practices" (browse-url "http://www.debian.org/doc/developers-reference/best-pkging-practices.html#bpp-debian-changelog") t]
    ["Bugs for This Package" (debian-bug-web-bugs) t]
    ["Archived Bugs for This Package" (debian-bug-web-bugs t) t]
    ["Bug Number..." (debian-bug-web-bug) t]
