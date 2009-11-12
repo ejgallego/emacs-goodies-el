@@ -40,6 +40,12 @@
 ;; `document-tagged-autoloads' extracts a texinfo table from autoload
 ;; tagged commands.  I should probably make sure they are interactive.
 
+;; Kevin Ryde writes:
+;;   Incidentally, I believe an ;;;###autoload cookie on a defgroup copies
+;;   it into the loaddefs, if that's easier to maintain, esp if respective
+;;   authors were persuaded to put it in upstream.  That'd just leave
+;;   emacs-goodies-el.info doc links perhaps done by custom-add-link.
+
 ;;; History:
 ;;
 

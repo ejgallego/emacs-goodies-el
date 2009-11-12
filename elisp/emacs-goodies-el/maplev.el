@@ -10,7 +10,7 @@
 ;; Version:    2.155
 ;; Keywords:   Maple, languages
 ;; X-URL:      http://www.k-online.com/~joer/maplev/maplev.html
-;; X-RCS:      $Id: maplev.el,v 1.2 2009/09/04 02:24:05 psg Exp $
+;; X-RCS:      $Id: maplev.el,v 1.3 2009/11/12 21:33:35 psg Exp $
 
 ;;{{{ License
 
@@ -4884,15 +4884,6 @@ If optional arg HIDE is non-nil do not display buffer."
       (delete-window window))))
 
 ;;}}}
-
-;; The following was used during development.
-;; Delete before shipping
-
-;; Local variables:
-;; mode: folding
-;; max-lisp-eval-depth: 1000
-;; indent-tabs-mode:nil
-;; end:
 
 (provide 'maplev)
 
