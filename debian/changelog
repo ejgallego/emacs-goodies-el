@@ -1,12 +1,18 @@
-emacs-goodies-el (30.11-1) UNRELEASED; urgency=low
+emacs-goodies-el (30.11-1) unstable; urgency=low
 
   * Added debian/README.source
   * Fixed rules file to use binary-indep target.
   * Various lintian fixes.
   * Added COPYING-GPL-v2 COPYING-GPL-v3 to tar ball as requested by
     Fedora, who now distribute emacs-goodies-el.
+  * debian-el:
+  - debian-bug.el: Add `emacs-bug-web-bug', `emacs-bug-get-bug-as-email':
+    new commands to interface with Emacs BTS
+  * dpkg-dev-el:
+  - debian-bts-control.el: Add command `emacs-bts-control': new command to
+    interface with Emacs BTS.
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 03 Nov 2009 17:22:52 -0500
+ -- Peter S Galbraith <psg@debian.org>  Thu, 12 Nov 2009 16:27:41 -0500
 
 emacs-goodies-el (30.10-1) unstable; urgency=low
 

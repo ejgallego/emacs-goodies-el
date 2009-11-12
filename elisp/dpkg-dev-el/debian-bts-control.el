@@ -1,6 +1,6 @@
 ;;; debian-bts-control.el --- Create messages for Debian BTS control interface
 
-;; Copyright (C) 2003 Peter S Galbraith
+;; Copyright (C) 2003, 2005, 2007, 2009 Peter S Galbraith
 ;;
 ;; Help text from http://www.debian.org/Bugs/server-control:
 ;; Debian BTS administrators <owner@bugs.debian.org>
@@ -65,6 +65,10 @@
 ;;    `found' `notfound'.  (Closes: #391647)
 ;; V1.11 23Feb2009, Patch from Luca Capello <luca@pca.it>.
 ;;  - Add `debian-bts-control-cc-or-bcc' (Closes: #392494)
+;; V1.12 11Nov2009 Peter S Galbraith <psg@debian.org>
+;;  - Add `debian-bts-emailaddress' and `debian-bts-emaildomain'.
+;;  - Add command `emacs-bts-control', new command to interface with Emacs BTS.
+
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -99,6 +103,12 @@ the top of the message."
   "Whether to use Cc: or Bcc: header."
   :group 'debian-bts-control
   :type '(choice (const cc) (const bcc)))
+
+(defvar debian-bts-emailaddress "control@bugs.debian.org"
+  "Email address to send control message to.")
+
+(defvar debian-bts-emaildomain "bugs.debian.org"
+  "Email address domain to send control message to.")
 
 (defvar debian-bts-control-minor-mode nil)
 (defvar debian-bts-control-minor-mode-map nil
@@ -311,7 +321,7 @@ a negative prefix argument turns it off.
     (unless default-number
       (save-excursion
         (goto-char (point-min))
-	(if (re-search-forward "\\([0-9]+\\)@bugs.debian.org"
+	(if (re-search-forward (concat "\\([0-9]+\\)@" debian-bts-emaildomain)
                                (mail-header-end) t)
 	    (setq default-number (match-string-no-properties 1)))))
     (if default-number
@@ -338,11 +348,11 @@ in `debian-bts-control-modes-to-reuse'."
           (and (car (memq t (mapcar '(lambda (item) (eq item major-mode))
                                     debian-bts-control-modes-to-reuse)))
                (not debian-bts-control-minor-mode)))
-      (debian-bug--set-CC "control@bugs.debian.org"
+      (debian-bug--set-CC "debian-bts-emailaddress"
 			  (concat
 			   (symbol-name debian-bts-control-cc-or-bcc) ":"))
       (goto-char (point-min))
-      (if (re-search-forward "\\([0-9]+\\)@bugs.debian.org"
+      (if (re-search-forward (concat "\\([0-9]+\\)@" debian-bts-emaildomain)
                              (mail-header-end) t)
           (setq number-default (match-string 1)))
       (goto-char (mail-header-end))
@@ -359,11 +369,11 @@ in `debian-bts-control-modes-to-reuse'."
       (goto-char (point-min))
       (cond
        ((re-search-forward "To: " nil t)
-        (insert "control@bugs.debian.org"))
+        (insert debian-bts-emailaddress))
        ((re-search-forward "To:" nil t)
-        (insert " control@bugs.debian.org"))
+        (insert " " debian-bts-emailaddress))
        (t
-        (insert "To: control@bugs.debian.org")))
+        (insert "To: " debian-bts-emailaddress)))
       (if debian-bug-use-From-address
           (debian-bug--set-custom-From))
       (if debian-bug-always-CC-myself
@@ -643,7 +653,8 @@ in `debian-bts-control-modes-to-reuse'."
         (insert (format "tags %s %s %s\n" bug-number add tag))))
      ((string-equal "close" action)
       (if (yes-or-no-p
-           "Deprecated in favor of #BUG-close@bugs.debian.org. Continue? ")
+           (conact "Deprecated in favor of #BUG-close@" 
+                   debian-bts-emaildomain ". Continue? "))
           (let* ((verbose (if debian-bts-control-verbose-prompts-flag
                               "close bugnumber
 
@@ -1097,6 +1108,23 @@ thank...
 Help text from http://www.debian.org/Bugs/server-control, Apr 22nd 2003.
 Copyright 1999 Darren O. Benham, 1994-1997 Ian Jackson,
  1997 nCipher Corporation Ltd.")))
+
+(defun emacs-bts-control (action &optional arg)
+  "Contruct a message with ACTION command for control@emacsbugs.donarmstrong.com.
+Contructs a new control command line if called from within the message
+being constructed.
+
+If prefix arg is provided, use the current buffer instead instead of
+creating a new outgoing email message buffer.
+The current buffer is also used if the current major mode matches one listed
+in `debian-bts-control-modes-to-reuse'."
+  (interactive (list (completing-read "Command: "
+                                      debian-bts-control-alist nil nil)
+                     current-prefix-arg))
+  (let ((debian-bts-emailaddress "control@emacsbugs.donarmstrong.com")
+         (debian-bts-emaildomain "emacsbugs.donarmstrong.com")
+         (debian-bts-control-for-emacs t))
+    (debian-bts-control action arg)))
 
 (provide 'debian-bts-control)
 
