@@ -186,8 +186,12 @@ Package: vm-bonus-el
 Architecture: all
 Depends: vm (>= 8.0.12-1), ${misc:Depends}
 Section: mail
-Description: transitional dummy package
- This package no longer installs any files.
- It can safely be removed from your system.
- . 
- u-vm-color.el is now bundled and maintained with VM.
+Description: vm-bogofilter add-on for VM 
+ This package contains vm-bogofilter, an Emacs-Lisp files that provide
+ extra support to VM, a mail user agent for Emacs.
+ .
+ This package contains:
+  vm-bogofilter.el - Interface between VM and the bogofilter spam filter.
+ .
+ See /usr/share/doc/vm-bonus-el/README.Debian for short description
+ of the file and its configuration.

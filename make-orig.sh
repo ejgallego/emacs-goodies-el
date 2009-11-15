@@ -22,7 +22,7 @@ THISDIR=$(basename $PWD)
 #    $THISDIR
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 mkdir ../${SOURCE}-${UPSTREAM_VERSION}
-tar cf - --exclude=CVS --exclude=elisp/vm-bonus-el elisp COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
+tar cf - --exclude=CVS elisp 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
 (cd .. ; tar zcf ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
 rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
 mkdir ../${SOURCE}-${UPSTREAM_VERSION}

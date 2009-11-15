@@ -1,9 +1,13 @@
-emacs-goodies-el (30.12-1) UNRELEASED; urgency=low
+emacs-goodies-el (31.0-1) unstable; urgency=low
 
+  * vm-bonus-el
+  - package re-activated.
+  - vm-bogofilter.el: New file. Thanks to Patrice Karatchentzeff
+    (Closes: #353827).
   * dpkg-dev-el:
   - debian-changelog-mode.el: Updated URL for "Best practices".
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 12 Nov 2009 16:41:56 -0500
+ -- Peter S Galbraith <psg@debian.org>  Sat, 14 Nov 2009 17:18:49 -0500
 
 emacs-goodies-el (30.11-1) unstable; urgency=low
 
