@@ -1,3 +1,14 @@
+emacs-goodies-el (31.1-1) unstable; urgency=low
+
+  * dpkg-dev-el:
+  - debian-bts-control.el:
+   - Bug fix: "Symbol's function definition is void: conact",
+     thanks to Sven Joachim (Closes: #557408).
+   - Bug fix: "CC's debian-bts-emailaddress, literally",
+     thanks to Sven Joachim (Closes: #557412).
+
+ -- Peter S Galbraith <psg@debian.org>  Sun, 22 Nov 2009 10:54:31 -0500
+
 emacs-goodies-el (31.0-1) unstable; urgency=low
 
   * vm-bonus-el

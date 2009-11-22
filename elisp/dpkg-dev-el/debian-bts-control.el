@@ -68,6 +68,8 @@
 ;; V1.12 11Nov2009 Peter S Galbraith <psg@debian.org>
 ;;  - Add `debian-bts-emailaddress' and `debian-bts-emaildomain'.
 ;;  - Add command `emacs-bts-control', new command to interface with Emacs BTS.
+;; V1.13 21Nov2009 Peter S Galbraith <psg@debian.org>
+;;  - Patches from Sven Joachim (Closes: #557408, #557412)
 
 ;;; Code:
 
@@ -348,7 +350,7 @@ in `debian-bts-control-modes-to-reuse'."
           (and (car (memq t (mapcar '(lambda (item) (eq item major-mode))
                                     debian-bts-control-modes-to-reuse)))
                (not debian-bts-control-minor-mode)))
-      (debian-bug--set-CC "debian-bts-emailaddress"
+      (debian-bug--set-CC debian-bts-emailaddress
 			  (concat
 			   (symbol-name debian-bts-control-cc-or-bcc) ":"))
       (goto-char (point-min))
@@ -653,7 +655,7 @@ in `debian-bts-control-modes-to-reuse'."
         (insert (format "tags %s %s %s\n" bug-number add tag))))
      ((string-equal "close" action)
       (if (yes-or-no-p
-           (conact "Deprecated in favor of #BUG-close@" 
+           (concat "Deprecated in favor of #BUG-close@" 
                    debian-bts-emaildomain ". Continue? "))
           (let* ((verbose (if debian-bts-control-verbose-prompts-flag
                               "close bugnumber
