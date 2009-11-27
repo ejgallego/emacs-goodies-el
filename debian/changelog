@@ -1,3 +1,12 @@
+emacs-goodies-el (31.2-1) UNRELEASED; urgency=low
+
+  * debian-el:
+  - apt-sources.el:
+    - Create syntax table and add comments.  Thanks to Trent W. Buck for
+      the report (Closes: #469971).
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 26 Nov 2009 22:37:51 -0500
+
 emacs-goodies-el (31.1-1) unstable; urgency=low
 
   * dpkg-dev-el:
