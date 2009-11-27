@@ -1,10 +1,11 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.83 2009/07/17 22:34:44 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.84 2009/11/27 03:58:59 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
+@documentencoding ISO-8859-1
 @c %**end of header
 
 @dircategory Emacs
@@ -13,8 +14,8 @@
 @end direntry
 
 @c Version variables.
-@set EDITION 25.1
-@set UPDATED 30 Sep 2005
+@set EDITION 30.2
+@set UPDATED 25 Nov 2009
 
 @ifinfo
 This is Edition @value{EDITION}, last updated @value{UPDATED}, of
