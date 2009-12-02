@@ -6,8 +6,9 @@ emacs-goodies-el (31.2-1) UNRELEASED; urgency=low
       the report (Closes: #469971).
   * emacs-goodies-el:
   - emacs-goodies-el.texi: specify @documentencoding ISO-8859-1  
+  - cua.el: don't install for emacs22, emacs23 and emacs-snapshot
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 26 Nov 2009 22:58:14 -0500
+ -- Peter S Galbraith <psg@debian.org>  Wed, 02 Dec 2009 18:56:39 -0500
 
 emacs-goodies-el (31.1-1) unstable; urgency=low
 
