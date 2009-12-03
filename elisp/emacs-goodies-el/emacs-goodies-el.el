@@ -216,6 +216,21 @@ Stores the value of the prior keybinding in case we need to restore it.")
 (autoload 'cmaple      "maplev" "Start maple process" t)
 (add-to-list 'auto-mode-alist '("\\.mpl\\'" . maplev-mode))
 
+;; matlab
+(defcustom matlab-auto-mode nil
+  "*Enter matlab-mode when editing .m files.
+Technically, this adjusts the `auto-mode-list' when set.
+To unset, you will have to restart Emacs."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (cond
+          (value
+           (add-to-list 'auto-mode-alist '("\\.m\\'" . matlab-mode)))))
+  :load 'matlab
+  :group 'emacs-goodies-el
+  :require 'matlab)
+
 ;; minibuf-electric.el
 (defcustom minibuffer-electric-file-name-behavior nil
   "*If non-nil, slash and tilde in certain places cause immediate deletion.

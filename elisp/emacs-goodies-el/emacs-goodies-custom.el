@@ -313,20 +313,6 @@ selectable views (limits)."
   :load 'matlab
   :group 'emacs-goodies-el)
 
-(defcustom matlab-auto-mode nil
-  "*Enter matlab-mode when editing .m files.
-Technically, this adjusts the `auto-mode-list' when set.
-To unset, you will have to restart Emacs."
-  :type 'boolean
-  :set (lambda (symbol value)
-         (set-default symbol value)
-         (cond
-          (value
-           (add-to-list 'auto-mode-alist '("\\.m\\'" . matlab-mode)))))
-  :load 'matlab
-  :group 'emacs-goodies-el)
-  :require 'matlab)
-
 ;; markdown
 (defgroup markdown nil
   "Markdown mode."
