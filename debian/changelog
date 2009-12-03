@@ -1,14 +1,16 @@
-emacs-goodies-el (31.2-1) UNRELEASED; urgency=low
+emacs-goodies-el (31.2-1) unstable; urgency=low
 
   * debian-el:
-  - apt-sources.el:
-    - Create syntax table and add comments.  Thanks to Trent W. Buck for
-      the report (Closes: #469971).
+  - apt-sources.el: Create syntax table and add comments.
+    Thanks to Trent W. Buck for the report (Closes: #469971).
   * emacs-goodies-el:
   - emacs-goodies-el.texi: specify @documentencoding ISO-8859-1  
   - cua.el: don't install for emacs22, emacs23 and emacs-snapshot
+  - matlab.el caused Objective-C files to be visited in matlab-mode,
+    thanks to Yavor Doganov for the report (Closes: #557932).  Created
+    `matlab-auto-mode' customization variable.
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 02 Dec 2009 18:56:39 -0500
+ -- Peter S Galbraith <psg@debian.org>  Wed, 02 Dec 2009 22:47:21 -0500
 
 emacs-goodies-el (31.1-1) unstable; urgency=low
 

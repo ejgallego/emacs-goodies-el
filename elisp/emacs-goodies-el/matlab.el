@@ -1050,8 +1050,9 @@ mode.")
 
 ;;; MATLAB mode entry point ==================================================
 
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.m$" . matlab-mode))
+;; Debian change by Peter Galbraith: Customize `matlab-auto-mode' instead.
+;; ;;;###autoload
+;; (add-to-list 'auto-mode-alist '("\\.m$" . matlab-mode))
 
 ;;;###autoload
 (defun matlab-mode ()

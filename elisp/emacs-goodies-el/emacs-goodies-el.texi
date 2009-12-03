@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.84 2009/11/27 03:58:59 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.85 2009/12/03 03:55:59 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -2793,6 +2793,9 @@ or insert the following snippet of code in your @file{.emacs} file.
 @example
  (add-to-list 'auto-mode-alist '("\\.m$" . matlab-mode))
 @end example
+
+or, in Debian, customize the variable @code{matlab-auto-mode} to
+associated the .m file extention to matlab-mode.
 
 Additional features include auto-fill including auto-additions of
 ellipsis for commands, and even strings.  Block/end construct
