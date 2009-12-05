@@ -7,16 +7,11 @@
 @set edition 1.00
 @set update-date 26 September 1999
 
-@dircategory Emacs
-@direntry
-* maplev: (maplev). Emacs major mode for Maple V
-@end direntry
-
 @iftex
 @tolerance 10000
 @end iftex
 
-@c $Id: maplev.texi,v 1.3 2009/07/09 19:58:12 psg Exp $
+@c $Id: maplev.texi,v 1.4 2009/12/05 13:49:01 psg Exp $
 
 @ifinfo
 This file documents MapleV, a GNU Emacs major mode for developing code for
