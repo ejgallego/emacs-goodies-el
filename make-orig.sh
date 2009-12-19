@@ -17,20 +17,9 @@ DEBIAN_VERSION=${FULLVERSION##*-}
 THIS=$(basename $0)
 THISDIR=$(basename $PWD)
 
-#tar cvzfC ../${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz ../ \
-#    --exclude=$THISDIR/debian --exclude=$SOURCE/$THIS --exclude=CVS \
-#    $THISDIR
-rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
-mkdir ../${SOURCE}-${UPSTREAM_VERSION}
-tar cf - --exclude=CVS elisp 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
-(cd .. ; tar zcf ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
-rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
-mkdir ../${SOURCE}-${UPSTREAM_VERSION}
-tar cf - --exclude=CVS debian | ( cd ../${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
-(cd .. ; tar zcf debian-${UPSTREAM_VERSION}-${DEBIAN_VERSION}.tar.gz ${SOURCE}-${UPSTREAM_VERSION})
-rm -fR ../${SOURCE}-${UPSTREAM_VERSION}
-
-(cd .. ; mkdir build_${UPSTREAM_VERSION}-${DEBIAN_VERSION})
-(cd .. ; mv ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz debian-${UPSTREAM_VERSION}-${DEBIAN_VERSION}.tar.gz build_${UPSTREAM_VERSION}-${DEBIAN_VERSION})
-(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; tar zxf ${SOURCE}_$UPSTREAM_VERSION.orig.tar.gz)
-(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; tar zxf debian-${UPSTREAM_VERSION}-${DEBIAN_VERSION}.tar.gz)
+(cd .. ; install -d build_${UPSTREAM_VERSION}-${DEBIAN_VERSION})
+rm -fR ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION}/*
+(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; install -d ${SOURCE}-${UPSTREAM_VERSION})
+tar cf - --exclude=CVS elisp debian 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION}/${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
+(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; tar cf ${SOURCE}_$UPSTREAM_VERSION.orig.tar ${SOURCE}-${UPSTREAM_VERSION})
+(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; gzip --best ${SOURCE}_$UPSTREAM_VERSION.orig.tar)
