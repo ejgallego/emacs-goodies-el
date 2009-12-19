@@ -70,7 +70,8 @@
 ;;  - Add command `emacs-bts-control', new command to interface with Emacs BTS.
 ;; V1.13 21Nov2009 Peter S Galbraith <psg@debian.org>
 ;;  - Patches from Sven Joachim (Closes: #557408, #557412)
-
+;; V1.14 19Dec2009 Peter S Galbraith <psg@debian.org>
+;;  - Emacs BTS moved to debbugs.gnu.org 
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -1112,7 +1113,7 @@ Copyright 1999 Darren O. Benham, 1994-1997 Ian Jackson,
  1997 nCipher Corporation Ltd.")))
 
 (defun emacs-bts-control (action &optional arg)
-  "Contruct a message with ACTION command for control@emacsbugs.donarmstrong.com.
+  "Contruct a message with ACTION command for control@debbugs.gnu.org.
 Contructs a new control command line if called from within the message
 being constructed.
 
@@ -1123,8 +1124,8 @@ in `debian-bts-control-modes-to-reuse'."
   (interactive (list (completing-read "Command: "
                                       debian-bts-control-alist nil nil)
                      current-prefix-arg))
-  (let ((debian-bts-emailaddress "control@emacsbugs.donarmstrong.com")
-         (debian-bts-emaildomain "emacsbugs.donarmstrong.com")
+  (let ((debian-bts-emailaddress "control@debbugs.gnu.org")
+         (debian-bts-emaildomain "debbugs.gnu.org")
          (debian-bts-control-for-emacs t))
     (debian-bts-control action arg)))
 

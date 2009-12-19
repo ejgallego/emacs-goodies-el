@@ -1,11 +1,16 @@
-emacs-goodies-el (31.3-1) UNRELEASED; urgency=low
+emacs-goodies-el (31.3-1) unstable; urgency=low
 
   * emacs-goodies-el:
   - maplev.texi: "the maplev info file contain incorect
     START-INFO-DIR-ENTRY entry", thanks to R. Vanicat (Closes: #559557).
     I had two fixes; one on matlev.texi in CVS and one as a dpatch.
-  
- -- Peter S Galbraith <psg@debian.org>  Sat, 05 Dec 2009 08:47:17 -0500
+  * debian-el:
+  - debian-bug.el: Emacs BTS moved to debbugs.gnu.org 
+  * dpkg-dev-el:
+  - debian-bts-control.el: Emacs BTS moved to debbugs.gnu.org
+    Thanks to Sven Joachim (Closes: #561561).
+
+ -- Peter S Galbraith <psg@debian.org>  Sat, 19 Dec 2009 09:22:00 -0500
 
 emacs-goodies-el (31.2-1) unstable; urgency=low
 
