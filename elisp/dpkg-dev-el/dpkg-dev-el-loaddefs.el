@@ -5,10 +5,10 @@
 (provide 'dpkg-dev-el-loaddefs)
 
 ;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
-;;;;;;  (18134 51684))
+;;;;;;  (19244 57423))
 ;;; Generated autoloads from debian-bts-control.el
 
-(autoload (quote debian-bts-control) "debian-bts-control" "\
+(autoload 'debian-bts-control "debian-bts-control" "\
 Contruct a message with initial ACTION command for control@bugs.debian.org.
 Contructs a new control command line if called from within the message
 being constructed.
@@ -16,21 +16,25 @@ being constructed.
 If prefix arg is provided, use the current buffer instead instead of
 creating a new outgoing email message buffer.
 The current buffer is also used if the current major mode matches one listed
-in `debian-bts-control-modes-to-reuse'." t nil)
+in `debian-bts-control-modes-to-reuse'.
+
+\(fn ACTION &optional ARG)" t nil)
 
 ;;;***
 
 ;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
-;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (18432
-;;;;;;  52589))
+;;;;;;  "debian-changelog-mode" "debian-changelog-mode.el" (19196
+;;;;;;  33072))
 ;;; Generated autoloads from debian-changelog-mode.el
 
-(autoload (quote debian-changelog-add-entry) "debian-changelog-mode" "\
+(autoload 'debian-changelog-add-entry "debian-changelog-mode" "\
 Add a new change entry to a debian-style changelog.
 If called from buffer other than a debian/changelog, this will search
-for the debian/changelog file to add the entry to." t nil)
+for the debian/changelog file to add the entry to.
 
-(autoload (quote debian-changelog-mode) "debian-changelog-mode" "\
+\(fn)" t nil)
+
+(autoload 'debian-changelog-mode "debian-changelog-mode" "\
 Major mode for editing Debian-style change logs.
 Runs `debian-changelog-mode-hook' if it exists.
 
@@ -43,7 +47,9 @@ entries without using it for the rest of your email, use the `customize`
 interface to set it, or simply set the variable
 `debian-changelog-mailing-address' in your ~/.emacs file, e.g.
 
- (setq debian-changelog-mailing-address \"myname@debian.org\"))" t nil)
+ (setq debian-changelog-mailing-address \"myname@debian.org\"))
+
+\(fn)" t nil)
 (add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
@@ -55,11 +61,13 @@ interface to set it, or simply set the variable
 ;;;***
 
 ;;;### (autoloads (debian-control-mode) "debian-control-mode" "debian-control-mode.el"
-;;;;;;  (18410 57270))
+;;;;;;  (18850 58753))
 ;;; Generated autoloads from debian-control-mode.el
 
-(autoload (quote debian-control-mode) "debian-control-mode" "\
-A major mode for editing Debian control files (i.e. debian/control)." t nil)
+(autoload 'debian-control-mode "debian-control-mode" "\
+A major mode for editing Debian control files (i.e. debian/control).
+
+\(fn)" t nil)
 (add-to-list 'auto-mode-alist '("/debian/control\\'" . debian-control-mode))
 
 ;;;***
@@ -76,6 +84,10 @@ Mode to edit and read debian/copyright.
 
 ;;;***
 
+;;;### (autoloads nil nil ("dpkg-dev-el.el") (19244 63415 920073))
+
+;;;***
+
 ;;;### (autoloads (readme-debian-mode) "readme-debian" "readme-debian.el"
 ;;;;;;  (17503 21939))
 ;;; Generated autoloads from readme-debian.el
@@ -88,21 +100,5 @@ will be updated.
 \\{readme-debian-mode-map}" t nil)
 (add-to-list 'auto-mode-alist '("debian/.*README.*Debian$" . readme-debian-mode))
 (add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.*Debian.*$" . readme-debian-mode))
-
-;;;***
-
-;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
-;;;;;;  (16295 535))
-;;; Generated autoloads from debian-bts-control.el
-
-(autoload (quote debian-bts-control) "debian-bts-control" "\
-Contruct a message with initial ACTION command for control@bugs.debian.org.
-Contructs a new control command line if called from within the message
-being constructed.
-
-If prefix arg is provided, use the current buffer instead instead of
-creating a new outgoing email message buffer.
-The current buffer is also used if the current major mode matches one listed
-in `debian-bts-control-modes-to-reuse'." t nil)
 
 ;;;***
