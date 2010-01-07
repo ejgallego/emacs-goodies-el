@@ -81,12 +81,14 @@ done
 # Prepare the flavour specific autoload file
 if [ ${PACKAGE} = emacs-goodies-el ]; then
    echo Building autoloads for ${FLAVOR} in ${ELCDIR}
-   echo ";;; emacs-goodies-loaddefs.el" > emacs-goodies-loaddefs.el
-   echo ";;  autoloads generated upon installation of the emacs-goodies-el package" >> emacs-goodies-loaddefs.el
+   if [ $FLAVOR != xemacs21 ]; then
+      echo ";;; emacs-goodies-loaddefs.el" > emacs-goodies-loaddefs.el
+      echo ";;  autoloads generated upon installation of the emacs-goodies-el package" >> emacs-goodies-loaddefs.el
+   fi
    echo ${FLAVOR} -batch --no-site-file --multibyte --eval '(setq load-path (cons "." load-path))' -l autoload --eval '(setq generated-autoload-file (expand-file-name "emacs-goodies-loaddefs.el"))' --eval '(setq make-backup-files nil)' -f batch-update-autoloads . >> ${LOG}
    cd ${ELCDIR}
-    "${FLAVOR}" -batch --no-site-file --multibyte --eval '(setq load-path (cons "." load-path))' -l autoload --eval '(setq generated-autoload-file (expand-file-name "emacs-goodies-loaddefs.el"))' --eval '(setq make-backup-files nil)' -f batch-update-autoloads . >> ${LOG}  2>&1
-    echo "(provide 'emacs-goodies-loaddefs)" >> emacs-goodies-loaddefs.el
+   "${FLAVOR}" -batch --no-site-file --multibyte --eval '(setq load-path (cons "." load-path))' -l autoload --eval '(setq generated-autoload-file (expand-file-name "emacs-goodies-loaddefs.el"))' --eval '(setq make-backup-files nil)' -f batch-update-autoloads . >> ${LOG}  2>&1
+   echo "(provide 'emacs-goodies-loaddefs)" >> emacs-goodies-loaddefs.el
 fi
 
 cat << EOF > path.el
