@@ -72,6 +72,8 @@
 ;;  - Patches from Sven Joachim (Closes: #557408, #557412)
 ;; V1.14 19Dec2009 Peter S Galbraith <psg@debian.org>
 ;;  - Emacs BTS moved to debbugs.gnu.org 
+;; V1.15 22Feb2010 Peter S Galbraith <psg@debian.org>
+;;  - add autoload cookie for `emacs-bts-control' (Closes: #565934)
 ;;; Code:
 
 (eval-when-compile '(require 'cl))
@@ -1112,6 +1114,7 @@ Help text from http://www.debian.org/Bugs/server-control, Apr 22nd 2003.
 Copyright 1999 Darren O. Benham, 1994-1997 Ian Jackson,
  1997 nCipher Corporation Ltd.")))
 
+;;;###autoload
 (defun emacs-bts-control (action &optional arg)
   "Contruct a message with ACTION command for control@debbugs.gnu.org.
 Contructs a new control command line if called from within the message

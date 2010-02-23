@@ -4,12 +4,24 @@
 
 (provide 'dpkg-dev-el-loaddefs)
 
-;;;### (autoloads (debian-bts-control) "debian-bts-control" "debian-bts-control.el"
-;;;;;;  (19244 57423))
+;;;### (autoloads (emacs-bts-control debian-bts-control) "debian-bts-control"
+;;;;;;  "debian-bts-control.el" (19331 13289))
 ;;; Generated autoloads from debian-bts-control.el
 
 (autoload 'debian-bts-control "debian-bts-control" "\
 Contruct a message with initial ACTION command for control@bugs.debian.org.
+Contructs a new control command line if called from within the message
+being constructed.
+
+If prefix arg is provided, use the current buffer instead instead of
+creating a new outgoing email message buffer.
+The current buffer is also used if the current major mode matches one listed
+in `debian-bts-control-modes-to-reuse'.
+
+\(fn ACTION &optional ARG)" t nil)
+
+(autoload 'emacs-bts-control "debian-bts-control" "\
+Contruct a message with ACTION command for control@debbugs.gnu.org.
 Contructs a new control command line if called from within the message
 being constructed.
 
@@ -84,7 +96,7 @@ Mode to edit and read debian/copyright.
 
 ;;;***
 
-;;;### (autoloads nil nil ("dpkg-dev-el.el") (19244 63415 920073))
+;;;### (autoloads nil nil ("dpkg-dev-el.el") (19331 13614 16291))
 
 ;;;***
 
