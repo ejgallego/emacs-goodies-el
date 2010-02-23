@@ -1,3 +1,15 @@
+emacs-goodies-el (31.5) unstable; urgency=low
+
+  * emacs-goodies-el:
+  - lcomp.el: New upstream version. 
+  - emacs-goodies-el.el :Replace $ by \\' in auto-mode-alist entries,
+    thanks to Kevin Ryde (Closes: #570293).
+  * dpkg-dev-el:
+  - debian-bts-control.el: Bug fix: "emacs-bts-control command should be
+    autoloaded", thanks to Sven Joachim (Closes: #565934).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 22 Feb 2010 20:53:01 -0500
+
 emacs-goodies-el (31.4) unstable; urgency=low
 
   * emacs-goodies-el:
