@@ -6,6 +6,8 @@
 
 ;;; History:
 ;;
+;; 2009-02-22 Peter Galbraith
+;;  - Replace $ by \\' in auto-mode-alist entries (Closes: #570293)
 ;; 2006-11-26 - Ramkumar R.
 ;;  - Obey `emacs-goodies-el-defaults' for xrdb-mode.
 ;; 2003-06-14 - Peter Galbraith
@@ -255,7 +257,7 @@ in `substitute-in-file-name'."
 
 
 ;; pod-mode.el
-(add-to-list 'auto-mode-alist '("\\.pod$" . pod-mode))
+(add-to-list 'auto-mode-alist '("\\.pod\\'" . pod-mode))
 
 ;; rfcview
 (add-to-list 'auto-mode-alist
@@ -279,7 +281,7 @@ this function to `after-init-hook'."
 
 ;; slang-mode.el
 (setq auto-mode-alist
-      (append '(("\\.sl$" . slang-mode)) auto-mode-alist))
+      (append '(("\\.sl\\'" . slang-mode)) auto-mode-alist))
 
 ;; todoo.el
 (when (not (featurep 'xemacs))
@@ -289,7 +291,7 @@ this function to `after-init-hook'."
   (autoload 'todoo-mode "todoo"
     "TODO Mode"
     t)
-  (add-to-list 'auto-mode-alist '("TODO$" . todoo-mode)))
+  (add-to-list 'auto-mode-alist '("TODO\\'" . todoo-mode)))
 
 ;; toggle-option.el
 (autoload 'toggle-option "toggle-option"
@@ -299,10 +301,10 @@ this function to `after-init-hook'."
 ;; xrdb-mode.el
 
 (defun xrdb-mode-setup-auto-mode-alist ()
-  (add-to-list 'auto-mode-alist '("\\.Xdefaults$" . xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.Xenvironment$". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.Xresources$". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.ad$". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.Xdefaults\\'" . xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.Xenvironment\\'". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.Xresources\\'". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.ad\\'". xrdb-mode))
   (add-to-list 'auto-mode-alist '("/app-defaults/". xrdb-mode))
   (add-to-list 'auto-mode-alist '("/Xresources/". xrdb-mode)))
 
