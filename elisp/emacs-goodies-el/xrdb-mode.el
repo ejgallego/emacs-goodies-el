@@ -1,8 +1,8 @@
 ;;; xrdb-mode.el --- mode for editing X resource database files
 
-;; Copyright (C) 1998,1999,2000 Free Software Foundation, Inc.
+;; Copyright (C) 1998,1999,2000,2009 Free Software Foundation, Inc.
 
-;; Author:        1994-2003 Barry A. Warsaw
+;; Author:        1994-2009 Barry A. Warsaw
 ;; Maintainer:    barry@python.org
 ;; Created:       May 1994
 ;; Keywords:      data languages
@@ -31,7 +31,9 @@
 ;; controlling indentation, re-indenting by subdivisions, and loading
 ;; and merging into the the resource database.
 ;;
-;; To use, put the following in your .emacs:
+;; To use, put this file in your Emacs `load-path' and either customize
+;; (and save) the variable `xrdb-mode-setup-auto-mode-alist', or put the
+;; following in your .emacs:
 ;;
 ;; (autoload 'xrdb-mode "xrdb-mode" "Mode for editing X resource files" t)
 ;;
@@ -111,6 +113,41 @@ overridden in those commands by using \\[universal-argument]."
 (defcustom xrdb-program-args '("-merge")
   "*List of string arguments to pass to `xrdb-program'."
   :type '(repeat string)
+  :group 'xrdb)
+
+(defun xrdb-mode-setup-auto-mode-alist ()
+  (add-to-list 'auto-mode-alist '("\\.Xdefaults$" . xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.Xenvironment$". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.Xresources$". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("\\.ad$". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("/app-defaults/". xrdb-mode))
+  (add-to-list 'auto-mode-alist '("/Xresources/". xrdb-mode)))
+
+(defcustom xrdb-mode-setup-auto-mode-alist
+  (or
+   ;; Check if conf-xdefaults-mode is present
+   (not (fboundp 'conf-xdefaults-mode))
+   ;; Check if default setup provides bindings for conf-xdefaults-mode
+   (< emacs-major-version 22)
+   (featurep 'xemacs))
+  "Whether to setup mode-alists for xrdb mode.
+
+Newer versions of Emacs have a conf-xdefaults-mode which provides
+this functionality. `xrdb' still has some features (like
+electricity) which are absent in that mode. Setting this to
+non-nil clobbers the default bindings in such cases.
+
+This variable defaults to t for older version of Gnu Emacs or any
+XEmacs.
+
+Customizing this variable might require restarting emacs for the
+effects to take effect."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (when value
+           (xrdb-mode-setup-auto-mode-alist)))
+  :require 'xrdb-mode
   :group 'xrdb)
 
 (defvar xrdb-master-file nil
