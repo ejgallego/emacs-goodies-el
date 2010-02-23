@@ -11,15 +11,15 @@ rm -fR elisp/emacs-goodies-el/info
 rm -fR elisp/debian-el/info
 
 SOURCE=$(dpkg-parsechangelog | awk '/^Source:/ { print $2 }')
-FULLVERSION=$(dpkg-parsechangelog | awk '/^Version:/ { print $2 }')
-UPSTREAM_VERSION=${FULLVERSION%-*}
-DEBIAN_VERSION=${FULLVERSION##*-}
+VERSION=$(dpkg-parsechangelog | awk '/^Version:/ { print $2 }')
+#UPSTREAM_VERSION=${VERSION%-*}
+#DEBIAN_VERSION=${VERSION##*-}
 THIS=$(basename $0)
 THISDIR=$(basename $PWD)
 
-(cd .. ; install -d build_${UPSTREAM_VERSION}-${DEBIAN_VERSION})
-rm -fR ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION}/*
-(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; install -d ${SOURCE}-${UPSTREAM_VERSION})
-tar cf - --exclude=CVS elisp debian 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION}/${SOURCE}-${UPSTREAM_VERSION} ; tar xf -)
-(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; tar cf ${SOURCE}_$UPSTREAM_VERSION.orig.tar ${SOURCE}-${UPSTREAM_VERSION})
-(cd ../build_${UPSTREAM_VERSION}-${DEBIAN_VERSION} ; gzip --best ${SOURCE}_$UPSTREAM_VERSION.orig.tar)
+(cd .. ; install -d build_${VERSION})
+rm -fR ../build_${VERSION}/*
+(cd ../build_${VERSION} ; install -d ${SOURCE}-${VERSION})
+tar cf - --exclude=CVS elisp debian 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../build_${VERSION}/${SOURCE}-${VERSION} ; tar xf -)
+#(cd ../build_${VERSION} ; tar cf ${SOURCE}_${VERSION}.orig.tar ${SOURCE}-${VERSION})
+#(cd ../build_${VERSION} ; gzip --best ${SOURCE}_${VERSION}.orig.tar)
