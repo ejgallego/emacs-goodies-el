@@ -63,6 +63,10 @@
 ;;
 ;;  1.7 Ben Voui <intrigeri@boum.org>
 ;;      - A non-nil interactive argument forces the cache to be updated.
+;;
+;;  1.8 Ben Voui <intrigeri@boum.org>
+;;      - Avoid saving incomplete perldoc-modules-alist
+;;        perldoc-functions-alist (Closes: #575455)
 
 
 ;;  Comments / suggests / feedback welcomed to
@@ -112,29 +116,30 @@ Else, use a single *Perldoc* buffer."
 A non-nil argument forces caches to be updated."
   (if (and perldoc-functions-alist (not re-cache))
       perldoc-functions-alist
-    (setq perldoc-functions-alist nil)
-    (let ((tmp-buffer (get-buffer-create " *perldoc*"))
-          (case-fold-search nil))
-      (set-buffer tmp-buffer)
-      (erase-buffer)
-      (shell-command "perldoc -u perlfunc" t)
-      (goto-char (point-min))
-      (cond
-       ((search-forward "Alphabetical Listing of Perl Functions" nil t)
-        (while (re-search-forward
-                "^=item \\(\\([a-z][^ //\n]*\\)\\|\\(I<\\(.*\\)> \\)\\)" nil t)
-          (let ((entry (list (or (match-string 2)(match-string 4)))))
-            (when (not (member entry perldoc-functions-alist))
-              (push entry perldoc-functions-alist))))
-        ;; no output means the perldoc program doesn't exist or is only the
-        ;; debian perl package dummy script
-        (unless perldoc-functions-alist
-          (error "`perldoc' program not available"))
-        perldoc-functions-alist)
-       ((re-search-forward "You need to install.*" nil t)
-        (error (format "%s" (match-string 0))))
-       (t
-        (error "`perldoc' program not available"))))))
+    (setq perldoc-functions-alist
+	  (let ((tmp-buffer (get-buffer-create " *perldoc*"))
+		(case-fold-search nil)
+		(tmp-functions-alist nil))
+	    (set-buffer tmp-buffer)
+	    (erase-buffer)
+	    (shell-command "perldoc -u perlfunc" t)
+	    (goto-char (point-min))
+	    (cond
+	     ((search-forward "Alphabetical Listing of Perl Functions" nil t)
+	      (while (re-search-forward
+		      "^=item \\(\\([a-z][^ //\n]*\\)\\|\\(I<\\(.*\\)> \\)\\)" nil t)
+		(let ((entry (list (or (match-string 2)(match-string 4)))))
+		  (when (not (member entry tmp-functions-alist))
+		    (push entry tmp-functions-alist))))
+	      ;; no output means the perldoc program doesn't exist or is only the
+	      ;; debian perl package dummy script
+	      (unless tmp-functions-alist
+		(error "`perldoc' program not available"))
+	      tmp-functions-alist)
+	     ((re-search-forward "You need to install.*" nil t)
+	      (error (format "%s" (match-string 0))))
+	     (t
+	      (error "`perldoc' program not available")))))))
 
 (defvar perldoc-modules-alist nil
   "Alist holding the list of perl modules.")
@@ -144,29 +149,30 @@ A non-nil argument forces caches to be updated."
 An non-nil argument forces caches to be updated."
   (if (and perldoc-modules-alist (not re-cache))
       perldoc-modules-alist
-    (setq perldoc-modules-alist nil)
-    (let ((tmp-buffer (get-buffer-create " *perldoc*"))
-	  (case-fold-search nil)
-	  (perldoc-inc nil))
-      (set-buffer tmp-buffer)
-      (erase-buffer)
-      (shell-command "perl -e 'print \"@INC\"'" t)
-      (goto-char (point-min))
-      (while (re-search-forward "\\(/[^ ]*\\)" nil t)
-	(let ((libdir (match-string 1)))
-	  (when (not (member libdir perldoc-inc))
-	    (push libdir perldoc-inc))))
-      (dolist (dir perldoc-inc)
-	(let (modules (list))
-	  (when (file-readable-p dir)
+    (setq perldoc-modules-alist
+	  (let ((tmp-buffer (get-buffer-create " *perldoc*"))
+		(case-fold-search nil)
+		(perldoc-inc nil)
+		(tmp-modules-alist nil))
+	    (set-buffer tmp-buffer)
 	    (erase-buffer)
-	    (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t)
+	    (shell-command "perl -e 'print \"@INC\"'" t)
 	    (goto-char (point-min))
-	    (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).pm$") nil t)
-	      (let ((entry (list (replace-regexp-in-string "/" "::" (match-string 1)))))
-		(when (not (member entry perldoc-modules-alist))
-		  (push entry perldoc-modules-alist)))))))
-      perldoc-modules-alist)))
+	    (while (re-search-forward "\\(/[^ ]*\\)" nil t)
+	      (let ((libdir (match-string 1)))
+		(when (not (member libdir perldoc-inc))
+		  (push libdir perldoc-inc))))
+	    (dolist (dir perldoc-inc)
+	      (let (modules (list))
+		(when (file-readable-p dir)
+		  (erase-buffer)
+		  (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t)
+		  (goto-char (point-min))
+		  (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).pm$") nil t)
+		    (let ((entry (list (replace-regexp-in-string "/" "::" (match-string 1)))))
+		      (when (not (member entry tmp-modules-alist))
+			(push entry tmp-modules-alist)))))))
+	    tmp-modules-alist))))
 
 (defvar perldoc-all-completions-alist nil
   "Alist holding the list of perl functions and modules.")

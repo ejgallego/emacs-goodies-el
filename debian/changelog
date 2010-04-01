@@ -1,11 +1,17 @@
 emacs-goodies-el (31.6) UNRELEASED; urgency=low
 
+  [ Peter S Galbraith ]
+  * emacs-goodies-el:
+  - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el
+    incomplete module cache if interrupted" reported by Kevin Ryde
+    (Closes: #575455).
+
   [ Junichi Uekawa ]
   * dpkg-dev-el:
   - readme-debian.el: Bug fix: "README.Debian date wrong in XEmacs",
     thanks to Russ Allbery (Closes: #364234).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Thu, 01 Apr 2010 10:47:43 -0400
 
 emacs-goodies-el (31.5) unstable; urgency=low
 
