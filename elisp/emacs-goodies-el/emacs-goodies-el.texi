@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.86 2010/04/01 20:08:30 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.87 2010/04/01 20:12:06 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -41,10 +41,10 @@ override standard Emacs commands, modes, or settings.
 Some extra package installation and setup is done if you customize the
 variable @code{emacs-goodies-el-defaults} to t (its aggressive state).
 These will override standard Emacs defaults, but in a good
-(uncontroversial) way.  The affected packages are currently only:
-@ref{ff-paths}, @ref{home-end} and @ref{ibuffer}.  Packages which
-require activation in order to function also include:
-@ref{bar-cursor}, @ref{diminish}, @ref{df} and @ref{filladapt}.
+(uncontroversial) way.  The affected packages are currently only
+@ref{ff-paths} and @ref{home-end}.  Packages which require activation in
+order to function also include: @ref{bar-cursor}, @ref{diminish},
+@ref{df} and @ref{filladapt}.
 
 To customize setup of all customizable packages on a finer-grain
 basis, do:
