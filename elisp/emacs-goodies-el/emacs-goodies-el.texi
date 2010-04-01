@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.85 2009/12/03 03:55:59 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.86 2010/04/01 20:08:30 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -73,14 +73,12 @@ be documented.
 * boxquote::                    Quote text with a semi-box
 * browse-huge-tar::             Browse files in a tarball memory-efficiently
 * browse-kill-ring::            Interactively insert items from kill-ring
-* cfengine::                    Major-mode for editing cfengine scripts
 * clipper::                     Save strings of data for further use
 * coffee::                      Submit BREW request to RFC2324-compliant device
 * color-theme::                 Install color themes
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
 * cyclebuffer::                 Select buffer by cycling through
-* cua::                         Emulate CUA key bindings (C-z, C-x, C-c, C-v)
 * cwebm::                       CWEB/WEB modified mode
 * dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
@@ -99,8 +97,6 @@ be documented.
 * highlight-current-line::      highlight line where the cursor is
 * home-end::                    Alternative Home and End key commands
 * htmlize::                     HTML-ize font-lock buffers
-* ibuffer::                     Operate on buffers like dired
-* ido::                         Interactively do things with buffers and files
 * joc-toggle-buffer::           Flips back and forth between two buffers
 * joc-toggle-case::             Toggles case at point like ~ in vi
 * keydef::                      A simpler way to define keys, with kbd syntax
@@ -115,8 +111,6 @@ be documented.
 * minibuffer-complete-cycle::   Cycle through the *Completions* buffer
 * mutt-alias::                  Lookup/insert mutt mail aliases
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
-* newsticker::                  A Newsticker for Emacs
-* nuke-trailing-whitespace::    Strip trailing whitespace from buffers
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
 * pack-windows::                Resize windows to display maximal information
 * perldoc::                     Show help for Perl functions and modules
@@ -135,7 +129,6 @@ be documented.
 * silly-mail::                  Generate bozotic mail headers
 * sys-apropos::                 Interface for the *nix apropos command
 * tabbar::                      Display a tab bar in the header line
-* table::                       Create and edit WYSIWYG embedded tables
 * tail::                        Tail files within Emacs
 * tc::                          Cite text with proper filling in mail
 * tlc::                         Major mode for editing tlc files
@@ -145,7 +138,6 @@ be documented.
 * toggle-option::               Easily toggle frequently toggled options
 * twiddle::                     Cute mode-line display hack
 * under::                       Underline with the ^ character
-* wdired::                      Rename files by editing in dired buffers
 * xrdb-mode::                   Mode for editing X resource database files
 
 @detailmenu
@@ -172,19 +164,6 @@ session - Session Management for Emacs
 * Session Menus and Key-Bindings::  
 * Saving Session Variables::    
 * Storing Buffer Places::       
-
-table - Create and edit WYSIWYG text based embedded tables
-
-* table introduction::          
-* table background::            
-* table getting started::       
-* table keymap::                
-* table menu::                  
-* table function advising::     
-* Definition of tables and cells::  
-* Cell contents formatting::    
-* Cell Justification::          
-* Acknowledgments::             
 
 @end detailmenu
 @end menu
@@ -370,7 +349,7 @@ Extract the file at the point into a buffer for viewing.
 Extract the file at the point and copy to a local file OUTFILE.
 @end table
 
-@node browse-kill-ring, cfengine, browse-huge-tar, Top
+@node browse-kill-ring, clipper, browse-huge-tar, Top
 @chapter browse-kill-ring.el -  interactively insert items from kill-ring.
 
 Ever feel that @kbd{C-y M-y M-y M-y ...} is not a great way of trying
@@ -408,15 +387,7 @@ consequences if you do @command{@kbd{M-x} browse-kill-ring}, then
 switch your window configuration, and try to use the same @code{*Kill
 Ring*} buffer again.
 
-@node cfengine, clipper, browse-kill-ring, Top
-@chapter cfengine - major-mode for editing cfengine scripts
-
-@noindent Author: Dave Love <fx@@gnu.org>
-
-Provides support for editing GNU Cfengine files, including
-font-locking, Imenu and indention, but with no special keybindings.
-
-@node clipper, coffee, cfengine, Top
+@node clipper, coffee, browse-kill-ring, Top
 @chapter clipper - Save strings of data for further use.
 
 Clipper is a way to handle 'clips' of text with some persistance via handles.
@@ -792,7 +763,7 @@ when I really mean "Call the parser routine as specified by
 `ctypes-mode-descriptor'".  Also, I write "Informing font-lock"
 whenever I mean "Performing the default action as specified in
 @code{ctypes-mode-descriptor}".
-@node cyclebuffer, cua, ctypes, Top
+@node cyclebuffer, cwebm, ctypes, Top
 @chapter cyclebuffer - Select buffer by cycling through.
 
 Cyclebuffer is yet another way of selecting buffers.  Instead of
@@ -813,30 +784,7 @@ searching for.
 (global-set-key "\M-P" 'cyclebuffer-backward)
 @end example
 
-@node cua, cwebm, cyclebuffer, Top
-@chapter cua - emulate CUA key bindings
-
-@noindent Author: Kim F. Storm <storm@@cua.dk>
-@noindent http://www.cua.dk/
-
-This file is part of Emacs 22.
-
-The command @command{M-x cua-mode} sets up key bindings that are
-compatible with the Common User Access (CUA) system used in many other
-applications.  @key{C-x} means cut (kill), @key{C-c} copy, @key{C-v}
-paste (yank), and @key{C-z} undo.  Standard Emacs commands like @key{C-x
-C-c} still work, because @key{C-x} and @key{C-c} only take effect when
-the mark is active.  
-
-You may also use Customize the variable @code{cua-mode} to turn it
-on.  You may customize its features and fine tune its behaviour.
-
-CUA mode also provides enhanced rectangle support with visible
-rectangle highlighting.  Use `Shift-RET' to start a rectangle,
-extend it using the movement commands, and cut or copy it using
-`C-x' or `C-c'.
-
-@node cwebm, dedicated, cua, Top
+@node cwebm, dedicated, cyclebuffer, Top
 @chapter cwebm - CWEB/WEB modified mode
 
 This is a modified and renamed version of cweb.el
@@ -2090,7 +2038,7 @@ Some useful bindings for Home and End keys:
 
 To enable it, customize the variable @code{home-end-enable}.
 
-@node htmlize, ibuffer, home-end, Top
+@node htmlize, joc-toggle-buffer, home-end, Top
 @chapter htmlize - HTML-ize font-lock buffers
 
 @noindent Author: Hrvoje Niksic <hniksic@@xemacs.org>
@@ -2165,70 +2113,7 @@ others.
 User quotes: "You sir, are a sick, sick, _sick_ person. :)"
                  -- Bill Perry, author of Emacs/W3
 @end verbatim
-@node ibuffer, ido, htmlize, Top
-@chapter ibuffer - operate on buffers like dired
-
-@noindent ibuffer does not work under XEmacs.
-
-ibuffer.el is an advanced replacement for the `buffer-menu' which
-is normally distributed with Emacs.  Its interface is intended to
-be analogous to that of Dired.
-
-Use @code{M-x ibuffer} to get started.  @key{h} will give a brief usage
-description.
-
-Just for fun, here is the author's favorite `ibuffer-formats'
-configuration:
-
-@verbatim
-(setq ibuffer-formats '((mark modified read-only " " (name 16 16) " "
-                        (size 6 -1 :right) " " (mode 16 16 :center)
-                         " " (process 8 -1) " " filename)
-                    	   (mark " " (name 16 -1) " " filename))
-      ibuffer-elide-long-columns t
-      ibuffer-eliding-string "&")
-@end verbatim
-
-Remember, you can switch between formats using
-@code{ibuffer-switch-format}, bound to @key{`} by default.
-
-In emacs-goodies-el, you can use the customize interface to bind
-@code{ibuffer} to @key{\C-x\C-b} by customizing the variable
-@code{ibuffer-enable}.
-
-@node ido, joc-toggle-buffer, ibuffer, Top
-@chapter ido - interactively do things with buffers and files.
-
-@noindent Author: Kim F. Storm <storm@@cua.dk>
-@noindent Based on: iswitchb by Stephen Eglen <stephen@@cns.ed.ac.uk>
-
-There is a different version of the package in Emacs 22 so it will
-eventually be removed.
-
-This package features a faster way to switch buffers and get new files.
-To get the alternative switch-to-buffer and find-file functions in
-this package bound to keys, do
-
-@example
- (ido-mode t)
-@end example
-or @code{M-x ido-mode}.
-
-As you type in a substring, the list of buffers or files currently
-matching the substring are displayed as you type.  The list is
-ordered so that the most recent buffers or files visited come at
-the start of the list.
-
-The buffer or file at the start of the list will be the one visited when
-you press return.  By typing more of the substring, the list is narrowed
-down so that gradually the buffer or file you want will be at the top of
-the list.  Alternatively, you can use @key{C-s} and @key{C-r} (or the
-right and left arrow keys) to rotate buffer or file names in the list
-until the one you want is at the top of the list.  Completion is also
-available so that you can see what is common to all of the matching
-buffers or files as you type.
-
-@node joc-toggle-buffer, joc-toggle-case, ido, Top
+@node joc-toggle-buffer, joc-toggle-case, htmlize, Top
 @chapter joc-toggle-buffer - flips back and forth between two buffers
 
 @noindent Author: Joe Casadonte <emacs@@northbound-train.com>
@@ -2878,7 +2763,7 @@ Insert the expansion for ALIAS into the current buffer.
 Lookup and display the expansion for ALIAS.
 @end table
 
-@node muttrc-mode, newsticker, mutt-alias, Top
+@node muttrc-mode, obfusurl, mutt-alias, Top
 @chapter muttrc-mode - Major mode to edit muttrc under Emacs
 
 @noindent Author: Laurent Pelecq <laurent.pelecq@@soleil.org>
@@ -2912,100 +2797,7 @@ Type @key{C-h m} for all key bindings.
 Multiline commands are not properly handled and can lead to unexpected
 result.
 
-@node newsticker, nuke-trailing-whitespace, muttrc-mode, Top
-@chapter newsticker - A Newsticker for Emacs.
-
-@noindent Copyright (C) 2003 by Ulf Jasper
-
-This package provides a newsticker for Emacs.  A newsticker is a thing
-that asynchronously retrieves a list of headlines (which are contained
-in RDF Site Summary (RSS) files) from a list of news sites, displays
-these headlines, and allows for loading the corresponding articles in
-a web browser.
-
-This package should work with all RSS files that follow the "RDF Rich
-Site Summary (RSS) 1.0" specification (see
-@url{http://purl.org/rss/1.0/spec}).  It may also work with
-other/older/alternative rss formats (like 0.9<something> or such).
-
-This package requires wget for retrieving headlines asynchronously.
-
-Headlines can be displayed in the echo area, but they will show only
-if no other program is using the echo area (and minibuffer).
-Besides, headlines and their descriptions are collected in a buffer
-called *newsticker*.
-
-To use, do @command{M-x newsticker-start}.  This will retrieve
-headlines from each url in @code{newsticker-url-list-defaults} and
-@code{newsticker-url-list} every @code{newsticker-retrieval-interval}
-seconds.  All headlines are placed in the buffer @code{*newsticker*}.
-Clicking @key{mouse-button-2} or pressing @key{RET} in that buffer on
-a headline will call @command{browse-url} to load the corresponding
-news story in your favourite web browser.
-
-Every @code{newsticker-display-interval} a headline is shown in the
-echo area (if @code{newsticker-display-interval} is positive).
-
-In order to stop the newsticker say @command{M-x newsticker-stop}.
-This will stop all timers.
-
-The function @command{newsticker-show-news} will update the
-\*newsticker* buffer, if necessary, and recreate it if you accidentally
-deleted it.  The modeline will indicate whether the *newsticker*
-buffer is up to date with the newsticker-cache.
-
-Newsticker-mode extends @command{outline-mode} so that you can easily
-hide and show descriptions of feeds and news items.
-
-Newsticker-mode supports imenu.  It allows for navigating with the
-help of a menu.  In order to use this feature you should add the
-following to you .emacs file:
-
-@example
-  (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
-@end example
-
-All newsticker-options are customizable.  Do @command{M-x customize-group
-@key{RET} newsticker @key{RET}} in order to customize the newsticker settings.
-
-Enjoy!
-
-PS: This newsticker is designed do its job silently in the
-    background without disturbing you.  However, it is probably
-    impossible to prevent such a tool from slightly attenuating your
-    Editor's responsiveness every once in a while.
-
-@node nuke-trailing-whitespace, obfusurl, newsticker, Top
-@chapter nuke-trailing-whitespace - Strip trailing whitespace from buffers
-
-@noindent Author: Noah Friedman <friedman@@splode.com>
-
-This package strips trailing whitespace from buffers.  It can be used
-manually on a buffer by calling @code{M-x nuke-trailing-whitespace} when
-editing a buffer, or automatically when you save a file.
-
-For automatic stripping of files as you save them (or email messages as
-you send them), either add the following in your .emacs:
-
-@verbatim
-    (autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" nil t)
-    (add-hook 'mail-send-hook 'nuke-trailing-whitespace)
-    (add-hook 'write-file-hooks 'nuke-trailing-whitespace)
-@end verbatim
-
-or better yet accomplish the same effect by customizing the variable
-@code{nuke-trailing-whitespace-in-hooks} and saving the result for
-future sessions.
-
-By default, buffers that have a major-mode listed in the customizable
-list @code{nuke-trailing-whitespace-always-major-modes} are stripped, those
-listed in the list @code{nuke-trailing-whitespace-never-major-modes} are not,
-and others are prompted for.  You can change this default behaviour by
-customizing the variable @code{nuke-trailing-whitespace-p}.
-
-@noindent See also: whitespace.el packaged in Emacs-21
-
-@node obfusurl, pack-windows, nuke-trailing-whitespace, Top
+@node obfusurl, pack-windows, muttrc-mode, Top
 @chapter obfusurl - Obfuscate URLs so they aren't spoilers
 
 @noindent Author: Dave Pearson <davep@@davep.org>
@@ -3608,7 +3400,7 @@ Do @command{M-x sys-apropos} and you're off.  In the *System Apropos*
 buffer, @key{RET} shows the manual page for the program on that line and
 @key{q} or @key{C-c C-c} quits the whole shebang.
 
-@node tabbar, table, sys-apropos, Top
+@node tabbar, tail, sys-apropos, Top
 @chapter tabbar - Display a tab bar in the header line
 
 @noindent Author: David Ponce <david@@dponce.com>
@@ -3675,724 +3467,7 @@ through the tabs visible on the tab bar.
 @command{tabbar-forward-group}      @key{C-c C-down}
     Navigate through existing groups of tabs.
 
-@node table, tail, tabbar, Top
-@chapter table - Create and edit WYSIWYG text based embedded tables
-
-@noindent Author: Takaaki Ota <Takaaki.Ota@@am.sony.com>
-
-
-This package provides text based table creation and editing
-feature.  With this package Emacs is capable of editing tables that
-are embedded inside a text document, the feature similar to the
-ones seen in modern WYSIWYG word processors.
-
-@menu
-* table introduction::          
-* table background::            
-* table getting started::       
-* table keymap::                
-* table menu::                  
-* table function advising::     
-* Definition of tables and cells::  
-* Cell contents formatting::    
-* Cell Justification::          
-* Acknowledgments::             
-@end menu
-
-@node table introduction, table background, table, table
-@section introduction
-
-A table is a
-rectangular text area consisting from a surrounding frame and
-content inside the frame.  The content is usually subdivided into
-multiple rectangular cells, see the actual tables used below in
-this document.  Once a table is recognized, editing operation
-inside a table cell is confined into that specific cell's
-rectangular area.  This means that typing and deleting characters
-inside a cell do not affect any outside text but introduces
-appropriate formatting only to the cell contents.  If necessary for
-accommodating added text in the cell, the cell automatically grows
-vertically and/or horizontally.  The package uses no major mode nor
-minor mode for its implementation because the subject text is
-localized within a buffer.  Therefore the special behaviors inside
-a table cells are implemented by using local-map text property
-instead of buffer wide mode-map.  Also some commonly used functions
-are advised so that they act specially inside a table cell.
-
-
-@node table background, table getting started, table introduction, table
-@section background
-
-Paul Georgief is one of my best friends.  He became an Emacs
-convert after I recommended him trying it several years ago.  Now
-we both are devoted disciples of Emacsism and elisp cult.  One day
-in his Emacs exploration he asked me "Tak, what is a command to
-edit tables in Emacs?".  This question started my journey of this
-table package development.  May the code be with me!  In the
-software world Emacs is probably one of the longest lifetime record
-holders.  Amazingly there have been no direct support for WYSIWYG
-table editing tasks in Emacs.  Many people must have experienced
-manipulating existing overwrite-mode and picture-mode for this task
-and only dreamed of having such a lisp package which supports this
-specific task directly.  Certainly, I have been one of them.  The
-most difficult part of dealing with table editing in Emacs probably
-is how to realize localized rectangular editing effect.  Emacs has
-no rectangular narrowing mechanism.  Existing rect package provides
-basically kill, delete and yank operations of a rectangle, which
-internally is a mere list of strings.  A simple approach for
-realizing the localized virtual rectangular operation is combining
-rect package capability with a temporary buffer.  Insertion and
-deletion of a character to a table cell can be trapped by a
-function that copies the cell rectangle to a temporary buffer then
-apply the insertion/deletion to the temporary contents.  Then it
-formats the contents by filling the paragraphs in order to fit it
-into the original rectangular area and finally copy it back to the
-original buffer.  This simplistic approach has to bear with
-significant performance hit.  As cell grows larger the copying
-rectangle back and forth between the original buffer and the
-temporary buffer becomes expensive and unbearably slow.  It was
-completely impractical and an obvious failure.  An idea has been
-borrowed from the original Emacs design to overcome this
-shortcoming.  When the terminal screen update was slow and
-expensive Emacs employed a clever algorithm to reduce actual screen
-update by removing redundant redrawing operations.  Also the actual
-redrawing was done only when there was enough idling time.  This
-technique significantly improved the previously mentioned
-undesirable situation.  Now the original buffer's rectangle is
-copied into a cache buffer only once.  Any cell editing operation
-is done only to the cache contents.  When there is enough idling
-time the original buffer's rectangle is updated with the current
-cache contents.  This delayed operation is implemented by using
-Emacs's timer function.  To reduce the visual awkwardness
-introduced by the delayed effect the cursor location is updated in
-real-time as a user types while the cell contents remains the same
-until the next idling time.  A key to the success of this approach
-is how to maintain cache coherency.  As a user moves point in and
-out of a cell the table buffer contents and the cache buffer
-contents must be synchronized without a mistake.  By observing user
-action carefully this is possible however not easy.  Once this
-mechanism is firmly implemented the rest of table features grew in
-relatively painless progression.  Those users who are familiar with
-Emacs internals appreciate this table package more.  Because it
-demonstrates how extensible Emacs is by showing something that
-appears like a magic.  It lets you re-discover the potential of
-Emacs.
-
-@node table getting started, table keymap, table background, table
-@section Getting started
-
-If this is the first time for you to try this package,
-switch to a new test buffer and issue the
-command @command{M-x table-insert}.  It'll ask you number of columns,
-number of rows, cell width and cell height.  Give some small
-numbers for each of them.  Play with the resulted table for a
-while.  If you have menu system find the item @code{Table} under @code{Tools}
-and @code{Table} in the menu bar when the point is in a table cell.
-Some of them are pretty intuitive and you can easily guess what
-they do.  @command{M-x describe-function} and get the documentation of
-@command{table-insert}.  The document includes a short tutorial.  When you
-are tired of guessing how it works come back to this document
-again.
-
-@c To use the package regularly place this file in the site library
-@c directory and add the next expression in your .emacs file.  Make
-@c sure that directory is included in the `load-path'.
-@c
-@c   (require 'table)
-@c
-@c Have the next expression also, if you want always be ready to edit
-You may want to detect existing tables in visited files in order to use
-this package to edit them. This mechanism is analogous to
-fontification in a sense that tables are recognized at editing time
-without having table information saved along with the text itself.
-Use the following hook (set in your .emacs file):
-
-@example
-  (add-hook 'text-mode-hook 'table-recognize)
-@end example
-
-Following is a table of entry points and brief description of each
-of them.  The tables below are of course generated and edited by
-using this package.  Not all the commands are bound to keys.  Many
-of them must be invoked by @key{M-x} (@command{execute-extended-command})
-command.  Refer to the section "Keymap" below for the commands
-available from keys.
-
-@verbatim
-+------------------------------------------------------------------+
-|                    User Visible Entry Points                     |
-+-------------------------------+----------------------------------+
-|           Function            |           Description            |
-+-------------------------------+----------------------------------+
-|`table-insert'                 |Insert a table consisting of grid |
-|                               |of cells by specifying the number |
-|                               |of COLUMNS, number of ROWS, cell  |
-|                               |WIDTH and cell HEIGHT.            |
-+-------------------------------+----------------------------------+
-|`table-insert-row'             |Insert row(s) of cells before the |
-|                               |current row that matches the      |
-|                               |current row structure.            |
-+-------------------------------+----------------------------------+
-|`table-insert-column'          |Insert column(s) of cells before  |
-|                               |the current column that matches   |
-|                               |the current column structure.     |
-+-------------------------------+----------------------------------+
-|`table-delete-row'             |Delete row(s) of cells.  The row  |
-|                               |must consist from cells of the    |
-|                               |same height.                      |
-+-------------------------------+----------------------------------+
-|`table-delete-column'          |Delete column(s) of cells.  The   |
-|                               |column must consist from cells of |
-|                               |the same width.                   |
-+-------------------------------+----------------------------------+
-|`table-recognize'              |Recognize all tables in the       |
-|`table-unrecognize'            |current buffer and                |
-|                               |activate/inactivate them.         |
-+-------------------------------+----------------------------------+
-|`table-recognize-region'       |Recognize all the cells in a      |
-|`table-unrecognize-region'     |region and activate/inactivate    |
-|                               |them.                             |
-+-------------------------------+----------------------------------+
-|`table-recognize-table'        |Recognize all the cells in a      |
-|`table-unrecognize-table'      |single table and                  |
-|                               |activate/inactivate them.         |
-+-------------------------------+----------------------------------+
-|`table-recognize-cell'         |Recognize a cell.  Find a cell    |
-|`table-unrecognize-cell'       |which contains the current point  |
-|                               |and activate/inactivate that cell.|
-+-------------------------------+----------------------------------+
-|`table-forward-cell'           |Move point to the next Nth cell in|
-|                               |a table.                          |
-+-------------------------------+----------------------------------+
-|`table-backward-cell'          |Move point to the previous Nth    |
-|                               |cell in a table.                  |
-+-------------------------------+----------------------------------+
-|`table-span-cell'              |Span the current cell toward the  |
-|                               |specified direction and merge it  |
-|                               |with the adjacent cell.  The      |
-|                               |direction is right, left, above or|
-|                               |below.                            |
-+-------------------------------+----------------------------------+
-|`table-split-cell-vertically'  |Split the current cell vertically |
-|                               |and create a cell above and a cell|
-|                               |below the point location.         |
-+-------------------------------+----------------------------------+
-|`table-split-cell-horizontally'|Split the current cell            |
-|                               |horizontally and create a cell on |
-|                               |the left and a cell on the right  |
-|                               |of the point location.            |
-+-------------------------------+----------------------------------+
-|`table-split-cell'             |Split the current cell vertically |
-|                               |or horizontally.  This is a       |
-|                               |wrapper command to the other two  |
-|                               |orientation specific commands.    |
-+-------------------------------+----------------------------------+
-|`table-heighten-cell'          |Heighten the current cell.        |
-+-------------------------------+----------------------------------+
-|`table-shorten-cell'           |Shorten the current cell.         |
-+-------------------------------+----------------------------------+
-|`table-widen-cell'             |Widen the current cell.           |
-+-------------------------------+----------------------------------+
-|`table-narrow-cell'            |Narrow the current cell.          |
-+-------------------------------+----------------------------------+
-|`table-fixed-width-mode'       |Toggle fixed width mode.  In the  |
-|                               |fixed width mode, typing inside a |
-|                               |cell never changes the cell width,|
-|                               |while in the normal mode the cell |
-|                               |width expands automatically in    |
-|                               |order to prevent a word being     |
-|                               |folded into multiple lines.  Fixed|
-|                               |width mode reverses video or      |
-|                               |underline the cell contents for   |
-|                               |its indication.                   |
-+-------------------------------+----------------------------------+
-|`table-query-dimension'        |Compute and report the current    |
-|                               |cell dimension, current table     |
-|                               |dimension and the number of       |
-|                               |columns and rows in the table.    |
-+-------------------------------+----------------------------------+
-|`table-generate-source'        |Generate the source of the current|
-|                               |table in the specified language   |
-|                               |and insert it into a specified    |
-|                               |buffer.                           |
-+-------------------------------+----------------------------------+
-|`table-insert-sequence'        |Travel cells forward while        |
-|                               |inserting a specified sequence    |
-|                               |string into each cell.            |
-+-------------------------------+----------------------------------+
-|`table-capture'                |Convert plain text into a table by|
-|                               |capturing the text in the region. |
-+-------------------------------+----------------------------------+
-|`table-release'                |Convert a table into plain text by|
-|                               |removing the frame from a table.  |
-+-------------------------------+----------------------------------+
-|`table-justify'                |Justify the contents of cell(s).  |
-+-------------------------------+----------------------------------+
-|`table-disable-advice'         |Disable all table advice by       |
-|                               |removing them.                    |
-+-------------------------------+----------------------------------+
-|`table-enable-advice'          |Enable table advice.              |
-+-------------------------------+----------------------------------+
-|`table-version'                |Show the current table package    |
-|                               |version.                          |
-+-------------------------------+----------------------------------+
-@end verbatim
-
-
-@emph{Note}
-
-You may find that some of commonly expected table commands are
-missing such as copying a row/column and yanking it.  Those
-functions can be obtained through existing Emacs text editing
-commands.  Rows are easily manipulated with region commands and
-columns can be copied and pasted through rectangle commands.  After
-all a table is still a part of text in the buffer.  Only the
-special behaviors exist inside each cell through text properties.
-
-@command{table-generate-html} which appeared in earlier releases is
-deprecated in favor of @command{table-generate-source}.  Now HTML is
-treated as one of the languages used for describing the table's
-logical structure.
-
-
-@node table keymap, table menu, table getting started, table
-@section Keymap
-
-Although this package does not use a mode it does use its own
-keymap inside a table cell by way of keymap text property.  Some of
-the standard basic editing commands bound to certain keys are
-replaced with the table specific version of corresponding commands.
-This replacement combination is listed in the constant alist
-@code{table-command-replacement-alist} declared below.  This alist is
-not meant to be user configurable but mentioned here for your
-better understanding of using this package.  In addition, table
-cells have some table specific bindings for cell navigation and
-cell reformation.  You can find these additional bindings in the
-constant @code{table-cell-bindings}.  Those key bound functions are
-considered as internal functions instead of normal commands,
-therefore they have special prefix, *table--- instead of table-, for
-symbols.  The purpose of this is to make it easier for a user to
-use command name completion.  There is a "normal hooks" variable
-@code{table-cell-map-hook} prepared for users to override the default
-table cell bindings.  Following is the table of predefined default
-key bound commands inside a table cell.  Remember these bindings
-exist only inside a table cell.  When your terminal is a tty, the
-control modifier may not be available or applicable for those
-special characters.  In this case use @key{C-cC-c}, which is
-customizable via @code{table-command-prefix}, as the prefix key
-sequence.  This should preceding the following special character
-without the control modifier.  For example, use @key{C-cC-c|} instead
-of @key{C-|}.
-
-@verbatim
-+------------------------------------------------------------------+
-|                Default Bindings in a Table Cell                  |
-+-------+----------------------------------------------------------+
-|  Key  |                      Function                            |
-+-------+----------------------------------------------------------+
-|  TAB  |Move point forward to the beginning of the next cell.     |
-+-------+----------------------------------------------------------+
-| "C->" |Widen the current cell.                                   |
-+-------+----------------------------------------------------------+
-| "C-<" |Narrow the current cell.                                  |
-+-------+----------------------------------------------------------+
-| "C-}" |Heighten the current cell.                                |
-+-------+----------------------------------------------------------+
-| "C-{" |Shorten the current cell.                                 |
-+-------+----------------------------------------------------------+
-| "C--" |Split current cell vertically. (one above and one below)  |
-+-------+----------------------------------------------------------+
-| "C-|" |Split current cell horizontally. (one left and one right) |
-+-------+----------------------------------------------------------+
-| "C-*" |Span current cell into adjacent one.                      |
-+-------+----------------------------------------------------------+
-| "C-+" |Insert row(s)/column(s).                                  |
-+-------+----------------------------------------------------------+
-| "C-!" |Toggle between normal mode and fixed width mode.          |
-+-------+----------------------------------------------------------+
-| "C-#" |Report cell and table dimension.                          |
-+-------+----------------------------------------------------------+
-| "C-^" |Generate the source in a language from the current table. |
-+-------+----------------------------------------------------------+
-| "C-:" |Justify the contents of cell(s).                          |
-+-------+----------------------------------------------------------+
-@end verbatim
-
-@emph{Note:}
-
-When using @command{table-cell-map-hook} do not use @command{local-set-key}:
-
-@example
-  (add-hook 'table-cell-map-hook
-    (function (lambda ()
-      (local-set-key [<key sequence>] '<function>))))
-@end example
-
-Above code is well known @file{~/.emacs} idiom for customizing a mode
-specific keymap however it does not work for this package.  This is
-because there is no table mode in effect.  This package does not
-use a local map therefor you must modify @code{table-cell-map}
-explicitly.  The correct way of achieving above task is:
-
-@example
-  (add-hook 'table-cell-map-hook
-    (function (lambda ()
-      (define-key table-cell-map [<key sequence>] '<function>))))
-@end example
-
-@node table menu, table function advising, table keymap, table
-@section Menu
-
-If a menu system is available a group of table specific menu items,
-@code{Table} under @code{Tools} section of the menu bar, is globally added
-after this package is loaded.  The commands in this group are
-limited to the ones that are related to creation and initialization
-of tables, such as to insert a table, to insert rows and columns,
-or recognize and unrecognize tables.  Once tables are created and
-point is placed inside of a table cell a table specific menu item
-@code{Table} appears directly on the menu bar.  The commands in this
-menu give full control on table manipulation that include cell
-navigation, insertion, splitting, spanning, shrinking, expansion
-and unrecognizing.  In addition to above two types of menu there is
-a pop-up menu available within a table cell.  The content of pop-up
-menu is identical to the full table menu.  @key{[mouse-3]} is the default
-button, defined in @code{table-cell-bindings}, to bring up the pop-up
-menu.  It can be reconfigured via @command{table-cell-map-hook}.  The
-benefit of a pop-up menu is that it combines selection of the
-location (which cell, where in the cell) and selection of the
-desired operation into a single clicking action.
-
-
-@node table function advising, Definition of tables and cells, table menu, table
-@section Function Advising (Modification):
-
-Some functions that are desired to run specially inside a table
-cell are modified by way of function advice mechanism instead of
-using key binding replacement.  The reason for this is that they
-are such primitive that they may often be used as a building blocks
-of other commands which are not known to this package, i.e. user
-defined commands in a .emacs file.  To make sure the correct
-behavior of them in a table cell, those functions are slightly
-modified.  When the function executes, it checks if the point is
-located in a table cell.  If so, the function behaves in a slightly
-modified fashion otherwise executes normally.  The drawback of this
-mechanism is there is a small overhead added to these functions for
-testing if the location is within a table cell or not.  Due to the
-limitation of advice mechanism those built-in subr functions in a
-byte compiled package are out of reach from this package.
-
-In general, redefining (or advising) an Emacs primitive is
-discouraged.  If you think those advising in this package are not
-safe enough or you simply do not feel comfortable with having them
-you can set the variable `table-disable-advising' to non-nil before
-loading this package for the first time.  This will disable the
-advising all together.
-
-The next table lists the functions that are advised to act
-specially when used in a table cell.
-
-@verbatim
-+------------------------------------------------------------------+
-|                        Advised Functions                         |
-+---------------------+--------------------------------------------+
-|      Function       |             Advice Description             |
-+---------------------+--------------------------------------------+
-|`kill-region'        |Kill between point and mark.  When both     |
-|                     |point and mark reside in a same table cell  |
-|                     |the text in the region within the cell is   |
-|                     |deleted and saved in the kill ring.         |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`delete-region'      |Delete the text between point and mark.     |
-|                     |When both point and mark reside in a same   |
-|                     |table cell the text in the region within the|
-|                     |cell is deleted.  Otherwise it retains the  |
-|                     |original behavior.                          |
-+---------------------+--------------------------------------------+
-|`copy-region-as-kill'|Save the region as if killed, but don't kill|
-|                     |it.  When both point and mark reside in a   |
-|                     |same table cell the text in the region      |
-|                     |within the cell is saved.  Otherwise it     |
-|                     |retains the original behavior.              |
-+---------------------+--------------------------------------------+
-|`kill-line'          |Kill the rest of the current line within a  |
-|                     |table cell when point is in an active table |
-|                     |cell.  Otherwise it retains the original    |
-|                     |behavior.                                   |
-+---------------------+--------------------------------------------+
-|`yank'               |Reinsert the last stretch of killed text    |
-|                     |within a cell when point resides in a       |
-|                     |cell.  Otherwise it retains the original    |
-|                     |behavior.                                   |
-+---------------------+--------------------------------------------+
-|`beginning-of-line'  |Move point to beginning of current line     |
-|                     |within a cell when current point resides in |
-|                     |a cell.  Otherwise it retains the original  |
-|                     |behavior.                                   |
-+---------------------+--------------------------------------------+
-|`end-of-line'        |Move point to end of current line within a  |
-|                     |cell when current point resides in a cell.  |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`forward-word'       |Move point forward word(s) within a cell    |
-|                     |when current point resides in a cell.       |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`backward-word'      |Move point backward word(s) within a cell   |
-|                     |when current point resides in a cell.       |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`forward-paragraph'  |Move point forward paragraph(s) within a    |
-|                     |cell when current point resides in a cell.  |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`backward-paragraph' |Move point backward paragraph(s) within a   |
-|                     |cell when current point resides in a cell.  |
-|                     |Otherwise it retains the original behavior. |
-+---------------------+--------------------------------------------+
-|`center-line'        |Center the line point is on within a cell   |
-|                     |when current point resides in a             |
-|                     |cell. Otherwise it retains the original     |
-|                     |behavior.                                   |
-+---------------------+--------------------------------------------+
-|`center-region'      |Center each non-blank line between point and|
-|                     |mark.  When both point and mark reside in a |
-|                     |same table cell the text in the region      |
-|                     |within the cell is centered.  Otherwise it  |
-|                     |retains the original behavior.              |
-+---------------------+--------------------------------------------+
-@end verbatim
-
-
-@node Definition of tables and cells, Cell contents formatting, table function advising, table
-@section Definition of tables and cells
-
-There is no artificial-intelligence magic in this package.  The
-definition of a table and the cells inside the table is reasonably
-limited in order to achieve acceptable performance in the
-interactive operation under Emacs lisp implementation.  A valid
-table is a rectangular text area completely filled with valid
-cells.  A valid cell is a rectangle text area, which four borders
-consist of valid border characters.  Cells can not be nested one to
-another or overlapped to each other except sharing the border
-lines.  A valid character of a cell's vertical border is either
-table-cell-vertical-char @code{|} or table-cell-intersection-char @code{+}.
-A valid character of a cell's horizontal border is either
-table-cell-horizontal-char @code{-} or table-cell-intersection-char @code{+}.
-A valid character of the four corners of a cell must be
-table-cell-intersection-char @code{+}.  A cell must contain at least one
-character space inside.  There is no restriction about the contents
-of a table cell, however it is advised if possible to avoid using
-any of the border characters inside a table cell.  Normally a few
-boarder characters inside a table cell are harmless.  But it is
-possible that they accidentally align up to emulate a bogus cell
-corner on which software relies on for cell recognition.  When this
-happens the software may be fooled by it and fail to determine
-correct cell dimension.
-
-Following are the examples of valid tables.
-
-@verbatim
-+--+----+---+     +-+     +--+-----+
-|  |    |   |     | |     |  |     |
-+--+----+---+     +-+     |  +--+--+
-|  |    |   |             |  |  |  |
-+--+----+---+             +--+--+  |
-                          |     |  |
-                          +-----+--+
-@end verbatim
-
-The next five tables are the examples of invalid tables.  (From
-left to right, 1. nested cells 2. overlapped cells and a
-non-rectangle cell 3. non-rectangle table 4. zero width/height
-cells 5. zero sized cell)
-
-@verbatim
-+-----+    +-----+       +--+    +-++--+    ++
-|     |    |     |       |  |    | ||  |    ++
-| +-+ |    |     |       |  |    | ||  |
-| | | |    +--+  |    +--+--+    +-++--+
-| +-+ |    |  |  |    |  |  |    +-++--+
-|     |    |  |  |    |  |  |    | ||  |
-+-----+    +--+--+    +--+--+    +-++--+
-@end verbatim
-
-Although the program may recognizes some of these invalid tables,
-results from the subsequent editing operations inside those cells
-are not predictable and will most likely start destroying the table
-structures.
-
-It is strongly recommended to have at least one blank line above
-and below a table.  For a table to coexist peacefully with
-surrounding environment table needs to be separated from unrelated
-text.  This is necessary for the left table to grow or shrink
-horizontally without breaking the right table in the following
-example.
-
-@verbatim
-                         +-----+-----+-----+
- +-----+-----+           |     |     |     |
- |     |     |           +-----+-----+-----+
- +-----+-----+           |     |     |     |
-                         +-----+-----+-----+
-@end verbatim
-
-
-@node Cell contents formatting, Cell Justification, Definition of tables and cells, table
-@section Cell contents formatting
-
-The cell contents are formatted by filling a paragraph immediately
-after characters are inserted into or deleted from a cell.  Because
-of this, cell contents always remain fit inside a cell neatly.  One
-drawback of this is that users do not have full control over
-spacing between words and line breaking.  Only one space can be
-entered between words and up to two spaces between sentences.  For
-a newline to be effective the new line must form a beginning of
-paragraph, otherwise it'll automatically be merged with the
-previous line in a same paragraph.  To form a new paragraph the
-line must start with some space characters or immediately follow a
-blank line.  Here is a typical example of how to list items within
-a cell.  Without a space at the beginning of each line the items
-can not stand on their own.
-
-@verbatim
-+---------------------------------+
-|Each one of the following three  |
-|items starts with a space        |
-|character thus forms a paragraph |
-|of its own.  Limitations in cell |
-|contents formatting are:         |
-|                                 |
-| 1. Only one space between words.|
-| 2. Up to two spaces between     |
-|sentences.                       |
-| 3. A paragraph must start with  |
-|spaces or follow a blank line.   |
-|                                 |
-|This paragraph stays away from   |
-|the item 3 because there is a    |
-|blank line between them.         |
-+---------------------------------+
-@end verbatim
-
-In the normal operation table cell width grows automatically when
-certain word has to be folded into the next line if the width had
-not been increased.  This normal operation is useful and
-appropriate for most of the time, however, it is sometimes useful
-or necessary to fix the width of table and width of table cells.
-For this purpose the package provides fixed width mode.  You can
-toggle between fixed width mode and normal mode by "C-!".
-
-Here is a simple example of the fixed width mode.  Suppose we have
-a table like this one.
-
-@verbatim
-+-----+
-|     |
-+-----+
-@end verbatim
-
-In normal mode if you type a word "antidisestablishmentarianism" it
-grows the cell horizontally like this.
-
-@verbatim
-+----------------------------+
-|antidisestablishmentarianism|
-+----------------------------+
-@end verbatim
-
- In the fixed width mode the same action produces the following
- result.  The folded locations are indicated by a continuation
- character (@code{\} is the default).  The continuation character is
- treated specially so it is recommended to choose a character that
- does not appear elsewhere in table cells.  This character is
- configurable via customization and is kept in the variable
- `table-word-continuation-char'.  The continuation character is
- treated specially only in the fixed width mode and has no special
- meaning in the normal mode however.
-
-@verbatim
-+-----+
-|anti\|
-|dise\|
-|stab\|
-|lish\|
-|ment\|
-|aria\|
-|nism |
-+-----+
-@end verbatim
-
-
-@node Cell Justification, Acknowledgments, Cell contents formatting, table
-@section Cell Justification
-
-By default the cell contents are filled with left justification and
-no vertical justification.  A paragraph can be justified
-individually but only horizontally.  Paragraph justification is for
-appearance only and does not change any structural information
-while cell justification affects table's structural information.
-For cell justification a user can select horizontal justification
-and vertical justification independently.  Horizontal justification
-must be one of the three 'left, 'center or 'right.  Vertical
-justification can be 'top, 'middle, 'bottom or 'none.  When a cell
-is justified, that information is recorded as a part of text
-property therefore the information is persistent as long as the
-cell remains within the Emacs world.  Even copying tables by region
-and rectangle manipulation commands preserve this information.
-However, once the table text is saved as a file and the buffer is
-killed the justification information vanishes permanently.  To
-alleviate this shortcoming without forcing users to save and
-maintain a separate attribute file, the table code detects
-justification of each cell when recognizing a table.  This
-detection is done by guessing the justification by looking at the
-appearance of the cell contents.  Since it is a guessing work it
-does not guarantee the perfectness but it is designed to be
-practically good enough.  The guessing algorithm is implemented in
-the function @command{table--detect-cell-alignment}.  If you have better
-algorithm or idea any suggestion is welcome.
-
-
-@node Acknowledgments,  , Cell Justification, table
-@section Acknowledgments
-
-Table would not have been possible without the help and
-encouragement of the following spirited contributors.
-
-Paul Georgief <pgeorgie@@doctordesign.com> has been the best tester
-of the code as well as the constructive criticizer.
-
-Gerd Moellmann <gerd@@gnu.org> gave me useful suggestions from Emacs
-21 point of view.
-
-Richard Stallman <rms@@gnu.org> showed the initial interest in this
-attempt of implementing the table feature to Emacs.  This greatly
-motivated me to follow through to its completion.
-
-Kenichi Handa <handa@@etl.go.jp> kindly guided me through to
-overcome many technical issues while I was struggling with quail
-related internationalization problems.
-
-Christoph Conrad <christoph.conrad@@gmx.de> suggested making symbol
-names consistent as well as fixing several bugs.
-
-Paul Lew <paullew@@cisco.com> suggested implementing fixed width
-mode as well as multi column width (row height) input interface.
-
-Michael Smith <smith@@xml-doc.org> a well-informed DocBook user
-asked for CALS table source generation and helped me following
-through the work by offering valuable suggestions and testing out
-the code.  Jorge Godoy <godoy@@conectiva.com> has also suggested
-supporting for DocBook tables.
-
-Sebastian Rahtz <sebastian.rahtz@@computing-services.oxford.ac.uk>
-contributed by implementing TEI (Text Encoding Initiative XML/SGML
-DTD) table source generation into @code{table-generate-source} group
-functions.
-
-And many other individuals who reported bugs and suggestions.
-
-@node tail, tc, table, Top
+@node tail, tc, tabbar, Top
 @chapter tail - Tail files within Emacs
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -4636,7 +3711,7 @@ Like \\[compile], but run a twiddle hack during compilation.
 If you write new twiddles, try to minimize or avoid consing, since those
 functions are called constantly.
 
-@node under, wdired, twiddle, Top
+@node under, xrdb-mode, twiddle, Top
 @chapter under - Underline with the ^ character
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -4652,68 +3727,7 @@ Suggested key-binding to put in ~/.emacs:
 @emph{Bugs:} currently only works on a single line.  The region can't
 span multiple lines.
 
-@node wdired, xrdb-mode, under, Top
-@chapter wdired - Rename files editing their names in dired buffers
-
-@noindent Author: Juan León Lahoz García <juan-leon.lahoz@@tecsidel.es>
-
-wdired.el (the "w" is for writable) provides an alternative way of
-renaming files.
-
-Have you ever wished to use @key{C-x r t} (string-rectangle), @key{M-%}
-(query-replace), @key{M-c} (capitalize-word), etc. to change the name of
-the files in a @code{dired} buffer? Now you can do this. All the power
-of emacs commands are available to renaming files!
-
-This package provides a function that makes the filenames of a a
-dired buffer editable, by changing the buffer mode (which inhibits
-all of the commands of dired mode). Here you can edit the names of
-one or more files and directories, and when you press @key{C-c C-c}, the
-renaming takes effect and you are back to dired mode.
-
-@noindent Other things you can do with wdired:
-
-@itemize @bullet
-@item
-To move files to another directory (by typing their path,
-absolute or relative, as a part of the new filename).
-
-@item
-To change the target of symbolic links.
-
-@item
-To change the permission bits of the filenames (in systems with a
-  working unix-alike @code{dired-chmod-program}). See and customize the
-  variable @code{wdired-allow-to-change-permissions}. To change a single
-  char (toggling between its two more usual values) you can press
-  the space bar over it or left-click the mouse. To set any char to
-  an specific value (this includes the SUID, SGID and STI bits) you
-  can use the key labeled as the letter you want. Please note that
-  permissions of the links cannot be changed in that way, because
-  the change would affect to their targets, and this would not be
-  WYSIWYG :-).
-
-@item
-To mark files for deletion, by deleting their whole filename.
-@end itemize
-
-Use @command{M-x customize-group RET wdired} if you want make changes to
-the default behavior.
-
-@noindent Usage:
-
-The key @key{r} in dired-mode is defined to
-@command{wdired-change-to-wdired-mode}.
-
-You can start editing the names of the files by typing @key{r} (or
-@command{M-x wdired-change-to-wdired-mode}) in dired-mode.  Use
-@key{C-c C-c} when finished or @key{C-c C-k} to abort. You can use
-also the menu options: in dired mode, @code{Edit File Names} under
-@code{Immediate}.  While editing the names, a new submenu
-@code{WDired} is available at top level. You can customize the
-behavior of this package from this menu.
-
-@node xrdb-mode,  , wdired, Top
+@node xrdb-mode,  , under, Top
 @chapter xrdb-mode - Mode for editing X resource database files
 
 @noindent Author: Barry A. Warsaw <barry@@python.org>

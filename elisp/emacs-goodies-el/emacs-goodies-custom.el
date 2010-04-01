@@ -78,19 +78,6 @@ and face definitions."
   :load 'ctypes
   :group 'emacs-goodies-el)
 
-;; cua
-(defgroup CUA-mode nil
-  "Emulate CUA key bindings including C-x and C-c."
-  :prefix "CUA-mode"
-  :group 'editing-basics
-  :group 'convenience
-  :group 'emulations
-  :link '(emacs-commentary-link :tag "Commentary" "cua.el")
-  :link '(emacs-library-link :tag "Lisp File" "cua.el")
-  :link '(custom-manual "(emacs-goodies-el)cua")
-  :load 'cua
-  :group 'emacs-goodies-el)
-
 ;; cwebm
 (defgroup CWEBm nil
   "Major mode for editing CWEB and WEB programs"
@@ -227,32 +214,6 @@ and face definitions."
 ;;:require 'htmlize
   :group 'emacs-goodies-el)
 
-;; ibuffer
-(when (not (featurep 'xemacs))
-  (defgroup ibuffer nil
-    "An advanced replacement for `buffer-menu'.
-
-Ibuffer allows you to operate on buffers in a manner much like Dired.
-Operations include sorting, marking by regular expression, and
-selectable views (limits)."
-    :link '(url-link "http://web.verbum.org/~walters")
-    :group 'convenience
-    :link '(custom-manual "(emacs-goodies-el)ibuffer")
-    :load 'ibuffer
-  ;;:require 'ibuffer
-    :group 'emacs-goodies-el))
-
-;; ido.el
-(defgroup ido nil
-  "Switch between files using substrings."
-  :group 'extensions
-  :group 'convenience
-  :link '(emacs-commentary-link :tag "Commentary" "ido.el")
-  :link '(emacs-library-link :tag "Lisp File" "ido.el")
-  :link '(custom-manual "(emacs-goodies-el)ido")
-  :load 'ido
-  :group 'emacs-goodies-el)
-
 ;; initsplit
 (defgroup initsplit nil
   "Code to split customizations into different files."
@@ -349,25 +310,6 @@ selectable views (limits)."
   :link '(custom-manual "(emacs-goodies-el)muttrc-mode")
   :load 'muttrc-mode
 ;;:require 'muttrc-mode
-  :group 'emacs-goodies-el)
-
-;; newsticker
-(defgroup newsticker nil
-  "Newsticker settings. Some of these changes do not have an immediate
-effect.  Therefore it is recommended to `newsticker-stop' and then
-`newsticker-start' again after you have changed any of these settings."
-  :link '(custom-manual "(emacs-goodies-el)newsticker")
-  :load 'newsticker
-;;:require 'newsticker
-  :group 'emacs-goodies-el)
-
-;; nuke-trailing-whitespace
-(defgroup nuke-trailing-whitespace nil
-  "Strip trailing whitespace from buffers."
-  :group 'editing
-  :link '(custom-manual "(emacs-goodies-el)nuke-trailing-whitespace")
-  :load 'nuke-trailing-whitespace
-;;:require 'nuke-trailing-whitespace
   :group 'emacs-goodies-el)
 
 ;; pack-windows
@@ -507,21 +449,6 @@ Don't forget to mention your Emacs and library versions."))
   :load 'tabbar
   :group 'emacs-goodies-el)
 
-;; table
-(defgroup table nil
-  "Text based table manipulation utilities.
-See `table-insert' for examples about how to use."
-  :tag "Table"
-  :prefix "table-"
-  :group 'editing
-  :group 'wp
-  :group 'paragraphs
-  :group 'fill
-  :link '(custom-manual "(emacs-goodies-el)table")
-  :load 'table
-;;:require 'table
-  :group 'emacs-goodies-el)
-
 ;; tail
 (defgroup tail nil
   "Tail files or commands into Emacs buffers."
@@ -574,15 +501,6 @@ See `table-insert' for examples about how to use."
   :link '(custom-manual "(emacs-goodies-el)toggle-option")
   :load 'toggle-option
 ;;:require 'toggle-option
-  :group 'emacs-goodies-el)
-
-;; wdired
-(defgroup wdired nil
-  "Mode to rename files by editing their names in dired buffers."
-  :group 'dired
-  :link '(custom-manual "(emacs-goodies-el)wdired")
-  :load 'wdired
-;;:require 'wdired
   :group 'emacs-goodies-el)
 
 ;; xrdb-mode

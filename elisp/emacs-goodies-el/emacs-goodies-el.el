@@ -51,9 +51,6 @@ Setting to aggressive will enable features that supercede Emacs defaults."
   :link '(custom-manual "(emacs-goodies-el)auto-fill-inhibit")
   :group 'emacs-goodies-el)
 
-;; cfengine.el
-(add-to-list 'auto-mode-alist '("/cf\\." . cfengine-mode))
-
 ;; clipper.el
 (autoload 'clipper-create "clipper" "Create a new 'clip' for use within Emacs."
   t)
@@ -177,26 +174,6 @@ Stores the value of the prior `home' keybinding.")
                (global-set-key [home] home-end-home-enable)))))
   :load 'home-end
   :group 'emacs-goodies-el)
-
-;; ibuffer
-(when (not (featurep 'xemacs))
-  (defvar ibuffer-enable-done nil
-    "Whether `ibuffer-enable' was activated.
-Stores the value of the prior keybinding in case we need to restore it.")
-
-  (defcustom ibuffer-enable emacs-goodies-el-defaults
-    "*Defines \\C-x\\C-b as 'ibuffer, a dired-like buffer manager."
-    :type 'boolean
-    :set (lambda (symbol value)
-           (set-default symbol value)
-           (cond
-            (value
-             (setq ibuffer-enable-done (lookup-key ctl-x-map "\C-b"))
-             (define-key ctl-x-map "\C-b" 'ibuffer))
-            (ibuffer-enable-done
-             (define-key ctl-x-map "\C-b" ibuffer-enable-done))))
-    :load 'ibuffer
-    :group 'emacs-goodies-el))
 
 ;; keydef.el
 (autoload 'keydef "keydef"
@@ -336,28 +313,6 @@ effects to take effect."
            (xrdb-mode-setup-auto-mode-alist)))
   :group 'emacs-goodies-el
   :group 'xrdb)
-
-;; wdired.el
-(defcustom wdired-enable emacs-goodies-el-defaults
-  "*Defines \"r\" as 'wdired-change-to-wdired-mode if key was unset.
-Also add menu-bar entry."
-  :type 'boolean
-  :set (lambda (symbol value)
-         (set-default symbol value)
-         (cond
-          (value
-           (require 'dired)
-           (if (or (equal 'nil (lookup-key dired-mode-map "r"))
-                   (equal 'undefined (lookup-key dired-mode-map "r")))
-               (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode))
-           ;; emacs-snapshot, v22,  already has a menu entry
-           (if (and (< emacs-major-version 22)
-                    (not (featurep 'xemacs)))
-               (define-key dired-mode-map
-                 [menu-bar immediate wdired-change-to-wdired-mode]
-                 '("Edit File Names" . wdired-change-to-wdired-mode))))))
-  :load 'wdired
-  :group 'emacs-goodies-el)
 
 (provide 'emacs-goodies-el)
 
