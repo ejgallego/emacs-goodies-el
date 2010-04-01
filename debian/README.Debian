@@ -65,12 +65,6 @@ beautifully colored than before.
 coffee.el provides an Emacs interface to RFC2324-compliant coffee
 devices
 
-cua.el almost transparently allows you to use C-z, C-x, C-c, and C-v for undo,
-cut, copy, and paste, without interfering with the use of Ctrl-x and Ctrl-c as
-prefix keys.  It supports Shift-<movement> to highlight and extend the
-selected region.  It also includes a rectangle-selection mode, activated with
-Shift-Enter.
-
 cyclebuffer.el provides M-x cyclebuffer-forward, to switch to other
 buffers in the most-recently-visited-first order.  If you accidentally
 overshoot, calling cyclebuffer-backward goes back.  You might want to
@@ -146,14 +140,6 @@ htmlize.el provides many M-x htmlize-* commands that turn files,
 buffers, or region of font-lock colorised text into an HTML
 representation.
 
-ibuffer.el is an advanced replacement for the `buffer-menu' which is
-normally distributed with Emacs.  Its interface is intended to be
-analogous to that of Dired.
-
-ido.el provides replacements for the switch-buffer and find-file functions
-(and the various versions of these functions) for switching between buffers
-and opening files with an absolute minimum of keystrokes.
-
 initsplit.el allows you to split Emacs customizations (set via M-x
 customize) into different files, based on the names of the variables.
 To use it, just load the file in your .emacs: (load "initsplit").
@@ -216,16 +202,6 @@ muttrc-mode.el provides muttrc-mode, a major mode to help the edition
 of Mutt configuration files.  To use it, either open a file named
 muttrc, or add a local variables section to the end of your file to
 specify the mode to be "muttrc".
-
-newsticker.el is a newsticker for Emacs.  A newsticker is a thing that
-asynchronously retrieves a list of headlines (which are contained in RDF
-Site Summary (RSS) files) from a list of news sites, displays these
-headlines, and allows for loading the corresponding articles in a web
-browser.
-
-nuke-trailing-whitespace.el (renamed from whitespace.el) provides M-x
-nuke-trailing-whitespace, a command that deletes trailing whitespaces in
-buffers.
 
 obfusurl.el provides M-x obfuscate-url, a command that will obfuscate
 an URL under the cursor.
@@ -290,13 +266,6 @@ tabbar-backward, and use these to quickly switch between buffers.  By default,
 tabbar-mode will group buffers into various groups, and only display one group
 at a time on the tabbar; you can change this by customizing tabbar.
 
-table.el provides a text based table creation and editing feature.
-With this package Emacs is capable of editing tables that are embedded
-inside a text document, the feature similar to the ones seen in modern
-WYSIWYG word processors.  Invoke it with M-x table-insert.  You might
-also want to add (add-hook 'text-mode-hook 'table-recognize) to your
-.emacs, please read the table.el file for more documentation on this.
-
 tail.el provides the commands M-x tail-file and M-x tail-command, to
 follow the output of a command (or to follow a log file) without using
 any terminals.
@@ -329,13 +298,9 @@ under.el provides M-x underline-region, to underline a bit of text
 with ^ characters like this.
                   ^^^^^^^^^
 
-wdired.el provides M-x wdired-change-to-wdired-mode (when in a dired
-buffer) and allows you to edit the filenames and permission bits
-easily.
-
 xrdb-mode.el provides the xrdb-mode major mode, to help you editing X
 resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Fri, 17 Jul 2009 18:27:44 -0400
+ -- Peter S Galbraith <psg@debian.org>, Thu,  1 Apr 2010 15:38:10 -0400

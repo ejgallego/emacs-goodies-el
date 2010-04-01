@@ -30,7 +30,6 @@ Description: Miscellaneous add-ons for Emacs
   color-theme - changes the colors used within Emacs;
   csv-mode - major mode for comma-separated value files;
   ctypes - enhanced Font lock support for custom defined types;
-  cua - emulate CUA key bindings (C-z undo, C-x cut, C-c copy, C-v paste);
   cyclebuffer - select buffer by cycling through;
   cwebm - a modified CWEB/WEB modified mode;
   dedicated - make a window dedicated to a single buffer;
@@ -93,15 +92,6 @@ Description: Miscellaneous add-ons for Emacs
   under - underline a region with ^ characters;
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
- .
- As well as some packages included or superseded in emacs22 and emacs23 for
- use in other flavors:
-  cfengine - major mode for editing cfengine scripts;
-  ibuffer - advanced replacement for the `buffer-menu';
-  ido - a faster way to switch buffers and get files;
-  newsticker - a newsticker for Emacs. (Depends on wget)
-  nuke-trailing-whitespace - kill the trailing blanks at end of lines;
-  table - create and edit WYSIWYG text based embedded tables;
  .
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
  description of all files, or the Info node `emacs-goodies-el' for details.

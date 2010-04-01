@@ -1,7 +1,16 @@
 emacs-goodies-el (31.6) UNRELEASED; urgency=low
 
   [ Peter S Galbraith ]
-  * emacs-goodies-el:
+  * emacs-goodies-el: The following files were removed because they are
+    included in Emacs-23:
+     cua.el
+     cfengine.el
+     ibuffer.el
+     ido.el 
+     newsticker.el 
+     nuke-trailing-whitespace.el
+     table.el
+     wdired.el
   - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el
     incomplete module cache if interrupted" reported by Kevin Ryde
     (Closes: #575455).
@@ -11,7 +20,7 @@ emacs-goodies-el (31.6) UNRELEASED; urgency=low
   - readme-debian.el: Bug fix: "README.Debian date wrong in XEmacs",
     thanks to Russ Allbery (Closes: #364234).
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 01 Apr 2010 10:47:43 -0400
+ --
 
 emacs-goodies-el (31.5) unstable; urgency=low
 

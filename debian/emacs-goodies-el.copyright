@@ -116,7 +116,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999-2009 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; boxquote.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -247,26 +247,6 @@ Author/copyright info for color-theme.el
 | ;; the terms of the GNU General Public License as published by the Free
 | ;; Software Foundation; either version 2, or (at your option) any later
 | ;; version.
-`----
-
-
-Author/copyright info for cua.el:
-,----
-| ;;; cua.el --- emulate CUA key bindings
-| 
-| ;; Copyright (C) 1997-2001 Free Software Foundation, Inc.
-| 
-| ;; Author: Kim F. Storm <storm@cua.dk>
-| ;; Maintainer: Kim F. Storm <storm@cua.dk>
-| ;; Location: http://www.cua.dk/
-| [...]
-| ;; This file is not [yet] part of GNU Emacs, but is distributed under
-| ;; the same terms.
-| 
-| ;; GNU Emacs is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
 `----
 
 
@@ -546,36 +526,6 @@ Author/copyright info for htmlize.el:
 `----
 
 
-Author/copyright info for ibuffer.el:
-,----
-| ;;; ibuffer.el --- operate on buffers like dired
-|
-| ;; Copyright (C) 2000, 2001 Free Software Foundation, Inc.
-|
-| ;; Author: Colin Walters <walters@verbum.org>
-| [...]
-| ;; This file is not currently part of GNU Emacs.
-|
-| ;; This program is free software; you can redistribute it and/or
-| ;; modify it under the terms of the GNU General Public License as
-| ;; published by the Free Software Foundation; either version 2, or (at
-| ;; your option) any later version.
-`----
-
-
-Author/copyright info for ido.el
-,----
-| ;;; ido.el --- interactively do things with buffers and files.
-| 
-| ;; Copyright (C) 1996-2001  Free Software Foundation, Inc.
-| 
-| ;; GNU Emacs is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
-`----
-
-
 Author/copyright info for initsplit.el:
 ,----
 | ;;; initsplit --- code to split customizations into different files
@@ -713,7 +663,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.27 2009/11/03 23:02:33 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.28 2010/04/01 19:58:19 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -788,24 +738,10 @@ Author/copyright info for muttrc-mode.el:
 `----
 
 
-Author/copyright info for newsticker.el
-,----
-| ;;; newsticker.el --- A Newsticker for Emacs.
-| ;;
-| ;;  Copyright (C) 2003 by Ulf Jasper
-| ;;
-| ;;
-| ;;  This program is free software; you can redistribute it and/or
-| ;;  modify it under the terms of the GNU General Public License as
-| ;;  published by the Free Software Foundation; either version 2 of the
-| ;;  License, or (at your option) any later version.
-`----
-
-
 Author/copyright info for obfusurl.el:
 ,----
 | ;; Copyright 2001-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; obfusurl.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -849,7 +785,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.27 2009/11/03 23:02:33 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.28 2010/04/01 19:58:19 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -899,7 +835,7 @@ Author/copyright info for protocols.el:
 ,----
 | ;;; protocols.el --- Protocol database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -935,7 +871,7 @@ Author/copyright info for services.el:
 ,----
 | ;;; services.el --- Services database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; services.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -1059,19 +995,6 @@ Author/copyright info for tabbar.el:
 `----
 
 
-Author/copyright info for table.el:
-,----
-| ;;; table.el --- create and edit WYSIWYG text based embedded tables
-|
-| ;; Copyright (C) 2000, 2001 Takaaki "Tak" Ota
-| [...]
-| ;; This program is free software; you can redistribute it and/or
-| ;; modify it under the terms of the GNU General Public License as
-| ;; published by the Free Software Foundation; either version 2, or (at
-| ;; your option) any later version.
-`----
-
-
 Author/copyright info for tail.el:
 ,----
 | ;;; tail.el --- Tail files within Emacs
@@ -1117,7 +1040,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; thinks.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1129,7 +1052,7 @@ Author/copyright info for tld.el:
 ,----
 | ;;; tld.el --- TLD lookup tool.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.27 $
+| ;; $Revision: 1.28 $
 | 
 | ;; tld.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1191,37 +1114,6 @@ Author/copyright info for under.el:
 | ;; modify it under the terms of the GNU General Public License as
 | ;; published by the Free Software Foundation; either version 2, or (at
 | ;; your option) any later version.
-`----
-
-
-Author/copyright info for wdired.el:
-,----
-| ;;; wdired.el --- Rename files editing their names in dired buffers
-| ;; Copyright (C) 2001 Juan León Lahoz García
-| [...]
-| ;; Author: Juan León Lahoz García <juan-leon.lahoz@tecsidel.es>
-| [...]
-| ;; This program is free software; you can redistribute it and/or
-| ;; modify it under the terms of the GNU General Public License as
-| ;; published by the Free Software Foundation; either version 2, or (at
-| ;; your option) any later version.
-`----
-
-
-Author/copyright info for whitespace.el:
- This file is renamed nuke-trailing-whitespace.el to avoid name-space collision
- with whitespace.el packaged with Emacs21.
-,----
-| ;;; whitespace.el --- strip trailing whitespace from buffers
-|
-| ;; Copyright (C) 1995, 1996, 1997, 2000 Noah S. Friedman
-|
-| ;; Author: Noah Friedman <friedman@splode.com>
-| [...]
-| ;; This program is free software; you can redistribute it and/or modify
-| ;; it under the terms of the GNU General Public License as published by
-| ;; the Free Software Foundation; either version 2, or (at your option)
-| ;; any later version.
 `----
 
 
