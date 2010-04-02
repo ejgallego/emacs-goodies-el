@@ -1,9 +1,10 @@
 emacs-goodies-el (31.7) UNRELEASED; urgency=low
 
+  * Migrate source patching from dpatch to quilt.
   * emacs-goodies-el:
   - maplines.el: New upstream version by new maintainer Paul Hobbs.
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 01 Apr 2010 23:23:47 -0400
+ -- Peter S Galbraith <psg@debian.org>  Fri, 02 Apr 2010 14:30:09 -0400
 
 emacs-goodies-el (31.6) unstable; urgency=low
 
