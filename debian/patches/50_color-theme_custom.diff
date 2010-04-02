@@ -1,0 +1,272 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 50_color-theme_custom.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/color-theme.el emacs-goodies-el/elisp/emacs-goodies-el/color-theme.el
+--- emacs-goodies-el~/elisp/emacs-goodies-el/color-theme.el	2005-10-25 21:50:52.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/color-theme.el	2005-10-25 22:01:01.000000000 -0400
+@@ -220,7 +220,7 @@
+ 
+ ;; face-attr-construct has a problem in Emacs 20.7 and older when
+ ;; dealing with inverse-video faces.  Here is a short test to check
+-;; wether you are affected.
++;; whether you are affected.
+ 
+ ;; (set-background-color "wheat")
+ ;; (set-foreground-color "black")
+@@ -263,92 +263,6 @@
+ 
+ ;; Customization
+ 
+-(defgroup color-theme nil
+-  "Color Themes for Emacs.
+-A color theme consists of frame parameter settings, variable settings,
+-and face definitions."
+-  :version "20.6"
+-  :group 'faces)
+-
+-(defcustom color-theme-legal-frame-parameters "\\(color\\|mode\\)$"
+-  "Regexp that matches frame parameter names.
+-Only frame parameter names that match this regexp can be changed as part
+-of a color theme."
+-  :type '(choice (const :tag "Colors only" "\\(color\\|mode\\)$")
+-		 (const :tag "Colors, fonts, and size"
+-			"\\(color\\|mode\\|font\\|height\\|width\\)$")
+-		 (regexp :tag "Custom regexp"))
+-  :group 'color-theme
+-  :link '(info-link "(elisp)Window Frame Parameters"))
+-
+-(defcustom color-theme-legal-variables "\\(color\\|face\\)$"
+-  "Regexp that matches variable names.
+-Only variables that match this regexp can be changed as part of a color
+-theme.  In addition to matching this name, the variables have to be user
+-variables (see function `user-variable-p')."
+-  :type 'regexp
+-  :group 'color-theme)
+-
+-(defcustom color-theme-illegal-faces "^w3-"
+-  "Regexp that matches face names forbidden in themes.
+-The default setting \"^w3-\" excludes w3 faces since these
+-are created dynamically."
+-  :type 'regexp
+-  :group 'color-theme
+-  :link '(info-link "(elisp)Faces for Font Lock")
+-  :link '(info-link "(elisp)Standard Faces"))
+-
+-(defcustom color-theme-illegal-default-attributes '(:family :height :width)
+-  "A list of face properties to be ignored when installing faces.
+-This prevents Emacs from doing terrible things to your display just because
+-a theme author likes weird fonts."
+-  :type '(repeat symbol)
+-  :group 'color-theme)
+-
+-(defcustom color-theme-is-global t
+-  "*Determines wether a color theme is installed on all frames or not.
+-If non-nil, color themes will be installed for all frames.
+-If nil, color themes will be installed for the selected frame only.
+-
+-A possible use for this variable is dynamic binding. Here is a larger
+-example to put in your ~/.emacs; it will make the Blue Sea color theme
+-the default used for the first frame, and it will create two additional
+-frames with different color themes.
+-
+-setup:
+-    \(require 'color-theme)
+-    ;; set default color theme
+-    \(color-theme-blue-sea)
+-    ;; create some frames with different color themes
+-    \(let ((color-theme-is-global nil))
+-      \(select-frame (make-frame))
+-      \(color-theme-gnome2)
+-      \(select-frame (make-frame))
+-      \(color-theme-standard))
+-
+-Please note that using XEmacs and and a nil value for
+-color-theme-is-global will ignore any variable settings for the color
+-theme, since XEmacs doesn't have frame-local variable bindings.
+-
+-Also note that using Emacs and a non-nil value for color-theme-is-global
+-will install a new color theme for all frames.  Using XEmacs and a
+-non-nil value for color-theme-is-global will install a new color theme
+-only on those frames that are not using a local color theme."
+-  :type 'boolean
+-  :group 'color-theme)
+-
+-(defcustom color-theme-is-cumulative t
+-  "*Determines wether new color themes are installed on top of each other.
+-If non-nil, installing a color theme will undo all settings made by
+-previous color themes."
+-  :type 'boolean
+-  :group 'color-theme)
+-
+-(defcustom color-theme-mode-hook nil
+-  "Hook for color-theme-mode."
+-  :type 'hook
+-  :group 'color-theme)
+-
+ (defvar color-theme-mode-map
+   (let ((map (make-sparse-keymap)))
+     (define-key map (kbd "RET") 'color-theme-install-at-point)
+@@ -375,15 +289,6 @@
+ (defvar color-theme-history nil
+   "List of color-themes called, in reverse order")
+ 
+-(defcustom color-theme-history-max-length nil
+-  "Max length of history to maintain.
+-Two other values are acceptable: t means no limit, and
+-nil means that no history is maintained."
+-  :type '(choice (const :tag "No history" nil)
+-		 (const :tag "Unlimited length" t)
+-		 integer)
+-  :group 'color-theme)
+-
+ (defvar color-theme-counter 0
+   "Counter for every addition to `color-theme-history'.
+ This counts how many themes were installed, regardless
+@@ -542,6 +447,7 @@
+ 				color-theme-legal-frame-parameters))))
+ (add-hook 'after-init-hook 'color-theme-backup-original-values)
+ 
++;;;###autoload
+ (defun color-theme-select (&optional arg)
+   "Displays a special buffer for selecting and installing a color theme.
+ With optional prefix ARG, this buffer will include color theme libraries
+@@ -15165,6 +15071,135 @@
+      (widget-inactive-face ((t (:foreground "dim gray"))))
+      (widget-single-line-field-face ((t (:background "gray85")))))))
+ 
++(defgroup color-theme nil
++  "Color Themes for Emacs.
++A color theme consists of frame parameter settings, variable settings,
++and face definitions."
++  :version "20.6"
++  :group 'faces)
++
++;; Added by Peter S Galbraith <psg@debian.org>, 2005-10-25
++;;
++;; A color-theme can can selected and enabled for future sessions by
++;; customizing this instead of calling `color-theme-select'
++(defcustom color-theme-selection nil
++  "Color theme selection.
++Select and save to enable your choice in future sessions.
++There is very limited undo capability to the previous state only."
++  :type (progn
++          (setq color-themes (delq (assq 'color-theme-snapshot color-themes)
++                                   color-themes)
++                color-themes (delq (assq 'bury-buffer color-themes)
++                                   color-themes))
++          (append
++           '(radio)
++           (cons '(const :tag "Undo" nil)
++                 (mapcar (function (lambda (arg) `(const ,arg)))
++                         (mapcar '(lambda (x) (elt x 1)) color-themes)))))
++  :set (lambda (symbol value)
++         (set-default symbol value)
++         (cond
++          (value             
++           (fset 'color-theme-snapshot (color-theme-make-snapshot))
++           (eval
++            (delq nil
++                  (mapcar
++                   '(lambda (x) (if (string-equal (elt x 1) value)
++                                    (car x)))
++                   color-themes))))
++          ((fboundp 'color-theme-snapshot)
++           (color-theme-snapshot))))
++  :group 'color-theme
++  :require 'color-theme)
++
++(defcustom color-theme-legal-frame-parameters "\\(color\\|mode\\)$"
++  "Regexp that matches frame parameter names.
++Only frame parameter names that match this regexp can be changed as part
++of a color theme."
++  :type '(choice (const :tag "Colors only" "\\(color\\|mode\\)$")
++		 (const :tag "Colors, fonts, and size"
++			"\\(color\\|mode\\|font\\|height\\|width\\)$")
++		 (regexp :tag "Custom regexp"))
++  :group 'color-theme
++  :link '(info-link "(elisp)Window Frame Parameters"))
++
++(defcustom color-theme-legal-variables "\\(color\\|face\\)$"
++  "Regexp that matches variable names.
++Only variables that match this regexp can be changed as part of a color
++theme.  In addition to matching this name, the variables have to be user
++variables (see function `user-variable-p')."
++  :type 'regexp
++  :group 'color-theme)
++
++(defcustom color-theme-illegal-faces "^w3-"
++  "Regexp that matches face names forbidden in themes.
++The default setting \"^w3-\" excludes w3 faces since these
++are created dynamically."
++  :type 'regexp
++  :group 'color-theme
++  :link '(info-link "(elisp)Faces for Font Lock")
++  :link '(info-link "(elisp)Standard Faces"))
++
++(defcustom color-theme-illegal-default-attributes '(:family :height :width)
++  "A list of face properties to be ignored when installing faces.
++This prevents Emacs from doing terrible things to your display just because
++a theme author likes weird fonts."
++  :type '(repeat symbol)
++  :group 'color-theme)
++
++(defcustom color-theme-is-global t
++  "*Determines whether a color theme is installed on all frames or not.
++If non-nil, color themes will be installed for all frames.
++If nil, color themes will be installed for the selected frame only.
++
++A possible use for this variable is dynamic binding. Here is a larger
++example to put in your ~/.emacs; it will make the Blue Sea color theme
++the default used for the first frame, and it will create two additional
++frames with different color themes.
++
++setup:
++    \(require 'color-theme)
++    ;; set default color theme
++    \(color-theme-blue-sea)
++    ;; create some frames with different color themes
++    \(let ((color-theme-is-global nil))
++      \(select-frame (make-frame))
++      \(color-theme-gnome2)
++      \(select-frame (make-frame))
++      \(color-theme-standard))
++
++Please note that using XEmacs and and a nil value for
++color-theme-is-global will ignore any variable settings for the color
++theme, since XEmacs doesn't have frame-local variable bindings.
++
++Also note that using Emacs and a non-nil value for color-theme-is-global
++will install a new color theme for all frames.  Using XEmacs and a
++non-nil value for color-theme-is-global will install a new color theme
++only on those frames that are not using a local color theme."
++  :type 'boolean
++  :group 'color-theme)
++
++(defcustom color-theme-is-cumulative t
++  "*Determines whether new color themes are installed on top of each other.
++If non-nil, installing a color theme will undo all settings made by
++previous color themes."
++  :type 'boolean
++  :group 'color-theme)
++
++(defcustom color-theme-mode-hook nil
++  "Hook for color-theme-mode."
++  :type 'hook
++  :group 'color-theme)
++
++(defcustom color-theme-history-max-length nil
++  "Max length of history to maintain.
++Two other values are acceptable: t means no limit, and
++nil means that no history is maintained."
++  :type '(choice (const :tag "No history" nil)
++		 (const :tag "Unlimited length" t)
++		 integer)
++  :group 'color-theme)
++
+ (provide 'color-theme)
+ 
+ ;;; color-theme.el ends here

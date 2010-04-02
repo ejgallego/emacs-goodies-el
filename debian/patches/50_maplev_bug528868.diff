@@ -1,0 +1,22 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 50_maplev_bug528868.dpatch by Peter S Galbraith <psg@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi
+--- emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi	2009-12-05 08:38:51.000000000 -0500
++++ emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi	2009-12-05 08:42:08.000000000 -0500
+@@ -7,6 +7,11 @@
+ @set edition 1.00
+ @set update-date 26 September 1999
+ 
++@dircategory Emacs
++@direntry
++* maplev: (maplev). Emacs major mode for Maple V
++@end direntry
++
+ @iftex
+ @tolerance 10000
+ @end iftex
