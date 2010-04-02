@@ -1,3 +1,10 @@
+emacs-goodies-el (31.7) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+  - maplines.el: New upstream version by new maintainer Paul Hobbs.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 01 Apr 2010 23:23:47 -0400
+
 emacs-goodies-el (31.6) unstable; urgency=low
 
   [ Peter S Galbraith ]
@@ -14,7 +21,6 @@ emacs-goodies-el (31.6) unstable; urgency=low
   - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el
     incomplete module cache if interrupted" reported by Kevin Ryde
     (Closes: #575455).
-  - maplines.el: New upstream version by new maintainer Paul Hobbs.
 
   [ Junichi Uekawa ]
   * dpkg-dev-el:
