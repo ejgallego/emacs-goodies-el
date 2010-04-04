@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.87 2010/04/01 20:12:06 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.88 2010/04/04 21:15:03 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -78,7 +78,6 @@ be documented.
 * color-theme::                 Install color themes
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
-* cyclebuffer::                 Select buffer by cycling through
 * cwebm::                       CWEB/WEB modified mode
 * dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
@@ -576,7 +575,7 @@ the current field index in the mode line, cf.
 by default.
 
 
-@node ctypes, cyclebuffer, csv-mode, Top
+@node ctypes, cwebm, csv-mode, Top
 @chapter ctypes - Enhanced font-lock support for custom defined types.
 
 @noindent Author: Anders Lindgren <andersl@@andersl.com>
@@ -763,28 +762,8 @@ when I really mean "Call the parser routine as specified by
 `ctypes-mode-descriptor'".  Also, I write "Informing font-lock"
 whenever I mean "Performing the default action as specified in
 @code{ctypes-mode-descriptor}".
-@node cyclebuffer, cwebm, ctypes, Top
-@chapter cyclebuffer - Select buffer by cycling through.
 
-Cyclebuffer is yet another way of selecting buffers.  Instead of
-prompting you for a buffer name, cyclebuffer-forward switches to the
-most recently used buffer, and repeated invocations of
-cyclebuffer-forward switch to less recently visited buffers.  If you
-accidentally overshoot, calling cyclebuffer-backward goes back.
-
-I find this to be the fastest buffer-switching mechanism; it's like
-@kbd{C-x b <RET>} without the @key{RET}, but it's not limited to the
-most recently accessed buffer.  Plus you never have to remember buffer
-names; you just keep cycling until you recognize the buffer you're
-searching for.
-
-@noindent Suggested keybings:
-@example
-(global-set-key "\M-N" 'cyclebuffer-forward)
-(global-set-key "\M-P" 'cyclebuffer-backward)
-@end example
-
-@node cwebm, dedicated, cyclebuffer, Top
+@node cwebm, dedicated, ctypes, Top
 @chapter cwebm - CWEB/WEB modified mode
 
 This is a modified and renamed version of cweb.el

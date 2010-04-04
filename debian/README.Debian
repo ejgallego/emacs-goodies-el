@@ -65,11 +65,6 @@ beautifully colored than before.
 coffee.el provides an Emacs interface to RFC2324-compliant coffee
 devices
 
-cyclebuffer.el provides M-x cyclebuffer-forward, to switch to other
-buffers in the most-recently-visited-first order.  If you accidentally
-overshoot, calling cyclebuffer-backward goes back.  You might want to
-bind these commands to your favourite keys.
-
 cwebm.el is a modified CWEB/WEB modified mode.
 
 dedicated.el allows you to toggle a window's "dedicated" flag.
@@ -303,4 +298,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Thu,  1 Apr 2010 15:38:10 -0400
+ -- Peter S Galbraith <psg@debian.org>, Sun,  4 Apr 2010 17:07:55 -0400
