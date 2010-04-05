@@ -1,12 +1,13 @@
-emacs-goodies-el (31.7) UNRELEASED; urgency=low
+emacs-goodies-el (31.7) unstable; urgency=low
 
   * Migrate source patching from dpatch to quilt.
+  * Migrate to source package format "3.0 (native)".
   * emacs-goodies-el:
-  - maplines.el: New upstream version by new maintainer Paul Hobbs.
   - cyclebuffer.el: removed since users can now do that using "C-x C-left"
     and "C-x C-right", thanks to jidanni@jidanni.org (Closes: #476497).
+  - maplines.el: New upstream version by new maintainer Paul Hobbs.
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Mon, 05 Apr 2010 16:01:56 -0400
 
 emacs-goodies-el (31.6) unstable; urgency=low
 
