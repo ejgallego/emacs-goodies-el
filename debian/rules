@@ -12,9 +12,11 @@ configure-stamp:
 	dh_testdir
 	touch configure-stamp
 
-build: patch configure-stamp build-stamp
+#build: patch configure-stamp build-stamp
+build: configure-stamp build-stamp
 build-stamp:
 	dh_testdir
+	dh_quilt_patch
 	for i in debian/*.emacsen-install.in ; do cat $$i debian/emacsen-install.template > debian/$$(basename $$i .in) ; done
 	for i in debian/*.emacsen-remove.in ; do cat $$i debian/emacsen-remove.template > debian/$$(basename $$i .in) ; done
 	install -d info
@@ -24,10 +26,12 @@ build-stamp:
 	mv -f maplev info/
 	touch build-stamp
 
-clean: unpatch
+#clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
-	if [ -d debian/patched ] ; then rmdir debian/patched ; fi
+	dh_quilt_unpatch
+#	if [ -d debian/patched ] ; then rmdir debian/patched ; fi
 	rm -f build-stamp configure-stamp
 	for i in debian/*.emacsen-install.in ; do rm -f debian/$$(basename $$i .in) ; done
 	for i in debian/*.emacsen-remove.in ; do rm -f debian/$$(basename $$i .in) ; done
