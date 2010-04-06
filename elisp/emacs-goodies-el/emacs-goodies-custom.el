@@ -62,6 +62,160 @@ and face definitions."
   :load 'color-theme
   :group 'emacs-goodies-el)
 
+(defvar color-themes
+  '((color-theme-aalto-dark "Aalto Dark" "Jari Aalto <jari.aalto@poboxes.com>")
+    (color-theme-aalto-light "Aalto Light" "Jari Aalto <jari.aalto@poboxes.com>")
+    (color-theme-aliceblue "Alice Blue" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-andreas "Andreas" "Andreas Busch <Andreas.Busch@politics.ox.ac.uk>")
+    (color-theme-arjen "Arjen" "Arjen Wiersma <arjen@wiersma.org>")
+    (color-theme-beige-diff "Beige Diff" "Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-bharadwaj "Bharadwaj" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-bharadwaj-slate "Bharadwaj Slate" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-billw "Billw" "Bill White <billw@wolfram.com>")
+    (color-theme-black-on-gray "BlackOnGray" "Sudhir Bhojwani <sbhojwani@altoweb.com>")
+    (color-theme-blippblopp "Blipp Blopp" "Thomas Sicheritz-Ponten<thomas@biopython.org>")
+    (color-theme-simple-1 "Black" "Jonadab <jonadab@bright.net>")
+    (color-theme-blue-erc "Blue ERC" "Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-blue-gnus "Blue Gnus" "Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-blue-mood "Blue Mood" "Nelson Loyola <nloyola@yahoo.com>")
+    (color-theme-blue-sea "Blue Sea" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-calm-forest "Calm Forest" "Artur Hefczyc <kobit@plusnet.pl>")
+    (color-theme-charcoal-black "Charcoal Black" "Lars Chr. Hausmann <jazz@zqz.dk>")
+    (color-theme-goldenrod "Cheap Goldenrod" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-clarity "Clarity and Beauty" "Richard Wellum <rwellum@cisco.com>")
+    (color-theme-classic "Classic" "Frederic Giroud <postcard@worldonline.fr>")
+    (color-theme-comidia "Comidia" "Marcelo Dias de Toledo <mtole@ig.com.br>")
+    (color-theme-jsc-dark "Cooper Dark" "John S Cooper <John.Cooper@eu.citrix.com>")
+    (color-theme-jsc-light "Cooper Light" "John S Cooper <John.Cooper@eu.citrix.com>")
+    (color-theme-jsc-light2 "Cooper Light 2" "John S Cooper <John.Cooper@eu.citrix.com>")
+    (color-theme-dark-blue "Dark Blue" "Chris McMahan <cmcmahan@one.net>")
+    (color-theme-dark-blue2 "Dark Blue 2" "Chris McMahan <cmcmahan@one.net>")
+    (color-theme-dark-green "Dark Green" "eddy_woody@hotmail.com")
+    (color-theme-dark-laptop "Dark Laptop" "Laurent Michel <ldm@cs.brown.edu>")
+    (color-theme-deep-blue "Deep Blue" "Tomas Cerha <cerha@brailcom.org>")
+    (color-theme-digital-ofs1 "Digital OFS1" "Gareth Owen <gowen@gwowen.freeserve.co.uk>")
+    (color-theme-euphoria "Euphoria" "oGLOWo@oGLOWo.cjb.net")
+    (color-theme-feng-shui "Feng Shui" "Walter Higgins <walterh@rocketmail.com>")
+    (color-theme-fischmeister "Fischmeister"
+			      "Sebastian Fischmeister <sfischme@nexus.lzk.tuwien.ac.at>")
+    (color-theme-gnome "Gnome" "Jonadab <jonadab@bright.net>")
+    (color-theme-gnome2 "Gnome 2" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-gray1 "Gray1" "Paul Pulli <P.Pulli@motorola.com>")
+    (color-theme-gray30 "Gray30" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-kingsajz "Green Kingsajz" "Olgierd `Kingsajz' Ziolko <kingsajz@rpg.pl>")
+    (color-theme-greiner "Greiner" "Kevin Greiner <kgreiner@mapquest.com>")
+    (color-theme-gtk-ide "GTK IDE" "Gordon Messmer <gordon@dragonsdawn.net>")
+    (color-theme-high-contrast "High Contrast" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-hober "Hober" "Edward O'Connor <ted@oconnor.cx>")
+    (color-theme-infodoc "Infodoc" "Frederic Giroud <postcard@worldonline.fr>")
+    (color-theme-jb-simple "JB Simple" "jeff@dvns.com")
+    (color-theme-jedit-grey "Jedit Grey" "Gordon Messmer <gordon@dragonsdawn.net>")
+    (color-theme-jonadabian "Jonadab" "Jonadab <jonadab@bright.net>")
+    (color-theme-jonadabian-slate "Jonadabian Slate" "Jonadab <jonadab@bright.net>")
+    (color-theme-katester "Katester" "Higgins_Walter@emc.com")
+    (color-theme-late-night "Late Night" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-lawrence "Lawrence" "lawrence mitchell <wence@gmx.li>")
+    (color-theme-lethe "Lethe" "Ivica Loncar <ivica.loncar@srk.fer.hr>")
+    (color-theme-ld-dark "Linh Dang Dark" "Linh Dang <linhd@nortelnetworks.com>")
+    (color-theme-marine "Marine" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-matrix "Matrix" "Walter Higgins <walterh@rocketmail.com>")
+    (color-theme-marquardt "Marquardt" "Colin Marquardt <colin@marquardt-home.de>")
+    (color-theme-midnight "Midnight" "Gordon Messmer <gordon@dragonsdawn.net>")
+    (color-theme-mistyday "Misty Day" "Hari Kumar <Hari.Kumar@mtm.kuleuven.ac.be>")
+    (color-theme-montz "Montz" "Brady Montz <bradym@becomm.com>")
+    (color-theme-oswald "Oswald" "Tom Oswald <toswald@sharplabs.com>")
+    (color-theme-parus "Parus" "Jon K Hellan <hellan@acm.org>")
+    (color-theme-pierson "Pierson" "Dan L. Pierson <dan@sol.control.com>")
+    (color-theme-ramangalahy "Ramangalahy" "Solofo Ramangalahy <solofo@irisa.fr>")
+    (color-theme-raspopovic "Raspopovic" "Pedja Raspopovic <pedja@lsil.com>")
+    (color-theme-renegade "Renegade" "Dave Benjamin <ramen@ramenfest.com>")
+    (color-theme-resolve "Resolve" "Damien Elmes <resolve@repose.cx>")
+    (color-theme-retro-green "Retro Green" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-retro-orange "Retro Orange" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-robin-hood "Robin Hood" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-rotor "Rotor" "Jinwei Shen <shenjw@wam.umd.edu>")
+    (color-theme-ryerson "Ryerson" "Luis Fernandes <elf@ee.ryerson.ca>")
+    (color-theme-salmon-diff "Salmon Diff" "Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-salmon-font-lock "Salmon Font-Lock" "Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-scintilla "Scintilla" "Gordon Messmer <gordon@dragonsdawn.net>")
+    (color-theme-shaman "Shaman" "shaman@interdon.net")
+    (color-theme-sitaramv-nt "Sitaram NT"
+			     "Sitaram Venkatraman <sitaramv@loc251.tandem.com>")
+    (color-theme-sitaramv-solaris "Sitaram Solaris"
+				  "Sitaram Venkatraman <sitaramv@loc251.tandem.com>")
+    (color-theme-snow "Snow" "Nicolas Rist <Nicolas.Rist@alcatel.de>")
+    (color-theme-snowish "Snowish" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-standard-ediff "Standard Ediff" "Emacs Team, added by Alex Schroeder <alex@gnu.org>" t)
+    (color-theme-standard "Standard Emacs 20" "Emacs Team, added by Alex Schroeder <alex@gnu.org>")
+    (color-theme-emacs-21 "Standard Emacs 21" "Emacs Team, added by Alex Schroeder <alex@gnu.org>")
+    (color-theme-emacs-nw "Standard Emacs 21 No Window" "Emacs Team, added by D. Goel <deego@gnufans.org>")
+    (color-theme-xemacs "Standard XEmacs" "XEmacs Team, added by Alex Schroeder <alex@gnu.org>")
+    (color-theme-subtle-blue "Subtle Blue" "Chris McMahan <cmcmahan@one.net>")
+    (color-theme-subtle-hacker "Subtle Hacker" "Colin Walters <levanti@verbum.org>")
+    (color-theme-taming-mr-arneson "Taming Mr Arneson" "Erik Arneson <erik@aarg.net>")
+    (color-theme-taylor "Taylor" "Art Taylor <reeses@hemisphere.org>")
+    (color-theme-tty-dark "TTY Dark" "O Polite <m2@plusseven.com>")
+    (color-theme-vim-colors "Vim Colors" "Michael Soulier <msoulier@biryani.nssg.mitel.com>")
+    (color-theme-whateveryouwant "Whateveryouwant" "Fabien Penso <penso@linuxfr.org>, color by Scott Jaderholm <scott@jaderholm.com>")
+    (color-theme-wheat "Wheat" "Alex Schroeder <alex@gnu.org>")
+    (color-theme-pok-wob "White On Black" "S. Pokrovsky <pok@nbsp.nsk.su>")
+    (color-theme-pok-wog "White On Grey" "S. Pokrovsky <pok@nbsp.nsk.su>")
+    (color-theme-word-perfect "WordPerfect" "Thomas Gehrlein <Thomas.Gehrlein@t-online.de>")
+    (color-theme-xp "XP" "Girish Bharadwaj <girishb@gbvsoft.com>"))
+  "List of color themes.
+
+Each THEME is itself a three element list (FUNC NAME MAINTAINER &optional LIBRARY).
+
+FUNC is a color theme function which does the setup.  The function
+FUNC may call `color-theme-install'.  The color theme function may be
+interactive.
+
+NAME is the name of the theme and MAINTAINER is the name and/or email of
+the maintainer of the theme.
+
+If LIBRARY is non-nil, the color theme will be considered a library and
+may not be shown in the default menu.
+
+If you defined your own color theme and want to add it to this list,
+use something like this:
+
+  (add-to-list 'color-themes '(color-theme-gnome2 \"Gnome2\" \"Alex\"))")
+
+;; Added by Peter S Galbraith <psg@debian.org>, 2005-10-25
+;;
+;; A color-theme can can selected and enabled for future sessions by
+;; customizing this instead of calling `color-theme-select'
+(defcustom color-theme-selection nil
+  "Color theme selection.
+Select and save to enable your choice in future sessions.
+There is very limited undo capability to the previous state only."
+  :type (progn
+          (setq color-themes (delq (assq 'color-theme-snapshot color-themes)
+                                   color-themes)
+                color-themes (delq (assq 'bury-buffer color-themes)
+                                   color-themes))
+          (append
+           '(radio)
+           (cons '(const :tag "Undo" nil)
+                 (mapcar (function (lambda (arg) `(const ,arg)))
+                         (mapcar '(lambda (x) (elt x 1)) color-themes)))))
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (unless color-theme-initialized (color-theme-initialize))
+         (cond
+          (value             
+           (fset 'color-theme-snapshot (color-theme-make-snapshot))
+           (eval
+            (delq nil
+                  (mapcar
+                   '(lambda (x) (if (string-equal (elt x 1) value)
+                                    (car x)))
+                   color-themes))))
+          ((fboundp 'color-theme-snapshot)
+           (color-theme-snapshot))))
+  :group 'color-theme
+  :require 'color-theme)
+
 ;; csv-mode
 (defgroup CSV nil
   "Major mode for editing files of comma-separated value type."

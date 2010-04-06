@@ -9,8 +9,14 @@ emacs-goodies-el (31.7) unstable; urgency=low
   - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el in
     buffer with non-existent current directory", thanks to Kevin Ryde
     (Closes: #574650).
+  - color-theme: "Please update to color-theme 6.6", thanks to Douglas Calvert
+    (Closes: #573059).  Now comes in two files: color-theme.el and
+    color-theme-library.el, which was added to the package.  Upstream uses
+    a subdirectory for it, but I opted not-to for simplicity.  I did have
+    to patch it a bit to look for "color-theme-*" files instead of
+    "color-theme*" files for that reason.
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 08:11:53 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 15:35:40 -0400
 
 emacs-goodies-el (31.6) unstable; urgency=low
 
