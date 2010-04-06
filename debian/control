@@ -59,6 +59,7 @@ Description: Miscellaneous add-ons for Emacs
   matlab - major mode for MatLab dot-m files;
   minibuf-electric -  electric minibuffer behavior from XEmacs;
   minibuffer-complete-cycle - cycle through the *Completions* buffer;
+  miniedit - enhanced editing for minibuffer fields;
   mutt-alias - lookup and insert the expansion of mutt mail aliases;
   muttrc-mode - major mode for editing Mutt config files;
   obfusurl - obfuscate an URL;

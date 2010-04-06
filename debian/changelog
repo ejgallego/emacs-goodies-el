@@ -1,3 +1,12 @@
+emacs-goodies-el (32.0) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+    New file:
+   - miniedit.el --- Enhanced editing for minibuffer fields.
+     Thanks to Joerg Jaspert for the suggestion (Closes: #514519).
+
+ --
+
 emacs-goodies-el (31.8) unstable; urgency=low
 
   * emacs-goodies-el:

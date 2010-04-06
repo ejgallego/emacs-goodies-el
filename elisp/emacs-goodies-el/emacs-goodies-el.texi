@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.88 2010/04/04 21:15:03 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.89 2010/04/06 22:58:19 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -108,6 +108,7 @@ be documented.
 * matlab::                      Major mode for MATLAB dot-m files
 * minibuf-electric::            Electric minibuffer behavior from XEmacs
 * minibuffer-complete-cycle::   Cycle through the *Completions* buffer
+* miniedit ::                  Enhanced editing for minibuffer fields
 * mutt-alias::                  Lookup/insert mutt mail aliases
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
@@ -2692,7 +2693,7 @@ In the next GNU Emacs release (V22), the following will achieve this:
   (file-name-shadow-mode 1)
 @end example
 
-@node minibuffer-complete-cycle, mutt-alias, minibuf-electric, Top
+@node minibuffer-complete-cycle, miniedit, minibuf-electric, Top
 @chapter minibuffer-complete-cycle - cycle through the *Completions* buffer
 
 @noindent Author: Kevin Rodgers <ihs_4664@@yahoo.com>
@@ -2725,7 +2726,30 @@ name completion) inserting the directory component of the initial
 input, and then inserting the completion string itself is based on
 cycle-mini.el (1.03) by Joe Reiss <jreiss@@vt.edu>.
 
-@node mutt-alias, muttrc-mode, minibuffer-complete-cycle, Top
+@node miniedit, mutt-alias, minibuffer-complete-cycle, Top
+@chapter miniedit - enhanced editing for minibuffer fields
+
+@noindent Authors: Deepak Goel <deego3@@gmail.com>, Christoph Conrad < christoph.conrad@@gmx.de>
+
+miniedit adds a key @key{C-M-e} (e for edit) to the
+minibuffer-local-map, and other similar maps, and binds it to the
+function miniedit.  This means that when you are in a minibuffer, trying
+to enter something, you can type @key{C-M-e} to go enter those fields in
+a nice full buffer (with text mode) instead.  In particular, inserting
+new lines and indenting is easy..  Helpful, for instance, when editing
+bbdb notes fields, which tend to be multiline, (right?). Type
+@key{M-C-c} or @key{C-c C-c} when done.
+
+Installation can be done by customizing the variable
+@code{miniedit-install} and saving the setting, or by inserting
+@example
+    (miniedit-install)
+@end example
+
+in their ~/.emacs file (XEmacs users should enter
+@code{(miniedit-install-for-xemacs)} instead.
+
+@node mutt-alias, muttrc-mode, miniedit, Top
 @chapter mutt-alias - Lookup/insert mutt mail aliases.
 
 @noindent Author: Dave Pearson <davep@@davep.org>

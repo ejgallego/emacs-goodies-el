@@ -446,6 +446,26 @@ There is very limited undo capability to the previous state only."
 ;;:require 'minibuffer-complete-cycle
   :group 'emacs-goodies-el)
 
+(defgroup miniedit nil
+  "Miniedit"
+  :group 'applications
+  :link '(custom-manual "(emacs-goodies-el)miniedit")
+  :load 'miniedit
+  :require 'miniedit
+  :group 'emacs-goodies-el)
+
+(defcustom miniedit-install nil
+  "Whether to setup miniedit for use."
+  :type 'boolean
+  :set (lambda (symbol value)
+         (set-default symbol value)
+         (when value
+           (if (string-match "XEmacs" emacs-version)
+               (miniedit-install-for-xemacs)
+             (miniedit-install))))
+  :require 'miniedit
+  :group 'miniedit)
+
 ;; mutt-alias
 (defgroup mutt-alias nil
   "Lookup mutt mail aliases."
