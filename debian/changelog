@@ -6,8 +6,11 @@ emacs-goodies-el (31.7) unstable; urgency=low
   - cyclebuffer.el: removed since users can now do that using "C-x C-left"
     and "C-x C-right", thanks to jidanni@jidanni.org (Closes: #476497).
   - maplines.el: New upstream version by new maintainer Paul Hobbs.
+  - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el in
+    buffer with non-existent current directory", thanks to Kevin Ryde
+    (Closes: #574650).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 05 Apr 2010 16:01:56 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 08:11:53 -0400
 
 emacs-goodies-el (31.6) unstable; urgency=low
 

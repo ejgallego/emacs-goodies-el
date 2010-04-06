@@ -67,6 +67,11 @@
 ;;  1.8 Ben Voui <intrigeri@boum.org>
 ;;      - Avoid saving incomplete perldoc-modules-alist
 ;;        perldoc-functions-alist (Closes: #575455)
+;;
+;;  1.9 Ben Voui <intrigeri@boum.org>
+;;      - Don't depend on the existence of default-directory.
+;;        Thanks to Kevin Ryde <user42@zip.com.au> for the patch.
+;;        (Closes: #574650)
 
 
 ;;  Comments / suggests / feedback welcomed to
@@ -122,7 +127,8 @@ A non-nil argument forces caches to be updated."
 		(tmp-functions-alist nil))
 	    (set-buffer tmp-buffer)
 	    (erase-buffer)
-	    (shell-command "perldoc -u perlfunc" t)
+	    (let ((default-directory "/"))
+	      (shell-command "perldoc -u perlfunc" t))
 	    (goto-char (point-min))
 	    (cond
 	     ((search-forward "Alphabetical Listing of Perl Functions" nil t)
@@ -156,7 +162,8 @@ An non-nil argument forces caches to be updated."
 		(tmp-modules-alist nil))
 	    (set-buffer tmp-buffer)
 	    (erase-buffer)
-	    (shell-command "perl -e 'print \"@INC\"'" t)
+	    (let ((default-directory "/"))
+	      (shell-command "perl -e 'print \"@INC\"'" t))
 	    (goto-char (point-min))
 	    (while (re-search-forward "\\(/[^ ]*\\)" nil t)
 	      (let ((libdir (match-string 1)))
@@ -166,7 +173,8 @@ An non-nil argument forces caches to be updated."
 	      (let (modules (list))
 		(when (file-readable-p dir)
 		  (erase-buffer)
-		  (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t)
+		  (let ((default-directory "/"))
+		    (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t))
 		  (goto-char (point-min))
 		  (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).pm$") nil t)
 		    (let ((entry (list (replace-regexp-in-string "/" "::" (match-string 1)))))
@@ -226,7 +234,8 @@ Sets up process sentinals and needed environment to call perldoc."
     (text-mode)
     (message "Loading documentation ..")
     (set-process-sentinel
-     (apply 'start-process args)
+     (let ((default-directory "/"))
+       (apply 'start-process args))
      'perldoc-sentinel)))
 
 (defun perldoc-function (function)
