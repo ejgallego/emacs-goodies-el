@@ -10,17 +10,22 @@ This is a checklist for adding files to the emacs-goodies-el package.
 
 - When files are maintained by us, do it in CVS.
   When files have an upstream maintainer, submit patches upstream.  If not
-  responsive, handle them by creating a new debian/patches dpatch.
+  responsive, handle them by creating a new "quilt" patch in debian/patches.
 
 - Make sure all interactive commands that are entry points into the file
   have autoload cookies.
-  Update the `emacs-goodies-loaddefs.el' file by running:
 
-  $ debian/rules patch
-  $ cd elisp/emacs-goodies-el
-  $ sh emacs-goodies-loaddefs.make 
-  $ cd -
-  $ debian/rules unpatch
+ (This following step is no longer done, as the emacs-goodies-loaddefs.el
+  file is generated at install time now:
+#
+#  Update the `emacs-goodies-loaddefs.el' file by running:
+#
+#  $ debian/rules patch
+#  $ cd elisp/emacs-goodies-el
+#  $ sh emacs-goodies-loaddefs.make 
+#  $ cd -
+#  $ debian/rules unpatch
+ )
 
 - Update `emacs-goodies-custom.el' by adding a modified copy of the file's
   defgroup.  Add lines for `:load' and a `:group 'emacs-goodies-el'.
