@@ -1,4 +1,4 @@
-emacs-goodies-el (31.8) UNRELEASED; urgency=low
+emacs-goodies-el (31.8) unstable; urgency=low
 
   * emacs-goodies-el:
   - maplines.el: New upstream version by new maintainer Paul Hobbs.
@@ -12,7 +12,7 @@ emacs-goodies-el (31.8) UNRELEASED; urgency=low
     to patch it a bit to look for "color-theme-*" files instead of
     "color-theme*" files for that reason.
 
- -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 15:41:08 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 16:59:33 -0400
 
 emacs-goodies-el (31.7) unstable; urgency=low
 
