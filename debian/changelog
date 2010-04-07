@@ -6,8 +6,11 @@ emacs-goodies-el (32.0) UNRELEASED; urgency=low
      Thanks to Joerg Jaspert for the suggestion (Closes: #514519).
    - bm.el --- Visible bookmarks in buffers.
      Thanks to Boris Daix for the suggestion (Closes: #353982).
+    Bug fixes:
+   - ctypes.el: Added a require for cc-mode in order to use its font-lock
+     faces.  Should close Unbuntu bug #162954.
   
- -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 19:46:20 -0400
+ -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 21:21:50 -0400
 
 emacs-goodies-el (31.8) unstable; urgency=low
 

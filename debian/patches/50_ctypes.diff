@@ -23,9 +23,8 @@ esac
 exit 0
 
 @DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el
---- /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el	2003-11-06 22:30:06.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el	2003-11-10 21:42:40.000000000 -0500
+--- a/elisp/emacs-goodies-el/ctypes.el
++++ b/elisp/emacs-goodies-el/ctypes.el
 @@ -4,9 +4,9 @@
  
  ;; Author: Anders Lindgren <andersl@andersl.com>
@@ -38,7 +37,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  
  ;; CTypes is free software; you can redistribute it and/or modify
  ;; it under the terms of the GNU General Public License as published by
-@@ -228,11 +228,22 @@
+@@ -228,14 +228,26 @@
  
  ;;}}}
  
@@ -62,7 +61,11 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  ;; version we are using.
  
  (require 'font-lock)
-@@ -243,19 +254,38 @@
++(require 'cc-mode)
+ 
+ (eval-when-compile
+   (require 'cl))
+@@ -243,19 +255,38 @@
  ;;}}}
  ;;{{{ Variables
  
@@ -71,9 +74,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
 +(defgroup ctypes nil
 +  "Enhanced Font lock support for custom defined types."
 +  :group 'programming)
- 
--When `ctypes-read-file' and `ctypes-write-file' are called interactively
--the directory part of the file name is ignored.")
++
 +(defcustom ctypes-install nil
 +  "*Whether to load this file at macs startup.
 +Setting this variable will load the file to install the 'find-file-hooks
@@ -89,7 +90,9 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  
 +(defcustom ctypes-file-name "~/.ctypes"
 +  "*Default name of file to read types from.
-+When `ctypes-read-file' and `ctypes-write-file' are called interactively
+ When `ctypes-read-file' and `ctypes-write-file' are called interactively
+-the directory part of the file name is ignored.")
+-
 +the directory part of the file name is ignored."
 +  :type 'file
 +  :group 'ctypes)
@@ -110,7 +113,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  
  (defvar ctypes-mode-descriptor
    (if (boundp 'c-font-lock-extra-types)
-@@ -300,13 +330,13 @@
+@@ -300,13 +331,13 @@
  when the function is called.")
  
  
@@ -130,24 +133,23 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  
  The default behavior, when `ctypes-dir-read-file' is nil, is to look
  at the extension of the files found.  Should it match a major mode in
-@@ -331,11 +361,29 @@
+@@ -331,11 +362,29 @@
      (setq ctypes-dir-read-file \"\\\\.cplusplus\\\\'\")
  
  However, the files would still need a -*- C++ -*- header line
 -to be parsed as C++ files.")
+-
 +to be parsed as C++ files."
 +  :type '(choice (const :tag "nil; fast approach." nil)
 +                 (const :tag "t; read all non-backup files" t)
 +                 (regexp :tag "regexp to match files"))
 +  :group 'ctypes)
- 
++
 +(defcustom ctypes-dir-backup-files nil
 +  "*Non-nil means that `ctypes-dir' should parse backup files."
 +  :type 'boolean
 +  :group 'ctypes)
- 
--(defvar ctypes-dir-backup-files nil
--  "*Non-nil means that `ctypes-dir' should parse backup files.")
++
 +(defcustom ctypes-auto-parse-mode-hook nil
 +  "*List of functions to run when `ctypes-auto-parse-mode' is activated."
 +  :type 'hook
@@ -157,13 +159,15 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
 +  "*List of functions to run when `ctypes' is loaded."
 +  :type 'hook
 +  :group 'ctypes)
-+
+ 
+-(defvar ctypes-dir-backup-files nil
+-  "*Non-nil means that `ctypes-dir' should parse backup files.")
 +(defvar ctypes-saved-p t
 +  "Nil when types not saved to file.")
  
  (defvar ctypes-auto-parse-mode nil
    "Non-nil when the minor mode `ctypes-auto-parse-mode' is enabled.
-@@ -346,18 +394,6 @@
+@@ -346,18 +395,6 @@
  To start the mode call the function `ctypes-auto-parse-mode', do not
  set this variable explicitly.")
  
@@ -182,7 +186,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  (defvar ctypes-repetitive-type-regexp
    (concat "\\<\\(short\\|int\\|long\\|float\\|"
            "double\\|char\\|\\(un\\)?signed\\|const\\)\\>")
-@@ -387,7 +423,7 @@
+@@ -387,7 +424,7 @@
  When preceded by C-u the display is not updated.
  
  Return non-nil if the type was not known before."
@@ -191,7 +195,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
     (list
      (let* ((default (ctypes-get-type-under-point))
             (prompt (if default
-@@ -400,7 +436,7 @@
+@@ -400,7 +437,7 @@
        (error "Can't define \"\" as a type"))
    (or mode
        (setq mode major-mode))
@@ -200,7 +204,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
         (> (length type) 0)
         (let ((added (ctypes-add-types mode (list type))))
           (ctypes-perform-action mode added delay-action)
-@@ -552,7 +588,7 @@
+@@ -552,7 +589,7 @@
  When preceded by C-u the display is not updated.
  
  Return non-nil if type is removed."
@@ -209,7 +213,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
     (list
      (let* ((default (ctypes-get-type-under-point))
             (prompt (if default
-@@ -828,7 +864,7 @@
+@@ -828,7 +865,7 @@
  ;;{{{ Edit
  
  (defvar ctypes-edit-map nil
@@ -218,7 +222,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  (if ctypes-edit-map
      nil
    (setq ctypes-edit-map (make-sparse-keymap))
-@@ -1087,7 +1123,7 @@
+@@ -1087,7 +1124,7 @@
  
  
  (defun ctypes-subset (type-list1 type-list2)
@@ -227,7 +231,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
    (let ((included t))
      (while (and included type-list1)
        (if (not (member (car type-list1) type-list2))
-@@ -1127,7 +1163,7 @@
+@@ -1127,7 +1164,7 @@
  
  The action is performed immediately for major modes in MODES, and for
  major modes that inherits types from modes in MODES, when
@@ -236,7 +240,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  previously have been marked for delayed action.
  
  Should DELAY-ACTION be non-nil, the actions are not performed
-@@ -1189,7 +1225,7 @@
+@@ -1189,7 +1226,7 @@
  
  
  (defun ctypes-perform-delayed-action ()
@@ -245,7 +249,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
    (ctypes-perform-action ctypes-delayed-action-list nil nil))
  
  ;;}}}
-@@ -1243,7 +1279,7 @@
+@@ -1243,7 +1280,7 @@
      (set (make-local-variable 'parse-sexp-ignore-comments) t)
      (unwind-protect
          (let ((lst '()))
@@ -254,7 +258,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
                    "^\\(\\(typedef\\)\\|class\\|struct\\|enum\\)\\>" nil t)
              (condition-case ()
                  (if (match-beginning 2)
-@@ -1494,15 +1530,15 @@
+@@ -1494,15 +1531,15 @@
                         (forward-char -1)
                       (goto-char end))
                     (skip-chars-backward " \t")
@@ -276,7 +280,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
                              (concat (downcase (buffer-substring beg end))
                                                   "-mode"))
                                   modes))))))
-@@ -1559,7 +1595,7 @@
+@@ -1559,7 +1596,7 @@
  
  
  (defun ctypes-string-to-mode (mode)
@@ -285,7 +289,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
  
  Example:
      (ctypes-string-to-mode \"C++\")  =>  c++-mode"
-@@ -1659,7 +1695,7 @@
+@@ -1659,7 +1696,7 @@
            ;; Fontify each declaration item.
            (list 'font-lock-match-c++-style-declaration-item-and-skip-to-next
              ;; Start with point after all type specifiers.
@@ -294,7 +298,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
                    (list 'or (list 'match-beginning
                                    (+ 2 (regexp-opt-depth regexp)))
                          '(match-end 1)))
-@@ -1682,7 +1718,7 @@
+@@ -1682,7 +1719,7 @@
                ((= number 2)
                 (setq keywords keyword-2))
                (t
@@ -303,7 +307,7 @@ diff -urNad /home/psg/emacs/emacs-goodies-el/newfiles/emacs-goodies-el/elisp/ema
                        number)))
          (if append-p
              (set var (append (symbol-value var) (list keywords)))
-@@ -1730,13 +1766,11 @@
+@@ -1730,13 +1767,11 @@
  
  ;;}}}
  
