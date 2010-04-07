@@ -464,7 +464,7 @@ There is very limited undo capability to the previous state only."
 ;;:require 'miniedit
   :group 'emacs-goodies-el)
 
-(defcustom miniedit-install nil
+(defcustom miniedit-install-p nil
   "Whether to setup miniedit for use."
   :type 'boolean
   :set (lambda (symbol value)

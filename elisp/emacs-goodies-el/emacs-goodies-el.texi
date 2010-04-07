@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.90 2010/04/07 00:29:34 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.91 2010/04/07 00:38:45 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -2908,7 +2908,7 @@ bbdb notes fields, which tend to be multiline, (right?). Type
 @key{M-C-c} or @key{C-c C-c} when done.
 
 Installation can be done by customizing the variable
-@code{miniedit-install} and saving the setting, or by inserting
+@code{miniedit-install-p} and saving the setting, or by inserting
 @example
     (miniedit-install)
 @end example
