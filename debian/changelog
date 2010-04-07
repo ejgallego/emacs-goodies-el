@@ -1,4 +1,4 @@
-emacs-goodies-el (32.0) UNRELEASED; urgency=low
+emacs-goodies-el (32.0) unstable; urgency=low
 
   * emacs-goodies-el:
     New files:
@@ -9,13 +9,16 @@ emacs-goodies-el (32.0) UNRELEASED; urgency=low
     Bug fixes:
    - ctypes.el: Added a require for cc-mode in order to use its font-lock
      faces.  Should close Unbuntu bug #162954.
-  
- -- Peter S Galbraith <psg@debian.org>  Tue, 06 Apr 2010 21:21:50 -0400
+   - color-theme_seldefcustom.el: New file to hold `color-theme' selection
+     customization to avoid loading color-theme on startup even for those
+     who don't use it.
+
+ -- Peter S Galbraith <psg@debian.org>  Wed, 07 Apr 2010 14:14:23 -0400
 
 emacs-goodies-el (31.8) unstable; urgency=low
 
   * emacs-goodies-el:
-  - maplines.el: New upstream version by new maintainer Paul Hobbs.
+  - map-lines.el: New upstream version by new maintainer Paul Hobbs.
   - perldoc.el: New upstream version by Ben Voui, fixes "perldoc.el in
     buffer with non-existent current directory", thanks to Kevin Ryde
     (Closes: #574650).
