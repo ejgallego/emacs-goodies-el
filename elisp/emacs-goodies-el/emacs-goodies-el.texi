@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.89 2010/04/06 22:58:19 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.90 2010/04/07 00:29:34 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -70,6 +70,7 @@ be documented.
 * auto-fill-inhibit::           auto-fill-mode (de)activation
 * ascii::                       ASCII code display for character under point
 * bar-cursor::                  Switch block cursor to a bar
+* bm::                          Visible bookmarks in buffers
 * boxquote::                    Quote text with a semi-box
 * browse-huge-tar::             Browse files in a tarball memory-efficiently
 * browse-kill-ring::            Interactively insert items from kill-ring
@@ -108,7 +109,7 @@ be documented.
 * matlab::                      Major mode for MATLAB dot-m files
 * minibuf-electric::            Electric minibuffer behavior from XEmacs
 * minibuffer-complete-cycle::   Cycle through the *Completions* buffer
-* miniedit ::                  Enhanced editing for minibuffer fields
+* miniedit::                    Enhanced editing for minibuffer fields.
 * mutt-alias::                  Lookup/insert mutt mail aliases
 * muttrc-mode::                 Major mode to edit muttrc under Emacs
 * obfusurl::                    Obfuscate URLs so they aren't spoilers
@@ -285,7 +286,7 @@ table evaluation (depending on character encoding).
 
 Thanks to Alex Schroeder <asc@@bsiag.com> for suggestion on customization.
 
-@node bar-cursor, boxquote, ascii, Top
+@node bar-cursor, bm, ascii, Top
 @chapter bar-cursor - switch block cursor to a bar
 
 A simple package to convert the block cursor into a bar cursor.  In
@@ -297,7 +298,173 @@ To enable it, customize the variable @code{bar-cursor-mode}.
 
 It is also listed when you customize the group @code{emacs-goodies-el}.
 
-@node boxquote, browse-huge-tar, bar-cursor, Top
+@node bm, boxquote, bar-cursor, Top
+@chapter bm - visible bookmarks in buffers
+
+@noindent Author: Jo Odland <jo.odland@@gmail.com>
+
+This package was created because I missed the bookmarks from M$
+Visual Studio. I find that they provide an easy way to navigate
+in a buffer.
+
+bm.el provides visible, buffer local, bookmarks and the ability
+to jump forward and backward to the next bookmark.
+
+@noindent Features:
+@itemize @bullet
+@item
+Toggle bookmarks with @command{bm-toggle} and navigate forward and
+backward in buffer with @command{bm-next} and @command{bm-previous}.
+
+@item
+Different wrapping modes, see @code{bm-wrap-search} and
+@code{bm-wrap-immediately}.  Use @command{bm-toggle-wrapping} to turn
+wrapping on/off.
+
+@item
+Navigate between bookmarks only in current buffer or cycle through
+all buffers.  Use @command{bm-cycle-all-buffers} to enable looking
+for bookmarks across all open buffers.
+
+@item
+Setting bookmarks based on a regexp, see @code{bm-bookmark-regexp} and
+@code{bm-bookmark-regexp-region}.
+
+@item
+Setting bookmark based on line number, see @command{bm-bookmark-line}.
+
+@item
+Goto line position or start of line, see @command{bm-goto-position}.
+
+@item
+Persistent bookmarks (see below). Use
+@command{bm-toggle-buffer-persistence} to enable/disable persistent
+bookmarks (buffer local).
+
+@item
+List bookmarks with annotations and context in a separate buffer, see
+@command{bm-show} (current buffer) and @command{bm-show-all} (all
+buffers).
+
+@item
+Remove all bookmarks in current buffer with
+@command{bm-remove-all-current-buffer} and all bookmarks in all open
+buffers with @command{bm-remove-all-all-buffers}.
+
+@item
+Annotate bookmarks, see @command{bm-bookmark-annotate} and
+@command{bm-bookmark-show-annotation}.  The annotation is displayed
+in the messsage area when navigating to a bookmark.  Set the variable
+@code{bm-annotate-on-create} to t to be prompted for an annotation
+when bookmark is created.
+
+@item
+Different bookmark styles, fringe-only, line-only or both, see
+@code{bm-highlight-style}. It is possible to have fringe-markers on
+left or right side.
+@end itemize
+
+To make it easier to use, assign the commands to some keys.
+
+@example
+M$ Visual Studio key setup.
+  (global-set-key (kbd "<C-f2>") 'bm-toggle)
+  (global-set-key (kbd "<f2>")   'bm-next)
+  (global-set-key (kbd "<S-f2>") 'bm-previous)
+@end example
+
+Click on fringe to toggle bookmarks, and use mouse wheel to move
+between them.
+@example
+  (global-set-key (kbd "<left-fringe> <mouse-5>") 'bm-next-mouse)
+  (global-set-key (kbd "<left-fringe> <mouse-4>") 'bm-previous-mouse)
+  (global-set-key (kbd "<left-fringe> <mouse-1>") 'bm-toggle-mouse)
+@end example
+
+If you would like the markers on the right fringe instead of the
+left, add the following to line:
+
+@example
+(setq bm-marker 'bm-marker-right)
+@end example
+
+@noindent Persistence:
+
+Bookmark persistence is achieved by storing bookmark data in a
+repository when a buffer is killed. The repository is saved to
+disk on exit. See @code{bm-repository-file}. The maximum size of the
+repository is controlled by @code{bm-repository-size}.
+
+The buffer local variable @code{bm-buffer-persistence} decides if
+bookmarks in a buffer is persistent or not. Non-file buffers can't have
+persistent bookmarks, except for *info* and indirect buffers.
+
+Bookmarks are non-persistent as default. To have bookmarks
+persistent as default add the following line to .emacs.
+
+@example
+;; make bookmarks persistent as default
+(setq-default bm-buffer-persistence t)
+@end example
+
+Use the function @command{bm-toggle-buffer-persistence} to toggle
+bookmark persistence.
+
+To have automagic bookmark persistence we need to add some
+functions to the following hooks. Insert the following code
+into your .emacs file:
+
+If you are using desktop or other packages that restore buffers on start
+up, bookmarks will not be restored. When using @code{after-init-hook} to
+restore the repository, it will be restored *after* .emacs is
+finished. To load the repository when bm is loaded set the variable
+@code{bm-restore-repository-on-load} to t, *before* loading bm (and
+don't use the @code{after-init-hook}).
+
+@example
+;; Make sure the repository is loaded as early as possible
+(setq bm-restore-repository-on-load t)
+(require 'bm)
+
+;; Loading the repository from file when on start up.
+(add-hook' after-init-hook 'bm-repository-load)
+
+;; Restoring bookmarks when on file find.
+(add-hook 'find-file-hooks 'bm-buffer-restore)
+
+;; Saving bookmark data on killing a buffer
+(add-hook 'kill-buffer-hook 'bm-buffer-save)
+
+;; Saving the repository to file when on exit.
+;; kill-buffer-hook is not called when Emacs is killed, so we
+;; must save all bookmarks first.
+(add-hook 'kill-emacs-hook '(lambda nil
+     		             (bm-buffer-save-all)
+   		             (bm-repository-save)))
+
+;; Update bookmark repository when saving the file.
+(add-hook 'after-save-hook 'bm-buffer-save)
+
+;; Restore bookmarks when buffer is reverted.
+(add-hook 'after-revert-hook 'bm-buffer-restore)
+@end example
+
+The @code{after-save-hook} and @code{after-revert-hook} is not necessary
+to use to achieve persistence, but it makes the bookmark data in
+repository more in sync with the file state.
+
+The @code{after-revert-hook} might cause trouble when using packages
+that automatically reverts the buffer (like vc after a check-in).  This
+can easily be avoided if the package provides a hook that is called
+before the buffer is reverted (like @code{vc-before-checkin-hook}).
+Then new bookmarks can be saved before the buffer is reverted.
+
+@example
+;; make sure bookmarks is saved before check-in (and revert-buffer)
+(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+@end example
+
+@node boxquote, browse-huge-tar, bm, Top
 @chapter boxquote - Quote text with a semi-box.
 
 boxquote provides a set of functions for using a text quoting style that

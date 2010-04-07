@@ -38,6 +38,9 @@ bar-cursor.el allows you to change your cursor from a block to a
 vertical bar in insert mode, and back to a block in overwrite mode.
 Try M-x bar-cursor-mode.
 
+bm.el provides visible, buffer local, bookmarks and the ability to jump
+forward and backward to the next bookmark.
+
 browse-huge-tar.el allows you to browse large tar files without reading
 them into memory.  The trade off is memory usage vs. speed.
 
@@ -301,4 +304,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue,  6 Apr 2010 17:55:36 -0400
+ -- Peter S Galbraith <psg@debian.org>, Tue,  6 Apr 2010 19:09:13 -0400

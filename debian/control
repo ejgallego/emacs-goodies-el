@@ -21,6 +21,7 @@ Description: Miscellaneous add-ons for Emacs
   ascii - ASCII code display for character under point;
   auto-fill-inhibit - finer grained control over auto-fill-mode;
   bar-cursor - change your cursor to a bar instead of a block;
+  bm - visible bookmarks in buffers;
   boxquote - quote texts in nice boxes;
   browse-huge-tar - browse tar files without reading them into memory;
   browse-kill-ring - browse, search, modify the kill ring;

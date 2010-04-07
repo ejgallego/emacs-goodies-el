@@ -31,6 +31,16 @@
 ;;:require 'bar-cursor
   :group 'emacs-goodies-el)
 
+(defgroup bm nil
+  "Visible, buffer local bookmarks."
+  :link '(emacs-library-link :tag "Source Lisp File" "bm.el")
+  :group 'faces
+  :group 'editing
+  :prefix "bm-"
+  :link '(custom-manual "(emacs-goodies-el)bm")
+  :load 'bm
+  :group 'emacs-goodies-el)
+
 ;; boxquote
 (defgroup boxquote nil
   "Mark regions of text with a half-box."
@@ -451,7 +461,7 @@ There is very limited undo capability to the previous state only."
   :group 'applications
   :link '(custom-manual "(emacs-goodies-el)miniedit")
   :load 'miniedit
-  :require 'miniedit
+;;:require 'miniedit
   :group 'emacs-goodies-el)
 
 (defcustom miniedit-install nil
