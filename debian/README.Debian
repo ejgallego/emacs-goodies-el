@@ -214,6 +214,8 @@ perldoc.el provides an interface to the "perldoc" command in your
 Perl-mode or CPerl-mode buffers.  Use (require 'perldoc) in your
 .emacs to activate it, then place point over a word and press F1.
 
+pp-c-l displays Control-l characters in a pretty way.
+
 pod-mode.el provides support for editing Plain Old Documentation
 (Perl documentation) files.  It provides syntax highlighting.
 
@@ -304,4 +306,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue,  6 Apr 2010 19:09:13 -0400
+ -- Peter S Galbraith <psg@debian.org>, Thu,  8 Apr 2010 18:00:10 -0400

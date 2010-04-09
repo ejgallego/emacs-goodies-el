@@ -65,8 +65,9 @@ Description: Miscellaneous add-ons for Emacs
   muttrc-mode - major mode for editing Mutt config files;
   obfusurl - obfuscate an URL;
   pack-windows - resize all windows to display as much info as possible;
-  perldoc - show help for Perl functions and modules. (Depends on perl-doc)
-  pod-mode - major mode for editing POD files
+  perldoc - show help for Perl functions and modules. (Depends on perl-doc);
+  pod-mode - major mode for editing POD files;
+  pp-c-l - display Control-l characters in a pretty way;
   projects - create project-based meaningful buffer names;
   prot-buf - protect buffers from accidental killing;
   protocols - perform lookups in /etc/protocols;

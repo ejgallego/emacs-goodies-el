@@ -359,6 +359,24 @@ and face definitions."
 ;;:require 'perldoc
   :group 'emacs-goodies-el)
 
+;; pp-c-l.el
+(defgroup Pretty-Control-L nil
+  "Options to define pretty display of Control-l (`^L') characters."
+  :prefix "pp^L-" :group 'convenience :group 'wp
+  :link `(url-link :tag "Send Bug Report"
+          ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=pp-c-l.el bug: \
+&body=Describe bug here, starting with `emacs -q'.  \
+Don't forget to mention your Emacs and library versions."))
+  :link '(url-link :tag "Other Libraries by Drew"
+          "http://www.emacswiki.org/cgi-bin/wiki/DrewsElispLibraries")
+  :link '(url-link :tag "Download" "http://www.emacswiki.org/cgi-bin/wiki/pp-c-l.el")
+  :link '(url-link :tag "Description"
+          "http://www.emacswiki.org/cgi-bin/wiki/PrettyControlL")
+  :link '(emacs-commentary-link :tag "Commentary" "pp-c-l")
+  :link '(custom-manual "(emacs-goodies-el)pp-c-l")
+  :load 'pp-c-l
+  :group 'emacs-goodies-el)
+
 ;; projects
 (defgroup projects nil
   "Project-based buffer name management."

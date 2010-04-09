@@ -1,3 +1,12 @@
+emacs-goodies-el (32.1) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+    New files:
+   - pp-c-l.el --- Display Control-l characters in a pretty way.
+     Thanks to Andrey Paramonov for the suggestion (Closes: #524081).
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 08 Apr 2010 18:02:24 -0400
+
 emacs-goodies-el (32.0) unstable; urgency=low
 
   * emacs-goodies-el:

@@ -132,7 +132,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999-2009 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; boxquote.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -663,7 +663,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.31 2010/04/07 00:29:36 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.32 2010/04/09 01:43:29 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -753,7 +753,7 @@ Author/copyright info for muttrc-mode.el:
 Author/copyright info for obfusurl.el:
 ,----
 | ;; Copyright 2001-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; obfusurl.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -789,6 +789,23 @@ Author/copyright info for perldoc.el:
 `----
 
 
+Author/copyright info for pp-c-l.el:
+,----
+| ;; Filename: pp-c-l.el
+| ;; Description: Display Control-l characters in a buffer in a pretty way
+| ;; Author: Drew Adams
+| ;; Maintainer: Drew Adams
+| ;; Copyright (C) 2007-2010, Drew Adams, all rights reserved.
+| [...]
+| ;; URL: http://www.emacswiki.org/cgi-bin/wiki/pp-c-l.el
+| [...]
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License as
+| ;; published by the Free Software Foundation; either version 2, or
+| ;; (at your option) any later version.
+`----
+
+
 Author/copyright info for pod-mode.el:
 ,----
 | ;;; pod-mode.el --- Major mode for editing .pod-files
@@ -797,7 +814,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.31 2010/04/07 00:29:36 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.32 2010/04/09 01:43:29 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -847,7 +864,7 @@ Author/copyright info for protocols.el:
 ,----
 | ;;; protocols.el --- Protocol database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -883,7 +900,7 @@ Author/copyright info for services.el:
 ,----
 | ;;; services.el --- Services database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; services.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -1052,7 +1069,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; thinks.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1064,7 +1081,7 @@ Author/copyright info for tld.el:
 ,----
 | ;;; tld.el --- TLD lookup tool.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.31 $
+| ;; $Revision: 1.32 $
 | 
 | ;; tld.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
