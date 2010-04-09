@@ -4,8 +4,11 @@ emacs-goodies-el (32.1) UNRELEASED; urgency=low
     New files:
    - pp-c-l.el --- Display Control-l characters in a pretty way.
      Thanks to Andrey Paramonov for the suggestion (Closes: #524081).
+    New upstream version:
+   - egocentric.el.  Patch from Ubuntun bug #109132 applied for
+     customization mismatches.
 
- -- Peter S Galbraith <psg@debian.org>  Thu, 08 Apr 2010 18:02:24 -0400
+ --
 
 emacs-goodies-el (32.0) unstable; urgency=low
 
