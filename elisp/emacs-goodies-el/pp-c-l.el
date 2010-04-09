@@ -7,9 +7,9 @@
 ;; Copyright (C) 2007-2010, Drew Adams, all rights reserved.
 ;; Created: Thu Feb 08 20:28:09 2007
 ;; Version: 1.0
-;; Last-Updated: Thu Apr  8 11:18:18 2010 (-0700)
+;; Last-Updated: Thu Apr  8 19:05:24 2010 (-0700)
 ;;           By: dradams
-;;     Update #: 190
+;;     Update #: 193
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/pp-c-l.el
 ;; Keywords: display, convenience, faces
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -60,6 +60,8 @@
 ;; 
 ;;; Change log:
 ;;
+;; 2010/04/08 dadams
+;;     Added autoload cookies.  Thx to Peter Galbraith.
 ;; 2009/03/02 dadams
 ;;     Enhancement by Andrey Paramonov.
 ;;       pp^L-^L-display-table-entry: Added window argument.
