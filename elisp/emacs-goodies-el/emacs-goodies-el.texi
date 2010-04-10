@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.93 2010/04/10 02:04:12 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.94 2010/04/10 02:11:33 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -84,7 +84,7 @@ be documented.
 * df::                          Display space left on partitions in mode-line
 * dict::                        Emacs interface to dict client
 * diminish::                    Diminish minor-mode's display
-* dirvars::                     Local variables that apply to entire directory
+* dir-locals::                  Local variables for a directory tree
 * edit-env::                    Display and edit environment variables
 * egocentric::                  Highlight your name inside emacs buffers
 * ff-paths::                    Searches certain paths to find files
@@ -1054,7 +1054,7 @@ The author hopes you find the program useful and would like to know
 your opinion about the program, improvement suggestions and of course
 bug reports.  Mail them to max-appolo@@mail.ru
 
-@node diminish, dirvars, dict, Top
+@node diminish, dir-locals, dict, Top
 @chapter diminish - Diminish minor-mode's display
 
 Minor modes each put a word on the mode line to signify that they're
@@ -1131,7 +1131,7 @@ interface by customizing the variable @code{diminished-minor-modes}.
 The same caveat as above applies and the minor mode libraries should
 be loaded in ~/.emacs before the @code{custom-set-variables} line.
 
-@node dir-locals
+@node dir-locals, edit-env, diminish, Top
 @chapter dir-locals - local variables for a directory tree
 
 It can be useful to specify local variables directory-wide, e.g. to
@@ -1169,7 +1169,7 @@ Another possible use is, say, setting change-log parameters in
 different trees for which the Emacs 22 development source broke use
 of change-log-mode-hook.
 
-@node edit-env, egocentric, dirvars, Top
+@node edit-env, egocentric, dir-locals, Top
 @chapter edit-env - display and edit environment variables
 
 @noindent Author: Benjamin Rutt <brutt@@bloomington.in.us>
