@@ -20,7 +20,7 @@ elisp/emacs-goodies-el/dedicated.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/df.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/dict.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/diminish.el /usr/share/emacs/site-lisp/emacs-goodies-el/
-elisp/emacs-goodies-el/dirvars.el /usr/share/emacs/site-lisp/emacs-goodies-el/
+elisp/emacs-goodies-el/dir-locals.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/edit-env.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/egocentric.el /usr/share/emacs/site-lisp/emacs-goodies-el/
 elisp/emacs-goodies-el/emacs-goodies-custom.el /usr/share/emacs/site-lisp/emacs-goodies-el/

@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.92 2010/04/09 01:57:15 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.93 2010/04/10 02:04:12 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -1129,59 +1129,45 @@ they're to be converted to diminished modes.
 Alternatively, you can setup dimished modes using the customize
 interface by customizing the variable @code{diminished-minor-modes}.
 The same caveat as above applies and the minor mode libraries should
-be loaded in ~/.emacs before the @code{(custom-set-variables} line.
+be loaded in ~/.emacs before the @code{custom-set-variables} line.
 
-@node dirvars, edit-env, diminish, Top
-@chapter dirvars - local variables that apply to an entire directory.
+@node dir-locals
+@chapter dir-locals - local variables for a directory tree
 
-Emacs allows you to specify local variable values for use when
-editing a file either in the first line or in a local variables
-list.
+It can be useful to specify local variables directory-wide, e.g. to
+define CC mode styles consistently.  This library implements such a
+scheme, controlled by the global minor mode @code{dir-locals-mode}.
 
-This file provides similar functionality, but for an entire
-directory tree.
+Place a file named @code{.emacs-locals} (or the value of
+@code{dir-locals-file-name}) in the directory root.  This should specify
+local variables in the usual way.  The values it sets are inherited
+when a file in the directory tree is found.  Local variables
+specified in the found file override the directory-wide ones.
 
-You simply place an .emacs-dirvars file in the root of your
-project's tree, and you can then set emacs variables like you would
-in a Local Variables: section at the end of a file.  E.g. the
-contents of a typical dirvars file might look like this:
+However, `eval' pseudo-variables specified in the file are
+evaluated (assuming `enable-local-eval' is true) _before_ any
+directory-wide processing, and they are evaluated in a scratch
+buffer, so that they are only useful for side effects on local
+variables.  `mode' pseudo-variables which specify minor modes
+toggle those modes for files within the directory.  If
+.emacs-locals specifies a major mode, it doesn't propagate, but any
+local variables and minor modes its hook sets will; thus it should
+normally not specify a major mode.  The `coding' pseudo-variable
+will not propagate from .emacs-locals.
 
-@example
-   ;; -*- emacs-lisp -*-
-   ;;
-   ;; This file is processed by the dirvars emacs package.  Each variable
-   ;; setting below is performed when this dirvars file is loaded.
-   ;;
-   indent-tabs-mode: nil
-   tab-width: 8
-   show-trailing-whitespace: t
-   indicate-empty-lines: t
-@end example
-
-Much of this code is stolen and modified from the standard Emacs
-files.el
-
-This code refuses to set any symbol that meets any of these
-criteria (this criteria is stolen from files.el):
-
-@itemize @bullet
-@item
-the symbol is in the ignored-local-variables list
-
-@item
-the symbol has the risky-local-variable property.
-
-@item
-the symbol name ends in -hook(s), -function(s), -form(s),
-    -program, -command, or -predicate.
-@end itemize
-
-To use this package, it must be loaded.  You can do this by adding a require
-statement to your @file{~/.emacs} file:
+For example, with dir-locals mode on, placing this in .emacs-locals
+at the top-level of the Linux source tree would set the C
+indentation style appropriately for files within the tree:
 
 @example
-  (require 'dirvars)
+  Local variables:
+  c-file-style: "linux"
+  End:
 @end example
+
+Another possible use is, say, setting change-log parameters in
+different trees for which the Emacs 22 development source broke use
+of change-log-mode-hook.
 
 @node edit-env, egocentric, dirvars, Top
 @chapter edit-env - display and edit environment variables

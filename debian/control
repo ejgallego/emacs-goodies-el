@@ -35,7 +35,7 @@ Description: Miscellaneous add-ons for Emacs
   df - display in the mode line space left on devices;
   dict - wrapper around the 'dict' command. (Depends on bash and dict)
   diminish - shorten or erase modeline presence of minor modes;
-  dirvars - provides directory-wide local variables;
+  dir-locals - provides directory-wide local variables;
   edit-env - display, edit, delete and add environment variables;
   egocentric - highlight your name inside emacs buffers;
   ff-paths - $PATH-like searching in C-x C-f;

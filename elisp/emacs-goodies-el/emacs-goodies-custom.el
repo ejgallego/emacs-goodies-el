@@ -125,6 +125,15 @@ and face definitions."
 ;;:require 'diminish
   :group 'emacs-goodies-el)
 
+;; dir-locals
+(defgroup dir-locals ()
+  "Directory-wide file-local variables"
+  :link '(emacs-commentary-link "dir-locals")
+  :group 'files
+  :link '(custom-manual "(emacs-goodies-el)dir-locals")
+  :load 'dir-locals
+  :group 'emacs-goodies-el)
+
 ;; egocentric
 (defgroup egocentric nil
   "Highlight your name in arbitrary buffers."
