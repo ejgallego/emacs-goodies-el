@@ -1,13 +1,13 @@
 ;;; xrdb-mode.el --- mode for editing X resource database files
 
-;; Copyright (C) 1998,1999,2000,2009 Free Software Foundation, Inc.
+;; Copyright (C) 1998,1999,2000 Free Software Foundation, Inc.
 
-;; Author:        1994-2009 Barry A. Warsaw
+;; Author:        1994-2003 Barry A. Warsaw
 ;; Maintainer:    barry@python.org
 ;; Created:       May 1994
 ;; Keywords:      data languages
 
-(defconst xrdb-version "2.31"
+(defconst xrdb-version "3.0"
   "`xrdb-mode' version number.")
 
 ;; This program is free software; you can redistribute it and/or
@@ -31,9 +31,7 @@
 ;; controlling indentation, re-indenting by subdivisions, and loading
 ;; and merging into the the resource database.
 ;;
-;; To use, put this file in your Emacs `load-path' and either customize
-;; (and save) the variable `xrdb-mode-setup-auto-mode-alist', or put the
-;; following in your .emacs:
+;; To use, put the following in your .emacs:
 ;;
 ;; (autoload 'xrdb-mode "xrdb-mode" "Mode for editing X resource files" t)
 ;;
@@ -115,41 +113,6 @@ overridden in those commands by using \\[universal-argument]."
   :type '(repeat string)
   :group 'xrdb)
 
-(defun xrdb-mode-setup-auto-mode-alist ()
-  (add-to-list 'auto-mode-alist '("\\.Xdefaults$" . xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.Xenvironment$". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.Xresources$". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("\\.ad$". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("/app-defaults/". xrdb-mode))
-  (add-to-list 'auto-mode-alist '("/Xresources/". xrdb-mode)))
-
-(defcustom xrdb-mode-setup-auto-mode-alist
-  (or
-   ;; Check if conf-xdefaults-mode is present
-   (not (fboundp 'conf-xdefaults-mode))
-   ;; Check if default setup provides bindings for conf-xdefaults-mode
-   (< emacs-major-version 22)
-   (featurep 'xemacs))
-  "Whether to setup mode-alists for xrdb mode.
-
-Newer versions of Emacs have a conf-xdefaults-mode which provides
-this functionality. `xrdb' still has some features (like
-electricity) which are absent in that mode. Setting this to
-non-nil clobbers the default bindings in such cases.
-
-This variable defaults to t for older version of Gnu Emacs or any
-XEmacs.
-
-Customizing this variable might require restarting emacs for the
-effects to take effect."
-  :type 'boolean
-  :set (lambda (symbol value)
-         (set-default symbol value)
-         (when value
-           (xrdb-mode-setup-auto-mode-alist)))
-  :require 'xrdb-mode
-  :group 'xrdb)
-
 (defvar xrdb-master-file nil
   "If non-nil, merge in the named file instead of the buffer's file.
 The intent is to allow you to set this variable in the file's local
@@ -177,23 +140,23 @@ section as well.")
 
 ;; utilities
 (defun xrdb-point (position)
-  ;; Returns the value of point at certain commonly referenced POSITIONs.
-  ;; POSITION can be one of the following symbols:
-  ;;
-  ;; bol  -- beginning of line
-  ;; eol  -- end of line
-  ;; bod  -- beginning of defun
-  ;; boi  -- back to indentation
-  ;; ionl -- indentation of next line
-  ;; iopl -- indentation of previous line
-  ;; bonl -- beginning of next line
-  ;; bopl -- beginning of previous line
-  ;; bop  -- beginning of paragraph
-  ;; eop  -- end of paragraph
-  ;; bopg -- beginning of page
-  ;; eopg -- end of page
-  ;;
-  ;; This function does not modify point or mark.
+  "Return the value of point at certain commonly referenced POSITIONs.
+POSITION can be one of the following symbols:
+
+bol  -- beginning of line
+eol  -- end of line
+bod  -- beginning of defun
+boi  -- back to indentation
+ionl -- indentation of next line
+iopl -- indentation of previous line
+bonl -- beginning of next line
+bopl -- beginning of previous line
+bop  -- beginning of paragraph
+eop  -- end of paragraph
+bopg -- beginning of page
+eopg -- end of page
+
+This function does not modify point or mark."
   (let ((here (point)))
     (cond
      ((eq position 'bod)  (beginning-of-defun))
@@ -207,33 +170,37 @@ section as well.")
      ((eq position 'bopg)  (forward-page -1))
      ((eq position 'eopg)  (forward-page 1))
      (t
-      (error "unknown buffer position requested: %s" position)))
+      (error "Unknown buffer position requested: %s" position)))
     (prog1
         (point)
       (goto-char here))
     ))
 
 (defmacro xrdb-safe (&rest body)
-  ;; safely execute BODY, return nil if an error occurred
+  "Safely execute BODY, return nil if an error occurred."
   (` (condition-case nil
          (progn (,@ body))
        (error nil))))
 
 (defsubst xrdb-skip-to-separator ()
-  ;; skip forward from the beginning of the line to the separator
-  ;; character as given by xrdb-separator-char. Returns t if the
-  ;; char was found, otherwise, nil.
+  "Skip forward.
+Skip forward from the beginning of the line to the separator
+character as given by xrdb-separator-char.  Returns t if the
+char was found, otherwise, nil."
   (beginning-of-line)
   (skip-chars-forward "^:" (xrdb-point 'eol))
   (and (eq (char-after) ?:)
        (current-column)))
 
 (defsubst xrdb-in-comment-p (&optional lim)
+  "True if point is in a comment.
+Optional argument LIM is passed to `parse-partial-sexp'."
   (let* ((lim (or lim (xrdb-point 'bod)))
          (state (parse-partial-sexp lim (point))))
     (nth 4 state)))
 
 (defsubst xrdb-boi-col ()
+  "The current column at the beginning of indentation."
   (let ((here (point)))
     (goto-char (xrdb-point 'boi))
     (prog1
@@ -243,6 +210,7 @@ section as well.")
 (defvar xrdb-prompt-history nil)
 
 (defun xrdb-prompt-for-subdivision ()
+  "Prompt for how to subdivide alignment by."
   (let ((options '(("buffer" . buffer)
                    ("paragraphs" . paragraph)
                    ("pages" . page)
@@ -260,7 +228,8 @@ section as well.")
   "Insert a colon, and possibly indent line.
 Numeric argument inserts that many separators.  If the numeric
 argument is not given, or is 1, and the separator is not inserted in a
-comment, then the line is indented according to `xrdb-subdivide-by'."
+comment, then the line is indented according to `xrdb-subdivide-by'.
+Argument ARG inhibits insertion."
   (interactive "P")
   (self-insert-command (prefix-numeric-value arg))
   ;; only do electric behavior if arg is not given
@@ -273,9 +242,9 @@ comment, then the line is indented according to `xrdb-subdivide-by'."
 
 (defun xrdb-electric-bang (arg)
   "Insert an exclamation point to start a comment.
-Numeric argument inserts that many exclamation characters.  If the
-numeric argument is not given, or is 1, and the bang character is the
-first character on a line, the line is indented to column zero."
+ARG inserts that many exclamation characters.  If ARG is not given, or is 1,
+and the bang character is the first character on a line, the line is indented
+to column zero."
   (interactive "P")
   (let ((how-many (prefix-numeric-value arg)))
     (self-insert-command how-many)
@@ -289,7 +258,7 @@ first character on a line, the line is indented to column zero."
 
 (defun xrdb-indent-line (&optional arg)
   "Align the current line according to `xrdb-subdivide-by'.
-With optional \\[universal-argument], prompt for subdivision."
+With optional ARG, prompt for subdivision."
   (interactive "P")
   (xrdb-align-to-column
    (xrdb-guess-goal-column (if arg
@@ -300,7 +269,7 @@ With optional \\[universal-argument], prompt for subdivision."
 
 (defun xrdb-indent-region (start end &optional arg)
   "Indent all lines in the region according to `xrdb-subdivide-by'.
-With optional \\[universal-argument], prompt for subdivision."
+START and END are the region.  With optional ARG, prompt for subdivision."
   (interactive "r\nP")
   (xrdb-align-to-column
    (xrdb-guess-goal-column (if arg
@@ -310,7 +279,7 @@ With optional \\[universal-argument], prompt for subdivision."
 
 (defun xrdb-indent-page (&optional arg)
   "Indent all lines in the page according to `xrdb-subdivide-by'.
-With optional \\[universal-argument], prompt for subdivision."
+With optional ARG, prompt for subdivision."
   (interactive "P")
   (xrdb-align-to-column
    (xrdb-guess-goal-column (if arg
@@ -321,7 +290,7 @@ With optional \\[universal-argument], prompt for subdivision."
 
 (defun xrdb-indent-paragraph (&optional arg)
   "Indent all lines in the paragraph according to `xrdb-subdivide-by'.
-With optional \\[universal-argument], prompt for subdivision."
+With optional ARG, prompt for subdivision."
   (interactive "P")
   (xrdb-align-to-column
    (xrdb-guess-goal-column (if arg
@@ -332,13 +301,13 @@ With optional \\[universal-argument], prompt for subdivision."
 
 (defun xrdb-indent-buffer (&optional arg)
   "Indent all lines in the buffer according to `xrdb-subdivide-by'.
-With optional \\[universal-argument], prompt for subdivision."
+With optional ARG, prompt for subdivision."
   (interactive "P")
   (let ((subdivide-by (if arg
                           (xrdb-prompt-for-subdivision)
                         xrdb-subdivide-by)))
     (save-excursion
-      (beginning-of-buffer)
+      (goto-char (point-min))
       (if (eq subdivide-by 'buffer)
           (xrdb-align-to-column (xrdb-guess-goal-column 'buffer)
                                 (point-min) (point-max))
@@ -363,12 +332,14 @@ With optional \\[universal-argument], prompt for subdivision."
 
 ;; internal alignment functions
 (defun xrdb-align-to-column (goalcol &optional start end)
+  "Align to column.
+GOALCOL is the column to try to align to.  START and END are the region."
   (let ((start (or start (xrdb-point 'bol)))
         (end (or end (xrdb-point 'bonl))))
     (save-excursion
       (save-restriction
         (narrow-to-region start end)
-        (beginning-of-buffer)
+        (goto-char (point-min))
         (while (< (point) (point-max))
           (if (and (not (looking-at xrdb-comment-re))
                    (xrdb-skip-to-separator))
@@ -380,8 +351,8 @@ With optional \\[universal-argument], prompt for subdivision."
         ))))
 
 (defun xrdb-guess-goal-column (subdivide-by)
-  ;; Returns the goal column of the current line based on SUBDIVIDE-BY,
-  ;; which can be any value allowed by `xrdb-subdivide-by'.
+  "Return the goal column of the current line based on SUBDIVIDE-BY.
+This can be any value allowed by `xrdb-subdivide-by'."
   (let ((here (point))
         (goalcol 0))
     (save-restriction
@@ -454,7 +425,8 @@ With optional \\[universal-argument], prompt for subdivision."
 
 ;;;###autoload
 (defun xrdb-mode ()
-  "Major mode for editing xrdb config files"
+  "Major mode for editing xrdb config files.
+\\{xrdb-mode-map}"
   (interactive)
   (kill-all-local-variables)
   (set-syntax-table xrdb-mode-syntax-table)
@@ -487,15 +459,16 @@ With optional \\[universal-argument], prompt for subdivision."
 
 ;; faces and font-locking
 (defvar xrdb-option-name-face 'xrdb-option-name-face
-  "Face for option name on a line in an X resource db file")
+  "Face for option name on a line in an X resource db file.")
 
 (defvar xrdb-option-value-face 'xrdb-option-value-face
-  "Face for option value on a line in an X resource db file")
+  "Face for option value on a line in an X resource db file.")
 
 (make-face 'xrdb-option-name-face)
 (make-face 'xrdb-option-value-face)
 
 (defun xrdb-font-lock-mode-hook ()
+  "Font-lock mode hook."
   (or (face-differs-from-default-p 'xrdb-option-name-face)
       (copy-face 'font-lock-keyword-face 'xrdb-option-name-face))
   (or (face-differs-from-default-p 'xrdb-option-value-face)
@@ -515,15 +488,14 @@ With optional \\[universal-argument], prompt for subdivision."
 ;; merging and manipulating the X resource database
 (defun xrdb-database-merge-buffer-or-region (start end)
   "Merge the current buffer's resources into the X resource database.
-
 `xrdb-program' is the program to actually call, with the arguments
 specified in `xrdb-program-args'.  This latter can be set to do either
 a merge or a load, etc.  Also, if the file local variable
 `xrdb-master-file' is non-nil, then it is merged instead of the
 buffer's file.
 
-If the current region is active, it is merged instead of the buffer,
-and this overrides any use of `xrdb-master-file'."
+START and END are the region; if the current region is active, it is merged
+instead of the buffer, and this overrides any use of `xrdb-master-file'."
   (interactive
    ;; the idea here is that if the region is inactive, start and end
    ;; will be nil, if not passed in programmatically
@@ -553,10 +525,10 @@ and this overrides any use of `xrdb-master-file'."
 ;; submitting bug reports
 
 (defconst xrdb-mode-help-address "tools-help@python.org"
-  "Address for xrdb-mode bug reports.")
+  "Address for `xrdb-mode' bug reports.")
 
 (defun xrdb-submit-bug-report ()
-  "Submit via mail a bug report on xrdb-mode."
+  "Submit via mail a bug report on `xrdb-mode'."
   (interactive)
   ;; load in reporter
   (require 'reporter)

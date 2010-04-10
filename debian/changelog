@@ -1,14 +1,21 @@
-emacs-goodies-el (32.1) UNRELEASED; urgency=low
+emacs-goodies-el (33.0) unstable; urgency=low
 
   * emacs-goodies-el:
     New files:
    - pp-c-l.el --- Display Control-l characters in a pretty way.
      Thanks to Andrey Paramonov for the suggestion (Closes: #524081).
+   - dir-locals.el -- Local variables for a directory tree
+    Removed file:
+   - dirvals.el, replaced with dir-locals.el. Thanks to Dave Love
+     (Closes: #377676).
     New upstream version:
    - egocentric.el.  Patch from Ubuntun bug #109132 applied for
      customization mismatches.
+   - xrdb-mode.el V3.0.  Bug fix: "xrdb-mode docstring show keymap",
+     thanks to Kevin Ryde (Closes: #559514).  Apologies to Barry Warsaw
+     since this version was ready last December.
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Fri, 09 Apr 2010 21:33:48 -0400
 
 emacs-goodies-el (32.0) unstable; urgency=low
 
