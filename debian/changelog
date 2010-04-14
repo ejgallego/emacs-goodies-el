@@ -1,3 +1,19 @@
+emacs-goodies-el (33.2) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+  - pp-c-l.eL: Skip installing for XEmacs, thanks to Kevin Ryde
+    (Closes: #577596).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 13 Apr 2010 20:44:17 -0400
+
+emacs-goodies-el (33.1) unstable; urgency=low
+
+  * emacs-goodies-el:
+    V33.0 got away without the _actual_ dirvals.el to dir-locals.el
+    transition actually done because of a CVS mistake.
+
+ -- Peter S Galbraith <psg@debian.org>  Fri, 09 Apr 2010 22:07:16 -0400
+
 emacs-goodies-el (33.0) unstable; urgency=low
 
   * emacs-goodies-el:

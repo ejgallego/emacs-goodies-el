@@ -18,7 +18,7 @@ PACKAGE=emacs-goodies-el
 
 EXCLUDED_emacs20="cwebm.el tabbar.el session.el csv-mode.el maplev.el"
 # EXCLUDED_emacs21="whitespace.el"
-EXCLUDED_xemacs21="csv-mode.el minibuf-electric.el tabbar.el todoo.el rfcview.el "
+EXCLUDED_xemacs21="csv-mode.el minibuf-electric.el pp-c-l.el tabbar.el todoo.el rfcview.el "
 #EXCLUDED_emacs_snapshot="cua.el cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
 #EXCLUDED_emacs22="cua.el cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
 #EXCLUDED_emacs23="cua.el cfengine.el ibuffer.el ido.el newsticker.el table.el wdired.el "
