@@ -4,7 +4,7 @@
 ;; Copyright (C) 1997 Klee Dienes
 ;; Copyright (C) 1999 Chris Waters
 ;; Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005 Peter S Galbraith
-;; Copyright (C) 2006, 2007, Peter S Galbraith
+;; Copyright (C) 2006, 2007, 2009, 2010 Peter S Galbraith
 ;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with your Debian installation, in /usr/share/common-licenses/GPL
-;; If not, write to the Free Software Foundation, 675 Mass Ave,
-;; Cambridge, MA 02139, USA.
+;; If not, write to the Free Software Foundation, 51 Franklin Street,
+;; Suite 500 Boston, MA 02110-1335, USA 
 
 ;;; Commentary:
 ;;
@@ -338,6 +338,9 @@
 ;;    debian-chagelog--rris are in the wrong order. Closes: #476271
 ;; V1.91 12Nov2009 Peter S Galbraith <psg@debian.org>
 ;;    Updated URL for "Best practices".
+;; V1.92 27Apr2010 Peter S Galbraith <psg@debian.org>
+;;    Invoke `debian-bug-build-bug-menu' with SOURCE arg set to t.
+;;    Needs debian-el 33.2
 ;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -838,7 +841,7 @@ for the debian/changelog file to add the entry to."
 (defun debian-changelog-build-open-bug-list ()
   "Generate open bugs list, i.e. `debian-bug-open-alist'."
   (interactive)
-  (debian-bug-build-bug-menu (debian-changelog-suggest-package-name)))
+  (debian-bug-build-bug-menu (debian-changelog-suggest-package-name) t))
 
 (defun debian-changelog-close-bug (bug-number)
   "Add a new change entry to close a BUG-NUMBER."

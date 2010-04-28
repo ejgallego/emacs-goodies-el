@@ -156,7 +156,7 @@ Description: Emacs helpers specific to Debian users
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs23 | emacsen, debian-el (>= 24.0-1), ${misc:Depends}
+Depends: emacs23 | emacsen, debian-el (>= 33.2), ${misc:Depends}
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)
