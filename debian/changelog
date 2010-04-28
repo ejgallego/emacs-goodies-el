@@ -3,8 +3,13 @@ emacs-goodies-el (33.3) unstable; urgency=low
   * emacs-goodies-el:
     Bug fix: "color-theme doesn't initialize correctly", thanks to Daniele
     Giglio (Closes: #578619). Fixed documentation in Info.
+  * debian-el:
+  - debian-bug.el: Bug fix: "stty fails with 'inappropriate ioctl for
+    device'", thanks to Sanjoy Mahajan for the report and to H. Stordahl
+    for the solution that has added to reportbug: As of version 4.12
+    reportbug has a --no-bug-script option (Closes: #502317).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Wed, 28 Apr 2010 17:44:35 -0400
 
 emacs-goodies-el (33.2) unstable; urgency=low
 
