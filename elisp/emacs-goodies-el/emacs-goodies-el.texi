@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.94 2010/04/10 02:11:33 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.95 2010/04/28 21:32:50 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -655,6 +655,7 @@ Gnome2 theme, you'll find that the function to use is called
 
 @example
 (require 'color-theme)
+(color-theme-initialize)
 (color-theme-gnome2)
 @end example
 
