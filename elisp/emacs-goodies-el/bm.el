@@ -1,9 +1,9 @@
-;;; bm.el  -- Visible bookmarks in buffer.
+;;; bm.el  --- Visible bookmarks in buffer.
 
 ;; Copyrigth (C) 2000-2010  Jo Odland
 
 ;; Author: Jo Odland <jo.odland(at)gmail.com>
-;; Version: $Id: bm.el,v 1.1 2010/04/07 00:29:33 psg Exp $
+;; Version: $Id: bm.el,v 1.2 2010/05/05 13:27:50 psg Exp $
 ;; Keywords; bookmark, highlight, faces, persistent
 ;; URL: http://www.nongnu.org/bm/
 ;; Project page: https://savannah.nongnu.org/projects/bm/
@@ -46,10 +46,12 @@
 ;;      backward in buffer with `bm-next' and `bm-previous'.
 ;;
 ;;    - Different wrapping modes, see `bm-wrap-search' and `bm-wrap-immediately'.
-;;      Use `bm-toggle-wrapping' to turn wrapping on/off.
+;;      Use `bm-toggle-wrapping' to turn wrapping on/off. Wrapping is only available
+;;      when `bm-cycle-all-buffers' is nil.
 ;;
 ;;    - Navigate between bookmarks only in current buffer or cycle through all buffers.
 ;;      Use `bm-cycle-all-buffers' to enable looking for bookmarks across all open buffers.
+;;      When cycling through bookmarks in all open buffers, the search will always wrap around.
 ;;
 ;;    - Setting bookmarks based on a regexp, see `bm-bookmark-regexp' and
 ;;      `bm-bookmark-regexp-region'.
@@ -221,24 +223,31 @@
 
 ;;; Change log:
 
+;;  Changes in 1.43
+;;   - Fixed spelling. Thanks to Juanma Barranquero <lekktu(at)gmail.com> for patch.
+;;
+;;  Changes in 1.42
+;;   - Fixed bug(#29536) - Next/previous does not wrap when `bm-cycle-all-buffers' t
+;;     and only bookmarks in one buffer.
+;;
 ;;  Changes in 1.41
 ;;   - Updated documentation to satisfy `checkdoc'.
-
+;;
 ;;  Changes in 1.38
 ;;   - Added support for bookmark search across buffers. See `bm-cycle-all-buffers'.
 ;;   - Added support for mouse navigation (#28863). See `bm-toggle-mouse', `bm-next-mouse'
 ;;     and `bm-previous-mouse'.
 ;;   - Added support for markers on the right fringe (#28863).
-
+;;
 ;;  Changes in 1.36
 ;;   - Added support for persistent bookmarks in non-file buffers (Info buffers, indirect-buffers).
 ;;   - Fixed bug(#26077) - bm asks for annotation when restoring bookmarks for bookmarks which
 ;;     already have an annotation.
-
+;;
 ;;  Changes in 1.35
 ;;   - Added utf-8 encoding on `bm-repository-file'
 ;;   - Removed compile check on fringe support.
-
+;;
 ;;  Changes in 1.34
 ;;   - Added support for bookmarks in fringe (Patch from Jan Rehders <cmdkeen(at)gmx.de>)
 ;;   - Fixed bugs with `bm-next', `bm-previous' and `bm-goto'.
@@ -282,7 +291,7 @@
     (require 'overlay)))
 
 
-(defconst bm-version "$Id: bm.el,v 1.1 2010/04/07 00:29:33 psg Exp $"
+(defconst bm-version "$Id: bm.el,v 1.2 2010/05/05 13:27:50 psg Exp $"
   "CVS version of bm.el.")
 
 (defconst bm-bookmark-repository-version 2
@@ -403,9 +412,9 @@ t, wrap."
 
 (defcustom bm-wrap-immediately t
   "*Specify if a wrap should be announced or not.
-Has only effect when `bm-wrap-search' is t.
+Only has effect when `bm-wrap-search' is t.
 
-nil, announce before wrapping
+nil, announce before wrapping.
 t, don't announce."
   :type 'boolean
   :group 'bm)
@@ -452,7 +461,7 @@ nil, the repository will not be persistent."
   "*Specify if bookmarks in a buffer should be persistent.
 Buffer local variable.
 
-nil, don't save bookmarks
+nil, don't save bookmarks.
 t, save bookmarks."
   :type 'boolean
   :group 'bm)
@@ -461,9 +470,9 @@ t, save bookmarks."
 
 (defcustom bm-restore-on-mismatch nil
   "*Specify if bookmarks should be restored if there is a buffer size mismatch.
-DEPRECATED: Only in use for version 1 of repositoty.
+DEPRECATED: Only in use for version 1 of repository.
 
-nil, don't restore
+nil, don't restore.
 t, restore if possible."
   :type 'boolean
   :group 'bm)
@@ -728,15 +737,19 @@ in the specified direction."
       (if bm-list-forward
           (bm-goto (car bm-list-forward))
         (cond (bm-cycle-all-buffers (bm-first-in-next-buffer))
-              (bm-wrap-search (if (or bm-wrapped bm-wrap-immediately)
-                                  (progn
-                                    (bm-first)
-                                    (message "Wrapped."))
-                                (setq bm-wrapped t)       ; wrap on next goto
-                                (message "Failed: No next bookmark.")))
+              (bm-wrap-search (bm-wrap-forward))
               (t (message "No next bookmark.")))))))
 
+(defun bm-wrap-forward nil
+  "Goto next bookmark, wrapping."
+  (if (or bm-wrapped bm-wrap-immediately)
+      (progn
+        (bm-first)
+        (message "Wrapped."))
+    (setq bm-wrapped t)       ; wrap on next goto
+    (message "Failed: No next bookmark.")))
 
+  
 ;;;###autoload
 (defun bm-next-mouse (ev)
   "Go to the next bookmark with the scroll wheel.
@@ -765,13 +778,17 @@ EV is the mouse event."
           (bm-goto (car bm-list-backward))
 
         (cond (bm-cycle-all-buffers (bm-last-in-previous-buffer))
-              (bm-wrap-search (if (or bm-wrapped bm-wrap-immediately)
-                                  (progn
-                                    (bm-last)
-                                    (message "Wrapped."))
-                                (setq bm-wrapped t)       ; wrap on next goto
-                                (message "Failed: No previous bookmark.")))
+              (bm-wrap-search (bm-wrap-backward))
               (t (message "No previous bookmark.")))))))
+
+(defun bm-wrap-backward nil
+  "Goto previous bookmark, wrapping."
+  (if (or bm-wrapped bm-wrap-immediately)
+      (progn
+        (bm-last)
+        (message "Wrapped."))
+    (setq bm-wrapped t)       ; wrap on next goto
+    (message "Failed: No previous bookmark.")))
 
 
 ;;;###autoload
@@ -803,7 +820,11 @@ EV is the mouse event."
           (switch-to-buffer (car buffers))
           (message "Switched to '%s'" (car buffers))
           (bm-first))
-      (message "No more bookmarks found."))))
+      ;; no bookmarks found in other open buffers,
+      ;; wrap in current buffer?
+      (if bm-wrap-search
+          (bm-wrap-forward)
+        (message "No bookmarks found in other open buffers.")))))
 
 
 
@@ -825,7 +846,11 @@ EV is the mouse event."
           (switch-to-buffer (car buffers))
           (message "Switched to '%s'" (car buffers))
           (bm-last))
-      (message "No more bookmarks found."))))
+      ;; no bookmarks found in other open buffers,
+      ;; wrap in current buffer?
+      (if bm-wrap-search
+          (bm-wrap-backward)
+        (message "No bookmarks found in other open buffers.")))))
 
 
 (defun bm-first nil
@@ -929,7 +954,7 @@ Region defined by BEG and END."
   (interactive "nSet a bookmark on line: ")
   (let ((lines (count-lines (point-min) (point-max))))
     (if (> line lines)
-	(message "Unable to set bookmerk at line %d. Only %d lines in buffer"
+	(message "Unable to set bookmark at line %d. Only %d lines in buffer."
 		 line lines)
       (goto-line line)
       (bm-bookmark-add))))
@@ -1036,13 +1061,13 @@ Region defined by BEG and END."
       (progn
 	(setq bm-buffer-persistence nil)
 	(bm-repository-remove (bm-buffer-file-name)) ; remove from repository
-	(message "Bookmarks in buffer are not persistent"))
+	(message "Bookmarks in buffer are not persistent."))
     ;; turn on
     (if (not (null (bm-buffer-file-name)))
         (progn
           (setq bm-buffer-persistence (not bm-buffer-persistence))
           (bm-buffer-save)			; add to repository
-          (message "Bookmarks in buffer are persistent"))
+          (message "Bookmarks in buffer are persistent."))
       (message "Unable to set persistent mode on a non-file buffer.")))
 
   ;; change color on bookmarks
@@ -1293,7 +1318,7 @@ BUFFER-DATA is the content of `bm-repository-file'."
 
 
 (defun bm-save nil
-  "Save bookmarks to persistent reposity."
+  "Save bookmarks to persistent repository."
   (interactive)
   (bm-buffer-save-all)
   (bm-repository-save))
