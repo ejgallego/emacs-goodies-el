@@ -3,6 +3,11 @@ emacs-goodies-el (33.4) UNRELEASED; urgency=low
   * emacs-goodies-el:
   - bm.el: New upstream version 1.43, thanks to Maindoor
     <sanjeevfiles@yahoo.com>
+  - color-theme.el:
+    Bug fix: "color-theme: replace-in-string breaks other packages",
+    thanks to intrigeri@boum.org; (Closes: #580213).  Applied patch from
+    upstream CVS directly without a quilt patch because future upstream
+    version won't need such a patch.
 
  --
 
