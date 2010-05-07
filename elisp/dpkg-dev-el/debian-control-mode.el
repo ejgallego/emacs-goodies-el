@@ -6,8 +6,8 @@
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 0.9
-;; X-RCS: $Id: debian-control-mode.el,v 1.14 2009/02/23 18:05:53 psg Exp $
+;; Version: 1.3
+;; X-RCS: $Id: debian-control-mode.el,v 1.15 2010/05/07 22:24:32 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V1.3 (2010-05-07) Added "Breaks" to debian-control-binary-fields
+;;  (Closes #580501)
 
 ;; V1.2a (2009-02-23) Applied patch from Morten Kjeldgaard changing
 ;;      Dm-Upload-Allowed to DM-Upload-Allowed (Closes: #508748)
@@ -182,7 +185,7 @@
 (defvar debian-control-binary-fields
   '("Section" "Priority" "Architecture" "Depends" "Conflicts" "Pre-Depends"
     "Essential" "Provides" "Recommends" "Suggests" "Replaces" "Enhances"
-    "Description")
+    "Description" "Breaks")
   "Valid binary package field names, collected from several policy sections.")
 
 (defvar debian-control-source-fields-regexp

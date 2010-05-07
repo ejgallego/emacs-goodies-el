@@ -18,6 +18,9 @@ emacs-goodies-el (33.4) UNRELEASED; urgency=low
     This should also fix "bad interaction with reportbug", thanks to Johan
      Kullstam for reporting, and please reopen the bug if not fixed
      (Closes: #541729).
+  * dpkg-dev-el:
+  - debian-control-mode.el: Bug fix: "Breaks:" fields in control files is
+     not recognized", thanks to Hilko Bengen (Closes: #580501).
 
  --
 
