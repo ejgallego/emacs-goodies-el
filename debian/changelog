@@ -8,6 +8,16 @@ emacs-goodies-el (33.4) UNRELEASED; urgency=low
     thanks to intrigeri@boum.org; (Closes: #580213).  Applied patch from
     upstream CVS directly without a quilt patch because future upstream
     version won't need such a patch.
+  * debian-el:
+  - debian-bug.el:
+    Bug fix: "M-x debian-bug no longer runs bug scripts, generates useless
+     reports", thanks to Sven Joachim for the report (Closes: #579861).
+    Bug fix: "please, include the output of /usr/shar/bug/...", thanks to
+     Jiří Paleček for the request and to Håkon Stordahl <haastord@online.no>
+     for the massive patch ! (Closes: #422506).
+    This should also fix "bad interaction with reportbug", thanks to Johan
+     Kullstam for reporting, and please reopen the bug if not fixed
+     (Closes: #541729).
 
  --
 
