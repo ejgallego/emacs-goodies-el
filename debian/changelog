@@ -1,4 +1,4 @@
-emacs-goodies-el (33.4) UNRELEASED; urgency=low
+emacs-goodies-el (33.4) unstable; urgency=low
 
   * emacs-goodies-el:
   - bm.el: New upstream version 1.43, thanks to Maindoor
@@ -22,7 +22,7 @@ emacs-goodies-el (33.4) UNRELEASED; urgency=low
   - debian-control-mode.el: Bug fix: "Breaks:" fields in control files is
      not recognized", thanks to Hilko Bengen (Closes: #580501).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Fri, 07 May 2010 18:24:55 -0400
 
 emacs-goodies-el (33.3) unstable; urgency=low
 
