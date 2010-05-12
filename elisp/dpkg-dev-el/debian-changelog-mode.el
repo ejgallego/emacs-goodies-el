@@ -341,6 +341,8 @@
 ;; V1.92 27Apr2010 Peter S Galbraith <psg@debian.org>
 ;;    Invoke `debian-bug-build-bug-menu' with SOURCE arg set to t.
 ;;    Needs debian-el 33.2
+;; V1.93 10May2010 Peter S Galbraith <psg@debian.org>
+;;    Fix typo (Closes: #580818)
 ;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -425,7 +427,7 @@ new version in debian/changelog."
 (defcustom debian-changelog-date-utc-flag nil
   "If non-nil, return date string in UTC when finalizing entry.
 See function `debian-changelog-date-string'."
-  :group 'debian-changelogx
+  :group 'debian-changelog
   :type 'boolean)
 
 ;; This function is from emacs/lisp/calendar/icalendar.el,

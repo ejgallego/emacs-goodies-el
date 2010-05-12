@@ -1,12 +1,16 @@
-emacs-goodies-el (33.5) UNRELEASED; urgency=low
+emacs-goodies-el (33.5) unstable; urgency=low
 
   * debian-el:
   - debian-bug.el:
     Support "Bugs:" control field for unofficial packages".  
     Thanks to Håkon Stordahl <haastord@online.no> for the massive patch!
     (Closes: #222392).
+  * dpkg-dev-el:
+  - debian-changelog-mode.el
+    Bug fix: "debian-changelog-date-utc-flag custom group", thanks to
+    Kevin Ryde (Closes: #580818).  Fixed typo.
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Tue, 11 May 2010 21:46:40 -0400
 
 emacs-goodies-el (33.4) unstable; urgency=low
 
