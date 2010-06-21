@@ -44,13 +44,6 @@ Setting to aggressive will enable features that supercede Emacs defaults."
 ;; apache-mode.el
 (add-to-list 'auto-mode-alist '("apache2\\.conf\\'"  . apache-mode))
 
-;; auto-fill-inhibit.el
-(defgroup auto-fill-inhibit '((auto-fill-inhibit-list custom-variable))
-  "Finer grained control over auto-fill-mode (de)activation."
-  :load 'auto-fill-inhibit
-  :link '(custom-manual "(emacs-goodies-el)auto-fill-inhibit")
-  :group 'emacs-goodies-el)
-
 ;; clipper.el
 (autoload 'clipper-create "clipper" "Create a new 'clip' for use within Emacs."
   t)

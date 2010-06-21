@@ -2,8 +2,13 @@ emacs-goodies-el (33.6) UNRELEASED; urgency=low
 
   * debian-el:
   - debian-bug.el: Updated `debian-bug-pseudo-packages'.
-  
- -- Peter S Galbraith <psg@debian.org>  Thu, 13 May 2010 17:05:57 -0400
+  * emacs-goodies-el:
+  - pod-mode.el: New upstream version 1.01, thanks to Florian Ragwitz
+    (Closes: #585044).
+  - emacs-goodies-el.texi: Improvement to info docs of
+    auto-fill-inhibit.el, thanks to Kevin Ryde for the patch (Closes: #584970).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 21 Jun 2010 18:12:30 -0400
 
 emacs-goodies-el (33.5) unstable; urgency=low
 

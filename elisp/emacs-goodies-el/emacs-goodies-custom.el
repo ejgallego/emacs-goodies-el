@@ -22,6 +22,13 @@
   :load 'ascii
   :group 'emacs-goodies-el)
 
+;; auto-fill-inhibit.el
+(defgroup auto-fill-inhibit '((auto-fill-inhibit-list custom-variable))
+  "Finer grained control over auto-fill-mode (de)activation."
+  :load 'auto-fill-inhibit
+  :link '(custom-manual "(emacs-goodies-el)auto-fill-inhibit")
+  :group 'emacs-goodies-el)
+
 ;; bar-cursor
 (defgroup bar-cursor nil
   "switch block cursor to a bar."

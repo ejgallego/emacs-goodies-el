@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.95 2010/04/28 21:32:50 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.96 2010/06/21 22:14:23 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -229,18 +229,24 @@ there in the event that anyone gets around to adding any.
 @node auto-fill-inhibit, ascii, apache-mode, Top
 @chapter auto-fill-inhibit - auto-fill-mode (de)activation
 
-The purpose of this library is to allow the use of @command{auto-fill-mode}
-using, e.g.
+@file{auto-fill-inhibit.el} suppresses @code{auto-fill-mode} in
+buffers with names matching regexps in @code{auto-fill-inhibit-list}.
+The idea is that you can have @code{turn-on-auto-fill} or similar in a
+mode hook but then suppress certain names.  For example,
 
 @example
- (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(require 'auto-fill-inhibit)
+(add-to-list 'auto-fill-inhibit-list "-blah\\.txt\\'")
 @end example
-or, using by customizing the variable @code{text-mode-hook},
-selecting @command{turn-on-auto-fill} and then save the setting.
 
-You may disable @command{auto-fill-mode} on buffers with names that
-match one of a list of regular expressions by customizing the variable
-@code{auto-fill-inhibit-list}.
+You can use @code{customize} for @code{auto-fill-inhibit-list},
+otherwise you must add @code{(require 'auto-fill-inhibit)} explicitly to
+your @file{.emacs}.
+
+The way @file{auto-fill-inhibit.el} is implemented means that in
+inhibited buffers an @code{M-x auto-fill-mode} command is suppressed
+as well as mode hook calls.
 
 @node ascii, bar-cursor, auto-fill-inhibit, Top
 @chapter ascii - ASCII code display.
