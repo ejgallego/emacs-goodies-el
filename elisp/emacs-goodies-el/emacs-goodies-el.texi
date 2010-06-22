@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.96 2010/06/21 22:14:23 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.97 2010/06/22 21:55:01 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -140,6 +140,7 @@ be documented.
 * toggle-option::               Easily toggle frequently toggled options
 * twiddle::                     Cute mode-line display hack
 * under::                       Underline with the ^ character
+* upstart-mode::                Mode for editing upstart files
 * xrdb-mode::                   Mode for editing X resource database files
 
 @detailmenu
@@ -3895,7 +3896,7 @@ Like \\[compile], but run a twiddle hack during compilation.
 If you write new twiddles, try to minimize or avoid consing, since those
 functions are called constantly.
 
-@node under, xrdb-mode, twiddle, Top
+@node under, upstart-mode, twiddle, Top
 @chapter under - Underline with the ^ character
 
 @noindent Author: Benjamin Drieu <bdrieu@@april.org>
@@ -3911,7 +3912,33 @@ Suggested key-binding to put in ~/.emacs:
 @emph{Bugs:} currently only works on a single line.  The region can't
 span multiple lines.
 
-@node xrdb-mode,  , under, Top
+@node upstart-mode, xrdb-mode, under, Top
+@chapter upstart-mode - Mode for editing upstart files
+
+@noindent Author: Stig Sandbeck Mathisen <ssm@@debian.org>
+
+A major mode for .upstart files.
+
+You may optionally add @code{MMM-mode} for highlighting the embedded
+shell scripts inside the script blocks (Note: indentation does not work
+inside the mmm blocks.  Any assistance would be welcome).  Add the
+following to your @file{.emacs} file if you wish to do so:
+
+@example
+  (require 'mmm-auto)
+  (setq mmm-global-mode 'maybe)
+  (mmm-add-classes
+   '((upstart-sh
+      :submode sh-mode
+      :face mmm-submode-decoration-level "code"
+      :front "^\\(\\(pre\\|post\\)-\\(start\\|stop\\) \\)?script"
+      :front-offset (end-of-line 1)
+      :back "end script"
+      :end-not-begin t)))
+  (mmm-add-mode-ext-class 'upstart-mode nil 'upstart-sh)
+@end example
+
+@node xrdb-mode,  , upstart-mode, Top
 @chapter xrdb-mode - Mode for editing X resource database files
 
 @noindent Author: Barry A. Warsaw <barry@@python.org>

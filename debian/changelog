@@ -1,4 +1,12 @@
-emacs-goodies-el (33.6) UNRELEASED; urgency=low
+emacs-goodies-el (34.0) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+    New files:
+  - upstart-mode.el: major-mode to edit .upstart files.
+  
+ -- Peter S Galbraith <psg@debian.org>  Tue, 22 Jun 2010 17:51:55 -0400
+
+emacs-goodies-el (33.6) unstable; urgency=low
 
   * debian-el:
   - debian-bug.el: Updated `debian-bug-pseudo-packages'.
@@ -8,7 +16,7 @@ emacs-goodies-el (33.6) UNRELEASED; urgency=low
   - emacs-goodies-el.texi: Improvement to info docs of
     auto-fill-inhibit.el, thanks to Kevin Ryde for the patch (Closes: #584970).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 21 Jun 2010 18:12:30 -0400
+ -- Peter S Galbraith <psg@debian.org>  Mon, 21 Jun 2010 19:09:33 -0400
 
 emacs-goodies-el (33.5) unstable; urgency=low
 
@@ -175,7 +183,7 @@ emacs-goodies-el (31.6) unstable; urgency=low
 emacs-goodies-el (31.5) unstable; urgency=low
 
   * emacs-goodies-el:
-  - lcomp.el: New upstream version. 
+  - lcomp.el: New upstream version (Closes: #551827).
   - emacs-goodies-el.el :Replace $ by \\' in auto-mode-alist entries,
     thanks to Kevin Ryde (Closes: #570293).
   * dpkg-dev-el:

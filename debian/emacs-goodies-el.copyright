@@ -132,7 +132,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999-2009 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; boxquote.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -349,7 +349,7 @@ Author/copyright info for dir-locals.el
 | 
 | ;; Author: Dave Love <fx@gnu.org>
 | ;; Keywords: files
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | ;; URL: http://www.loveshack.ukfsn.org/emacs
 | 
 | ;; This file is free software; you can redistribute it and/or modify
@@ -669,7 +669,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.33 2010/04/10 02:04:23 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.34 2010/06/22 21:55:03 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -759,7 +759,7 @@ Author/copyright info for muttrc-mode.el:
 Author/copyright info for obfusurl.el:
 ,----
 | ;; Copyright 2001-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; obfusurl.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -820,7 +820,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.33 2010/04/10 02:04:23 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.34 2010/06/22 21:55:03 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -870,7 +870,7 @@ Author/copyright info for protocols.el:
 ,----
 | ;;; protocols.el --- Protocol database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -906,7 +906,7 @@ Author/copyright info for services.el:
 ,----
 | ;;; services.el --- Services database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; services.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -1075,7 +1075,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; thinks.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1087,7 +1087,7 @@ Author/copyright info for tld.el:
 ,----
 | ;;; tld.el --- TLD lookup tool.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.33 $
+| ;; $Revision: 1.34 $
 | 
 | ;; tld.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1151,6 +1151,17 @@ Author/copyright info for under.el:
 | ;; your option) any later version.
 `----
 
+Author/copyright info for upstart-mode.el:
+,----
+| ;;; upstart-mode.el --- Syntax highlighting for upstart
+| ;;;
+| ;;; Copyright © 2010 Stig Sandbeck Mathisen <ssm@debian.org>
+| 
+| ;;; This program is free software; you can redistribute it and/or
+| ;;; modify it under the terms of the GNU General Public License as
+| ;;; published by the Free Software Foundation; either version 2 of the
+| ;;; License, or (at your option) any later version.
+`----
 
 Author/copyright info for xrdb-mode.el:
 ,----

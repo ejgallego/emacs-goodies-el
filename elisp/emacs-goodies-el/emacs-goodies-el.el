@@ -268,6 +268,13 @@ this function to `after-init-hook'."
   "Easily toggle frequently toggled options."
   t)
 
+;; upstart-mode.el
+(when (not (featurep 'xemacs))
+  (autoload 'upstart-mode "upstart-mode"
+    "major mode for .upstart files."
+    t)
+  (add-to-list 'auto-mode-alist '("\\.upstart\\'" . upstart-mode)))
+
 ;; xrdb-mode.el
 
 (defun xrdb-mode-setup-auto-mode-alist ()

@@ -91,6 +91,7 @@ Description: Miscellaneous add-ons for Emacs
   toggle-option - easily toggle frequently toggled options;
   twiddle - mode line hacks to keep you awake;
   under - underline a region with ^ characters;
+  upstart-mode - mode for editing upstart files;
   wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
@@ -99,7 +100,7 @@ Description: Miscellaneous add-ons for Emacs
 
 Package: gnus-bonus-el
 Architecture: all
-Depends: emacs23 | emacsen, gnus | emacs23 | emacs22 | emacs21 | xemacs21 | emacs-snapshot, ${misc:Depends}
+Depends: emacs23 | emacsen, gnus | emacs23 | xemacs21, ${misc:Depends}
 Section: news
 Description: Miscellaneous add-ons for Gnus
  This package contains a few Emacs-Lisp files, obtained from various
