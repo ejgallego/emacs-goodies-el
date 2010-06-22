@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.97 2010/06/22 21:55:01 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.98 2010/06/22 22:02:30 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -3917,7 +3917,8 @@ span multiple lines.
 
 @noindent Author: Stig Sandbeck Mathisen <ssm@@debian.org>
 
-A major mode for .upstart files.
+A major mode for .upstart files. Upstart is an event-based replacement
+for the traditional init daemon.
 
 You may optionally add @code{MMM-mode} for highlighting the embedded
 shell scripts inside the script blocks (Note: indentation does not work

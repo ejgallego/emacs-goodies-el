@@ -3,8 +3,9 @@ emacs-goodies-el (34.0) UNRELEASED; urgency=low
   * emacs-goodies-el:
     New files:
   - upstart-mode.el: major-mode to edit .upstart files.
-  
- -- Peter S Galbraith <psg@debian.org>  Tue, 22 Jun 2010 17:51:55 -0400
+    Thanks to Stig Sandbeck Mathisen (Closes: #586321).
+
+ --
 
 emacs-goodies-el (33.6) unstable; urgency=low
 
