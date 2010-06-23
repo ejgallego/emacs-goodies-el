@@ -1,5 +1,8 @@
 emacs-goodies-el (34.0) UNRELEASED; urgency=low
 
+  * debian-el:
+  - apt-utils-el: Bug fix: "When returning to the package list, it's not
+    sorted anymore", thanks to Remi Vanicat (Closes: #568419).
   * emacs-goodies-el:
     New files:
   - upstart-mode.el: major-mode to edit .upstart files.
