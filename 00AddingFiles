@@ -40,19 +40,19 @@ This is a checklist for adding files to the emacs-goodies-el package.
 
   Test it:
 
-   $ mkdir info
-   $ makeinfo emacs-goodies-el
-   $ info -f info/emacs-goodies-el
-   $ rm -fR info
+    mkdir info
+    makeinfo emacs-goodies-el
+    info -f info/emacs-goodies-el
+    rm -fR info
 
 Debian Files
 ~~~~~~~~~~~~
 
  README.Debian - add a short description of the new file.
 
- changelog - close the wishlist bug, if any.
-
  control - add a one-line file description.
+
+ changelog - close the wishlist bug, if any.
 
  emacs-goodies-el.copyright - add a boxquote'd blurb for the file.
 
