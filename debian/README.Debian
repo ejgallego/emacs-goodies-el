@@ -119,6 +119,9 @@ in a separate frame which is easily dismissed when no longer needed.
 floatbg.el provides M-x floatbg-mode, to slowly modify the background
 color of your Emacs.
 
+graphviz-dot-mode.el provides a mode for editing files in the dot-language
+(www.graphviz.org and http://www.research.att.com/sw/tools/graphviz/).
+
 highlight-beyond-fill-column.el highlights (with a face you choose) text
 that is beyond the fill-column, therefore providing a visual indication of
 where the fill-* functions would wrap the lines.  Enable it on a buffer
@@ -308,4 +311,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue, 22 Jun 2010 17:46:53 -0400
+ -- Peter S Galbraith <psg@debian.org>, Tue, 22 Jun 2010 20:56:39 -0400

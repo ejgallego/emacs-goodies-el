@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.98 2010/06/22 22:02:30 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.99 2010/06/23 12:58:30 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -92,6 +92,7 @@ be documented.
 * floatbg::                     Slowly modify background color
 * folding::                     A folding-editor-like minor mode
 * framepop::                    Display temporary buffers in a dedicated frame
+* graphviz-dot-mode::           Mode for the dot-language used by graphviz.
 * highlight-beyond-fill-column::  Fontify beyond the fill-column
 * highlight-completion::        Completion with highlighted provisional text
 * highlight-current-line::      highlight line where the cursor is
@@ -1811,7 +1812,7 @@ comment types, e.g., "unfold everything then fold on \x".
 @end verbatim
 
 
-@node framepop, highlight-beyond-fill-column, folding, Top
+@node framepop, graphviz-dot-mode, folding, Top
 @chapter framepop - display temporary buffers in a dedicated frame
 
 Framepop makes temporary buffers such as *Help* or *Completions*
@@ -2053,7 +2054,28 @@ the job of framepop-wrap is better done by
 special-display-buffer-names, so I shan't bother.
 @end enumerate
 
-@node highlight-beyond-fill-column, highlight-completion, framepop, Top
+@node graphviz-dot-mode, highlight-beyond-fill-column, framepop, Top
+@chapter  graphviz-dot-mode - mode for the dot-language used by graphviz.
+
+@noindent Author: Pieter Pareit <pieter.pareit@@scarlet.be>
+
+@noindent http://users.skynet.be/ppareit/projects/graphviz-dot-mode/graphviz-dot-mode.html
+
+Use this mode for editing files in the dot-language (www.graphviz.org and
+http://www.research.att.com/sw/tools/graphviz/).
+
+The graphviz-dot-mode will do font locking, indentation, preview of graphs
+and eases compilation/error location. There is support for both GNU Emacs
+and XEmacs.
+
+Font locking is automatic, indentation uses the same commands as other
+modes, @key{tab}, @key{M-j} and @key{C-M-q}.  Insertion of comments uses
+the same commands as other modes, @key{M-;}.  You can compile a file
+using @code{M-x compile} or @key{C-c c}, after that @code{M-x
+next-error} will also work.  There is support for viewing an generated
+image with @key{C-c p}.
+
+@node highlight-beyond-fill-column, highlight-completion, graphviz-dot-mode, Top
 @chapter  highlight-beyond-fill-column - fontify beyond the fill-column.
 
 This defines a function that can be used by @code{font-lock-add-keyword}' to

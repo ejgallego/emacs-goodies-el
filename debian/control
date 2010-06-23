@@ -42,6 +42,7 @@ Description: Miscellaneous add-ons for Emacs
   filladapt - enhances Emacs's built-in adaptive fill;
   floatbg - slowly modify background color;
   framepop - display temporary buffers in a dedicated frame;
+  graphviz-dot-mode.el - mode for the dot-language used by graphviz (att).
   highlight-beyond-fill-column - highlight lines that are too long;
   highlight-completion - highlight completions in the minibuffer;
   highlight-current-line - highlight line where the cursor is;

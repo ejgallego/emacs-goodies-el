@@ -200,6 +200,14 @@ and face definitions."
 ;;:require 'framepop
   :group 'emacs-goodies-el)
 
+;; graphviz-dot-mode.el
+(defgroup graphviz nil
+  "Major mode for editing Graphviz Dot files"
+  :group 'tools
+  :link '(custom-manual "(emacs-goodies-el)graphviz-dot-mode")
+  :load 'graphviz-dot-mode
+  :group 'emacs-goodies-el)
+
 ;; highlight-beyond-fill-column
 (defgroup highlight-beyond-fill-column nil
   "Fontify beyond the fill-column."

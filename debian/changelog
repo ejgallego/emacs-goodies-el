@@ -4,8 +4,10 @@ emacs-goodies-el (34.0) UNRELEASED; urgency=low
     New files:
   - upstart-mode.el: major-mode to edit .upstart files.
     Thanks to Stig Sandbeck Mathisen (Closes: #586321).
+  - graphviz-dot-mode.el: Mode for the dot-language used by graphviz (att).
+    Thanks to Riccardo Vestrini (Closes: #428601).
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Tue, 22 Jun 2010 21:02:01 -0400
 
 emacs-goodies-el (33.6) unstable; urgency=low
 
