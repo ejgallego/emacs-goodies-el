@@ -1,9 +1,4 @@
-emacs-goodies-el (34.0) UNRELEASED; urgency=low
-
-  [ Matt Hodges ]
-  * debian-el:
-  - apt-utils-el: Bug fix: "When returning to the package list, it's not
-    sorted anymore", thanks to Remi Vanicat (Closes: #568419).
+emacs-goodies-el (34.0) unstable; urgency=low
 
   [ Peter S Galbraith ]
   * emacs-goodies-el:
@@ -13,7 +8,12 @@ emacs-goodies-el (34.0) UNRELEASED; urgency=low
   - graphviz-dot-mode.el: Mode for the dot-language used by graphviz (att).
     Thanks to Riccardo Vestrini (Closes: #428601).
 
- -- Peter S Galbraith <psg@debian.org>  Wed, 23 Jun 2010 11:39:19 -0400
+  [ Matt Hodges ]
+  * debian-el:
+  - apt-utils-el: Bug fix: "When returning to the package list, it's not
+    sorted anymore", thanks to Remi Vanicat (Closes: #568419).
+
+ -- Peter S Galbraith <psg@debian.org>  Sun, 27 Jun 2010 22:05:01 -0400
 
 emacs-goodies-el (33.6) unstable; urgency=low
 
