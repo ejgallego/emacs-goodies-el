@@ -1,3 +1,14 @@
+emacs-goodies-el (34.1) UNRELEASED; urgency=low
+
+  * debian/control:
+    - Standards-Version: 3.9.0
+  * gnus-bonus-el:
+    - No longer depend on recent version of Emacs or gnus.
+      Bug fix: "please allow emacs-snapshot as an alternative emacs",
+      thanks to RISKO Gergely (Closes: #587321).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 29 Jun 2010 17:29:54 -0400
+
 emacs-goodies-el (34.0) unstable; urgency=low
 
   [ Peter S Galbraith ]
