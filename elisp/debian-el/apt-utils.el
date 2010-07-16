@@ -3,7 +3,7 @@
 ;;; Copyright (C) 2002-2010 Matthew P. Hodges
 
 ;; Author: Matthew P. Hodges <MPHodges@member.fsf.org>
-;;	$Id: apt-utils.el,v 1.18 2010/06/23 15:03:39 mphodges-guest Exp $
+;;	$Id: apt-utils.el,v 1.19 2010/07/16 14:34:07 mphodges-guest Exp $
 
 ;; apt-utils.el is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -163,6 +163,12 @@ performance, but uses cached data that may be out of date."
     (((class color) (background dark))
      (:foreground "yellow")))
   "Face used for APT normal package hyperlinks."
+  :group 'apt-utils)
+
+(defface apt-utils-normal-installed-package-face
+  '((((class color))
+     (:inherit apt-utils-normal-package-face :bold t)))
+  "Face used for APT installed package hyperlinks."
   :group 'apt-utils)
 
 (defface apt-utils-virtual-package-face
@@ -377,7 +383,7 @@ buffer."
     (let ((inhibit-read-only t))
       (erase-buffer)
       (cond
-       ((equal type 'normal)
+       ((memq type '(normal normal-installed))
         (call-process apt-utils-apt-cache-program nil '(t nil) nil "show" package)
         ;; Remove old versions if not wanted
         (unless apt-utils-show-all-versions
@@ -681,7 +687,7 @@ Use PROMPT for `completing-read'."
         (type (cdar apt-utils-package-history))
         posns)
     (cond
-     ((equal type 'normal)
+     ((memq type '(normal normal-installed))
       (setq posns (apt-utils-update-buffer-positions 'toggle))
       (setq apt-utils-package-history
             (cons (cons package 'normal-showpkg)
@@ -1287,7 +1293,23 @@ indicated in `mode-name'."
               (apt-utils-puthash (buffer-substring (apt-utils-line-beginning-position)
                                                    (apt-utils-line-end-position))
                                  'normal apt-utils-package-list)
-              (forward-line 1)))
+              (forward-line 1))
+            ;; Installed packages
+            (erase-buffer)
+            (call-process apt-utils-dpkg-program nil t nil "-l")
+            (goto-char (point-min))
+            (let (package)
+              (while (not (eobp))
+                (when (looking-at "^ii")
+                  (setq package
+                        (nth 1 (split-string (buffer-substring
+                                              (apt-utils-line-beginning-position)
+                                              (apt-utils-line-end-position))
+                                             "\\s-+")))
+                  (apt-utils-puthash package
+                                     'normal-installed
+                                     apt-utils-package-list))
+                (forward-line 1))))
           (message "Building Debian package lists...done.")
           (setq apt-utils-package-list-built (current-time))
           (apt-utils-update-mode-name))
@@ -1401,6 +1423,8 @@ indicated in `mode-name'."
             (cond
              ((equal (apt-utils-package-type package t) 'normal)
               (setq face 'apt-utils-normal-package-face))
+             ((equal (apt-utils-package-type package t) 'normal-installed)
+              (setq face 'apt-utils-normal-installed-package-face))
              ((equal (apt-utils-package-type package t) 'virtual)
               (setq face 'apt-utils-virtual-package-face))
              (t
@@ -1477,6 +1501,8 @@ indicated in `mode-name'."
               (cond
                ((equal (apt-utils-package-type link t) 'normal)
                 (setq face 'apt-utils-normal-package-face))
+               ((equal (apt-utils-package-type package t) 'normal-installed)
+                (setq face 'apt-utils-normal-installed-package-face))
                ((equal (apt-utils-package-type link t) 'virtual)
                 (setq face 'apt-utils-virtual-package-face))
                (t
@@ -1491,7 +1517,8 @@ indicated in `mode-name'."
           (forward-line))))
       (setq keywords (cdr keywords))))
   (when (and apt-utils-display-installed-status
-             (eq (apt-utils-package-type package t) 'normal))
+             (memq (apt-utils-package-type package t)
+                   '(normal normal-installed)))
     (goto-char (point-min))
     (re-search-forward "Package: .*$")
     (apt-utils-insert-installed-info package)))
@@ -1528,6 +1555,8 @@ The type of search is specified by TYPE."
       (cond
        ((equal (apt-utils-package-type link t) 'normal)
         (setq face 'apt-utils-normal-package-face))
+       ((equal (apt-utils-package-type link t) 'normal-installed)
+        (setq face 'apt-utils-normal-installed-package-face))
        ((equal (apt-utils-package-type link t) 'virtual)
         (setq face 'apt-utils-virtual-package-face))
        (t
