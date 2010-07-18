@@ -3,7 +3,7 @@
 ;;; Copyright (C) 2002-2010 Matthew P. Hodges
 
 ;; Author: Matthew P. Hodges <MPHodges@member.fsf.org>
-;;	$Id: apt-utils.el,v 1.20 2010/07/18 12:23:35 mphodges-guest Exp $
+;;	$Id: apt-utils.el,v 1.21 2010/07/18 13:28:46 mphodges-guest Exp $
 
 ;; apt-utils.el is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -1851,7 +1851,7 @@ The tokens that can be replaced are:
     (save-excursion                     ; for normal package type
       (with-temp-buffer
         (cond
-         ((eq type 'normal)
+         ((memq type '(normal normal-installed))
           (set-buffer buffer))
          ((eq type 'normal-showpkg)
           (call-process apt-utils-apt-cache-program nil '(t nil) nil "show" package)))
