@@ -3,7 +3,7 @@
 ;;; Copyright (C) 2002-2010 Matthew P. Hodges
 
 ;; Author: Matthew P. Hodges <MPHodges@member.fsf.org>
-;;	$Id: apt-utils.el,v 1.19 2010/07/16 14:34:07 mphodges-guest Exp $
+;;	$Id: apt-utils.el,v 1.20 2010/07/18 12:23:35 mphodges-guest Exp $
 
 ;; apt-utils.el is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -455,7 +455,7 @@ installed packages; uses `apt-utils-dpkg-program'."
     (when (equal files '("/."))
       (setq files nil))
     (cond
-     ((memq type '(normal normal-showpkg))
+     ((memq type '(normal normal-showpkg normal-installed))
       (if files
           (progn
             ;; Some versions of Emacs won't update dired for the same
@@ -718,7 +718,7 @@ That is, not a normal-showpkg, search or a virtual package."
 (defun apt-utils-toggle-package-p ()
   "Return non-nil if we can toggle between package and showpkg.
 See also `apt-utils-toggle-package-info'."
-  (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+  (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
 
 (defun apt-utils-check-package-lists ()
   "Determine whether package lists need rebuilding."
@@ -746,7 +746,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -773,7 +773,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -800,7 +800,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -827,7 +827,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -854,7 +854,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -881,7 +881,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -908,7 +908,7 @@ See also `apt-utils-toggle-package-info'."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let* ((package (caar apt-utils-package-history))
@@ -935,7 +935,7 @@ offer a choice."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let ((package (caar apt-utils-package-history))
@@ -978,7 +978,7 @@ a choice."
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (let ((package (caar apt-utils-package-history))
@@ -1014,7 +1014,7 @@ a choice."
   (interactive)
   (let ((package (caar apt-utils-package-history))
         (type (cdar apt-utils-package-history)))
-    (if (memq type '(normal normal-showpkg))
+    (if (memq type '(normal normal-showpkg normal-installed))
         (let ((info (apt-utils-get-installed-info package)))
           (if info
               (message (apply #'format
@@ -1832,7 +1832,7 @@ The URL can contain tokens that need formatting (see
   (cond
    ((not (equal major-mode 'apt-utils-mode))
     (message "Not in APT utils buffer."))
-   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg)))
+   ((not (memq (cdar apt-utils-package-history) '(normal normal-showpkg normal-installed)))
     (message "Not a normal package."))
    (t
     (browse-url (apt-utils-web-format-url url)))))
