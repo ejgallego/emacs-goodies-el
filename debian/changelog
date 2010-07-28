@@ -22,7 +22,7 @@ emacs-goodies-el (34.1) unstable; urgency=low
     - dpkg-dev-el.el: Fix modify-coding-system-alist entry for utf-8,
       thanks to Kevin Ryde (Closes: #587921)
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Wed, 28 Jul 2010 11:50:25 -0400
 
 emacs-goodies-el (34.0) unstable; urgency=low
 
