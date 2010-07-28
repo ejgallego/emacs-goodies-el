@@ -12,6 +12,8 @@ emacs-goodies-el (34.1) unstable; urgency=low
       (Closes: #589785)
     - pod-mode.el: New upstream release available 1.03. Thanks to
       Florian Ragwitz for the bug report (Closes: #589434).
+    - tail.el: "tail.el restart timer on new output", thanks to Kevin Ryde
+      (Closes: #584598).
   * dpkg-dev-el:
     - debian-copyright.el: Fix and simplify auto-mode-alist", thanks to
       Kevin Ryde (Closes: #587922).
