@@ -72,8 +72,15 @@
   (modify-coding-system-alist 'file "/debian/control\\'" 'utf-8)
 
 ;;; (modify-coding-system-alist 'file "/debian/changelog\\'" 'utf-8)
-;;; Instead use this.  See http://bugs.debian.org/457047 by Trent W. Buck
-  (modify-coding-system-alist 'file "/debian/\\([[:lower:][:digit:].+-]\\.\\)?changelog\\'" 'utf-8)
+;;; -
+;;; Kevin Ryde <user42@zip.com.au> (Closes: #587921)
+;;;
+;;; Instead use this for dh_installchangelog debian/packagename.changelog
+;;; files too.  See http://bugs.debian.org/457047 by Trent W. Buck
+;;; But not [:lower:][:digit:] since those forms are not available in xemacs21.
+;;; xemacs21 can have utf-8 at startup if you use mule-ucs with
+;;; DEB_MULEUCS_UNICODE=yes
+  (modify-coding-system-alist 'file "/debian/\\([a-z0-9.+-]+\\.\\)?changelog\\'" 'utf-8)
 
   ;; Handle Debian native package, from Kevin Ryde in bug #317597 and #416218
   (defun debian-changelog-coding-system (args)
