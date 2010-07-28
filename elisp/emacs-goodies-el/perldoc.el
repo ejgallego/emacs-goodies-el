@@ -72,6 +72,11 @@
 ;;      - Don't depend on the existence of default-directory.
 ;;        Thanks to Kevin Ryde <user42@zip.com.au> for the patch.
 ;;        (Closes: #574650)
+;;
+;;  2.0 Ben Voui <intrigeri@boum.org>
+;;      - Complete for Perl core documentation.
+;;        Thanks to Florian Ragwitz <rafl@debian.org> for the bug report.
+;;        (Closes: #589785)
 
 
 ;;  Comments / suggests / feedback welcomed to
@@ -174,10 +179,11 @@ An non-nil argument forces caches to be updated."
 		(when (file-readable-p dir)
 		  (erase-buffer)
 		  (let ((default-directory "/"))
-		    (shell-command (concat "find -L " dir " -name '[A-Z]*.pm'") t))
+		    (shell-command (concat "find -L " dir " -name '[A-Z]*.pm' -o -name '*.pod'") t))
 		  (goto-char (point-min))
-		  (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).pm$") nil t)
-		    (let ((entry (list (replace-regexp-in-string "/" "::" (match-string 1)))))
+		  (while (re-search-forward (concat "^" (regexp-quote dir) "/\\(.*\\).\\(pm\\|pod\\)$") nil t)
+		    (let ((entry (list (replace-regexp-in-string "/" "::"
+								 (replace-regexp-in-string "^pod/" "" (match-string 1))))))
 		      (when (not (member entry tmp-modules-alist))
 			(push entry tmp-modules-alist)))))))
 	    tmp-modules-alist))))
