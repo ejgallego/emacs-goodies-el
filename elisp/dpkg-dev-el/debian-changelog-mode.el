@@ -343,6 +343,8 @@
 ;;    Needs debian-el 33.2
 ;; V1.93 10May2010 Peter S Galbraith <psg@debian.org>
 ;;    Fix typo (Closes: #580818)
+;; V1.94 28Jul2010 Kevin Ryde <user42@zip.com.au>
+;;    Simplify auto-mode-alist (Closes: #587924)
 ;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -1774,10 +1776,12 @@ Also set keymap."
 
 ;;; Setup auto-mode-alist
 ;; (in case /etc/emacs/site-start.d/50dpkg-dev.el not used)
+;;
+;; Crib note: no need for "NEWS.Debian.gz" or "changelog.Debian.gz" entries
+;; since jka-compr.el dispatches using the basename after uncompressing.
 
 (add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 (add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 
 ;;(add-to-list 'auto-mode-alist '("/debian/changelog\\'" . debian-changelog-mode))
 ;;; Instead use this.  See http://bugs.debian.org/457047 by Trent W. Buck
@@ -1788,16 +1792,13 @@ Also set keymap."
    . debian-changelog-mode))
 
 (add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
   ;; For debchange
 (add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("NEWS.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:]][[:lower:][:digit:].+-]+\\.\\)?changelog\\'" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("changelog.Debian.gz" . debian-changelog-mode))
 ;;;###autoload(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
 
 (provide 'debian-changelog-mode)
