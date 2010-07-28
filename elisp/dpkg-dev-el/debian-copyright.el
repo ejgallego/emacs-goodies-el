@@ -21,8 +21,6 @@
 (require 'debian-changelog-mode)
 
 ;;; Code:
-(add-to-list 'auto-mode-alist '("debian/copyright$" . debian-copyright-mode))
-(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
 
 (defgroup debian-copyright nil "Debian copyright mode"
   :group 'tools
@@ -39,7 +37,7 @@
   :type 'hook
   :options '(turn-on-auto-fill flyspell-mode))
 
-(defconst debian-copyright-mode-version "$Id: debian-copyright.el,v 1.4 2003/11/04 02:07:56 psg Exp $" "Version of debian copyright mode.")
+(defconst debian-copyright-mode-version "$Id: debian-copyright.el,v 1.5 2010/07/28 15:33:45 psg Exp $" "Version of debian copyright mode.")
 
 (defvar debian-copyright-mode-map nil
   "Keymap for debian/copyright mode.")
@@ -84,11 +82,13 @@
           ))
   (run-hooks 'debian-copyright-mode-hook))
 
-(add-to-list 'auto-mode-alist '("debian/.*copyright$" . debian-copyright-mode))
+
+;;;###autoload
 (add-to-list 'auto-mode-alist
-             '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("debian/.*copyright$" . debian-copyright-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/copyright" . debian-copyright-mode))
+             '("debian/.*copyright\\'" . debian-copyright-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist
+             '("\\`/usr/share/doc/.*/copyright" . debian-copyright-mode))
 
 (run-hooks 'debian-copyright-mode-load-hook)
 

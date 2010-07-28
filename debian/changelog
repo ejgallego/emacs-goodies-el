@@ -10,8 +10,13 @@ emacs-goodies-el (34.1) unstable; urgency=low
     - perldoc.el: Complete for Perl core documentation.
       Thanks to Florian Ragwitz <rafl@debian.org> for the bug report.
       (Closes: #589785)
-  
- -- Peter S Galbraith <psg@debian.org>  Wed, 28 Jul 2010 11:15:51 -0400
+    - pod-mode.el: New upstream release available 1.03. Thanks to
+      Florian Ragwitz for the bug report (Closes: #589434).
+  * dpkg-dev-el:
+    - debian-copyright.el: Fix and simplify auto-mode-alist", thanks to
+      Kevin Ryde (Closes: #587922).
+
+ --
 
 emacs-goodies-el (34.0) unstable; urgency=low
 
