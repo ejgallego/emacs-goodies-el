@@ -6,6 +6,7 @@ emacs-goodies-el (34.2) UNRELEASED; urgency=low
   - home-end.el, new upstream version. "home-end-home and home-end-end get
     confused inside keyboard macros", thanks to Dima Kogan
     (Closes: #614327).
+  - maplev.texi: Updated from http://www.mapleprimes.com/files/84_maplev.zip
 
  --
 

@@ -2,25 +2,24 @@
 @c {{{ Header }}}
 
 @setfilename maplev
-@settitle MapleV Emacs Mode @value{edition}
+@settitle MapleV Emacs Mode @value{EDITION}
 
-@set edition 1.00
-@set update-date 26 September 1999
+@include version.texi
 
 @iftex
 @tolerance 10000
 @end iftex
 
-@c $Id: maplev.texi,v 1.4 2009/12/05 13:49:01 psg Exp $
+@c $Id: maplev.texi,v 1.5 2011/02/23 00:50:27 psg Exp $
 
 @ifinfo
 This file documents MapleV, a GNU Emacs major mode for developing code for
-Maple V, a computer algebra system (CAS) produced by Waterloo Maple Inc.
+Maple, a computer algebra system (CAS) produced by Waterloo Maple Inc.
 
 Copyright (C) 1999
 Joseph S. Riel
 
-This edition is for MapleV version @value{edition}.
+This edition is for MapleV version @value{EDITION}.
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice
@@ -52,13 +51,13 @@ by the Free Software Foundation.
 @titlepage
 @title MapleV
 @subtitle A GNU Emacs Mode for Maple Developers
-@subtitle version @value{edition}
-@subtitle @value{update-date}
+@subtitle Edition @value{EDITION}, for MapleV Version @value{VERSION}
+@subtitle @value{UPDATED}
   
 @author Joseph S.@ Riel
 @page
 @vskip 0pt plus 1filll
-Maple and Maple V are registered trademarks of Waterloo Maple Inc.@*
+Maple is a registered trademarks of Waterloo Maple Inc.@*
 
 Copyright @copyright{} 1999 Joseph S. Riel@*
  
@@ -93,13 +92,13 @@ approved by the Free Software Foundation.
 @node top, Copying, (dir), (dir)
 @top MapleV
 
-MapleV is a GNU Emacs major mode for developing source code for @w{Maple
-V}, a computer algebra system (CAS) marketed by @w{Waterloo Maple Inc}.
+MapleV is a GNU Emacs major mode for developing source code for @w{Maple}, 
+a computer algebra system (CAS) marketed by @w{Waterloo Maple Inc}.
 In this manual @dfn{MapleV} refers to the Emacs major mode and
 @dfn{Maple} to the CAS.  MapleV is written entirely in Emacs-Lisp and is
 distributed under the GNU General Public License.
 
-This is the documentation for MapleV version @value{edition}.
+This is the documentation for MapleV version @value{VERSION}.
 
 @end ifinfo
 
@@ -358,7 +357,6 @@ text, are available on the menubar.
 
 
 @c {{{endfold}}}
-
 
 @c {{{ Indentation }}}
 
@@ -748,7 +746,7 @@ The following variables affect comments:
 
 @vtable @code
 @item maplev-auto-fill-comment-flag
-A boolen flag. If non-nil, the default, comment lines wrap as they are
+A boolean flag. If non-nil, the default, comment lines wrap as they are
 typed.  Wrapping, however, does not automatically start in an inline
 comment; it must be invoked with @code{fill-paragraph}.
 
@@ -888,7 +886,7 @@ String inserted as the copyright owner.
 If non-nil then the name of the procedure is inserted as a comment to
 the right of the closing @code{end} statement.
 
-@item maplev-assigment-operator
+@item maplev-assignment-operator
 The string inserted by @code{maplev-insert-assignment-operator}.
 The default value is @samp{ := }.
 
@@ -978,7 +976,7 @@ The following variables affect the output of Mint:
 @item mint-info-level
 An integer from 0 to 4 that selects the amount of information displayed
 by Mint.  0 displays no information, 4 displays the most.  The default
-value is 3.  This value can be set throught the menubar,
+value is 3.  This value can be set through the menubar,
 @kbd{Maplev -> Mint -> Mint level}.
 
 @item mint-start-options
@@ -1016,7 +1014,7 @@ Incremental forward search (@code{isearch-forward}).
 Incremental backward search (@code{isearch-backward}).
 
 @item @key{RET}
-Reexecute the previous mint command (@code{mint-rerun}).
+Re-execute the previous mint command (@code{mint-rerun}).
 
 @item @key{DEL}
 Scroll down (@code{scroll-down}).
@@ -1070,7 +1068,7 @@ Maple process.  Maple commands can be directly executed in the buffer.
 
 @node Running Maple, Cmaple mode, Maple, Maple
 @section Running Maple
-@cindex Cmaple, runninng
+@cindex Cmaple, running
 @cindex Running, Cmaple
 
 @kindex C-c C-c b
@@ -1398,7 +1396,7 @@ Add the following line to your @file{.emacs} file:
 (autoload 'maplev-mode "maplev" "Maple editing mode" t)
 @end example
 
-To have Emacs automagically start in MapleV mode when editing Maple
+To have Emacs auto-magically start in MapleV mode when editing Maple
 source, add the following to your @file{.emacs} file, modifying the
 regex @file{.mpl} to an extension appropriate for your usage:
 
