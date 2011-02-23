@@ -7,6 +7,8 @@ emacs-goodies-el (34.2) UNRELEASED; urgency=low
     confused inside keyboard macros", thanks to Dima Kogan
     (Closes: #614327).
   - maplev.texi: Updated from http://www.mapleprimes.com/files/84_maplev.zip
+    and added (without patching) "@dircategory Emacs", thanks to
+    Christophe Jarry (Closes: #609677).
 
  --
 

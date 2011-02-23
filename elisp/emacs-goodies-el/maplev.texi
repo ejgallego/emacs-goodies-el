@@ -4,13 +4,18 @@
 @setfilename maplev
 @settitle MapleV Emacs Mode @value{EDITION}
 
+@dircategory Emacs
+@direntry
+* maplev: (maplev). MapleV Emacs Mode
+@end direntry
+
 @include version.texi
 
 @iftex
 @tolerance 10000
 @end iftex
 
-@c $Id: maplev.texi,v 1.5 2011/02/23 00:50:27 psg Exp $
+@c $Id: maplev.texi,v 1.6 2011/02/23 00:53:51 psg Exp $
 
 @ifinfo
 This file documents MapleV, a GNU Emacs major mode for developing code for
