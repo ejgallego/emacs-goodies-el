@@ -3,8 +3,11 @@ emacs-goodies-el (34.2) UNRELEASED; urgency=low
   * emacs-goodies-el:
   - session.el updated to V2.3, thanks to Christoph Wedler.
   - graphviz-dot-mode.el updated to V0.3.6, thanks to Pander.
+  - home-end.el, new upstream version. "home-end-home and home-end-end get
+    confused inside keyboard macros", thanks to Dima Kogan
+    (Closes: #614327).
 
- -- Peter S Galbraith <psg@debian.org>  Mon, 21 Feb 2011 09:01:29 -0500
+ --
 
 emacs-goodies-el (34.1) unstable; urgency=low
 
