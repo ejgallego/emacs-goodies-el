@@ -3,7 +3,7 @@
 ;;; Copyright (C) 2002-2010 Matthew P. Hodges
 
 ;; Author: Matthew P. Hodges <MPHodges@member.fsf.org>
-;;	$Id: apt-utils.el,v 1.21 2010/07/18 13:28:46 mphodges-guest Exp $
+;;	$Id: apt-utils.el,v 1.22 2011/06/24 16:34:46 psg Exp $
 
 ;; apt-utils.el is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -1455,7 +1455,7 @@ indicated in `mode-name'."
               (apt-utils-insert-installed-info package))
             (skip-chars-forward ", |\n")
             (setq packages (cdr packages)))))
-       ((equal match "Description")
+       ((string-match-p "Description\\(-..\\)?" match)
         (add-text-properties (point)
                              (save-excursion
                                (or

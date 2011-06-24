@@ -9,6 +9,9 @@ emacs-goodies-el (34.2) UNRELEASED; urgency=low
   - maplev.texi: Updated from http://www.mapleprimes.com/files/84_maplev.zip
     and added (without patching) "@dircategory Emacs", thanks to
     Christophe Jarry (Closes: #609677).
+  - apt-utils-el: Bug fix: "Apt-util.el doesn't know about
+    Description-fr", thanks to Remi Vanicat (Closes: #613778).
+    Patch applied without consulting Matt; Hope that's okay!
 
  --
 
