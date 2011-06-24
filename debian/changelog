@@ -1,4 +1,4 @@
-emacs-goodies-el (34.2) UNRELEASED; urgency=low
+emacs-goodies-el (34.2) unstable; urgency=low
 
   * emacs-goodies-el:
   - session.el updated to V2.3, thanks to Christoph Wedler.
@@ -9,11 +9,12 @@ emacs-goodies-el (34.2) UNRELEASED; urgency=low
   - maplev.texi: Updated from http://www.mapleprimes.com/files/84_maplev.zip
     and added (without patching) "@dircategory Emacs", thanks to
     Christophe Jarry (Closes: #609677).
+  * debian-el:
   - apt-utils-el: Bug fix: "Apt-util.el doesn't know about
     Description-fr", thanks to Remi Vanicat (Closes: #613778).
     Patch applied without consulting Matt; Hope that's okay!
 
- --
+ -- Peter S Galbraith <psg@debian.org>  Fri, 24 Jun 2011 12:37:31 -0400
 
 emacs-goodies-el (34.1) unstable; urgency=low
 
