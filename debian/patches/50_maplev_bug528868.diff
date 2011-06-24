@@ -5,12 +5,11 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi
---- emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi	2009-12-05 08:38:51.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi	2009-12-05 08:42:08.000000000 -0500
-@@ -7,6 +7,11 @@
- @set edition 1.00
- @set update-date 26 September 1999
+--- a/elisp/emacs-goodies-el/maplev.texi
++++ b/elisp/emacs-goodies-el/maplev.texi
+@@ -11,6 +11,11 @@
+ 
+ @include version.texi
  
 +@dircategory Emacs
 +@direntry
