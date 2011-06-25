@@ -98,6 +98,11 @@ name (or other keywords) in buffers.  If you use Gnus, you might want
 to add (add-hook 'gnus-article-prepare-hook 'egocentric-mode) to your
 Gnus init file.
 
+eproject.el is an extension that lets you group related files together as
+projects.  It aims to be as unobtrusive as possible -- no new files are
+created (or required to exist) on disk, and buffers that aren't a member of
+a project are not affected in any way.
+
 ff-paths.el allows you to use C-x C-f normally most of the time,
 except that if the requested file doesn't exist, it is checked against
 a list of patterns for special paths to search for a file of the same
@@ -311,4 +316,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue, 22 Jun 2010 20:56:39 -0400
+ -- Peter S Galbraith <psg@debian.org>, Sat, 25 Jun 2011 15:44:36 -0400

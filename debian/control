@@ -38,6 +38,7 @@ Description: Miscellaneous add-ons for Emacs
   dir-locals - provides directory-wide local variables;
   edit-env - display, edit, delete and add environment variables;
   egocentric - highlight your name inside emacs buffers;
+  eproject - assign files to projects, programatically
   ff-paths - $PATH-like searching in C-x C-f;
   filladapt - enhances Emacs's built-in adaptive fill;
   floatbg - slowly modify background color;

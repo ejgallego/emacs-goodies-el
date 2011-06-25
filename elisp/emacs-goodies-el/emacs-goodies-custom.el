@@ -151,6 +151,17 @@ and face definitions."
 ;;:require 'egocentric
   :group 'emacs-goodies-el)
 
+;; eproject
+(defgroup eproject nil
+  "Eproject; provide support for grouping files and buffers into projects"
+  :prefix "eproject-"
+  :group 'convenience
+  :link '(emacs-commentary-link :tag "Commentary" "eproject.el")
+  :link '(emacs-library-link :tag "Optional extras" "eproject-extras.el")
+  :link '(url-link :tag "Github wiki" "http://wiki.github.com/jrockway/eproject")
+  :load 'eproject
+  :group 'emacs-goodies-el)
+
 ;; ff-paths
 (defgroup ff-paths nil
   "Find file using paths."

@@ -132,7 +132,7 @@ Author/copyright info for boxquote.el:
 ,----
 | ;;; boxquote.el --- Quote text with a semi-box.
 | ;; Copyright 1999-2009 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; boxquote.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -349,7 +349,7 @@ Author/copyright info for dir-locals.el
 | 
 | ;; Author: Dave Love <fx@gnu.org>
 | ;; Keywords: files
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | ;; URL: http://www.loveshack.ukfsn.org/emacs
 | 
 | ;; This file is free software; you can redistribute it and/or modify
@@ -389,6 +389,36 @@ Author/copyright info for egocentric.el:
 | ;; modify it under the terms of the GNU General Public License as
 | ;; published by the Free Software Foundation; either version 2, or (at
 | ;; your option) any later version.
+`----
+
+Author/copyright info for eproject.el:
+,----
+| ;;; eproject.el --- assign files to projects, programatically
+| ;;
+| ;; Copyright (C) 2008, 2009 Jonathan Rockway <jon@jrock.us>
+| ;;
+| ;; Author: Jonathan Rockway <jon@jrock.us>
+| ;; Maintainer: Jonathan Rockway <jon@jrock.us>
+| [...]
+| ;; This program is free software; you can redistribute it and/or
+| ;; modify it under the terms of the GNU General Public License as
+| ;; published by the Free Software Foundation; either version 2 of
+| ;; the License, or (at your option) any later version.
+`----
+
+Author/copyright info for eproject-extras.el
+,----
+| ;;; eproject-extras.el --- various utilities that make eproject more enjoyable
+| 
+| ;; Copyright (C) 2009  Jonathan Rockway
+| 
+| ;; Author: Jonathan Rockway <jon@jrock.us>
+| ;; Keywords: eproject
+| 
+| ;; This program is free software; you can redistribute it and/or modify
+| ;; it under the terms of the GNU General Public License as published by
+| ;; the Free Software Foundation, either version 3 of the License, or
+| ;; (at your option) any later version.
 `----
 
 
@@ -686,7 +716,7 @@ Author/copyright info for markdown-mode.el:
 ,----
 | ;; Author: Jason Blevins <jrblevin@sdf.lonestar.org>
 | ;; Created: May 24, 2007
-| ;; $Id: emacs-goodies-el.copyright,v 1.35 2010/06/23 12:58:28 psg Exp $
+| ;; $Id: emacs-goodies-el.copyright,v 1.36 2011/06/25 19:57:08 psg Exp $
 | ;; Keywords: Markdown major mode
 | ;;
 | ;; Copyright (C) 2007 Jason Blevins
@@ -776,7 +806,7 @@ Author/copyright info for muttrc-mode.el:
 Author/copyright info for obfusurl.el:
 ,----
 | ;; Copyright 2001-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; obfusurl.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -837,7 +867,7 @@ Author/copyright info for pod-mode.el:
 |
 | ;;; Author: Steffen Schwigon <schwigon@webit.de>
 | ;;; Version: 0.4
-| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.35 2010/06/23 12:58:28 psg Exp $
+| ;;; CVS Version: $Id: emacs-goodies-el.copyright,v 1.36 2011/06/25 19:57:08 psg Exp $
 | ;;; Keywords: perl pod
 | ;;; X-URL: http://search.cpan.org/~schwigon/pod-mode/
 |
@@ -887,7 +917,7 @@ Author/copyright info for protocols.el:
 ,----
 | ;;; protocols.el --- Protocol database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; protocols.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -923,7 +953,7 @@ Author/copyright info for services.el:
 ,----
 | ;;; services.el --- Services database access functions.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; services.el is free software distributed under the terms of the GNU
 | ;; General Public Licence, version 2 or (at your option) any later version.
@@ -1092,7 +1122,7 @@ Author/copyright info for thinks.el:
 ,----
 | ;;; thinks.el --- Insert text in a think bubble.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; thinks.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For
@@ -1104,7 +1134,7 @@ Author/copyright info for tld.el:
 ,----
 | ;;; tld.el --- TLD lookup tool.
 | ;; Copyright 2000-2008 by Dave Pearson <davep@davep.org>
-| ;; $Revision: 1.35 $
+| ;; $Revision: 1.36 $
 | 
 | ;; tld.el is free software distributed under the terms of the GNU General
 | ;; Public Licence, version 2 or (at your option) any later version. For

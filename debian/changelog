@@ -1,10 +1,14 @@
-emacs-goodies-el (34.3) UNRELEASED; urgency=low
+emacs-goodies-el (35.0) unstable; urgency=low
 
+  * emacs-goodies-el:
+    New files:
+  - eproject.el:  assign files to projects, programatically.
+    Thanks to Florian Ragwitz (Closes: #585044).
   * dpkg-dev-el:
     - debian-control-mode.el: Added "XS-Python-Version" to
       debian-control-source-fields, thanks to Cedric Delfosse (Closes: #591697)
-  
- --
+
+ -- Peter S Galbraith <psg@debian.org>  Sat, 25 Jun 2011 15:47:16 -0400
 
 emacs-goodies-el (34.2) unstable; urgency=low
 
