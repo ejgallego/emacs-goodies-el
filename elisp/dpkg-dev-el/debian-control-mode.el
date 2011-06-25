@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 1.3
-;; X-RCS: $Id: debian-control-mode.el,v 1.15 2010/05/07 22:24:32 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.16 2011/06/25 18:03:10 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V1.4 (2011-06-24) Added "XS-Python-Version" to debian-control-source-fields
+;;  (Closes #591697)
 
 ;; V1.3 (2010-05-07) Added "Breaks" to debian-control-binary-fields
 ;;  (Closes #580501)
@@ -177,7 +180,7 @@
   (append
   '("Section" "Priority" "Maintainer" "Build-Depends" "Build-Depends-Indep"
      "Build-Conflicts" "Build-Conflicts-Indep" "Standards-Version" "Uploaders"
-     "DM-Upload-Allowed" "Homepage" "Vcs-Browser")
+     "DM-Upload-Allowed" "Homepage" "Vcs-Browser" "XS-Python-Version")
    (mapcar (lambda (elt) (concat "Vcs-" elt))
            debian-control-vcs-names))
   "Valid source package field names, collected from several policy sections.")
