@@ -95,15 +95,6 @@ and face definitions."
   :load 'ctypes
   :group 'emacs-goodies-el)
 
-;; cwebm
-(defgroup CWEBm nil
-  "Major mode for editing CWEB and WEB programs"
-  :prefix "cwebm-"
-  :group 'languages
-  :link '(custom-manual "(emacs-goodies-el)cwebm")
-  :load 'cwebm
-  :group 'emacs-goodies-el)
-
 ;; df
 (defgroup df nil
   "Display space left on partitions in the mode-line."

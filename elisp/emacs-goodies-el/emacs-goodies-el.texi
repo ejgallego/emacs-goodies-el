@@ -1,7 +1,7 @@
 @c -*- mode: texinfo -*-
 \input texinfo
 
-@c $Id: emacs-goodies-el.texi,v 1.100 2011/06/25 19:57:08 psg Exp $
+@c $Id: emacs-goodies-el.texi,v 1.101 2011/08/16 16:15:05 psg Exp $
 @c %**start of header
 @setfilename info/emacs-goodies-el
 @settitle Emacs-Goodies-el
@@ -79,7 +79,6 @@ be documented.
 * color-theme::                 Install color themes
 * csv-mode::                    Mode for comma-separated value files.
 * ctypes::                      Enhanced font-lock for custom defined types
-* cwebm::                       CWEB/WEB modified mode
 * dedicated::                   Minor mode for dedicated buffers
 * df::                          Display space left on partitions in mode-line
 * dict::                        Emacs interface to dict client
@@ -754,7 +753,7 @@ the current field index in the mode line, cf.
 by default.
 
 
-@node ctypes, cwebm, csv-mode, Top
+@node ctypes, dedicated, csv-mode, Top
 @chapter ctypes - Enhanced font-lock support for custom defined types.
 
 @noindent Author: Anders Lindgren <andersl@@andersl.com>
@@ -942,49 +941,7 @@ when I really mean "Call the parser routine as specified by
 whenever I mean "Performing the default action as specified in
 @code{ctypes-mode-descriptor}".
 
-@node cwebm, dedicated, ctypes, Top
-@chapter cwebm - CWEB/WEB modified mode
-
-This is a modified and renamed version of cweb.el
-
-@noindent Differences from cweb.el:
-
-Key bindings:
-@example
-  1. @key{C-\} becomes @key{C-cwy}
-  2. @key{M-\} becomes @key{C-cws}
-  3. @key{C-z} becomes @key{C-cwr}
-@end example
-The first and second modifications are important for me because:
-@example
-  1. @key{C-\} switches keyboard layout.
-  2. I've used to use @key{M-\}.
-@end example
-The third modification was made to unify key bindings.
-
-@noindent Description
-
-Some WEB-oriented functions whose main purpose is to maintain a stack of
-module names that are "pending" as you are writing a program. When you
-first think of a module that needs to be written later, put it into the
-pending list (by typing @key{CTL-Z} instead of @key{@@>} after the
-name). Later you can say @key{CTL-\} to retrieve a pending name (and if
-you want to cycle through the pending names, @key{ESC-y} after
-@key{CTL-\} will do it, just as @key{ESC-y} works after a yank).  After
-you've said @key{CTL-\}, the current region is the name just removed
-from the pending list. If you change your mind, you can put it back
-again by saying @key{ESC-\}. If you had put it into the pending list by
-mistake, you can get rid of it by using the normal @key{CTL-W} operation
-(kill-region).  The following code binds the new commands to
-@key{CTL-Z}, @key{CTL-\}, and @key{ESC-\} in all modes. You may prefer
-other bindings, of course.  @key{CTL-Z} is normally "suspend emacs", but
-it is best not used when emacs has its own window as it usually does
-nowadays; if you need the old @key{CTL-Z}, you might rather bind it to
-@key{CTL-X CTL-Z}.  @key{CTL-\} is normally undefined.  @key{ESC-\} is
-normally "delete space", but @key{ESC-space DEL} does that easily too.
-
-
-@node dedicated, df, cwebm, Top
+@node dedicated, df, ctypes, Top
 @chapter dedicated - a very simple minor mode for dedicated buffers
 
 @noindent Author: Eric Crampton <eric@@atdesk.com>

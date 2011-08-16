@@ -68,8 +68,6 @@ beautifully colored than before.
 coffee.el provides an Emacs interface to RFC2324-compliant coffee
 devices
 
-cwebm.el is a modified CWEB/WEB modified mode.
-
 dedicated.el allows you to toggle a window's "dedicated" flag.
 When a window is "dedicated", Emacs will not select files into that window.
 
@@ -316,4 +314,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Sat, 25 Jun 2011 15:44:36 -0400
+ -- Peter S Galbraith <psg@debian.org>, Tue, 16 Aug 2011 12:09:31 -0400

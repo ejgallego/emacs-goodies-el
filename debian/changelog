@@ -1,3 +1,11 @@
+emacs-goodies-el (35.1) UNRELEASED; urgency=low
+
+  * emacs-goodies-el:
+  - Bug fix: "cwebm still included in package description", thanks to era
+    eriksson (Closes: #541348).
+
+ --
+
 emacs-goodies-el (35.0) unstable; urgency=low
 
   * emacs-goodies-el:

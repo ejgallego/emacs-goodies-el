@@ -30,7 +30,6 @@ Description: Miscellaneous add-ons for Emacs
   color-theme - changes the colors used within Emacs;
   csv-mode - major mode for comma-separated value files;
   ctypes - enhanced Font lock support for custom defined types;
-  cwebm - a modified CWEB/WEB modified mode;
   dedicated - make a window dedicated to a single buffer;
   df - display in the mode line space left on devices;
   dict - wrapper around the 'dict' command. (Depends on bash and dict)
