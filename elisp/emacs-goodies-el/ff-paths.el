@@ -251,7 +251,7 @@ The directories can be:
   - a symbol object evaluating to a list of strings (e.g. `load-path')
 
 You may mix environment variables and directory paths together.
-You may add trailing directoty paths to environment variables, e.g. $HOME/bin
+You may add trailing directory paths to environment variables, e.g. $HOME/bin
 You may not mix strings with elisp lists (like `load-path').
 You may terminate a directory name with double slashes // indicating that
  all subdirectories beneath it should also be searched.")
