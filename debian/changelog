@@ -3,6 +3,8 @@ emacs-goodies-el (35.1) UNRELEASED; urgency=low
   * emacs-goodies-el:
   - Bug fix: "cwebm still included in package description", thanks to era
     eriksson (Closes: #541348).
+  - ff-paths.el: "Typo in ff-paths.el", thanks to Reuben Thomas (Closes:
+    #609169).
 
  --
 
