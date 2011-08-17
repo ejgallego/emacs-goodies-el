@@ -10,6 +10,9 @@ emacs-goodies-el (35.1) UNRELEASED; urgency=low
   * debian-el:
   - deb-view.el: "deb-view does not support xz-compressed debs", thanks to
     Sven Joachim (Closes: #637579).
+  * dpkg-dev-el:
+  - debian-control-mode.el: "please Add support for Multi-Arch field in
+    debian-control-mode.el", thanks to Andreas Rottmann (Closes: #634162).
 
  --
 

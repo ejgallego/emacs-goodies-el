@@ -1,13 +1,13 @@
 ;;; debian-control-mode.el --- major mode for Debian control files
 
 ;; Copyright (C) 2001, 2003 Free Software Foundation, Inc.
-;; Copyright (C) 2003, 2004, 2005 Peter S Galbraith <psg@debian.org>
+;; Copyright (C) 2003-2005, 2007-2011 Peter S Galbraith <psg@debian.org>
 
 ;; Author: Colin Walters <walters@debian.org>
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
-;; Version: 1.3
-;; X-RCS: $Id: debian-control-mode.el,v 1.16 2011/06/25 18:03:10 psg Exp $
+;; Version: 1.5
+;; X-RCS: $Id: debian-control-mode.el,v 1.17 2011/08/17 02:59:50 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -31,6 +31,8 @@
 ;; for use in Emacs 21 and relatively recent versions of XEmacs.
 
 ;;; Change Log:
+
+;; V1.5 (2011-08-16) Added "Multi-Arch:" (Closes #634162)
 
 ;; V1.4 (2011-06-24) Added "XS-Python-Version" to debian-control-source-fields
 ;;  (Closes #591697)
@@ -188,7 +190,8 @@
 (defvar debian-control-binary-fields
   '("Section" "Priority" "Architecture" "Depends" "Conflicts" "Pre-Depends"
     "Essential" "Provides" "Recommends" "Suggests" "Replaces" "Enhances"
-    "Description" "Breaks")
+    "Description" "Breaks"
+    "Multi-Arch: same" "Multi-Arch: foreign" "Multi-Arch: allowed")
   "Valid binary package field names, collected from several policy sections.")
 
 (defvar debian-control-source-fields-regexp
