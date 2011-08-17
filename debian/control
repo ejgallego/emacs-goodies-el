@@ -93,7 +93,6 @@ Description: Miscellaneous add-ons for Emacs
   twiddle - mode line hacks to keep you awake;
   under - underline a region with ^ characters;
   upstart-mode - mode for editing upstart files;
-  wdired - rename files editing their names in dired buffers;
   xrdb-mode - mode for editing X resource database files.
  .
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
