@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 1.5
-;; X-RCS: $Id: debian-control-mode.el,v 1.17 2011/08/17 02:59:50 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.18 2011/08/17 04:00:18 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -190,8 +190,7 @@
 (defvar debian-control-binary-fields
   '("Section" "Priority" "Architecture" "Depends" "Conflicts" "Pre-Depends"
     "Essential" "Provides" "Recommends" "Suggests" "Replaces" "Enhances"
-    "Description" "Breaks"
-    "Multi-Arch: same" "Multi-Arch: foreign" "Multi-Arch: allowed")
+    "Description" "Breaks")
   "Valid binary package field names, collected from several policy sections.")
 
 (defvar debian-control-source-fields-regexp
@@ -220,15 +219,9 @@
 		'(symbol-value debian-control-source-package-face)
 	      '(list 'face debian-control-source-package-face))
 	   nil nil))
-    (,(concat "^\\(Package:\\)\\s-*"
-	      debian-control-package-name-regexp
-	      "\\s-*$")
+    ("^\\(Multi-Arch:\\)\\s-*\\(same\\|foreign\\|allowed\\)"
      (1 font-lock-function-name-face)
-     ,(list 2
-	    (if (featurep 'xemacs)
-		'(symbol-value 'debian-control-binary-package-face)
-	      '(list 'face debian-control-binary-package-face))
-	    nil nil))
+     (2 font-lock-keyword-face))
     (,debian-control-source-fields-regexp
      (1 font-lock-keyword-face))
     (,debian-control-binary-fields-regexp
