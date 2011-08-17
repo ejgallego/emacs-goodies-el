@@ -9,6 +9,8 @@ emacs-goodies-el (35.1) UNRELEASED; urgency=low
     #609169).
   - markdown-mode.el: "New upstream version of markdown-mode.el
     available", thanks to Jason Blevins (Closes: #637709).
+  - pod-mode.el: Skip byte-compilation for emacs21, thanks to Bob Proulx
+    (Closes: #635667).
   * debian-el:
   - deb-view.el: "deb-view does not support xz-compressed debs", thanks to
     Sven Joachim (Closes: #637579).
