@@ -386,6 +386,19 @@ This defaults to the value of (in order of precedence):
   :group 'debian-changelog
   :type 'string)
 
+(defcustom debian-changelog-allowed-distributions
+  '("unstable"
+    "testing"
+    "testing-security"
+    "stable" 
+    "stable-security" 
+    "oldstable-security" 
+    "experimental" 
+    "UNRELEASED" )
+  "*Allowed values for distribution."
+  :group 'debian-changelog
+  :type '(repeat string))
+
 (defcustom debian-changelog-local-variables-maybe-remove t
   "*Ask to remove obsolete \"Local Variables:\" block from changelog.
 This is done only under certain conditions."
@@ -880,14 +893,7 @@ for the debian/changelog file to add the entry to."
       (error (substitute-command-keys "most recent version has been finalised - use \\[debian-changelog-unfinalise-last-version] or \\[debian-changelog-add-version]")))
   (let ((str (completing-read
               "Select distribution: "
-              '(("unstable" 1)
-                ("testing" 2)
-                ("testing-security" 3)
-                ("stable" 4)
-                ("stable-security" 5)
-                ("oldstable-security" 6)
-                ("experimental" 7)
-                ("UNRELEASED" 8))
+	      debian-changelog-allowed-distributions
               nil t nil)))
     (if (not (equal str ""))
 	(debian-changelog-setdistribution str))))
@@ -960,7 +966,7 @@ If file is empty, create initial entry."
                      (read-string "New version (including any revision): "))))
     (if (debian-changelog-experimental-p)
         (insert pkg-name " (" version ") experimental; urgency=low\n\n  * ")
-      (insert pkg-name " (" version ") unstable; urgency=low\n\n  * "))
+      (insert pkg-name " (" version ") " (car debian-changelog-allowed-distributions) "; urgency=low\n\n  * "))
     (run-hooks 'debian-changelog-add-version-hook)
     (save-excursion (insert "\n\n --\n\n"))))
 
