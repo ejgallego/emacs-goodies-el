@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Peter S Galbraith <psg@debian.org>
 Build-Depends: debhelper (>= 7), quilt (>= 0.46-7), texinfo
 Standards-Version: 3.9.0
-Vcs-Cvs: :pserver:anonymous@cvs.alioth.debian.org:/cvsroot/pkg-goodies-el emacs-goodies-el
+Vcs-Cvs: :pserver:anonymous@cvs.alioth.debian.org:/cvs/pkg-goodies-el emacs-goodies-el
 Vcs-Browser: http://alioth.debian.org/scm/viewvc.php/?root=pkg-goodies-el
 
 Package: emacs-goodies-el

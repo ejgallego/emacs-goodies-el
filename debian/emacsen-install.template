@@ -101,10 +101,22 @@ then
 EOF
 fi
 
+# Prevent epg from manipulating /root/.gnupg (#689807)
+if [ ${PACKAGE} = gnus-bonus-el ]; then
+	TMPGNUPGHOME=`mktemp -d --tmpdir gnupg.XXXXXXXXXX`
+	cat << EOF >> path.el
+(setq epg-gpg-home-directory "${TMPGNUPGHOME}")
+EOF
+fi
+
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
 "${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} 2>&1
 egrep -s -e "While compiling|\*\*" ${LOG} || /bin/true
 echo install/${PACKAGE}: Deleting ${LOG}
 rm -f path.el ${LOG}
+
+if [ ${PACKAGE} = gnus-bonus-el ]; then
+	rm -rf ${TMPGNUPGHOME}
+fi
 
 exit 0

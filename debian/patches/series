@@ -8,6 +8,7 @@
 50_dedicated.diff
 50_dict_bug301293.diff
 50_diminish-defcustom.diff
+51_diminishSamuelBronson.diff
 50_edit-env_autoload.diff
 51_edit-env_copy-list.diff
 50_filladapt_bug420845.diff
@@ -38,3 +39,4 @@
 50_setnu.diff
 50_quack_autoload.diff
 50_vm-bogofilter.diff
+56_make_local_hook.diff

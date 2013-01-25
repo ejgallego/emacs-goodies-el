@@ -1,3 +1,28 @@
+emacs-goodies-el (35.3) unstable; urgency=low
+
+  * Bug fix: "egocentric.el and emacs24: "make-local-hook" is obsolete",
+    thanks to Paul. Changed in ascii.el, egocentric.el, maplev.el via
+    quilt patch 56_make_local_hook.diff. (Closes: #692750)
+  * Bug fix: "wrong "Vcs-Cvs"; field value => debcheckout doesn't", thanks
+    to Samuel Bronson.  Edited debian/control as proposed (Closes: #691987).
+  * Bug fix: "Improve muttrc auto-mode pattern", thanks to Rafael
+    Laboissiere. Patch applied to emacs-goodies-el.el (Closes: #645591).
+  * Bug fix: "tlc mode's auto-mode-alist pattern should end \\'; not $",
+    thanks to Reuben Thomas. Fixed without a quilt patch since I had
+    already edited that file (Closes: #616166).
+
+ -- Peter S Galbraith <psg@debian.org>  Fri, 25 Jan 2013 13:43:51 -0500
+
+emacs-goodies-el (35.2+nmu1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * No longer create /root/.gnupg during installation of gnus-bonus-el.
+    This is achieved by binding epg-gpg-home-directory to a temporary
+    directory during bytecode compilation (implementation in
+    debian/emacsen-install.template). (Closes: #689807)
+
+ -- Sébastien Villemot <sebastien@debian.org>  Sun, 21 Oct 2012 11:30:47 +0200
+
 emacs-goodies-el (35.2) unstable; urgency=low
 
   [ Roland Mas ]

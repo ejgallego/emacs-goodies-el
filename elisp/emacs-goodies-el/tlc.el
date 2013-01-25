@@ -2,8 +2,8 @@
 ;;
 ;; Author: Eric M. Ludlam <eludlam@mathworks.com>
 ;; Keywords: tlc
-;; Version: $Revision: 1.1 $
-;; X-RCS: $Id: tlc.el,v 1.1 2005/10/06 18:49:40 psg Exp $
+;; Version: $Revision: 1.2 $
+;; X-RCS: $Id: tlc.el,v 1.2 2013/01/25 18:45:28 psg Exp $
 ;; X-Abstract: Major mode for editing tlc files
 ;;
 ;; Copyright (c) 1997, 1998 by The MathWorks, Inc.
@@ -299,8 +299,8 @@ foreach\\|while\\|else\\|elseif\\|default\\|function\\)\\>\\)\\|/%\\)"))
 	nil))))
 
 ;;; Add to mode list
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.tlc$" .tlc-mode))
-(add-to-list 'auto-mode-alist '("\\.tlc$" .tlc-mode))
+;;;###autoload(add-to-list 'auto-mode-alist '("\\.tlc\\'" .tlc-mode))
+(add-to-list 'auto-mode-alist '("\\.tlc\\'" .tlc-mode))
 
 (provide 'tlc)
 
