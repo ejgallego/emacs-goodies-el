@@ -91,22 +91,16 @@ if [ ${PACKAGE} = emacs-goodies-el ]; then
    echo "(provide 'emacs-goodies-loaddefs)" >> emacs-goodies-loaddefs.el
 fi
 
-cat << EOF > path.el
-(setq load-path (cons "." load-path) byte-compile-warnings nil)
-EOF
+echo "(setq load-path (cons \".\" load-path) byte-compile-warnings nil)" > path.el
 if test "${APPEND_LOAD_PATH}" != ""
 then
-	cat << EOF >> path.el
-(setq load-path (append ${APPEND_LOAD_PATH} load-path))
-EOF
+	echo "(setq load-path (append ${APPEND_LOAD_PATH} load-path))" >> path.el
 fi
 
 # Prevent epg from manipulating /root/.gnupg (#689807)
 if [ ${PACKAGE} = gnus-bonus-el ]; then
 	TMPGNUPGHOME=`mktemp -d --tmpdir gnupg.XXXXXXXXXX`
-	cat << EOF >> path.el
-(setq epg-gpg-home-directory "${TMPGNUPGHOME}")
-EOF
+	echo "(setq epg-gpg-home-directory \"${TMPGNUPGHOME}\")" >> path.el
 fi
 
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
