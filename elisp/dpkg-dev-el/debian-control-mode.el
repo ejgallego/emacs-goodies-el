@@ -7,7 +7,7 @@
 ;; Maintainer: Peter S Galbraith <psg@debian.org>
 ;; Created: 29 Nov 2001
 ;; Version: 1.5
-;; X-RCS: $Id: debian-control-mode.el,v 1.18 2011/08/17 04:00:18 psg Exp $
+;; X-RCS: $Id: debian-control-mode.el,v 1.19 2013/10/15 17:22:44 psg Exp $
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -376,12 +376,12 @@
 		      (error "Couldn't find Package or Source field")))
 	  (fields (if binary-p
 		      debian-control-binary-fields
-		    debian-control-source-fields)))
+		    debian-control-source-fields))
+          (completion-ignore-case t))
      (list
       binary-p
-      (capitalize
-       (completing-read (format "Add %s package field: " (if binary-p "binary" "source"))
-			(mapcar #'(lambda (x) (cons x nil)) fields))))))
+      (completing-read (format "Add %s package field: " (if binary-p "binary" "source"))
+                       (mapcar #'(lambda (x) (cons x nil)) fields)))))
   (require 'cl)
   (let ((fields (if binary
 		    debian-control-binary-fields
@@ -421,26 +421,30 @@
 	;; If the field is already present, just jump to it
 	(if (setq x (assoc field curfields))
 	    (goto-char (cdr x))
-	  (let* ((pos (position field fields :test #'string-equal))
-		 (prevfields (subseq fields 0 pos))
-		 (nextfields (subseq fields (1+ pos)))
-		 (cur nil))
-	    (while (or prevfields
-		       nextfields)
+	  (let* ((pos (or (position field fields :test #'string-equal)
+                          -1))
+		 (prevfields (reverse (subseq fields 0 pos)))
+		 (nextfields (subseq fields (1+ pos))))
+	    (if (not (wholenump pos))
+                (goto-char (cdar curfields))
 	      (when prevfields
-		(when (setq x (assoc (pop prevfields) curfields))
-		  (setq prevfields nil nextfields nil)
-		  (goto-char (cdr x))))
+                (while (and (car prevfields)
+                            (not (assoc (car prevfields) curfields)))
+                  (pop prevfields))
+                (goto-char (cdr (assoc (car prevfields) curfields)))
+                (setq prevfields nil nextfields nil))
 	      (when nextfields
-		(when (setq x (assoc (pop nextfields) curfields))
-		  (setq prevfields nil nextfields nil)
-		  (goto-char (cdr x)))))
+                (while (and (car nextfields)
+                            (not (assoc (car nextfields) curfields)))
+                  (pop nextfields))
+                (goto-char (cdr (assoc (car nextfields) curfields)))
+                (setq prevfields nil nextfields nil)))
 	    ;; Hack: we don't want to add fields after Description
 	    (beginning-of-line)
 	    (when (looking-at "^Description")
 	      (forward-line -1))
 	    (end-of-line)
-	    (insert "\n" field ": ")))))))
+	    (insert "\n" (upcase-initials field) ": ")))))))
 
 (defun debian-control-visit-policy (format)
   "Visit the Debian Policy manual in format FORMAT.
