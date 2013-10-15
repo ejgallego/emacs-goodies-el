@@ -179,6 +179,7 @@
 
 ;;; Code:
 
+(load-library "cl-macs")
 (eval-when-compile (require 'vm))
 
 ;;; Customisation:
