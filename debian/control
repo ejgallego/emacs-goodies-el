@@ -98,30 +98,6 @@ Description: Miscellaneous add-ons for Emacs
  See /usr/share/doc/emacs-goodies-el/README.Debian.gz for a short
  description of all files, or the Info node `emacs-goodies-el' for details.
 
-Package: gnus-bonus-el
-Architecture: all
-Depends: emacs23 | emacsen, ${misc:Depends}
-Section: news
-Description: Miscellaneous add-ons for Gnus
- This package contains a few Emacs-Lisp files, obtained from various
- sources, including the gnu.emacs.sources newsgroup and a few
- websites, that provide various functions to Gnus, the Emacs mail and
- news reader.
- .
- This package contains:
-  gnus-eyecandy - enhance the group buffer by adding icons.
-  gnus-filterhist - add a buffer which display the message filtering
-  gnus-junk - semi-automatic replies to junk e-mails;
-  gnus-pers - an alternative to gnus-posting-styles.
-  message-x - customizable completion in message headers;
-  nnir - searchable mail backend;
-  nnnil - empty, read-only backend;
-  nntodo - manage to-do items;
-  spam-stat - spam-detector based on statistics.
- .
- See /usr/share/doc/gnus-bonus-el/README.Debian for a short description
- of all files.
-
 Package: devscripts-el
 Architecture: all
 Depends: emacs23 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel, ${misc:Depends}

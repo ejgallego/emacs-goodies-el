@@ -5,9 +5,8 @@
 ## DP: Insert autoload headers for quack.el.
 
 @DPATCH@
-diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/elisp/emacs-goodies-el/quack.el
---- emacs-goodies-el~/elisp/emacs-goodies-el/quack.el	2009-07-09 14:56:04.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/quack.el	2009-07-17 16:49:41.000000000 -0400
+--- a/elisp/emacs-goodies-el/quack.el
++++ b/elisp/emacs-goodies-el/quack.el
 @@ -62,9 +62,10 @@
  ;; INSTALLATION:
  ;;
@@ -20,7 +19,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;;
  ;;     If you don't know what your Emacs load path is, try invoking the command
  ;;     "C-h v load-path RET" or consulting the Emacs manual.
-@@ -3105,6 +3106,8 @@
+@@ -3159,6 +3160,8 @@
                               ;; Non-Scheme:
                               ("\\.plt\\'"    . quack-pltfile-mode)))
  
@@ -29,7 +28,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; Syntax Table:
  
  (defmacro quack-str-syntax (str)
-@@ -3374,10 +3377,6 @@
+@@ -3508,10 +3511,6 @@
       (add-submenu nil quack-global-menuspec "Help" current-menubar)
       (set-menubar-dirty-flag))))
  
@@ -40,7 +39,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; And die some more!
  ;;(quack-when-xemacs (add-hook 'after-init-hook 'quack-install-global-menu))
  
-@@ -3992,9 +3991,11 @@
+@@ -4132,9 +4131,11 @@
    (quack-when-xemacs
     (quack-install-global-menu)))
  
@@ -52,7 +51,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  (defun quack-scheme-mode-hookfunc ()
    (quack-shared-mode-hookfunc-stuff)
  
-@@ -4007,9 +4008,6 @@
+@@ -4147,9 +4148,6 @@
    ;;(quack-install-tool-bar)))
    )
  
@@ -62,7 +61,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; Compilation Mode:
  
  ;; TODO: Add compilation-directory-matcher support for "setup-plt:  in".
-@@ -4068,8 +4066,6 @@
+@@ -4215,8 +4213,6 @@
          (append quack-compilation-error-regexp-alist-additions
                  quack-saved-compilation-error-regexp-alist)))
  
@@ -71,7 +70,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; Interpreter-mode-alist:
  
  (defvar quack-saved-interpreter-mode-alist nil)
-@@ -4109,8 +4105,6 @@
+@@ -4256,8 +4252,6 @@
          (append quack-interpreter-mode-alist-additions
                  quack-saved-interpreter-mode-alist)))
  
@@ -80,7 +79,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  ;; PLT Package Mode:
  
  ;; TODO: Do some simple checking and summarize what directories and files are
-@@ -4138,6 +4132,7 @@
+@@ -4285,6 +4279,7 @@
  
  ;; TODO: Make a menu map for pltfile-mode.
  
@@ -88,7 +87,7 @@ diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/quack.el emacs-goodies-el/e
  (defun quack-pltfile-mode ()
    (interactive)
    "Major mode for viewing PLT Scheme `.plt' package files.
-@@ -4665,6 +4660,15 @@
+@@ -4812,6 +4807,15 @@
  
  ;; End:
  

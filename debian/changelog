@@ -1,3 +1,35 @@
+emacs-goodies-el (35.6) unstable; urgency=low
+
+  * emacs-goodies-el:
+  - Update to latest available version:
+    ascii.el
+    folding.el
+    matlab.el
+    minibuffer-complete-cycle.el
+    rfcview.el
+  * vm-bonus-el  
+  - Bug fix: "fails to install: ERROR: install script from vm-bonus-el
+    package failed", thanks to Andreas Beckmann (Closes: #706746, 709962).
+  * gnus-bonus-el binary package removed.  I don't use it and several
+    people have offered to take it up in the past and never have.
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 15 Oct 2013 15:23:33 -0400
+
+emacs-goodies-el (35.5) unstable; urgency=low
+
+  * emacs-goodies-el:
+  - Bug fix: "quack.el is out of date, upgrade to latest.", thanks to
+    Mehul Sanghvi (Closes: #720890).
+  - Bug fix: "tlc.el auto-mode-alist dot form", thanks to Kevin Ryde
+    (Closes: #699389).
+  - Bug fix: "please update markdown-mode", thanks to
+    yoh@onerussian.com</a>; (Closes: #695299).
+  * dpkg-dev-el:
+  - Bug fix: "Unable to add field "DM-Upload-Allowed", thanks to Kan-Ru
+    Chen (Closes: #652424).
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 15 Oct 2013 13:43:58 -0400
+
 emacs-goodies-el (35.4) unstable; urgency=low
 
   * Bug fix: emacsen-install.template: "fails to install due to heredoc

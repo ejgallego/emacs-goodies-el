@@ -5,9 +5,8 @@
 ## DP: No description.
 
 @DPATCH@
-diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-el/elisp/vm-bonus-el/vm-bogofilter.el
---- emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el	2009-11-14 13:25:59.000000000 -0500
-+++ emacs-goodies-el/elisp/vm-bonus-el/vm-bogofilter.el	2009-11-14 13:28:12.000000000 -0500
+--- a/elisp/vm-bonus-el/vm-bogofilter.el
++++ b/elisp/vm-bonus-el/vm-bogofilter.el
 @@ -1,6 +1,4 @@
 -;;; vm-bogofilter.el version 1.1.4
 -;;
@@ -66,7 +65,15 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
  ;;
  ;;
  ;;; Usage:
-@@ -193,43 +199,44 @@
+@@ -179,6 +185,7 @@
+ 
+ ;;; Code:
+ 
++(load-library "cl-macs")                ;Debian bugs 706746 and 709962
+ (eval-when-compile (require 'vm))
+ 
+ ;;; Customisation:
+@@ -193,43 +200,44 @@
    :type 'string)
  
  (defcustom vm-bogofilter-program-options "-u -p -e"
@@ -129,7 +136,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
    :group 'vm-bogofilter
    :type 'string)
  
-@@ -239,18 +246,20 @@
+@@ -239,18 +247,20 @@
    :type 'string)
  
  (defcustom vm-bogofilter-formail-program-options "-s"
@@ -158,7 +165,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
  vm-bogofilter-setup is called."
    :group 'vm-bogofilter
    :type 'boolean)
-@@ -263,8 +272,8 @@
+@@ -263,8 +273,8 @@
    :type 'boolean)
  
  (defun vm-bogofilter-arrived-message ()
@@ -169,7 +176,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
    (save-excursion
      (vm-save-restriction
       (let ((tail-cons (vm-last vm-message-list))
-@@ -295,7 +304,7 @@
+@@ -295,7 +305,7 @@
    )
  
  (defun vm-bogofilter-is-spam-old ()
@@ -178,7 +185,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
    (interactive)
    (vm-follow-summary-cursor)
    (vm-pipe-message-to-command
-@@ -303,7 +312,7 @@
+@@ -303,7 +313,7 @@
    )
  
  (defun vm-bogofilter-is-clean-old ()
@@ -187,7 +194,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
    (interactive)
    (vm-follow-summary-cursor)
    (vm-pipe-message-to-command
-@@ -311,15 +320,15 @@
+@@ -311,15 +321,15 @@
    )
  
  (defun vm-bogofilter-is-spam ()
@@ -206,7 +213,7 @@ diff -urNad emacs-goodies-el~/elisp/vm-bonus-el/vm-bogofilter.el emacs-goodies-e
    (interactive)
    (vm-bogofilter-retag "clean" vm-bogofilter-program-options-reclassify vm-bogofilter-program-options-unspam)
    )
-@@ -374,15 +383,13 @@
+@@ -374,15 +384,13 @@
  	)))))
  
  ;;; Hooking into VM
