@@ -1,12 +1,12 @@
 ;;; rfcview.el -- view IETF RFCs with readability-improved formatting
 
 ;; Copyright (C) 2001-2002 Neil W. Van Dyke
-;; Copyright (C) 2006, 2008 Free Software Foundation, Inc.
+;; Copyright (C) 2006, 2008, 2009 Free Software Foundation, Inc.
 ;;    (mods by Dave Love <fx@gnu.org>)
 
 ;; Author:   Neil W. Van Dyke <neil@neilvandyke.org>
 ;; Author: Dave Love <fx@gnu.org>
-;; Version:  0.12
+;; Version:  0.13
 ;; X-URL:    http://www.loveshack.ukfsn.org/emacs/rfcview.el
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -480,28 +480,31 @@ The index is usually rfc-index.txt in the RFC directory."
                        num-highlight-end   (match-end       11)))
                 (t (error "This should never happen")))
 
-          ;; Add overlays.
-          (when num-match
-            (rfcview-add-overlay (or num-highlight-begin
-                                     (match-beginning num-match))
-                                 (or num-highlight-end
-                                     (match-end       num-match))
-                                 'rfcview-headnum-ovlcat))
-          (rfcview-add-overlay (match-beginning name-match)
-                               (match-end       name-match)
-                               'rfcview-headname-ovlcat)
-          ;; Prepend the `rfcview-local-heading-alist' entry.
-          (setq rfcview-local-heading-alist
-                (let ((num  (when num-match
-                              (upcase (match-string-no-properties num-match))))
-                      (name (match-string-no-properties name-match)))
-                  (cons (cons (downcase (or num name))
-                              (vector
-                               num
-                               name
-                               (match-beginning 0)
-                               (match-end 0)))
-                        rfcview-local-heading-alist))))))
+	  ;; Don't lose if author's initial used in page footer.
+	  (unless (save-match-data
+		    (string-match "[[]Page [0-9iIvVxX]+]\\'"
+				  (match-string name-match)))
+	    ;; Add overlays.
+	    (when num-match
+	      (rfcview-add-overlay (or num-highlight-begin
+				       (match-beginning num-match))
+				   (or num-highlight-end
+				       (match-end       num-match))
+				   'rfcview-headnum-ovlcat))
+	    (rfcview-add-overlay (match-beginning name-match)
+				 (match-end       name-match)
+				 'rfcview-headname-ovlcat)
+	    ;; Prepend the `rfcview-local-heading-alist' entry.
+	    (let ((num  (when num-match
+			  (upcase (match-string-no-properties num-match))))
+		  (name (match-string-no-properties name-match)))
+	      (push (cons (downcase (or num name))
+			  (vector
+			   num
+			   name
+			   (match-beginning 0)
+			   (match-end 0)))
+		    rfcview-local-heading-alist))))))
     ;; Reverse `rfcview-local-heading-alist'.
     (setq rfcview-local-heading-alist (nreverse rfcview-local-heading-alist))
 
