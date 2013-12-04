@@ -1,6 +1,6 @@
 ;;; @(#) egocentric.el --- highlight your name inside emacs buffers
 
-;;; @(#) $Id: egocentric.el,v 1.2 2010/04/09 03:55:00 psg Exp $
+;;; @(#) $Id: egocentric.el,v 1.3 2013/12/04 22:32:10 psg Exp $
 
 ;; This file is *NOT* part of GNU Emacs.
 
@@ -13,7 +13,7 @@
 ;; LCD Archive Entry:
 ;; egocentric|Benjamin Drieu|bdrieu@april.org|
 ;; Highlight occurences of your name in buffers|
-;; 23-Apr-2001|$Revision: 1.2 $|~/misc/egocentric.el|
+;; 23-Apr-2001|$Revision: 1.3 $|~/misc/egocentric.el|
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as

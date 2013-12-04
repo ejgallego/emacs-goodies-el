@@ -65,15 +65,18 @@
  ;;
  ;;
  ;;; Usage:
-@@ -179,6 +185,7 @@
+@@ -179,7 +185,9 @@
  
  ;;; Code:
  
-+(load-library "cl-macs")                ;Debian bugs 706746 and 709962
- (eval-when-compile (require 'vm))
+-(eval-when-compile (require 'vm))
++(eval-when-compile
++  (load-library "cl-macs")
++  (require 'vm))
  
  ;;; Customisation:
-@@ -193,43 +200,44 @@
+ 
+@@ -193,43 +201,44 @@
    :type 'string)
  
  (defcustom vm-bogofilter-program-options "-u -p -e"
@@ -136,7 +139,7 @@
    :group 'vm-bogofilter
    :type 'string)
  
-@@ -239,18 +247,20 @@
+@@ -239,18 +248,20 @@
    :type 'string)
  
  (defcustom vm-bogofilter-formail-program-options "-s"
@@ -165,7 +168,7 @@
  vm-bogofilter-setup is called."
    :group 'vm-bogofilter
    :type 'boolean)
-@@ -263,8 +273,8 @@
+@@ -263,8 +274,8 @@
    :type 'boolean)
  
  (defun vm-bogofilter-arrived-message ()
@@ -176,7 +179,7 @@
    (save-excursion
      (vm-save-restriction
       (let ((tail-cons (vm-last vm-message-list))
-@@ -295,7 +305,7 @@
+@@ -295,7 +306,7 @@
    )
  
  (defun vm-bogofilter-is-spam-old ()
@@ -185,7 +188,7 @@
    (interactive)
    (vm-follow-summary-cursor)
    (vm-pipe-message-to-command
-@@ -303,7 +313,7 @@
+@@ -303,7 +314,7 @@
    )
  
  (defun vm-bogofilter-is-clean-old ()
@@ -194,7 +197,7 @@
    (interactive)
    (vm-follow-summary-cursor)
    (vm-pipe-message-to-command
-@@ -311,15 +321,15 @@
+@@ -311,15 +322,15 @@
    )
  
  (defun vm-bogofilter-is-spam ()
@@ -213,7 +216,7 @@
    (interactive)
    (vm-bogofilter-retag "clean" vm-bogofilter-program-options-reclassify vm-bogofilter-program-options-unspam)
    )
-@@ -374,15 +384,13 @@
+@@ -374,15 +385,13 @@
  	)))))
  
  ;;; Hooking into VM

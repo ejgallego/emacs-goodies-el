@@ -1,3 +1,23 @@
+emacs-goodies-el (35.8) unstable; urgency=low
+
+  * vm-bonus-el:
+  - Bug fix: "fails to install: ERROR: install script from vm-bonus-el
+    package failed", thanks to Andreas Beckmann (Closes: #706746).  Drop
+    the addition of /usr/share/emacs/site-lisp/vm to the compilation
+    load-path.
+
+ -- Peter S Galbraith <psg@debian.org>  Fri, 18 Oct 2013 20:01:49 -0400
+
+emacs-goodies-el (35.7) unstable; urgency=low
+
+  * vm-bonus-el:
+  - Bug fix: "fails to install: ERROR: install script from vm-bonus-el
+    package failed", thanks to Andreas Beckmann (Closes: #706746).  Can't
+    builf vm-bonus-el using "-q -no-site-file" because we need to load vm
+    correctly.
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 17 Oct 2013 12:33:18 -0400
+
 emacs-goodies-el (35.6) unstable; urgency=low
 
   * emacs-goodies-el:
@@ -5,7 +25,7 @@ emacs-goodies-el (35.6) unstable; urgency=low
     ascii.el
     folding.el
     matlab.el
-    minibuffer-complete-cycle.el
+    minibuffer-complete-cycle.el (not updated; compilation errors)
     rfcview.el
   * vm-bonus-el  
   - Bug fix: "fails to install: ERROR: install script from vm-bonus-el

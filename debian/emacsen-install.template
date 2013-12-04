@@ -1,4 +1,3 @@
-
 eval included_here=\$$(echo INCLUDED_$FLAVOR | tr - _)
 eval excluded_here=\$$(echo EXCLUDED_$FLAVOR | tr - _)
 eval sourceonly_here=\$$(echo SOURCEONLY_$FLAVOR | tr - _)
@@ -35,7 +34,8 @@ fi
 echo install/${PACKAGE}: Handling ${FLAVOR}, logged in ${LOG}
 
 if [ -z "$FLAGS" ] ; then
-    FLAGS="-q -no-site-file --no-site-file -batch -l path.el -f batch-byte-compile"
+#   FLAGS="-q -no-site-file --no-site-file -batch -l path.el -f batch-byte-compile
+    FLAGS="-batch -l path.el -f batch-byte-compile"
 fi
 
 install -m 755 -d ${ELCDIR}

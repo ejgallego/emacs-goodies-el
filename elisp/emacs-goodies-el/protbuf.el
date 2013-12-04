@@ -8,7 +8,7 @@
 ;; Status: Works with emacs 19.23 or later.
 ;; Created: 1994-06-21
 
-;; $Id: protbuf.el,v 1.1 2003/04/04 20:16:09 lolando Exp $
+;; $Id: protbuf.el,v 1.2 2013/12/04 22:32:10 psg Exp $
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by

@@ -8,7 +8,9 @@
 FLAVOR=$1
 PACKAGE=vm-bonus-el
 STAMPFILE=vm-bogofilter.elc
-APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/vm\")"
+# No longer use this append, rather use proper site-init
+# See bug #706746
+# APPEND_LOAD_PATH="'(\"/usr/share/emacs/site-lisp/vm\")"
 
 # INCLUDED_emacs20=""
 # INCLUDED_emacs21=""

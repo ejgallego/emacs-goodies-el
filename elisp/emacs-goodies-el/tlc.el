@@ -2,8 +2,8 @@
 ;;
 ;; Author: Eric M. Ludlam <eludlam@mathworks.com>
 ;; Keywords: tlc
-;; Version: $Revision: 1.2 $
-;; X-RCS: $Id: tlc.el,v 1.2 2013/01/25 18:45:28 psg Exp $
+;; Version: $Revision: 1.3 $
+;; X-RCS: $Id: tlc.el,v 1.3 2013/12/04 22:32:10 psg Exp $
 ;; X-Abstract: Major mode for editing tlc files
 ;;
 ;; Copyright (c) 1997, 1998 by The MathWorks, Inc.

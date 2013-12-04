@@ -8,7 +8,7 @@
 ;; Status: Works in XEmacs (I think >=21)
 ;; Created: 2001-02-07
 
-;; $Id: gnus-BTS.el,v 1.1 2003/04/04 20:16:01 lolando Exp $
+;; $Id: gnus-BTS.el,v 1.2 2013/12/04 22:32:10 psg Exp $
 
 ;; This file is not part of GNU Emacs.
 

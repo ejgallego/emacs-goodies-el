@@ -16,7 +16,7 @@
 @tolerance 10000
 @end iftex
 
-@c $Id: maplev.texi,v 1.7 2011/06/24 18:27:08 psg Exp $
+@c $Id: maplev.texi,v 1.8 2013/12/04 22:32:10 psg Exp $
 
 @ifinfo
 This file documents MapleV, a GNU Emacs major mode for developing code for

@@ -6,7 +6,7 @@
 ;; Maintainer: Nick Hurley <hurley@cis.ohio-state.edu>
 ;; Created: 7 Apr 2001
 ;; Version: 1.3a (CVS)
-;; X-RCS: $Id: browse-kill-ring.el,v 1.3 2009/09/03 14:41:25 psg Exp $
+;; X-RCS: $Id: browse-kill-ring.el,v 1.4 2013/12/04 22:32:10 psg Exp $
 ;; URL: http://freedom.cis.ohio-state.edu/~hurley/
 ;; URL-ja: http://www.fan.gr.jp/~ring/doc/browse-kill-ring.html
 ;; Keywords: convenience

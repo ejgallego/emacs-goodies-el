@@ -1,6 +1,6 @@
 ;; dict.el --- Emacs interface to dict client
 ;;
-;; $Id: dict.el,v 1.6 2009/09/04 01:50:58 psg Exp $
+;; $Id: dict.el,v 1.7 2013/12/04 22:32:10 psg Exp $
 ;;
 
 ;; Copyright (c) 2002, 2003, 2004 Max Vasin
@@ -612,7 +612,7 @@ This guess is based on the text surrounding the cursor."
   (shell-command "dict --version"))
 
 (defconst dict-version
-  "$Revision: 1.6 $"
+  "$Revision: 1.7 $"
   "Version number for 'dict' package.")
 
 (defun dict-version-number ()
