@@ -1,3 +1,16 @@
+emacs-goodies-el (35.9) unstable; urgency=medium
+
+  * dpkg-dev-el
+  - debian-changelog-mode.el Bug fix: "default urgency to medium", thanks
+    to Jonathan Wiltshire (Closes: #731105).
+  * Bug fix: "fails to upgrade lenny -&gt; squeeze -&gt; wheezy -&gt;
+    jessie", thanks to Andreas Beckmann (Closes: #730066, #730069).  Skip
+    byte-compilation of markdown-mode.el for obsolete emacs22.  I am
+    surprsied that the lack of handling of such old versions gets a
+    package kicked out of testing!
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 30 Dec 2013 13:46:55 -0500
+
 emacs-goodies-el (35.8) unstable; urgency=low
 
   * vm-bonus-el:

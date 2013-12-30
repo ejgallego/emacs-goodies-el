@@ -345,6 +345,8 @@
 ;;    Fix typo (Closes: #580818)
 ;; V1.94 28Jul2010 Kevin Ryde <user42@zip.com.au>
 ;;    Simplify auto-mode-alist (Closes: #587924)
+;; V1.95 01Dec2013 Matt Kraai <kraai@debian.org>
+;;    Change the default urgency to medium (Closes: #731105)
 ;;
 ;;; Acknowledgements:  (These people have contributed)
 ;;   Roland Rosenfeld <roland@debian.org>
@@ -965,8 +967,8 @@ If file is empty, create initial entry."
         (version (or (debian-changelog-suggest-version)
                      (read-string "New version (including any revision): "))))
     (if (debian-changelog-experimental-p)
-        (insert pkg-name " (" version ") experimental; urgency=low\n\n  * ")
-      (insert pkg-name " (" version ") " (car debian-changelog-allowed-distributions) "; urgency=low\n\n  * "))
+        (insert pkg-name " (" version ") experimental; urgency=medium\n\n  * ")
+      (insert pkg-name " (" version ") " (car debian-changelog-allowed-distributions) "; urgency=medium\n\n  * "))
     (run-hooks 'debian-changelog-add-version-hook)
     (save-excursion (insert "\n\n --\n\n"))))
 
@@ -1446,7 +1448,7 @@ interface to set it, or simply set the variable
 
 (defvar debian-changelog-font-lock-keywords-1
   (list
-    ;; package name line: pkg (1.0-1) unstable; urgency=low
+    ;; package name line: pkg (1.0-1) unstable; urgency=medium
    '(debian-changelog-fontify-version
      (1 font-lock-function-name-face)
      (2 font-lock-type-face nil t)
