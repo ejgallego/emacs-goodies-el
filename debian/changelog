@@ -1,3 +1,11 @@
+emacs-goodies-el (35.10) unstable; urgency=medium
+
+  * Bug fix: "M-x debian-bug does not run bug script if it is a symlink",
+    thanks to Sven Joachim for the patch and sorry for the long delay
+    (Closes: #679390)
+
+ -- Peter S Galbraith <psg@debian.org>  Thu, 30 Jan 2014 08:04:10 -0500
+
 emacs-goodies-el (35.9) unstable; urgency=medium
 
   * dpkg-dev-el
