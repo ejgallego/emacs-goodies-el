@@ -1,28 +1,5 @@
-#!/bin/sh -e
-## 50_joc-toggle-case.dpatch by Peter S Galbraith <psg@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Rename and add joc- prefix.
+## 50_joc-toggle-case.diff by Peter S Galbraith <psg@debian.org>
 
-if [ $# -ne 1 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-
-[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
-patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
-
-case "$1" in
-       -patch) patch $patch_opts -p1 < $0;;
-       -unpatch) patch $patch_opts -p1 -R < $0;;
-        *)
-                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-                exit 1;;
-esac
-
-exit 0
-
-@DPATCH@
 --- a/elisp/emacs-goodies-el/joc-toggle-case.el
 +++ b/elisp/emacs-goodies-el/joc-toggle-case.el
 @@ -28,7 +28,9 @@

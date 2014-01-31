@@ -1,13 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 51_edit-env_copy-list.dpatch by Peter S Galbraith <psg@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## 51_edit-env_copy-list.diff by Peter S Galbraith <psg@debian.org>
 
-@DPATCH@
-diff -urNad emacs-goodies-el~/elisp/emacs-goodies-el/edit-env.el emacs-goodies-el/elisp/emacs-goodies-el/edit-env.el
---- emacs-goodies-el~/elisp/emacs-goodies-el/edit-env.el	2006-02-02 22:21:32.000000000 -0500
-+++ emacs-goodies-el/elisp/emacs-goodies-el/edit-env.el	2006-02-02 22:22:38.000000000 -0500
+--- a/elisp/emacs-goodies-el/edit-env.el	2006-02-02 22:21:32.000000000 -0500
++++ b/elisp/emacs-goodies-el/edit-env.el	2006-02-02 22:22:38.000000000 -0500
 @@ -111,6 +111,16 @@
  	       (list (widget-get widget 'environment-variable-name)
  		     widget)))

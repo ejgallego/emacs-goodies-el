@@ -1,31 +1,7 @@
-#!/bin/sh -e
-## 50_todoo_bug220718.dpatch by Peter S Galbraith <psg@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Fix XEmacs keybindings (bug #220718)
+## 50_todoo_bug220718.diff by Peter S Galbraith <psg@debian.org>
 
-if [ $# -ne 1 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-
-[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
-patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
-
-case "$1" in
-       -patch) patch $patch_opts -p1 < $0;;
-       -unpatch) patch $patch_opts -p1 -R < $0;;
-        *)
-                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-                exit 1;;
-esac
-
-exit 0
-
-@DPATCH@
-diff -urNad /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/todoo.el emacs-goodies-el/elisp/emacs-goodies-el/todoo.el
---- /home/psg/emacs/emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/todoo.el	2003-10-07 19:18:28.000000000 -0400
-+++ emacs-goodies-el/elisp/emacs-goodies-el/todoo.el	2003-11-17 15:47:07.000000000 -0500
+--- a/elisp/emacs-goodies-el/todoo.el	2003-10-07 19:18:28.000000000 -0400
++++ b/elisp/emacs-goodies-el/todoo.el	2003-11-17 15:47:07.000000000 -0500
 @@ -201,10 +201,17 @@
      (define-key map "\C-c\C-n" 'outline-next-visible-heading)
      (define-key map "\C-c\M-p" 'todoo-raise-item)

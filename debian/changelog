@@ -1,3 +1,14 @@
+emacs-goodies-el (35.11) UNRELEASED; urgency=medium
+
+  * Complete dpatch -> quilt transition from 31.7 by removing dpatch code
+    from debian/patch/* files
+  * Quieten lintian warnings by removing executable bits from almost all
+    files
+  * Include make-orig.sh in source distribution (cvs-buildpackage does
+    this anyway)
+
+ -- Julian Gilbey <jdg@debian.org>  Fri, 31 Jan 2014 09:25:47 +0000
+
 emacs-goodies-el (35.10) unstable; urgency=medium
 
   * Bug fix: "M-x debian-bug does not run bug script if it is a symlink",

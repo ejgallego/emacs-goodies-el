@@ -1,10 +1,5 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 53_gnus-pers.dpatch by Peter S Galbraith <psg@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## 53_gnus-pers.diff by Peter S Galbraith <psg@debian.org>
 
-@DPATCH@
 --- a/elisp/gnus-bonus-el/gnus-pers.el
 +++ b/elisp/gnus-bonus-el/gnus-pers.el
 @@ -361,8 +361,8 @@

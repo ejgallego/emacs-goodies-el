@@ -20,6 +20,6 @@ THISDIR=$(basename $PWD)
 (cd .. ; install -d build_${VERSION})
 rm -fR ../build_${VERSION}/*
 (cd ../build_${VERSION} ; install -d ${SOURCE}-${VERSION})
-tar cf - --exclude=CVS elisp debian 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 | ( cd ../build_${VERSION}/${SOURCE}-${VERSION} ; tar xf -)
+tar cf - --exclude=CVS elisp debian 00AddingFiles COPYING-GPL-v2 COPYING-GPL-v3 make-orig.sh | ( cd ../build_${VERSION}/${SOURCE}-${VERSION} ; tar xf -)
 #(cd ../build_${VERSION} ; tar cf ${SOURCE}_${VERSION}.orig.tar ${SOURCE}-${VERSION})
 #(cd ../build_${VERSION} ; gzip --best ${SOURCE}_${VERSION}.orig.tar)
