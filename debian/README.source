@@ -4,9 +4,11 @@ This package uses quilt to manage all modifications. See
 
 to get more information on how to use it.
 
-To apply and unppaly all patches, you can run:
+To apply and unapply all patches, you can run:
 
- debian/rules patch
- debian/rules unpatch
+ quilt push -a
+ quilt pop -a
 
- -- Peter S Galbraith <psg@debian.org>, Mon,  5 Apr 2010 16:30:13 -0400
+ensuring that you have set QUILT_PATCHES=debian/patches.
+
+ -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 09:24:32 +0000

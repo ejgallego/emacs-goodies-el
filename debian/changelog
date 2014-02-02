@@ -7,8 +7,12 @@ emacs-goodies-el (35.11) UNRELEASED; urgency=medium
   * Include make-orig.sh in source distribution (cvs-buildpackage does
     this anyway)
   * vm-bonus-el package removed - it's ancient and barely used anymore
+  * Remove gnus-bonus-el from the source package (the binary package was
+    removed in 35.6).  This closes the bugs against it, even though they
+    have not been fixed (Closes: #570276, #448441, #236919, #597035,
+    #609698, #648607)
 
- -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 09:04:53 +0000
+ -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 09:26:33 +0000
 
 emacs-goodies-el (35.10) unstable; urgency=medium
 

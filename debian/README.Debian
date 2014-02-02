@@ -284,7 +284,6 @@ tc.el provides a nice way to quote cited texts, with proper filling
 and attribution.  You can use it for instance by setting the cite
 function to 'trivial-cite: (setq message-cite-function 'trivial-cite).
 
-
 thinks.el provides cartoon-like think bubbles . o O ( like this ).
 Look for M-x thinks* commands.
 
@@ -314,4 +313,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Peter S Galbraith <psg@debian.org>, Tue, 16 Aug 2011 12:09:31 -0400
+ -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 09:25:53 +0000
