@@ -16,13 +16,6 @@ sourceonly_all=$(for i in ${!SOURCEONLY_*} ; do
 
 if [ ${FLAVOR} = emacs ]; then exit 0; fi
 
-# Install-info-altdir does not actually exist. 
-# Maybe somebody will write it.
-if test -x /usr/sbin/install-info-altdir; then
-    echo install/${PACKAGE}: install Info links for ${FLAVOR}
-    install-info-altdir --quiet --section "" "" --dirname=${FLAVOR} /usr/info/${PACKAGE}.info.gz
-fi
-
 LOG=`tempfile -pelc_ -s.log -m644`
 ELDIR=/usr/share/emacs/site-lisp/${PACKAGE}
 ELCDIR=/usr/share/${FLAVOR}/site-lisp/${PACKAGE}
@@ -97,20 +90,14 @@ then
 	echo "(setq load-path (append ${APPEND_LOAD_PATH} load-path))" >> path.el
 fi
 
-# Prevent epg from manipulating /root/.gnupg (#689807)
-if [ ${PACKAGE} = gnus-bonus-el ]; then
-	TMPGNUPGHOME=`mktemp -d --tmpdir gnupg.XXXXXXXXXX`
-	echo "(setq epg-gpg-home-directory \"${TMPGNUPGHOME}\")" >> path.el
-fi
-
 echo ${FLAVOR} ${FLAGS} ${FILES} >> ${LOG}
 "${FLAVOR}" ${FLAGS} ${FILES} >> ${LOG} 2>&1
 egrep -s -e "While compiling|\*\*" ${LOG} || /bin/true
 echo install/${PACKAGE}: Deleting ${LOG}
 rm -f path.el ${LOG}
 
-if [ ${PACKAGE} = gnus-bonus-el ]; then
-	rm -rf ${TMPGNUPGHOME}
-fi
-
 exit 0
+
+# Local Variables:
+# mode: shell-script
+# End:

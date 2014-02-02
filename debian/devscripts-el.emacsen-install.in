@@ -21,3 +21,17 @@ PACKAGE=devscripts-el
 # EXCLUDED_emacs20=""
 # EXCLUDED_emacs21=""
 # EXCLUDED_xemacs21=""
+
+# devscripts.el requires apel to be byte-compiled before it can be
+# byte-compiled itself.  This could easily go wrong, as shown in
+# bug#737202; there, emacs23 did the byte compiling of all installed
+# packages when a new version of emacs23 was being configured, but it
+# had not yet byte-compiled apel when it attempted to compile
+# devscripts-el.  So we skip the byte-compilation of devscripts-el if
+# apel has not yet been byte-compiled; this is a workaround for the
+# emacs bug which has been uncovered by this.
+
+if [ ! -e "/usr/share/$FLAVOR/site-lisp/apel/mcharset.elc" ]
+then
+    exit 0
+fi
