@@ -13,8 +13,10 @@ emacs-goodies-el (35.11) UNRELEASED; urgency=medium
     #609698, #648607)
   * Fix piuparts error with a temporary patch, until emacsen-common is
     fixed. (Closes: #737202)
+  * Add emacsen compat files (in line with new policy and current
+    debhelper behaviour)
 
- -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 10:25:00 +0000
+ -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 10:50:57 +0000
 
 emacs-goodies-el (35.10) unstable; urgency=medium
 
