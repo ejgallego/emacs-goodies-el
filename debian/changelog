@@ -15,8 +15,9 @@ emacs-goodies-el (35.11) unstable; urgency=medium
     whatever the true source of the bug is) is fixed. (Closes: #737202)
   * Add emacsen compat files (in line with new policy and current
     debhelper behaviour)
+  * Rewrite rules to remove quilt dependency
 
- -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 11:23:16 +0000
+ -- Julian Gilbey <jdg@debian.org>  Sun, 02 Feb 2014 13:12:24 +0000
 
 emacs-goodies-el (35.10) unstable; urgency=medium
 
