@@ -150,17 +150,3 @@ Description: Emacs helpers specific to Debian development
  .
  See /usr/share/doc/dpkg-dev-el/README.Debian for a short description of
  all files.
-
-Package: vm-bonus-el
-Architecture: all
-Depends: vm (>= 8.0.12-1), bogofilter, procmail, ${misc:Depends}
-Section: mail
-Description: vm-bogofilter add-on for VM 
- This package contains vm-bogofilter, an Emacs-Lisp files that provide
- extra support to VM, a mail user agent for Emacs.
- .
- This package contains:
-  vm-bogofilter.el - Interface between VM and the bogofilter spam filter.
- .
- See /usr/share/doc/vm-bonus-el/README.Debian for short description
- of the file and its configuration.
