@@ -9,6 +9,9 @@ To apply and unapply all patches, you can run:
  quilt push -a
  quilt pop -a
 
-ensuring that you have set QUILT_PATCHES=debian/patches.
+ensuring that you have set QUILT_PATCHES=debian/patches, or alternatively
 
- -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 09:24:32 +0000
+ debian/rules patch
+ debian/rules unpatch
+
+ -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 14:53:29 +0000
