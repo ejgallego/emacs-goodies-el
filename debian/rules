@@ -15,9 +15,8 @@ override_dh_auto_build:
 	dh_auto_build
 
 override_dh_installemacsen:
-	dh_installemacsen
-	cd debian/debian-el/etc/emacs/site-start.d; \
-	  if [ -f 50debian-el.el ]; then mv 50debian-el.el 51debian-el.el; fi
+	dh_installemacsen -Ndebian-el
+	dh_installemacsen -pdebian-el --priority=51
 
 override_dh_auto_clean:
 	for i in debian/*.emacsen-install.in ; do rm -f debian/$$(basename $$i .in) ; done
