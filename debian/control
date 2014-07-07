@@ -10,7 +10,7 @@ Vcs-Browser: http://alioth.debian.org/scm/viewvc.php/?root=pkg-goodies-el
 
 Package: emacs-goodies-el
 Architecture: all
-Depends: emacs23 | emacsen, bash (>= 2.05a) | bash-static, ${misc:Depends}, dpkg (>= 1.15.4) | install-info
+Depends: emacs | emacsen, bash (>= 2.05a) | bash-static, ${misc:Depends}, dpkg (>= 1.15.4) | install-info
 Recommends: dict, wget, perl-doc
 Replaces: emacs-goodies-extra-el
 Provides: emacs-goodies-extra-el
@@ -101,7 +101,7 @@ Description: Miscellaneous add-ons for Emacs
 
 Package: devscripts-el
 Architecture: all
-Depends: emacs23 | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel, ${misc:Depends}
+Depends: emacs | emacsen, bash (>= 2.05a), devscripts, dpkg-dev-el, apel, ${misc:Depends}
 Recommends: elserv
 Description: Emacs wrappers for the commands in devscripts
  This package contains:
@@ -113,7 +113,7 @@ Description: Emacs wrappers for the commands in devscripts
 
 Package: debian-el
 Architecture: all
-Depends: emacs23 | emacsen, reportbug (>= 4.12), ${misc:Depends}, dpkg (>= 1.15.4) | install-info, bzip2, file
+Depends: emacs | emacsen, reportbug (>= 4.12), ${misc:Depends}, dpkg (>= 1.15.4) | install-info, bzip2, file
 Recommends: wget, dlocate, groff-base
 Suggests: gnus
 Replaces: debbugs-el, debview
@@ -134,7 +134,7 @@ Description: Emacs helpers specific to Debian users
 
 Package: dpkg-dev-el
 Architecture: all
-Depends: emacs23 | emacsen, debian-el (>= 33.2), ${misc:Depends}
+Depends: emacs | emacsen, debian-el (>= 33.2), ${misc:Depends}
 Suggests: dpkg-dev
 Recommends: wget
 Conflicts: dpkg-dev (<< 1.7.2)

@@ -1,3 +1,10 @@
+emacs-goodies-el (35.12) unstable; urgency=medium
+
+  * Bug fix: "please switch to emacs24", thanks to Gabriele Giacone
+    (Closes: #754007).
+
+ -- Peter S Galbraith <psg@debian.org>  Mon, 07 Jul 2014 17:47:33 -0400
+
 emacs-goodies-el (35.11) unstable; urgency=medium
 
   * Complete dpatch -> quilt transition from 31.7 by removing dpatch code
