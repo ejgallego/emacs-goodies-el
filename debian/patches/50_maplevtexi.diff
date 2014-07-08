@@ -5,3 +5,19 @@
 ## DP: No description.
 
 @DPATCH@
+diff -urNad '--exclude=CVS' '--exclude=.svn' '--exclude=.git' '--exclude=.arch' '--exclude=.hg' '--exclude=_darcs' '--exclude=.bzr' emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi
+--- emacs-goodies-el~/elisp/emacs-goodies-el/maplev.texi	2014-07-08 15:53:02.000000000 -0400
++++ emacs-goodies-el/elisp/emacs-goodies-el/maplev.texi	2014-07-08 15:12:41.088168696 -0400
+@@ -12,7 +12,11 @@
+ @end direntry
+ 
+ 
+-@include version.texi
++@set UPDATED 2 January 2010
++@c Edition of the Manual
++@set EDITION 1.1
++@c Version of the Code
++@set VERSION 2.16
+ 
+ @iftex
+ @tolerance 10000
