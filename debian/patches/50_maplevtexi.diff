@@ -1,0 +1,7 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 50_maplevtexi.diff.dpatch by  <psg@mixed.home.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@

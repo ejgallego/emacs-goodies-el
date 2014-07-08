@@ -18,7 +18,7 @@
 50_highlight-beyond-fill-column.diff
 50_joc-toggle-case.diff
 50_joc-toggle-buffer.diff
-50_maplev_bug528868.diff
+50_maplevtexi.diff
 50_marker-visit_autoloads.diff
 50_session_enable_custom.diff
 51_session_autoload.diff
