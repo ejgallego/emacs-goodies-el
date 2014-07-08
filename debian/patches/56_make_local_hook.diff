@@ -20,30 +20,3 @@
    (add-hook 'post-command-hook (function egocentric-post-command-hook) t t)
    (egocentric-update-regexp-list)
    (egocentric-insinuate egocentric-regexp-list)
---- a/elisp/emacs-goodies-el/maplev.el
-+++ b/elisp/emacs-goodies-el/maplev.el
-@@ -1853,13 +1853,15 @@
-   ;; the file's local variables specs might change maplev-release
-   ;; xemacs version of make-local-hook returns t, not the hook. (JR)
-   ;; make-local-hook is obsolete in GNU emacs 21.1
--  (make-local-hook 'hack-local-variables-hook)
-+  (if (fboundp 'make-local-hook)
-+      (make-local-hook 'hack-local-variables-hook))
-   (add-hook 'hack-local-variables-hook 'maplev-mode-name nil t)
- 
-   ;; Set hooks
-   (if maplev-clean-buffer-before-saving-flag
-       (add-hook 'local-write-file-hooks 'maplev-remove-trailing-spaces))
--  (make-local-hook 'before-change-functions)
-+  (if (fboundp 'make-local-hook)
-+      (make-local-hook 'before-change-functions))
-   (add-hook 'before-change-functions 'maplev--before-change-function nil t)
-   (run-hooks 'maplev-mode-hook))
- 
-@@ -4887,4 +4889,4 @@
- 
- (provide 'maplev)
- 
--;;; maplev.el ends here
-\ No newline at end of file
-+;;; maplev.el ends here
