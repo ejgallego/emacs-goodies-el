@@ -1,3 +1,11 @@
+emacs-goodies-el (35.13) UNRELEASED; urgency=medium
+
+  * emacs-goodies-el:
+  - maplev.el update to 2.27
+  - button-lock.el: new file needed by mapleve.el
+
+ -- Peter S Galbraith <psg@debian.org>  Tue, 08 Jul 2014 14:51:03 -0400
+
 emacs-goodies-el (35.12) unstable; urgency=medium
 
   * Bug fix: "please switch to emacs24", thanks to Gabriele Giacone

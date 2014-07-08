@@ -95,6 +95,10 @@ Files: elisp/emacs-goodies-el/browse-kill-ring.el
 Copyright: 2001 Colin Walters
 License: GPL-2+
 
+Files: elisp/emacs-goodies-el/button-lock.el
+Copyright: 2011 D Roland Walker
+License: GPL-2+
+
 Files: elisp/emacs-goodies-el/clipper.el
 Copyright: 1997-2000 Free Software Foundation, Inc.
 License: GPL-2+
@@ -280,7 +284,7 @@ License: GPL-2+
 Comment:
  Authors: Joseph S. Riel <joer@k-online.com>
           and Roland Winkler <Roland.Winkler@physik.uni-erlangen.de>
- URL:     http://www.k-online.com/~joer/maplev/maplev.html
+ URL:     https://github.com/JoeRiel/maplev
 
 Files: elisp/emacs-goodies-el/map-lines.el
 Copyright: 2002 Andreas Fuchs <asf@void.at>

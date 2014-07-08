@@ -26,6 +26,7 @@ Description: Miscellaneous add-ons for Emacs
   boxquote - quote texts in nice boxes;
   browse-huge-tar - browse tar files without reading them into memory;
   browse-kill-ring - browse, search, modify the kill ring;
+  button-lock - clickable text defined by regular expression;
   clipper - save strings of data for further use;
   coffee - now Emacs can even brew coffee;
   color-theme - changes the colors used within Emacs;

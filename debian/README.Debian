@@ -48,6 +48,9 @@ browse-kill-ring.el provides M-x browse-kill-ring.el, to, well, browse
 through your kill ring, perform searches on it, and insert items into
 a buffer.
 
+button-lock.el is a minor mode which provides simple facilities to
+define clickable text based on regular expressions (used by maplev.el). 
+
 cfengine.el is an Emacs major-mode for editing cfengine scripts.
 
 clipper.el provides the M-x clipper-* commands to save strings of data
@@ -313,4 +316,4 @@ resource database files.  To use it, simple open a file named .Xdefaults,
 .Xenvironment, .Xresources or *.ad after having enabled it by customising
 `xrdb-mode-setup-auto-mode-alist'.
 
- -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 09:25:53 +0000
+ -- Peter S Galbraith <psg@debian.org>, Tue,  8 Jul 2014 14:47:42 -0400
